@@ -557,6 +557,8 @@ function renderGuide(context, y) {
   connectors.forEach(([x1, y1, x2, y2, color]) => {
     parts.push(line(rootX + x1, cardY + y1, rootX + x2, cardY + y2, color, 0.9396985173225403));
   });
+  const activityOutline = GUIDE_LAYOUT.activityOutline;
+  parts.push(`<rect data-part="guide-activity-outline" x="${rootX + activityOutline.x}" y="${cardY + activityOutline.y}" width="${activityOutline.width}" height="${activityOutline.height}" rx="${activityOutline.radius}" fill="none" stroke="${COLORS.saad}" stroke-width="${activityOutline.strokeWidth}"/>`);
   return `<g data-component="course-guide">${parts.join("")}</g>`;
 }
 

@@ -96,6 +96,11 @@ The guide instance is `485.824097 × 192.748779` at `x=54.087952`. Its scaled
 course card begins at relative `x=174.783875`, and the renderer uses the same
 `1.956107` component scale.
 
+The activity-letter boxes are enclosed by the Figma `Rectangle 4` outline at
+guide-relative `x=216.130676`, `y=81.753784`. It is `64.839195 × 16.914574`,
+has no fill, uses the Saad-blue `0.939699` inside stroke, and has a `3.758794`
+corner radius.
+
 The eight connector paths were verified from the Figma line transforms rather
 than from screenshot pixels. Their relative endpoints are:
 

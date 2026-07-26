@@ -94,6 +94,14 @@ export const GUIDE_LAYOUT = Object.freeze({
   cardX: 174.8,
   cardY: 0,
   cardScale: 1.9561071395874023,
+  activityOutline: Object.freeze({
+    x: 216.13067626953125,
+    y: 81.7537841796875,
+    width: 64.83919525146484,
+    height: 16.914573669433594,
+    radius: 3.758794069290161,
+    strokeWidth: 0.9396985173225403,
+  }),
 });
 
 export function semesterBodyHeight(courseCount = 0) {
