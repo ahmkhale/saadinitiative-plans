@@ -11,6 +11,9 @@ const state = {
   previewTimer: null,
   searchTimer: null,
   previewUrls: [],
+  settings: null,
+  sharedSemesterSets: [],
+  draggedProposal: null,
 };
 
 const els = {
@@ -48,6 +51,8 @@ const els = {
   dialogSubmit: $("dialogSubmit"),
   generateButton: $("generateButton"),
   generateDraftButton: $("generateDraftButton"),
+  sharedSetChoices: $("sharedSetChoices"),
+  sharedSetList: $("sharedSetList"),
 };
 let dialogResolver = null;
 
@@ -132,6 +137,10 @@ function renderNavigation() {
 async function loadState() {
   const result = await request("/api/state");
   state.colleges = result.colleges;
+  state.settings = result.settings;
+  state.sharedSemesterSets = result.sharedSemesterSets ?? [];
+  $("globalEdition").value = state.settings.edition;
+  $("globalRelease").value = state.settings.release;
   const source = result.catalog.sources?.[0];
   els.catalogCount.textContent = result.catalog.resolvedCourseCount.toLocaleString("ar-SA");
   els.catalogConflicts.textContent = result.catalog.conflictCount.toLocaleString("ar-SA");
@@ -144,6 +153,7 @@ async function loadState() {
     state.selectedMajorId = "";
   }
   renderNavigation();
+  renderSharedSets();
 }
 
 async function selectCollege(id) {
@@ -192,8 +202,42 @@ function parseCodes(value) {
 function collection(kind, index) {
   if (kind === "semester") return state.plan.semesters[index].courses;
   if (kind === "elective") return state.plan.electiveGroups[index].courses;
-  if (kind === "proposal") return state.plan.proposal.semesters[index].courses;
+  if (kind === "proposal") return proposalEntries(state.plan.proposal.semesters[index]);
   throw new Error("Unknown course collection.");
+}
+
+function proposalEntries(semester) {
+  return [
+    ...(semester.courseOrder ?? []).map((code) => ({ code })),
+    ...(semester.placeholders ?? []).map((placeholder) => ({
+      kind: "placeholder",
+      code: `مقرر ${placeholder.id}`,
+      fallback: placeholder,
+      placeholderId: placeholder.id,
+    })),
+  ];
+}
+
+const courseCollator = new Intl.Collator("ar", { sensitivity: "base", numeric: true });
+function compareCodes(left, right) {
+  const a = entryCode(left);
+  const b = entryCode(right);
+  const an = Number.parseInt(a, 10);
+  const bn = Number.parseInt(b, 10);
+  if (an !== bn) return an - bn;
+  return courseCollator.compare(a, b);
+}
+
+function sortPublishedCollections() {
+  state.plan.semesters.forEach((semester) => semester.courses.sort(compareCodes));
+  (state.plan.electiveGroups ?? []).forEach((group) => group.courses.sort(compareCodes));
+}
+
+function publishedDecisionSemesters() {
+  const inherited = (state.plan.sharedSemesterSets ?? []).flatMap((id) => (
+    state.sharedSemesterSets.find((set) => set.id === id)?.semesters ?? []
+  ));
+  return [...inherited, ...state.plan.semesters];
 }
 
 function resolvedCollection(kind, index) {
@@ -206,30 +250,42 @@ function resolvedCollection(kind, index) {
 
 function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
   const code = entryCode(entry);
-  const override = typeof entry === "object" ? entry.override ?? {} : {};
+  const rules = typeof entry === "object" ? entry : {};
   const unresolved = !resolved || resolved.source === "unresolved";
+  const isPlaceholder = entry?.kind === "placeholder";
+  const badgeClass = resolved?.catalogSource === "male" ? "male" : resolved?.catalogSource === "female" ? "female"
+    : resolved?.catalogSource === "manual" ? "manual" : resolved?.sourceBadge === "بيانات متعارضة" ? "conflict" : "missing";
   const location = kind === "semester" ? `semester-${groupIndex + 1}` : kind === "elective"
     ? `elective-${state.plan.electiveGroups[groupIndex]?.id ?? groupIndex + 1}`
     : `proposal-semester-${groupIndex + 1}`;
   return `
-    <div class="course-row ${unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-location="${escapeHtml(location)}">
-      <div><div class="course-code">${escapeHtml(resolved?.code ?? code)}</div><div class="course-meta">${escapeHtml(resolved?.subject ?? "")}</div></div>
+    <div class="course-row ${unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
+      <div><div class="course-code">${escapeHtml(resolved?.code ?? code)}</div><div class="course-meta">${escapeHtml(resolved?.subject ?? "")}</div><span class="source-badge ${badgeClass}">${escapeHtml(isPlaceholder ? "مقرر نائب" : resolved?.sourceBadge ?? "بيانات ناقصة")}</span></div>
       <div><div class="course-name">${escapeHtml(resolved?.name ?? (entry?.kind === "placeholder" ? entry?.fallback?.name : "مقرر غير موجود في الدليل"))}</div>
         <div class="course-meta">${resolved ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? "—"} · عملي ${resolved.practicalHours ?? "—"} · تمارين ${resolved.exerciseHours ?? "—"}` : ""}</div>
       </div>
       <div class="course-meta">${resolved?.prerequisites?.length ? `سابق: ${escapeHtml(resolved.prerequisites.join("، "))}` : "لا متطلب سابق"}</div>
       <div class="course-actions">
-        <button class="icon-button course-up" type="button" aria-label="نقل إلى أعلى">↑</button>
-        <button class="icon-button course-down" type="button" aria-label="نقل إلى أسفل">↓</button>
-        <button class="icon-button course-delete danger" type="button" aria-label="حذف">×</button>
+        ${kind === "proposal" && !isPlaceholder ? '<button class="icon-button course-up" type="button" aria-label="نقل إلى أعلى">↑</button><button class="icon-button course-down" type="button" aria-label="نقل إلى أسفل">↓</button>' : ""}
+        ${kind !== "proposal" || isPlaceholder ? '<button class="icon-button course-delete danger" type="button" aria-label="حذف">×</button>' : ""}
       </div>
-      <details class="course-details">
-        <summary>${unresolved ? "إضافة بيانات بديلة" : "المتطلبات والتعديل المتقدم"}</summary>
+      <details class="course-details" ${kind === "proposal" ? "hidden" : unresolved && !isPlaceholder ? "open" : ""}>
+        <summary>${unresolved ? "أكمل بيانات المقرر" : "تفاصيل المقرر وقواعد الخطة"}</summary>
+        ${!isPlaceholder ? `<p class="concept-heading">بيانات المقرر</p>
+        <div class="facts-grid">
+          <label class="wide">اسم المقرر<input data-manual-fact="name" value="${escapeHtml(state.plan.fallbackCourses?.[code]?.name ?? "")}" ${unresolved ? "required" : ""}></label>
+          <label>الساعات الأكاديمية<input data-manual-fact="academicHours" type="number" min="0" value="${escapeHtml(state.plan.fallbackCourses?.[code]?.academicHours ?? "")}" ${unresolved ? "required" : ""}></label>
+          <label>ساعات المحاضرة<input data-manual-fact="lectureHours" type="number" min="0" value="${escapeHtml(state.plan.fallbackCourses?.[code]?.lectureHours ?? "")}" ${unresolved ? "required" : ""}></label>
+          <label>ساعات التمارين<input data-manual-fact="exerciseHours" type="number" min="0" value="${escapeHtml(state.plan.fallbackCourses?.[code]?.exerciseHours ?? "")}" ${unresolved ? "required" : ""}></label>
+          <label>ساعات العملي<input data-manual-fact="practicalHours" type="number" min="0" value="${escapeHtml(state.plan.fallbackCourses?.[code]?.practicalHours ?? "")}" ${unresolved ? "required" : ""}></label>
+          ${resolved?.catalogSource && state.plan.fallbackCourses?.[code] ? '<button class="button ghost reset-catalog-facts" type="button">العودة إلى بيانات الدليل</button>' : ""}
+        </div>
+        <p class="concept-heading">قواعد الخطة</p>` : ""}
         <div class="dependency-grid">
-          <label>المتطلبات السابقة<input data-dependency="prerequisites" value="${escapeHtml((override.prerequisites ?? resolved?.prerequisites ?? []).join("، "))}" placeholder="101 عال، 101 ريض"></label>
-          <label>المتطلبات المتزامنة<input data-dependency="corequisites" value="${escapeHtml((override.corequisites ?? resolved?.corequisites ?? []).join("، "))}"></label>
-          <label>الحد الأدنى للساعات<input data-dependency="minimumCompletedCredits" type="number" min="0" value="${escapeHtml(override.minimumCompletedCredits ?? resolved?.minimumCompletedCredits ?? "")}"></label>
-          ${unresolved ? '<button class="button secondary create-fallback" type="button">تعريف مقرر بديل</button>' : '<button class="button ghost reset-override" type="button">الرجوع إلى الدليل</button>'}
+          ${!isPlaceholder ? `<label>المتطلبات السابقة<input data-dependency="prerequisites" value="${escapeHtml((rules.prerequisites ?? rules.override?.prerequisites ?? []).join("، "))}" placeholder="101 عال، 101 ريض"></label>
+          <label>المتطلبات المرافقة<input data-dependency="corequisites" value="${escapeHtml((rules.corequisites ?? rules.override?.corequisites ?? []).join("، "))}"></label>
+          <label>الحد الأدنى للساعات المجتازة<input data-dependency="minimumCompletedCredits" type="number" min="0" value="${escapeHtml(rules.minimumCompletedCredits ?? rules.override?.minimumCompletedCredits ?? "")}"></label>
+          <label class="check"><input data-track-specific type="checkbox" ${rules.trackSpecific ? "checked" : ""}> مقرر خاص بالمسار</label>` : ""}
         </div>
       </details>
     </div>
@@ -245,17 +301,22 @@ function configureSemesterCard(card, item, index, kind) {
   const secondary = card.querySelector(".semester-year");
   name.value = item.name ?? "";
   if (kind === "elective") {
-    secondary.type = "number";
-    secondary.min = "0";
-    secondary.placeholder = "الساعات المطلوبة";
-    secondary.value = item.requiredHours ?? 0;
+    secondary.hidden = true;
+    card.querySelector(".card-heading").insertAdjacentHTML("afterend", `
+      <div class="requirement-editor">
+        <label>نوع المتطلب<select class="requirement-mode"><option value="hours" ${item.requirementText === undefined ? "selected" : ""}>عدد ساعات</option><option value="text" ${item.requirementText !== undefined ? "selected" : ""}>نص مخصص</option></select></label>
+        <label class="requirement-value-label">${item.requirementText === undefined ? "الساعات المطلوبة" : "نص المتطلب"}<input class="requirement-value" ${item.requirementText === undefined ? 'type="number" min="0"' : ""} value="${escapeHtml(item.requirementText ?? item.requiredHours ?? 0)}"></label>
+      </div>`);
   } else {
     secondary.value = item.yearLabel ?? "";
     secondary.placeholder = kind === "proposal" ? "المرحلة أو السنة" : "السنة أو المرحلة";
   }
   card.querySelector(".add-placeholder").hidden = kind !== "proposal";
+  card.querySelector(".course-code-input").hidden = kind === "proposal";
+  card.querySelector(".add-course").hidden = kind === "proposal";
   const resolved = resolvedCollection(kind, index);
-  card.querySelector(".course-list").innerHTML = item.courses.map((entry, courseIndex) => (
+  const entries = kind === "proposal" ? proposalEntries(item) : item.courses;
+  card.querySelector(".course-list").innerHTML = entries.map((entry, courseIndex) => (
     courseRow(entry, resolved[courseIndex], kind, index, courseIndex)
   )).join("");
 }
@@ -273,6 +334,7 @@ function renderCollection(host, items, kind) {
 
 function renderEditor() {
   if (!state.plan) return;
+  sortPublishedCollections();
   els.planHeading.textContent = state.plan.major;
   document.querySelectorAll("[data-field]").forEach((input) => {
     input.value = state.plan[input.dataset.field] ?? "";
@@ -285,6 +347,7 @@ function renderEditor() {
   els.guideEnabled.checked = state.plan.proposal?.showGuide !== false;
   renderCollection(els.proposalSemesterList, state.plan.proposal?.semesters ?? [], "proposal");
   renderPhases(els.proposalPhaseList, state.plan.proposal?.phases ?? [], "proposal");
+  renderSharedSets();
 }
 
 function renderPhases(host, phases, kind) {
@@ -300,6 +363,31 @@ function renderPhases(host, phases, kind) {
       <button class="icon-button delete-phase danger" type="button" aria-label="حذف المرحلة">×</button>
     </div>
   `).join("");
+}
+
+function renderSharedSets() {
+  if (els.sharedSetChoices) {
+    const selected = new Set(state.plan?.sharedSemesterSets ?? []);
+    els.sharedSetChoices.innerHTML = state.sharedSemesterSets.length
+      ? state.sharedSemesterSets.map((set) => `
+        <label class="choice-item"><span><strong>${escapeHtml(set.name)}</strong><small>${set.semesters.length} فصول · ${escapeHtml(set.phaseLabel)}</small></span>
+          <input data-shared-set-choice="${escapeHtml(set.id)}" type="checkbox" ${selected.has(set.id) ? "checked" : ""}>
+        </label>`).join("")
+      : '<p class="muted">لم تُعرّف مجموعات فصول مشتركة بعد.</p>';
+  }
+  if (els.sharedSetList) {
+    els.sharedSetList.innerHTML = state.sharedSemesterSets.length
+      ? state.sharedSemesterSets.map((set) => `
+        <div class="shared-set-item" data-shared-set="${escapeHtml(set.id)}">
+          <span><strong>${escapeHtml(set.name)}</strong><small>${set.semesters.length} فصول · تستخدمها ${set.usages?.length ?? 0} خطط</small></span>
+          <span class="menu-actions">
+            <button class="button ghost edit-shared-set" type="button">تعديل</button>
+            <button class="button ghost duplicate-shared-set" type="button">نسخ</button>
+            <button class="button danger-ghost delete-shared-set" type="button">حذف</button>
+          </span>
+        </div>`).join("")
+      : '<p class="muted">أنشئ مجموعة للفصول المشتركة، مثل التحضيري العلمي.</p>';
+  }
 }
 
 function phaseCollection(kind) {
@@ -586,59 +674,103 @@ async function addPlaceholder(card) {
     fields: [
       { name: "name", label: "وصف المقرر", value: "من متطلبات المسار" },
       { name: "academicHours", label: "الساعات الأكاديمية", type: "number", min: 0, value: 3 },
+      { name: "lectureHours", label: "ساعات المحاضرة", type: "number", min: 0, value: 0 },
+      { name: "exerciseHours", label: "ساعات التمارين", type: "number", min: 0, value: 0 },
+      { name: "practicalHours", label: "ساعات العملي", type: "number", min: 0, value: 0 },
     ],
   });
   if (!values) return;
-  collection(card.dataset.kind, Number(card.dataset.groupIndex)).push({
-    kind: "placeholder",
-    code: "مقرر",
-    fallback: { name: values.name, academicHours: Number(values.academicHours), lectureHours: 0, practicalHours: 0, exerciseHours: 0, color: "#000000" },
+  const semester = state.plan.proposal.semesters[Number(card.dataset.groupIndex)];
+  semester.placeholders ??= [];
+  semester.placeholders.push({
+    id: `placeholder-${Date.now().toString(36)}`,
+    name: values.name,
+    academicHours: Number(values.academicHours),
+    lectureHours: Number(values.lectureHours),
+    exerciseHours: Number(values.exerciseHours),
+    practicalHours: Number(values.practicalHours),
+    color: "#000000",
   });
   changed(true);
 }
 
-async function createFallback(row) {
+function updateManualFact(row, input) {
   const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
   const code = entryCode(target[Number(row.dataset.courseIndex)]);
-  const values = await askForm({
-    title: "تعريف مقرر بديل",
-    message: `لم يُعثر على ${code} في دليل المقررات. أدخل أقل قدر لازم لإتمام الخطة.`,
-    fields: [
-      { name: "name", label: "اسم المقرر" },
-      { name: "academicHours", label: "الساعات الأكاديمية", type: "number", min: 0, value: 3 },
-      { name: "lectureHours", label: "ساعات المحاضرة", type: "number", min: 0, value: 3 },
-    ],
-  });
-  if (!values) return;
   state.plan.fallbackCourses ??= {};
-  state.plan.fallbackCourses[code] = {
-    name: values.name,
-    academicHours: Number(values.academicHours),
-    lectureHours: Number(values.lectureHours),
-    practicalHours: 0,
-    exerciseHours: 0,
-    prerequisites: [],
-    corequisites: [],
-  };
-  changed(true);
+  const fallback = state.plan.fallbackCourses[code] ?? {};
+  if (input.value === "") delete fallback[input.dataset.manualFact];
+  else fallback[input.dataset.manualFact] = input.type === "number" ? Number(input.value) : input.value;
+  state.plan.fallbackCourses[code] = fallback;
+  changed();
 }
 
 function updateDependency(row, input) {
   const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
   const index = Number(row.dataset.courseIndex);
   const entry = normalizedEntry(target[index]);
-  entry.override = { ...(entry.override ?? {}) };
   if (input.dataset.dependency === "minimumCompletedCredits") {
-    if (input.value === "") delete entry.override.minimumCompletedCredits;
-    else entry.override.minimumCompletedCredits = Number(input.value);
+    if (input.value === "") delete entry.minimumCompletedCredits;
+    else entry.minimumCompletedCredits = Number(input.value);
   } else {
     const values = parseCodes(input.value);
-    if (values.length) entry.override[input.dataset.dependency] = values;
-    else delete entry.override[input.dataset.dependency];
+    if (values.length) entry[input.dataset.dependency] = values;
+    else delete entry[input.dataset.dependency];
   }
-  if (!Object.keys(entry.override).length) delete entry.override;
   target[index] = Object.keys(entry).length === 1 ? entry.code : entry;
   changed();
+}
+
+async function addSharedSet() {
+  const values = await askForm({
+    title: "إضافة مجموعة فصول مشتركة",
+    fields: [
+      { name: "name", label: "اسم المجموعة" },
+      { name: "id", label: "المعرّف الثابت", dir: "ltr" },
+      { name: "phaseLabel", label: "اسم المرحلة" },
+      { name: "semesterNames", label: "أسماء الفصول، وافصل بينها بعلامة |", value: "المستوى الأول | المستوى الثاني" },
+      { name: "courseCodes", label: "رموز كل فصل؛ افصل الفصول بـ | والمقررات بفاصلة", required: false },
+    ],
+  });
+  if (!values) return;
+  await request("/api/shared-semester-sets", {
+    method: "POST",
+    body: JSON.stringify({ ...values, semesters: sharedSemesterValues(values) }),
+  });
+  await loadState();
+  setStatus("أُنشئت مجموعة الفصول المشتركة.", "success");
+}
+
+function sharedSemesterValues(values) {
+  const names = String(values.semesterNames ?? "").split("|").map((value) => value.trim()).filter(Boolean);
+  const groups = String(values.courseCodes ?? "").split("|");
+  return names.map((name, index) => ({
+    number: index + 1,
+    name,
+    courses: parseCodes(groups[index] ?? ""),
+  }));
+}
+
+async function editSharedSet(id) {
+  const current = state.sharedSemesterSets.find((set) => set.id === id);
+  const values = await askForm({
+    title: "تعديل مجموعة الفصول",
+    message: "يحفظ هذا التعديل في المصدر المشترك، فتتلقاه جميع الخطط المرتبطة به.",
+    fields: [
+      { name: "name", label: "اسم المجموعة", value: current.name },
+      { name: "id", label: "المعرّف الثابت", value: current.id, dir: "ltr" },
+      { name: "phaseLabel", label: "اسم المرحلة", value: current.phaseLabel },
+      { name: "semesterNames", label: "أسماء الفصول، وافصل بينها بعلامة |", value: current.semesters.map((semester) => semester.name).join(" | ") },
+      { name: "courseCodes", label: "رموز كل فصل؛ افصل الفصول بـ | والمقررات بفاصلة", value: current.semesters.map((semester) => semester.courses.map(entryCode).join("، ")).join(" | "), required: false },
+    ],
+  });
+  if (!values) return;
+  await request(`/api/shared-semester-sets/${encodeURIComponent(id)}`, {
+    method: "PUT",
+    body: JSON.stringify({ ...current, ...values, semesters: sharedSemesterValues(values) }),
+  });
+  await loadState();
+  schedulePreview(0);
 }
 
 async function courseSearch(value) {
@@ -680,6 +812,9 @@ document.addEventListener("click", (event) => {
   }
   if (card && event.target.closest(".delete-item")) {
     const source = card.dataset.kind === "semester" ? state.plan.semesters : card.dataset.kind === "elective" ? state.plan.electiveGroups : state.plan.proposal.semesters;
+    if (card.dataset.kind === "proposal" && source[Number(card.dataset.groupIndex)].courseOrder?.length) {
+      return setStatus("انقل المقررات الحقيقية قبل حذف الفصل.", "error");
+    }
     source.splice(Number(card.dataset.groupIndex), 1);
     changed(true);
   }
@@ -691,20 +826,46 @@ document.addEventListener("click", (event) => {
 
   const row = event.target.closest(".course-row");
   if (row && (event.target.closest(".course-up") || event.target.closest(".course-down"))) {
-    move(collection(row.dataset.kind, Number(row.dataset.groupIndex)), Number(row.dataset.courseIndex), event.target.closest(".course-up") ? -1 : 1);
+    if (row.dataset.kind === "proposal") {
+      move(state.plan.proposal.semesters[Number(row.dataset.groupIndex)].courseOrder, Number(row.dataset.courseIndex), event.target.closest(".course-up") ? -1 : 1);
+    }
     changed(true);
   }
   if (row && event.target.closest(".course-delete")) {
-    collection(row.dataset.kind, Number(row.dataset.groupIndex)).splice(Number(row.dataset.courseIndex), 1);
+    if (row.dataset.kind === "proposal") {
+      const placeholders = state.plan.proposal.semesters[Number(row.dataset.groupIndex)].placeholders;
+      const index = placeholders.findIndex((placeholder) => placeholder.id === row.dataset.placeholderId);
+      if (index >= 0) placeholders.splice(index, 1);
+    } else {
+      collection(row.dataset.kind, Number(row.dataset.groupIndex)).splice(Number(row.dataset.courseIndex), 1);
+    }
     changed(true);
   }
-  if (row && event.target.closest(".reset-override")) {
-    const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
-    target[Number(row.dataset.courseIndex)] = entryCode(target[Number(row.dataset.courseIndex)]);
+  if (row && event.target.closest(".reset-catalog-facts")) {
+    const code = entryCode(collection(row.dataset.kind, Number(row.dataset.groupIndex))[Number(row.dataset.courseIndex)]);
+    delete state.plan.fallbackCourses?.[code];
     changed(true);
   }
-  if (row && event.target.closest(".create-fallback")) {
-    createFallback(row).catch((error) => setStatus(error.message, "error"));
+  const sharedSet = event.target.closest("[data-shared-set]");
+  if (sharedSet && event.target.closest(".edit-shared-set")) {
+    editSharedSet(sharedSet.dataset.sharedSet).catch((error) => setStatus(error.message, "error"));
+  }
+  if (sharedSet && event.target.closest(".duplicate-shared-set")) {
+    askForm({
+      title: "نسخ مجموعة الفصول",
+      fields: [
+        { name: "name", label: "اسم النسخة" },
+        { name: "id", label: "معرّف النسخة", dir: "ltr" },
+      ],
+    }).then(async (values) => {
+      if (!values) return;
+      await request(`/api/shared-semester-sets/${encodeURIComponent(sharedSet.dataset.sharedSet)}/duplicate`, { method: "POST", body: JSON.stringify(values) });
+      await loadState();
+    }).catch((error) => setStatus(error.message, "error"));
+  }
+  if (sharedSet && event.target.closest(".delete-shared-set")) {
+    request(`/api/shared-semester-sets/${encodeURIComponent(sharedSet.dataset.sharedSet)}`, { method: "DELETE" })
+      .then(loadState).catch((error) => setStatus(error.message, "error"));
   }
 });
 
@@ -728,6 +889,8 @@ document.addEventListener("input", (event) => {
     changed();
   }
   if (event.target.classList.contains("course-code-input")) courseSearch(event.target.value);
+  const row = event.target.closest(".course-row");
+  if (row && event.target.matches("[data-manual-fact]")) updateManualFact(row, event.target);
   const phaseRow = event.target.closest("[data-phase-kind]");
   if (phaseRow && event.target.matches("[data-phase-field]")) {
     const phase = phaseCollection(phaseRow.dataset.phaseKind)[Number(phaseRow.dataset.phaseIndex)];
@@ -739,6 +902,70 @@ document.addEventListener("input", (event) => {
 document.addEventListener("change", (event) => {
   const row = event.target.closest(".course-row");
   if (row && event.target.matches("[data-dependency]")) updateDependency(row, event.target);
+  if (row && event.target.matches("[data-track-specific]")) {
+    const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
+    const index = Number(row.dataset.courseIndex);
+    const entry = normalizedEntry(target[index]);
+    if (event.target.checked) entry.trackSpecific = true;
+    else delete entry.trackSpecific;
+    target[index] = Object.keys(entry).length === 1 ? entry.code : entry;
+    changed();
+  }
+  if (event.target.matches("[data-shared-set-choice]")) {
+    const selected = new Set(state.plan.sharedSemesterSets ?? []);
+    if (event.target.checked) selected.add(event.target.dataset.sharedSetChoice);
+    else selected.delete(event.target.dataset.sharedSetChoice);
+    state.plan.sharedSemesterSets = [...selected];
+    changed();
+  }
+  if (event.target.classList.contains("requirement-mode")) {
+    const card = event.target.closest(".semester-card");
+    const group = state.plan.electiveGroups[Number(card.dataset.groupIndex)];
+    if (event.target.value === "text") {
+      delete group.requiredHours;
+      group.requirementText = "غير متطلب للتخرج";
+    } else {
+      delete group.requirementText;
+      group.requiredHours = 0;
+    }
+    changed(true);
+  }
+});
+
+document.addEventListener("input", (event) => {
+  if (!event.target.classList.contains("requirement-value")) return;
+  const card = event.target.closest(".semester-card");
+  const group = state.plan.electiveGroups[Number(card.dataset.groupIndex)];
+  if (group.requirementText !== undefined) group.requirementText = event.target.value;
+  else group.requiredHours = Number(event.target.value);
+  changed();
+});
+
+document.addEventListener("dragstart", (event) => {
+  const row = event.target.closest('.course-row[draggable="true"]');
+  if (!row) return;
+  state.draggedProposal = { semesterIndex: Number(row.dataset.groupIndex), courseIndex: Number(row.dataset.courseIndex) };
+  row.classList.add("dragging");
+  event.dataTransfer.effectAllowed = "move";
+});
+document.addEventListener("dragend", (event) => {
+  event.target.closest(".course-row")?.classList.remove("dragging");
+  state.draggedProposal = null;
+});
+document.addEventListener("dragover", (event) => {
+  if (state.draggedProposal && event.target.closest('.semester-card[data-kind="proposal"]')) event.preventDefault();
+});
+document.addEventListener("drop", (event) => {
+  const card = event.target.closest('.semester-card[data-kind="proposal"]');
+  if (!card || !state.draggedProposal) return;
+  event.preventDefault();
+  const source = state.plan.proposal.semesters[state.draggedProposal.semesterIndex].courseOrder;
+  const [code] = source.splice(state.draggedProposal.courseIndex, 1);
+  const targetSemester = state.plan.proposal.semesters[Number(card.dataset.groupIndex)];
+  const targetRow = event.target.closest('.course-row[draggable="true"]');
+  const targetIndex = targetRow ? Number(targetRow.dataset.courseIndex) : targetSemester.courseOrder.length;
+  targetSemester.courseOrder.splice(targetIndex, 0, code);
+  changed(true);
 });
 
 document.addEventListener("keydown", (event) => {
@@ -780,12 +1007,25 @@ $("addProposalPhaseButton").addEventListener("click", () => {
 });
 $("addElectiveButton").addEventListener("click", () => {
   state.plan.electiveGroups ??= [];
-  state.plan.electiveGroups.push({ id: `elective-group-${state.plan.electiveGroups.length + 1}`, name: "مجموعة اختيارية", requiredHours: 0, courses: [] });
+  state.plan.electiveGroups.push({ id: `elective-group-${state.plan.electiveGroups.length + 1}`, name: "مجموعة اختيارية", requiredHours: 0, sortCourses: "code", courses: [] });
   changed(true);
 });
 els.proposalEnabled.addEventListener("change", () => {
+  const publishedSemesters = publishedDecisionSemesters();
   state.plan.proposal = els.proposalEnabled.checked
-    ? { title: "الخطة المقترحة", showGuide: true, semesters: [{ number: 1, name: "المستوى الأول", courses: [] }] }
+    ? {
+        enabled: true,
+        title: "الخطة المقترحة",
+        showGuide: true,
+        semesters: publishedSemesters.map((semester, index) => ({
+          id: `level-${index + 1}`,
+          number: index + 1,
+          name: semester.name,
+          yearLabel: semester.yearLabel,
+          courseOrder: semester.courses.map(entryCode),
+          placeholders: [],
+        })),
+      }
     : null;
   changed(true);
 });
@@ -795,14 +1035,14 @@ els.guideEnabled.addEventListener("change", () => {
 });
 $("addProposalSemesterButton").addEventListener("click", () => {
   const semesters = state.plan.proposal.semesters;
-  semesters.push({ number: semesters.length + 1, name: `المستوى ${semesters.length + 1}`, courses: [] });
+  semesters.push({ id: `level-${Date.now().toString(36)}`, number: semesters.length + 1, name: `المستوى ${semesters.length + 1}`, courseOrder: [], placeholders: [] });
   changed(true);
 });
 $("addSummerButton").addEventListener("click", () => {
   const semesters = state.plan.proposal.semesters;
   if (semesters.length >= 9) return setStatus("أضيف الفصل الصيفي بالفعل.", "error");
-  while (semesters.length < 8) semesters.push({ number: semesters.length + 1, name: `المستوى ${semesters.length + 1}`, courses: [] });
-  semesters.push({ number: 9, name: "الفصل الصيفي", yearLabel: "فصل صيفي", courses: [] });
+  while (semesters.length < 8) semesters.push({ id: `level-${semesters.length + 1}`, number: semesters.length + 1, name: `المستوى ${semesters.length + 1}`, courseOrder: [], placeholders: [] });
+  semesters.push({ id: "summer", number: 9, name: "الفصل الصيفي", yearLabel: "فصل صيفي", courseOrder: [], placeholders: [] });
   changed(true);
 });
 $("colorForm").addEventListener("submit", async (event) => {
@@ -814,6 +1054,21 @@ $("colorForm").addEventListener("submit", async (event) => {
   setStatus("حُفظ اللون العام.", "success");
   schedulePreview(0);
 });
+$("globalSettingsForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const result = await request("/api/settings", {
+    method: "PUT",
+    body: JSON.stringify({ edition: $("globalEdition").value, release: $("globalRelease").value }),
+  });
+  state.settings = result.settings;
+  setStatus("حُفظت إعدادات الإصدار.", "success");
+  schedulePreview(0);
+});
+$("resetSettingsButton").addEventListener("click", () => {
+  $("globalEdition").value = state.settings.edition;
+  $("globalRelease").value = state.settings.release;
+});
+$("addSharedSetButton").addEventListener("click", () => addSharedSet().catch((error) => setStatus(error.message, "error")));
 els.zoom.addEventListener("input", () => {
   els.previewHost.style.setProperty("--zoom", String(Number(els.zoom.value) / 100));
 });

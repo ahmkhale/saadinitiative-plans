@@ -87,8 +87,10 @@
               <label>الكلية<input data-field="college"></label>
               <label>الدرجة<input data-field="degree"></label>
               <label>إجمالي الساعات المتوقع<input data-field="expectedCredits" type="number" min="0"></label>
-              <label>الطبعة<input data-field="edition"></label>
-              <label>الإصدار<input data-field="release"></label>
+            </div>
+            <div class="shared-selection">
+              <p class="eyebrow">الفصول المشتركة</p>
+              <div id="sharedSetChoices" class="choice-list"></div>
             </div>
           </div>
 
@@ -138,6 +140,17 @@
 
         <section class="tab-panel" data-panel="settings">
           <div class="card">
+            <p class="eyebrow">إعدادات مشتركة</p>
+            <h2>بيانات الإصدار</h2>
+            <p class="muted">ترث جميع الخطط هذه القيم ما لم يكن في الخطة استثناء قديم صريح.</p>
+            <form id="globalSettingsForm" class="form-grid settings-form">
+              <label>الطبعة<input id="globalEdition" required></label>
+              <label>الإصدار<input id="globalRelease" required></label>
+              <button class="button secondary" type="submit">حفظ الإعدادات</button>
+              <button id="resetSettingsButton" class="button ghost" type="button">استعادة المحفوظ</button>
+            </form>
+          </div>
+          <div class="card">
             <p class="eyebrow">ألوان البطاقات</p>
             <h2>لون رمز المقرر</h2>
             <p class="muted">يُطبق اللون على جميع الخطط، ولا يُكرر داخل كل مقرر.</p>
@@ -146,6 +159,13 @@
               <label>اللون<input id="colorValue" type="color" value="#00AEEF"></label>
               <button class="button secondary" type="submit">حفظ اللون</button>
             </form>
+          </div>
+          <div class="card">
+            <div class="card-heading">
+              <div><p class="eyebrow">مصادر مشتركة</p><h2>مجموعات الفصول</h2></div>
+              <button id="addSharedSetButton" class="button secondary" type="button">إضافة مجموعة</button>
+            </div>
+            <div id="sharedSetList" class="shared-set-list"></div>
           </div>
           <div class="card">
             <p class="eyebrow">البيانات الاستثنائية</p>
@@ -205,7 +225,7 @@
       <div class="course-adder">
         <input class="course-code-input" list="courseSuggestions" placeholder="أدخل رمز مقرر، مثل: 101 عال">
         <button class="button ghost add-course" type="button">إضافة</button>
-        <button class="button ghost add-placeholder" type="button">مقرر خاص</button>
+        <button class="button ghost add-placeholder" type="button">إضافة مقرر نائب</button>
       </div>
     </article>
   </template>
