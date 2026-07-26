@@ -1,4 +1,6 @@
 <div align="center">
+  <img src="./assets/logo.svg" width="88" alt="Saad logo">
+
   <h1>Saad Plan Generator</h1>
 
   <p>Deterministic, Arabic-first academic-plan PDFs generated from compact plan files and a shared course catalog.</p>
