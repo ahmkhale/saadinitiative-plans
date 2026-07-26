@@ -1,0 +1,1410 @@
+{
+  "schemaVersion": 1,
+  "id": "chemical-engineering",
+  "university": "جامعة الملك سعود",
+  "college": "كلية الهندسة",
+  "major": "هندسة كيميائية",
+  "degree": "البكالوريوس",
+  "edition": "الطبعة الرابعة",
+  "release": "إصدار 472.1",
+  "version": "472.1",
+  "expectedCredits": 145,
+  "sortCourses": "code",
+  "sharedSemesterSets": [
+    "cfy-science",
+    "engineering-common"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-5",
+      "courses": [
+        "244 كيم",
+        "230 كيم",
+        "219 هكم",
+        "205 هكم",
+        "204 ريض",
+        "201 هكم"
+      ]
+    },
+    {
+      "id": "published-level-6",
+      "courses": [
+        "245 كيم",
+        "234 هكم",
+        "209 هعم",
+        "206 هكم",
+        "202 هكم"
+      ]
+    },
+    {
+      "id": "published-level-7",
+      "courses": [
+        "335 هكم",
+        "334 هكم",
+        "333 هكم",
+        "320 هكم",
+        "254 ريض"
+      ]
+    },
+    {
+      "id": "published-level-8",
+      "courses": [
+        "409 هكم",
+        "406 هكم",
+        "403 هعم",
+        "366 هكم",
+        "350 كيم",
+        "336 هكم",
+        "426 هكم"
+      ]
+    },
+    {
+      "id": "published-level-9",
+      "courses": [
+        "496 هكم",
+        "423 هكم",
+        "420 هكم",
+        "415 هكم",
+        "412 هكم"
+      ]
+    },
+    {
+      "id": "published-level-10",
+      "courses": [
+        "999 هكم",
+        "497 هكم",
+        "466 هكم",
+        "402 هعم"
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "name": "متطلبات الجامعة",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        "104 سلم",
+        "103 سلم",
+        "102 سلم",
+        "101 سلم",
+        "100 قرأ",
+        "100 سلم",
+        "109 سلم",
+        "108 سلم",
+        "106 سلم",
+        "105 سلم"
+      ]
+    },
+    {
+      "id": "department-requirements",
+      "name": "متطلبات القسم",
+      "requiredHours": 12,
+      "sortCourses": "code",
+      "courses": [
+        "429 هكم",
+        "428 هكم",
+        "427 هكم",
+        "425 هكم",
+        "422 هكم",
+        "413 هكم",
+        "440 هكم",
+        "438 هكم",
+        "437 هكم",
+        "434 هكم",
+        "433 هكم",
+        "430 هكم",
+        "447 هكم",
+        "446 هكم",
+        "445 هكم",
+        "443 هكم",
+        "442 هكم",
+        "441 هكم",
+        "453 هكم",
+        "452 هكم",
+        "451 هكم",
+        "450 هكم",
+        "449 هكم",
+        "448 هكم",
+        "998 هكم",
+        "467 هكم",
+        "454 هكم"
+      ]
+    },
+    {
+      "id": "free-requirements",
+      "name": "متطلبات حرة",
+      "requiredHours": 2,
+      "sortCourses": "code",
+      "courses": []
+    }
+  ],
+  "fallbackCourses": {
+    "496 هكم": {
+      "name": "مشروع تخرج 1",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "إتمام 129 ساعة",
+        "مستوى 7"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "999 هكم": {
+      "name": "تدريب عملي",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "إتمام 110 ساعات"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "497 هكم": {
+      "name": "مشروع تخرج 2",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "496 هكم"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "104 سلم": {
+      "name": "النظام السياسي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "101 سلم": {
+      "name": "أصول الثقافة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "429 هكم": {
+      "name": "الصناعات الكيميائية والطاقة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "428 هكم": {
+      "name": "إنتاج مواد البناء والأسمنت",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "427 هكم": {
+      "name": "منع التلوث في المصانع الكيميائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "422 هكم": {
+      "name": "مواضيع مختارة في الهندسة الكيميائية 1",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "437 هكم": {
+      "name": "عمليات معالجة المخلفات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "430 هكم": {
+      "name": "هندسة التأكل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "447 هكم": {
+      "name": "أساسيات علوم وهندسة البوليمرات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "446 هكم": {
+      "name": "التقنية الحيوية البيئية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "445 هكم": {
+      "name": "المعالجة البيولوجية لمخلفات الصرف الصحي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "451 هكم": {
+      "name": "تقييم المخاطر والتحكم فيها",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "448 هكم": {
+      "name": "أساسيات معالجة المعادن",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "إتمام 120 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "998 هكم": {
+      "name": "مشروع بحثي",
+      "academicHours": 0,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "إتمام 129 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "244 كيم": {
+      "name": "اسس الكيمياء العضويه (1)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "230 كيم": {
+      "name": "اسس الكيمياء الفيزيائيه",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "219 هكم": {
+      "name": "أساسيات هندسة المواد",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "205 هكم": {
+      "name": "ديناميكا حرارية - 1",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "204 ريض": {
+      "name": "المعادلات التفاضلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "201 هكم": {
+      "name": "اسس الهندسة الكيميائية (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "245 كيم": {
+      "name": "اسس الكيمياء العضويه (2)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "234 هكم": {
+      "name": "أنتقال كمية الحركة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "209 هعم": {
+      "name": "برمجة الحاسوب",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "206 هكم": {
+      "name": "ديناميكيا حرارية (2)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "202 هكم": {
+      "name": "اسس الهندسة الكيميائية (2)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "335 هكم": {
+      "name": "أنتقال المادة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "334 هكم": {
+      "name": "أنتقال الحرارة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "333 هكم": {
+      "name": "عمليات مشتركة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "320 هكم": {
+      "name": "هندسة التفاعلات الكيميائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "254 ريض": {
+      "name": "الطرائق العددية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "409 هكم": {
+      "name": "عمليات فصل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "406 هكم": {
+      "name": "الطرق الحسابية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "403 هعم": {
+      "name": "الاقتصاد الهندسي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "366 هكم": {
+      "name": "معمل الهندسة الكيميائية (1)",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "350 كيم": {
+      "name": "التحليل الالي لطلبة غير التخصص",
+      "academicHours": 4,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "336 هكم": {
+      "name": "سلامة العمليات",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "426 هكم": {
+      "name": "هندسة المفاعلات غير المتجانسة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "423 هكم": {
+      "name": "مواضيع مختارةفي الهندسةالكيميائية(2)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "420 هكم": {
+      "name": "اقتصاديات العمليات الكيميائية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "415 هكم": {
+      "name": "عمليات تحكم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "412 هكم": {
+      "name": "تصميم العمليات الكيميائية بالحاسوب",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "466 هكم": {
+      "name": "معمل الهندسة الكيميائية (2)",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "402 هعم": {
+      "name": "ادارة المشاريع الهندسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "103 سلم": {
+      "name": "النظام الاقتصادي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "102 سلم": {
+      "name": "الأسرة في الإسلام",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "100 قرأ": {
+      "name": "القرآن الكريم",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "100 سلم": {
+      "name": "دراسات في السيرة النبوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "109 سلم": {
+      "name": "المرأة ودورها التنموي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "108 سلم": {
+      "name": "قضايا معاصرة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "106 سلم": {
+      "name": "الفقه الطبي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "105 سلم": {
+      "name": "حقوق الإنسان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "425 هكم": {
+      "name": "مواضيع مختارة في الهندسة الكيميائية (3)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "413 هكم": {
+      "name": "تحلية ومعالجة المياه",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "440 هكم": {
+      "name": "مقدمة في هندسة الكيمياء الحيوية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "438 هكم": {
+      "name": "كيمياء المياه والتحليل الكيميائي للمياه",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "434 هكم": {
+      "name": "استخلاص المعادن وإعادة تدوير الفلزات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "433 هكم": {
+      "name": "الهندسة الكهروكيميائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "443 هكم": {
+      "name": "تصنيع الغاز الطبيعى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "442 هكم": {
+      "name": "الصناعات البتروكيميائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "441 هكم": {
+      "name": "هندسة تكرير البترول",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "453 هكم": {
+      "name": "علوم وهندسة المتكونات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "452 هكم": {
+      "name": "تقنيات الصناعات الغذائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "450 هكم": {
+      "name": "الطاقة المتجددة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "449 هكم": {
+      "name": "الفصل بالأغشية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "467 هكم": {
+      "name": "تكامل العمليات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "454 هكم": {
+      "name": "أمثلية عمليات الطاقة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-science-cfy-science-1",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-1",
+        "type": "regular",
+        "courseOrder": [
+          "100 إنجل",
+          "100 عرب",
+          "101 إحص",
+          "101 ريد",
+          "101 كيم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-science-cfy-science-2",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-2",
+        "type": "regular",
+        "courseOrder": [
+          "101 تقن",
+          "101 ريض",
+          "101 فجب",
+          "101 نهج",
+          "110 إنجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-3",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-3",
+        "type": "regular",
+        "courseOrder": [
+          "103 فيز",
+          "104 هعم",
+          "106 ريض",
+          "107 ريض",
+          "107 سلم",
+          "109 نجم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-4",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-4",
+        "type": "regular",
+        "courseOrder": [
+          "104 فيز",
+          "106 هعم",
+          "110 نجم",
+          "201 هعم",
+          "203 ريض",
+          "203 هعم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-5",
+        "sourceSemesterId": "published-level-5",
+        "type": "regular",
+        "courseOrder": [
+          "201 هكم",
+          "204 ريض",
+          "205 هكم",
+          "219 هكم",
+          "230 كيم",
+          "244 كيم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-6",
+        "sourceSemesterId": "published-level-6",
+        "type": "regular",
+        "courseOrder": [
+          "202 هكم",
+          "206 هكم",
+          "209 هعم",
+          "234 هكم",
+          "245 كيم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-6-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-6-2",
+            "name": "من المتطلبات الحرة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-7",
+        "sourceSemesterId": "published-level-7",
+        "type": "regular",
+        "courseOrder": [
+          "254 ريض",
+          "320 هكم",
+          "333 هكم",
+          "334 هكم",
+          "335 هكم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-7-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-8",
+        "sourceSemesterId": "published-level-8",
+        "type": "regular",
+        "courseOrder": [
+          "426 هكم",
+          "336 هكم",
+          "350 كيم",
+          "366 هكم",
+          "403 هعم",
+          "406 هكم",
+          "409 هكم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-9",
+        "sourceSemesterId": "published-level-9",
+        "type": "regular",
+        "courseOrder": [
+          "412 هكم",
+          "415 هكم",
+          "420 هكم",
+          "423 هكم",
+          "496 هكم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-9-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-9-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-10",
+        "sourceSemesterId": "published-level-10",
+        "type": "regular",
+        "courseOrder": [
+          "402 هعم",
+          "466 هكم",
+          "497 هكم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-10-1",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-3",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "999 هكم"
+        ],
+        "placeholders": []
+      }
+    ]
+  }
+}

@@ -246,7 +246,7 @@ test("proposal can move and reorder real courses while preserving the exact pare
   assert.equal(diagnostics.summary.errors, 0);
   assert.deepEqual(resolved.proposal.semesters[0].courses.map((course) => course.code), ["102 عال"]);
   assert.deepEqual(resolved.proposal.semesters[1].courses.map((course) => course.code), ["201 عال", "مقرر"]);
-  assert.equal(resolved.proposal.semesters[1].name, "الفصل الصيفي");
+  assert.equal(resolved.proposal.semesters[1].name, "فصل صيفي");
   assert.ok(diagnostics.items.some((item) => item.code === "PROPOSAL_PREREQUISITE_AFTER_COURSE"));
   assert.ok(diagnostics.items.some((item) => item.code === "PROPOSAL_COREQUISITE_SEPARATED"));
   assert.deepEqual(

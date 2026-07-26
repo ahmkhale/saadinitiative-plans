@@ -1,0 +1,1713 @@
+{
+  "schemaVersion": 1,
+  "id": "mechanical-engineering",
+  "university": "جامعة الملك سعود",
+  "college": "كلية الهندسة",
+  "major": "هندسة ميكانيكية",
+  "degree": "البكالوريوس",
+  "edition": "الطبعة الرابعة",
+  "release": "إصدار 472.1",
+  "version": "472.1",
+  "expectedCredits": 145,
+  "sortCourses": "code",
+  "sharedSemesterSets": [
+    "cfy-science",
+    "engineering-common"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-5",
+      "courses": [
+        "371 همك",
+        "254 همك",
+        "211 هعم",
+        "204 ريض",
+        "202 هعم",
+        "201 همك"
+      ]
+    },
+    {
+      "id": "published-level-6",
+      "courses": [
+        "384 همك",
+        "377 همك",
+        "363 همك",
+        "352 همك",
+        "254 ريض"
+      ]
+    },
+    {
+      "id": "published-level-7",
+      "courses": [
+        "378 همك",
+        "321 همك",
+        "312 همك",
+        "308 كهر",
+        "304 همك"
+      ]
+    },
+    {
+      "id": "published-level-8",
+      "courses": [
+        "379 همك",
+        "365 همك",
+        "322 همك",
+        "313 همك",
+        "305 همك"
+      ]
+    },
+    {
+      "id": "published-level-9",
+      "courses": [
+        "496 همك",
+        "403 هعم",
+        "366 همك",
+        "323 همك"
+      ]
+    },
+    {
+      "id": "published-level-10",
+      "courses": [
+        "999 همك",
+        "497 همك",
+        "402 هعم"
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "name": "متطلبات الجامعة",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        "104 سلم",
+        "103 سلم",
+        "102 سلم",
+        "101 سلم",
+        "100 قرأ",
+        "100 سلم",
+        "109 سلم",
+        "108 سلم",
+        "106 سلم",
+        "105 سلم"
+      ]
+    },
+    {
+      "id": "department-requirements",
+      "name": "متطلبات القسم",
+      "requiredHours": 12,
+      "sortCourses": "code",
+      "courses": [
+        "409 همك",
+        "408 همك",
+        "406 همك",
+        "405 همك",
+        "404 همك",
+        "402 همك",
+        "431 همك",
+        "415 همك",
+        "414 همك",
+        "413 همك",
+        "412 همك",
+        "411 همك",
+        "452 همك",
+        "451 همك",
+        "444 همك",
+        "443 همك",
+        "433 همك",
+        "432 همك",
+        "462 همك",
+        "460 همك",
+        "456 همك",
+        "455 همك",
+        "454 همك",
+        "453 همك",
+        "472 همك",
+        "469 همك",
+        "468 همك",
+        "467 همك",
+        "466 همك",
+        "465 همك",
+        "478 همك",
+        "477 همك",
+        "476 همك",
+        "475 همك",
+        "474 همك",
+        "473 همك",
+        "487 همك",
+        "485 همك",
+        "483 همك",
+        "482 همك",
+        "481 همك",
+        "479 همك",
+        "998 همك",
+        "494 همك",
+        "493 همك"
+      ]
+    },
+    {
+      "id": "free-requirements",
+      "name": "متطلبات حرة",
+      "requiredHours": 2,
+      "sortCourses": "code",
+      "courses": []
+    }
+  ],
+  "fallbackCourses": {
+    "496 همك": {
+      "name": "مشروع التخرج 1",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "إتمام 129 ساعة",
+        "مستوى 7"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "999 همك": {
+      "name": "تدريب عملي",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "إتمام 110 ساعات"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "497 همك": {
+      "name": "مشروع التخرج 2",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "496 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "104 سلم": {
+      "name": "النظام السياسي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "101 سلم": {
+      "name": "أصول الثقافة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "408 همك": {
+      "name": "الاحتكاك، والتآكل والتزييت",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "304 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "405 همك": {
+      "name": "التصميم المبني على المفاهيم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "304 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "404 همك": {
+      "name": "التصميم بمساعدة الحاسوب",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "305 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "431 همك": {
+      "name": "ديناميكا الهواء",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "384 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "413 همك": {
+      "name": "نظم التصنيع",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "313 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "412 همك": {
+      "name": "تحليل وتشكيل المعادن",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "312 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "411 همك": {
+      "name": "أساليب التصنيع الحديثة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "312 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "452 همك": {
+      "name": "فيزيائية الفلزات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "254 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "451 همك": {
+      "name": "السلوك الميكانيكي للمواد",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "304 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "444 همك": {
+      "name": "تكييف الهواء",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "378 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "433 همك": {
+      "name": "مقدمة في المرونة الهوائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "304 همك",
+        "384 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "460 همك": {
+      "name": "هندسة أنظمة السكك الحديدية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "365 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "456 همك": {
+      "name": "مقدمة في المواد المركبة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "304 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "455 همك": {
+      "name": "هياكل المركبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "304 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "454 همك": {
+      "name": "هياكل الطائرات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "304 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "453 همك": {
+      "name": "ميكانيكا المواد المتوسط",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "304 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "472 همك": {
+      "name": "محطات القوى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "377 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "469 همك": {
+      "name": "هندسة العربات -السيارات-",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "365 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "468 همك": {
+      "name": "تصميم الوصلات المفصلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "363 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "466 همك": {
+      "name": "الآلات الدوارة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "365 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "465 همك": {
+      "name": "الميكاترونيكس",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "202 هعم"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "478 همك": {
+      "name": "تصميم منظومات الطاقة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "378 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "477 همك": {
+      "name": "منظومات تحويل الطاقة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "378 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "474 همك": {
+      "name": "محركات الاحتراق الداخلي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "377 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "473 همك": {
+      "name": "مقدمة في الاحتراق",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "377 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "487 همك": {
+      "name": "التحكم في تلوث الهواء",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "384 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "482 همك": {
+      "name": "ديناميكا الغازات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "384 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "481 همك": {
+      "name": "مقدمة ديناميكا الموائع الحسابية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "384 همك"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "998 همك": {
+      "name": "مشروع بحثي",
+      "academicHours": 0,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "إتمام 129 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "494 همك": {
+      "name": "مواضيع مختارة في الهندسة الميكانيكية 2",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "إتمام 129 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "493 همك": {
+      "name": "مواضيع مختارة في الهندسة الميكانيكية 1",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "إتمام 129 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "371 همك": {
+      "name": "الديناميكا الحرارية (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "254 همك": {
+      "name": "هندسة المواد",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "211 هعم": {
+      "name": "برمجة الحاسوب بلغة ++C",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "204 ريض": {
+      "name": "المعادلات التفاضلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "202 هعم": {
+      "name": "الديناميكا",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "201 همك": {
+      "name": "نمذجة الأشكال في الهندسة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "384 همك": {
+      "name": "ميكانيكا الموائع",
+      "academicHours": 4,
+      "lectureHours": 4,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "377 همك": {
+      "name": "الديناميكا الحرارية (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "363 همك": {
+      "name": "ميكانيكا الآلات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "352 همك": {
+      "name": "ميكانيكا المواد",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "254 ريض": {
+      "name": "الطرائق العددية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "378 همك": {
+      "name": "انتقال الحرارة",
+      "academicHours": 4,
+      "lectureHours": 4,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "321 همك": {
+      "name": "القياسات الميكانيكية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "312 همك": {
+      "name": "أساليب التصنيع (1)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "308 كهر": {
+      "name": "الدوائر والمكائن الكهربائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "304 همك": {
+      "name": "التصميم الهندسي الميكانيكي (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "379 همك": {
+      "name": "منظومات الموائع الحرارية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "365 همك": {
+      "name": "ديناميكا المنظومات الميكانيكية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "322 همك": {
+      "name": "معمل الهندسة الميكانيكية (1)",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "313 همك": {
+      "name": "أساليب التصنيع (2)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "305 همك": {
+      "name": "التصميم الهندسي الميكانيكي (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "403 هعم": {
+      "name": "الاقتصاد الهندسي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "366 همك": {
+      "name": "التحكم التلقائي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "323 همك": {
+      "name": "معمل الهندسة الميكانيكية (2)",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "402 هعم": {
+      "name": "ادارة المشاريع الهندسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "103 سلم": {
+      "name": "النظام الاقتصادي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "102 سلم": {
+      "name": "الأسرة في الإسلام",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "100 قرأ": {
+      "name": "القرآن الكريم",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "100 سلم": {
+      "name": "دراسات في السيرة النبوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "109 سلم": {
+      "name": "المرأة ودورها التنموي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "108 سلم": {
+      "name": "قضايا معاصرة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "106 سلم": {
+      "name": "الفقه الطبي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "105 سلم": {
+      "name": "حقوق الإنسان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "409 همك": {
+      "name": "اختيار المواد في التصميم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "406 همك": {
+      "name": "التصميم الأمثل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "402 همك": {
+      "name": "طريقة العناصر المحددة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "415 همك": {
+      "name": "مقدمة في هندسة السكك الحديدية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "414 همك": {
+      "name": "آلات التحكم الرقمي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "443 همك": {
+      "name": "مبادىء التبريد",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "432 همك": {
+      "name": "مقدمة في ميكانيكا الطيران",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "462 همك": {
+      "name": "الاهتزازات الميكانيكية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "467 همك": {
+      "name": "مقدمة في الروبوتات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "476 همك": {
+      "name": "الطاقة الشمسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "475 همك": {
+      "name": "كفاءة الطاقة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "485 همك": {
+      "name": "آلات الموائع",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "483 همك": {
+      "name": "مقدمة في الدفع النفاث",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "479 همك": {
+      "name": "تحلية المياه",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-science-cfy-science-1",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-1",
+        "type": "regular",
+        "courseOrder": [
+          "100 إنجل",
+          "100 عرب",
+          "101 إحص",
+          "101 ريد",
+          "101 كيم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-science-cfy-science-2",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-2",
+        "type": "regular",
+        "courseOrder": [
+          "101 تقن",
+          "101 ريض",
+          "101 فجب",
+          "101 نهج",
+          "110 إنجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-3",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-3",
+        "type": "regular",
+        "courseOrder": [
+          "103 فيز",
+          "104 هعم",
+          "106 ريض",
+          "107 ريض",
+          "107 سلم",
+          "109 نجم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-4",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-4",
+        "type": "regular",
+        "courseOrder": [
+          "104 فيز",
+          "106 هعم",
+          "110 نجم",
+          "201 هعم",
+          "203 ريض",
+          "203 هعم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-5",
+        "sourceSemesterId": "published-level-5",
+        "type": "regular",
+        "courseOrder": [
+          "201 همك",
+          "202 هعم",
+          "204 ريض",
+          "211 هعم",
+          "254 همك",
+          "371 همك"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-6",
+        "sourceSemesterId": "published-level-6",
+        "type": "regular",
+        "courseOrder": [
+          "254 ريض",
+          "352 همك",
+          "363 همك",
+          "377 همك",
+          "384 همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-6-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-7",
+        "sourceSemesterId": "published-level-7",
+        "type": "regular",
+        "courseOrder": [
+          "304 همك",
+          "308 كهر",
+          "312 همك",
+          "321 همك",
+          "378 همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-7-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-8",
+        "sourceSemesterId": "published-level-8",
+        "type": "regular",
+        "courseOrder": [
+          "305 همك",
+          "313 همك",
+          "322 همك",
+          "365 همك",
+          "379 همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-8-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-9",
+        "sourceSemesterId": "published-level-9",
+        "type": "regular",
+        "courseOrder": [
+          "323 همك",
+          "366 همك",
+          "403 هعم",
+          "496 همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-9-1",
+            "name": "من المتطلبات الحرة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-9-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-10",
+        "sourceSemesterId": "published-level-10",
+        "type": "regular",
+        "courseOrder": [
+          "402 هعم",
+          "497 همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-10-1",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-3",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "999 همك"
+        ],
+        "placeholders": []
+      }
+    ]
+  }
+}

@@ -137,7 +137,7 @@ export function reconcileProposal(publishedPlan, proposal, diagnostics) {
       placeholderCourse(placeholder, semesterIndex, placeholderIndex)
     ));
     const name = semester.type === "summer"
-      ? (++summerIndex === 1 ? "الفصل الصيفي" : `الفصل الصيفي ${summerIndex}`)
+      ? (++summerIndex === 1 ? "فصل صيفي" : `فصل صيفي ${summerIndex}`)
       : semesterLevelName(++regularIndex);
     const academicHours = [...realCourses, ...placeholders]
       .reduce((sum, course) => sum + (numericValue(course.academicHours) ?? 0), 0);

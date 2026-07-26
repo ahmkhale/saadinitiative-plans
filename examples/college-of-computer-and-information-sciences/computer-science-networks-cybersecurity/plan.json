@@ -11,7 +11,7 @@
   "planCode": "CS-NET-CYBER",
   "version": "472.1",
   "expectedCredits": 108,
-  "sortCourses": "input",
+  "sortCourses": "code",
   "semesters": [
     {
       "id": "published-level-3",
@@ -846,7 +846,6 @@
           "340 عال",
           "343 عال",
           "437 عال",
-          "479 عال",
           "488 عال"
         ],
         "placeholders": [
@@ -894,6 +893,15 @@
             "practicalHours": 0
           }
         ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "479 عال"
+        ],
+        "placeholders": []
       }
     ]
   },

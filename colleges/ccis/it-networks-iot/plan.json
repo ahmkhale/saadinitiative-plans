@@ -1,0 +1,890 @@
+{
+  "schemaVersion": 1,
+  "id": "it-networks-iot",
+  "university": "جامعة الملك سعود",
+  "college": "كلية علوم الحاسب والمعلومات",
+  "major": "تقنية المعلومات مسار الشبكات وهندسة إنترنت الأشياء",
+  "degree": "البكالوريوس",
+  "edition": "الطبعة الرابعة",
+  "release": "إصدار 472.1",
+  "version": "472.1",
+  "expectedCredits": 117,
+  "sortCourses": "code",
+  "sharedSemesterSets": [
+    "cfy-science"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-3",
+      "courses": [
+        "219 تم",
+        "210 تم",
+        "151 ريض",
+        "111 عال",
+        "107 سلم"
+      ]
+    },
+    {
+      "id": "published-level-4",
+      "courses": [
+        "223 تم",
+        "222 تم",
+        "214 تم",
+        "113 عال",
+        "108 سلم",
+        "106 ريض"
+      ]
+    },
+    {
+      "id": "published-level-5",
+      "courses": [
+        "328 تم",
+        "326 تم",
+        "324 تم",
+        "312 تم",
+        "212 عال"
+      ]
+    },
+    {
+      "id": "published-level-6",
+      "courses": [
+        "381 تم",
+        "329 تم",
+        "320 تم",
+        "244 ريض",
+        "227 عال"
+      ]
+    },
+    {
+      "id": "published-level-7",
+      "courses": [
+        "496 تم",
+        "481 تم",
+        "479 تم",
+        "426 تم",
+        "423 تم"
+      ]
+    },
+    {
+      "id": "published-level-8",
+      "courses": [
+        "497 تم",
+        "427 تم"
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "name": "متطلبات الجامعة",
+      "requiredHours": 4,
+      "sortCourses": "code",
+      "courses": [
+        "104 سلم",
+        "103 سلم",
+        "102 سلم",
+        "101 سلم",
+        "100 قرأ",
+        "100 سلم",
+        "109 سلم",
+        "106 سلم",
+        "105 سلم"
+      ]
+    },
+    {
+      "id": "track-requirements",
+      "name": "متطلبات المسار",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        "486 تم",
+        "485 تم",
+        "484 تم",
+        "483 تم",
+        "482 تم"
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "496 تم": {
+      "name": "مشروع تخرج 1",
+      "academicHours": 3,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "90 ساعة",
+        "212 عال",
+        "320 تم"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "479 تم": {
+      "name": "التدريب الميداني",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "إتمام 90 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "497 تم": {
+      "name": "مشروع تخرج 2",
+      "academicHours": 3,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "496 تم"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "104 سلم": {
+      "name": "النظام السياسي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "101 سلم": {
+      "name": "أصول الثقافة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "485 تم": {
+      "name": "أساسيات الروبوتات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "109 ساعة"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "483 تم": {
+      "name": "خدمات وتطبيقات إنترنت الأشياء",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "109 ساعة",
+        "312 تم",
+        "481 تم"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "482 تم": {
+      "name": "أجهزة الاستشعار والشبكات المخصصة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "109 ساعة",
+        "381 تم"
+      ],
+      "corequisites": [],
+      "_provenance": {
+        "name": "manual",
+        "academicHours": "manual",
+        "lectureHours": "manual",
+        "practicalHours": "manual",
+        "exerciseHours": "manual",
+        "prerequisites": "manual"
+      }
+    },
+    "219 تم": {
+      "name": "الفيزياء لتقنية المعلومات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "210 تم": {
+      "name": "المبادئ الاساسية لتقنية المعلومات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "151 ريض": {
+      "name": "الرياضيات المحددة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "111 عال": {
+      "name": "برمجة حاسبات (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "107 سلم": {
+      "name": "اخلاقيات المهنة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "223 تم": {
+      "name": "تنظيم وعمارة الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "222 تم": {
+      "name": "مباديء قواعد البيانات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "214 تم": {
+      "name": "تصميم تجربة المستخدم",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "113 عال": {
+      "name": "برمجة حاسبات -2-",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "108 سلم": {
+      "name": "قضايا معاصرة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "106 ريض": {
+      "name": "حساب التكامل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "328 تم": {
+      "name": "مبادئ شبكات الحاسب",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "326 تم": {
+      "name": "تنقيب البيانات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "324 تم": {
+      "name": "أمن المعلومات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "312 تم": {
+      "name": "هندسة تطبيقات الويب",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "212 عال": {
+      "name": "تراكيب البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "381 تم": {
+      "name": "الحوسبة اللاسلكية والمحمولة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "329 تم": {
+      "name": "تقنيات الويب المتقدمة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "320 تم": {
+      "name": "هندسة البرمجيات",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "244 ريض": {
+      "name": "الجبر الخطي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "227 عال": {
+      "name": "نظم التشغيل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "481 تم": {
+      "name": "مقدمة في إنترنت الأشياء",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "426 تم": {
+      "name": "اساسيات الذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "423 تم": {
+      "name": "مقدمة ادارة مشاريع تقنية المعلوات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "427 تم": {
+      "name": "ريادة الاعمال والابداع في تقنية المعلومات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "103 سلم": {
+      "name": "النظام الاقتصادي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "102 سلم": {
+      "name": "الأسرة في الإسلام",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "100 قرأ": {
+      "name": "القرآن الكريم",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "100 سلم": {
+      "name": "دراسات في السيرة النبوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "109 سلم": {
+      "name": "المرأة ودورها التنموي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "106 سلم": {
+      "name": "الفقه الطبي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "105 سلم": {
+      "name": "حقوق الإنسان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "486 تم": {
+      "name": "مواضيع مختاره في الشبكات وإنترنت الأشياء",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    },
+    "484 تم": {
+      "name": "الحوسبة السحابية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "_provenance": {
+        "name": "catalog",
+        "academicHours": "catalog",
+        "lectureHours": "catalog",
+        "exerciseHours": "catalog",
+        "practicalHours": "catalog"
+      }
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-science-cfy-science-1",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-1",
+        "type": "regular",
+        "courseOrder": [
+          "100 إنجل",
+          "100 عرب",
+          "101 إحص",
+          "101 ريد",
+          "101 كيم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-science-cfy-science-2",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-2",
+        "type": "regular",
+        "courseOrder": [
+          "101 تقن",
+          "101 ريض",
+          "101 فجب",
+          "101 نهج",
+          "110 إنجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-3",
+        "sourceSemesterId": "published-level-3",
+        "type": "regular",
+        "courseOrder": [
+          "107 سلم",
+          "111 عال",
+          "151 ريض",
+          "210 تم",
+          "219 تم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-4",
+        "sourceSemesterId": "published-level-4",
+        "type": "regular",
+        "courseOrder": [
+          "106 ريض",
+          "108 سلم",
+          "113 عال",
+          "214 تم",
+          "222 تم",
+          "223 تم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-5",
+        "sourceSemesterId": "published-level-5",
+        "type": "regular",
+        "courseOrder": [
+          "212 عال",
+          "312 تم",
+          "324 تم",
+          "326 تم",
+          "328 تم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-6",
+        "sourceSemesterId": "published-level-6",
+        "type": "regular",
+        "courseOrder": [
+          "227 عال",
+          "244 ريض",
+          "320 تم",
+          "329 تم",
+          "381 تم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-7",
+        "sourceSemesterId": "published-level-7",
+        "type": "regular",
+        "courseOrder": [
+          "423 تم",
+          "426 تم",
+          "481 تم",
+          "496 تم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-7-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-8",
+        "sourceSemesterId": "published-level-8",
+        "type": "regular",
+        "courseOrder": [
+          "427 تم",
+          "497 تم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-8-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-8-2",
+            "name": "من متطلبات المسار",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-8-3",
+            "name": "من متطلبات المسار",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "479 تم"
+        ],
+        "placeholders": []
+      }
+    ]
+  }
+}

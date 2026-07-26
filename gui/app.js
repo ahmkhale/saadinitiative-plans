@@ -448,7 +448,7 @@ function configureSemesterCard(card, item, index, kind) {
       const preceding = state.plan.proposal.semesters.slice(0, index + 1);
       if (item.type === "summer") {
         const summerNumber = preceding.filter((semester) => semester.type === "summer").length;
-        derivedName = summerNumber === 1 ? "الفصل الصيفي" : `الفصل الصيفي ${summerNumber}`;
+        derivedName = summerNumber === 1 ? "فصل صيفي" : `فصل صيفي ${summerNumber}`;
       } else {
         derivedName = semesterLabel(preceding.filter((semester) => semester.type !== "summer").length);
       }
