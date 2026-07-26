@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مولّد الخطط الدراسية | مبادرة صاد</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/assets/logo.svg" alt="" width="42" height="42">
+      <div>
+        <h1>مولّد الخطط الدراسية</h1>
+        <p>أدخل قرارات الخطة، ودع المولّد يستخرج بقية البيانات.</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span id="saveState" class="save-state">لا تغييرات</span>
+      <label class="check"><input id="keepSvg" type="checkbox"> الاحتفاظ بملف SVG</label>
+      <label class="check"><input id="exportPng" type="checkbox"> إنشاء PNG</label>
+      <button id="saveButton" class="button secondary" type="button">حفظ</button>
+      <button id="generateDraftButton" class="button ghost" type="button">إنشاء PDF دون حفظ</button>
+      <button id="generateButton" class="button primary" type="button">حفظ وإنشاء PDF</button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="sidebar">
+      <section>
+        <div class="section-title">
+          <h2>الكليات</h2>
+          <div class="menu-actions">
+            <button id="editCollegeButton" class="icon-button" type="button" aria-label="تعديل الكلية">✎</button>
+            <button id="deleteCollegeButton" class="icon-button danger" type="button" aria-label="حذف الكلية">×</button>
+            <button id="addCollegeButton" class="icon-button" type="button" aria-label="إضافة كلية">+</button>
+          </div>
+        </div>
+        <div id="collegeList" class="nav-list empty-list">لم تُضف كلية بعد.</div>
+      </section>
+      <section>
+        <div class="section-title">
+          <h2>التخصصات</h2>
+          <button id="addMajorButton" class="icon-button" type="button" aria-label="إضافة تخصص">+</button>
+        </div>
+        <div id="majorList" class="nav-list empty-list">اختر كلية أولًا.</div>
+      </section>
+      <section class="catalog-card">
+        <div class="section-title"><h2>دليل المقررات</h2><span id="catalogCount" class="count">—</span></div>
+        <p id="catalogPath">جارٍ قراءة الدليل…</p>
+        <p id="catalogModified">—</p>
+        <dl>
+          <div><dt>تعارضات</dt><dd id="catalogConflicts">—</dd></div>
+          <div><dt>غير محلولة</dt><dd id="unresolvedCount">—</dd></div>
+        </dl>
+      </section>
+    </aside>
+
+    <main class="editor">
+      <div id="welcome" class="welcome">
+        <img src="/assets/logo.svg" alt="" width="72" height="72">
+        <h2>ابدأ بإضافة كلية وتخصص</h2>
+        <p>يكفي أن تدخل رموز المقررات وترتيب الفصول والمجموعات الاختيارية.</p>
+      </div>
+
+      <div id="editorContent" hidden>
+        <nav class="tabs" aria-label="أقسام الخطة">
+          <button class="tab active" data-tab="plan" type="button">الخطة المنشورة</button>
+          <button class="tab" data-tab="electives" type="button">المقررات الاختيارية</button>
+          <button class="tab" data-tab="proposal" type="button">الخطة المقترحة</button>
+          <button class="tab" data-tab="settings" type="button">الإعدادات</button>
+        </nav>
+
+        <section class="tab-panel active" data-panel="plan">
+          <div class="card metadata-card">
+            <div class="card-heading">
+              <div><p class="eyebrow">بيانات الخطة</p><h2 id="planHeading">التخصص</h2></div>
+              <div class="menu-actions">
+                <button id="duplicateMajorButton" class="button ghost" type="button">نسخ التخصص</button>
+                <button id="deleteMajorButton" class="button danger-ghost" type="button">حذف التخصص</button>
+              </div>
+            </div>
+            <div class="form-grid">
+              <label>اسم التخصص<input data-field="major" required></label>
+              <label>المعرّف الثابت<input data-field="id" dir="ltr" required></label>
+              <label>الجامعة<input data-field="university"></label>
+              <label>الكلية<input data-field="college"></label>
+              <label>الدرجة<input data-field="degree"></label>
+              <label>إجمالي الساعات المتوقع<input data-field="expectedCredits" type="number" min="0"></label>
+              <label>الطبعة<input data-field="edition"></label>
+              <label>الإصدار<input data-field="release"></label>
+            </div>
+          </div>
+
+          <div class="section-heading main-heading">
+            <div><p class="eyebrow">الفصول</p><h2>ترتيب الخطة</h2></div>
+            <button id="addSemesterButton" class="button secondary" type="button">إضافة فصل</button>
+          </div>
+          <div class="card phase-card">
+            <div class="section-title">
+              <div><p class="eyebrow">اختياري</p><h2>المراحل</h2></div>
+              <button id="addPublishedPhaseButton" class="button ghost" type="button">إضافة مرحلة</button>
+            </div>
+            <div id="publishedPhaseList" class="phase-list"></div>
+          </div>
+          <div id="semesterList" class="stack"></div>
+        </section>
+
+        <section class="tab-panel" data-panel="electives">
+          <div class="section-heading main-heading">
+            <div><p class="eyebrow">المجموعات الاختيارية</p><h2>متطلبات الإتمام</h2></div>
+            <button id="addElectiveButton" class="button secondary" type="button">إضافة مجموعة</button>
+          </div>
+          <div id="electiveList" class="stack"></div>
+        </section>
+
+        <section class="tab-panel" data-panel="proposal">
+          <div class="card proposal-toggle">
+            <div><p class="eyebrow">صفحة ثانية اختيارية</p><h2>الخطة المقترحة</h2></div>
+            <label class="switch"><input id="proposalEnabled" type="checkbox"><span></span></label>
+          </div>
+          <div id="proposalEditor" hidden>
+            <div class="card inline-options">
+              <label class="check"><input id="guideEnabled" type="checkbox" checked> إظهار دليل بطاقة المقرر</label>
+              <button id="addProposalSemesterButton" class="button secondary" type="button">إضافة فصل</button>
+              <button id="addSummerButton" class="button ghost" type="button">إضافة فصل صيفي</button>
+            </div>
+            <div class="card phase-card">
+              <div class="section-title">
+                <div><p class="eyebrow">اختياري</p><h2>مراحل الخطة المقترحة</h2></div>
+                <button id="addProposalPhaseButton" class="button ghost" type="button">إضافة مرحلة</button>
+              </div>
+              <div id="proposalPhaseList" class="phase-list"></div>
+            </div>
+            <div id="proposalSemesterList" class="stack"></div>
+          </div>
+        </section>
+
+        <section class="tab-panel" data-panel="settings">
+          <div class="card">
+            <p class="eyebrow">ألوان البطاقات</p>
+            <h2>لون رمز المقرر</h2>
+            <p class="muted">يُطبق اللون على جميع الخطط، ولا يُكرر داخل كل مقرر.</p>
+            <form id="colorForm" class="inline-form">
+              <label>رمز القسم<input id="colorSubject" placeholder="عال" required></label>
+              <label>اللون<input id="colorValue" type="color" value="#00AEEF"></label>
+              <button class="button secondary" type="submit">حفظ اللون</button>
+            </form>
+          </div>
+          <div class="card">
+            <p class="eyebrow">البيانات الاستثنائية</p>
+            <h2>البدائل والتعديلات</h2>
+            <p class="muted">تظهر بيانات البديل أو التعديل داخل صف المقرر عند الحاجة. لا تنسخ بيانات الدليل إلى الخطة.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <aside class="preview-pane">
+      <div class="preview-toolbar">
+        <div><p class="eyebrow">المعاينة المباشرة</p><strong id="previewDimensions">—</strong></div>
+        <label>التكبير <input id="zoom" type="range" min="40" max="140" value="80"></label>
+      </div>
+      <div id="previewHost" class="preview-host">
+        <p>اختر تخصصًا لعرض الخطة.</p>
+      </div>
+      <section class="diagnostics">
+        <div class="section-title"><h2>التنبيهات</h2><span id="diagnosticCount" class="count">0</span></div>
+        <div id="diagnosticList" class="diagnostic-list"><p class="muted">لا تنبيهات.</p></div>
+      </section>
+      <div id="globalStatus" class="status" role="status" aria-live="polite"></div>
+      <button id="openOutputButton" class="open-output button ghost" type="button">فتح مجلد المخرجات</button>
+    </aside>
+  </div>
+
+  <datalist id="courseSuggestions"></datalist>
+  <dialog id="formDialog" class="form-dialog">
+    <form id="dialogForm" method="dialog">
+      <div class="card-heading">
+        <div><p class="eyebrow">مولّد الخطط</p><h2 id="dialogTitle">إضافة</h2></div>
+        <button id="dialogClose" class="icon-button" value="cancel" type="submit" aria-label="إغلاق">×</button>
+      </div>
+      <p id="dialogMessage" class="muted"></p>
+      <div id="dialogFields" class="dialog-fields"></div>
+      <div class="dialog-actions">
+        <button class="button ghost" value="cancel" type="submit">إلغاء</button>
+        <button id="dialogSubmit" class="button primary" value="confirm" type="submit">حفظ</button>
+      </div>
+    </form>
+  </dialog>
+  <template id="semesterTemplate">
+    <article class="card semester-card">
+      <div class="card-heading">
+        <div class="semester-fields">
+          <input class="semester-name" aria-label="اسم الفصل">
+          <input class="semester-year" aria-label="السنة" placeholder="السنة أو المرحلة">
+        </div>
+        <div class="menu-actions">
+          <button class="icon-button move-up" type="button" aria-label="نقل إلى أعلى">↑</button>
+          <button class="icon-button move-down" type="button" aria-label="نقل إلى أسفل">↓</button>
+          <button class="icon-button delete-item danger" type="button" aria-label="حذف">×</button>
+        </div>
+      </div>
+      <div class="course-list"></div>
+      <div class="course-adder">
+        <input class="course-code-input" list="courseSuggestions" placeholder="أدخل رمز مقرر، مثل: 101 عال">
+        <button class="button ghost add-course" type="button">إضافة</button>
+        <button class="button ghost add-placeholder" type="button">مقرر خاص</button>
+      </div>
+    </article>
+  </template>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

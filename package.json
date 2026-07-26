@@ -5,10 +5,12 @@
   "type": "module",
   "description": "Deterministic Saad academic-plan generator: plan JSON + courses JSON -> resolved plan, SVG and PDF.",
   "scripts": {
+    "dev": "node src/gui-server.mjs",
+    "gui": "node src/gui-server.mjs",
     "generate": "node src/generate.mjs",
     "generate:all": "node src/generate-all.mjs",
     "test": "node --test",
-    "validate": "npm test && node --check src/generate.mjs && node --check src/generate-all.mjs"
+    "validate": "npm test && node --check src/gui-server.mjs && node --check gui/app.js && node --check src/generate.mjs && node --check src/generate-all.mjs"
   },
   "engines": {
     "node": ">=20"

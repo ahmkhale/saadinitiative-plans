@@ -87,7 +87,14 @@ export function createCatalogService(options = {}) {
     const results = [];
     for (const course of state.catalog.values()) {
       if (needle && !`${course.code} ${course.name ?? ""}`.toLocaleLowerCase("ar").includes(needle)) continue;
-      results.push(resolve(course.code));
+      const normalizedCode = normalizeCourseCode(course.code);
+      const subject = courseSubject(normalizedCode);
+      results.push({
+        found: true,
+        ...course,
+        subject,
+        color: course.color ?? state.colors[subject] ?? state.colors[course.category] ?? state.colors.عام ?? "#616161",
+      });
       if (results.length >= Math.min(100, Math.max(1, limit))) break;
     }
     return results;

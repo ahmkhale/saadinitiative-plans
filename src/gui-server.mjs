@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
+import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { defaultCatalogService } from "./catalog-service.mjs";
 import { exportDraft, renderDraftPreview, resolveDraft } from "./preview.mjs";
@@ -10,6 +11,13 @@ const thisFile = fileURLToPath(import.meta.url);
 const guiDir = path.join(projectRoot, "gui");
 const distDir = path.join(projectRoot, "dist");
 const defaultPort = Number(process.env.PORT || 4174);
+
+function openDirectory(directory) {
+  fs.mkdirSync(directory, { recursive: true });
+  const command = process.platform === "win32" ? "explorer.exe" : process.platform === "darwin" ? "open" : "xdg-open";
+  const child = spawn(command, [directory], { detached: true, stdio: "ignore", windowsHide: true });
+  child.unref();
+}
 
 function json(res, status, value) {
   res.writeHead(status, {
@@ -71,6 +79,7 @@ export function createGuiServer(options = {}) {
   const catalogService = options.catalogService ?? defaultCatalogService;
   const outputRoot = path.resolve(options.outputRoot ?? distDir);
   const exportDraftFn = options.exportDraftFn ?? exportDraft;
+  const openOutputFn = options.openOutputFn ?? openDirectory;
 
   async function api(req, res, url) {
     const segments = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
@@ -124,6 +133,10 @@ export function createGuiServer(options = {}) {
           folder: result.paths.folder,
         },
       });
+    }
+    if (req.method === "POST" && url.pathname === "/api/open-output") {
+      openOutputFn(outputRoot);
+      return json(res, 200, { ok: true, folder: outputRoot });
     }
     if (req.method === "PUT" && segments[1] === "colors" && segments.length === 3) {
       const body = await readBody(req);
