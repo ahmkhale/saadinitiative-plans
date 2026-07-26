@@ -6,9 +6,15 @@
 - Course names longer than the fixed card capacity produce `COURSE_NAME_OVERFLOW` so clipping is visible in diagnostics instead of silently changing the measured typography.
 - The GUI is optimized for desktop operator use. Its three-pane workflow is not
   intended as a phone editor.
-- Course and semester reordering currently uses explicit arrow buttons rather
-  than drag-and-drop.
+- Proposal real courses support pointer drag-and-drop. Arrow controls remain as
+  a keyboard-friendly fallback for reordering within a semester; cross-semester
+  keyboard movement is not yet exposed as a dedicated command.
+- The shared-semester editor uses compact `|`-separated semester fields. It is
+  intentionally functional and deterministic, but is less rich than the
+  per-course inline editor used by ordinary plan semesters.
 - PDF and PNG output require Inkscape.
-- `courses.json` section rows normally do not include prerequisite metadata. The resolver intentionally preserves the plan fallback graph in that case.
+- `courses.json` section rows are incomplete lookup accelerators and may omit
+  contact hours or prerequisite metadata. Unknown required facts remain blocking;
+  they are never silently converted to zero.
 - Font files are deliberately not bundled. Exact typography depends on the IBM Plex Sans Arabic weights installed on the machine that exports the PDF.
 - Page width is fixed at `594 pt`; each page height follows its own content. Existing `1045` and `983.748779` fixtures remain valid examples, not global constants.

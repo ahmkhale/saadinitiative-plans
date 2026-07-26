@@ -37,6 +37,8 @@ complete.
 ## Product principles
 
 - **Plan files contain decisions, not duplicated facts.** Shared course data belongs in `courses.json`.
+- **Section files are lookup accelerators, not complete academic catalogs.**
+  Lookup is Male → Female → manual and retains provenance.
 - **Uncertainty is reported, never invented.** Missing facts produce diagnostics instead of guessed values.
 - **Figma is the visual source of truth.** Geometry, typography, colors, spacing, and variants must not drift.
 - **PDF is the primary output.** SVG and PNG are retained only when explicitly requested.
@@ -87,8 +89,10 @@ elective course codes, review the actual shared-renderer preview, then save and
 generate the PDF. Plans are stored atomically under
 `colleges/<college-id>/<major-id>/plan.json`.
 
-The GUI reads `data/courses/Male/courses.json` first and uses
-`data/courses/Female/courses.json` only for missing codes. Blocking diagnostics
+The GUI reads `data/courses/Male/courses.json` first, uses
+`data/courses/Female/courses.json` for missing codes, and requires complete
+inline manual facts when both lack a course. It also manages shared
+edition/release settings and reusable semester sets. Blocking diagnostics
 disable export; warnings do not. See [docs/GUI.md](./docs/GUI.md) for the full
 workflow and screenshots.
 
@@ -146,8 +150,6 @@ A minimal plan usually contains only identity, expected hours, semesters, and co
   "college": "كلية الهندسة",
   "major": "الهندسة الكهربائية",
   "degree": "البكالوريوس",
-  "edition": "الطبعة الأولى",
-  "release": "إصدار 1.0",
   "expectedCredits": 132,
   "semesters": [
     {
@@ -162,22 +164,34 @@ A minimal plan usually contains only identity, expected hours, semesters, and co
       "academicHours": 3,
       "lectureHours": 2,
       "practicalHours": 2,
-      "exerciseHours": 0,
-      "prerequisites": []
+      "exerciseHours": 0
     }
   }
 }
 ```
 
-`fallbackCourses` exists for unpublished or missing catalog entries. It is not a second catalog and
-should not repeat facts already available in `courses.json`.
+`fallbackCourses` exists for courses absent from both Male and Female section
+sources. Every manual entry contains the name and all four hour fields; explicit
+zero is preserved. It is not a second catalog.
+
+Plan-owned rules belong on the semester or elective entry:
+
+```json
+{
+  "code": "201 عال",
+  "prerequisites": ["101 عال"],
+  "corequisites": ["101 ريض"],
+  "minimumCompletedCredits": 30,
+  "trackSpecific": true
+}
+```
 
 ### Data precedence
 
 Course facts are resolved in this order:
 
 1. `override` on the course entry, for deliberate plan-specific exceptions.
-2. `courses.json`, the normal shared source.
+2. Male section data, then Female section data for an absent code.
 3. `fallbackCourses` or an entry-level `fallback`.
 4. `UNRESOLVED_COURSE`, rather than fabricated data.
 
@@ -213,15 +227,16 @@ Elective or track requirements are declared separately from the regular semester
     {
       "id": "track-requirements",
       "name": "متطلبات المسار",
-      "requiredHours": 12,
+      "requirementText": "غير متطلب للتخرج",
       "courses": ["436 عال", "435 عال", "434 عال"]
     }
   ]
 }
 ```
 
-The generator also accepts `electiveCategories` from the existing website plan registry and
-subtracts courses already placed in semesters before calculating the remaining requirement.
+Each elective group uses exactly one completion mode: `requiredHours` or
+`requirementText`. The generator also accepts `electiveCategories` from the
+existing website plan registry and subtracts courses already placed in semesters.
 
 ## Proposed-plan page
 
@@ -231,30 +246,25 @@ The published plan remains page one. Add `proposal` to produce a second page in 
 {
   "proposal": {
     "title": "الخطة المقترحة",
-    "expectedCredits": 128,
     "phases": [
       { "label": "السنة التحضيرية", "start": 1, "end": 2 },
       { "label": "التخصص", "start": 3, "end": 9 }
     ],
     "semesters": [
       {
+        "id": "proposal-3",
         "number": 3,
         "name": "المستوى الثالث",
-        "courses": [
+        "courseOrder": ["151 ريض", "111 عال"],
+        "placeholders": [
           {
-            "kind": "placeholder",
-            "code": "مقرر",
-            "fallback": {
-              "name": "من المتطلبات العلمية",
-              "academicHours": 4,
-              "lectureHours": 0,
-              "practicalHours": 0,
-              "exerciseHours": 0,
-              "color": "#000000"
-            }
-          },
-          "151 ريض",
-          "111 عال"
+            "id": "track-placeholder",
+            "name": "من المتطلبات العلمية",
+            "academicHours": 4,
+            "lectureHours": 0,
+            "practicalHours": 0,
+            "exerciseHours": 0
+          }
         ]
       }
     ]
@@ -262,7 +272,12 @@ The published plan remains page one. Add `proposal` to produce a second page in 
 }
 ```
 
-The proposed page supports its own phases, totals, placeholder courses, and an optional summer row.
+The proposal is arrangement, not a duplicate plan. Across all proposal semesters,
+`courseOrder` must contain every published semester and elective real course
+exactly once. Real courses may be rearranged but not added or deleted.
+Placeholders are explicit additions, render after real courses, and may be added
+or removed. The proposed page supports its own phases and an optional summer row;
+all totals remain resolved model output.
 
 ## Supported course catalogs
 
@@ -286,9 +301,22 @@ The preferred catalog is a detailed course list:
 }
 ```
 
-The generator also accepts the website's section-row catalog. Rows sharing a normalized course code
-are combined, and contact hours are derived by activity type. Because section rows commonly omit
-prerequisites, plan fallbacks remain authoritative for prerequisite metadata in that format.
+The generator also accepts the website's section-row sources. Rows sharing a
+normalized course code are combined, source provenance is retained, and
+conflicting derived facts are reported. Section rows commonly omit required
+facts; absence is never interpreted as zero.
+
+## Shared settings and semester sets
+
+`data/settings.json` provides the default edition and release for all plans.
+Reusable semester sources live in the shared-semester store and are referenced
+through `sharedSemesterSets`. References are composed at resolution time, so a
+foundation year is edited once rather than copied into every major. Deletion is
+blocked while a source is referenced.
+
+Published semester and elective course codes are sorted automatically by number
+then Arabic subject. Proposal real-course order remains manual. Year/phase rails
+support full-year and half-year spans.
 
 ## Existing website registry
 
@@ -333,6 +361,7 @@ npm run generate -- <plan.json>
 ```text
 data/
   course-colors.json             Arabic subject-code → Figma color mapping
+  settings.json                  Shared edition and release defaults
 docs/
   ARCHITECTURE.md                Pipeline and module boundaries
   DATA_MODEL.md                  Persisted and resolved data contracts
@@ -356,6 +385,8 @@ src/
   normalize.mjs                  Arabic course-code normalization and sorting
   pipeline.mjs                   End-to-end generation orchestration
   plan-input.mjs                 Native and website-registry input adapters
+  settings.mjs                   Shared edition/release persistence
+  shared-semester-sets.mjs       Referenced reusable semester sources
   render-svg.mjs                 Protected Figma-faithful renderer
   resolve.mjs                    Course resolution, graph analysis, and totals
   store.mjs                      Atomic college and plan persistence

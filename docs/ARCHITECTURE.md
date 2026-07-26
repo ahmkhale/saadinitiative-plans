@@ -22,12 +22,17 @@ plan.json
   -> normalizePlanInput()
   -> validatePlanShape()
 
-courses.json
+Male/courses.json + Female/courses.json
   -> buildCourseCatalog()
+     - preserve source provenance
+     - Male priority, Female fallback
+     - aggregate section conflicts
 
 plan + catalog + course-colors.json
   -> resolvePlan()
      - source precedence
+     - shared settings and referenced semester-set composition
+     - proposal set-invariant validation
      - prerequisite graph
      - parent-course derivation
      - semester/elective/proposal totals
@@ -76,10 +81,22 @@ export
      -> PDF by default, optional SVG/PNG
 ```
 
-`catalog-service.mjs` merges the Female catalog first and then overlays the Male
-catalog, which gives Male rows precedence while retaining Female-only codes. It
-also reports conflicting duplicate definitions and owns the shared subject-color
-map. The GUI never writes course facts back to either catalog.
+`catalog-service.mjs` builds the Male and Female sources independently, preserving
+their provenance and section-level conflicts. Lookup selects Male when both
+sources contain the course, then Female, then a complete plan fallback. Section
+files are lookup accelerators, not complete academic catalogs. The GUI never
+writes course facts back to either source.
+
+`settings.mjs` owns global edition/release defaults. `shared-semester-sets.mjs`
+owns reusable semester sources, supports composition, scans plan usages before
+deletion, and writes atomically. `plan-input.mjs` composes those references before
+resolution and normalizes legacy proposal storage. `store.mjs` writes a timestamped
+backup beside a legacy plan before its first canonical proposal save.
+
+The published model is the decision source. Its semester and elective entries are
+automatically sorted. A proposal persists only semester arrangement
+(`courseOrder`) and explicit `placeholders`; the resolver rejects missing,
+duplicated, or unknown real courses before rendering.
 
 Unsaved editor state remains in the browser. Preview and draft export accept that
 state directly, so saving is not a prerequisite for visual feedback.
