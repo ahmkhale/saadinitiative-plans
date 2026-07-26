@@ -1,5 +1,19 @@
 # Architecture
 
+## Rendering
+
+`src/render-svg.mjs` renders the resolved model as measured SVG components:
+header, semester rows, summaries, course cards, year and phase rails, elective
+groups, proposal guide, and footer. It does not calculate plan totals.
+
+All authoritative geometry is centralized in `src/render-layout.mjs`. See
+`docs/FIGMA_MEASUREMENTS.md` for the Figma node mapping and extracted values.
+Each page owns a deterministic render context that allocates unique IDs with a
+page-specific prefix, so repeated cards and multipage output cannot collide.
+
+Published and proposed pages retain the fixed `594 × 1045 pt` output contract.
+The proposal guide uses the measured Figma composition inside those page bounds.
+
 ```text
 plan.json
   -> normalizePlanInput()

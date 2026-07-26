@@ -180,6 +180,15 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       source: usedCatalog ? "catalog" : usedFallback ? "fallback" : "unresolved",
       location: context.location,
     };
+    if (Array.from(course.name).length > 44) {
+      addDiagnostic(
+        diagnostics,
+        "warnings",
+        "COURSE_NAME_OVERFLOW",
+        `${code} has a course name longer than the fixed Figma card can display.`,
+        { course: code, location: context.location, characterCount: Array.from(course.name).length },
+      );
+    }
     allCourses.push(course);
     if (context.semesterIndex !== null && context.semesterIndex !== undefined) {
       mainCourses.push(course);
@@ -198,6 +207,15 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     }));
     const sortMode = semester.sortCourses ?? plan.sortCourses ?? "input";
     if (sortMode === "code") resolvedCourses.sort((a, b) => compareCourseCodes(a.code, b.code));
+    if (resolvedCourses.length > 6) {
+      addDiagnostic(
+        diagnostics,
+        "errors",
+        "SEMESTER_CARD_OVERFLOW",
+        `${semester.name}: ${resolvedCourses.length} courses exceed the six-card Figma row.`,
+        { semester: semesterIndex + 1, courseCount: resolvedCourses.length, maximum: 6 },
+      );
+    }
     const semesterHours = resolvedCourses.reduce((sum, course) => sum + course.academicHours, 0);
     if (numericValue(semester.expectedCredits) !== null && semesterHours !== numericValue(semester.expectedCredits)) {
       addDiagnostic(diagnostics, "warnings", "SEMESTER_HOURS_MISMATCH", `${semester.name}: calculated ${semesterHours}, expected ${semester.expectedCredits}.`, {

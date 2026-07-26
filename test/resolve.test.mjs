@@ -107,3 +107,28 @@ test("resolves a proposed page with unique black placeholders and a summer total
   assert.equal(resolved.proposal.semesters[0].courses.filter((course) => course.isPlaceholder).length, 2);
   assert.equal(diagnostics.summary.errors, 0);
 });
+
+test("reports fixed-card overflow instead of silently shrinking the Figma layout", () => {
+  const longName = "اسم مقرر طويل جدا يتجاوز المساحة المقاسة داخل بطاقة فيقما الثابتة";
+  const courses = Array.from({ length: 7 }, (_, index) => `${index + 101} ريض`);
+  const fallbackCourses = Object.fromEntries(courses.map((code, index) => [
+    code,
+    {
+      name: index === 0 ? longName : `مقرر ${index + 1}`,
+      academicHours: 3,
+    },
+  ]));
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار تجاوز التخطيط",
+    semesters: [{ name: "المستوى الأول", courses }],
+    fallbackCourses,
+  });
+  const diagnostics = createDiagnostics();
+
+  resolvePlan(plan, new Map(), colors, diagnostics);
+
+  assert.equal(diagnostics.summary.errors, 1);
+  assert.ok(diagnostics.items.some((item) => item.code === "SEMESTER_CARD_OVERFLOW"));
+  assert.ok(diagnostics.items.some((item) => item.code === "COURSE_NAME_OVERFLOW"));
+});
