@@ -9,6 +9,7 @@ import { renderPlanDocumentSvg } from "./render-svg.mjs";
 import { resolvePlan } from "./resolve.mjs";
 import { defaultCatalogService } from "./catalog-service.mjs";
 import { composeSharedSemesterSets, loadSharedSemesterSets } from "./shared-semester-sets.mjs";
+import { composeSharedElectiveGroups, loadSharedElectiveGroups } from "./shared-elective-groups.mjs";
 import { readSettings } from "./settings.mjs";
 
 export function resolveDraft(rawPlan, options = {}) {
@@ -23,7 +24,12 @@ export function resolveDraft(rawPlan, options = {}) {
     return { ok: false, plan: null, diagnostics, document: null };
   }
   const catalog = service.snapshot();
-  const composed = composeSharedSemesterSets(normalized, options.sharedSemesterSets ?? loadSharedSemesterSets(), diagnostics);
+  const semestersComposed = composeSharedSemesterSets(normalized, options.sharedSemesterSets ?? loadSharedSemesterSets(), diagnostics);
+  const composed = composeSharedElectiveGroups(
+    semestersComposed,
+    options.sharedElectiveGroups ?? loadSharedElectiveGroups(),
+    diagnostics,
+  );
   const plan = resolvePlan(composed, catalog.catalog, catalog.colors, diagnostics, { settings: options.settings ?? readSettings() });
   const document = hasErrors(diagnostics) ? null : renderPlanDocumentSvg(plan);
   return { ok: !hasErrors(diagnostics), plan, diagnostics, document };

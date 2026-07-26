@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "cfy-science",
+  "name": "التحضيري العلمي",
+  "phaseLabel": "السنة التحضيرية",
+  "semesters": [
+    {
+      "id": "cfy-science-1",
+      "courses": [
+        "100 إنجل",
+        "100 عرب",
+        "101 إحص",
+        "101 ريد",
+        "101 كيم"
+      ]
+    },
+    {
+      "id": "cfy-science-2",
+      "courses": [
+        {
+          "code": "110 إنجل",
+          "prerequisites": ["100 إنجل"]
+        },
+        "101 فجب",
+        "101 تقن",
+        "101 ريض",
+        "101 نهج"
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "100 إنجل": {
+      "name": "اللغة الإنجليزية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "exerciseHours": 0,
+      "practicalHours": 0
+    },
+    "100 عرب": {
+      "name": "مهارات الكتابة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0
+    },
+    "101 إحص": {
+      "name": "مدخل إلى الاحتمالات والإحصاء",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0
+    },
+    "101 ريد": {
+      "name": "ريادة الأعمال",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0
+    },
+    "101 كيم": {
+      "name": "كيمياء عامة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2
+    },
+    "110 إنجل": {
+      "name": "لغة إنجليزية تخصصية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "exerciseHours": 0,
+      "practicalHours": 0
+    },
+    "101 فجب": {
+      "name": "اللياقة والثقافة الصحية",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2
+    },
+    "101 تقن": {
+      "name": "مهارات الحاسب الآلي والذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2
+    },
+    "101 ريض": {
+      "name": "حساب التفاضل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0
+    },
+    "101 نهج": {
+      "name": "مهارات جامعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0
+    }
+  }
+}

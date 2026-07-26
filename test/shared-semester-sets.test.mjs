@@ -36,7 +36,19 @@ test("shared semester sets compose without copying and cannot be deleted while r
       createDiagnostics(),
     );
     assert.equal(composed.semesters.length, 3);
+    assert.deepEqual(composed.semesters.map((semester) => semester.name), [
+      "المستوى الأول",
+      "المستوى الثاني",
+      "المستوى الثالث",
+    ]);
     assert.equal(composed.semesters[0].inheritedFrom, "preparatory-scientific");
+    assert.deepEqual(composed.phases, [
+      { label: "السنة التحضيرية", start: 1, end: 2 },
+      { label: "التخصص", start: 3, end: 3 },
+    ]);
+    const storedSet = setStore.get("preparatory-scientific");
+    assert.equal(storedSet.semesters[0].name, undefined);
+    assert.equal(storedSet.semesters[0].number, undefined);
     assert.equal(setStore.list()[0].usages[0].majorId, "physics");
     assert.throws(() => setStore.remove("preparatory-scientific"), /used by 1 major/u);
 

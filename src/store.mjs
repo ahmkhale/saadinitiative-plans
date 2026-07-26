@@ -1,7 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { normalizePlanInput, validatePlanShape } from "./plan-input.mjs";
+import { canonicalizePlanForStorage, normalizePlanInput, validatePlanShape } from "./plan-input.mjs";
+import { defaultCatalogService } from "./catalog-service.mjs";
+import { hydrateFallbackCourses } from "./fallback-hydration.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 export const projectRoot = path.resolve(path.dirname(thisFile), "..");
@@ -54,7 +56,7 @@ function initialPlan(college, input) {
     degree: String(input?.degree ?? "البكالوريوس").trim(),
     expectedCredits: Number(input?.expectedCredits ?? 0),
     sharedSemesterSets: [],
-    semesters: [{ number: 1, name: "المستوى الأول", courses: [] }],
+    semesters: [{ id: "published-level-1", courses: [] }],
     electiveGroups: [],
     fallbackCourses: {},
   };
@@ -66,7 +68,8 @@ function validatePersistedPlan(plan) {
   return plan;
 }
 
-export function createPlanStore(root = collegesRoot) {
+export function createPlanStore(root = collegesRoot, options = {}) {
+  const catalogService = options.catalogService ?? null;
   const collegeDir = (collegeId) => path.join(root, assertSafeId(collegeId, "collegeId"));
   const collegeFile = (collegeId) => path.join(collegeDir(collegeId), "college.json");
   const majorDir = (collegeId, majorId) => path.join(collegeDir(collegeId), assertSafeId(majorId, "majorId"));
@@ -155,21 +158,14 @@ export function createPlanStore(root = collegesRoot) {
     const nextId = assertSafeId(input?.id ?? currentId, "majorId");
     const currentDir = majorDir(college.id, currentId);
     if (!fs.existsSync(currentDir)) throw new Error(`Major not found: ${currentId}`);
-    const plan = {
+    let plan = canonicalizePlanForStorage({
       ...structuredClone(input),
       schemaVersion: 1,
       id: nextId,
       college: input.college || college.name,
-    };
+    });
+    if (catalogService) plan = hydrateFallbackCourses(plan, catalogService.snapshot().catalog).value;
     validatePersistedPlan(plan);
-    const existingFile = planFile(college.id, currentId);
-    const existingPlan = readJson(existingFile);
-    const legacyProposal = existingPlan.proposal?.semesters?.some((semester) => Array.isArray(semester.courses));
-    const canonicalProposal = plan.proposal?.semesters?.every((semester) => Array.isArray(semester.courseOrder) && Array.isArray(semester.placeholders));
-    if (legacyProposal && canonicalProposal) {
-      const backupFile = path.join(currentDir, `plan.before-proposal-migration.${Date.now()}.json`);
-      fs.copyFileSync(existingFile, backupFile, fs.constants.COPYFILE_EXCL);
-    }
     if (nextId !== currentId) {
       const nextDir = majorDir(college.id, nextId);
       if (fs.existsSync(nextDir)) throw new Error(`Major already exists: ${nextId}`);
@@ -182,11 +178,11 @@ export function createPlanStore(root = collegesRoot) {
   function duplicateMajor(collegeId, majorId, input) {
     const source = getPlan(collegeId, majorId);
     const nextId = assertSafeId(input?.id, "majorId");
-    const copy = {
+    const copy = canonicalizePlanForStorage({
       ...structuredClone(source),
       id: nextId,
       major: String(input?.major ?? `${source.major} - نسخة`).trim(),
-    };
+    });
     if (fs.existsSync(planFile(collegeId, nextId))) throw new Error(`Major already exists: ${nextId}`);
     validatePersistedPlan(copy);
     atomicWriteJson(planFile(collegeId, nextId), copy);
@@ -216,4 +212,4 @@ export function createPlanStore(root = collegesRoot) {
   };
 }
 
-export const defaultPlanStore = createPlanStore();
+export const defaultPlanStore = createPlanStore(collegesRoot, { catalogService: defaultCatalogService });

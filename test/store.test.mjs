@@ -22,9 +22,20 @@ test("college and major CRUD persists valid plans atomically", () => {
     assert.equal(plan.semesters.length, 1);
     assert.equal(store.listColleges()[0].majors[0].id, "information-systems");
 
-    plan.semesters.push({ number: 2, name: "المستوى الثاني", courses: [] });
+    plan.semesters[0].number = 99;
+    plan.semesters[0].name = "اسم يدوي";
+    plan.semesters.push({ number: 2, name: "المستوى 2", yearLabel: "سنة يدوية", courses: [] });
     store.savePlan("computer-science", "information-systems", plan);
-    assert.equal(store.getPlan("computer-science", "information-systems").semesters.length, 2);
+    const savedPlan = store.getPlan("computer-science", "information-systems");
+    assert.equal(savedPlan.semesters.length, 2);
+    assert.deepEqual(savedPlan.semesters.map((semester) => ({
+      number: semester.number,
+      name: semester.name,
+      yearLabel: semester.yearLabel,
+    })), [
+      { number: undefined, name: undefined, yearLabel: undefined },
+      { number: undefined, name: undefined, yearLabel: undefined },
+    ]);
 
     store.duplicateMajor("computer-science", "information-systems", {
       id: "information-systems-copy",
@@ -64,18 +75,15 @@ test("storage rejects unsafe paths and invalid plan schemas", () => {
   }
 });
 
-test("backs up a legacy proposal before saving its canonical arrangement", () => {
+test("saving a proposal writes only the canonical plan", () => {
   const { root, store } = temporaryStore();
   try {
     store.createCollege({ id: "science", name: "كلية العلوم" });
     const plan = store.createMajor("science", { id: "math", major: "الرياضيات" });
-    plan.proposal = { semesters: [{ name: "الأول", courses: [] }] };
+    plan.proposal = { semesters: [{ id: "one", placeholders: [] }] };
     store.savePlan("science", "math", plan);
-    const canonical = store.getPlan("science", "math");
-    canonical.proposal = { semesters: [{ id: "one", name: "الأول", courseOrder: [], placeholders: [] }] };
-    store.savePlan("science", "math", canonical);
     const files = fs.readdirSync(path.dirname(store.planPath("science", "math")));
-    assert.ok(files.some((name) => name.startsWith("plan.before-proposal-migration.")));
+    assert.deepEqual(files, ["plan.json"]);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

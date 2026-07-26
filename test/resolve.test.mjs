@@ -22,7 +22,7 @@ test("catalog wins over fallback, override wins over catalog, and parent course 
   });
   const catalog = buildCourseCatalog({ courses: [
     { code: "101 ريض", name: "حساب التفاضل", hours: 3, details: { lecturesHours: "3" } },
-    { code: "201 كهر", name: "تحليل الدوائر", hours: 4, prerequisites: ["101 ريض"] },
+    { code: "201 كهر", name: "تحليل الدوائر", hours: 4, lectureHours: 4, prerequisites: ["101 ريض"] },
   ] });
   const diagnostics = createDiagnostics();
   const resolved = resolvePlan(plan, catalog, colors, diagnostics);
@@ -108,44 +108,44 @@ test("catalog rows without prerequisite metadata preserve the plan fallback grap
   assert.equal(resolved.semesters[0].courses[0].isParentCourse, true);
 });
 
-test("resolves a proposed page with unique black placeholders and a summer total", () => {
-  const placeholder = (hours) => ({
-    kind: "placeholder",
-    code: "مقرر",
-    fallback: {
-      name: "من متطلبات المسار",
-      academicHours: hours,
-      lectureHours: 0,
-      practicalHours: 0,
-      exerciseHours: 0,
-      color: "#000000",
-    },
-  });
+test("proposal inherits published facts and appends black placeholders", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
     major: "اختبار",
-    semesters: [{ courses: ["101 ريض"] }],
-    fallbackCourses: {
-      "101 ريض": { name: "رياضيات", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 },
-    },
+    semesters: [
+      { id: "published-1", courses: ["102 ريض", "101 ريض"] },
+      { id: "published-2", courses: ["201 ريض"] },
+    ],
+    fallbackCourses: Object.fromEntries(["101 ريض", "102 ريض", "201 ريض"].map((code) => [code, {
+      name: code,
+      academicHours: 3,
+      lectureHours: 3,
+      exerciseHours: 0,
+      practicalHours: 0,
+    }])),
     proposal: {
       title: "الخطة المقترحة",
-      expectedCredits: 10,
       semesters: [
-        { name: "المستوى الأول", courses: ["101 ريض", placeholder(3), placeholder(3)] },
-        { name: "صيفي", courses: [{ ...placeholder(1), fallback: { ...placeholder(1).fallback, name: "تدريب" } }] },
+        { id: "published-1", sourceSemesterId: "published-1", type: "regular", courseOrder: ["101 ريض", "102 ريض"], placeholders: [{ id: "p1", name: "من متطلبات المسار", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }] },
+        { id: "published-2", sourceSemesterId: "published-2", type: "regular", courseOrder: ["201 ريض"], placeholders: [] },
       ],
     },
   });
   const diagnostics = createDiagnostics();
   const resolved = resolvePlan(plan, new Map(), colors, diagnostics);
-  assert.equal(resolved.proposal.totalHours, 10);
-  assert.equal(resolved.proposal.semesters[1].cumulativeHours, 10);
-  assert.equal(resolved.proposal.semesters[0].courses.filter((course) => course.isPlaceholder).length, 2);
+  assert.equal(resolved.proposal.totalHours, 12);
+  assert.deepEqual(
+    resolved.proposal.semesters[0].courses.filter((course) => !course.isPlaceholder).map((course) => course.code),
+    ["101 ريض", "102 ريض"],
+  );
+  const placeholder = resolved.proposal.semesters[0].courses.at(-1);
+  assert.equal(placeholder.isPlaceholder, true);
+  assert.equal(placeholder.code, "مقرر");
+  assert.equal(placeholder.color, "#000000");
   assert.equal(diagnostics.summary.errors, 0);
 });
 
-test("reports card-count overflow without treating fitted course names as overflow", () => {
+test("accepts seven-course semesters without an overflow error", () => {
   const longName = "اسم مقرر طويل جدا يتجاوز المساحة المقاسة داخل بطاقة فيقما الثابتة";
   const courses = Array.from({ length: 7 }, (_, index) => `${index + 101} ريض`);
   const fallbackCourses = Object.fromEntries(courses.map((code, index) => [
@@ -168,12 +168,10 @@ test("reports card-count overflow without treating fitted course names as overfl
 
   resolvePlan(plan, new Map(), colors, diagnostics);
 
-  assert.equal(diagnostics.summary.errors, 1);
-  assert.ok(diagnostics.items.some((item) => item.code === "SEMESTER_CARD_OVERFLOW"));
-  assert.ok(!diagnostics.items.some((item) => item.code === "COURSE_NAME_OVERFLOW"));
+  assert.equal(diagnostics.summary.errors, 0);
 });
 
-test("first-class plan rules override legacy catalog rules and keep manual zero hours", () => {
+test("plan-owned rules augment catalog facts and keep manual zero hours", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
     major: "قواعد الخطة",
@@ -220,13 +218,13 @@ test("first-class plan rules override legacy catalog rules and keep manual zero 
   assert.equal(diagnostics.summary.errors, 0);
 });
 
-test("proposal arrangement must contain every published course exactly once", () => {
+test("proposal can move and reorder real courses while preserving the exact parent set", () => {
   const base = normalizePlanInput({
     schemaVersion: 1,
     major: "مقترح",
     semesters: [
-      { name: "الأول", courses: ["101 عال", "102 عال"] },
-      { name: "الثاني", courses: ["201 عال"] },
+      { id: "published-1", courses: ["102 عال", "101 عال"] },
+      { id: "published-2", courses: [{ code: "201 عال", prerequisites: ["101 عال"], corequisites: ["102 عال"] }] },
     ],
     fallbackCourses: Object.fromEntries(["101 عال", "102 عال", "201 عال"].map((code) => [code, {
       name: code,
@@ -237,25 +235,44 @@ test("proposal arrangement must contain every published course exactly once", ()
     }])),
     proposal: {
       semesters: [
-        { id: "one", name: "الأول", courseOrder: ["201 عال", "101 عال"], placeholders: [] },
-        { id: "two", name: "الثاني", courseOrder: ["102 عال"], placeholders: [{ id: "p", name: "نائب", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }] },
+        { id: "one", sourceSemesterId: "published-1", type: "regular", courseOrder: ["102 عال"], placeholders: [] },
+        { id: "summer", sourceSemesterId: null, type: "summer", courseOrder: ["201 عال"], placeholders: [{ id: "p", name: "نائب", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }] },
+        { id: "two", sourceSemesterId: "published-2", type: "regular", courseOrder: ["101 عال"], placeholders: [] },
       ],
     },
   });
-  const validDiagnostics = createDiagnostics();
-  const valid = resolvePlan(base, new Map(), colors, validDiagnostics);
-  assert.equal(validDiagnostics.summary.errors, 0);
-  assert.deepEqual(valid.proposal.semesters[0].courses.filter((course) => !course.isPlaceholder).map((course) => course.code), ["201 عال", "101 عال"]);
-  assert.equal(valid.proposal.semesters[1].courses.at(-1).isPlaceholder, true);
+  const diagnostics = createDiagnostics();
+  const resolved = resolvePlan(base, new Map(), colors, diagnostics);
+  assert.equal(diagnostics.summary.errors, 0);
+  assert.deepEqual(resolved.proposal.semesters[0].courses.map((course) => course.code), ["102 عال"]);
+  assert.deepEqual(resolved.proposal.semesters[1].courses.map((course) => course.code), ["201 عال", "مقرر"]);
+  assert.equal(resolved.proposal.semesters[1].name, "الفصل الصيفي");
+  assert.ok(diagnostics.items.some((item) => item.code === "PROPOSAL_PREREQUISITE_AFTER_COURSE"));
+  assert.ok(diagnostics.items.some((item) => item.code === "PROPOSAL_COREQUISITE_SEPARATED"));
+  assert.deepEqual(
+    new Set(resolved.proposal.semesters.flatMap((semester) => semester.courses.filter((course) => !course.isPlaceholder).map((course) => course.code))),
+    new Set(["101 عال", "102 عال", "201 عال"]),
+  );
+});
 
-  const invalid = structuredClone(base);
-  invalid.proposal.semesters[0].courseOrder.push("101 عال", "999 عال");
-  invalid.proposal.semesters[1].courseOrder = [];
-  const invalidDiagnostics = createDiagnostics();
-  resolvePlan(invalid, new Map(), colors, invalidDiagnostics);
-  assert.ok(invalidDiagnostics.items.some((item) => item.code === "PROPOSAL_DUPLICATE_REAL_COURSE"));
-  assert.ok(invalidDiagnostics.items.some((item) => item.code === "PROPOSAL_MISSING_REAL_COURSE"));
-  assert.ok(invalidDiagnostics.items.some((item) => item.code === "PROPOSAL_UNKNOWN_REAL_COURSE"));
+test("proposal blocks orphaned placeholders after a published semester is removed", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "مقترح",
+    semesters: [{ id: "published-1", courses: [] }],
+    proposal: {
+      semesters: [{
+        id: "removed-level",
+        sourceSemesterId: "published-removed",
+        type: "regular",
+        courseOrder: [],
+        placeholders: [{ id: "p", name: "نائب", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }],
+      }],
+    },
+  });
+  const diagnostics = createDiagnostics();
+  resolvePlan(plan, new Map(), colors, diagnostics);
+  assert.ok(diagnostics.items.some((item) => item.code === "PROPOSAL_ORPHANED_PLACEHOLDERS" && item.severity === "errors"));
 });
 
 test("elective requirements accept hours or custom text but not both", () => {
@@ -288,7 +305,7 @@ test("plans inherit shared edition and release settings", () => {
   assert.equal(plan.release, undefined);
 });
 
-test("manual course facts require every hour field while preserving explicit zero", () => {
+test("manual activity facts normalize missing siblings to explicit zero", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
     major: "يدوي",
@@ -299,6 +316,24 @@ test("manual course facts require every hour field while preserving explicit zer
   });
   const diagnostics = createDiagnostics();
   resolvePlan(plan, new Map(), colors, diagnostics);
-  const item = diagnostics.items.find((diagnostic) => diagnostic.code === "INCOMPLETE_MANUAL_COURSE");
-  assert.deepEqual(item.missing, ["practicalHours"]);
+  const resolved = resolvePlan(plan, new Map(), colors, diagnostics);
+  const course = resolved.semesters[0].courses[0];
+  assert.equal(course.lectureHours, 2);
+  assert.equal(course.exerciseHours, 0);
+  assert.equal(course.practicalHours, 0);
+  assert.equal(diagnostics.summary.errors, 0);
+  assert.ok(diagnostics.items.some((diagnostic) => diagnostic.code === "ACTIVITY_HOURS_NORMALIZED"));
+});
+
+test("all three unknown activity values remain unknown and produce a targeted error", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "مجهول",
+    semesters: [{ courses: ["999 جدد"] }],
+    fallbackCourses: { "999 جدد": { name: "مقرر جديد", academicHours: 3 } },
+  });
+  const diagnostics = createDiagnostics();
+  const resolved = resolvePlan(plan, new Map(), colors, diagnostics);
+  assert.equal(resolved.semesters[0].courses[0].lectureHours, null);
+  assert.ok(diagnostics.items.some((item) => item.code === "UNKNOWN_ACTIVITY_HOURS"));
 });

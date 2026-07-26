@@ -1,5 +1,8 @@
 import { addDiagnostic } from "./diagnostics.mjs";
 import { compareCourseCodes, courseCodeKey, courseSubject, normalizeCourseCode, numericValue, toWesternDigits } from "./normalize.mjs";
+import { normalizeActivityFacts } from "./course-facts.mjs";
+import { courseNameFit, prerequisiteFit } from "./text-measure.mjs";
+import { reconcileProposal } from "./proposal-reconciliation.mjs";
 
 const FACT_FIELDS = [
   "name", "academicHours", "lectureHours", "practicalHours", "exerciseHours",
@@ -12,12 +15,6 @@ function compactFacts(value = {}) {
   for (const field of FACT_FIELDS) {
     if (value[field] !== undefined && value[field] !== null && value[field] !== "") facts[field] = value[field];
   }
-  const alternateAcademicHours = value.creditHours ?? value.fallbackCreditHours;
-  if (facts.academicHours === undefined && alternateAcademicHours !== undefined && alternateAcademicHours !== null && alternateAcademicHours !== "") facts.academicHours = alternateAcademicHours;
-  if (facts.practicalHours === undefined && value.labHours !== undefined && value.labHours !== null && value.labHours !== "") facts.practicalHours = value.labHours;
-  const alternateExerciseHours = value.tutorialHours ?? value.discussionHours;
-  if (facts.exerciseHours === undefined && alternateExerciseHours !== undefined && alternateExerciseHours !== null && alternateExerciseHours !== "") facts.exerciseHours = alternateExerciseHours;
-  if (facts.name === undefined && value.fallbackName !== undefined && value.fallbackName !== null && value.fallbackName !== "") facts.name = value.fallbackName;
   return facts;
 }
 
@@ -33,7 +30,12 @@ function mergeFacts(...sources) {
 function fallbackMap(plan) {
   const map = new Map();
   for (const [code, facts] of Object.entries(plan.fallbackCourses ?? {})) {
-    map.set(courseCodeKey(code), { code: normalizeCourseCode(code), ...compactFacts(facts), source: "plan-fallback" });
+    map.set(courseCodeKey(code), {
+      code: normalizeCourseCode(code),
+      ...compactFacts(facts),
+      _provenance: structuredClone(facts._provenance ?? {}),
+      source: "plan-fallback",
+    });
   }
   return map;
 }
@@ -97,26 +99,25 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
 
   function resolveEntry(entry, context) {
     const code = normalizeCourseCode(entry.code);
-    const isPlaceholder = entry.kind === "placeholder";
-    const key = isPlaceholder
-      ? `__placeholder__${context.location}-${context.entryIndex ?? 0}`
-      : courseCodeKey(code);
-    if (!isPlaceholder) {
-      if (seen.has(key)) {
-        addDiagnostic(diagnostics, "errors", "DUPLICATE_COURSE", `${code} appears more than once in the plan.`, {
-          course: code,
-          firstLocation: seen.get(key),
-          location: context.location,
-        });
-      } else {
-        seen.set(key, context.location);
-      }
+    const key = courseCodeKey(code);
+    if (seen.has(key)) {
+      addDiagnostic(diagnostics, "errors", "DUPLICATE_COURSE", `${code} appears more than once in the plan.`, {
+        course: code,
+        firstLocation: seen.get(key),
+        location: context.location,
+      });
+    } else {
+      seen.set(key, context.location);
     }
 
-    const fallback = mergeFacts(isPlaceholder ? {} : (fallbacks.get(key) ?? {}), entry.fallback ?? {});
-    const catalogFacts = isPlaceholder || entry.forceFallback ? {} : compactFacts(catalog.get(key) ?? {});
+    const fallbackRecord = fallbacks.get(key);
+    const fallback = mergeFacts(fallbackRecord ?? {}, entry.fallback ?? {});
+    const fallbackProvenance = fallbackRecord?._provenance ?? {};
+    const fallbackIsCatalogSnapshot = Object.keys(fallbackProvenance).length > 0
+      && Object.values(fallbackProvenance).every((source) => source === "catalog");
+    const catalogFacts = entry.forceFallback ? {} : compactFacts(catalog.get(key) ?? {});
     const override = compactFacts(entry.override ?? {});
-    const facts = mergeFacts(fallback, catalogFacts, override, {
+    const mergedFacts = mergeFacts(fallback, catalogFacts, override, {
       prerequisites: entry.prerequisites,
       corequisites: entry.corequisites,
       minimumCompletedCredits: entry.minimumCompletedCredits,
@@ -124,10 +125,12 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       trackSpecific: entry.trackSpecific,
       extinct: entry.extinct,
     });
+    const activity = normalizeActivityFacts(mergedFacts);
+    const facts = activity.facts;
     const usedCatalog = Object.keys(catalogFacts).length > 0;
     const usedFallback = !usedCatalog && Object.keys(fallback).length > 0;
 
-    const manualMissing = usedFallback && !isPlaceholder
+    const manualMissing = usedFallback
       ? ["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"]
         .filter((field) => field === "name" ? !facts.name : numericValue(facts[field]) === null)
       : [];
@@ -137,14 +140,34 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
         missing: [!facts.name ? "name" : null, numericValue(facts.academicHours) === null ? "academicHours" : null].filter(Boolean),
         location: context.location,
       });
+    } else if (activity.allUnknown) {
+      addDiagnostic(diagnostics, "errors", "UNKNOWN_ACTIVITY_HOURS", `${code} has no known lecture, exercise, or practical hours.`, {
+        course: code,
+        location: context.location,
+      });
     } else if (manualMissing.length) {
       addDiagnostic(diagnostics, "errors", "INCOMPLETE_MANUAL_COURSE", `${code} has incomplete manual course facts.`, {
         course: code,
         missing: manualMissing,
         location: context.location,
       });
-    } else if (usedFallback && !isPlaceholder) {
-      addDiagnostic(diagnostics, "info", "FALLBACK_USED", `${code} was not found in courses.json; plan fallback was used.`, { course: code });
+    } else if (usedFallback) {
+      addDiagnostic(
+        diagnostics,
+        "info",
+        fallbackIsCatalogSnapshot ? "CATALOG_FALLBACK_SNAPSHOT_USED" : "FALLBACK_USED",
+        fallbackIsCatalogSnapshot
+          ? `${code} was resolved from its stored catalog snapshot.`
+          : `${code} was not found in courses.json; manual plan fallback was used.`,
+        { course: code, location: context.location },
+      );
+    }
+    if (activity.normalizedFields.length) {
+      addDiagnostic(diagnostics, "info", "ACTIVITY_HOURS_NORMALIZED", `${code} missing activity values were normalized to zero.`, {
+        course: code,
+        fields: activity.normalizedFields,
+        location: context.location,
+      });
     }
     const rawCatalog = catalog.get(key);
     if (rawCatalog?.conflicts?.length) {
@@ -154,11 +177,23 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
         location: context.location,
       });
     }
-    if (usedCatalog && fallbacks.has(key)) {
-      addDiagnostic(diagnostics, "info", "MANUAL_CATALOG_AVAILABLE", `${code} now exists in the section data; the manual definition was preserved for comparison.`, {
-        course: code,
-        location: context.location,
-      });
+    if (usedCatalog && fallbackRecord) {
+      const manualFields = Object.entries(fallbackProvenance)
+        .filter(([, source]) => source === "manual")
+        .map(([field]) => field)
+        .filter((field) => fallback[field] !== undefined && catalogFacts[field] !== undefined && fallback[field] !== catalogFacts[field]);
+      if (manualFields.length) {
+        addDiagnostic(diagnostics, "warnings", "MANUAL_FALLBACK_DIFFERS", `${code} has manual fallback facts that differ from the current catalog.`, {
+          course: code,
+          fields: manualFields,
+          location: context.location,
+        });
+      } else if (fallbackIsCatalogSnapshot) {
+        addDiagnostic(diagnostics, "info", "CATALOG_FALLBACK_SNAPSHOT", `${code} has a durable catalog fallback snapshot.`, {
+          course: code,
+          location: context.location,
+        });
+      }
     }
 
     const prerequisiteParts = splitRequirements(facts.prerequisites);
@@ -181,7 +216,7 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     const subject = courseSubject(code);
     const category = facts.category || subject || "عام";
     const color = facts.color || plan.courseColors?.[subject] || plan.courseColors?.[category] || colors[subject] || colors[category] || colors.عام || "#616161";
-    if (!isPlaceholder && !facts.color && !plan.courseColors?.[subject] && !colors[subject] && !colors[category]) {
+    if (!facts.color && !plan.courseColors?.[subject] && !colors[subject] && !colors[category]) {
       addDiagnostic(diagnostics, "warnings", "UNKNOWN_COLOR", `${code} has no known course color; عام was used.`, { course: code, subject });
     }
 
@@ -203,19 +238,42 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       requirement: facts.requirement ?? "required",
       isTrackSpecific: Boolean(facts.trackSpecific),
       isExtinct: Boolean(facts.extinct),
-      isPlaceholder,
+      isPlaceholder: false,
       isMissingFromCatalog: !usedCatalog,
-      source: usedCatalog ? "catalog" : usedFallback ? "fallback" : "unresolved",
-      catalogSource: usedCatalog ? rawCatalog?.catalogSource ?? "catalog" : usedFallback ? "manual" : null,
-      sourceBadge: rawCatalog?.conflicts?.length
-        ? "بيانات متعارضة"
-        : usedCatalog && [facts.lectureHours, facts.exerciseHours, facts.practicalHours].some((value) => numericValue(value) === null)
-          ? "بيانات ناقصة"
-          : usedCatalog
-            ? rawCatalog?.catalogSource === "female" ? "دليل الطالبات" : rawCatalog?.catalogSource === "male" ? "دليل الطلاب" : "دليل المقررات"
-            : usedFallback ? "مدخل يدويًا" : "بيانات ناقصة",
+      source: usedCatalog ? "catalog" : usedFallback ? (fallbackIsCatalogSnapshot ? "catalog-snapshot" : "fallback") : "unresolved",
+      catalogSource: usedCatalog
+        ? rawCatalog?.catalogSource ?? "catalog"
+        : usedFallback ? (fallbackIsCatalogSnapshot ? "catalog-snapshot" : "manual") : null,
+      sourceBadge: usedCatalog
+        ? rawCatalog?.catalogSource === "female" ? "دليل الطالبات" : rawCatalog?.catalogSource === "male" ? "دليل الطلاب" : "دليل المقررات"
+        : usedFallback ? (fallbackIsCatalogSnapshot ? "لقطة من الدليل" : "مدخل يدويًا") : "غير موجود في الدليل",
+      qualityBadges: [
+        ...(rawCatalog?.conflicts?.length || rawCatalog?.crossSourceConflict ? ["بيانات متعارضة"] : []),
+        ...(usedCatalog && [facts.name, facts.academicHours, facts.lectureHours, facts.exerciseHours, facts.practicalHours]
+          .some((value) => value === null || value === undefined || value === "") ? ["بيانات ناقصة"] : []),
+      ],
       location: context.location,
     };
+    const nameFit = courseNameFit(course.name);
+    const requirementLabel = [
+      ...course.prerequisites,
+      ...course.corequisites.map((value) => `${value} مرافق`),
+      ...course.prerequisiteConditions,
+      ...(course.minimumCompletedCredits === null ? [] : [`${course.minimumCompletedCredits} ساعة`]),
+    ].join(" | ");
+    if (nameFit.overflow) {
+      addDiagnostic(diagnostics, "warnings", "COURSE_NAME_MINIMUM_SIZE", `${code} remains wider than the course card at the minimum readable size.`, {
+        course: code,
+        minimumSize: nameFit.size,
+        location: context.location,
+      });
+    }
+    if (requirementLabel && prerequisiteFit(requirementLabel, 43).overflow) {
+      addDiagnostic(diagnostics, "warnings", "PREREQUISITE_TEXT_MINIMUM_SIZE", `${code} prerequisite text remains wider than the pill at the minimum readable size.`, {
+        course: code,
+        location: context.location,
+      });
+    }
     allCourses.push(course);
     if (context.semesterIndex !== null && context.semesterIndex !== undefined) {
       mainCourses.push(course);
@@ -234,15 +292,6 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     }));
     const sortMode = semester.sortCourses ?? plan.sortCourses ?? "code";
     if (sortMode === "code") resolvedCourses.sort((a, b) => compareCourseCodes(a.code, b.code));
-    if (resolvedCourses.length > 6) {
-      addDiagnostic(
-        diagnostics,
-        "errors",
-        "SEMESTER_CARD_OVERFLOW",
-        `${semester.name}: ${resolvedCourses.length} courses exceed the six-card Figma row.`,
-        { semester: semesterIndex + 1, courseCount: resolvedCourses.length, maximum: 6 },
-      );
-    }
     const semesterHours = resolvedCourses.reduce((sum, course) => sum + course.academicHours, 0);
     if (numericValue(semester.expectedCredits) !== null && semesterHours !== numericValue(semester.expectedCredits)) {
       addDiagnostic(diagnostics, "warnings", "SEMESTER_HOURS_MISMATCH", `${semester.name}: calculated ${semesterHours}, expected ${semester.expectedCredits}.`, {
@@ -252,23 +301,47 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       });
     }
     return {
+      id: semester.id ?? `published-level-${semesterIndex + 1}`,
       number: semester.number ?? semesterIndex + 1,
       name: semester.name,
       yearLabel: semester.yearLabel ?? null,
+      courseDisplayOrder: semester.courseDisplayOrder ?? (sortMode === "code" ? "rtl" : "ltr"),
       academicHours: semesterHours,
       courses: resolvedCourses,
     };
   });
 
+  const publishedHours = new Map(mainCourses.map((course) => [course.key, course.academicHours]));
   const resolvedElectiveGroups = (plan.electiveGroups ?? []).map((group, groupIndex) => {
-    const resolvedCourses = group.courses.map((entry, entryIndex) => resolveEntry(entry, {
+    const excluded = [];
+    const candidateEntries = (group.courses ?? []).filter((entry) => {
+      if (!group.sharedSource) return true;
+      const code = normalizeCourseCode(entry.code);
+      const key = courseCodeKey(code);
+      if (!publishedHours.has(key)) return true;
+      if (!excluded.some((item) => item.key === key)) {
+        excluded.push({ code, key, academicHours: publishedHours.get(key) ?? 0 });
+        addDiagnostic(diagnostics, "info", "ELECTIVE_CANDIDATE_EXCLUDED", `${code} was excluded because it already exists in a published semester.`, {
+          course: code,
+          sourceId: group.sourceId,
+          location: `elective-${group.sourceId}`,
+        });
+      }
+      return false;
+    });
+    const resolvedCourses = candidateEntries.map((entry, entryIndex) => resolveEntry(entry, {
       semesterIndex: null,
       entryIndex,
       sameGroupKeys: null,
       location: `elective-${group.id ?? groupIndex + 1}`,
     }));
     if ((group.sortCourses ?? "code") === "code") resolvedCourses.sort((a, b) => compareCourseCodes(a.code, b.code));
-    const hasHours = numericValue(group.requiredHours) !== null;
+    const originalRequiredHours = numericValue(group.originalRequiredHours ?? group.requiredHours);
+    const excludedHours = excluded.reduce((sum, course) => sum + course.academicHours, 0);
+    const effectiveRequiredHours = group.sharedSource
+      ? Math.max(0, (originalRequiredHours ?? 0) - excludedHours)
+      : numericValue(group.requiredHours);
+    const hasHours = effectiveRequiredHours !== null;
     const hasText = Boolean(String(group.requirementText ?? "").trim());
     if (hasHours === hasText) {
       addDiagnostic(diagnostics, "errors", hasHours ? "ELECTIVE_REQUIREMENT_BOTH" : "ELECTIVE_REQUIREMENT_MISSING", `${group.name} must use either required hours or custom requirement text.`, {
@@ -278,11 +351,16 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     return {
       id: group.id ?? `elective-group-${groupIndex + 1}`,
       name: group.name ?? `مجموعة اختيارية ${groupIndex + 1}`,
-      requiredHours: hasHours && !hasText ? numericValue(group.requiredHours) : null,
+      sourceId: group.sourceId ?? null,
+      sharedSource: Boolean(group.sharedSource),
+      originalRequiredHours: group.sharedSource ? originalRequiredHours : null,
+      excludedCourses: excluded,
+      requiredHours: hasHours && !hasText ? effectiveRequiredHours : null,
       requirementText: hasText && !hasHours ? String(group.requirementText).trim() : null,
+      courseDisplayOrder: group.courseDisplayOrder ?? ((group.sortCourses ?? "code") === "code" ? "rtl" : "ltr"),
       courses: resolvedCourses,
     };
-  });
+  }).filter((group) => !(group.sharedSource && group.requiredHours === 0 && group.courses.length === 0));
 
   const coursesByKey = new Map();
   for (const course of allCourses) if (!coursesByKey.has(course.key)) coursesByKey.set(course.key, course);
@@ -350,71 +428,19 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
   };
 
   if (plan.proposal && !options.skipProposal) {
-    const publishedEntries = new Map();
-    for (const semester of plan.semesters) {
-      for (const entry of semester.courses) publishedEntries.set(courseCodeKey(entry.code), entry);
-    }
-    const proposalOccurrences = new Map();
-    const proposalSemesters = plan.proposal.semesters.map((semester, semesterIndex) => {
-      const realEntries = [];
-      for (const code of semester.courseOrder ?? []) {
-        const normalizedCode = normalizeCourseCode(code);
-        const key = courseCodeKey(normalizedCode);
-        proposalOccurrences.set(key, (proposalOccurrences.get(key) ?? 0) + 1);
-        const published = publishedEntries.get(key);
-        if (!published) {
-          addDiagnostic(diagnostics, "errors", "PROPOSAL_UNKNOWN_REAL_COURSE", `${normalizedCode} is not a published-plan course.`, {
-            course: normalizedCode,
-            location: `proposal-semester-${semesterIndex + 1}`,
-          });
-          realEntries.push({ code: normalizedCode });
-        } else {
-          realEntries.push(structuredClone(published));
-        }
-      }
-      const placeholders = (semester.placeholders ?? []).map((placeholder, placeholderIndex) => ({
-        kind: "placeholder",
-        code: `مقرر ${placeholder.id ?? `${semesterIndex + 1}-${placeholderIndex + 1}`}`,
-        fallback: {
-          name: placeholder.name,
-          academicHours: placeholder.academicHours,
-          lectureHours: placeholder.lectureHours,
-          exerciseHours: placeholder.exerciseHours,
-          practicalHours: placeholder.practicalHours,
-          color: placeholder.color ?? "#000000",
-        },
-      }));
-      return {
-        ...semester,
-        sortCourses: "input",
-        courses: [...realEntries, ...placeholders],
-      };
-    });
-    for (const [key, entry] of publishedEntries) {
-      const count = proposalOccurrences.get(key) ?? 0;
-      if (count === 0) {
-        addDiagnostic(diagnostics, "errors", "PROPOSAL_MISSING_REAL_COURSE", `${entry.code} is missing from the proposed plan.`, { course: entry.code });
-      } else if (count > 1) {
-        addDiagnostic(diagnostics, "errors", "PROPOSAL_DUPLICATE_REAL_COURSE", `${entry.code} appears more than once in the proposed plan.`, { course: entry.code, count });
-      }
-    }
-    const proposalPlan = {
-      ...plan,
-      id: plan.id ? `${plan.id}-proposal` : null,
-      expectedCredits: plan.proposal.expectedCredits,
-      phases: plan.proposal.phases ?? plan.phases,
-      semesters: proposalSemesters,
-      electiveGroups: [],
-      proposal: null,
-    };
-    const resolvedProposal = resolvePlan(proposalPlan, catalog, colors, diagnostics, { ...options, skipProposal: true });
     result.proposal = {
-      ...resolvedProposal,
-      title: plan.proposal.title ?? "الخطة المقترحة",
+      ...reconcileProposal(result, plan.proposal, diagnostics),
+      id: plan.id ? `${plan.id}-proposal` : null,
+      university: result.university,
+      college: result.college,
+      major: result.major,
+      degree: result.degree,
+      edition: result.edition,
+      release: result.release,
       headerSubtitle: plan.major,
-      phases: plan.proposal.phases ?? resolvedProposal.phases,
     };
   }
+
 
   return result;
 }

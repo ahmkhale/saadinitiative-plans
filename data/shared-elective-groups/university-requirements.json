@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "university-requirements",
+  "name": "متطلبات الجامعة",
+  "requiredHours": 8,
+  "courses": [
+    "100 سلم",
+    "100 قرأ",
+    "101 سلم",
+    "102 سلم",
+    "103 سلم",
+    "104 سلم",
+    "105 سلم",
+    "106 سلم",
+    "107 سلم",
+    "108 سلم",
+    "109 سلم"
+  ],
+  "fallbackCourses": {
+    "100 سلم": { "name": "دراسات في السيرة النبوية", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "100 قرأ": { "name": "القرآن الكريم", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "101 سلم": { "name": "أصول الثقافة الإسلامية", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "102 سلم": { "name": "الأسرة في الإسلام", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "103 سلم": { "name": "النظام الاقتصادي الإسلامي", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "104 سلم": { "name": "النظام السياسي الإسلامي", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "105 سلم": { "name": "حقوق الإنسان", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "106 سلم": { "name": "الفقه الطبي", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "107 سلم": { "name": "أخلاقيات المهنة", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "108 سلم": { "name": "قضايا معاصرة", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 },
+    "109 سلم": { "name": "المرأة ودورها التنموي", "academicHours": 2, "lectureHours": 2, "exerciseHours": 0, "practicalHours": 0 }
+  }
+}

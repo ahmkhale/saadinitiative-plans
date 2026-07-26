@@ -10,7 +10,9 @@ import { renderPlanDocumentSvg } from "./render-svg.mjs";
 import { resolvePlan } from "./resolve.mjs";
 import { safeSlug } from "./normalize.mjs";
 import { composeSharedSemesterSets, loadSharedSemesterSets } from "./shared-semester-sets.mjs";
+import { composeSharedElectiveGroups, loadSharedElectiveGroups } from "./shared-elective-groups.mjs";
 import { readSettings } from "./settings.mjs";
+import { defaultCatalogService } from "./catalog-service.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(path.dirname(thisFile), "..");
@@ -32,14 +34,22 @@ export function outputPaths(plan, options = {}) {
 
 export function generatePlan(options) {
   const rawPlan = readJson(options.planPath);
-  const plan = normalizePlanInput(rawPlan, { planId: options.planId });
+  const plan = normalizePlanInput(rawPlan);
   validatePlanShape(plan);
-  const rawCatalog = options.catalogPath ? readJson(options.catalogPath) : [];
-  const catalog = buildCourseCatalog(rawCatalog);
+  const rawCatalog = options.catalogPath ? readJson(options.catalogPath) : null;
+  const catalogState = options.catalogPath ? null : defaultCatalogService.snapshot();
+  const catalog = options.catalogPath ? buildCourseCatalog(rawCatalog) : catalogState.catalog;
   const colorsPath = options.colorsPath ?? path.join(projectRoot, "data", "course-colors.json");
-  const colors = fs.existsSync(colorsPath) ? readJson(colorsPath) : { عام: "#616161" };
+  const colors = options.colorsPath || options.catalogPath
+    ? (fs.existsSync(colorsPath) ? readJson(colorsPath) : { عام: "#616161" })
+    : catalogState.colors;
   const diagnostics = createDiagnostics(path.resolve(options.planPath), options.catalogPath ? path.resolve(options.catalogPath) : null);
-  const composed = composeSharedSemesterSets(plan, loadSharedSemesterSets(options.sharedSetsRoot), diagnostics);
+  const semestersComposed = composeSharedSemesterSets(plan, loadSharedSemesterSets(options.sharedSetsRoot), diagnostics);
+  const composed = composeSharedElectiveGroups(
+    semestersComposed,
+    loadSharedElectiveGroups(options.sharedElectivesRoot),
+    diagnostics,
+  );
   const resolved = resolvePlan(composed, catalog, colors, diagnostics, { settings: readSettings(options.settingsPath) });
   const paths = outputPaths(resolved, options);
   writeJson(paths.resolvedPath, resolved);

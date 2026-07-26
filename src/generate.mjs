@@ -17,7 +17,6 @@ if (!planPath) {
       planPath: path.resolve(planPath),
       catalogPath: flagValue(args, "--catalog"),
       colorsPath: flagValue(args, "--colors"),
-      planId: flagValue(args, "--plan-id"),
       outputDir: flagValue(args, "--output-dir"),
       outputName: flagValue(args, "--output-name"),
       keepSvg: args.includes("--svg"),

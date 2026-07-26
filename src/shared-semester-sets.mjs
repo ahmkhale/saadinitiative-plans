@@ -2,7 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { addDiagnostic } from "./diagnostics.mjs";
 import { normalizePlanInput } from "./plan-input.mjs";
+import { labelSemesters } from "./semester-labels.mjs";
 import { assertSafeId, atomicWriteJson, projectRoot } from "./store.mjs";
+import { hydrateFallbackCourses } from "./fallback-hydration.mjs";
 
 export const sharedSemesterSetsRoot = path.resolve(
   process.env.SAAD_PLANS_SHARED_SETS_DIR ?? path.join(projectRoot, "data", "shared-semester-sets"),
@@ -28,7 +30,13 @@ function cleanSet(input, forcedId = null) {
     id,
     name,
     phaseLabel: String(input?.phaseLabel ?? name).trim(),
-    semesters: normalized.semesters,
+    semesters: normalized.semesters.map((semester) => {
+      const value = structuredClone(semester);
+      delete value.number;
+      delete value.name;
+      delete value.yearLabel;
+      return value;
+    }),
     fallbackCourses: structuredClone(input?.fallbackCourses ?? {}),
   };
 }
@@ -57,23 +65,32 @@ export function composeSharedSemesterSets(plan, sets, diagnostics) {
       continue;
     }
     const start = inherited.length + 1;
-    inherited.push(...set.semesters.map((semester) => ({ ...structuredClone(semester), inheritedFrom: set.id, inheritedName: set.name })));
+    inherited.push(...set.semesters.map((semester, index) => ({
+      ...structuredClone(semester),
+      id: `shared-${set.id}-${semester.id ?? `level-${index + 1}`}`,
+      inheritedFrom: set.id,
+      inheritedName: set.name,
+    })));
     Object.assign(inheritedFallbacks, structuredClone(set.fallbackCourses ?? {}));
     phases.push({ label: set.phaseLabel, start, end: inherited.length });
   }
   const ownStart = inherited.length + 1;
   const ownSemesters = plan.semesters.map((semester) => structuredClone(semester));
+  const semesters = labelSemesters([...inherited, ...ownSemesters]);
   return {
     ...plan,
-    semesters: [...inherited, ...ownSemesters].map((semester, index) => ({ ...semester, number: index + 1 })),
+    semesters,
     fallbackCourses: { ...inheritedFallbacks, ...(plan.fallbackCourses ?? {}) },
-    phases: plan.phases ?? (ownSemesters.length ? [...phases, { label: "التخصص", start: ownStart, end: inherited.length + ownSemesters.length }] : phases),
+    phases: ownSemesters.length
+      ? [...phases, { label: "التخصص", start: ownStart, end: semesters.length }]
+      : phases,
   };
 }
 
 export function createSharedSemesterSetStore(options = {}) {
   const root = path.resolve(options.root ?? sharedSemesterSetsRoot);
   const planStore = options.planStore;
+  const catalogService = options.catalogService;
 
   function usages(id) {
     if (!planStore) return [];
@@ -97,7 +114,8 @@ export function createSharedSemesterSetStore(options = {}) {
   }
 
   function save(input, previousId = null) {
-    const value = cleanSet(input);
+    let value = cleanSet(input);
+    if (catalogService) value = hydrateFallbackCourses(value, catalogService.snapshot().catalog).value;
     const target = fileFor(root, value.id);
     if (previousId && previousId !== value.id) {
       const previous = fileFor(root, previousId);
@@ -127,4 +145,3 @@ export function createSharedSemesterSetStore(options = {}) {
 
   return { root, list, get, create, save, duplicate, remove, usages, load: () => loadSharedSemesterSets(root) };
 }
-

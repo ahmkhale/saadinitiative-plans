@@ -1,4 +1,5 @@
 import { courseCodeKey, normalizeCourseCode, numericValue } from "./normalize.mjs";
+import { normalizeActivityFacts } from "./course-facts.mjs";
 
 function minutes(value) {
   const match = /^(\d{1,2}):(\d{2})$/u.exec(String(value ?? ""));
@@ -23,7 +24,7 @@ function directFacts(item, catalogSource = "catalog") {
     ? item.code.display ?? item.code.raw
     : item.code ?? item.courseCode ?? item.id;
   if (!codeValue) return null;
-  return {
+  return normalizeActivityFacts({
     code: normalizeCourseCode(codeValue),
     name: item.name ?? item.title ?? item.courseName ?? null,
     academicHours: numericValue(item.academicHours ?? item.creditHours ?? item.hours ?? item.credits),
@@ -37,7 +38,7 @@ function directFacts(item, catalogSource = "catalog") {
     color: item.color ?? null,
     extinct: Boolean(item.extinct ?? item.isDisabled),
     catalogSource,
-  };
+  }).facts;
 }
 
 function flattenCatalog(raw) {
@@ -83,7 +84,7 @@ function aggregatedFacts(candidates, catalogSource) {
     catalogSource,
     conflicts,
   };
-  return facts;
+  return normalizeActivityFacts(facts).facts;
 }
 
 export function buildCourseCatalog(raw, options = {}) {
@@ -128,7 +129,7 @@ export function buildCourseCatalog(raw, options = {}) {
     };
     const credits = chooseValue(rows.map((row) => numericValue(row.creditHours)), "academicHours", conflicts);
     const name = chooseValue(rows.map((row) => String(row.name ?? "").trim() || null), "name", conflicts);
-    map.set(key, {
+    map.set(key, normalizeActivityFacts({
       code,
       name,
       academicHours: credits,
@@ -143,7 +144,7 @@ export function buildCourseCatalog(raw, options = {}) {
       extinct: false,
       catalogSource,
       conflicts,
-    });
+    }).facts);
   }
 
   return map;

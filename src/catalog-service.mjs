@@ -22,14 +22,19 @@ function comparable(course) {
 }
 
 function sourceBadge(course) {
-  if ((course?.conflicts?.length ?? 0) > 0) return "بيانات متعارضة";
+  return course.catalogSource === "female" ? "دليل الطالبات" : "دليل الطلاب";
+}
+
+function qualityBadges(course) {
+  const result = [];
+  if ((course?.conflicts?.length ?? 0) > 0 || course?.crossSourceConflict) result.push("بيانات متعارضة");
   if (!course?.name || course?.academicHours === null || course?.academicHours === undefined
     || course?.lectureHours === null || course?.lectureHours === undefined
     || course?.exerciseHours === null || course?.exerciseHours === undefined
     || course?.practicalHours === null || course?.practicalHours === undefined) {
-    return "بيانات ناقصة";
+    result.push("بيانات ناقصة");
   }
-  return course.catalogSource === "female" ? "دليل الطالبات" : "دليل الطلاب";
+  return result;
 }
 
 export function createCatalogService(options = {}) {
@@ -40,8 +45,8 @@ export function createCatalogService(options = {}) {
   function load() {
     const male = buildCourseCatalog(readJson(malePath, []), { catalogSource: "male" });
     const female = buildCourseCatalog(readJson(femalePath, []), { catalogSource: "female" });
-    const catalog = new Map(female);
-    for (const [key, value] of male) catalog.set(key, value);
+    const catalog = new Map([...female].map(([key, value]) => [key, { ...value }]));
+    for (const [key, value] of male) catalog.set(key, { ...value });
     const conflicts = [
       ...[...male.values()].flatMap((course) => (course.conflicts ?? []).map((conflict) => ({ code: course.code, source: "male", ...conflict }))),
       ...[...female.values()].flatMap((course) => (course.conflicts ?? []).map((conflict) => ({ code: course.code, source: "female", ...conflict }))),
@@ -49,11 +54,13 @@ export function createCatalogService(options = {}) {
     for (const [key, maleCourse] of male) {
       const femaleCourse = female.get(key);
       if (femaleCourse && comparable(maleCourse) !== comparable(femaleCourse)) {
-        conflicts.push({
+        const conflict = {
           code: maleCourse.code,
           male: maleCourse,
           female: femaleCourse,
-        });
+        };
+        conflicts.push(conflict);
+        catalog.set(key, { ...catalog.get(key), crossSourceConflict: conflict });
       }
     }
     return {
@@ -94,6 +101,7 @@ export function createCatalogService(options = {}) {
       ...course,
       subject,
       sourceBadge: sourceBadge(course),
+      qualityBadges: qualityBadges(course),
       color: course.color ?? state.colors[subject] ?? state.colors[course.category] ?? state.colors.عام ?? "#616161",
     };
   }
@@ -111,6 +119,7 @@ export function createCatalogService(options = {}) {
         ...course,
         subject,
         sourceBadge: sourceBadge(course),
+        qualityBadges: qualityBadges(course),
         color: course.color ?? state.colors[subject] ?? state.colors[course.category] ?? state.colors.عام ?? "#616161",
       });
       if (results.length >= Math.min(100, Math.max(1, limit))) break;

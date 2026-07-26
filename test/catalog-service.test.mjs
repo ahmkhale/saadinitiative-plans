@@ -24,9 +24,11 @@ test("catalog service prefers male rows and falls back to female-only courses", 
     assert.equal(service.resolve("101 عال").name, "برمجة للطلاب");
     assert.equal(service.resolve("101 عال").catalogSource, "male");
     assert.equal(service.resolve("101 عال").sourceBadge, "دليل الطلاب");
+    assert.deepEqual(service.resolve("101 عال").qualityBadges, ["بيانات متعارضة"]);
     assert.equal(service.resolve("102 عال").name, "هياكل البيانات");
     assert.equal(service.resolve("102 عال").catalogSource, "female");
     assert.equal(service.resolve("102 عال").sourceBadge, "دليل الطالبات");
+    assert.deepEqual(service.resolve("102 عال").qualityBadges, []);
     assert.equal(service.resolve("102 عال").color, "#008899");
     assert.equal(service.summary().conflictCount, 1);
     assert.equal(service.search("هياكل").length, 1);
