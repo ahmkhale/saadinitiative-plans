@@ -26,8 +26,11 @@ export const COLORS = Object.freeze({
 
 export const SEMESTER_LAYOUT = Object.freeze({
   height: 57,
+  summaryHeight: 57,
   gap: 4,
-  pitch: 61,
+  courseAreaPaddingTop: 4,
+  courseAreaPaddingBottom: 4,
+  courseRowGap: 4,
   courseAreaX: 28,
   courseAreaWidth: 471.75701904296875,
   summaryX: 499.75701904296875,
@@ -93,8 +96,31 @@ export const GUIDE_LAYOUT = Object.freeze({
   cardScale: 1.9561071395874023,
 });
 
-export function semesterY(index) {
-  return PAGE_LAYOUT.contentTop + index * SEMESTER_LAYOUT.pitch;
+export function semesterBodyHeight(courseCount = 0) {
+  const rowCount = Math.max(1, Math.ceil(Number(courseCount) / 6));
+  return SEMESTER_LAYOUT.courseAreaPaddingTop
+    + rowCount * COURSE_CARD_LAYOUT.height
+    + (rowCount - 1) * SEMESTER_LAYOUT.courseRowGap
+    + SEMESTER_LAYOUT.courseAreaPaddingBottom;
+}
+
+export function calculateSemesterLayouts(semesters = [], startY = PAGE_LAYOUT.contentTop) {
+  let y = startY;
+  return semesters.map((semester, semesterIndex) => {
+    const courseCount = semester.courses?.length ?? 0;
+    const rowCount = Math.max(1, Math.ceil(courseCount / 6));
+    const courseBodyHeight = semesterBodyHeight(courseCount);
+    const entry = Object.freeze({
+      semesterIndex,
+      y,
+      rowCount,
+      courseBodyHeight,
+      summaryHeight: SEMESTER_LAYOUT.summaryHeight,
+      bottom: y + courseBodyHeight,
+    });
+    y = entry.bottom + SEMESTER_LAYOUT.gap;
+    return entry;
+  });
 }
 
 export function electiveGroupHeight(group) {
@@ -104,16 +130,16 @@ export function electiveGroupHeight(group) {
     + Math.max(0, rows - 1) * ELECTIVE_LAYOUT.rowGap;
 }
 
-export function electiveTop(semesterCount) {
-  return PAGE_LAYOUT.contentTop
-    + semesterCount * SEMESTER_LAYOUT.pitch
-    + ELECTIVE_LAYOUT.topGap
-    - SEMESTER_LAYOUT.gap;
+export function electiveTop(semesterLayouts = []) {
+  const semesterBottom = semesterLayouts.length
+    ? semesterLayouts.at(-1).bottom
+    : PAGE_LAYOUT.innerY + PAGE_LAYOUT.headerHeight;
+  return semesterBottom + ELECTIVE_LAYOUT.topGap;
 }
 
-export function semesterCompositionBottom(semesterCount) {
-  if (semesterCount <= 0) return PAGE_LAYOUT.innerY + PAGE_LAYOUT.headerHeight;
-  return semesterY(semesterCount - 1) + SEMESTER_LAYOUT.height;
+export function semesterCompositionBottom(semesterLayouts = []) {
+  if (!semesterLayouts.length) return PAGE_LAYOUT.innerY + PAGE_LAYOUT.headerHeight;
+  return semesterLayouts.at(-1).bottom;
 }
 
 export function electiveGroupsHeight(groups = []) {
@@ -122,10 +148,12 @@ export function electiveGroupsHeight(groups = []) {
 }
 
 export function calculatePublishedPageLayout(plan) {
-  const semesterCount = plan.semesters?.length ?? 0;
+  const semesters = plan.semesters ?? [];
+  const semesterCount = semesters.length;
+  const semesterLayouts = calculateSemesterLayouts(semesters);
   const groups = plan.electiveGroups ?? [];
-  const semesterBottom = semesterCompositionBottom(semesterCount);
-  const electivesY = groups.length ? electiveTop(semesterCount) : null;
+  const semesterBottom = semesterCompositionBottom(semesterLayouts);
+  const electivesY = groups.length ? electiveTop(semesterLayouts) : null;
   const electivesHeight = electiveGroupsHeight(groups);
   const contentBottom = electivesY === null ? semesterBottom : electivesY + electivesHeight;
   const footerY = contentBottom + PAGE_LAYOUT.footerGap;
@@ -140,14 +168,17 @@ export function calculatePublishedPageLayout(plan) {
     guideY: null,
     guideHeight: 0,
     semesterCount,
+    semesterLayouts,
   });
 }
 
 export function calculateProposalPageLayout(plan) {
   const proposal = plan.proposal ?? plan;
-  const semesterCount = proposal.semesters?.length ?? 0;
-  const semesterBottom = semesterCompositionBottom(semesterCount);
-  const includesGuide = proposal.showGuide !== false && proposal.includeGuide !== false;
+  const semesters = proposal.semesters ?? [];
+  const semesterCount = semesters.length;
+  const semesterLayouts = calculateSemesterLayouts(semesters);
+  const semesterBottom = semesterCompositionBottom(semesterLayouts);
+  const includesGuide = proposal.showGuide !== false;
   const guideY = includesGuide ? semesterBottom + PAGE_LAYOUT.sectionGap : null;
   const contentBottom = guideY === null ? semesterBottom : guideY + GUIDE_LAYOUT.height;
   const footerY = contentBottom + PAGE_LAYOUT.footerGap;
@@ -162,6 +193,7 @@ export function calculateProposalPageLayout(plan) {
     guideY,
     guideHeight: includesGuide ? GUIDE_LAYOUT.height : 0,
     semesterCount,
+    semesterLayouts,
     includesGuide,
   });
 }

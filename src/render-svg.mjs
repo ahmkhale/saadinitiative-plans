@@ -10,8 +10,8 @@ import {
   electiveGroupHeight,
   electiveGroupsHeight,
   electiveTop,
-  semesterY,
 } from "./render-layout.mjs";
+import { courseNameFit, measureText, prerequisiteFit } from "./text-measure.mjs";
 
 function createRenderContext(prefix) {
   let sequence = 0;
@@ -41,22 +41,6 @@ function clipped(value, max) {
   return characters.length <= max
     ? characters.join("")
     : `${characters.slice(0, Math.max(1, max - 1)).join("")}…`;
-}
-
-function estimatedTextUnits(value) {
-  return Array.from(String(value ?? "")).reduce((total, character) => {
-    if (/\s/u.test(character)) return total + 0.28;
-    if (/[\p{P}\p{S}]/u.test(character)) return total + 0.36;
-    if (/[0-9A-Za-z]/u.test(character)) return total + 0.54;
-    return total + 0.6;
-  }, 0);
-}
-
-function fittedText(value, baseSize, maxWidth) {
-  const units = estimatedTextUnits(value);
-  const estimatedWidth = units * baseSize;
-  if (!units || estimatedWidth <= maxWidth) return { size: baseSize };
-  return { size: Math.max(0.1, Math.floor((maxWidth / units) * 1000) / 1000) };
 }
 
 function text({
@@ -151,7 +135,7 @@ function renderCourseCard(context, course, x, y, options = {}) {
   const label = prerequisiteLabel(course);
   const color = course.color || COLORS.gray;
   const groupId = context.nextId("course-card");
-  const parts = [`<g id="${groupId}" data-component="course-card" transform="translate(${x} ${y}) scale(${scale})">`];
+  const parts = [`<g id="${groupId}" data-component="course-card" data-course-code="${esc(course.code)}" transform="translate(${x} ${y}) scale(${scale})">`];
 
   parts.push(`<rect data-part="course-body" x="${layout.body.x}" y="${layout.body.y}" width="${layout.body.width}" height="${layout.body.height}" rx="${layout.body.radius}" fill="${esc(color)}"/>`);
   parts.push(`<path data-part="academic-badge" d="${roundedRectPath(
@@ -186,9 +170,10 @@ function renderCourseCard(context, course, x, y, options = {}) {
 
   if (label) {
     const labelValue = label;
-    const labelWidth = Math.min(layout.prerequisite.maxWidth, Math.max(20, Array.from(labelValue).length * 2.15 + 8));
+    const desiredWidth = measureText(labelValue, 4.5, "bold") + layout.prerequisite.paddingX * 2;
+    const labelWidth = Math.min(layout.prerequisite.maxWidth, Math.max(20, desiredWidth));
     const labelX = (layout.width - labelWidth) / 2;
-    const fittedLabel = fittedText(labelValue, 4.5, labelWidth - layout.prerequisite.paddingX * 2);
+    const fittedLabel = prerequisiteFit(labelValue, labelWidth - layout.prerequisite.paddingX * 2);
     parts.push(`<rect data-part="prerequisite-pill" x="${labelX}" y="${layout.prerequisite.y + 0.5}" width="${labelWidth}" height="${layout.prerequisite.height - 1}" rx="${layout.prerequisite.radius}" fill="${COLORS.white}" stroke="${esc(color)}" stroke-width="1"/>`);
     parts.push(text({
       x: layout.width / 2,
@@ -202,7 +187,7 @@ function renderCourseCard(context, course, x, y, options = {}) {
 
   parts.push(text({ x: 68.5, y: 12.5, value: displayNumber(course.academicHours, "0"), size: 10, weight: 700, direction: "ltr", opacity: 0.9 }));
   parts.push(text({ x: 38, y: 23.5, value: clipped(course.code, 18), size: 12, weight: 700, fill: COLORS.white }));
-  const fittedName = fittedText(course.name, 5, layout.title.width - 8);
+  const fittedName = courseNameFit(course.name);
   parts.push(text({
     x: 38,
     y: 35,
@@ -278,33 +263,46 @@ function courseRowBorder(y, height = SEMESTER_LAYOUT.height) {
   return `<path data-part="course-row-border" d="${path}" fill="none" stroke="${COLORS.line}" stroke-width="${SEMESTER_LAYOUT.strokeWidth}"/>`;
 }
 
-function renderSemesterRow(context, semester, index) {
-  const y = semesterY(index);
-  const courses = semester.courses.slice(0, 6);
-  const totalWidth = courses.length * COURSE_CARD_LAYOUT.width
-    + Math.max(0, courses.length - 1) * COURSE_CARD_LAYOUT.gap;
-  const startX = COURSE_CARD_LAYOUT.rowRight - totalWidth;
-  const parts = [`<g data-component="semester-row" data-row="${index + 1}">`, courseRowBorder(y)];
+function renderSemesterRow(context, semester, layoutEntry) {
+  const { y, courseBodyHeight } = layoutEntry;
+  const courses = semester.courses;
+  const parts = [
+    `<g data-component="semester-row" data-row="${layoutEntry.semesterIndex + 1}" data-row-count="${layoutEntry.rowCount}" data-body-height="${courseBodyHeight}">`,
+    courseRowBorder(y, courseBodyHeight),
+  ];
   courses.forEach((course, courseIndex) => {
+    const row = Math.floor(courseIndex / 6);
+    const rowCourses = courses.slice(row * 6, row * 6 + 6);
+    const indexInRow = courseIndex % 6;
+    const rowWidth = rowCourses.length * COURSE_CARD_LAYOUT.width
+      + Math.max(0, rowCourses.length - 1) * COURSE_CARD_LAYOUT.gap;
+    const startX = COURSE_CARD_LAYOUT.rowRight - rowWidth;
+    const column = semester.courseDisplayOrder !== "ltr"
+      ? rowCourses.length - 1 - indexInRow
+      : indexInRow;
     parts.push(renderCourseCard(
       context,
       course,
-      startX + courseIndex * (COURSE_CARD_LAYOUT.width + COURSE_CARD_LAYOUT.gap),
-      y + 4,
+      startX + column * (COURSE_CARD_LAYOUT.width + COURSE_CARD_LAYOUT.gap),
+      y + SEMESTER_LAYOUT.courseAreaPaddingTop
+        + row * (COURSE_CARD_LAYOUT.height + SEMESTER_LAYOUT.courseRowGap),
     ));
   });
   parts.push(renderSemesterSummary(semester, y), "</g>");
   return parts.join("");
 }
 
-function renderYearRails(semesterCount) {
+function renderYearRails(semesterLayouts) {
   const parts = [];
+  const semesterCount = semesterLayouts.length;
   const yearCount = Math.ceil(semesterCount / 2);
   for (let year = 0; year < yearCount; year += 1) {
     const startIndex = year * 2;
     const rowCount = Math.min(2, semesterCount - startIndex);
-    const y = semesterY(startIndex);
-    const height = rowCount * SEMESTER_LAYOUT.height + Math.max(0, rowCount - 1) * SEMESTER_LAYOUT.gap;
+    const first = semesterLayouts[startIndex];
+    const last = semesterLayouts[startIndex + rowCount - 1];
+    const y = first.y;
+    const height = last.bottom - first.y;
     const centerY = y + height / 2;
     parts.push(`<g data-component="year-rail">`);
     parts.push(`<rect x="${SEMESTER_LAYOUT.yearRailX}" y="${y}" width="${SEMESTER_LAYOUT.yearRailWidth}" height="${height}" rx="2" fill="${COLORS.saadTint}" stroke="${COLORS.saad}" stroke-width="1"/>`);
@@ -348,16 +346,18 @@ function renderVerticalRail({ x, y, width, height, label, fontSize = 5 }) {
   ].join("");
 }
 
-function renderPhaseRails(plan) {
+function renderPhaseRails(plan, semesterLayouts) {
   return inferredPhases(plan).map((phase) => {
     const start = Math.max(1, Number(phase.start ?? 1));
     const end = Math.min(plan.semesters.length, Number(phase.end ?? plan.semesters.length));
-    const rowCount = Math.max(1, end - start + 1);
+    const first = semesterLayouts[start - 1];
+    const last = semesterLayouts[Math.max(start - 1, end - 1)];
+    if (!first || !last) return "";
     return renderVerticalRail({
       x: SEMESTER_LAYOUT.phaseRailX,
-      y: semesterY(start - 1),
+      y: first.y,
       width: SEMESTER_LAYOUT.phaseRailWidth,
-      height: rowCount * SEMESTER_LAYOUT.height + Math.max(0, rowCount - 1) * SEMESTER_LAYOUT.gap,
+      height: last.bottom - first.y,
       label: phase.label,
     });
   }).join("");
@@ -415,7 +415,10 @@ function renderElectiveGroup(context, group, y) {
     const rowWidth = rowCourses.length * COURSE_CARD_LAYOUT.width
       + Math.max(0, rowCourses.length - 1) * COURSE_CARD_LAYOUT.gap;
     const startX = COURSE_CARD_LAYOUT.rowRight - rowWidth;
-    const column = index % 6;
+    const indexInRow = index % 6;
+    const column = group.courseDisplayOrder !== "ltr"
+      ? rowCourses.length - 1 - indexInRow
+      : indexInRow;
     parts.push(renderCourseCard(
       context,
       course,
@@ -427,8 +430,8 @@ function renderElectiveGroup(context, group, y) {
   return { svg: parts.join(""), height };
 }
 
-function renderElectiveGroups(context, groups, semesterCount) {
-  const y = electiveTop(semesterCount);
+function renderElectiveGroups(context, groups, semesterLayouts) {
+  const y = electiveTop(semesterLayouts);
   const totalHeight = electiveGroupsHeight(groups);
   const parts = [renderVerticalRail({
     x: SEMESTER_LAYOUT.phaseRailX,
@@ -462,12 +465,15 @@ function helpIcon(x, y) {
   return `<g transform="translate(${x} ${y}) scale(.6667)" fill="none" stroke="${COLORS.black}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></g>`;
 }
 
-function footerItem({ x, width, icon, title, value }) {
+function footerItem({ x, width, icon, title, value, href }) {
   const iconX = x + width - 16;
   return [
+    `<a href="${esc(href)}" xlink:href="${esc(href)}" target="_blank">`,
+    `<rect data-part="footer-hit-area" x="${x}" y="-5" width="${width}" height="27" fill="${COLORS.white}" fill-opacity="0"/>`,
     icon(iconX, 1.5),
     text({ x: iconX - 4, y: 4.2, value: title, size: 8.457, weight: 700, anchor: "start" }),
     text({ x: iconX - 4, y: 14.1, value, size: 8.457, weight: 400, anchor: "end", direction: "ltr" }),
+    "</a>",
   ].join("");
 }
 
@@ -476,10 +482,10 @@ function renderFooter(plan, y) {
   return [
     `<g data-component="footer">`,
     `<g transform="translate(0 ${y + 16})">`,
-    footerItem({ x: 62.5, width: 119, icon: helpIcon, title: "للاستفسارات", value: "t.me/SaadInitiative?direct" }),
-    footerItem({ x: 205.5, width: 97, icon: xIcon, title: "حساب مبادرة صاد", value: "x.com/saadinitiative" }),
-    footerItem({ x: 326.5, width: 89, icon: globeIcon, title: "موقع مبادرة صاد", value: "saadinitiative.com" }),
-    footerItem({ x: 439.5, width: 92, icon: telegramIcon, title: "قناة مبادرة صاد", value: "t.me/saadinitiative" }),
+    footerItem({ x: 62.5, width: 119, icon: helpIcon, title: "للاستفسارات", value: "t.me/SaadInitiative?direct", href: "https://t.me/SaadInitiative?direct" }),
+    footerItem({ x: 205.5, width: 97, icon: xIcon, title: "حساب مبادرة صاد", value: "x.com/saadinitiative", href: "https://x.com/saadinitiative" }),
+    footerItem({ x: 326.5, width: 89, icon: globeIcon, title: "موقع مبادرة صاد", value: "saadinitiative.com", href: "https://saadinitiative.com" }),
+    footerItem({ x: 439.5, width: 92, icon: telegramIcon, title: "قناة مبادرة صاد", value: "t.me/saadinitiative", href: "https://t.me/saadinitiative" }),
     "</g>",
     text({ x: PAGE_LAYOUT.width / 2, y: y + 56, value: copyright, size: 8.457, weight: 400, fill: COLORS.copyright }),
     `<rect x="0" y="${y + 78}" width="${PAGE_LAYOUT.width}" height="6" fill="${COLORS.saad}"/>`,
@@ -554,20 +560,10 @@ function renderGuide(context, y) {
   return `<g data-component="course-guide">${parts.join("")}</g>`;
 }
 
-function renderSummerRail(y) {
-  return renderVerticalRail({
-    x: SEMESTER_LAYOUT.yearRailX,
-    y,
-    width: SEMESTER_LAYOUT.yearRailWidth,
-    height: SEMESTER_LAYOUT.height,
-    label: "فصل صيفي",
-  });
-}
-
 function pageSvg(parts, layout) {
   return [
     `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${layout.width}pt" height="${layout.height}pt" viewBox="0 0 ${layout.width} ${layout.height}" data-page-width="${layout.width}" data-page-height="${layout.height}">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${layout.width}pt" height="${layout.height}pt" viewBox="0 0 ${layout.width} ${layout.height}" data-page-width="${layout.width}" data-page-height="${layout.height}">`,
     ...parts,
     "</svg>",
   ].join("\n");
@@ -588,10 +584,10 @@ export function renderPlanSvg(plan) {
     `<rect width="${layout.width}" height="${layout.height}" fill="${COLORS.white}"/>`,
     renderHeader(renderPlan),
   ];
-  semesters.forEach((semester, index) => parts.push(renderSemesterRow(context, semester, index)));
-  parts.push(renderYearRails(semesters.length), renderPhaseRails(renderPlan));
+  semesters.forEach((semester, index) => parts.push(renderSemesterRow(context, semester, layout.semesterLayouts[index])));
+  parts.push(renderYearRails(layout.semesterLayouts), renderPhaseRails(renderPlan, layout.semesterLayouts));
   if (Array.isArray(plan.electiveGroups) && plan.electiveGroups.length) {
-    parts.push(renderElectiveGroups(context, plan.electiveGroups, semesters.length));
+    parts.push(renderElectiveGroups(context, plan.electiveGroups, layout.semesterLayouts));
   }
   parts.push(renderFooter(plan, layout.footerY));
   return pageSvg(parts, layout);
@@ -601,19 +597,15 @@ export function renderProposalSvg(plan) {
   const proposal = plan.proposal;
   if (!proposal) throw new Error("The plan has no proposal page.");
   const context = createRenderContext("proposal");
-  const regularSemesters = proposal.semesters.slice(0, 8);
-  const summerSemester = proposal.semesters[8] ?? null;
   const renderPlan = { ...proposal, semesters: proposal.semesters };
   const layout = calculateProposalPageLayout(plan);
   const parts = [
     `<rect width="${layout.width}" height="${layout.height}" fill="${COLORS.white}"/>`,
     renderHeader(renderPlan, { proposal: true, parentMajor: plan.major }),
   ];
-  regularSemesters.forEach((semester, index) => parts.push(renderSemesterRow(context, semester, index)));
-  if (summerSemester) parts.push(renderSemesterRow(context, summerSemester, 8));
-  parts.push(renderYearRails(regularSemesters.length));
-  if (summerSemester) parts.push(renderSummerRail(semesterY(8)));
-  parts.push(renderPhaseRails(renderPlan));
+  proposal.semesters.forEach((semester, index) => parts.push(renderSemesterRow(context, semester, layout.semesterLayouts[index])));
+  parts.push(renderYearRails(layout.semesterLayouts));
+  parts.push(renderPhaseRails(renderPlan, layout.semesterLayouts));
   if (layout.includesGuide) parts.push(renderGuide(context, layout.guideY));
   parts.push(renderFooter(plan, layout.footerY));
   return pageSvg(parts, layout);
@@ -643,7 +635,7 @@ export function combineSvgPages(pages) {
   const firstPage = dimensions[0];
   return [
     `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="${firstPage.width}pt" height="${firstPage.height}pt" viewBox="0 0 ${firstPage.width} ${firstPage.height}">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="${firstPage.width}pt" height="${firstPage.height}pt" viewBox="0 0 ${firstPage.width} ${firstPage.height}">`,
     `<sodipodi:namedview pagecolor="#ffffff">${namedPages}</sodipodi:namedview>`,
     contents,
     "</svg>",

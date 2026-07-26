@@ -6,9 +6,12 @@ import {
   ELECTIVE_LAYOUT,
   PAGE_LAYOUT,
   SEMESTER_LAYOUT,
+  calculateSemesterLayouts,
   electiveGroupHeight,
   electiveTop,
+  semesterBodyHeight,
 } from "../src/render-layout.mjs";
+import { courseNameFit, measureText, prerequisiteFit } from "../src/text-measure.mjs";
 
 function course(overrides = {}) {
   return {
@@ -121,6 +124,20 @@ test("renders exact card markers, metric boxes, prerequisite pill, and six-card 
   assert.match(svg, /data-part="prerequisite-pill"[^>]+height="11"[^>]+rx="6"/);
 });
 
+test("places automatically sorted courses in Arabic reading order", () => {
+  const svg = renderPlanSvg({
+    major: "اختبار",
+    degree: "البكالوريوس",
+    semesters: [semester({
+      courseDisplayOrder: "rtl",
+      courses: [course({ code: "100 ي" }), course({ code: "101 أ" })],
+    })],
+    electiveGroups: [],
+  });
+  const xFor = (code) => Number(svg.match(new RegExp(`data-course-code="${code}" transform="translate\\(([^ ]+)`, "u"))?.[1]);
+  assert.ok(xFor("100 ي") > xFor("101 أ"), "the lower course number should be the rightmost/first card");
+});
+
 test("fits long course and prerequisite text without changing card or pill geometry", () => {
   const longName = "مقدمة شاملة في برمجة الحاسبات وتطبيقاتها الهندسية المتقدمة";
   const svg = renderPlanSvg({
@@ -168,7 +185,7 @@ test("renders measured semester summary, rails, elective groups, and footer boun
       { label: "التخصص", start: 3, end: 8 },
     ],
   });
-  assert.equal(electiveTop(8), 614);
+  assert.equal(electiveTop(calculateSemesterLayouts(semesters)), 614);
   assert.equal(electiveGroupHeight(electiveGroups[0]), 112);
   assert.equal(electiveGroupHeight(electiveGroups[1]), 59);
   assert.equal(ELECTIVE_LAYOUT.groupGap, 16);
@@ -206,7 +223,7 @@ test("builds an Inkscape multipage SVG for a proposed plan", () => {
       title: "الخطة المقترحة",
       semesters: Array.from({ length: 9 }, (_, index) => ({
         ...emptySemester,
-        name: index === 8 ? "صيفي" : `المستوى ${index + 1}`,
+        name: `المستوى ${index + 1}`,
       })),
     },
   });
@@ -217,7 +234,8 @@ test("builds an Inkscape multipage SVG for a proposed plan", () => {
   assert.match(document.svg, /<inkscape:page x="0" y="0" width="594" height="271"\/>/);
   assert.match(document.svg, /<inkscape:page x="0" y="281" width="594" height="983\.748779296875"\/>/);
   assert.match(document.pages[1], /data-component="course-guide"/);
-  assert.match(document.pages[1], /فصل صيفي/);
+  assert.match(document.pages[1], /نصف سنة/);
+  assert.doesNotMatch(document.pages[1], /فصل صيفي/);
   assert.match(document.pages[1], /x1="238\.26885986328125" y1="694\.7333984375" x2="211\.95730209350586" y2="694\.7333984375"/);
   assert.match(document.pages[1], /x1="514\.5401611328125" y1="817\.833984375" x2="334\.99999210272654" y2="764\.9997519717253"/);
   assert.match(document.pages[1], /font-kerning="normal"/);
@@ -253,18 +271,18 @@ test("grows published pages for semesters, elective groups, and wrapped elective
   assert.ok(secondGroup.height > oneRow.height);
 });
 
-test("grows proposal pages independently for summer and guide content", () => {
+test("grows proposal pages independently for an additional published level and guide content", () => {
   const regular = Array.from({ length: 8 }, () => semester());
-  const summer = semester({ name: "صيفي" });
+  const ninthLevel = semester({ name: "المستوى التاسع" });
   const base = {
     major: "اختبار",
     semesters: [semester()],
     proposal: { semesters: regular, showGuide: false },
   };
   const withoutGuide = calculatePage(base, { proposal: true });
-  const withSummer = calculatePage({
+  const withNinthLevel = calculatePage({
     ...base,
-    proposal: { semesters: [...regular, summer], showGuide: false },
+    proposal: { semesters: [...regular, ninthLevel], showGuide: false },
   }, { proposal: true });
   const withGuide = calculatePage({
     ...base,
@@ -272,7 +290,7 @@ test("grows proposal pages independently for summer and guide content", () => {
   }, { proposal: true });
 
   assert.equal(withoutGuide.width, 594);
-  assert.ok(withSummer.height > withoutGuide.height);
+  assert.ok(withNinthLevel.height > withoutGuide.height);
   assert.equal(withGuide.height - withoutGuide.height, PAGE_LAYOUT.sectionGap + 192.748779296875);
   assert.notEqual(calculatePage(base).height, withGuide.height);
 });
@@ -313,4 +331,58 @@ test("renders elective custom requirement text", () => {
   });
   assert.match(svg, /غير متطلب للتخرج/u);
   assert.doesNotMatch(svg, /إتمام 0 ساعات/u);
+});
+
+test("wraps unlimited semester rows using the exact Figma formula", () => {
+  assert.deepEqual([0, 1, 6, 7, 12, 13].map(semesterBodyHeight), [57, 57, 57, 110, 110, 163]);
+  const courses = Array.from({ length: 13 }, (_, index) => course({ code: `${101 + index} عال` }));
+  const next = semester({ name: "المستوى الثاني", courses: [course({ code: "201 عال" })] });
+  const plan = { major: "التفاف", semesters: [semester({ courses }), next], electiveGroups: [] };
+  const layout = calculatePage(plan);
+  const svg = renderPlanSvg(plan);
+  assert.equal(layout.semesterLayouts[0].rowCount, 3);
+  assert.equal(layout.semesterLayouts[0].courseBodyHeight, 163);
+  assert.equal(layout.semesterLayouts[1].y, 265);
+  assert.equal((svg.match(/data-component="course-card"/gu) ?? []).length, 14);
+  const seventhX = Number(svg.match(/data-course-code="107 عال" transform="translate\(([^ ]+)/u)?.[1]);
+  const thirteenthX = Number(svg.match(/data-course-code="113 عال" transform="translate\(([^ ]+)/u)?.[1]);
+  assert.equal(seventhX, COURSE_CARD_LAYOUT.rowRight - COURSE_CARD_LAYOUT.width);
+  assert.equal(thirteenthX, COURSE_CARD_LAYOUT.rowRight - COURSE_CARD_LAYOUT.width);
+  assert.match(svg, /data-row-count="3" data-body-height="163"/u);
+  assert.match(svg, /data-component="semester-summary"/u);
+});
+
+test("fits Arabic text with shaped glyph advances and a readable floor", () => {
+  const fitting = courseNameFit("برمجة حاسبات");
+  assert.equal(fitting.size, 5);
+  const slightlyLong = courseNameFit("تصميم البرمجيات المعتمدة على المكونات");
+  assert.ok(slightlyLong.size < 5 && slightlyLong.size >= 3.75);
+  assert.ok(measureText("سلام", 5, "semibold") !== measureText("سسسس", 5, "semibold"));
+  assert.ok(measureText("تصميم البرمجيات المعتمدة على المكونات", slightlyLong.size, "semibold") <= 68);
+  assert.ok(measureText("تصميم البرمجيات المعتمدة على المكونات", slightlyLong.size + 0.002, "semibold") > 68);
+  const long = courseNameFit("مقدمة شاملة جدًا في هندسة البرمجيات وتطبيقات الأنظمة الموزعة المتقدمة للغاية");
+  assert.ok(long.size >= 3.75);
+  const prerequisite = prerequisiteFit("101 عال | 102 عال مرافق | إتمام 60 ساعة", 43);
+  assert.ok(prerequisite.size >= 3.5);
+});
+
+test("wraps every complete footer item in an absolute SVG link", () => {
+  const document = renderPlanDocumentSvg({
+    major: "روابط",
+    semesters: [semester()],
+    proposal: { semesters: [semester()], showGuide: false },
+  });
+  const destinations = [
+    "https://t.me/SaadInitiative?direct",
+    "https://x.com/saadinitiative",
+    "https://saadinitiative.com",
+    "https://t.me/saadinitiative",
+  ];
+  for (const page of document.pages) {
+    assert.equal((page.match(/data-part="footer-hit-area"/gu) ?? []).length, 4);
+    for (const destination of destinations) {
+      assert.ok(page.includes(`href="${destination.replace("&", "&amp;")}"`));
+      assert.ok(page.includes(`xlink:href="${destination.replace("&", "&amp;")}"`));
+    }
+  }
 });
