@@ -1,40 +1,10 @@
-The result is strong, but there is one important architectural mistake: Codex treated `594 × 1045` as the page contract. Your actual contract is:
-
-```text
-width = always 594 pt
-height = derived independently for each page from its content
-```
-
-Also, a 6–10% component difference is still large enough that we should not accept “mostly font rasterization” without another measured pass.
-
-Send Codex this next:
-
-````text
 Continue the Saad Plan Generator work, but correct the workflow and architecture before adding the GUI.
 
 ## Git workflow
 
 Do not create branches or pull requests for this repository from now on.
 
-First integrate the existing visual-parity commit into `main`:
-
-- Existing commit: `661ca8e`
-- Existing branch: `codex/figma-visual-parity`
-- Existing draft PR: #1
-
-Prefer a clean fast-forward into `main` when possible. Otherwise cherry-pick the commit.
-
-After confirming the commit is present on `main`:
-
-- push `main`;
-- close draft PR #1;
-- delete the visual-parity branch locally and remotely;
-- remain on `main`;
-- make all subsequent work directly on `main`;
-- create clear incremental commits and push them.
-
-Do not create another branch or PR.
-
+Prefer a clean fast-forward into `main` when possible.
 ---
 
 # Phase 1 — Correct dynamic page height
@@ -219,10 +189,10 @@ The operator adds:
 * colleges;
 * majors;
 * semesters;
-* elective groups;
-* course codes.
+* elective groups and the requrid hours to complete "إتمام x ساعة";
+* course codes and it's pre/corequestes, minmmum hours.
 
-The generator derives everything else from `courses.json`.
+The generator derives everything else from `courses.json` in C:\Ahkhal\Projects\saadinitiative-plans\data\courses\male, if not found then C:\Ahkhal\Projects\saadinitiative-plans\data\courses\Female 
 
 The normal GUI workflow must not require manually entering:
 
@@ -789,8 +759,3 @@ At completion, report:
 * any genuine remaining limitation.
 
 Do not claim that a difference is caused by font rendering unless it was measured and verified.
-
-```
-
-This gives Codex the correct next direction: **shared visual refinement + content-derived page height + a calendar-generator-style local GUI where you enter only plan structure and course codes.**
-```
