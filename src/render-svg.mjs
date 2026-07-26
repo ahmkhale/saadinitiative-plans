@@ -69,6 +69,7 @@ function text({
     `unicode-bidi="plaintext"`,
     `dominant-baseline="${dominantBaseline}"`,
     `letter-spacing="${letterSpacing}"`,
+    `font-kerning="normal"`,
   ];
   if (opacity !== undefined) attributes.push(`opacity="${opacity}"`);
   if (transform) attributes.push(`transform="${transform}"`);
@@ -343,10 +344,10 @@ function renderHeader(plan, options = {}) {
   return [
     `<g data-component="header">`,
     `<rect x="15" y="26" width="80" height="40" rx="6" fill="${COLORS.white}" stroke="${COLORS.black}" stroke-width="0.8"/>`,
-    text({ x: 55, y: 39.5, value: edition, size: 12, weight: 700 }),
-    text({ x: 55, y: 55, value: release, size: 9, weight: 500 }),
-    text({ x: 517, y: 35, value: title, size: 16, weight: 600, anchor: "start" }),
-    text({ x: 517, y: 55.5, value: subtitle, size: 14, weight: 400, anchor: "start" }),
+    text({ x: 55, y: 40.5, value: edition, size: 12, weight: 700 }),
+    text({ x: 55, y: 56, value: release, size: 9, weight: 500 }),
+    text({ x: 517, y: 40, value: title, size: 16, weight: 600, anchor: "start" }),
+    text({ x: 517, y: 56.5, value: subtitle, size: 14, weight: 400, anchor: "start" }),
     renderLogo(),
     "</g>",
   ].join("");
@@ -468,40 +469,48 @@ function renderGuide(context, y) {
     isTrackSpecific: true,
     isExtinct: true,
   };
-  const cardX = 228.88;
+  const rootX = GUIDE_LAYOUT.x;
+  const cardX = 228.871826171875;
   const cardY = y;
   const scale = GUIDE_LAYOUT.cardScale;
-  const cardWidth = COURSE_CARD_LAYOUT.width * scale;
-  const cardHeight = COURSE_CARD_LAYOUT.height * scale;
   const parts = [renderCourseCard(context, demo, cardX, cardY, { scale })];
 
-  parts.push(line(cardX + 4, cardY + 14, 211, cardY + 14));
-  parts.push(text({ x: 208, y: cardY + 17, value: "مقرر أب", size: 8.457, weight: 700, anchor: "start" }));
-  parts.push(textLines({ x: 208, y: cardY + 30, lines: ["يعد هذا المقرر متطلبًا سابقًا لمقررات في مستويات", "قادمة."], lineHeight: 10, size: 8.457, anchor: "start" }));
+  parts.push(text({ x: 207.887, y: cardY + 17.156, value: "مقرر أب", size: 8.457286834716797, weight: 700, anchor: "start" }));
+  parts.push(textLines({ x: 208.1985, y: cardY + 29.6, lines: ["يعد هذا المقرر متطلبًا سابقًا لمقررات في مستويات", "قادمة."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
-  parts.push(line(cardX + 4, cardY + cardHeight - 14, 211, cardY + cardHeight - 14));
-  parts.push(text({ x: 208, y: cardY + 88, value: "مقرر تابع للمسار", size: 8.457, weight: 700, anchor: "start" }));
-  parts.push(textLines({ x: 208, y: cardY + 101, lines: ["علامة تبين أن المقرر تابع للمسار الحالي، وتنطبق", "فقط على التخصصات التي تحوي مسارات."], lineHeight: 10, size: 8.457, anchor: "start" }));
+  parts.push(text({ x: 208.6357, y: cardY + 87.633, value: "مقرر تابع للمسار", size: 8.457286834716797, weight: 700, anchor: "start" }));
+  parts.push(textLines({ x: 208.1985, y: cardY + 100.08, lines: ["علامة تبين أن المقرر تابع للمسار الحالي، وتنطبق", "فقط على التخصصات التي تحوي مسارات."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
-  parts.push(line(cardX + cardWidth, cardY + 21, 434, cardY + 21));
-  parts.push(text({ x: 540, y: cardY + 17, value: "الساعات الأكاديمية", size: 8.457, weight: 700, anchor: "start" }));
-  parts.push(textLines({ x: 540, y: cardY + 30, lines: ["الساعات التي يتم اعتمادها في حساب", "المعدلات الدراسية والساعات التراكمية."], lineHeight: 10, size: 8.457, anchor: "start" }));
+  parts.push(text({ x: 539.4849, y: cardY + 17.156, value: "الساعات الأكاديمية", size: 8.457286834716797, weight: 700, anchor: "start" }));
+  parts.push(textLines({ x: 539.912, y: cardY + 29.6, lines: ["الساعات التي يتم اعتمادها في حساب", "المعدلات الدراسية والساعات التراكمية."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
-  parts.push(line(cardX + cardWidth - 14, cardY + cardHeight - 14, 434, cardY + cardHeight - 14));
-  parts.push(text({ x: 540, y: cardY + 88, value: "مقرر منقرض", size: 8.457, weight: 700, anchor: "start" }));
-  parts.push(textLines({ x: 540, y: cardY + 101, lines: ["لم يظهر المقرر خلال السنين الماضية ضمن", "المقررات المطروحة."], lineHeight: 10, size: 8.457, anchor: "start" }));
+  parts.push(text({ x: 539.6256, y: cardY + 87.633, value: "مقرر منقرض", size: 8.457286834716797, weight: 700, anchor: "start" }));
+  parts.push(textLines({ x: 539.4146, y: cardY + 100.08, lines: ["لم يظهر المقرر خلال السنين الماضية ضمن", "المقررات المطروحة."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
   const headingY = cardY + 151;
   const details = [
-    { x: 145, targetX: cardX + 53 * scale, heading: "ساعات التمارين", lines: ["عدد ساعات التمارين أسبوعيًا."] },
-    { x: 259, targetX: cardX + 38 * scale, heading: "ساعات العملي", lines: ["عدد ساعات العملي أسبوعيًا."] },
-    { x: 382, targetX: cardX + 48 * scale, heading: "ساعات المحاضرة", lines: ["عدد ساعات المحاضرة أسبوعيًا."] },
-    { x: 539, targetX: cardX + 28 * scale, heading: "الساعات الفعلية", lines: ["الساعات التي يتم تدريس المقرر فيها بشكل", "أسبوعي، وهي الساعات التي يتم اعتمادها", "في حساب الحرمان."] },
+    { x: 144.676, heading: "ساعات التمارين", lines: ["عدد ساعات التمارين أسبوعيًا."] },
+    { x: 259.078, heading: "ساعات العملي", lines: ["عدد ساعات العملي أسبوعيًا."] },
+    { x: 381.781, heading: "ساعات المحاضرة", lines: ["عدد ساعات المحاضرة أسبوعيًا."] },
+    { x: 539.4095, heading: "الساعات الفعلية", lines: ["الساعات التي يتم تدريس المقرر فيها بشكل", "أسبوعي، وهي الساعات التي يتم اعتمادها", "في حساب الحرمان."] },
   ];
   details.forEach((item) => {
-    parts.push(line(item.targetX, cardY + cardHeight - 6, item.x - 24, headingY - 14, item.x === 539 ? COLORS.saad : COLORS.line, item.x === 539 ? 1 : 0.8));
-    parts.push(text({ x: item.x, y: headingY, value: item.heading, size: 8.457, weight: 700, anchor: "start" }));
-    parts.push(textLines({ x: item.x, y: headingY + 15, lines: item.lines, lineHeight: 10, size: 8.457, anchor: "start" }));
+    parts.push(text({ x: item.x, y: headingY + 0.532, value: item.heading, size: 8.457286834716797, weight: 700, anchor: "start" }));
+    parts.push(textLines({ x: item.x, y: cardY + 164.035, lines: item.lines, lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
+  });
+
+  const connectors = [
+    [184.180908203125, 19.7333984375, 157.8693504333496, 19.7333984375, COLORS.line],
+    [184.180908203125, 88.3310546875, 157.8693504333496, 88.3310546875, COLORS.line],
+    [379.63812255859375, 19.7333984375, 314.7989273071289, 19.7333984375, COLORS.line],
+    [440.71856689453125, 88.3310546875, 313.85926818847656, 88.3310546875, COLORS.line],
+    [298.8240966796875, 142.833984375, 268.9120469375828, 97.99975489888675, COLORS.line],
+    [460.45220947265625, 142.833984375, 280.9120404425703, 89.99975197172535, COLORS.saad],
+    [180.422119140625, 142.833984375, 249.02011030747963, 98.66815537826915, COLORS.line],
+    [64.83917236328125, 142.833984375, 229.28640100762095, 98.66815760134887, COLORS.line],
+  ];
+  connectors.forEach(([x1, y1, x2, y2, color]) => {
+    parts.push(line(rootX + x1, cardY + y1, rootX + x2, cardY + y2, color, 0.9396985173225403));
   });
   return `<g data-component="course-guide">${parts.join("")}</g>`;
 }
@@ -520,7 +529,6 @@ function pageSvg(parts, layout) {
   return [
     `<?xml version="1.0" encoding="UTF-8"?>`,
     `<svg xmlns="http://www.w3.org/2000/svg" width="${layout.width}pt" height="${layout.height}pt" viewBox="0 0 ${layout.width} ${layout.height}" data-page-width="${layout.width}" data-page-height="${layout.height}">`,
-    `<style>text{font-kerning:normal;font-synthesis:none}</style>`,
     ...parts,
     "</svg>",
   ].join("\n");

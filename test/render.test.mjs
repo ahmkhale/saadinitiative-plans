@@ -190,6 +190,9 @@ test("builds an Inkscape multipage SVG for a proposed plan", () => {
   assert.match(document.svg, /<inkscape:page x="0" y="281" width="594" height="983\.748779296875"\/>/);
   assert.match(document.pages[1], /data-component="course-guide"/);
   assert.match(document.pages[1], /فصل صيفي/);
+  assert.match(document.pages[1], /x1="238\.26885986328125" y1="694\.7333984375" x2="211\.95730209350586" y2="694\.7333984375"/);
+  assert.match(document.pages[1], /x1="514\.5401611328125" y1="817\.833984375" x2="334\.99999210272654" y2="764\.9997519717253"/);
+  assert.match(document.pages[1], /font-kerning="normal"/);
   const ids = allIds(document.svg);
   assert.equal(new Set(ids).size, ids.length);
 });

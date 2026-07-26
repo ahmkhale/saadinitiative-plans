@@ -90,7 +90,7 @@ export const GUIDE_LAYOUT = Object.freeze({
   height: 192.748779296875,
   cardX: 174.8,
   cardY: 0,
-  cardScale: 1.9561052631578947,
+  cardScale: 1.9561071395874023,
 });
 
 export function semesterY(index) {

@@ -81,3 +81,28 @@ instead of collapsing them.
 
 The course-color resolver remains independent from the renderer. Resolved course
 colors are passed through unchanged.
+
+## Course guide verification
+
+The guide instance is `485.824097 × 192.748779` at `x=54.087952`. Its scaled
+course card begins at relative `x=174.783875`, and the renderer uses the same
+`1.956107` component scale.
+
+The eight connector paths were verified from the Figma line transforms rather
+than from screenshot pixels. Their relative endpoints are:
+
+```text
+(184.180908, 19.733398) -> (157.869350, 19.733398)
+(184.180908, 88.331055) -> (157.869350, 88.331055)
+(379.638123, 19.733398) -> (314.798927, 19.733398)
+(440.718567, 88.331055) -> (313.859268, 88.331055)
+(298.824097, 142.833984) -> (268.912047, 97.999755)
+(460.452209, 142.833984) -> (280.912040, 89.999752)
+(180.422119, 142.833984) -> (249.020110, 98.668155)
+(64.839172, 142.833984) -> (229.286401, 98.668158)
+```
+
+All use a centered `0.939699` stroke. The academic-hours connector uses Saad
+cyan; the remaining lines use the plan-border color. Text boxes use IBM Plex
+Sans Arabic at `8.457287`, with `100%` line height for headings and `125%` for
+descriptions. The renderer anchors the same boxes and line rhythm explicitly.
