@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>مولّد الخطط الدراسية | مبادرة صاد</title>
-  <link rel="stylesheet" href="/styles.css?v=20260726c">
+  <link rel="stylesheet" href="/styles.css?v=20260726d">
 </head>
 <body>
   <header class="topbar">
@@ -98,13 +98,6 @@
             <div><p class="eyebrow">الفصول</p><h2>ترتيب الخطة</h2></div>
             <button id="addSemesterButton" class="button secondary" type="button">إضافة فصل</button>
           </div>
-          <div class="card phase-card">
-            <div class="section-title">
-              <div><p class="eyebrow">اختياري</p><h2>المراحل</h2></div>
-              <button id="addPublishedPhaseButton" class="button ghost" type="button">إضافة مرحلة</button>
-            </div>
-            <div id="publishedPhaseList" class="phase-list"></div>
-          </div>
           <div id="inheritedSemesterList" class="stack inherited-stack"></div>
           <div id="semesterList" class="stack"></div>
         </section>
@@ -112,7 +105,10 @@
         <section class="tab-panel" data-panel="electives">
           <div class="section-heading main-heading">
             <div><p class="eyebrow">المجموعات الاختيارية</p><h2>متطلبات الإتمام</h2></div>
-            <button id="addElectiveButton" class="button secondary" type="button">إضافة مجموعة</button>
+            <div class="menu-actions">
+              <button id="addSharedElectiveButton" class="button ghost" type="button">إضافة مصدر مشترك</button>
+              <button id="addElectiveButton" class="button secondary" type="button">إضافة مجموعة مخصصة</button>
+            </div>
           </div>
           <div id="electiveList" class="stack"></div>
         </section>
@@ -123,17 +119,19 @@
             <label class="switch"><input id="proposalEnabled" type="checkbox" aria-label="تفعيل الخطة المقترحة"><span></span></label>
           </div>
           <div id="proposalEditor" hidden>
-            <div class="card inline-options">
+            <div class="card inline-options proposal-explanation">
+              <div><p class="eyebrow">ترتيب تابع للخطة المنشورة</p><p class="muted">الخطة المقترحة مبنية على الخطة المنشورة. انقل المقررات الحقيقية ورتبها، وستبقى حقائقها موروثة من الأصل.</p></div>
               <label class="check"><input id="guideEnabled" type="checkbox" checked> إظهار دليل بطاقة المقرر</label>
-              <button id="addProposalSemesterButton" class="button secondary" type="button">إضافة فصل</button>
-              <button id="addSummerButton" class="button ghost" type="button">إضافة فصل صيفي</button>
             </div>
-            <div class="card phase-card">
-              <div class="section-title">
-                <div><p class="eyebrow">اختياري</p><h2>مراحل الخطة المقترحة</h2></div>
-                <button id="addProposalPhaseButton" class="button ghost" type="button">إضافة مرحلة</button>
+            <div class="section-heading main-heading">
+              <div class="menu-actions">
+                <button id="syncProposalButton" class="button ghost" type="button">مزامنة الخطة المقترحة</button>
+                <button id="resetProposalButton" class="button ghost" type="button">إعادة ضبط الخطة المقترحة</button>
               </div>
-              <div id="proposalPhaseList" class="phase-list"></div>
+              <div class="menu-actions">
+                <button id="addProposalSummerButton" class="button ghost" type="button">إضافة فصل صيفي</button>
+                <button id="addProposalSemesterButton" class="button secondary" type="button">إضافة فصل منتظم</button>
+              </div>
             </div>
             <div id="proposalSemesterList" class="stack"></div>
           </div>
@@ -167,6 +165,51 @@
               <button id="addSharedSetButton" class="button secondary" type="button">إضافة مجموعة</button>
             </div>
             <div id="sharedSetList" class="shared-set-list"></div>
+          </div>
+          <div id="sharedSetEditor" class="card shared-source-editor" hidden>
+            <div class="card-heading">
+              <div><p class="eyebrow">مصدر مشترك</p><h2 id="sharedSetEditorTitle">الخطة المشتركة</h2></div>
+              <div class="menu-actions">
+                <button id="saveSharedSetButton" class="button secondary" type="button">حفظ المصدر المشترك</button>
+                <button id="closeSharedSetButton" class="button ghost" type="button">إغلاق</button>
+              </div>
+            </div>
+            <div class="form-grid">
+              <label>اسم الخطة المشتركة<input id="sharedSetName" required></label>
+              <label>المعرّف الثابت<input id="sharedSetId" dir="ltr" required></label>
+              <label>اسم المرحلة<input id="sharedSetPhase" value="السنة التحضيرية" required></label>
+            </div>
+            <div class="section-heading main-heading">
+              <div><p class="eyebrow">تُعرّف مرة واحدة</p><h2>المستويات المشتركة</h2></div>
+              <button id="addSharedSemesterButton" class="button secondary" type="button">إضافة مستوى</button>
+            </div>
+            <div id="sharedSemesterList" class="stack"></div>
+          </div>
+          <div class="card">
+            <div class="card-heading">
+              <div><p class="eyebrow">مصادر مشتركة</p><h2>مجموعات المقررات الاختيارية</h2></div>
+              <button id="addSharedElectiveSourceButton" class="button secondary" type="button">إضافة مصدر</button>
+            </div>
+            <div id="sharedElectiveSourceList" class="shared-set-list"></div>
+          </div>
+          <div id="sharedElectiveSourceEditor" class="card shared-source-editor" hidden>
+            <div class="card-heading">
+              <div><p class="eyebrow">مصدر اختياري مشترك</p><h2 id="sharedElectiveSourceEditorTitle">مجموعة اختيارية</h2></div>
+              <div class="menu-actions">
+                <button id="saveSharedElectiveSourceButton" class="button secondary" type="button">حفظ المصدر</button>
+                <button id="closeSharedElectiveSourceButton" class="button ghost" type="button">إغلاق</button>
+              </div>
+            </div>
+            <div class="form-grid">
+              <label>اسم المجموعة<input id="sharedElectiveSourceName" required></label>
+              <label>المعرّف الثابت<input id="sharedElectiveSourceId" dir="ltr" required></label>
+              <label>الساعات المطلوبة<input id="sharedElectiveSourceHours" type="number" min="0" required></label>
+            </div>
+            <div class="course-adder">
+              <input id="sharedElectiveCourseInput" list="courseSuggestions" placeholder="أدخل رمز مقرر">
+              <button id="addSharedElectiveCourseButton" class="button ghost" type="button">إضافة مقرر</button>
+            </div>
+            <div id="sharedElectiveCourseList" class="course-list"></div>
           </div>
           <div class="card">
             <p class="eyebrow">البيانات الاستثنائية</p>
@@ -230,6 +273,6 @@
       </div>
     </article>
   </template>
-  <script type="module" src="/app.js?v=20260726c"></script>
+  <script type="module" src="/app.js?v=20260726d"></script>
 </body>
 </html>

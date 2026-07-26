@@ -1,42 +1,50 @@
 # CONTEXT.md
 
-Saad plans were assembled manually in Figma: copying roughly six facts per course, looking up course data, applying colors, calculating totals, marking prerequisites, sorting, and repeating the work for every major.
+Saad plans were previously assembled manually in Figma. The generator preserves
+that visual system while removing repeated production work.
 
-The calendar generator proved the right model: Figma is the visual specification, while a deterministic generator performs the repeated production work.
+## Product model
 
-Version 0.2 implements the visual-parity architecture:
+The operator manages colleges, majors, major-specific levels, course codes,
+plan-owned dependency rules, shared/custom electives, and genuinely missing
+course facts. The generator
+owns Arabic level names, source lookup, totals, markers, shared-level
+composition, layout, live preview, dynamic page height, and export.
 
-1. one `plan.json` per major;
-2. reusable course facts from `courses.json`;
-3. source-aware Male → Female → manual lookup, with plan fallback only when both
-   section sources lack a course;
-4. automatic prerequisite graph, parent-course flags, colors, hours, and totals;
-5. measured Figma geometry for the header, edition badge, logo, semester rows, course cards, summaries, year/phase rails, elective groups, and footer;
-6. exact `594 pt` page width with content-derived height for each PDF page;
-7. an optional second proposal page that rearranges the exact published-course
-   set, plus explicit black placeholder courses, a summer row, and the illustrated
-   card guide;
-8. PDF by default, optional multipage SVG and per-page PNG previews;
-9. resolved data and diagnostics beside every output.
+Section files are not complete academic catalogs. Lookup is Male, then Female,
+then durable fallback facts. Successful catalog lookup hydrates a fallback
+snapshot in the owning major or shared source. Prerequisites, corequisites,
+minimum completed hours, and track status remain explicit plan decisions.
 
-The supplied `saad-web` code informs the PlanDefinition adapter, catalog-row adapter, and domain rules. The calendar generator informs the CLI and temporary-SVG-to-PDF workflow. The approved Figma frame and supplied two-page Saad plan are the regression reference for visual work.
+## Figma-derived shared levels
 
-Version 0.2 also includes a localhost-only Arabic RTL editor. The GUI reuses the
-calendar generator's successful workflow boundaries—atomic JSON persistence,
-live unsaved preview, and PDF-first export—without importing calendar-specific
-logic. Operators now manage colleges, majors, semesters, phases, elective
-groups, course codes and their deliberate dependency decisions. Catalog facts,
-graph markers, totals, geometry, and page height remain generator output.
+The Computer College reference contains one `تحضيري` frame with two 57-point
+semester rows under `السنة التحضيرية`, followed by the specialization frame
+starting at `المستوى الثالث`. This is modeled as one central shared source—not
+as copied levels in every major.
 
-Section files are lookup accelerators, not complete academic catalogs. Each
-course retains a visible and machine-readable source: Male, Female, manual, or
-incomplete/conflicting. Missing courses expand inline for complete manual facts;
-zeros remain explicit. Prerequisites, corequisites, minimum completed hours, and
-track status are first-class plan decisions rather than catalog overrides.
+`data/shared-semester-sets/cfy-science.json` contains the two Figma preparatory
+levels. A major selects that source and stores only its own later levels. Editing
+the source updates every referencing major.
 
-Shared edition/release settings and reusable semester sets remove repeated
-operator entry. Published semester and elective courses sort automatically by
-course number then Arabic subject. Proposal real-course order is manual and
-constrained: every published real course must appear exactly once; placeholders
-are the only additive proposal entries. Legacy proposal shapes are normalized
-when opened and backed up before their first canonical save.
+## Shared electives
+
+Reusable elective groups live separately under
+`data/shared-elective-groups/`. A major stores only a `sourceId`. The university
+requirements source removes candidates already placed in shared or major
+semesters and subtracts each distinct course's hours from the base requirement.
+
+## Proposal rule
+
+The proposed page is a child arrangement. Its real-course set must exactly equal
+the published set, while the operator may move and reorder those references
+across regular and summer semesters. Facts always come from the current parent.
+Black placeholders are proposal-owned, display `مقرر`, and always appear last.
+
+## Rendering
+
+Figma remains the visual source of truth. Page width is fixed at `594 pt`, while
+height is calculated independently from each page's wrapped semester rows.
+Every six cards create a row; course cards and `57 pt` summaries never resize.
+PDF is the primary output; SVG and PNG are optional review artifacts. Footer
+items remain visually identical while exporting as actual hyperlinks.

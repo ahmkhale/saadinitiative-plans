@@ -1,11 +1,11 @@
 # Local GUI
 
-The local GUI is an Arabic RTL operator interface over the same resolver, layout,
-SVG renderer, and exporter used by the CLI.
+The local GUI is an Arabic RTL operator interface over the same resolver,
+layout, SVG renderer, and exporter used by the CLI.
 
 ## Start
 
-Install Node.js 20+, install Inkscape, then run:
+Install Node.js 20+ and Inkscape, then run:
 
 ```bash
 npm install
@@ -15,141 +15,114 @@ npm run gui
 Open `http://127.0.0.1:4174`. The server binds to localhost only. Set `PORT` to
 use another port.
 
-## Operator workflow
+## Normal workflow
 
-1. Add or open a college.
-2. Add, open, rename, duplicate, or delete a major.
-3. Set the shared edition/release once and create reusable semester sets when
-   several majors share the same foundation.
-4. Reference shared semesters, then add the major-owned semesters. Shared
-   semesters remain read-only in the plan and offer an action to open their source.
-5. Enter course codes. Published semester and elective entries sort automatically
-   by course number then Arabic subject.
-6. Review the visible source badge: `دليل الطلاب`, `دليل الطالبات`,
-   `مدخل يدويًا`, `بيانات متعارضة`, or `بيانات ناقصة`.
-7. If a code is absent from both section sources, complete its name and all four
-   hour fields inline. Zero is a valid explicit value.
-8. Set prerequisites, corequisites, minimum completed hours, and track status as
-   first-class plan rules.
-9. Add elective groups and choose exactly one requirement mode: hours or custom
-   text such as `غير متطلب للتخرج`.
-10. Optionally enable a proposal. It starts with every published real course
-    exactly once. Drag real courses to arrange them, and add/delete only explicit
-    placeholder cards.
-11. Save, then generate the PDF.
+1. Add or open a college and major.
+2. Select reusable shared semester sets when appropriate.
+3. Add major-owned semesters and course codes.
+4. Enter plan-owned prerequisites, corequisites, minimum completed hours, and
+   track status.
+5. Add local elective groups or select a shared elective source.
+6. Enable the proposed page, move and reorder real courses as needed, add
+   regular or summer semesters, and append placeholders.
+7. Review the actual renderer preview and diagnostics.
+8. Save and generate the PDF.
 
-The preview updates from unsaved state after a short debounce. It displays the
-actual SVG returned by the shared renderer; it is not a separate HTML
-approximation.
+Semester names are derived. Regular proposal semesters continue the Arabic
+level sequence; summer semesters are labeled separately and numbered only when
+there is more than one.
 
-![Published-plan editor](./screenshots/gui-published.png)
+## Course lookup and durable fallbacks
 
-![Proposal editor](./screenshots/gui-proposal.png)
+Course lookup follows:
 
-![Verified source-aware proposal workflow](./screenshots/gui-new-workflow.png)
+```text
+Male section source -> Female section source -> stored fallback
+```
 
-## Storage
+The section files are lookup accelerators, not complete academic catalogs.
+Missing courses require name and hour facts in the editor. Zero remains
+distinct from an unknown value.
 
-Canonical plan decisions are atomically persisted as:
+Saving a plan or reusable source hydrates catalog-derived facts into its
+fallback map. The UI identifies catalog snapshots and manual edits separately.
+Normal saves preserve manual values. Use **تحديث البيانات من الدليل** only when
+the current catalog should deliberately replace a stored snapshot.
+
+For activity hours, entering any one of lecture, exercise, or practical hours
+causes missing siblings to resolve as zero. When all three are unknown, the
+course remains incomplete.
+
+## Shared semester sets
+
+Shared semester sets live in:
+
+```text
+data/shared-semester-sets/<id>.json
+```
+
+They use the normal course editor and may contain plan rules and hydrated
+fallbacks. Majors reference the source ID instead of copying the semesters.
+Editing the source updates every referencing major. A referenced source cannot
+be deleted.
+
+## Shared elective sources
+
+Shared elective pools are managed independently at:
+
+```text
+data/shared-elective-groups/<id>.json
+```
+
+The included university requirements source is a reusable pool. The major
+editor shows its original course count, courses already used by the published
+plan, remaining candidates, and reduced required hours. Editing the source
+changes every referencing major. Referenced sources cannot be deleted.
+
+## Proposed page
+
+The published plan remains authoritative for real-course identity and facts.
+The proposal editor controls arrangement:
+
+- drag courses or use the movement buttons to reorder or move them;
+- add regular and summer semesters;
+- restore a course to its published source semester;
+- add, edit, and delete placeholder cards;
+- reset the arrangement from the published plan.
+
+The proposal always reconciles to the exact published real-course set. It
+silently removes stale placement references, de-duplicates entries, and adds
+newly published courses. Real courses cannot be created, deleted, or fact-edited
+in the proposal. Placeholders always appear after real courses.
+
+## Persistence
+
+Canonical plans are atomically persisted as:
 
 ```text
 colleges/<college-id>/<major-id>/plan.json
 ```
 
-Writes go through a temporary sibling file and atomic rename. The GUI does not
-maintain a database, account, or separate UI-state document. Derived course
-facts and renderer coordinates are not copied into `plan.json`.
-
-The default section sources are loaded in this order:
-
-1. `data/courses/Male/courses.json` as the primary catalog;
-2. `data/courses/Female/courses.json` for codes absent from the primary catalog.
-
-Section files are lookup accelerators, not complete academic catalogs. For an
-individual course, resolution remains:
-
-```text
-explicit fact override -> Male -> Female -> fallbackCourses -> error
-```
-
-The catalog panel reports paths, modification times, course count, definition
-conflicts, and the current plan's unresolved count. Provenance is preserved
-through section aggregation.
-
-## Exceptional course data
-
-Normal course entry accepts codes only. If a code is absent from both sources,
-the row expands immediately and requires name, academic hours, lecture hours,
-exercise hours, and practical hours. The values persist in `fallbackCourses`.
-When that course later appears in a section source, the GUI reports the new
-catalog availability without silently discarding the manual definition.
-
-Plan-owned prerequisites, corequisites, minimum completed hours, and track status
-remain on the semester/elective entry. Returning to catalog facts never deletes
-those rules. The generator never invents missing required facts and never
-converts an omitted contact-hour field to zero.
-
-## Shared settings and semester sources
-
-Global edition/release settings live in `data/settings.json` and update live
-previews. New plans inherit them; an older plan may retain a deliberate explicit
-exception.
-
-Shared semester sets are managed in Settings. They may contain multiple semesters
-and compose other sets. Plans reference their IDs instead of copying their
-courses. The GUI shows current usage counts and blocks deletion while any plan or
-shared set still references the source.
-
-## Proposal invariant
-
-Proposal storage is arrangement only. Across its semesters, the real-course set
-must equal the published semester and elective set exactly once. The GUI has no
-add/delete action for real proposal courses. Pointer drag-and-drop controls
-placement; arrow buttons provide a within-semester fallback. Explicit placeholder
-cards are additive data, remain black in the PDF, and render after real courses.
-
-Legacy proposal shapes are normalized when opened. Before their first canonical
-save, the store writes a timestamped `plan.before-proposal-migration.*.json`
-backup beside the plan.
+Writes use a temporary sibling and atomic rename. There is no legacy migration
+path: invalid obsolete data is reported for manual correction.
 
 ## Preview, diagnostics, and export
 
-- Every page is exactly `594 pt` wide.
-- Height is derived independently from that page's content.
-- Published and proposal pages may have different heights.
-- Blocking errors disable both PDF actions.
-- Warnings remain visible but do not block export.
-- `Save and generate PDF` is the primary action.
-- `Generate PDF without saving` exports the draft in memory.
-- SVG is retained only when selected; PNG is an optional debug export.
-- `Open output directory` opens the local `dist` folder.
-
-The output includes PDF plus resolved JSON and diagnostics. SVG is temporary
-unless retained explicitly.
-
-## Manually verified workflow
-
-The July 26, 2026 smoke test used an isolated data root and covered:
-
-- college and major creation through in-page dialogs;
-- Male-source resolution of `101 عسب` with a visible provenance badge;
-- shared edition/release settings;
-- creation, attachment, and read-only rendering of a two-semester shared source;
-- immediate expansion and export blocking for missing `999 جدد`;
-- complete manual facts with explicit zero exercise hours and a manual badge;
-- first-class prerequisites, corequisites, minimum hours, and track status;
-- immediate unsaved preview and diagnostics;
-- elective custom requirement text;
-- enabling a constrained proposal containing all published real courses;
-- an explicit placeholder course and two-page preview;
-- atomic save;
-- PDF generation and the returned PDF link.
+- The preview is the actual SVG renderer output.
+- Every page is exactly `594 pt` wide and grows vertically for its own content.
+- Semester cards keep the Figma width and wrap at six courses per row without a
+  course-count limit.
+- Blocking errors disable PDF generation.
+- `حفظ وإنشاء PDF` is the primary action.
+- Draft PDF export does not require saving first.
+- SVG is retained only when selected; PNG is optional for visual review.
+- Footer links remain clickable in SVG and exported PDF.
 
 ## Troubleshooting
 
-- If PDF or PNG export fails, verify that `inkscape` is on `PATH`.
-- If typography differs from Figma, install the IBM Plex Sans Arabic weights
-  used by the design. Font binaries intentionally remain outside the repository.
-- If export is disabled, resolve all error diagnostics first.
-- Catalog conflicts are informational unless they affect a selected course;
-  the Male catalog wins for duplicate codes.
+- Verify `inkscape` is on `PATH` when PDF or PNG export fails.
+- Keep the local IBM Plex Sans Arabic font files available; text fitting uses
+  their shaped glyph advances through Fontkit, and the repository does not
+  distribute the binaries.
+- Resolve all error diagnostics before export.
+- A referenced shared semester or elective source cannot be deleted.

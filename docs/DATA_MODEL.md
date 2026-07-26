@@ -1,85 +1,154 @@
 # Data model
 
-## `plan.json` owns plan decisions
+## Canonical storage
 
-- which courses appear and in which semester;
-- published-plan placement and optional proposed-plan arrangement;
-- elective groups and either their required hours or custom requirement text;
-- required/elective status;
-- track-specific and extinct flags;
-- phase and header labels;
-- truly plan-specific overrides;
-- fallbacks for courses absent from the catalog;
-- black placeholder cards used by proposed plans.
-- references to reusable shared semester sets.
-- prerequisites, corequisites, minimum completed hours, and track status.
+A major plan stores operator-owned decisions and durable source snapshots:
 
-## `courses.json` owns reusable course facts
+- identity and expected total hours;
+- references to reusable shared semester sets;
+- major-owned semesters and course codes;
+- course prerequisites, corequisites, minimum completed hours, and track status;
+- elective groups, including references to shared elective sources;
+- fallback facts with per-field `catalog` or `manual` provenance;
+- the proposed-page semester arrangement and placeholder cards.
 
-- canonical name;
-- academic and contact hours;
-- prerequisites and corequisites when available;
-- catalog status and category.
+Semester labels, phase rails, renderer coordinates, resolved course facts, and
+calculated totals are derived.
 
-## Resolved output owns derived facts
+There is intentionally no migration or legacy adapter. Files must use the
+current canonical shape; obsolete shapes fail validation instead of being
+silently rewritten.
 
-- normalized code and subject;
-- selected source and provenance (`male`, `female`, `manual`, `placeholder`, or
-  `unresolved`);
-- Figma course color;
-- parent-course marker;
-- semester and cumulative totals;
-- elective groups;
-- published and proposed plan totals;
-- diagnostics.
+## Course entries and facts
 
-Generated resolved output is never hand-edited.
-
-## GUI persistence
-
-The GUI adds no private data model. It reads and writes the same schema-compatible
-`plan.json` files used by the CLI:
-
-```text
-colleges/<college-id>/<major-id>/plan.json
-```
-
-College IDs and major IDs are safe stable path segments. College display names
-are stored in the college directory metadata; a major's display name and all plan
-decisions remain in its `plan.json`.
-
-Ordinary semester and elective entries persist only a normalized course code.
-An object entry is used when the operator makes a first-class plan-rule decision.
-Missing courses are described under `fallbackCourses` with name plus all four
-hour fields; explicit zero is preserved. Proposal placeholders carry their own
-facts.
-
-Resolution order is protected:
-
-```text
-override -> Male -> Female -> fallback -> unresolved error
-```
-
-The Male catalog wins a conflicting shared code. The Female catalog contributes
-codes absent from the Male catalog. Neither file is mutated by the GUI. Source
-badges and `catalogSource` survive section aggregation.
-
-Published semester and elective entries are canonicalized automatically by
-course number then Arabic subject. A proposal semester stores:
+A course entry may be a code string or an object containing plan-owned rules:
 
 ```json
 {
-  "id": "proposal-1",
-  "name": "المستوى الأول",
-  "courseOrder": ["101 عسب", "101 ريض"],
-  "placeholders": []
+  "code": "201 عال",
+  "prerequisites": ["101 عال"],
+  "corequisites": [],
+  "minimumCompletedCredits": 30,
+  "trackSpecific": true
 }
 ```
 
-Across the proposal, `courseOrder` must equal the complete published real-course
-set exactly once. It is arrangement, not a second course catalog. Placeholder
-objects are explicit additions and render after real courses.
+Catalog lookup is Male, then Female for an absent code, then a plan fallback.
+On save, catalog facts used by the plan are copied to `fallbackCourses` with
+per-field provenance so the plan remains reproducible if a catalog row later
+disappears. Operator edits are marked `manual` and are never overwritten by
+ordinary saves. The explicit refresh action replaces a snapshot from the
+current catalog.
 
-Global edition/release defaults live in `data/settings.json`. Reusable semester
-sources live outside plans and are referenced by ID through
-`sharedSemesterSets`; they may compose other shared sets without copying them.
+If any activity field is known, missing sibling activity fields normalize to
+zero. If all activity fields are unknown, they stay unknown and resolution
+reports the missing data.
+
+## Shared semester sets
+
+Reusable semester sources live at:
+
+```text
+data/shared-semester-sets/<id>.json
+```
+
+A major references them by ID:
+
+```json
+{
+  "sharedSemesterSets": ["cfy-science"],
+  "semesters": [
+    { "id": "major-3", "courses": ["111 عال", "151 ريض"] }
+  ]
+}
+```
+
+The selected sets are prepended to the major-owned semesters. Stable composed
+IDs preserve proposed-page placement as the source changes. Labels are derived
+from the combined order.
+
+## Shared elective sources
+
+Reusable elective pools are separate from shared semester sets:
+
+```text
+data/shared-elective-groups/<id>.json
+```
+
+A plan references a source and stores only major-specific decisions:
+
+```json
+{
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "sourceId": "university-requirements"
+    }
+  ]
+}
+```
+
+The resolver composes the source courses and fallbacks, then removes courses
+already used by the published plan and subtracts their distinct academic hours
+from the source requirement. The source itself remains unchanged. A referenced
+source cannot be deleted.
+
+## Proposed page
+
+The proposal stores placement, order, semester type, and placeholders, but
+never duplicates real-course facts:
+
+```json
+{
+  "proposal": {
+    "enabled": true,
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "proposal-regular-1",
+        "sourceSemesterId": "major-3",
+        "type": "regular",
+        "courseOrder": ["111 عال", "151 ريض"],
+        "placeholders": [
+          {
+            "id": "scientific-placeholder",
+            "name": "من المتطلبات العلمية",
+            "academicHours": 4,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "type": "summer",
+        "courseOrder": [],
+        "placeholders": []
+      }
+    ]
+  }
+}
+```
+
+Every published real course appears exactly once in the proposal. Real courses
+may be moved between regular and summer semesters and reordered; they cannot be
+added, deleted, or edited there. Reconciliation discards stale references,
+removes duplicates, and inserts newly published courses into their source
+semester. Placeholders always render after real courses and use the visible code
+`مقرر`.
+
+## Resolved output
+
+Generated resolved output owns:
+
+- automatic Arabic semester labels and phase/year rails;
+- normalized code and subject;
+- source provenance and quality badges;
+- course colors, parent markers, and track markers;
+- semester, cumulative, and plan totals;
+- composed shared semesters and shared elective pools;
+- reconciled published and proposed pages;
+- diagnostics.
+
+Resolved output is generated and never hand-edited.

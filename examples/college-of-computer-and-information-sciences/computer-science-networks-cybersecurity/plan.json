@@ -14,35 +14,7 @@
   "sortCourses": "input",
   "semesters": [
     {
-      "number": 1,
-      "name": "المستوى الأول",
-      "yearLabel": "السنة التحضيرية",
-      "expectedCredits": 16,
-      "courses": [
-        "101 كيم",
-        "101 ريد",
-        "101 إحص",
-        "100 عرب",
-        "100 إنجل"
-      ]
-    },
-    {
-      "number": 2,
-      "name": "المستوى الثاني",
-      "yearLabel": "السنة التحضيرية",
-      "expectedCredits": 16,
-      "courses": [
-        "110 إنجل",
-        "101 نهج",
-        "101 فجب",
-        "101 ريض",
-        "101 تقن"
-      ]
-    },
-    {
-      "number": 3,
-      "name": "المستوى الثالث",
-      "yearLabel": "السنة الثانية",
+      "id": "published-level-3",
       "expectedCredits": 12,
       "courses": [
         "151 ريض",
@@ -52,9 +24,7 @@
       ]
     },
     {
-      "number": 4,
-      "name": "المستوى الرابع",
-      "yearLabel": "السنة الثانية",
+      "id": "published-level-4",
       "expectedCredits": 15,
       "courses": [
         "244 ريض",
@@ -65,9 +35,7 @@
       ]
     },
     {
-      "number": 5,
-      "name": "المستوى الخامس",
-      "yearLabel": "السنة الثالثة",
+      "id": "published-level-5",
       "expectedCredits": 15,
       "courses": [
         "380 عال",
@@ -78,9 +46,7 @@
       ]
     },
     {
-      "number": 6,
-      "name": "المستوى السادس",
-      "yearLabel": "السنة الثالثة",
+      "id": "published-level-6",
       "expectedCredits": 15,
       "courses": [
         "429 عال",
@@ -91,9 +57,7 @@
       ]
     },
     {
-      "number": 7,
-      "name": "المستوى السابع",
-      "yearLabel": "السنة الرابعة",
+      "id": "published-level-7",
       "expectedCredits": 12,
       "courses": [
         "488 عال",
@@ -104,9 +68,7 @@
       ]
     },
     {
-      "number": 8,
-      "name": "المستوى الثامن",
-      "yearLabel": "السنة الرابعة",
+      "id": "published-level-8",
       "expectedCredits": 7,
       "courses": [
         "492 عال",
@@ -116,20 +78,7 @@
   ],
   "electiveGroups": [
     {
-      "id": "university-requirements",
-      "name": "متطلبات الجامعة",
-      "requiredHours": 4,
-      "courses": [
-        "104 سلم",
-        "103 سلم",
-        "102 سلم",
-        "101 سلم",
-        "100 قرأ",
-        "100 سلم",
-        "109 سلم",
-        "106 سلم",
-        "105 سلم"
-      ]
+      "sourceId": "university-requirements"
     },
     {
       "id": "scientific-requirements",
@@ -781,227 +730,174 @@
     }
   },
   "proposal": {
+    "enabled": true,
     "title": "الخطة المقترحة",
-    "expectedCredits": 128,
-    "phases": [
-      {
-        "label": "السنة التحضيرية",
-        "start": 1,
-        "end": 2
-      },
-      {
-        "label": "التخصص",
-        "start": 3,
-        "end": 9
-      }
-    ],
+    "showGuide": true,
     "semesters": [
       {
-        "number": 1,
-        "name": "المستوى الأول",
-        "yearLabel": "السنة التحضيرية",
-        "expectedCredits": 16,
-        "courses": [
-          "101 كيم",
-          "101 ريد",
-          "101 إحص",
+        "id": "shared-cfy-science-cfy-science-1",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-1",
+        "type": "regular",
+        "courseOrder": [
+          "100 إنجل",
           "100 عرب",
-          "100 إنجل"
-        ]
+          "101 إحص",
+          "101 ريد",
+          "101 كيم"
+        ],
+        "placeholders": []
       },
       {
-        "number": 2,
-        "name": "المستوى الثاني",
-        "yearLabel": "السنة التحضيرية",
-        "expectedCredits": 16,
-        "courses": [
-          "110 إنجل",
-          "101 نهج",
-          "101 فجب",
+        "id": "shared-cfy-science-cfy-science-2",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-2",
+        "type": "regular",
+        "courseOrder": [
+          "101 تقن",
           "101 ريض",
-          "101 تقن"
-        ]
+          "101 فجب",
+          "101 نهج",
+          "110 إنجل"
+        ],
+        "placeholders": []
       },
       {
-        "number": 3,
-        "name": "المستوى الثالث",
-        "yearLabel": "السنة الثانية",
-        "expectedCredits": 16,
-        "courses": [
-          {
-            "kind": "placeholder",
-            "code": "مقرر",
-            "fallback": {
-              "name": "من المتطلبات العلمية",
-              "academicHours": 4,
-              "lectureHours": 0,
-              "practicalHours": 0,
-              "exerciseHours": 0,
-              "prerequisites": [],
-              "corequisites": [],
-              "color": "#000000"
-            }
-          },
-          "151 ريض",
-          "111 عال",
+        "id": "published-level-3",
+        "sourceSemesterId": "published-level-3",
+        "type": "regular",
+        "courseOrder": [
+          "106 ريض",
           "107 سلم",
-          "106 ريض"
+          "111 عال",
+          "151 ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-3-1",
+            "name": "من المتطلبات العلمية",
+            "academicHours": 4,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
         ]
       },
       {
-        "number": 4,
-        "name": "المستوى الرابع",
-        "yearLabel": "السنة الثانية",
-        "expectedCredits": 15,
-        "courses": [
-          "244 ريض",
-          "281 عال",
-          "220 عال",
+        "id": "published-level-4",
+        "sourceSemesterId": "published-level-4",
+        "type": "regular",
+        "courseOrder": [
+          "108 سلم",
           "113 عال",
-          "108 سلم"
-        ]
+          "220 عال",
+          "244 ريض",
+          "281 عال"
+        ],
+        "placeholders": []
       },
       {
-        "number": 5,
-        "name": "المستوى الخامس",
-        "yearLabel": "السنة الثالثة",
-        "expectedCredits": 17,
-        "courses": [
-          {
-            "kind": "placeholder",
-            "code": "مقرر",
-            "fallback": {
-              "name": "من متطلبات الجامعة",
-              "academicHours": 2,
-              "lectureHours": 0,
-              "practicalHours": 0,
-              "exerciseHours": 0,
-              "prerequisites": [],
-              "corequisites": [],
-              "color": "#000000"
-            }
-          },
-          "380 عال",
-          "339 عال",
-          "304 عال",
+        "id": "published-level-5",
+        "sourceSemesterId": "published-level-5",
+        "type": "regular",
+        "courseOrder": [
+          "212 عال",
           "215 عال",
-          "212 عال"
+          "304 عال",
+          "339 عال",
+          "380 عال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-5-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
         ]
       },
       {
-        "number": 6,
-        "name": "المستوى السادس",
-        "yearLabel": "السنة الثالثة",
-        "expectedCredits": 17,
-        "courses": [
-          {
-            "kind": "placeholder",
-            "code": "مقرر",
-            "fallback": {
-              "name": "من متطلبات الجامعة",
-              "academicHours": 2,
-              "lectureHours": 0,
-              "practicalHours": 0,
-              "exerciseHours": 0,
-              "prerequisites": [],
-              "corequisites": [],
-              "color": "#000000"
-            }
-          },
-          "429 عال",
-          "361 عال",
-          "329 عال",
+        "id": "published-level-6",
+        "sourceSemesterId": "published-level-6",
+        "type": "regular",
+        "courseOrder": [
+          "227 عال",
           "311 عال",
-          "227 عال"
+          "329 عال",
+          "361 عال",
+          "429 عال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-6-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
         ]
       },
       {
-        "number": 7,
-        "name": "المستوى السابع",
-        "yearLabel": "السنة الرابعة",
-        "expectedCredits": 14,
-        "courses": [
-          {
-            "kind": "placeholder",
-            "code": "مقرر",
-            "fallback": {
-              "name": "من متطلبات المسار",
-              "academicHours": 3,
-              "lectureHours": 0,
-              "practicalHours": 0,
-              "exerciseHours": 0,
-              "prerequisites": [],
-              "corequisites": [],
-              "color": "#000000"
-            }
-          },
-          "488 عال",
-          "437 عال",
+        "id": "published-level-7",
+        "sourceSemesterId": "published-level-7",
+        "type": "regular",
+        "courseOrder": [
+          "340 عال",
           "343 عال",
-          "340 عال"
+          "437 عال",
+          "479 عال",
+          "488 عال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-7-1",
+            "name": "من متطلبات المسار",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
         ]
       },
       {
-        "number": 8,
-        "name": "المستوى الثامن",
-        "yearLabel": "السنة الرابعة",
-        "expectedCredits": 16,
-        "courses": [
+        "id": "published-level-8",
+        "sourceSemesterId": "published-level-8",
+        "type": "regular",
+        "courseOrder": [
+          "453 عال",
+          "492 عال"
+        ],
+        "placeholders": [
           {
-            "kind": "placeholder",
-            "code": "مقرر",
-            "fallback": {
-              "name": "من متطلبات المسار",
-              "academicHours": 3,
-              "lectureHours": 0,
-              "practicalHours": 0,
-              "exerciseHours": 0,
-              "prerequisites": [],
-              "corequisites": [],
-              "color": "#000000"
-            }
+            "id": "placeholder-8-1",
+            "name": "من متطلبات المسار",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
           },
           {
-            "kind": "placeholder",
-            "code": "مقرر",
-            "fallback": {
-              "name": "من متطلبات المسار",
-              "academicHours": 3,
-              "lectureHours": 0,
-              "practicalHours": 0,
-              "exerciseHours": 0,
-              "prerequisites": [],
-              "corequisites": [],
-              "color": "#000000"
-            }
+            "id": "placeholder-8-2",
+            "name": "من متطلبات المسار",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
           },
           {
-            "kind": "placeholder",
-            "code": "مقرر",
-            "fallback": {
-              "name": "من متطلبات المسار",
-              "academicHours": 3,
-              "lectureHours": 0,
-              "practicalHours": 0,
-              "exerciseHours": 0,
-              "prerequisites": [],
-              "corequisites": [],
-              "color": "#000000"
-            }
-          },
-          "492 عال",
-          "453 عال"
-        ]
-      },
-      {
-        "number": 9,
-        "name": "صيفي",
-        "yearLabel": "فصل صيفي",
-        "expectedCredits": 1,
-        "courses": [
-          "479 عال"
+            "id": "placeholder-8-3",
+            "name": "من متطلبات المسار",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
         ]
       }
     ]
-  }
+  },
+  "sharedSemesterSets": [
+    "cfy-science"
+  ]
 }

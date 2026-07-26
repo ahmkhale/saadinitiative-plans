@@ -5,6 +5,7 @@ import path from "node:path";
 import test from "node:test";
 import { createCatalogService } from "../src/catalog-service.mjs";
 import { createGuiServer } from "../src/gui-server.mjs";
+import { createSharedElectiveGroupStore } from "../src/shared-elective-groups.mjs";
 import { createSharedSemesterSetStore } from "../src/shared-semester-sets.mjs";
 import { createPlanStore } from "../src/store.mjs";
 
@@ -43,12 +44,18 @@ function fixture() {
   const sharedSetStore = createSharedSemesterSetStore({
     root: path.join(root, "shared-semester-sets"),
     planStore: store,
+    catalogService,
+  });
+  const sharedElectiveStore = createSharedElectiveGroupStore({
+    root: path.join(root, "shared-elective-groups"),
+    planStore: store,
+    catalogService,
   });
   store.createCollege({ id: "ccis", name: "كلية علوم الحاسب" });
   const plan = store.createMajor("ccis", { id: "cs", major: "علوم الحاسب", expectedCredits: 3 });
   plan.semesters[0].courses = ["101 عال"];
   store.savePlan("ccis", "cs", plan);
-  return { root, store, catalogService, plan, settingsPath, sharedSetStore };
+  return { root, store, catalogService, plan, settingsPath, sharedSetStore, sharedElectiveStore };
 }
 
 test("GUI API lists, reads, validates, and previews unsaved plans", async () => {
@@ -58,6 +65,7 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
     catalogService: value.catalogService,
     settingsPath: value.settingsPath,
     sharedSetStore: value.sharedSetStore,
+    sharedElectiveStore: value.sharedElectiveStore,
     outputRoot: path.join(value.root, "dist"),
   });
   const address = await listen(server);
@@ -90,6 +98,31 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
     const readSet = await fetch(`${base}/api/shared-semester-sets/foundation`)
       .then((response) => response.json());
     assert.equal(readSet.sharedSemesterSet.name, "السنة المشتركة");
+
+    const createdElective = await fetch(`${base}/api/shared-elective-groups`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: "university",
+        name: "متطلبات الجامعة",
+        requiredHours: 2,
+        courses: ["101 عال"],
+      }),
+    }).then((response) => response.json());
+    assert.equal(createdElective.sharedElectiveGroup.fallbackCourses["101 عال"].name, "مقدمة في البرمجة");
+
+    const duplicatedElective = await fetch(`${base}/api/shared-elective-groups/university/duplicate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: "university-copy", name: "نسخة متطلبات الجامعة" }),
+    }).then((response) => response.json());
+    assert.equal(duplicatedElective.sharedElectiveGroup.courses[0], "101 عال");
+    assert.equal((await fetch(`${base}/api/shared-elective-groups/university-copy`, { method: "DELETE" })).status, 200);
+
+    const referencedPlan = value.store.getPlan("ccis", "cs");
+    referencedPlan.electiveGroups = [{ sourceId: "university" }];
+    value.store.savePlan("ccis", "cs", referencedPlan);
+    assert.equal((await fetch(`${base}/api/shared-elective-groups/university`, { method: "DELETE" })).status, 400);
 
     const read = await fetch(`${base}/api/colleges/ccis/majors/cs`).then((response) => response.json());
     assert.equal(read.plan.major, "علوم الحاسب");
@@ -150,6 +183,8 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
   const server = createGuiServer({
     store: value.store,
     catalogService: value.catalogService,
+    sharedSetStore: value.sharedSetStore,
+    sharedElectiveStore: value.sharedElectiveStore,
     outputRoot,
     exportDraftFn: fakeExport,
     openOutputFn: (folder) => {
@@ -205,7 +240,12 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
 
 test("GUI API rejects path traversal", async () => {
   const value = fixture();
-  const server = createGuiServer({ store: value.store, catalogService: value.catalogService });
+  const server = createGuiServer({
+    store: value.store,
+    catalogService: value.catalogService,
+    sharedSetStore: value.sharedSetStore,
+    sharedElectiveStore: value.sharedElectiveStore,
+  });
   const address = await listen(server);
   try {
     const response = await fetch(`http://127.0.0.1:${address.port}/api/colleges`, {

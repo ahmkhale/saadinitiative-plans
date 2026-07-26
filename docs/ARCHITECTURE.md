@@ -6,14 +6,17 @@
 header, semester rows, summaries, course cards, year and phase rails, elective
 groups, proposal guide, and footer. It does not calculate plan totals.
 
-All authoritative geometry is centralized in `src/render-layout.mjs`. See
+All authoritative geometry is centralized in `src/render-layout.mjs`. A
+cumulative layout pass records `y`, `rowCount`, `courseBodyHeight`,
+`summaryHeight`, and `bottom` for every semester. All rails and downstream
+sections consume those entries rather than an index-based pitch. See
 `docs/FIGMA_MEASUREMENTS.md` for the Figma node mapping and extracted values.
 Each page owns a deterministic render context that allocates unique IDs with a
 page-specific prefix, so repeated cards and multipage output cannot collide.
 
 Published and proposed pages retain a fixed `594 pt` width. `render-layout.mjs`
 calculates each page height from its own semester composition, elective groups,
-optional summer row, optional guide, footer gap, and footer. The same dimensions
+optional guide, footer gap, and footer. The same dimensions
 drive the SVG root, viewBox, Inkscape page definitions, PDF, and PNG export.
 Components are never compressed to fit a universal height.
 
@@ -31,12 +34,13 @@ Male/courses.json + Female/courses.json
 plan + catalog + course-colors.json
   -> resolvePlan()
      - source precedence
-     - shared settings and referenced semester-set composition
-     - proposal set-invariant validation
+     - shared settings, semester-source, and elective-source composition
+     - activity-hour normalization and fallback snapshots
+     - automatic Arabic level labels
      - prerequisite graph
      - parent-course derivation
      - semester/elective/proposal totals
-     - placeholders for proposed plans
+     - proposal parent-child reconciliation and placeholders
      - diagnostics
   -> plan.resolved.json
   -> renderPlanDocumentSvg()
@@ -88,15 +92,20 @@ files are lookup accelerators, not complete academic catalogs. The GUI never
 writes course facts back to either source.
 
 `settings.mjs` owns global edition/release defaults. `shared-semester-sets.mjs`
-owns reusable semester sources, supports composition, scans plan usages before
-deletion, and writes atomically. `plan-input.mjs` composes those references before
-resolution and normalizes legacy proposal storage. `store.mjs` writes a timestamped
-backup beside a legacy plan before its first canonical proposal save.
+owns reusable level sources, scans plan usages before deletion, and writes
+atomically. `semester-labels.mjs` labels the final composed sequence, so shared
+foundations and major-specific levels always form one continuous numbering.
+`shared-elective-groups.mjs` provides a separate centrally editable source
+store, usage protection, reference composition, and published-course exclusion.
+`fallback-hydration.mjs` refreshes catalog-derived factual snapshots while
+preserving fields marked as manually edited.
 
-The published model is the decision source. Its semester and elective entries are
-automatically sorted. A proposal persists only semester arrangement
-(`courseOrder`) and explicit `placeholders`; the resolver rejects missing,
-duplicated, or unknown real courses before rendering.
+The published model is the decision source. Its semester and elective entries
+are automatically sorted. A proposal persists stable semester IDs, real-course
+placement/order references, semester type, and placeholders, but never copied
+real-course facts. `proposal-reconciliation.mjs` removes stale references,
+detects duplicates, inherits new parent courses, preserves valid moves, and
+appends placeholders after real courses.
 
 Unsaved editor state remains in the browser. Preview and draft export accept that
 state directly, so saving is not a prerequisite for visual feedback.

@@ -8,12 +8,16 @@ generated output. The fixed values live in `src/render-layout.mjs`.
 | Renderer area | Figma node | Notes |
 | --- | --- | --- |
 | Published reference page | `122:33350` | `594 × 1045` composition for the repository reference example |
-| Proposal and course guide | `122:34146` | Proposal grid, summer row, guide, and footer composition |
+| Proposal and course guide | `122:34146` | Proposal grid, ninth row, guide, and footer composition |
 | Current science plan page | `381:76418` | Cross-check of shared layout components |
 | User-linked course instance | `381:80662` | Normal card without prerequisite |
 | Prerequisite card instance | `381:80184` | Card with prerequisite pill |
 | Main header component | `281:48695` / instance `308:61555` | Title, degree, edition badge, and Saad logo |
 | Course component set | `1:124` | Shared card variants and marker geometry |
+| Seven-course published semester | `142:21542` | `537 × 110`; seventh card starts row two |
+| Seven-course proposed semester | `142:32701` | Independent `537 × 110` proposal wrap |
+| Shared preparatory block | `381:76423` | Two standard rows and shared rails |
+| University elective group | `381:76685` | Multi-row candidates and fixed summary |
 | Elective section | `122:33558` | Multi-row elective groups and summaries |
 | Course guide component | `281:48803` | Scaled card and annotation geometry |
 | Footer component | `281:48888` | Links, copyright, icons, and end-of-page bar |
@@ -25,7 +29,11 @@ generated output. The fixed values live in `src/render-layout.mjs`.
 - Inner content frame: `x=15`, `y=24`, `w=564`.
 - Header: `564 × 42`.
 - Semester grid top: `y=98`.
-- Semester row: `57` high with a `4` gap (`61` pitch).
+- Semester summary: always `57` high.
+- Course body height is `4 + rows × 49 + (rows - 1) × 4 + 4`, where
+  `rows = max(1, ceil(courseCount / 6))`.
+- Body heights are `57`, `110`, `163`, and `216` for one through four rows.
+- The next semester begins `4 pt` after the previous calculated body bottom.
 - Course area: `x=28`, `w=471.757019`.
 - Summary: `x=499.757019`, `w=65.242989`.
 - Year rail: `x=567`, `w=12`.

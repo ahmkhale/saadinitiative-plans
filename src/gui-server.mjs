@@ -7,8 +7,10 @@ import { defaultCatalogService } from "./catalog-service.mjs";
 import { exportDraft, renderDraftPreview, resolveDraft } from "./preview.mjs";
 import { atomicWriteJson, defaultPlanStore, projectRoot } from "./store.mjs";
 import { createSharedSemesterSetStore } from "./shared-semester-sets.mjs";
+import { createSharedElectiveGroupStore } from "./shared-elective-groups.mjs";
+import { refreshFallbackFromCatalog } from "./fallback-hydration.mjs";
 import { readSettings, saveSettings, settingsPath } from "./settings.mjs";
-import { migratePlanForEditor } from "./plan-input.mjs";
+import { preparePlanForEditor } from "./plan-input.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 const guiDir = path.join(projectRoot, "gui");
@@ -83,7 +85,9 @@ export function createGuiServer(options = {}) {
   const outputRoot = path.resolve(options.outputRoot ?? distDir);
   const exportDraftFn = options.exportDraftFn ?? exportDraft;
   const openOutputFn = options.openOutputFn ?? openDirectory;
-  const sharedSetStore = options.sharedSetStore ?? createSharedSemesterSetStore({ planStore: store });
+  const sharedSetStore = options.sharedSetStore ?? createSharedSemesterSetStore({ planStore: store, catalogService });
+  const sharedElectiveStore = options.sharedElectiveStore
+    ?? createSharedElectiveGroupStore({ planStore: store, catalogService });
   const settingsFile = options.settingsPath ?? settingsPath;
 
   async function api(req, res, url) {
@@ -96,6 +100,7 @@ export function createGuiServer(options = {}) {
         catalog: catalogService.summary(),
         settings: readSettings(settingsFile),
         sharedSemesterSets: sharedSetStore.list(),
+        sharedElectiveGroups: sharedElectiveStore.list(),
       });
     }
     if (req.method === "GET" && url.pathname === "/api/catalog/search") {
@@ -106,7 +111,12 @@ export function createGuiServer(options = {}) {
     }
     if (req.method === "POST" && url.pathname === "/api/validate") {
       const body = await readBody(req);
-      const result = resolveDraft(body.plan, { catalogService, settings: readSettings(settingsFile), sharedSemesterSets: sharedSetStore.load() });
+      const result = resolveDraft(body.plan, {
+        catalogService,
+        settings: readSettings(settingsFile),
+        sharedSemesterSets: sharedSetStore.load(),
+        sharedElectiveGroups: sharedElectiveStore.load(),
+      });
       return json(res, 200, {
         ok: result.ok,
         plan: result.plan,
@@ -116,7 +126,12 @@ export function createGuiServer(options = {}) {
     }
     if (req.method === "POST" && url.pathname === "/api/preview") {
       const body = await readBody(req);
-      return json(res, 200, renderDraftPreview(body.plan, { catalogService, settings: readSettings(settingsFile), sharedSemesterSets: sharedSetStore.load() }));
+      return json(res, 200, renderDraftPreview(body.plan, {
+        catalogService,
+        settings: readSettings(settingsFile),
+        sharedSemesterSets: sharedSetStore.load(),
+        sharedElectiveGroups: sharedElectiveStore.load(),
+      }));
     }
     if (req.method === "POST" && url.pathname === "/api/generate") {
       const body = await readBody(req);
@@ -127,6 +142,7 @@ export function createGuiServer(options = {}) {
         catalogService,
         settings: readSettings(settingsFile),
         sharedSemesterSets: sharedSetStore.load(),
+        sharedElectiveGroups: sharedElectiveStore.load(),
         outputRoot,
         keepSvg: Boolean(body.keepSvg),
         png: Boolean(body.png),
@@ -169,6 +185,30 @@ export function createGuiServer(options = {}) {
         return json(res, 201, { ok: true, sharedSemesterSet: sharedSetStore.duplicate(setId, await readBody(req)) });
       }
     }
+    if (segments[1] === "shared-elective-groups") {
+      if (segments.length === 2 && req.method === "POST") {
+        return json(res, 201, { ok: true, sharedElectiveGroup: sharedElectiveStore.create(await readBody(req)) });
+      }
+      const sourceId = segments[2];
+      if (segments.length === 3 && req.method === "GET") {
+        return json(res, 200, { ok: true, sharedElectiveGroup: sharedElectiveStore.get(sourceId) });
+      }
+      if (segments.length === 3 && req.method === "PUT") {
+        return json(res, 200, { ok: true, sharedElectiveGroup: sharedElectiveStore.save(await readBody(req), sourceId) });
+      }
+      if (segments.length === 3 && req.method === "DELETE") {
+        sharedElectiveStore.remove(sourceId);
+        return json(res, 200, { ok: true });
+      }
+      if (segments.length === 4 && segments[3] === "duplicate" && req.method === "POST") {
+        return json(res, 201, { ok: true, sharedElectiveGroup: sharedElectiveStore.duplicate(sourceId, await readBody(req)) });
+      }
+    }
+    if (req.method === "POST" && url.pathname === "/api/fallback/refresh") {
+      const body = await readBody(req);
+      const refreshed = refreshFallbackFromCatalog(body.owner, body.code, catalogService.snapshot().catalog);
+      return json(res, 200, { ok: true, owner: refreshed });
+    }
     if (req.method === "PUT" && segments[1] === "colors" && segments.length === 3) {
       const body = await readBody(req);
       const color = String(body.color ?? "").toUpperCase();
@@ -196,7 +236,7 @@ export function createGuiServer(options = {}) {
         }
         const majorId = segments[4];
         if (segments.length === 5 && req.method === "GET") {
-          return json(res, 200, { ok: true, plan: migratePlanForEditor(store.getPlan(collegeId, majorId)) });
+          return json(res, 200, { ok: true, plan: preparePlanForEditor(store.getPlan(collegeId, majorId)) });
         }
         if (segments.length === 5 && req.method === "PUT") {
           return json(res, 200, { ok: true, plan: store.savePlan(collegeId, majorId, await readBody(req)) });
