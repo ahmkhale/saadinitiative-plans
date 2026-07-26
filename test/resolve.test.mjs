@@ -145,7 +145,7 @@ test("resolves a proposed page with unique black placeholders and a summer total
   assert.equal(diagnostics.summary.errors, 0);
 });
 
-test("reports fixed-card overflow instead of silently shrinking the Figma layout", () => {
+test("reports card-count overflow without treating fitted course names as overflow", () => {
   const longName = "اسم مقرر طويل جدا يتجاوز المساحة المقاسة داخل بطاقة فيقما الثابتة";
   const courses = Array.from({ length: 7 }, (_, index) => `${index + 101} ريض`);
   const fallbackCourses = Object.fromEntries(courses.map((code, index) => [
@@ -170,7 +170,7 @@ test("reports fixed-card overflow instead of silently shrinking the Figma layout
 
   assert.equal(diagnostics.summary.errors, 1);
   assert.ok(diagnostics.items.some((item) => item.code === "SEMESTER_CARD_OVERFLOW"));
-  assert.ok(diagnostics.items.some((item) => item.code === "COURSE_NAME_OVERFLOW"));
+  assert.ok(!diagnostics.items.some((item) => item.code === "COURSE_NAME_OVERFLOW"));
 });
 
 test("first-class plan rules override legacy catalog rules and keep manual zero hours", () => {

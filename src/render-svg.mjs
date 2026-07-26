@@ -43,6 +43,22 @@ function clipped(value, max) {
     : `${characters.slice(0, Math.max(1, max - 1)).join("")}…`;
 }
 
+function estimatedTextUnits(value) {
+  return Array.from(String(value ?? "")).reduce((total, character) => {
+    if (/\s/u.test(character)) return total + 0.28;
+    if (/[\p{P}\p{S}]/u.test(character)) return total + 0.36;
+    if (/[0-9A-Za-z]/u.test(character)) return total + 0.54;
+    return total + 0.6;
+  }, 0);
+}
+
+function fittedText(value, baseSize, maxWidth) {
+  const units = estimatedTextUnits(value);
+  const estimatedWidth = units * baseSize;
+  if (!units || estimatedWidth <= maxWidth) return { size: baseSize };
+  return { size: Math.max(0.1, Math.floor((maxWidth / units) * 1000) / 1000) };
+}
+
 function text({
   x,
   y,
@@ -56,6 +72,7 @@ function text({
   transform,
   dominantBaseline = "middle",
   letterSpacing = 0,
+  dataPart,
 }) {
   const attributes = [
     `x="${x}"`,
@@ -71,6 +88,7 @@ function text({
     `letter-spacing="${letterSpacing}"`,
     `font-kerning="normal"`,
   ];
+  if (dataPart) attributes.push(`data-part="${dataPart}"`);
   if (opacity !== undefined) attributes.push(`opacity="${opacity}"`);
   if (transform) attributes.push(`transform="${transform}"`);
   return `<text ${attributes.join(" ")}>${esc(value)}</text>`;
@@ -167,16 +185,33 @@ function renderCourseCard(context, course, x, y, options = {}) {
   }
 
   if (label) {
-    const labelValue = clipped(label, 28);
+    const labelValue = label;
     const labelWidth = Math.min(layout.prerequisite.maxWidth, Math.max(20, Array.from(labelValue).length * 2.15 + 8));
     const labelX = (layout.width - labelWidth) / 2;
+    const fittedLabel = fittedText(labelValue, 4.5, labelWidth - layout.prerequisite.paddingX * 2);
     parts.push(`<rect data-part="prerequisite-pill" x="${labelX}" y="${layout.prerequisite.y + 0.5}" width="${labelWidth}" height="${layout.prerequisite.height - 1}" rx="${layout.prerequisite.radius}" fill="${COLORS.white}" stroke="${esc(color)}" stroke-width="1"/>`);
-    parts.push(text({ x: layout.width / 2, y: 6, value: labelValue, size: 4.5, weight: 700 }));
+    parts.push(text({
+      x: layout.width / 2,
+      y: 6,
+      value: labelValue,
+      size: fittedLabel.size,
+      dataPart: "prerequisite-label",
+      weight: 700,
+    }));
   }
 
   parts.push(text({ x: 68.5, y: 12.5, value: displayNumber(course.academicHours, "0"), size: 10, weight: 700, direction: "ltr", opacity: 0.9 }));
   parts.push(text({ x: 38, y: 23.5, value: clipped(course.code, 18), size: 12, weight: 700, fill: COLORS.white }));
-  parts.push(text({ x: 38, y: 35, value: clipped(course.name, 44), size: 5, weight: 600, fill: COLORS.white }));
+  const fittedName = fittedText(course.name, 5, layout.title.width - 8);
+  parts.push(text({
+    x: 38,
+    y: 35,
+    value: course.name,
+    size: fittedName.size,
+    dataPart: "course-name",
+    weight: 600,
+    fill: COLORS.white,
+  }));
 
   const metricValues = [course.exerciseHours, course.practicalHours, course.lectureHours];
   metricValues.forEach((value, index) => {

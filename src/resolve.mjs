@@ -216,15 +216,6 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
             : usedFallback ? "مدخل يدويًا" : "بيانات ناقصة",
       location: context.location,
     };
-    if (Array.from(course.name).length > 44) {
-      addDiagnostic(
-        diagnostics,
-        "warnings",
-        "COURSE_NAME_OVERFLOW",
-        `${code} has a course name longer than the fixed Figma card can display.`,
-        { course: code, location: context.location, characterCount: Array.from(course.name).length },
-      );
-    }
     allCourses.push(course);
     if (context.semesterIndex !== null && context.semesterIndex !== undefined) {
       mainCourses.push(course);

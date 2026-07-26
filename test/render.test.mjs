@@ -121,6 +121,34 @@ test("renders exact card markers, metric boxes, prerequisite pill, and six-card 
   assert.match(svg, /data-part="prerequisite-pill"[^>]+height="11"[^>]+rx="6"/);
 });
 
+test("fits long course and prerequisite text without changing card or pill geometry", () => {
+  const longName = "مقدمة شاملة في برمجة الحاسبات وتطبيقاتها الهندسية المتقدمة";
+  const svg = renderPlanSvg({
+    major: "اختبار",
+    degree: "البكالوريوس",
+    semesters: [semester({
+      courses: [course({
+        name: longName,
+        prerequisites: ["101 تقن", "113 عال"],
+        corequisites: ["114 عال"],
+      })],
+    })],
+    electiveGroups: [],
+  });
+
+  const nameTag = svg.match(/<text[^>]*data-part="course-name"[^>]*>/u)?.[0] ?? "";
+  const prerequisiteTag = svg.match(/<text[^>]*data-part="prerequisite-label"[^>]*>/u)?.[0] ?? "";
+  assert.match(nameTag, /font-size="(?!5")[^"]+"/u);
+  assert.match(prerequisiteTag, /font-size="(?!4\.5")[^"]+"/u);
+  assert.doesNotMatch(nameTag, /textLength=/u);
+  assert.doesNotMatch(prerequisiteTag, /textLength=/u);
+  assert.match(svg, /data-part="course-body" x="1" y="6" width="74" height="43" rx="6"/u);
+  assert.match(svg, /data-part="prerequisite-pill"[^>]+width="51"[^>]+height="11"[^>]+rx="6"/u);
+  assert.ok(svg.includes(longName));
+  assert.ok(svg.includes("101 تقن | 113 عال | 114 عال مرافق"));
+  assert.ok(!svg.includes("…"));
+});
+
 test("renders measured semester summary, rails, elective groups, and footer bounds", () => {
   const electiveGroups = [
     { name: "متطلبات الجامعة", requiredHours: 4, courses: Array.from({ length: 9 }, () => course()) },

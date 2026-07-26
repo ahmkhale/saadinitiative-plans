@@ -3,7 +3,9 @@
 - The published-plan and proposed-plan templates now follow the supplied Saad/Figma reference closely, but visual regression still needs to be repeated against each distinct legacy plan family before claiming universal pixel parity.
 - The page template is currently optimized for eight regular levels, with one optional summer row on the proposed page. Plans with more rows need an additional layout profile rather than automatic shrinking.
 - A semester row displays up to six course cards. Larger semesters are rejected with `SEMESTER_CARD_OVERFLOW`; they need a dedicated layout profile rather than automatic shrinking.
-- Course names longer than the fixed card capacity produce `COURSE_NAME_OVERFLOW` so clipping is visible in diagnostics instead of silently changing the measured typography.
+- Long course names and prerequisite/corequisite labels reduce only their own
+  font size to remain on one line; course-card and prerequisite-pill geometry
+  remains fixed.
 - The GUI is optimized for desktop operator use. Its three-pane workflow is not
   intended as a phone editor.
 - Proposal real courses support pointer drag-and-drop. Arrow controls remain as
