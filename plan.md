@@ -1,778 +1,796 @@
+The result is strong, but there is one important architectural mistake: Codex treated `594 × 1045` as the page contract. Your actual contract is:
 
-We are building the Saad academic-plan generator. The data pipeline already works well:
+```text
+width = always 594 pt
+height = derived independently for each page from its content
+```
 
-plan.json
-→ resolve courses from courses.json
-→ calculate hours, prerequisites, parent-course status, totals, etc.
-→ render SVG/PDF
+Also, a 6–10% component difference is still large enough that we should not accept “mostly font rasterization” without another measured pass.
 
-The remaining goal is strict visual parity with the approved Figma design.
+Send Codex this next:
 
-The generated output must look like it was exported directly from Figma—not merely inspired by it.
+````text
+Continue the Saad Plan Generator work, but correct the workflow and architecture before adding the GUI.
 
-## Source of truth
+## Git workflow
 
-Use the actual Figma file as the sole visual specification:
+Do not create branches or pull requests for this repository from now on.
 
-https://www.figma.com/design/3r0vSL0tBOx2y2PKPz4FK3/Plans?node-id=67-5200
+First integrate the existing visual-parity commit into `main`:
 
-Important course-component area:
+- Existing commit: `661ca8e`
+- Existing branch: `codex/figma-visual-parity`
+- Existing draft PR: #1
 
-https://www.figma.com/design/3r0vSL0tBOx2y2PKPz4FK3/Plans?node-id=381-80184
+Prefer a clean fast-forward into `main` when possible. Otherwise cherry-pick the commit.
 
-Do not wait for screenshots from me.
+After confirming the commit is present on `main`:
 
-Use the available Figma integration/MCP tools yourself to:
+- push `main`;
+- close draft PR #1;
+- delete the visual-parity branch locally and remotely;
+- remain on `main`;
+- make all subsequent work directly on `main`;
+- create clear incremental commits and push them.
 
-- inspect the target frame;
-- inspect its child nodes recursively;
-- inspect component sets and variants;
-- retrieve dimensions and coordinates;
-- inspect auto-layout properties;
-- inspect fills, strokes, effects, opacity, radii, and clipping;
-- inspect typography;
-- inspect spacing and padding;
-- inspect local styles and variables;
-- inspect reusable assets and icons;
-- retrieve screenshots from Figma when needed for comparison.
-
-The Figma file is authoritative. Existing generator measurements are only provisional.
-
-## Goal
-
-Perform a complete visual-parity pass across the whole generated academic plan, not only the course card.
-
-The final PDF and SVG should match the approved Figma plan as closely as technically possible in:
-
-- geometry;
-- page size;
-- layout;
-- spacing;
-- rounding;
-- typography;
-- colors;
-- strokes;
-- badges;
-- components;
-- icons;
-- alignment;
-- hierarchy;
-- clipping;
-- page composition.
-
-This is not a redesign.
-
-Do not make subjective improvements. Reproduce the Figma design.
+Do not create another branch or PR.
 
 ---
 
-# Scope
+# Phase 1 — Correct dynamic page height
 
-Inspect and match every visible part of the design.
+The current implementation incorrectly treats `594 × 1045 pt` as the universal page size.
 
-## 1. Page and canvas
+The real rule is:
 
-Verify from Figma:
+```text
+page width = fixed at 594 pt
+page height = calculated from the content of that specific page
+````
 
-- exact page width and height;
-- orientation;
-- page background;
-- outer margins;
-- safe area;
-- placement of all major sections;
-- multipage layout;
-- page separation;
-- PDF page bounds;
-- any bleed or clipping behavior.
+The height depends on:
 
-Do not assume the current `594 × 1045` dimensions are correct without verifying them from Figma.
+* number of semesters;
+* number and arrangement of course rows;
+* year and phase grouping;
+* elective groups;
+* optional summer semester;
+* optional proposed plan;
+* optional explanatory guide;
+* footer;
+* section gaps and page margins.
 
-## 2. Main header
+The `978`, `983.748779`, and `1045` heights seen in Figma or generated fixtures belong to specific compositions. None of them is a universal constant.
 
-Match the complete header:
+## Required behavior
 
-- Saad logo;
-- logo dimensions;
-- logo position;
-- title;
-- subtitle;
-- university name;
-- college name;
-- major name;
-- degree name;
-- plan/version text;
-- edition badge;
-- release badge or number;
-- decorative shapes;
-- top spacing;
-- left and right alignment;
-- typography;
-- line height;
-- text wrapping;
-- colors;
-- border radii;
-- badge padding;
-- badge spacing.
-
-Inspect whether the header uses frames, auto layout, groups, masks, or reusable components and reproduce the resulting geometry.
-
-Do not use approximate logo text when the Figma design contains an asset or vector.
-
-## 3. Semester containers
-
-Match every semester row:
-
-- container width and height;
-- x/y position;
-- outer corner radius;
-- stroke color;
-- stroke width;
-- background;
-- internal padding;
-- distance between semester rows;
-- placement of course cards;
-- course-card gap;
-- vertical alignment;
-- available empty space;
-- clipping;
-- behavior for semesters with fewer courses;
-- behavior for six courses;
-- RTL ordering.
-
-Make the layout deterministic from measured constants.
-
-## 4. Semester summary panel
-
-Match the semester summary component:
-
-- cyan title area;
-- title dimensions;
-- title rounding;
-- semester title position;
-- cumulative-hours column;
-- semester-hours column;
-- vertical “الساعات” label;
-- column widths;
-- separators;
-- backgrounds;
-- tint colors;
-- typography;
-- number baselines;
-- label baselines;
-- border placement;
-- corner radii;
-- internal alignment.
-
-Inspect the actual Figma component rather than inferring the geometry from the current generated result.
-
-## 5. Course cards
-
-Match the complete course-card component:
-
-- card width and height;
-- body radius;
-- fill style;
-- academic-hours badge;
-- course code;
-- course name;
-- bottom hour boxes;
-- prerequisite label;
-- parent-course marker;
-- track marker;
-- extinct-course marker;
-- all component variants;
-- clipping and masks;
-- internal padding;
-- text alignment;
-- typography;
-- long-name handling;
-- scaling in the explanatory legend.
-
-The markers must visually belong to the card exactly as they do in Figma.
-
-The hour boxes must use the same geometry and clipping as Figma, including any asymmetric radii.
-
-Do not implement the academic-hours corner as a generic shape without checking the real node.
-
-## 6. Year rails
-
-Match the year indicators:
-
-- exact width;
-- exact height;
-- placement beside semester groups;
-- outline/fill;
-- corner radius;
-- text direction;
-- rotated text;
-- typography;
-- spacing from semester containers;
-- grouping of two semesters per year;
-- handling of the final or summer semester.
-
-Verify whether the year label is centered mathematically or optically in Figma.
-
-## 7. Phase/stage rails
-
-Match the vertical phase labels and their grouping:
-
-- placement;
-- width;
-- height;
-- fill;
-- stroke;
-- radius;
-- text;
-- rotation;
-- typography;
-- spacing;
-- which semester rows each phase spans.
-
-Do not derive the grouping only from current implementation assumptions when the plan JSON or Figma layout indicates otherwise.
-
-## 8. Elective groups
-
-Match every elective section:
-
-- heading;
-- required-hours indicator;
-- explanatory text;
-- enclosing panel;
-- course-card rows;
-- number of cards per row;
-- card gaps;
-- row gaps;
-- padding;
-- border;
-- background;
-- corner radius;
-- group ordering;
-- spacing between groups;
-- section height;
-- alignment with the main plan.
-
-Handle variable group sizes without breaking the Figma layout.
-
-## 9. Proposed plan page
-
-Match the complete proposed-plan page:
-
-- page header;
-- title;
-- semester rows;
-- cumulative totals;
-- placeholder cards;
-- special labels;
-- any difference from the published-plan page;
-- summer semester;
-- year/phase rails;
-- spacing;
-- footer;
-- explanatory elements.
-
-Do not treat page 2 as a generic copy of page 1. Inspect its actual Figma structure.
-
-## 10. Placeholder cards
-
-Match black or special placeholder courses such as:
-
-- مقرر من المتطلبات العلمية;
-- elective placeholders;
-- track placeholders;
-- other non-catalog cards.
-
-Inspect their exact:
-
-- fill;
-- typography;
-- card geometry;
-- hours badge;
-- marker behavior;
-- title placement;
-- fallback behavior.
-
-They must not inherit visual properties that differ from their Figma variants.
-
-## 11. Summer semester
-
-Match the summer-semester presentation:
-
-- placement;
-- row height;
-- title;
-- summary;
-- year/phase treatment;
-- course-card alignment;
-- cumulative-hour behavior;
-- spacing above and below;
-- surrounding borders.
-
-## 12. Course-card explanatory guide
-
-Match the entire guide/legend from Figma:
-
-- enlarged sample card;
-- scale;
-- marker callouts;
-- connector lines;
-- headings;
-- explanatory text;
-- contact-hour explanations;
-- academic-hours explanation;
-- parent-course explanation;
-- track-course explanation;
-- extinct-course explanation;
-- colors;
-- line widths;
-- positions;
-- text wrapping;
-- spacing.
-
-The enlarged card should reuse the same course-card geometry when appropriate, but it must still match the Figma guide exactly.
-
-Do not let improvements to the normal card break the legend card.
-
-## 13. Badges and labels
-
-Inspect and match all badges:
-
-- edition/version badges;
-- release badge;
-- prerequisite pill;
-- section labels;
-- required-hours badges;
-- special course markers;
-- track indicators;
-- any small chips elsewhere.
-
-Match:
-
-- horizontal and vertical padding;
-- radius;
-- fill;
-- stroke;
-- opacity;
-- typography;
-- baseline;
-- placement;
-- minimum and maximum width.
-
-## 14. Typography
-
-Use the same font family and weights as Figma.
-
-Inspect:
-
-- IBM Plex Sans Arabic family variant;
-- regular/medium/semibold/bold usage;
-- exact font size;
-- line height;
-- letter spacing;
-- paragraph alignment;
-- Arabic baseline;
-- number baseline;
-- RTL/LTR direction;
-- optical centering;
-- text wrapping.
-
-Do not fake weights by mapping several Figma weights to the same SVG value unless technically unavoidable.
-
-Review the current `text()` helper. It currently appears to simplify multiple font weights. Correct that where necessary.
-
-Do not include or commit font files unless they are already legitimately part of the repository and intended for use. Use the project’s existing font-loading/export mechanism.
-
-## 15. Colors and styles
-
-Read the actual Figma styles and variables.
-
-Match:
-
-- Saad cyan;
-- light cyan tint;
-- plan borders;
-- gray text;
-- white;
-- black;
-- course colors;
-- badge opacity;
-- marker colors;
-- track stroke;
-- shadows, if any.
-
-Do not use visually similar hex values when Figma provides the exact values.
-
-Preserve the course-color resolution system, but ensure the rendered value matches the current Figma style for that course label.
-
-## 16. Strokes, shadows, and effects
-
-Inspect:
-
-- stroke alignment;
-- stroke width;
-- dash patterns;
-- opacity;
-- drop shadows;
-- inner shadows;
-- blur;
-- blend mode.
-
-SVG/PDF may require an equivalent implementation, but it should reproduce the Figma appearance.
-
-## 17. Footer and remaining visuals
-
-Inspect the bottom of both pages and match everything visible:
-
-- footer text;
-- copyright;
-- disclaimer;
-- website or social information;
-- logos;
-- page labels;
-- decorative elements;
-- separators;
-- spacing.
-
-Do not leave an element out merely because it is small.
-
----
-
-# Architecture and code quality
-
-The renderer is currently centered around `src/render-svg.mjs`.
-
-Refactor it into understandable visual components when helpful, for example:
-
-- `renderHeader`
-- `renderCourseCard`
-- `renderSemesterRow`
-- `renderSemesterSummary`
-- `renderYearRail`
-- `renderPhaseRail`
-- `renderElectiveGroup`
-- `renderProposalPage`
-- `renderCourseGuide`
-- `renderFooter`
-
-Use named geometry constants or frozen layout objects instead of accumulating unexplained values.
+Each generated page must calculate its height independently.
 
 For example:
 
-```js
-const COURSE_CARD_LAYOUT = Object.freeze({
-  width: ...,
-  height: ...,
-  radius: ...,
-  academicBadge: {
-    x: ...,
-    y: ...,
-    width: ...,
-    height: ...,
-    radii: ...
-  },
-  parentMarker: {
-    cx: ...,
-    cy: ...,
-    radius: ...
-  },
-  metrics: {
-    x: ...,
-    y: ...,
-    width: ...,
-    height: ...,
-    gap: ...,
-    radius: ...
-  }
-});
-````
+```text
+published page:
+top margin
++ header
++ header gap
++ semester/phase composition
++ elective composition
++ footer gap
++ footer
++ bottom margin
 
-The measurements must come from Figma.
-
-Avoid one-off offsets that only fix a single screenshot.
-
-Keep all calculations deterministic.
-
-Do not change unrelated data behavior.
-
----
-
-# SVG correctness
-
-Ensure:
-
-* all clip paths and mask IDs are unique;
-* IDs remain unique across multiple pages;
-* IDs remain unique when the same card appears in the legend;
-* IDs do not collide when two elements share coordinates;
-* referenced IDs remain valid after multipage export;
-* clipping behaves consistently in browsers, Inkscape, and generated PDFs;
-* SVG remains parseable;
-* generated PDF remains valid;
-* no element unintentionally extends beyond its page.
-
-Prefer a deterministic render-context ID allocator over coordinate-based IDs.
-
-For example, the renderer can create a context:
-
-```js
-const renderContext = {
-  nextId(prefix) {
-    ...
-  }
-};
+proposal page:
+top margin
++ proposal header
++ semester/phase composition
++ optional summer semester
++ optional guide
++ footer gap
++ footer
++ bottom margin
 ```
 
-Pass that context through component renderers.
+The footer must follow the content. It must not remain at a globally hard-coded `y=961`.
+
+The following must all use the calculated height:
+
+* SVG `height`;
+* SVG `viewBox`;
+* Inkscape page bounds;
+* PDF page dimensions;
+* PNG render dimensions;
+* multipage SVG page definitions.
+
+A two-page document may legitimately contain two pages with the same width but different heights.
+
+Do not scale or compress components to fit a fixed page height.
+
+Keep the Figma component dimensions fixed and expand the page vertically.
+
+## Tests for dynamic height
+
+Add tests proving that:
+
+* width is always exactly `594`;
+* a six-semester plan is shorter than an eight-semester plan;
+* adding an elective group increases the page height;
+* adding a second elective row increases the height;
+* adding a summer semester increases proposal-page height;
+* adding the guide increases proposal-page height;
+* published and proposal pages can have different heights;
+* the footer is always below the final content section;
+* no rendered section exceeds the calculated page bounds;
+* identical input produces identical dimensions.
+
+Update documentation and remove statements that describe `594 × 1045` as the universal page size.
 
 ---
 
-# Data behavior that must remain unchanged
+# Phase 2 — Continue the visual-parity pass
 
-Do not break or redesign:
+The first pass improved the whole-page difference, but the work is not finished.
 
-* `plan.json` input;
-* `courses.json` lookup;
-* fallback course behavior;
-* overrides;
-* hour calculations;
-* prerequisite resolution;
-* corequisite resolution;
-* parent-course derivation;
-* elective calculations;
-* proposal calculations;
-* diagnostics;
-* batch generation;
-* PDF-by-default behavior;
-* optional SVG/PNG flags.
+Current reported differences:
 
-This task is principally about visual rendering and layout.
+* published page: 6.82%;
+* proposal/guide: 7.17%;
+* header: 7.53%;
+* semester: 6.58%;
+* course card: 6.05%;
+* electives: 5.90%;
+* footer: 4.34%;
+* guide: 9.79%.
 
-Only change data code when a visual requirement exposes an actual correctness bug.
+Do not automatically attribute these differences to font rasterization.
 
----
+Determine which differences are caused by:
 
-# Figma inspection workflow
+* incorrect geometry;
+* wrong page composition;
+* incorrect font family or weight;
+* baseline placement;
+* line height;
+* text measurement;
+* missing clipping;
+* incorrect opacity;
+* stroke alignment;
+* wrong layer order;
+* Figma versus Inkscape rasterization.
 
-Before editing:
+Only classify something as an unavoidable renderer difference after proving that the vector geometry and text bounds agree.
 
-1. Open the target Figma frame.
-2. Inspect its top-level dimensions and children.
-3. Record the node hierarchy.
-4. Identify all reusable components and variants.
-5. Inspect local styles and variables.
-6. Inspect typography.
-7. Inspect every page or major frame used in the generated output.
-8. Take reference screenshots directly through the Figma integration.
-9. Create a small measurement document or code comment mapping important Figma nodes to renderer components.
+## Focus areas
 
-Do not ask me to provide screenshots.
+Continue inspecting the real Figma nodes and improve:
 
-Do not rely solely on the PNG preview of the whole frame when node metadata is available.
-
-If a node is too large to inspect at once, inspect its children individually.
-
----
-
-# Visual verification loop
-
-Do not stop after one implementation pass.
-
-For each major section:
-
-1. Generate the real reference plan.
-2. Render the output to a high-resolution PNG.
-3. Obtain the matching Figma screenshot directly.
-4. Crop both to the same physical region.
-5. Normalize dimensions.
-6. Create:
-
-   * a side-by-side comparison;
-   * a 50% opacity overlay;
-   * a pixel-difference image.
-7. Inspect the differences.
-8. adjust the renderer;
-9. regenerate;
-10. repeat.
-
-Perform this loop for at least:
-
-* header;
-* one complete semester row;
-* semester summary;
-* normal course card;
-* parent course card;
-* course with prerequisite;
-* year rail;
-* phase rail;
-* elective group;
-* proposed-plan row;
-* summer semester;
+* header composition and typography;
+* title and badge alignment;
+* semester summaries;
+* course-card internal geometry;
+* course-name and code baselines;
+* prerequisite labels;
+* year and phase rails;
+* elective group headers and row spacing;
+* proposal page;
+* summer row;
 * explanatory guide;
-* footer;
-* full page 1;
-* full page 2.
+* connector lines;
+* footer.
 
-Do not treat a low whole-page difference score as proof of parity. Small components must also be inspected at high zoom.
+The guide currently has the highest reported difference and needs a dedicated pass.
 
-The goal is that remaining differences are mostly unavoidable rendering differences, such as font rasterization—not incorrect geometry.
+Use close-up comparisons in addition to whole-page comparisons.
+
+Do not hard-code the contents or coordinates of one particular major. Extract reusable layout rules.
+
+## Generalization check
+
+Generate and inspect at least two materially different plans:
+
+1. the current reference plan;
+2. another plan with a different number of courses, semesters, and elective groups.
+
+Both plans must use the same shared renderer without special-case coordinates.
 
 ---
 
-# Responsive/variable-content verification
+# Phase 3 — Build the local Plan Generator GUI
 
-Test multiple content cases:
+After correcting dynamic height and completing the next visual pass, build a local Arabic RTL GUI modeled on the Saad Calendar Generator.
 
-* short and long major names;
-* short and long course names;
-* one through six courses in a semester;
-* courses with and without prerequisites;
-* long prerequisite strings;
-* parent courses;
-* track courses;
-* extinct courses;
-* placeholders;
-* elective groups with different course counts;
-* plans with and without proposed pages;
-* plans with and without summer semesters.
+Inspect the calendar-generator repository and reuse its successful architecture where appropriate:
 
-Where Figma only defines one fixed layout, preserve that fixed layout and handle overflow explicitly through diagnostics rather than silently shrinking everything.
+* local GUI server;
+* atomic JSON persistence;
+* live preview;
+* unsaved edits reflected immediately;
+* PDF as the default output;
+* SVG retained only when explicitly requested;
+* rendering complexity hidden from the operator.
+
+Do not copy calendar-specific logic. Reuse the workflow and repository patterns.
+
+## Product goal
+
+The operator should only provide plan decisions.
+
+The operator adds:
+
+* colleges;
+* majors;
+* semesters;
+* elective groups;
+* course codes.
+
+The generator derives everything else from `courses.json`.
+
+The normal GUI workflow must not require manually entering:
+
+* course names;
+* academic hours;
+* lecture hours;
+* practical hours;
+* exercise hours;
+* prerequisites;
+* corequisites;
+* minimum completed hours;
+* colors;
+* parent-course markers;
+* semester totals;
+* cumulative totals;
+* total plan hours;
+* year rails;
+* phase rails;
+* card coordinates;
+* page height.
+
+The core principle remains:
+
+```text
+Store choices. Derive facts.
+```
+
+---
+
+# GUI information architecture
+
+Create a local Arabic RTL interface with the following major areas.
+
+## 1. Colleges
+
+The operator can:
+
+* view all colleges;
+* add a college;
+* edit its display name and stable ID;
+* delete a college only after confirmation;
+* see the majors belonging to it.
+
+Store college and plan files under a clear structure such as:
+
+```text
+colleges/<college-id>/<major-id>/plan.json
+```
+
+Do not store renderer coordinates in these files.
+
+## 2. Majors
+
+The operator can add or edit:
+
+* major name;
+* stable ID;
+* university;
+* college;
+* degree;
+* edition;
+* release;
+* expected total credits;
+* optional metadata currently supported by the plan schema.
+
+Creating a major should create a valid initial `plan.json`.
+
+The GUI should allow opening, duplicating, renaming, and deleting a major.
+
+## 3. Semesters
+
+The operator can:
+
+* add a semester;
+* delete a semester;
+* reorder semesters;
+* edit its displayed name;
+* optionally assign a phase;
+* optionally assign or derive a year;
+* add and reorder courses.
+
+The main course input must accept only course codes.
+
+Support:
+
+* searchable course-code autocomplete;
+* entering one code at a time;
+* pasting multiple codes separated by lines, commas, or spaces where unambiguous;
+* drag-and-drop or button-based course reordering;
+* duplicate detection;
+* immediate resolution feedback.
+
+A course row should display derived information after resolving the code:
+
+* normalized course code;
+* Arabic name;
+* academic hours;
+* lecture/practical/exercise hours;
+* prerequisites;
+* corequisites;
+* minimum completed hours;
+* color;
+* warning state.
+
+These facts are displayed for review but are not repeatedly written into the semester entry.
+
+## 4. Elective groups
+
+The operator can:
+
+* add an elective group;
+* edit its name;
+* set required hours;
+* add only course codes;
+* reorder courses;
+* reorder groups;
+* delete a group.
+
+The generator calculates:
+
+* course facts;
+* included hours;
+* required-hours label;
+* parent-course relationships;
+* layout height;
+* number of rows.
+
+No card coordinates should be stored.
+
+## 5. Proposed plan
+
+Support the existing optional `proposal` model in the GUI.
+
+The operator can:
+
+* enable or disable a proposed-plan page;
+* manage its semesters;
+* add a summer semester;
+* manage phases;
+* add normal course codes;
+* add special placeholder courses where necessary;
+* enable or disable the explanatory guide.
+
+Normal courses still resolve entirely from `courses.json`.
+
+Placeholder editing should be clearly separated from normal course entry.
+
+## 6. Course catalog status
+
+Treat `courses.json` as the normal source of course facts.
+
+Show:
+
+* loaded catalog path;
+* number of catalog courses;
+* last loaded or modified time where available;
+* unresolved course count;
+* conflicting definitions;
+* missing colors or details.
+
+Do not provide a normal workflow for editing catalog facts inside every plan.
+
+---
+
+# Resolution and fallback behavior
+
+Preserve this precedence:
+
+```text
+explicit per-plan override
+→ courses.json
+→ fallbackCourses
+→ unresolved-course error
+```
+
+## Normal case
+
+The plan stores only:
+
+```json
+"101 عال"
+```
+
+or the equivalent normalized course reference.
+
+## Missing course workflow
+
+When a code does not exist in `courses.json`:
+
+* show a clear unresolved state;
+* do not invent information;
+* allow the operator to create a `fallbackCourses` definition through a focused dialog;
+* require the minimum necessary facts;
+* show that this is an exceptional fallback, not the normal workflow.
+
+## Overrides
+
+Per-plan overrides must exist, but place them under a collapsed advanced section.
+
+The operator should not accidentally duplicate catalog data.
+
+Clearly label overridden fields.
+
+Provide a reset-to-catalog action.
+
+---
+
+# Automatic derivation
+
+The GUI preview and exporter must automatically derive:
+
+* names;
+* all hour types;
+* prerequisites;
+* corequisites;
+* minimum completed-credit requirements;
+* parent-course status;
+* track status;
+* extinct status;
+* course colors;
+* semester totals;
+* cumulative totals;
+* plan total;
+* year grouping;
+* phase grouping;
+* elective calculations;
+* warnings;
+* card layout;
+* section layout;
+* page height.
+
+A data change should recompute these values immediately.
+
+Do not make the operator click a separate “recalculate” button.
+
+---
+
+# Live preview
+
+Create a full-plan visual preview comparable to the calendar generator.
+
+The preview must:
+
+* render unsaved changes;
+* use the same shared renderer as final export;
+* update after college, major, semester, elective, course, color, or proposal changes;
+* preserve Arabic RTL rendering;
+* show the complete dynamically sized page;
+* support page 1 and optional page 2;
+* allow zooming or fitting the page;
+* display current diagnostics.
+
+Do not create a separate approximate HTML design that can drift from the PDF renderer.
+
+Prefer serving the actual generated SVG preview or a renderer output derived from the same functions.
+
+Use debouncing where needed, but preserve responsive editing.
+
+---
+
+# Validation experience
+
+Add a diagnostics panel categorized into:
+
+* errors;
+* warnings;
+* information.
+
+Examples:
+
+* unresolved course;
+* duplicate course;
+* duplicate normalized code;
+* prerequisite cycle;
+* prerequisite after dependent course;
+* missing prerequisite from plan;
+* semester-hour mismatch;
+* total-hour mismatch;
+* long course-name overflow;
+* semester card overflow;
+* missing color;
+* invalid fallback;
+* conflicting override.
+
+Clicking a diagnostic should focus or highlight the relevant semester, elective group, or course.
+
+Disable final PDF export when blocking errors exist.
+
+Warnings should not necessarily block export.
+
+---
+
+# Persistence
+
+Use atomic file writes like the calendar generator.
+
+Requirements:
+
+* load existing `plan.json`;
+* preserve schema compatibility;
+* validate before writing;
+* write through a temporary file and atomic rename;
+* avoid partial/corrupt files;
+* keep unsaved state separate from persisted state;
+* warn before leaving with unsaved changes;
+* expose save status;
+* avoid writing derived facts unnecessarily.
+
+The canonical persisted source remains `plan.json`, not GUI-specific state.
+
+Do not introduce a database or authentication system for this local GUI.
+
+---
+
+# Export workflow
+
+The primary action is:
+
+```text
+Save and generate PDF
+```
+
+Also provide:
+
+* generate PDF without saving, when useful;
+* keep SVG checkbox;
+* PNG preview/export option for debugging;
+* open output directory;
+* clear success and error messages.
+
+PDF remains the default persistent artifact.
+
+Do not retain temporary SVG files unless requested.
+
+---
+
+# Suggested module boundaries
+
+Follow the calendar generator’s separation of concerns.
+
+A suitable structure may include:
+
+```text
+gui/
+  index.html
+  app.js
+  styles.css
+
+src/
+  gui-server.mjs
+  store.mjs
+  preview.mjs
+  render-layout.mjs
+  render-svg.mjs
+  exporter.mjs
+  resolve.mjs
+  plan-input.mjs
+```
+
+Adapt this to the existing repository rather than forcing unnecessary files.
+
+Keep:
+
+* storage;
+* resolution;
+* validation;
+* layout;
+* SVG rendering;
+* exporting;
+* GUI server
+
+as distinct responsibilities.
+
+Do not place all GUI API logic in one large file.
+
+---
+
+# API behavior
+
+A local GUI API should support operations such as:
+
+* list colleges;
+* list majors;
+* read a plan;
+* validate unsaved plan data;
+* preview unsaved plan data;
+* save a plan;
+* generate outputs;
+* read catalog summary;
+* resolve a course code;
+* create/delete/rename plans safely.
+
+Use well-defined JSON request and response shapes.
+
+Prevent path traversal and reject unsafe IDs or paths.
+
+The server must bind to localhost by default.
+
+---
+
+# UX expectations
+
+The GUI should feel simple despite the complex renderer.
+
+The ordinary workflow should be:
+
+1. Add or open a major.
+2. Add semesters.
+3. Enter course codes.
+4. Add elective groups and course codes.
+5. Review automatically derived details and diagnostics.
+6. See the plan update live.
+7. Save.
+8. Export PDF.
+
+Do not expose coordinates, SVG, masks, renderer constants, or Figma measurements in the normal interface.
+
+Use Arabic labels and RTL layout.
+
+Use clear empty states.
+
+Keep advanced fallback and override controls out of the main path.
 
 ---
 
 # Tests
 
-Improve renderer tests so they validate meaningful geometry.
+Add automated coverage for:
 
-Do not limit tests to regex checks that merely prove some SVG exists.
+## Storage
 
-Add tests for:
+* create/read/update/delete plan;
+* atomic writes;
+* invalid schema rejection;
+* safe path handling;
+* duplicate major ID handling.
 
-* exact page bounds;
-* major section positions;
-* header bounds;
-* semester-row bounds;
-* semester-summary bounds;
-* card dimensions;
-* card radius;
-* academic badge geometry;
-* metric-box geometry;
-* marker geometry;
-* prerequisite pill geometry;
-* year-rail grouping;
-* phase-rail grouping;
-* elective-group layout;
-* proposal page count;
-* summer row;
-* footer placement;
-* all elements remaining inside page bounds;
-* all internal card elements remaining inside intended bounds;
-* unique clip and mask IDs;
-* multiple pages without ID collisions;
-* normal and scaled course cards;
-* deterministic output from identical input.
+## GUI API
 
-When practical, add snapshot/golden tests for SVG fragments or measured layout metadata.
+* list plans;
+* read plan;
+* validate unsaved plan;
+* preview unsaved plan;
+* save valid plan;
+* reject invalid plan;
+* generate PDF;
+* unresolved-course response.
 
-Do not add fragile tests based on full SVG string ordering unless necessary.
+## Derivation
 
-Run the full existing test suite and do not weaken any test.
+* entering only a code resolves all facts;
+* prerequisites, corequisites, and minimum hours appear automatically;
+* parent status updates when dependencies change;
+* totals update after moving courses;
+* elective required hours update;
+* deleting a course updates totals and parent markers.
+
+## Dynamic layout
+
+* page height changes immediately when semesters or electives are added;
+* preview and PDF report the same dimensions;
+* page 1 and page 2 can have different heights;
+* footer follows content.
+
+## Regression
+
+* existing CLI generation still works;
+* existing JSON formats still work;
+* all existing tests remain enabled;
+* the GUI does not mutate `courses.json`;
+* final PDF and CLI output remain deterministic.
 
 ---
 
-# Validation commands
+# Documentation
 
-At minimum run:
+Update the professional README with:
+
+* GUI quick start;
+* GUI workflow;
+* repository structure;
+* storage location;
+* PDF/SVG output policy;
+* dynamic-height rule;
+* catalog/fallback precedence;
+* quality checks.
+
+Add or update:
+
+* `AGENTS.md`;
+* `CONTEXT.md`;
+* `docs/ARCHITECTURE.md`;
+* `docs/DATA_MODEL.md`;
+* `docs/GUI.md`;
+* `docs/FIGMA_MEASUREMENTS.md`;
+* `docs/KNOWN_LIMITATIONS.md`.
+
+State clearly:
+
+```text
+Width is fixed at 594 pt.
+Height is derived from each page’s content.
+```
+
+---
+
+# Validation and delivery
+
+Run at minimum:
 
 ```bash
 npm test
 npm run validate
+npm run gui
 ```
 
-Generate the real reference plan with all applicable outputs:
+Generate at least two different plans through:
 
-```bash
-npm run generate -- <reference-plan-json> --svg --png
-```
+* CLI;
+* GUI.
 
-Also validate:
+Verify:
 
-* SVG XML parsing;
-* Inkscape rendering;
-* PDF generation;
-* PDF page count;
-* PDF page dimensions;
-* PNG render dimensions;
-* diagnostics output;
-* multipage export.
+* PDF dimensions;
+* dynamic height;
+* SVG validity;
+* no ID collisions;
+* PNG rendering;
+* diagnostics;
+* atomic saves;
+* catalog resolution;
+* live unsaved preview.
 
-Use the actual repository commands and paths when they differ.
+Use the GUI manually and document the tested workflow.
 
----
+Commit directly to `main` in logical increments, for example:
 
-# Repository hygiene
+1. dynamic page-height correction;
+2. second visual-parity refinement;
+3. GUI storage and API;
+4. GUI interface and live preview;
+5. tests and documentation.
 
-* Work on a focused branch.
-* Keep changes scoped to visual parity and necessary renderer refactoring.
-* Do not edit generated files manually.
-* Do not commit temporary render directories.
-* Do not commit downloaded Figma screenshots unless they belong in a deliberate visual-regression fixture directory.
-* Do not commit font binaries newly obtained from the environment.
-* Document any new rendering architecture.
-* Update `KNOWN_LIMITATIONS.md` only for genuine remaining technical limitations.
+Push each completed commit to `main`.
 
----
-
-# Acceptance criteria
-
-This task is complete only when:
-
-* both generated pages closely match their Figma counterparts;
-* the header matches;
-* semester rows match;
-* semester summaries match;
-* course cards and all variants match;
-* year and phase rails match;
-* elective groups match;
-* proposed-plan visuals match;
-* summer-semester visuals match;
-* badges and labels match;
-* the explanatory guide matches;
-* typography and colors match;
-* footer and small elements are present;
-* SVG and PDF remain valid;
-* all tests pass;
-* visual overlays show no obvious layout or geometry mismatch;
-* no existing data behavior is broken.
-
-Do not claim “100% parity” without showing the comparisons.
+Do not create a branch or PR.
 
 ---
 
 # Final report
 
-After completing the work, provide:
+At completion, report:
 
-1. A summary of the visual components changed.
-2. A list of Figma nodes/components inspected.
-3. Important measurements extracted from Figma.
-4. Before/after full-page comparisons.
-5. Before/after close-ups of major components.
-6. Overlay and pixel-difference results.
-7. Commands and test results.
-8. Generated PDF/SVG/PNG paths.
-9. Any remaining differences.
-10. A clear explanation of whether remaining differences come from:
+* commits pushed to `main`;
+* dynamic-height implementation;
+* visual-difference improvements;
+* remaining verified rendering differences;
+* GUI capabilities;
+* screenshots of the GUI;
+* plans generated through the GUI;
+* test results;
+* generated output paths;
+* documentation changes;
+* any genuine remaining limitation.
 
-    * incorrect geometry;
-    * missing visuals;
-    * font rendering;
-    * SVG/PDF renderer behavior;
-    * unsupported Figma effects.
-
-Commit the changes and open a PR.
-
-Include the comparison results in the PR description.
-
-Do not ask me for screenshots. Inspect the Figma file directly and perform the complete visual-parity loop yourself.
+Do not claim that a difference is caused by font rendering unless it was measured and verified.
 
 ```
+
+This gives Codex the correct next direction: **shared visual refinement + content-derived page height + a calendar-generator-style local GUI where you enter only plan structure and course codes.**
 ```
