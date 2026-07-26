@@ -1,36 +1,80 @@
-# مولّد خطط صاد
+<div align="center">
+  <h1>Saad Plan Generator</h1>
 
-مولّد حتمي للخطط الدراسية، مبني على الفكرة نفسها التي نجحت في مولّد التقويم:
+  <p>Deterministic, Arabic-first academic-plan PDFs generated from compact plan files and a shared course catalog.</p>
+
+  <p>
+    <img src="https://img.shields.io/badge/output-PDF-ef4444?style=flat-square" alt="PDF output">
+    <img src="https://img.shields.io/badge/input-JSON-f59e0b?style=flat-square" alt="JSON input">
+    <img src="https://img.shields.io/badge/design-Figma%20parity-00aeef?style=flat-square" alt="Figma parity">
+    <img src="https://img.shields.io/badge/license-proprietary-555?style=flat-square" alt="Proprietary license">
+    <img src="https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=node.js&logoColor=white" alt="Node.js 20+">
+  </p>
+
+  <p>
+    <a href="#quick-start">Quick start</a>
+    ·
+    <a href="#plan-model">Plan model</a>
+    ·
+    <a href="#quality-checks">Quality checks</a>
+    ·
+    <a href="./AGENTS.md">Agent guide</a>
+  </p>
+</div>
+
+Saad Plan Generator turns a small `plan.json` file and a reusable `courses.json` catalog into a
+resolved, validated, and visually consistent academic-plan PDF. The operator should only describe
+what belongs to the plan: the major, semester order, course codes, elective groups, and intentional
+exceptions. Course names, hours, colors, prerequisites, totals, and visual markers are resolved or
+derived automatically.
+
+The renderer targets the approved Saad Figma design. Visual parity is an active engineering
+requirement: generated output must be compared against Figma before a layout change is considered
+complete.
+
+## Product principles
+
+- **Plan files contain decisions, not duplicated facts.** Shared course data belongs in `courses.json`.
+- **Uncertainty is reported, never invented.** Missing facts produce diagnostics instead of guessed values.
+- **Figma is the visual source of truth.** Geometry, typography, colors, spacing, and variants must not drift.
+- **PDF is the primary output.** SVG and PNG are retained only when explicitly requested.
+- **Resolution and rendering stay separate.** The renderer consumes a fully materialized plan model.
+- **Existing plans remain reproducible.** Identical inputs must produce deterministic output.
+
+## How it works
 
 ```text
 colleges/<college>/<major>/plan.json
-                  +
-courses.json
-                  ↓
-مطابقة بيانات المقررات
-                  ↓
-حساب الساعات والمتطلبات والعلامات
-                  ↓
-PDF مطابق لقالب صاد + ملفات التحقق
+                         +
+courses.json + course-colors.json
+                         ↓
+normalize and validate input
+                         ↓
+resolve course facts and prerequisites
+                         ↓
+derive parent markers, totals, electives, and diagnostics
+                         ↓
+render the approved Saad layout
+                         ↓
+PDF + resolved JSON + diagnostics
 ```
 
-لا حاجة إلى إعادة كتابة اسم المقرر وساعاته ولونه في كل خطة. يكفي غالبًا ترتيب رموز المقررات داخل المستويات؛ فيقرأ المولّد الحقائق المشتركة من `courses.json`، ثم يلجأ إلى `fallbackCourses` عند غياب المقرر من الدليل.
+## Quick start
 
-## ما تغيّر في الإصدار 0.2
-
-- أصبح مقاس الصفحة ثابتًا عند `594 × 1045 pt`، مطابقًا لملف Figma وخطط صاد المنشورة.
-- أعيد بناء الرأس، وشارة الطبعة والإصدار، وشعار صاد، وصفوف المستويات، وملخص الساعات، وأشرطة السنوات والمراحل، والمقررات الاختيارية، والتذييل.
-- صارت بطاقة المقرر مبنية على أبعاد مكوّن Figma نفسه: الخلفية `74 × 43`، والتدوير، وشارة الساعات، ووسم المتطلب، وعلامات المقرر الأب والمسار والمنقرض، وصناديق ساعات المحاضرة والعملي والتمارين.
-- يدعم الملف صفحة ثانية اختيارية باسم `proposal` للخطة المقترحة، بما فيها فصل صيفي، ومقررات نائبة سوداء، ودليل بطاقة المقرر.
-- إذا وجدت صفحة مقترحة، يخرج Inkscape ملف PDF متعدد الصفحات، مع بقاء كل صفحة `594 × 1045 pt`.
-- تُقرأ مجموعات المقررات الاختيارية من `electiveGroups` أو من `electiveCategories` في سجل خطط الموقع، وتحسب الساعات المتبقية بعد استبعاد المقررات الموضوعة أصلًا داخل المستويات.
-
-## التشغيل
-
-يتطلب Node.js 20 أو أحدث وInkscape.
+Requires Node.js 20+ and Inkscape. Install IBM Plex Sans Arabic Regular, Medium, SemiBold, and Bold
+on the operating system before exporting for the closest match to Figma.
 
 ```bash
+npm install
 npm test
+npm run generate -- \
+  examples/college-of-computer-and-information-sciences/computer-science-networks-cybersecurity/plan.json \
+  --catalog examples/catalog/courses.json
+```
+
+Keep SVG and render per-page PNG previews when reviewing visual parity:
+
+```bash
 npm run generate -- \
   examples/college-of-computer-and-information-sciences/computer-science-networks-cybersecurity/plan.json \
   --catalog examples/catalog/courses.json \
@@ -38,21 +82,34 @@ npm run generate -- \
   --png
 ```
 
-الناتج الافتراضي:
+## Output
+
+Files are grouped by plan ID:
 
 ```text
 dist/<plan-id>/
 ├── plan.pdf
-├── plan.svg                 # عند استعمال --svg
-├── plan.png                 # الصفحة الأولى عند استعمال --png
-├── plan-page-2.png          # إن وجدت صفحة ثانية
-├── plan.resolved.json
-└── plan.diagnostics.json
+├── plan.svg                 # with --svg or --svg-only
+├── plan.png                 # first page with --png
+├── plan-page-2.png          # when a second page exists
+├── plan.resolved.json       # fully materialized renderer input
+└── plan.diagnostics.json    # errors, warnings, and resolution details
 ```
 
-PDF هو الناتج الأساسي، وSVG اختياري كما في مولّد التقويم.
+PDF is generated by default. Without `--svg`, the intermediate SVG is removed after export.
 
-## أبسط `plan.json`
+## Plan model
+
+The target repository layout is one plan file per major:
+
+```text
+colleges/
+└── engineering/
+    └── electrical-engineering/
+        └── plan.json
+```
+
+A minimal plan usually contains only identity, expected hours, semesters, and course codes:
 
 ```json
 {
@@ -86,27 +143,43 @@ PDF هو الناتج الأساسي، وSVG اختياري كما في مولّ
 }
 ```
 
-عند وجود `101 كهر` في `courses.json` تؤخذ بياناته منه. لا يستعمل التعريف الاحتياطي إلا إذا غاب عن الدليل.
+`fallbackCourses` exists for unpublished or missing catalog entries. It is not a second catalog and
+should not repeat facts already available in `courses.json`.
 
-## ترتيب أولوية البيانات
+### Data precedence
 
-1. `override` داخل موضع المقرر في الخطة، للحالات الاستثنائية المقصودة فقط.
-2. `courses.json`، وهو المصدر المعتاد.
-3. `fallbackCourses` في الخطة.
-4. خطأ واضح `UNRESOLVED_COURSE` بدل اختراع بيانات.
+Course facts are resolved in this order:
 
-## ما يحسبه المولّد
+1. `override` on the course entry, for deliberate plan-specific exceptions.
+2. `courses.json`, the normal shared source.
+3. `fallbackCourses` or an entry-level `fallback`.
+4. `UNRESOLVED_COURSE`, rather than fabricated data.
 
-- الساعات الأكاديمية وساعات المحاضرة والعملي والتمارين.
-- مجموع كل مستوى، والمجموع التراكمي، وإجمالي الخطة.
-- لون المقرر من رمز القسم.
-- وسم المتطلب السابق أو المتزامن.
-- علامة **مقرر أب** إذا اعتمد عليه مقرر آخر في الخطة أو في مجموعاتها الاختيارية.
-- علامة مقرر المسار والمقرر المنقرض.
-- اكتشاف التكرار، ودورات المتطلبات، والمتطلبات الواقعة بعد المقرر، والمقررات غير الموجودة في الخطة.
-- مقارنة الساعات المحسوبة بالساعات الرسمية المتوقعة.
+A placeholder course uses `kind: "placeholder"` and is resolved from its own fallback without being
+looked up in the catalog or treated as a duplicate catalog course.
 
-## المقررات الاختيارية
+## Derived behavior
+
+The generator automatically derives or validates:
+
+- academic, lecture, practical, and exercise hours;
+- semester totals, cumulative totals, and full-plan hours;
+- course colors from the Arabic subject code;
+- prerequisite, corequisite, and minimum-credit labels;
+- **parent-course** markers when another course depends on the course;
+- track-specific and extinct-course markers;
+- same-semester prerequisite-to-corequisite conversion where allowed;
+- duplicate courses and normalized-code collisions;
+- prerequisite cycles and prerequisites placed after their dependent course;
+- missing courses, missing colors, and conflicting definitions;
+- mismatches between calculated and officially expected hours.
+
+Diagnostics are written even when generation succeeds. By default, unresolved errors stop export;
+`--allow-errors` is reserved for deliberate debugging.
+
+## Elective groups
+
+Elective or track requirements are declared separately from the regular semester sequence:
 
 ```json
 {
@@ -121,9 +194,12 @@ PDF هو الناتج الأساسي، وSVG اختياري كما في مولّ
 }
 ```
 
-## الصفحة المقترحة
+The generator also accepts `electiveCategories` from the existing website plan registry and
+subtracts courses already placed in semesters before calculating the remaining requirement.
 
-تظل الصفحة الأولى هي الخطة المنشورة. ولإضافة صفحة مقترحة إلى PDF نفسه:
+## Proposed-plan page
+
+The published plan remains page one. Add `proposal` to produce a second page in the same PDF:
 
 ```json
 {
@@ -160,11 +236,11 @@ PDF هو الناتج الأساسي، وSVG اختياري كما في مولّ
 }
 ```
 
-المقرر النائب لا يبحث عنه المولّد في الدليل، ولا يعامله بوصفه مقررًا مكررًا.
+The proposed page supports its own phases, totals, placeholder courses, and an optional summer row.
 
-## صيغ `courses.json` المدعومة
+## Supported course catalogs
 
-يدعم المولّد دليلًا مفصلًا:
+The preferred catalog is a detailed course list:
 
 ```json
 {
@@ -184,9 +260,13 @@ PDF هو الناتج الأساسي، وSVG اختياري كما في مولّ
 }
 ```
 
-كما يدعم صفوف دليل الشعب المستعملة في الموقع، ويجمع الصفوف التي تحمل الرمز نفسه ويستخرج أكبر قيمة للساعات لكل نشاط.
+The generator also accepts the website's section-row catalog. Rows sharing a normalized course code
+are combined, and contact hours are derived by activity type. Because section rows commonly omit
+prerequisites, plan fallbacks remain authoritative for prerequisite metadata in that format.
 
-## استعمال `plans.json` الحالي مباشرة
+## Existing website registry
+
+The current `plans.json` registry can be generated directly during migration:
 
 ```bash
 npm run generate -- /path/to/saad-web/src/content/plans.json \
@@ -194,22 +274,93 @@ npm run generate -- /path/to/saad-web/src/content/plans.json \
   --catalog /path/to/courses.json
 ```
 
-هذا مسار توافق ومهاجرة. البنية المستهدفة هي ملف مستقل لكل تخصص:
+This is a compatibility path. New plans should use independent files under
+`colleges/<college>/<major>/plan.json`.
 
-```text
-colleges/<college>/<major>/plan.json
-```
+## Batch generation
 
-## توليد جميع الخطط
+Generate every `plan.json` below a directory:
 
 ```bash
 npm run generate:all -- colleges --catalog courses.json
 ```
 
-## الألوان
+Optional batch flags include `--svg`, `--png`, `--allow-errors`, and `--output-dir`.
 
-`data/course-colors.json` هو مصدر ألوان المقررات في العارض، وقد أُخذ من أنماط الألوان الحالية في ملف Figma. يمكن تحديثه دون تعديل الخطط أو منطق الرسم.
+## CLI reference
 
-## سياسة الخطوط
+```text
+npm run generate -- <plan.json>
+  --catalog <courses.json>       Shared course catalog
+  --colors <course-colors.json>  Alternate color map
+  --plan-id <id>                 Select a plan from a registry file
+  --output-dir <directory>       Override the output directory
+  --output-name <name>           Override the generated base filename
+  --svg                          Keep the intermediate SVG
+  --svg-only                     Generate SVG without PDF
+  --png                          Render per-page PNG previews
+  --allow-errors                 Export despite resolver errors
+```
 
-لا يضم المستودع ملفات خطوط. يستعمل Inkscape خط `IBM Plex Sans Arabic` إذا كان مثبتًا، ثم ينتقل إلى `Noto Sans Arabic` عند غيابه. للوصول إلى تطابق Figma، ثبّت أوزان Regular وMedium وSemiBold وBold من IBM Plex Sans Arabic محليًا.
+## Repository structure
+
+```text
+data/
+  course-colors.json             Arabic subject-code → Figma color mapping
+docs/
+  ARCHITECTURE.md                Pipeline and module boundaries
+  DATA_MODEL.md                  Persisted and resolved data contracts
+  KNOWN_LIMITATIONS.md           Current layout and export constraints
+schemas/
+  plan.schema.json               JSON Schema for plan files
+src/
+  args.mjs                       CLI argument helpers
+  catalog.mjs                    Supported catalog normalization
+  diagnostics.mjs                Structured errors, warnings, and info
+  exporter.mjs                   Inkscape PDF/PNG export
+  generate.mjs                   Single-plan CLI
+  generate-all.mjs               Recursive batch CLI
+  io.mjs                         File loading and output helpers
+  normalize.mjs                  Arabic course-code normalization and sorting
+  pipeline.mjs                   End-to-end generation orchestration
+  plan-input.mjs                 Native and website-registry input adapters
+  render-svg.mjs                 Protected Figma-faithful renderer
+  resolve.mjs                    Course resolution, graph analysis, and totals
+test/                            Catalog, input, resolver, and renderer tests
+```
+
+## Quality checks
+
+```bash
+npm test          # domain, input, resolver, and renderer tests
+npm run validate  # tests plus JavaScript syntax checks
+```
+
+Before merging a visual change, also generate the real reference plan with `--svg --png` and compare
+the resulting pages and component crops against screenshots obtained directly from Figma.
+
+## Agent entry points
+
+A coding agent must read these files before changing the repository:
+
+1. [AGENTS.md](./AGENTS.md) — implementation rules and protected behavior.
+2. [CONTEXT.md](./CONTEXT.md) — product history, current state, and design decisions.
+3. [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) — runtime and module boundaries.
+4. [docs/DATA_MODEL.md](./docs/DATA_MODEL.md) — input and resolved data contracts.
+5. [docs/KNOWN_LIMITATIONS.md](./docs/KNOWN_LIMITATIONS.md) — explicit current constraints.
+
+## Current constraints
+
+- The renderer is optimized for eight regular levels and one optional summer row.
+- A regular semester row currently displays up to six course cards.
+- There is no local GUI or live preview yet; operation is JSON plus CLI.
+- PDF and PNG export require Inkscape.
+- Exact typography depends on locally installed IBM Plex Sans Arabic weights.
+- Pixel parity must be verified separately for each distinct legacy plan family.
+
+See [docs/KNOWN_LIMITATIONS.md](./docs/KNOWN_LIMITATIONS.md) for the maintained list.
+
+## Repository
+
+This is a closed-source, proprietary Saad project. Generated academic plans are independent student
+resources; each university's official academic plan and systems remain the authoritative source.
