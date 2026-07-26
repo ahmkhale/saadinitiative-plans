@@ -156,6 +156,8 @@ input:focus, textarea:focus { outline: 2px solid #b9eafa; border-color: var(--sa
 .choice-list, .shared-set-list { display: grid; gap: 8px; margin-top: 10px; }
 .choice-item, .shared-set-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; }
 .shared-selection { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.inherited-stack { margin-bottom: 12px; }
+.inherited-semester { border-style: dashed; background: #f8fcfe; }
 .requirement-editor { display: flex; gap: 10px; align-items: end; margin: 8px 0; }
 .requirement-editor label { flex: 1; }
 

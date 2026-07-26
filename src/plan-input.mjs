@@ -112,6 +112,12 @@ function normalizeProposal(proposal) {
   };
 }
 
+export function migratePlanForEditor(rawPlan) {
+  const plan = structuredClone(rawPlan);
+  if (plan?.proposal) plan.proposal = normalizeProposal(plan.proposal);
+  return plan;
+}
+
 function registryElectiveGroups(plan, categories, semesterEntries, fallbackCourses) {
   if (!Array.isArray(plan.electiveCategoryIds) || !Array.isArray(categories)) return [];
   const categoryById = new Map(categories.map((category) => [category.id, category]));

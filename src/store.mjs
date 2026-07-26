@@ -162,6 +162,14 @@ export function createPlanStore(root = collegesRoot) {
       college: input.college || college.name,
     };
     validatePersistedPlan(plan);
+    const existingFile = planFile(college.id, currentId);
+    const existingPlan = readJson(existingFile);
+    const legacyProposal = existingPlan.proposal?.semesters?.some((semester) => Array.isArray(semester.courses));
+    const canonicalProposal = plan.proposal?.semesters?.every((semester) => Array.isArray(semester.courseOrder) && Array.isArray(semester.placeholders));
+    if (legacyProposal && canonicalProposal) {
+      const backupFile = path.join(currentDir, `plan.before-proposal-migration.${Date.now()}.json`);
+      fs.copyFileSync(existingFile, backupFile, fs.constants.COPYFILE_EXCL);
+    }
     if (nextId !== currentId) {
       const nextDir = majorDir(college.id, nextId);
       if (fs.existsSync(nextDir)) throw new Error(`Major already exists: ${nextId}`);

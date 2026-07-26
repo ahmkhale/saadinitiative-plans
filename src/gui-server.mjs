@@ -8,6 +8,7 @@ import { exportDraft, renderDraftPreview, resolveDraft } from "./preview.mjs";
 import { atomicWriteJson, defaultPlanStore, projectRoot } from "./store.mjs";
 import { createSharedSemesterSetStore } from "./shared-semester-sets.mjs";
 import { readSettings, saveSettings, settingsPath } from "./settings.mjs";
+import { migratePlanForEditor } from "./plan-input.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 const guiDir = path.join(projectRoot, "gui");
@@ -54,7 +55,7 @@ function readBody(req) {
 
 function serveFile(res, filePath, contentType) {
   if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) return text(res, 404, "Not found");
-  res.writeHead(200, { "Content-Type": contentType });
+  res.writeHead(200, { "Content-Type": contentType, "Cache-Control": "no-store" });
   fs.createReadStream(filePath).pipe(res);
 }
 
@@ -195,7 +196,7 @@ export function createGuiServer(options = {}) {
         }
         const majorId = segments[4];
         if (segments.length === 5 && req.method === "GET") {
-          return json(res, 200, { ok: true, plan: store.getPlan(collegeId, majorId) });
+          return json(res, 200, { ok: true, plan: migratePlanForEditor(store.getPlan(collegeId, majorId)) });
         }
         if (segments.length === 5 && req.method === "PUT") {
           return json(res, 200, { ok: true, plan: store.savePlan(collegeId, majorId, await readBody(req)) });

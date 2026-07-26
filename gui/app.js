@@ -30,6 +30,7 @@ const els = {
   globalStatus: $("globalStatus"),
   planHeading: $("planHeading"),
   semesterList: $("semesterList"),
+  inheritedSemesterList: $("inheritedSemesterList"),
   electiveList: $("electiveList"),
   proposalSemesterList: $("proposalSemesterList"),
   publishedPhaseList: $("publishedPhaseList"),
@@ -242,7 +243,10 @@ function publishedDecisionSemesters() {
 
 function resolvedCollection(kind, index) {
   if (!state.resolved) return [];
-  if (kind === "semester") return state.resolved.semesters?.[index]?.courses ?? [];
+  if (kind === "semester") {
+    const inheritedCount = publishedDecisionSemesters().length - state.plan.semesters.length;
+    return state.resolved.semesters?.[inheritedCount + index]?.courses ?? [];
+  }
   if (kind === "elective") return state.resolved.electiveGroups?.[index]?.courses ?? [];
   if (kind === "proposal") return state.resolved.proposal?.semesters?.[index]?.courses ?? [];
   return [];
@@ -252,7 +256,9 @@ function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
   const code = entryCode(entry);
   const rules = typeof entry === "object" ? entry : {};
   const unresolved = !resolved || resolved.source === "unresolved";
-  const isPlaceholder = entry?.kind === "placeholder";
+  const isPlaceholder = entry?.kind === "placeholder" || Boolean(entry?.placeholderId);
+  const displayCode = isPlaceholder ? "مقرر خاص" : resolved?.code ?? code;
+  const displaySubject = isPlaceholder ? "" : resolved?.subject ?? "";
   const badgeClass = resolved?.catalogSource === "male" ? "male" : resolved?.catalogSource === "female" ? "female"
     : resolved?.catalogSource === "manual" ? "manual" : resolved?.sourceBadge === "بيانات متعارضة" ? "conflict" : "missing";
   const location = kind === "semester" ? `semester-${groupIndex + 1}` : kind === "elective"
@@ -260,7 +266,7 @@ function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
     : `proposal-semester-${groupIndex + 1}`;
   return `
     <div class="course-row ${unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
-      <div><div class="course-code">${escapeHtml(resolved?.code ?? code)}</div><div class="course-meta">${escapeHtml(resolved?.subject ?? "")}</div><span class="source-badge ${badgeClass}">${escapeHtml(isPlaceholder ? "مقرر نائب" : resolved?.sourceBadge ?? "بيانات ناقصة")}</span></div>
+      <div><div class="course-code">${escapeHtml(displayCode)}</div><div class="course-meta">${escapeHtml(displaySubject)}</div><span class="source-badge ${badgeClass}">${escapeHtml(isPlaceholder ? "مقرر نائب" : resolved?.sourceBadge ?? "بيانات ناقصة")}</span></div>
       <div><div class="course-name">${escapeHtml(resolved?.name ?? (entry?.kind === "placeholder" ? entry?.fallback?.name : "مقرر غير موجود في الدليل"))}</div>
         <div class="course-meta">${resolved ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? "—"} · عملي ${resolved.practicalHours ?? "—"} · تمارين ${resolved.exerciseHours ?? "—"}` : ""}</div>
       </div>
@@ -278,7 +284,7 @@ function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
           <label>ساعات المحاضرة<input data-manual-fact="lectureHours" type="number" min="0" value="${escapeHtml(state.plan.fallbackCourses?.[code]?.lectureHours ?? "")}" ${unresolved ? "required" : ""}></label>
           <label>ساعات التمارين<input data-manual-fact="exerciseHours" type="number" min="0" value="${escapeHtml(state.plan.fallbackCourses?.[code]?.exerciseHours ?? "")}" ${unresolved ? "required" : ""}></label>
           <label>ساعات العملي<input data-manual-fact="practicalHours" type="number" min="0" value="${escapeHtml(state.plan.fallbackCourses?.[code]?.practicalHours ?? "")}" ${unresolved ? "required" : ""}></label>
-          ${resolved?.catalogSource && state.plan.fallbackCourses?.[code] ? '<button class="button ghost reset-catalog-facts" type="button">العودة إلى بيانات الدليل</button>' : ""}
+          ${["male", "female"].includes(resolved?.catalogSource) && state.plan.fallbackCourses?.[code] ? '<button class="button ghost reset-catalog-facts" type="button">العودة إلى بيانات الدليل</button>' : ""}
         </div>
         <p class="concept-heading">قواعد الخطة</p>` : ""}
         <div class="dependency-grid">
@@ -340,6 +346,7 @@ function renderEditor() {
     input.value = state.plan[input.dataset.field] ?? "";
   });
   renderCollection(els.semesterList, state.plan.semesters, "semester");
+  renderInheritedSemesters();
   renderPhases(els.publishedPhaseList, state.plan.phases ?? [], "published");
   renderCollection(els.electiveList, state.plan.electiveGroups ?? [], "elective");
   els.proposalEnabled.checked = Boolean(state.plan.proposal);
@@ -348,6 +355,18 @@ function renderEditor() {
   renderCollection(els.proposalSemesterList, state.plan.proposal?.semesters ?? [], "proposal");
   renderPhases(els.proposalPhaseList, state.plan.proposal?.phases ?? [], "proposal");
   renderSharedSets();
+}
+
+function renderInheritedSemesters() {
+  const selected = new Set(state.plan.sharedSemesterSets ?? []);
+  const sets = state.sharedSemesterSets.filter((set) => selected.has(set.id));
+  els.inheritedSemesterList.innerHTML = sets.flatMap((set) => set.semesters.map((semester) => `
+    <article class="card inherited-semester" data-shared-set="${escapeHtml(set.id)}">
+      <div class="card-heading"><div><p class="eyebrow">فصل موروث من ${escapeHtml(set.name)}</p><h2>${escapeHtml(semester.name)}</h2></div>
+        <button class="button ghost edit-shared-set" type="button">فتح المصدر المشترك</button></div>
+      <p class="muted">${semester.courses.map(entryCode).map(escapeHtml).join("، ") || "لا مقررات في هذا الفصل."}</p>
+    </article>
+  `)).join("");
 }
 
 function renderPhases(host, phases, kind) {
@@ -487,12 +506,19 @@ function refreshResolvedRows() {
     const courseIndex = Number(row.dataset.courseIndex);
     const resolved = resolvedCollection(row.dataset.kind, groupIndex)[courseIndex];
     const unresolved = !resolved || resolved.source === "unresolved";
+    const placeholder = row.dataset.placeholderId !== "";
     row.classList.toggle("unresolved", unresolved);
-    row.querySelector(".course-code").textContent = resolved?.code
+    row.querySelector(".course-code").textContent = placeholder ? "مقرر خاص" : resolved?.code
       ?? entryCode(collection(row.dataset.kind, groupIndex)[courseIndex]);
     row.querySelector(".course-name").textContent = resolved?.name ?? "مقرر غير موجود في الدليل";
+    const badge = row.querySelector(".source-badge");
+    if (badge && !placeholder) {
+      badge.textContent = resolved?.sourceBadge ?? "بيانات ناقصة";
+      badge.className = `source-badge ${resolved?.catalogSource === "male" ? "male" : resolved?.catalogSource === "female" ? "female"
+        : resolved?.catalogSource === "manual" ? "manual" : resolved?.sourceBadge === "بيانات متعارضة" ? "conflict" : "missing"}`;
+    }
     const metadata = row.querySelectorAll(".course-meta");
-    if (metadata[0]) metadata[0].textContent = resolved?.subject ?? "";
+    if (metadata[0]) metadata[0].textContent = placeholder ? "" : resolved?.subject ?? "";
     if (metadata[1]) metadata[1].textContent = resolved
       ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? "—"} · عملي ${resolved.practicalHours ?? "—"} · تمارين ${resolved.exerciseHours ?? "—"}`
       : "";
@@ -916,6 +942,7 @@ document.addEventListener("change", (event) => {
     if (event.target.checked) selected.add(event.target.dataset.sharedSetChoice);
     else selected.delete(event.target.dataset.sharedSetChoice);
     state.plan.sharedSemesterSets = [...selected];
+    renderInheritedSemesters();
     changed();
   }
   if (event.target.classList.contains("requirement-mode")) {

@@ -63,3 +63,20 @@ test("storage rejects unsafe paths and invalid plan schemas", () => {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("backs up a legacy proposal before saving its canonical arrangement", () => {
+  const { root, store } = temporaryStore();
+  try {
+    store.createCollege({ id: "science", name: "كلية العلوم" });
+    const plan = store.createMajor("science", { id: "math", major: "الرياضيات" });
+    plan.proposal = { semesters: [{ name: "الأول", courses: [] }] };
+    store.savePlan("science", "math", plan);
+    const canonical = store.getPlan("science", "math");
+    canonical.proposal = { semesters: [{ id: "one", name: "الأول", courseOrder: [], placeholders: [] }] };
+    store.savePlan("science", "math", canonical);
+    const files = fs.readdirSync(path.dirname(store.planPath("science", "math")));
+    assert.ok(files.some((name) => name.startsWith("plan.before-proposal-migration.")));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

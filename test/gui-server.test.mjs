@@ -5,6 +5,7 @@ import path from "node:path";
 import test from "node:test";
 import { createCatalogService } from "../src/catalog-service.mjs";
 import { createGuiServer } from "../src/gui-server.mjs";
+import { createSharedSemesterSetStore } from "../src/shared-semester-sets.mjs";
 import { createPlanStore } from "../src/store.mjs";
 
 function listen(server) {
@@ -38,11 +39,16 @@ function fixture() {
   fs.writeFileSync(femalePath, "[]");
   fs.writeFileSync(colorsPath, JSON.stringify({ عال: "#008899", عام: "#616161" }));
   const catalogService = createCatalogService({ malePath, femalePath, colorsPath });
+  const settingsPath = path.join(root, "settings.json");
+  const sharedSetStore = createSharedSemesterSetStore({
+    root: path.join(root, "shared-semester-sets"),
+    planStore: store,
+  });
   store.createCollege({ id: "ccis", name: "كلية علوم الحاسب" });
   const plan = store.createMajor("ccis", { id: "cs", major: "علوم الحاسب", expectedCredits: 3 });
   plan.semesters[0].courses = ["101 عال"];
   store.savePlan("ccis", "cs", plan);
-  return { root, store, catalogService, plan };
+  return { root, store, catalogService, plan, settingsPath, sharedSetStore };
 }
 
 test("GUI API lists, reads, validates, and previews unsaved plans", async () => {
@@ -50,6 +56,8 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
   const server = createGuiServer({
     store: value.store,
     catalogService: value.catalogService,
+    settingsPath: value.settingsPath,
+    sharedSetStore: value.sharedSetStore,
     outputRoot: path.join(value.root, "dist"),
   });
   const address = await listen(server);
@@ -58,6 +66,30 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
     const state = await fetch(`${base}/api/state`).then((response) => response.json());
     assert.equal(state.colleges[0].majors[0].id, "cs");
     assert.equal(state.catalog.resolvedCourseCount, 1);
+    assert.equal(state.settings.edition, "الطبعة الرابعة");
+
+    const savedSettings = await fetch(`${base}/api/settings`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ edition: "طبعة الاختبار", release: "إصدار 1.0" }),
+    }).then((response) => response.json());
+    assert.equal(savedSettings.settings.edition, "طبعة الاختبار");
+
+    const createdSet = await fetch(`${base}/api/shared-semester-sets`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: "foundation",
+        name: "السنة المشتركة",
+        phaseLabel: "السنة الأولى",
+        semesters: [{ id: "foundation-1", name: "المستوى الأول", courses: ["101 عال"] }],
+      }),
+    }).then((response) => response.json());
+    assert.equal(createdSet.sharedSemesterSet.semesters[0].courses[0].code, "101 عال");
+
+    const readSet = await fetch(`${base}/api/shared-semester-sets/foundation`)
+      .then((response) => response.json());
+    assert.equal(readSet.sharedSemesterSet.name, "السنة المشتركة");
 
     const read = await fetch(`${base}/api/colleges/ccis/majors/cs`).then((response) => response.json());
     assert.equal(read.plan.major, "علوم الحاسب");
