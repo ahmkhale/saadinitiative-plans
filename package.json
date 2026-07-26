@@ -1,0 +1,16 @@
+{
+  "name": "saad-plan-generator",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic Saad academic-plan generator: plan JSON + courses JSON -> resolved plan, SVG and PDF.",
+  "scripts": {
+    "generate": "node src/generate.mjs",
+    "generate:all": "node src/generate-all.mjs",
+    "test": "node --test",
+    "validate": "npm test && node --check src/generate.mjs && node --check src/generate-all.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

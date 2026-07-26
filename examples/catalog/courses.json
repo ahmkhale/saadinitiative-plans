@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "courses": [
+    {
+      "code": {
+        "display": "101 نهج",
+        "raw": "101 نهج",
+        "prefix": "نهج",
+        "catalogNumber": 101
+      },
+      "name": "مهارات جامعية",
+      "hours": 3,
+      "type": "undergraduate",
+      "isDisabled": false,
+      "details": {
+        "lecturesHours": "2",
+        "labHours": "0",
+        "exercisesHours": "0"
+      },
+      "prerequisites": []
+    },
+    {
+      "code": {
+        "display": "101 فجب",
+        "raw": "101 فجب",
+        "prefix": "فجب",
+        "catalogNumber": 101
+      },
+      "name": "اللياقة والثقافة الصحية",
+      "hours": 1,
+      "type": "undergraduate",
+      "isDisabled": false,
+      "details": {
+        "lecturesHours": "1",
+        "labHours": "0",
+        "exercisesHours": "0"
+      },
+      "prerequisites": []
+    },
+    {
+      "code": {
+        "display": "101 ريض",
+        "raw": "101 ريض",
+        "prefix": "ريض",
+        "catalogNumber": 101
+      },
+      "name": "حساب التفاضل",
+      "hours": 3,
+      "type": "undergraduate",
+      "isDisabled": false,
+      "details": {
+        "lecturesHours": "3",
+        "labHours": "0",
+        "exercisesHours": "1"
+      },
+      "prerequisites": []
+    },
+    {
+      "code": {
+        "display": "101 تقن",
+        "raw": "101 تقن",
+        "prefix": "تقن",
+        "catalogNumber": 101
+      },
+      "name": "مهارات الحاسب الآلي والذكاء الاصطناعي",
+      "hours": 3,
+      "type": "undergraduate",
+      "isDisabled": false,
+      "details": {
+        "lecturesHours": "2",
+        "labHours": "2",
+        "exercisesHours": "0"
+      },
+      "prerequisites": []
+    },
+    {
+      "code": {
+        "display": "219 تم",
+        "raw": "219 تم",
+        "prefix": "تم",
+        "catalogNumber": 219
+      },
+      "name": "الفيزياء لتقنية المعلومات",
+      "hours": 3,
+      "type": "undergraduate",
+      "isDisabled": false,
+      "details": {
+        "lecturesHours": "2",
+        "labHours": "2",
+        "exercisesHours": "0"
+      },
+      "prerequisites": []
+    },
+    {
+      "code": {
+        "display": "210 تم",
+        "raw": "210 تم",
+        "prefix": "تم",
+        "catalogNumber": 210
+      },
+      "name": "المبادئ الأساسية لتقنية المعلومات",
+      "hours": 3,
+      "type": "undergraduate",
+      "isDisabled": false,
+      "details": {
+        "lecturesHours": "3",
+        "labHours": "0",
+        "exercisesHours": "0"
+      },
+      "prerequisites": []
+    },
+    {
+      "code": {
+        "display": "151 ريض",
+        "raw": "151 ريض",
+        "prefix": "ريض",
+        "catalogNumber": 151
+      },
+      "name": "الرياضيات المحددة",
+      "hours": 3,
+      "type": "undergraduate",
+      "isDisabled": false,
+      "details": {
+        "lecturesHours": "3",
+        "labHours": "0",
+        "exercisesHours": "1"
+      },
+      "prerequisites": [
+        "101 ريض"
+      ]
+    },
+    {
+      "code": {
+        "display": "111 عال",
+        "raw": "111 عال",
+        "prefix": "عال",
+        "catalogNumber": 111
+      },
+      "name": "برمجة حاسبات 1",
+      "hours": 4,
+      "type": "undergraduate",
+      "isDisabled": false,
+      "details": {
+        "lecturesHours": "3",
+        "labHours": "2",
+        "exercisesHours": "0"
+      },
+      "prerequisites": [
+        "101 تقن"
+      ]
+    }
+  ]
+}

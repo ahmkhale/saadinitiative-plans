@@ -1,0 +1,1007 @@
+{
+  "$schema": "../../../schemas/plan.schema.json",
+  "schemaVersion": 1,
+  "id": "cis-cs-networks-cybersecurity-reference",
+  "university": "جامعة الملك سعود",
+  "college": "كلية علوم الحاسب والمعلومات",
+  "major": "علوم الحاسب مسار الشبكات والأمن السيبراني",
+  "degree": "البكالوريوس",
+  "edition": "الطبعة الرابعة",
+  "release": "إصدار 472.1",
+  "planCode": "CS-NET-CYBER",
+  "version": "472.1",
+  "expectedCredits": 108,
+  "sortCourses": "input",
+  "semesters": [
+    {
+      "number": 1,
+      "name": "المستوى الأول",
+      "yearLabel": "السنة التحضيرية",
+      "expectedCredits": 16,
+      "courses": [
+        "101 كيم",
+        "101 ريد",
+        "101 إحص",
+        "100 عرب",
+        "100 إنجل"
+      ]
+    },
+    {
+      "number": 2,
+      "name": "المستوى الثاني",
+      "yearLabel": "السنة التحضيرية",
+      "expectedCredits": 16,
+      "courses": [
+        "110 إنجل",
+        "101 نهج",
+        "101 فجب",
+        "101 ريض",
+        "101 تقن"
+      ]
+    },
+    {
+      "number": 3,
+      "name": "المستوى الثالث",
+      "yearLabel": "السنة الثانية",
+      "expectedCredits": 12,
+      "courses": [
+        "151 ريض",
+        "111 عال",
+        "107 سلم",
+        "106 ريض"
+      ]
+    },
+    {
+      "number": 4,
+      "name": "المستوى الرابع",
+      "yearLabel": "السنة الثانية",
+      "expectedCredits": 15,
+      "courses": [
+        "244 ريض",
+        "281 عال",
+        "220 عال",
+        "113 عال",
+        "108 سلم"
+      ]
+    },
+    {
+      "number": 5,
+      "name": "المستوى الخامس",
+      "yearLabel": "السنة الثالثة",
+      "expectedCredits": 15,
+      "courses": [
+        "380 عال",
+        "339 عال",
+        "304 عال",
+        "215 عال",
+        "212 عال"
+      ]
+    },
+    {
+      "number": 6,
+      "name": "المستوى السادس",
+      "yearLabel": "السنة الثالثة",
+      "expectedCredits": 15,
+      "courses": [
+        "429 عال",
+        "361 عال",
+        "329 عال",
+        "311 عال",
+        "227 عال"
+      ]
+    },
+    {
+      "number": 7,
+      "name": "المستوى السابع",
+      "yearLabel": "السنة الرابعة",
+      "expectedCredits": 12,
+      "courses": [
+        "488 عال",
+        "479 عال",
+        "437 عال",
+        "343 عال",
+        "340 عال"
+      ]
+    },
+    {
+      "number": 8,
+      "name": "المستوى الثامن",
+      "yearLabel": "السنة الرابعة",
+      "expectedCredits": 7,
+      "courses": [
+        "492 عال",
+        "453 عال"
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "name": "متطلبات الجامعة",
+      "requiredHours": 4,
+      "courses": [
+        "104 سلم",
+        "103 سلم",
+        "102 سلم",
+        "101 سلم",
+        "100 قرأ",
+        "100 سلم",
+        "109 سلم",
+        "106 سلم",
+        "105 سلم"
+      ]
+    },
+    {
+      "id": "scientific-requirements",
+      "name": "متطلبات علمية",
+      "requiredHours": 4,
+      "courses": [
+        "210 فيز",
+        "202 كيح",
+        "201 كيم",
+        "108 كيم",
+        "104 فيز",
+        "103 فيز"
+      ]
+    },
+    {
+      "id": "track-requirements",
+      "name": "متطلبات المسار",
+      "requiredHours": 12,
+      "courses": [
+        "436 عال",
+        "435 عال",
+        "434 عال",
+        "433 عال",
+        "432 عال",
+        "427 عال",
+        "462 عال",
+        "445 هال",
+        "439 عال"
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "101 كيم": {
+      "name": "كيمياء عامة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "101 ريد": {
+      "name": "ريادة الأعمال",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "101 إحص": {
+      "name": "مدخل إلى الاحتمالات والإحصاء",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 2,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "100 عرب": {
+      "name": "مهارات الكتابة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "100 إنجل": {
+      "name": "اللغة الإنجليزية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "110 إنجل": {
+      "name": "لغة إنجليزية تخصصية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "100 إنجل"
+      ],
+      "corequisites": []
+    },
+    "101 نهج": {
+      "name": "مهارات جامعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "101 فجب": {
+      "name": "اللياقة والثقافة الصحية",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "101 ريض": {
+      "name": "حساب التفاضل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 2,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "101 تقن": {
+      "name": "مهارات الحاسب الآلي والذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "151 ريض": {
+      "name": "الرياضيات المحددة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 2,
+      "prerequisites": [
+        "101 ريض"
+      ],
+      "corequisites": []
+    },
+    "111 عال": {
+      "name": "برمجة حاسبات 1",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "practicalHours": 2,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "101 تقن"
+      ],
+      "corequisites": []
+    },
+    "107 سلم": {
+      "name": "أخلاقيات المهنة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "106 ريض": {
+      "name": "حساب التكامل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 2,
+      "prerequisites": [
+        "101 ريض"
+      ],
+      "corequisites": []
+    },
+    "244 ريض": {
+      "name": "الجبر الخطي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 2,
+      "prerequisites": [
+        "106 ريض"
+      ],
+      "corequisites": []
+    },
+    "281 عال": {
+      "name": "الرياضيات المتقطعة لعلوم الحاسب",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "101 إحص",
+        "151 ريض"
+      ],
+      "corequisites": []
+    },
+    "220 عال": {
+      "name": "تنظيم الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 2,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "151 ريض"
+      ],
+      "corequisites": []
+    },
+    "113 عال": {
+      "name": "برمجة حاسبات 2",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "practicalHours": 2,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "111 عال"
+      ],
+      "corequisites": []
+    },
+    "108 سلم": {
+      "name": "قضايا معاصرة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "380 عال": {
+      "name": "أسس نظم قواعد البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [],
+      "corequisites": [
+        "212 عال"
+      ]
+    },
+    "339 عال": {
+      "name": "نظرية الحوسبة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "281 عال"
+      ],
+      "corequisites": []
+    },
+    "304 عال": {
+      "name": "أخلاقيات الحوسبة وطرق البحث",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "113 عال"
+      ],
+      "corequisites": []
+    },
+    "215 عال": {
+      "name": "البرمجة الإجرائية بلغة C",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "111 عال"
+      ],
+      "corequisites": [],
+      "trackSpecific": true
+    },
+    "212 عال": {
+      "name": "تراكيب البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "113 عال"
+      ],
+      "corequisites": []
+    },
+    "429 عال": {
+      "name": "أمن الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [],
+      "corequisites": [
+        "329 عال"
+      ]
+    },
+    "361 عال": {
+      "name": "الذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "212 عال"
+      ],
+      "corequisites": []
+    },
+    "329 عال": {
+      "name": "شبكات الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [],
+      "corequisites": [
+        "227 عال"
+      ]
+    },
+    "311 عال": {
+      "name": "تصميم وتحليل الخوارزميات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "212 عال",
+        "281 عال"
+      ],
+      "corequisites": []
+    },
+    "227 عال": {
+      "name": "نظم التشغيل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "212 عال"
+      ],
+      "corequisites": []
+    },
+    "488 عال": {
+      "name": "مشروع تخرج 1 في الشبكات والأمن السيبراني",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "429 عال"
+      ],
+      "corequisites": [],
+      "minimumCompletedCredits": 90,
+      "trackSpecific": true
+    },
+    "479 عال": {
+      "name": "التدريب الميداني",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": [],
+      "minimumCompletedCredits": 90
+    },
+    "437 عال": {
+      "name": "أمن الشبكات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "429 عال"
+      ],
+      "corequisites": [],
+      "trackSpecific": true
+    },
+    "343 عال": {
+      "name": "تحليل وتصميم الأنظمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "212 عال"
+      ],
+      "corequisites": []
+    },
+    "340 عال": {
+      "name": "لغات البرمجة والترجمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "339 عال"
+      ],
+      "corequisites": []
+    },
+    "492 عال": {
+      "name": "مشروع تخرج 2 في الشبكات والأمن السيبراني",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "488 عال"
+      ],
+      "corequisites": [],
+      "trackSpecific": true
+    },
+    "453 عال": {
+      "name": "المعالجة المتوازية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "227 عال"
+      ],
+      "corequisites": []
+    },
+    "100 سلم": {
+      "name": "دراسات في السيرة النبوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "100 قرأ": {
+      "name": "القرآن الكريم",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "101 سلم": {
+      "name": "أصول الثقافة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "102 سلم": {
+      "name": "الأسرة في الإسلام",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "103 سلم": {
+      "name": "النظام الاقتصادي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "104 سلم": {
+      "name": "النظام السياسي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "105 سلم": {
+      "name": "حقوق الإنسان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "106 سلم": {
+      "name": "الفقه الطبي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "109 سلم": {
+      "name": "المرأة ودورها التنموي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "practicalHours": 0,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "210 فيز": {
+      "name": "ميكانيكا تقليدية 1",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [
+        "101 ريض"
+      ],
+      "corequisites": [],
+      "extinct": true
+    },
+    "202 كيح": {
+      "name": "كيمياء حيوية عامة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "201 كيم": {
+      "name": "كيمياء عامة 2",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "108 كيم": {
+      "name": "كيمياء عضوية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "104 فيز": {
+      "name": "فيزياء عامة 2",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "103 فيز": {
+      "name": "فيزياء عامة 1",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "practicalHours": 2,
+      "exerciseHours": 0,
+      "prerequisites": [],
+      "corequisites": []
+    },
+    "436 عال": {
+      "name": "الجرائم السيبرانية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "429 عال"
+      ],
+      "corequisites": []
+    },
+    "435 عال": {
+      "name": "أساسيات الخصوصية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "429 عال"
+      ],
+      "corequisites": []
+    },
+    "434 عال": {
+      "name": "التشفير التطبيقي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "429 عال"
+      ],
+      "corequisites": []
+    },
+    "433 عال": {
+      "name": "أمن التطبيقات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "429 عال"
+      ],
+      "corequisites": []
+    },
+    "432 عال": {
+      "name": "الأنظمة المادية السيبرانية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "429 عال"
+      ],
+      "corequisites": []
+    },
+    "427 عال": {
+      "name": "اختبار الاختراق وتقييم نقاط الضعف",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "429 عال"
+      ],
+      "corequisites": []
+    },
+    "462 عال": {
+      "name": "تعليم الآلة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "361 عال"
+      ],
+      "corequisites": []
+    },
+    "445 هال": {
+      "name": "بروتوكولات وخوارزميات الشبكات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "329 عال"
+      ],
+      "corequisites": []
+    },
+    "439 عال": {
+      "name": "مواضيع مختارة في الأمن السيبراني",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "practicalHours": 0,
+      "exerciseHours": 1,
+      "prerequisites": [
+        "429 عال"
+      ],
+      "corequisites": []
+    }
+  },
+  "proposal": {
+    "title": "الخطة المقترحة",
+    "expectedCredits": 128,
+    "phases": [
+      {
+        "label": "السنة التحضيرية",
+        "start": 1,
+        "end": 2
+      },
+      {
+        "label": "التخصص",
+        "start": 3,
+        "end": 9
+      }
+    ],
+    "semesters": [
+      {
+        "number": 1,
+        "name": "المستوى الأول",
+        "yearLabel": "السنة التحضيرية",
+        "expectedCredits": 16,
+        "courses": [
+          "101 كيم",
+          "101 ريد",
+          "101 إحص",
+          "100 عرب",
+          "100 إنجل"
+        ]
+      },
+      {
+        "number": 2,
+        "name": "المستوى الثاني",
+        "yearLabel": "السنة التحضيرية",
+        "expectedCredits": 16,
+        "courses": [
+          "110 إنجل",
+          "101 نهج",
+          "101 فجب",
+          "101 ريض",
+          "101 تقن"
+        ]
+      },
+      {
+        "number": 3,
+        "name": "المستوى الثالث",
+        "yearLabel": "السنة الثانية",
+        "expectedCredits": 16,
+        "courses": [
+          {
+            "kind": "placeholder",
+            "code": "مقرر",
+            "fallback": {
+              "name": "من المتطلبات العلمية",
+              "academicHours": 4,
+              "lectureHours": 0,
+              "practicalHours": 0,
+              "exerciseHours": 0,
+              "prerequisites": [],
+              "corequisites": [],
+              "color": "#000000"
+            }
+          },
+          "151 ريض",
+          "111 عال",
+          "107 سلم",
+          "106 ريض"
+        ]
+      },
+      {
+        "number": 4,
+        "name": "المستوى الرابع",
+        "yearLabel": "السنة الثانية",
+        "expectedCredits": 15,
+        "courses": [
+          "244 ريض",
+          "281 عال",
+          "220 عال",
+          "113 عال",
+          "108 سلم"
+        ]
+      },
+      {
+        "number": 5,
+        "name": "المستوى الخامس",
+        "yearLabel": "السنة الثالثة",
+        "expectedCredits": 17,
+        "courses": [
+          {
+            "kind": "placeholder",
+            "code": "مقرر",
+            "fallback": {
+              "name": "من متطلبات الجامعة",
+              "academicHours": 2,
+              "lectureHours": 0,
+              "practicalHours": 0,
+              "exerciseHours": 0,
+              "prerequisites": [],
+              "corequisites": [],
+              "color": "#000000"
+            }
+          },
+          "380 عال",
+          "339 عال",
+          "304 عال",
+          "215 عال",
+          "212 عال"
+        ]
+      },
+      {
+        "number": 6,
+        "name": "المستوى السادس",
+        "yearLabel": "السنة الثالثة",
+        "expectedCredits": 17,
+        "courses": [
+          {
+            "kind": "placeholder",
+            "code": "مقرر",
+            "fallback": {
+              "name": "من متطلبات الجامعة",
+              "academicHours": 2,
+              "lectureHours": 0,
+              "practicalHours": 0,
+              "exerciseHours": 0,
+              "prerequisites": [],
+              "corequisites": [],
+              "color": "#000000"
+            }
+          },
+          "429 عال",
+          "361 عال",
+          "329 عال",
+          "311 عال",
+          "227 عال"
+        ]
+      },
+      {
+        "number": 7,
+        "name": "المستوى السابع",
+        "yearLabel": "السنة الرابعة",
+        "expectedCredits": 14,
+        "courses": [
+          {
+            "kind": "placeholder",
+            "code": "مقرر",
+            "fallback": {
+              "name": "من متطلبات المسار",
+              "academicHours": 3,
+              "lectureHours": 0,
+              "practicalHours": 0,
+              "exerciseHours": 0,
+              "prerequisites": [],
+              "corequisites": [],
+              "color": "#000000"
+            }
+          },
+          "488 عال",
+          "437 عال",
+          "343 عال",
+          "340 عال"
+        ]
+      },
+      {
+        "number": 8,
+        "name": "المستوى الثامن",
+        "yearLabel": "السنة الرابعة",
+        "expectedCredits": 16,
+        "courses": [
+          {
+            "kind": "placeholder",
+            "code": "مقرر",
+            "fallback": {
+              "name": "من متطلبات المسار",
+              "academicHours": 3,
+              "lectureHours": 0,
+              "practicalHours": 0,
+              "exerciseHours": 0,
+              "prerequisites": [],
+              "corequisites": [],
+              "color": "#000000"
+            }
+          },
+          {
+            "kind": "placeholder",
+            "code": "مقرر",
+            "fallback": {
+              "name": "من متطلبات المسار",
+              "academicHours": 3,
+              "lectureHours": 0,
+              "practicalHours": 0,
+              "exerciseHours": 0,
+              "prerequisites": [],
+              "corequisites": [],
+              "color": "#000000"
+            }
+          },
+          {
+            "kind": "placeholder",
+            "code": "مقرر",
+            "fallback": {
+              "name": "من متطلبات المسار",
+              "academicHours": 3,
+              "lectureHours": 0,
+              "practicalHours": 0,
+              "exerciseHours": 0,
+              "prerequisites": [],
+              "corequisites": [],
+              "color": "#000000"
+            }
+          },
+          "492 عال",
+          "453 عال"
+        ]
+      },
+      {
+        "number": 9,
+        "name": "صيفي",
+        "yearLabel": "فصل صيفي",
+        "expectedCredits": 1,
+        "courses": [
+          "479 عال"
+        ]
+      }
+    ]
+  }
+}

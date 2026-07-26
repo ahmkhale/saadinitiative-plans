@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://saadinitiative.com/schemas/plan.schema.json",
+  "title": "Saad academic plan",
+  "type": "object",
+  "required": ["schemaVersion", "major", "semesters"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "university": { "type": "string", "minLength": 1 },
+    "college": { "type": "string" },
+    "major": { "type": "string", "minLength": 1 },
+    "degree": { "type": "string" },
+    "planCode": { "type": "string" },
+    "version": { "type": ["string", "number"] },
+    "edition": { "type": "string" },
+    "release": { "type": "string" },
+    "headerSubtitle": { "type": "string" },
+    "expectedCredits": { "type": "number", "minimum": 0 },
+    "sortCourses": { "enum": ["input", "code"] },
+    "courseColors": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
+    },
+    "phases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/phase" }
+    },
+    "footer": {
+      "type": "object",
+      "properties": {
+        "copyright": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "semesters": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/semester" }
+    },
+    "electiveGroups": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/electiveGroup" }
+    },
+    "proposal": {
+      "type": "object",
+      "required": ["semesters"],
+      "properties": {
+        "title": { "type": "string" },
+        "expectedCredits": { "type": "number", "minimum": 0 },
+        "phases": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/phase" }
+        },
+        "semesters": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/semester" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "fallbackCourses": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/courseFacts" }
+    }
+  },
+  "$defs": {
+    "phase": {
+      "type": "object",
+      "required": ["label", "start", "end"],
+      "properties": {
+        "label": { "type": "string" },
+        "start": { "type": "integer", "minimum": 1 },
+        "end": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": true
+    },
+    "semester": {
+      "type": "object",
+      "required": ["courses"],
+      "properties": {
+        "number": { "type": "integer", "minimum": 1 },
+        "level": { "type": "integer", "minimum": 1 },
+        "name": { "type": "string" },
+        "yearLabel": { "type": "string" },
+        "expectedCredits": { "type": "number", "minimum": 0 },
+        "sortCourses": { "enum": ["input", "code"] },
+        "courses": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/courseEntry" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "electiveGroup": {
+      "type": "object",
+      "required": ["name", "courses"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "requiredHours": { "type": "number", "minimum": 0 },
+        "sortCourses": { "enum": ["input", "code"] },
+        "courses": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/courseEntry" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "courseEntry": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "required": ["code"],
+          "properties": {
+            "kind": { "enum": ["course", "placeholder"] },
+            "code": { "type": "string", "minLength": 1 },
+            "fallback": { "$ref": "#/$defs/courseFacts" },
+            "override": { "$ref": "#/$defs/courseFacts" },
+            "requirement": { "enum": ["required", "elective"] },
+            "trackSpecific": { "type": "boolean" },
+            "extinct": { "type": "boolean" },
+            "forceFallback": { "type": "boolean" },
+            "preserveSameSemesterPrerequisite": { "type": "boolean" }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "courseFacts": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "academicHours": { "type": "number", "minimum": 0 },
+        "creditHours": { "type": "number", "minimum": 0 },
+        "lectureHours": { "type": ["number", "null"], "minimum": 0 },
+        "practicalHours": { "type": ["number", "null"], "minimum": 0 },
+        "labHours": { "type": ["number", "null"], "minimum": 0 },
+        "exerciseHours": { "type": ["number", "null"], "minimum": 0 },
+        "tutorialHours": { "type": ["number", "null"], "minimum": 0 },
+        "prerequisites": { "type": "array", "items": { "type": "string" } },
+        "corequisites": { "type": "array", "items": { "type": "string" } },
+        "minimumCompletedCredits": { "type": "number", "minimum": 0 },
+        "category": { "type": "string" },
+        "color": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+        "trackSpecific": { "type": "boolean" },
+        "extinct": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
