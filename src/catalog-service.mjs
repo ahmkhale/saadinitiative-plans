@@ -21,17 +21,31 @@ function comparable(course) {
   });
 }
 
+function sourceBadge(course) {
+  if ((course?.conflicts?.length ?? 0) > 0) return "بيانات متعارضة";
+  if (!course?.name || course?.academicHours === null || course?.academicHours === undefined
+    || course?.lectureHours === null || course?.lectureHours === undefined
+    || course?.exerciseHours === null || course?.exerciseHours === undefined
+    || course?.practicalHours === null || course?.practicalHours === undefined) {
+    return "بيانات ناقصة";
+  }
+  return course.catalogSource === "female" ? "دليل الطالبات" : "دليل الطلاب";
+}
+
 export function createCatalogService(options = {}) {
   const malePath = path.resolve(options.malePath ?? path.join(projectRoot, "data", "courses", "Male", "courses.json"));
   const femalePath = path.resolve(options.femalePath ?? path.join(projectRoot, "data", "courses", "Female", "courses.json"));
   const colorsPath = path.resolve(options.colorsPath ?? path.join(projectRoot, "data", "course-colors.json"));
 
   function load() {
-    const male = buildCourseCatalog(readJson(malePath, []));
-    const female = buildCourseCatalog(readJson(femalePath, []));
+    const male = buildCourseCatalog(readJson(malePath, []), { catalogSource: "male" });
+    const female = buildCourseCatalog(readJson(femalePath, []), { catalogSource: "female" });
     const catalog = new Map(female);
     for (const [key, value] of male) catalog.set(key, value);
-    const conflicts = [];
+    const conflicts = [
+      ...[...male.values()].flatMap((course) => (course.conflicts ?? []).map((conflict) => ({ code: course.code, source: "male", ...conflict }))),
+      ...[...female.values()].flatMap((course) => (course.conflicts ?? []).map((conflict) => ({ code: course.code, source: "female", ...conflict }))),
+    ];
     for (const [key, maleCourse] of male) {
       const femaleCourse = female.get(key);
       if (femaleCourse && comparable(maleCourse) !== comparable(femaleCourse)) {
@@ -44,6 +58,8 @@ export function createCatalogService(options = {}) {
     }
     return {
       catalog,
+      male,
+      female,
       colors: readJson(colorsPath, { عام: "#616161" }),
       conflicts,
       sources: [
@@ -77,6 +93,7 @@ export function createCatalogService(options = {}) {
       found: true,
       ...course,
       subject,
+      sourceBadge: sourceBadge(course),
       color: course.color ?? state.colors[subject] ?? state.colors[course.category] ?? state.colors.عام ?? "#616161",
     };
   }
@@ -93,6 +110,7 @@ export function createCatalogService(options = {}) {
         found: true,
         ...course,
         subject,
+        sourceBadge: sourceBadge(course),
         color: course.color ?? state.colors[subject] ?? state.colors[course.category] ?? state.colors.عام ?? "#616161",
       });
       if (results.length >= Math.min(100, Math.max(1, limit))) break;

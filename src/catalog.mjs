@@ -17,7 +17,7 @@ function scheduleHours(schedule) {
   return total || null;
 }
 
-function directFacts(item) {
+function directFacts(item, catalogSource = "catalog") {
   const details = item.details ?? {};
   const codeValue = typeof item.code === "object"
     ? item.code.display ?? item.code.raw
@@ -36,7 +36,7 @@ function directFacts(item) {
     category: item.category ?? item.type ?? details.category ?? null,
     color: item.color ?? null,
     extinct: Boolean(item.extinct ?? item.isDisabled),
-    source: "catalog",
+    catalogSource,
   };
 }
 
@@ -57,16 +57,50 @@ function isCatalogRow(item) {
   return typeof item?.activity === "string" && (Array.isArray(item.schedule) || typeof item.creditHours === "string");
 }
 
-export function buildCourseCatalog(raw) {
+function chooseValue(values, field, conflicts) {
+  const present = values.filter((value) => value !== null && value !== undefined && value !== "");
+  const unique = [...new Map(present.map((value) => [JSON.stringify(value), value])).values()];
+  if (unique.length > 1) conflicts.push({ field, values: unique });
+  return unique[0] ?? null;
+}
+
+function aggregatedFacts(candidates, catalogSource) {
+  const conflicts = [];
+  const first = candidates[0];
+  const facts = {
+    code: first.code,
+    name: chooseValue(candidates.map((item) => item.name), "name", conflicts),
+    academicHours: chooseValue(candidates.map((item) => item.academicHours), "academicHours", conflicts),
+    lectureHours: chooseValue(candidates.map((item) => item.lectureHours), "lectureHours", conflicts),
+    practicalHours: chooseValue(candidates.map((item) => item.practicalHours), "practicalHours", conflicts),
+    exerciseHours: chooseValue(candidates.map((item) => item.exerciseHours), "exerciseHours", conflicts),
+    prerequisites: chooseValue(candidates.map((item) => item.prerequisites), "prerequisites", conflicts) ?? undefined,
+    corequisites: chooseValue(candidates.map((item) => item.corequisites), "corequisites", conflicts) ?? undefined,
+    minimumCompletedCredits: chooseValue(candidates.map((item) => item.minimumCompletedCredits), "minimumCompletedCredits", conflicts),
+    category: chooseValue(candidates.map((item) => item.category), "category", conflicts),
+    color: chooseValue(candidates.map((item) => item.color), "color", conflicts),
+    extinct: candidates.some((item) => item.extinct),
+    catalogSource,
+    conflicts,
+  };
+  return facts;
+}
+
+export function buildCourseCatalog(raw, options = {}) {
   const items = flattenCatalog(raw);
   const map = new Map();
   const rowsByCode = new Map();
+  const directByCode = new Map();
+  const catalogSource = options.catalogSource ?? "catalog";
 
   for (const item of items) {
     if (!isCatalogRow(item)) {
-      const facts = directFacts(item);
+      const facts = directFacts(item, catalogSource);
       if (!facts) continue;
-      map.set(courseCodeKey(facts.code), facts);
+      const key = courseCodeKey(facts.code);
+      const candidates = directByCode.get(key) ?? [];
+      candidates.push(facts);
+      directByCode.set(key, candidates);
       continue;
     }
     const code = normalizeCourseCode(item.code);
@@ -76,32 +110,39 @@ export function buildCourseCatalog(raw) {
     rowsByCode.set(key, rows);
   }
 
+  for (const [key, candidates] of directByCode.entries()) {
+    map.set(key, aggregatedFacts(candidates, catalogSource));
+  }
+
   for (const [key, rows] of rowsByCode.entries()) {
     const code = normalizeCourseCode(rows[0].code);
-    const byActivity = (activityNames) => {
-      let max = null;
+    const conflicts = [];
+    const byActivity = (activityNames, field) => {
+      const values = [];
       for (const row of rows) {
         if (!activityNames.includes(String(row.activity).trim())) continue;
         const value = scheduleHours(row.schedule);
-        if (value !== null) max = Math.max(max ?? 0, value);
+        if (value !== null) values.push(value);
       }
-      return max;
+      return chooseValue(values, field, conflicts);
     };
-    const credits = rows.reduce((max, row) => Math.max(max, numericValue(row.creditHours) ?? 0), 0);
+    const credits = chooseValue(rows.map((row) => numericValue(row.creditHours)), "academicHours", conflicts);
+    const name = chooseValue(rows.map((row) => String(row.name ?? "").trim() || null), "name", conflicts);
     map.set(key, {
       code,
-      name: rows.find((row) => String(row.name ?? "").trim())?.name?.trim() ?? null,
-      academicHours: credits || null,
-      lectureHours: byActivity(["محاضرة"]),
-      practicalHours: byActivity(["عملي", "ستوديو", "تدريب"]),
-      exerciseHours: byActivity(["تمارين"]),
+      name,
+      academicHours: credits,
+      lectureHours: byActivity(["محاضرة"], "lectureHours"),
+      practicalHours: byActivity(["عملي", "ستوديو", "تدريب"], "practicalHours"),
+      exerciseHours: byActivity(["تمارين"], "exerciseHours"),
       prerequisites: undefined,
       corequisites: undefined,
       minimumCompletedCredits: null,
       category: null,
       color: null,
       extinct: false,
-      source: "catalog-rows",
+      catalogSource,
+      conflicts,
     });
   }
 

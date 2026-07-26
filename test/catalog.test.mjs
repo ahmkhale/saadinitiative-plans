@@ -25,3 +25,15 @@ test("aggregates KV catalog rows", () => {
   assert.equal(course.lectureHours, 3);
   assert.equal(course.practicalHours, 2);
 });
+
+test("keeps section provenance and reports conflicting derived facts", () => {
+  const catalog = buildCourseCatalog([
+    { code: "101 عال", name: "مبادئ البرمجة", activity: "محاضرة", creditHours: "3", schedule: [{ startTime: "08:00", endTime: "10:30" }] },
+    { code: "101 عال", name: "برمجة تمهيدية", activity: "محاضرة", creditHours: "4", schedule: [{ startTime: "08:00", endTime: "09:40" }] },
+  ], { catalogSource: "male" });
+  const course = catalog.get(courseCodeKey("101 عال"));
+  assert.equal(course.catalogSource, "male");
+  assert.ok(course.conflicts.some((conflict) => conflict.field === "name"));
+  assert.ok(course.conflicts.some((conflict) => conflict.field === "academicHours"));
+  assert.ok(course.conflicts.some((conflict) => conflict.field === "lectureHours"));
+});
