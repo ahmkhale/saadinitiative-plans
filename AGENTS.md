@@ -1,52 +1,33 @@
-# AGENTS.md
+# Agent instructions
 
-This repository is the plan equivalent of `saad-calendar-generator`.
+Always think and communicate with the user in English. Arabic remains appropriate for product copy, course facts, and generated plan content.
 
-## Product rule
+## Protected behavior
 
-The operator enters academic decisions and genuinely missing facts. The
-generator derives everything repetitive.
+- Work on the canonical model directly; do not add migrations, legacy adapters, or backups.
+- Preserve the approved Figma geometry. Do not solve text overflow by resizing cards, pills, metric boxes, summaries, or rails.
+- Institution and college metadata come from repository location.
+- Edition/release come from institution settings, not plan files.
+- Course facts and plan-owned requirements are separate.
+- Store fallback facts once in the owning file’s `fallbackCourses`.
+- Catalog lookup is active Male → active Female → owning fallback → unresolved.
+- Provenance and data quality are independent.
+- Normalize missing activity siblings to zero only when at least one activity field is known.
+- Shared semester and elective sources require explicit institution/college/major scope.
+- Published courses sort automatically by number then subject.
+- Parent markers derive only from prerequisites of later published courses.
+- Proposal placement references stable published occurrence IDs and never mutates the published plan.
+- Every page is `594 pt` wide with independently derived height.
+- Use shaped IBM Plex Sans Arabic measurement and the same local font in browser preview/export.
+- Keep footer hyperlinks intact.
+- Keep atomic writes.
 
-## Protected invariants
+## Validation
 
-- Section lookup is Male -> Female -> complete manual fallback.
-- Provenance and data-quality badges are separate.
-- Prerequisites, corequisites, minimum completed hours, and track status are
-  first-class plan rules.
-- Level names and numbers are automatic Arabic ordinals and are not persisted.
-- Shared level sources are referenced and composed, never copied into majors.
-- A two-level shared foundation occupies levels one and two; the first own level
-  becomes level three.
-- Published and elective courses sort by course number, then Arabic subject.
-- The proposal is a child arrangement whose real-course set exactly equals the
-  published real-course set.
-- Proposal real courses may move and reorder, but cannot be added, deleted,
-  duplicated, or edited.
-- Proposal placeholders are proposal-owned, always render last, and always use
-  the visible code `مقرر`.
-- When any activity-hour field is known, its missing siblings normalize to zero;
-  all three unknown values remain an error.
-- Shared semester and shared elective sources are separate referenced domains.
-- Catalog-backed courses hydrate durable owning-source fallbacks on save without
-  overwriting manual values.
-- Semester, cumulative, and plan totals are model output.
-- Every page is exactly `594 pt` wide; height is content-derived.
-- Semester course areas wrap after every six cards and grow by the measured
-  formula; summaries remain exactly `57 pt` high.
-- Figma geometry is protected. Do not fix UX by changing visual component sizes.
-- Text fitting uses shaped IBM Plex Sans Arabic glyph advances and readable
-  minimum sizes.
-- Footer items are complete SVG/PDF hyperlinks.
-- PDF is default; persistent SVG is opt-in.
-- Do not add font binaries to the repository or generated ZIP files.
-- During active development, update the canonical model directly: do not add
-  migrations, legacy adapters, or timestamped backups.
-
-## Commands
-
-```bash
-npm test
+```powershell
 npm run validate
 npm run gui
-npm run generate -- <plan.json> --catalog <courses.json> --svg --png
+npm run generate -- "institutions/ksu/colleges/engineering/majors/electrical-engineering/plan.json" --svg --png
 ```
+
+Inspect SVG, high-resolution PNG, PDF page sizes, PDF URLs, and the localhost GUI. Do not claim a still-running or failed validation as complete.

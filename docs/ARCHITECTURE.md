@@ -1,111 +1,41 @@
 # Architecture
 
-## Rendering
+## Layers
 
-`src/render-svg.mjs` renders the resolved model as measured SVG components:
-header, semester rows, summaries, course cards, year and phase rails, elective
-groups, proposal guide, and footer. It does not calculate plan totals.
+### Domain
 
-All authoritative geometry is centralized in `src/render-layout.mjs`. A
-cumulative layout pass records `y`, `rowCount`, `courseBodyHeight`,
-`summaryHeight`, and `bottom` for every semester. All rails and downstream
-sections consume those entries rather than an index-based pitch. See
-`docs/FIGMA_MEASUREMENTS.md` for the Figma node mapping and extracted values.
-Each page owns a deterministic render context that allocates unique IDs with a
-page-specific prefix, so repeated cards and multipage output cannot collide.
+`src/domain/` contains pure course-code, factual normalization, requirement formatting, parent derivation, semester, diagnostics, Arabic wording, and source-scope rules. Domain modules do not import filesystem, HTTP, GUI, SVG, or exporter concerns.
 
-Published and proposed pages retain a fixed `594 pt` width. `render-layout.mjs`
-calculates each page height from its own semester composition, elective groups,
-optional guide, footer gap, and footer. The same dimensions
-drive the SVG root, viewBox, Inkscape page definitions, PDF, and PNG export.
-Components are never compressed to fit a universal height.
+### Application
+
+`src/application/plan-pipeline.mjs` is the only full orchestration path. It normalizes and validates input, selects scoped shared sources, composes published data, resolves facts/rules, reconciles proposals, and sends the resolved plan to presentation.
+
+Thin use-case entry points expose composition, fallback hydration, plan resolution, and proposal reconciliation. `src/pipeline.mjs` (CLI) and `src/preview.mjs` (GUI) delegate to the canonical pipeline.
+
+### Infrastructure
+
+`src/infrastructure/repositories/` owns safe IDs, atomic JSON writes, institution hierarchy, and plan storage. Catalog files, settings, local fonts, Inkscape export, and HTTP serving are outside-world concerns.
+
+Institution repository paths are canonical:
 
 ```text
-plan.json
-  -> normalizePlanInput()
-  -> validatePlanShape()
-
-Male/courses.json + Female/courses.json
-  -> buildCourseCatalog()
-     - preserve source provenance
-     - Male priority, Female fallback
-     - aggregate section conflicts
-
-plan + catalog + course-colors.json
-  -> resolvePlan()
-     - source precedence
-     - shared settings, semester-source, and elective-source composition
-     - activity-hour normalization and fallback snapshots
-     - automatic Arabic level labels
-     - prerequisite graph
-     - parent-course derivation
-     - semester/elective/proposal totals
-     - proposal parent-child reconciliation and placeholders
-     - diagnostics
-  -> plan.resolved.json
-  -> renderPlanDocumentSvg()
-     - published-plan page
-     - optional proposed-plan page
-     - Inkscape multipage SVG pages
-  -> Inkscape PDF export
-  -> optional persistent SVG and per-page PNG previews
+institutions/<institution>/colleges/<college>/majors/<major>/plan.json
 ```
 
-The split mirrors the calendar generator:
+### Presentation
 
-- persisted input stays small and operator-owned;
-- reusable course facts are resolved before layout;
-- the renderer consumes only a materialized model;
-- Figma geometry and styles are centralized in one renderer;
-- PDF is the product and SVG is optional;
-- uncertainty is reported instead of guessed.
+`src/presentation/layout/page-layout.mjs` owns measured Figma constants and cumulative layout formulas. Presentation consumes a resolved plan; it does not decide prerequisite or parent semantics. `src/presentation/svg/document.mjs` is the presentation entry point while `src/render-svg.mjs` remains the current SVG component implementation.
 
-## Local GUI
+The framework-free GUI separates API access, state, selectors, editor behavior, diagnostics, and inline preview.
 
-`src/gui-server.mjs` binds to `127.0.0.1` and serves the Arabic RTL application
-in `gui/`. Its API is intentionally thin:
+## Pipeline parity
 
-```text
-browser draft
-  -> preview.mjs
-     -> normalize + validate + resolve
-     -> shared SVG renderer
-  -> actual SVG pages + diagnostics + page dimensions
+CLI, GUI preview, GUI validation, GUI save/export, SVG, PDF, PNG, and regression tests share the same application pipeline. Metadata is passed in from repository context and never persisted into major plans.
 
-save
-  -> store.mjs
-     -> schema validation
-     -> sibling temporary file
-     -> atomic rename to colleges/<college>/<major>/plan.json
+## Identity and reconciliation
 
-export
-  -> preview.mjs
-     -> same resolved document
-     -> exporter.mjs
-     -> PDF by default, optional SVG/PNG
-```
+Institution, college, major, source, semester, placeholder, and course occurrence IDs are stable. Proposal `courseOrder` contains occurrence IDs, including inherited shared occurrences. Reconciliation uses those IDs for set integrity and course codes only for academic prerequisite comparisons.
 
-`catalog-service.mjs` builds the Male and Female sources independently, preserving
-their provenance and section-level conflicts. Lookup selects Male when both
-sources contain the course, then Female, then a complete plan fallback. Section
-files are lookup accelerators, not complete academic catalogs. The GUI never
-writes course facts back to either source.
+## Development policy
 
-`settings.mjs` owns global edition/release defaults. `shared-semester-sets.mjs`
-owns reusable level sources, scans plan usages before deletion, and writes
-atomically. `semester-labels.mjs` labels the final composed sequence, so shared
-foundations and major-specific levels always form one continuous numbering.
-`shared-elective-groups.mjs` provides a separate centrally editable source
-store, usage protection, reference composition, and published-course exclusion.
-`fallback-hydration.mjs` refreshes catalog-derived factual snapshots while
-preserving fields marked as manually edited.
-
-The published model is the decision source. Its semester and elective entries
-are automatically sorted. A proposal persists stable semester IDs, real-course
-placement/order references, semester type, and placeholders, but never copied
-real-course facts. `proposal-reconciliation.mjs` removes stale references,
-detects duplicates, inherits new parent courses, preserves valid moves, and
-appends placeholders after real courses.
-
-Unsaved editor state remains in the browser. Preview and draft export accept that
-state directly, so saving is not a prerequisite for visual feedback.
+There is no compatibility layer. Canonical changes update current JSON, schema, tests, GUI, renderer, and docs together. Atomic replacement remains mandatory for every mutable JSON repository.

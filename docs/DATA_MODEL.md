@@ -1,164 +1,100 @@
 # Data model
 
-## Canonical storage
+## Institution hierarchy
 
-A major plan stores operator-owned decisions and durable source snapshots:
+- `institution.json`: stable `id`, display `name`.
+- `college.json`: stable `id`, display `name`.
+- `plan.json`: stable major `id`, major/degree decisions, shared references, own semesters, electives, proposal, owning fallbacks.
+- `settings.json`: edition, release, and shared presentation defaults.
 
-- identity and expected total hours;
-- references to reusable shared semester sets;
-- major-owned semesters and self-contained course entries;
-- course prerequisites, corequisites, minimum completed hours, and track status;
-- elective groups, including references to shared elective sources;
-- fallback facts with per-field `catalog` or `manual` provenance;
-- the proposed-page semester arrangement and placeholder cards.
+Plan files do not contain university, college, edition, release, or version.
 
-Semester labels, phase rails, renderer coordinates, resolved course facts, and
-calculated totals are derived.
-
-There is intentionally no migration or legacy adapter. Files must use the
-current canonical shape; obsolete shapes fail validation instead of being
-silently rewritten.
-
-## Course entries and facts
-
-Every plan-owned course is an object containing its durable fallback facts and
-plan-owned rules:
+## Course occurrence
 
 ```json
 {
-  "code": "201 عال",
-  "fallbackName": "هياكل البيانات",
-  "fallbackCreditHours": 3,
-  "fallbackLectureHours": 3,
-  "fallbackExerciseHours": 0,
-  "fallbackPracticalHours": 0,
-  "prerequisites": ["101 عال"],
+  "id": "major:electrical-engineering:published-level-5:201-كهر",
+  "code": "201 كهر",
+  "prerequisites": ["106 ريض"],
   "corequisites": [],
-  "minimumCompletedCredits": 30,
-  "requirement": "required",
-  "trackSpecific": true
+  "minimumCompletedCredits": null,
+  "prerequisiteConditions": [],
+  "trackSpecific": false
 }
 ```
 
-Catalog lookup is Male, then Female for an absent code, then a plan fallback.
-On save, catalog facts used by the plan are copied into the course entry's
-`fallback*` fields, with optional per-field provenance, so the plan remains
-reproducible if a catalog row later disappears. Operator edits are marked
-`manual` and are never overwritten by ordinary saves. The explicit refresh
-action replaces the inline snapshot from the current catalog.
+The same rule shape is used in shared semester sources and custom/shared elective candidates. Compact code strings are not persisted.
 
-`edition`, `release`, and `version` are not plan fields. Edition and release are
-global settings in `data/settings.json`.
-
-If any activity field is known, missing sibling activity fields normalize to
-zero. If all activity fields are unknown, they stay unknown and resolution
-reports the missing data.
-
-## Shared semester sets
-
-Reusable semester sources live at:
-
-```text
-data/shared-semester-sets/<id>.json
-```
-
-A major references them by ID:
+## Factual snapshot
 
 ```json
 {
-  "sharedSemesterSets": ["cfy-science"],
-  "semesters": [
-    { "id": "major-3", "courses": ["111 عال", "151 ريض"] }
-  ]
-}
-```
-
-The selected sets are prepended to the major-owned semesters. Stable composed
-IDs preserve proposed-page placement as the source changes. Labels are derived
-from the combined order.
-
-## Shared elective sources
-
-Reusable elective pools are separate from shared semester sets:
-
-```text
-data/shared-elective-groups/<id>.json
-```
-
-A plan references a source and stores only major-specific decisions:
-
-```json
-{
-  "electiveGroups": [
-    {
-      "id": "university-requirements",
-      "sourceId": "university-requirements"
+  "fallbackCourses": {
+    "201 كهر": {
+      "name": "دوائر كهربائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
     }
-  ]
-}
-```
-
-The resolver composes the source courses and fallbacks, then removes courses
-already used by the published plan and subtracts their distinct academic hours
-from the source requirement. The source itself remains unchanged. A referenced
-source cannot be deleted.
-
-## Proposed page
-
-The proposal stores placement, order, semester type, and placeholders, but
-never duplicates real-course facts:
-
-```json
-{
-  "proposal": {
-    "enabled": true,
-    "showGuide": true,
-    "semesters": [
-      {
-        "id": "proposal-regular-1",
-        "sourceSemesterId": "major-3",
-        "type": "regular",
-        "courseOrder": ["111 عال", "151 ريض"],
-        "placeholders": [
-          {
-            "id": "scientific-placeholder",
-            "name": "من المتطلبات العلمية",
-            "academicHours": 4,
-            "lectureHours": 0,
-            "exerciseHours": 0,
-            "practicalHours": 0
-          }
-        ]
-      },
-      {
-        "id": "proposal-summer-1",
-        "type": "summer",
-        "courseOrder": [],
-        "placeholders": []
-      }
-    ]
   }
 }
 ```
 
-Every published real course appears exactly once in the proposal. Real courses
-may be moved between regular and summer semesters and reordered; they cannot be
-added, deleted, or edited there. Reconciliation discards stale references,
-removes duplicates, and inserts newly published courses into their source
-semester. Placeholders always render after real courses and use the visible code
-`مقرر`.
+Facts never contain prerequisites, corequisites, completion thresholds, textual conditions, track status, or elective requirement type.
 
-## Resolved output
+Catalog hydration fills missing facts on save. It does not overwrite non-empty manual fields. Explicit refresh replaces factual values and resets provenance as appropriate.
 
-Generated resolved output owns:
+## Activity fields
 
-- automatic Arabic semester labels and phase/year rails;
-- normalized code and subject;
-- source provenance and quality badges;
-- course colors, parent markers, and track markers;
-- semester, cumulative, and plan totals;
-- composed shared semesters and shared elective pools;
-- reconciled published and proposed pages;
-- diagnostics.
+`lectureHours`, `exerciseHours`, and `practicalHours` distinguish zero from unknown.
 
-Resolved output is generated and never hand-edited.
+- At least one known → missing siblings become `0`.
+- All unknown → all remain unknown.
+- `academicHours` alone does not trigger activity normalization.
+
+## Shared-source scope
+
+Institution:
+
+```json
+{ "type": "institution", "institutionId": "ksu" }
+```
+
+College:
+
+```json
+{ "type": "college", "institutionId": "ksu", "collegeId": "engineering" }
+```
+
+Selected majors:
+
+```json
+{ "type": "majors", "institutionId": "ksu", "majorIds": ["major-a", "major-b"] }
+```
+
+Out-of-scope sources are not composed.
+
+## Proposal
+
+Proposal semesters store stable source-semester references, type, occurrence order, and placeholders:
+
+```json
+{
+  "id": "proposal-summer-1",
+  "sourceSemesterId": null,
+  "type": "summer",
+  "courseOrder": [
+    "major:electrical-engineering:published-level-10:999-كهر"
+  ],
+  "placeholders": []
+}
+```
+
+Real course facts are never copied into proposal JSON.
+
+## Derived output
+
+The resolver derives catalog provenance/quality, facts, normalized activity zeros, labels, parent/track/extinct markers, elective exclusions, remaining hours, totals, cumulative hours, semester/year/phase bounds, proposal facts, and diagnostics.
