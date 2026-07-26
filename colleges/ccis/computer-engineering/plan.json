@@ -5,9 +5,6 @@
   "college": "كلية علوم الحاسب والمعلومات",
   "major": "هندسة الحاسب",
   "degree": "البكالوريوس",
-  "edition": "الطبعة الرابعة",
-  "release": "إصدار 472.1",
-  "version": "472.1",
   "expectedCredits": 139,
   "sortCourses": "code",
   "sharedSemesterSets": [
@@ -17,76 +14,685 @@
     {
       "id": "published-level-3",
       "courses": [
-        "151 ريض",
-        "111 عال",
-        "106 ريض",
-        "103 فيز"
+        {
+          "code": "151 ريض",
+          "fallbackName": "الرياضيات المحددة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "111 عال",
+          "fallbackName": "برمجة حاسبات (1)",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "106 ريض",
+          "fallbackName": "حساب التكامل",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "103 فيز",
+          "fallbackName": "فيزياء عامة (1)",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-4",
       "courses": [
-        "211 هال",
-        "205 ريض",
-        "113 عال",
-        "109 نجم",
-        "104 فيز"
+        {
+          "code": "211 هال",
+          "fallbackName": "التصميم المنطقي (1)",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "205 ريض",
+          "fallbackName": "حساب التفاضل والتكامل",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "113 عال",
+          "fallbackName": "برمجة حاسبات -2-",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "109 نجم",
+          "fallbackName": "اللغة والتخاطب",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "104 فيز",
+          "fallbackName": "فيزياء عامه (2)",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-5",
       "courses": [
-        "212 هال",
-        "212 عال",
-        "207 كهر",
-        "204 ريض",
-        "110 نجم"
+        {
+          "code": "212 هال",
+          "fallbackName": "التصميم المنطقي (2)",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "212 عال",
+          "fallbackName": "تراكيب البيانات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "207 كهر",
+          "fallbackName": "الدوائرالكهربائية لهندسة الحاسب",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "204 ريض",
+          "fallbackName": "المعادلات التفاضلية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "110 نجم",
+          "fallbackName": "الكتابة التقنية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-6",
       "courses": [
-        "351 هال",
-        "316 هال",
-        "312 كهر",
-        "310 كهر",
-        "244 ريض",
-        "227 عال"
+        {
+          "code": "351 هال",
+          "fallbackName": "إشارات ونظم",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "316 هال",
+          "fallbackName": "عمارة الحاسبات ولغات التجميع",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "312 كهر",
+          "fallbackName": "معمل أساسيات الالكترونيات",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "310 كهر",
+          "fallbackName": "نبائط ودوائر الميكروالكترونيات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "244 ريض",
+          "fallbackName": "الجبر الخطي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "227 عال",
+          "fallbackName": "نظم التشغيل",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-7",
       "courses": [
-        "390 هال",
-        "352 هال",
-        "341 هال",
-        "318 هال",
-        "211 هاب"
+        {
+          "code": "390 هال",
+          "fallbackName": "ندوة في هندسة الحاسب",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 1,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "352 هال",
+          "fallbackName": "معالجة الإشارات الرقمية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "341 هال",
+          "fallbackName": "تراسل البيانات",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "318 هال",
+          "fallbackName": "النظم المضمنة",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "211 هاب",
+          "fallbackName": "مدخل الى هندسة البرمجيات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-8",
       "courses": [
-        "490 هال",
-        "479 هال",
-        "453 هال",
-        "441 هال",
-        "415 هال",
-        "311 عال"
+        {
+          "code": "490 هال",
+          "fallbackName": "التصميم الهندسي وإدارة المشاريع",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "479 هال",
+          "fallbackName": "التدريب الميداني",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 120 ساعة"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "453 هال",
+          "fallbackName": "التحكم الرقمي والروبوتية",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "441 هال",
+          "fallbackName": "شبكات الحاسب",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "415 هال",
+          "fallbackName": "مقدمة في تصميم الدوائر المتكاملة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "311 عال",
+          "fallbackName": "تصميم وتحليل الخوارزميات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-9",
       "courses": [
-        "492 هال",
-        "442 هال",
-        "107 سلم"
+        {
+          "code": "492 هال",
+          "fallbackName": "مشروع تخرج 1",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "مستوى 7",
+            "120 ساعة",
+            "490 هال"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "442 هال",
+          "fallbackName": "أمن الحاسبات والشبكات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "107 سلم",
+          "fallbackName": "اخلاقيات المهنة",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-10",
       "courses": [
-        "493 هال"
+        {
+          "code": "493 هال",
+          "fallbackName": "مشروع تخرج 2",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "492 هال"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        }
       ]
     }
   ],
@@ -97,16 +703,190 @@
       "requiredHours": 6,
       "sortCourses": "code",
       "courses": [
-        "104 سلم",
-        "103 سلم",
-        "102 سلم",
-        "101 سلم",
-        "100 قرأ",
-        "100 سلم",
-        "109 سلم",
-        "108 سلم",
-        "106 سلم",
-        "105 سلم"
+        {
+          "code": "104 سلم",
+          "fallbackName": "النظام السياسي الإسلامي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "103 سلم",
+          "fallbackName": "النظام الاقتصادي الإسلامي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "102 سلم",
+          "fallbackName": "الأسرة في الإسلام",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "101 سلم",
+          "fallbackName": "أصول الثقافة الإسلامية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "100 قرأ",
+          "fallbackName": "القرآن الكريم",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "100 سلم",
+          "fallbackName": "دراسات في السيرة النبوية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "109 سلم",
+          "fallbackName": "المرأة ودورها التنموي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "108 سلم",
+          "fallbackName": "قضايا معاصرة",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "106 سلم",
+          "fallbackName": "الفقه الطبي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "105 سلم",
+          "fallbackName": "حقوق الإنسان",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
@@ -115,18 +895,226 @@
       "requiredHours": 12,
       "sortCourses": "code",
       "courses": [
-        "445 هال",
-        "443 هال",
-        "416 هال",
-        "414 هال",
-        "413 هال",
-        "402 هال",
-        "491 هال",
-        "465 هال",
-        "460 هال",
-        "459 هال",
-        "454 هال",
-        "446 هال"
+        {
+          "code": "445 هال",
+          "fallbackName": "بروتوكولات وخوارزميات الشبكات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "443 هال",
+          "fallbackName": "الشبكات اللاسلكية وشبكات الاستشعار",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "416 هال",
+          "fallbackName": "مقدمة إلى حسابات الحاسب",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "414 هال",
+          "fallbackName": "مصفوفة البوابات الرقمية وبرمجتها",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "413 هال",
+          "fallbackName": "عمارة الحاسبات 2",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "316 هال"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "402 هال",
+          "fallbackName": "مقدمة الى العمليات العشوائية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "491 هال",
+          "fallbackName": "مواضيع مختارة فى هندسة الحاسبات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "465 هال",
+          "fallbackName": "معالجة الصور الرقمية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "460 هال",
+          "fallbackName": "معالجة الكلام الرقمي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "459 هال",
+          "fallbackName": "الروبوتية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "454 هال",
+          "fallbackName": "الأنظمة الذكية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "446 هال",
+          "fallbackName": "تصميم وإدارة الشبكات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
@@ -135,1247 +1123,487 @@
       "requiredHours": 3,
       "sortCourses": "code",
       "courses": [
-        "335 نال",
-        "321 هاب",
-        "312 هاب",
-        "230 نال",
-        "204 كهر",
-        "203 كهر",
-        "422 كهر",
-        "412 عال",
-        "407 كهر",
-        "385 نال",
-        "380 عال",
-        "361 عال",
-        "456 عال",
-        "454 كهر",
-        "453 عال",
-        "429 عال",
-        "425 كهر",
-        "423 كهر",
-        "464 كهر",
-        "463 كهر",
-        "462 عال",
-        "458 كهر",
-        "457 عال",
-        "456 كهر",
-        "486 هاب"
+        {
+          "code": "335 نال",
+          "fallbackName": "معمارية نظم إدارة قواعد البيانات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "212 عال"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "321 هاب",
+          "fallbackName": "تصميم وعمارة البرمجيات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "312 هاب",
+          "fallbackName": "هندسة متطلبات البرمجيات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "230 نال",
+          "fallbackName": "اسس قواعد البيانات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "204 كهر",
+          "fallbackName": "الكهرومغناطيسية الهندسية (2)",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "203 كهر",
+          "fallbackName": "الكهرومغناطيسية الهندسية (1)",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "422 كهر",
+          "fallbackName": "الاتصالات الرقمية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "412 عال",
+          "fallbackName": "محاكاة ونمذجة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "111 عال"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "407 كهر",
+          "fallbackName": "الدوائر الإلكترونية للاتصالات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "341 هال"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "385 نال",
+          "fallbackName": "نظم تخطيط موارد المؤسسات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "380 عال",
+          "fallbackName": "اسس نظم قواعد البيانات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "361 عال",
+          "fallbackName": "الذكاء الاصطناعي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "456 عال",
+          "fallbackName": "النظم الموزعة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "441 هال"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "454 كهر",
+          "fallbackName": "نظم التحكم المتقدمة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "453 هال"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "453 عال",
+          "fallbackName": "المعالجة المتوازية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "429 عال",
+          "fallbackName": "أمن الحاسبات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "425 كهر",
+          "fallbackName": "اتصالات الأقمار الصناعية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "341 هال"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "423 كهر",
+          "fallbackName": "انتشار الموجات والهوائيات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "464 كهر",
+          "fallbackName": "الاتصالات الضوئية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "463 كهر",
+          "fallbackName": "الاتصالات اللاسلكية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "462 عال",
+          "fallbackName": "تعليم الآلة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "458 كهر",
+          "fallbackName": "التصميم المنطقي المتقدم",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "318 هال"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "457 عال",
+          "fallbackName": "تقنيات الانترنت",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "456 كهر",
+          "fallbackName": "تطبيقات التحكم الآلي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "486 هاب",
+          "fallbackName": "الحوسبة السحابية والبيانات الضخمة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     }
   ],
-  "fallbackCourses": {
-    "479 هال": {
-      "name": "التدريب الميداني",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 120 ساعة"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "492 هال": {
-      "name": "مشروع تخرج 1",
-      "academicHours": 3,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "مستوى 7",
-        "120 ساعة",
-        "490 هال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "493 هال": {
-      "name": "مشروع تخرج 2",
-      "academicHours": 3,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "492 هال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "104 سلم": {
-      "name": "النظام السياسي الإسلامي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "101 سلم": {
-      "name": "أصول الثقافة الإسلامية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "413 هال": {
-      "name": "عمارة الحاسبات 2",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "316 هال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "335 نال": {
-      "name": "معمارية نظم إدارة قواعد البيانات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "212 عال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "412 عال": {
-      "name": "محاكاة ونمذجة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "111 عال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "407 كهر": {
-      "name": "الدوائر الإلكترونية للاتصالات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "341 هال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "456 عال": {
-      "name": "النظم الموزعة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "441 هال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "454 كهر": {
-      "name": "نظم التحكم المتقدمة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "453 هال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "425 كهر": {
-      "name": "اتصالات الأقمار الصناعية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "341 هال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "458 كهر": {
-      "name": "التصميم المنطقي المتقدم",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "318 هال"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "151 ريض": {
-      "name": "الرياضيات المحددة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "111 عال": {
-      "name": "برمجة حاسبات (1)",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "106 ريض": {
-      "name": "حساب التكامل",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "103 فيز": {
-      "name": "فيزياء عامة (1)",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "211 هال": {
-      "name": "التصميم المنطقي (1)",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "205 ريض": {
-      "name": "حساب التفاضل والتكامل",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "113 عال": {
-      "name": "برمجة حاسبات -2-",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "109 نجم": {
-      "name": "اللغة والتخاطب",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "104 فيز": {
-      "name": "فيزياء عامه (2)",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "212 هال": {
-      "name": "التصميم المنطقي (2)",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "212 عال": {
-      "name": "تراكيب البيانات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "207 كهر": {
-      "name": "الدوائرالكهربائية لهندسة الحاسب",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "204 ريض": {
-      "name": "المعادلات التفاضلية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "110 نجم": {
-      "name": "الكتابة التقنية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "351 هال": {
-      "name": "إشارات ونظم",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "316 هال": {
-      "name": "عمارة الحاسبات ولغات التجميع",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "312 كهر": {
-      "name": "معمل أساسيات الالكترونيات",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "310 كهر": {
-      "name": "نبائط ودوائر الميكروالكترونيات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "244 ريض": {
-      "name": "الجبر الخطي",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "227 عال": {
-      "name": "نظم التشغيل",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "390 هال": {
-      "name": "ندوة في هندسة الحاسب",
-      "academicHours": 1,
-      "lectureHours": 1,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "352 هال": {
-      "name": "معالجة الإشارات الرقمية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "341 هال": {
-      "name": "تراسل البيانات",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "318 هال": {
-      "name": "النظم المضمنة",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "211 هاب": {
-      "name": "مدخل الى هندسة البرمجيات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "490 هال": {
-      "name": "التصميم الهندسي وإدارة المشاريع",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "453 هال": {
-      "name": "التحكم الرقمي والروبوتية",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "441 هال": {
-      "name": "شبكات الحاسب",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "415 هال": {
-      "name": "مقدمة في تصميم الدوائر المتكاملة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "311 عال": {
-      "name": "تصميم وتحليل الخوارزميات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "442 هال": {
-      "name": "أمن الحاسبات والشبكات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "107 سلم": {
-      "name": "اخلاقيات المهنة",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "103 سلم": {
-      "name": "النظام الاقتصادي الإسلامي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "102 سلم": {
-      "name": "الأسرة في الإسلام",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "100 قرأ": {
-      "name": "القرآن الكريم",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "100 سلم": {
-      "name": "دراسات في السيرة النبوية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "109 سلم": {
-      "name": "المرأة ودورها التنموي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "108 سلم": {
-      "name": "قضايا معاصرة",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "106 سلم": {
-      "name": "الفقه الطبي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "105 سلم": {
-      "name": "حقوق الإنسان",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "445 هال": {
-      "name": "بروتوكولات وخوارزميات الشبكات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "443 هال": {
-      "name": "الشبكات اللاسلكية وشبكات الاستشعار",
-      "academicHours": 3,
-      "lectureHours": 0,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "416 هال": {
-      "name": "مقدمة إلى حسابات الحاسب",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "414 هال": {
-      "name": "مصفوفة البوابات الرقمية وبرمجتها",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "402 هال": {
-      "name": "مقدمة الى العمليات العشوائية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "491 هال": {
-      "name": "مواضيع مختارة فى هندسة الحاسبات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "465 هال": {
-      "name": "معالجة الصور الرقمية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "460 هال": {
-      "name": "معالجة الكلام الرقمي",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "459 هال": {
-      "name": "الروبوتية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "454 هال": {
-      "name": "الأنظمة الذكية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "446 هال": {
-      "name": "تصميم وإدارة الشبكات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "321 هاب": {
-      "name": "تصميم وعمارة البرمجيات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "312 هاب": {
-      "name": "هندسة متطلبات البرمجيات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "230 نال": {
-      "name": "اسس قواعد البيانات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "204 كهر": {
-      "name": "الكهرومغناطيسية الهندسية (2)",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "203 كهر": {
-      "name": "الكهرومغناطيسية الهندسية (1)",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "422 كهر": {
-      "name": "الاتصالات الرقمية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "385 نال": {
-      "name": "نظم تخطيط موارد المؤسسات",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "380 عال": {
-      "name": "اسس نظم قواعد البيانات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "361 عال": {
-      "name": "الذكاء الاصطناعي",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "453 عال": {
-      "name": "المعالجة المتوازية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "429 عال": {
-      "name": "أمن الحاسبات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "423 كهر": {
-      "name": "انتشار الموجات والهوائيات",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "464 كهر": {
-      "name": "الاتصالات الضوئية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "463 كهر": {
-      "name": "الاتصالات اللاسلكية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "462 عال": {
-      "name": "تعليم الآلة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "457 عال": {
-      "name": "تقنيات الانترنت",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "456 كهر": {
-      "name": "تطبيقات التحكم الآلي",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "486 هاب": {
-      "name": "الحوسبة السحابية والبيانات الضخمة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    }
-  },
   "proposal": {
     "enabled": true,
     "title": "الخطة المقترحة",

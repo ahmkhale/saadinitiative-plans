@@ -24,6 +24,20 @@ test("college and major CRUD persists valid plans atomically", () => {
 
     plan.semesters[0].number = 99;
     plan.semesters[0].name = "اسم يدوي";
+    plan.edition = "الطبعة الرابعة";
+    plan.release = "إصدار 472.1";
+    plan.version = "472.1";
+    plan.fallbackCourses = {
+      "100 سلم": {
+        name: "دراسات في السيرة النبوية",
+        academicHours: 2,
+        lectureHours: 2,
+        exerciseHours: 0,
+        practicalHours: 0,
+        prerequisites: [],
+      },
+    };
+    plan.semesters[0].courses = ["100 سلم"];
     plan.semesters.push({ number: 2, name: "المستوى 2", yearLabel: "سنة يدوية", courses: [] });
     store.savePlan("computer-science", "information-systems", plan);
     const savedPlan = store.getPlan("computer-science", "information-systems");
@@ -36,6 +50,21 @@ test("college and major CRUD persists valid plans atomically", () => {
       { number: undefined, name: undefined, yearLabel: undefined },
       { number: undefined, name: undefined, yearLabel: undefined },
     ]);
+    assert.equal(savedPlan.edition, undefined);
+    assert.equal(savedPlan.release, undefined);
+    assert.equal(savedPlan.version, undefined);
+    assert.equal(savedPlan.fallbackCourses, undefined);
+    assert.deepEqual(savedPlan.semesters[0].courses[0], {
+      code: "100 سلم",
+      fallbackName: "دراسات في السيرة النبوية",
+      fallbackCreditHours: 2,
+      fallbackLectureHours: 2,
+      fallbackExerciseHours: 0,
+      fallbackPracticalHours: 0,
+      prerequisites: [],
+      requirement: "required",
+      trackSpecific: false,
+    });
 
     store.duplicateMajor("computer-science", "information-systems", {
       id: "information-systems-copy",

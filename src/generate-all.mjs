@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { flagValue } from "./args.mjs";
 import { generatePlan } from "./pipeline.mjs";
+import { safeSlug } from "./normalize.mjs";
 
 function walk(dir) {
   const results = [];
@@ -16,6 +17,7 @@ function walk(dir) {
 const args = process.argv.slice(2);
 const root = path.resolve(args.find((arg) => !arg.startsWith("--")) ?? "colleges");
 const catalogPath = flagValue(args, "--catalog");
+const outputRoot = path.resolve(flagValue(args, "--output-dir") ?? "dist");
 if (!fs.existsSync(root)) {
   console.error(`Directory not found: ${root}`);
   process.exit(1);
@@ -28,8 +30,8 @@ if (!plans.length) {
 let failures = 0;
 for (const planPath of plans) {
   try {
-    const relative = path.relative(root, path.dirname(planPath));
-    const outputDir = path.resolve(flagValue(args, "--output-dir") ?? "dist", relative);
+    const plan = JSON.parse(fs.readFileSync(planPath, "utf8"));
+    const outputDir = path.join(outputRoot, safeSlug(plan.id ?? plan.planCode ?? plan.major, "plan"));
     const result = generatePlan({
       planPath,
       catalogPath,

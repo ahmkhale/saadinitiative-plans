@@ -5,9 +5,6 @@
   "college": "كلية الهندسة",
   "major": "هندسة مدنية",
   "degree": "البكالوريوس",
-  "edition": "الطبعة الرابعة",
-  "release": "إصدار 472.1",
-  "version": "472.1",
   "expectedCredits": 142,
   "sortCourses": "code",
   "sharedSemesterSets": [
@@ -18,64 +15,638 @@
     {
       "id": "published-level-5",
       "courses": [
-        "320 همد",
-        "305 همد",
-        "302 همد",
-        "281 جيو",
-        "204 ريض",
-        "202 هعم"
+        {
+          "code": "320 همد",
+          "fallbackName": "ميكانيكا الموائع",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "305 همد",
+          "fallbackName": "معمل ميكانيكا المواد",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "302 همد",
+          "fallbackName": "ميكانيكا المواد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "281 جيو",
+          "fallbackName": "الجيولوجيا للمهندسين",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "204 ريض",
+          "fallbackName": "المعادلات التفاضلية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "202 هعم",
+          "fallbackName": "الديناميكا",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-6",
       "courses": [
-        "380 همد",
-        "360 همد",
-        "325 همد",
-        "324 همد",
-        "306 همد",
-        "212 همس",
-        "382 همد"
+        {
+          "code": "380 همد",
+          "fallbackName": "معمل ميكانيكا التربة",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "360 همد",
+          "fallbackName": "تحليل إنشائي -1",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 4,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "325 همد",
+          "fallbackName": "معمل الهيدروليكا",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "324 همد",
+          "fallbackName": "هيدروليكا",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "306 همد",
+          "fallbackName": "خواص واختبار المواد الإنشائية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "212 همس",
+          "fallbackName": "القياسات المكانية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "382 همد",
+          "fallbackName": "هندسة جيوتكنيكية -1",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-7",
       "courses": [
-        "481 همد",
-        "447 همد",
-        "430 همد",
-        "424 همد",
-        "370 همد",
-        "209 هعم"
+        {
+          "code": "481 همد",
+          "fallbackName": "هندسة جيوتكنيكية (2)",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "447 همد",
+          "fallbackName": "أنظمة الإمداد بالمياه والصرف",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "430 همد",
+          "fallbackName": "أنظمة النقل",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "424 همد",
+          "fallbackName": "هيدرولوجيا",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "370 همد",
+          "fallbackName": "تصميم خرسانة مسلحة (1)",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 4,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "209 هعم",
+          "fallbackName": "برمجة الحاسوب",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-8",
       "courses": [
-        "470 همد",
-        "448 همد",
-        "443 همد",
-        "432 همد",
-        "431 همد",
-        "254 ريض"
+        {
+          "code": "470 همد",
+          "fallbackName": "تصميم الخرسانة المسلحة (2)",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "448 همد",
+          "fallbackName": "معالجة المياه ومياه الصرف",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "443 همد",
+          "fallbackName": "معمل المياه ومياه الصرف",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "432 همد",
+          "fallbackName": "معمل الطرق",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "431 همد",
+          "fallbackName": "هندسة الطرق",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "254 ريض",
+          "fallbackName": "الطرائق العددية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-9",
       "courses": [
-        "496 همد",
-        "483 همد",
-        "419 همد",
-        "239 عمر"
+        {
+          "code": "496 همد",
+          "fallbackName": "مشروع تخرج 1",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 129 ساعة",
+            "مستوى 7"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "483 همد",
+          "fallbackName": "هندسة الأساسات",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "419 همد",
+          "fallbackName": "إدارة التشييد",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 4,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "239 عمر",
+          "fallbackName": "إنشاء معماري -لطلبة المدني-",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 1,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-10",
       "courses": [
-        "999 همد",
-        "497 همد",
-        "403 هعم",
-        "402 هعم"
+        {
+          "code": "999 همد",
+          "fallbackName": "تدريب عملي",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "497 همد",
+          "fallbackName": "مشروع تخرج 2",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "496 همد"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "403 هعم",
+          "fallbackName": "الاقتصاد الهندسي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "402 هعم",
+          "fallbackName": "ادارة المشاريع الهندسية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     }
   ],
@@ -86,16 +657,190 @@
       "requiredHours": 6,
       "sortCourses": "code",
       "courses": [
-        "104 سلم",
-        "103 سلم",
-        "102 سلم",
-        "101 سلم",
-        "100 قرأ",
-        "100 سلم",
-        "109 سلم",
-        "108 سلم",
-        "106 سلم",
-        "105 سلم"
+        {
+          "code": "104 سلم",
+          "fallbackName": "النظام السياسي الإسلامي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "103 سلم",
+          "fallbackName": "النظام الاقتصادي الإسلامي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "102 سلم",
+          "fallbackName": "الأسرة في الإسلام",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "101 سلم",
+          "fallbackName": "أصول الثقافة الإسلامية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "100 قرأ",
+          "fallbackName": "القرآن الكريم",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "100 سلم",
+          "fallbackName": "دراسات في السيرة النبوية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "109 سلم",
+          "fallbackName": "المرأة ودورها التنموي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "108 سلم",
+          "fallbackName": "قضايا معاصرة",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "106 سلم",
+          "fallbackName": "الفقه الطبي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "105 سلم",
+          "fallbackName": "حقوق الإنسان",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
@@ -104,44 +849,783 @@
       "requiredHours": 15,
       "sortCourses": "code",
       "courses": [
-        "425 همد",
-        "423 همد",
-        "415 همد",
-        "413 همد",
-        "412 همد",
-        "411 همد",
-        "436 همد",
-        "435 همد",
-        "429 همد",
-        "428 همد",
-        "427 همد",
-        "426 همد",
-        "446 همد",
-        "445 همد",
-        "444 همد",
-        "439 همد",
-        "438 همد",
-        "437 همد",
-        "464 همد",
-        "462 همد",
-        "460 همد",
-        "451 همد",
-        "450 همد",
-        "449 همد",
-        "478 همد",
-        "477 همد",
-        "475 همد",
-        "473 همد",
-        "468 همد",
-        "466 همد",
-        "488 همد",
-        "487 همد",
-        "486 همد",
-        "485 همد",
-        "484 همد",
-        "479 همد",
-        "998 همد",
-        "489 همد"
+        {
+          "code": "425 همد",
+          "fallbackName": "هيدرولوجيا المياه الجوفية والسطحية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "423 همد",
+          "fallbackName": "المنشآت المائية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "415 همد",
+          "fallbackName": "مواضيع مختارة في الهندسة وإدارة التشييد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "413 همد",
+          "fallbackName": "جدولة التشييد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "419 همد مرافق"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "412 همد",
+          "fallbackName": "تقدير تكلفة التشييد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "411 همد",
+          "fallbackName": "مقدمة لعقود التشييد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "436 همد",
+          "fallbackName": "هندسة المرور",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "435 همد",
+          "fallbackName": "هندسة السكك الحديدية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "431 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "429 همد",
+          "fallbackName": "تطبيقات الحاسوب في هندسة المياه",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "424 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "428 همد",
+          "fallbackName": "هيدروليكا القنوات المفتوحة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "324 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "427 همد",
+          "fallbackName": "هيدروليكا التدفق المضغوط",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "426 همد",
+          "fallbackName": "تخطيط مصادر المياه",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "424 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "446 همد",
+          "fallbackName": "التقييم البيئي وإدارة الأنظمة البيئية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "445 همد",
+          "fallbackName": "معالجة مياه الصرف وإعادة استخدامها",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "444 همد",
+          "fallbackName": "الهندسة البيئية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "448 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "439 همد",
+          "fallbackName": "صيانة الرصف",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "431 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "438 همد",
+          "fallbackName": "النقل العام الحضري",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "437 همد",
+          "fallbackName": "تحليل وتصميم أنظمة الرصف",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "464 همد",
+          "fallbackName": "تحليل إنشائي باستخدام العناصر المحدودة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "460 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "462 همد",
+          "fallbackName": "تحليل وتصميم المباني",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 1,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 4,
+          "prerequisites": [
+            "470 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "460 همد",
+          "fallbackName": "تحليل إنشائي 2",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "360 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "451 همد",
+          "fallbackName": "المعالجة المتقدمة لمياه الشرب والصرف الصحي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "448 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "450 همد",
+          "fallbackName": "هندسة التحكم في تلوث الهواء",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "448 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "449 همد",
+          "fallbackName": "مقدمة لإدارة النفايات الصلبة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "478 همد",
+          "fallbackName": "مواضيع مختارة في التحليل والتصميم الإنشائي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "470 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "477 همد",
+          "fallbackName": "تكنولوجيا الخرسانة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "475 همد",
+          "fallbackName": "تصميم الخرسانه سابقة الاجهاد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "473 همد",
+          "fallbackName": "الانشاءات المعدنية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "468 همد",
+          "fallbackName": "التصميم المقاوم للرياح والزلازل",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "470 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "466 همد",
+          "fallbackName": "هندسة الجسور",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "488 همد",
+          "fallbackName": "مواضيع مختارة في الهندسة الجيوتكنيكية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "481 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "487 همد",
+          "fallbackName": "الهندسة الجيوتكنيكية في المناطق القاحلة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "481 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "486 همد",
+          "fallbackName": "تحسين المواد الجيوتكنيكية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "485 همد",
+          "fallbackName": "مقدمة لميكانيكا الصخور",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "481 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "484 همد",
+          "fallbackName": "هندسة الأساسات العميقة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "470 همد",
+            "483 همد مرافق"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "479 همد",
+          "fallbackName": "تأهيل المنشآت الخرسانية المسلحة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "470 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "998 همد",
+          "fallbackName": "مشروع بحثي",
+          "fallbackCreditHours": 0,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 129 ساعة"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "489 همد",
+          "fallbackName": "مقدمة في تصميم الأنفاق",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "481 همد"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        }
       ]
     },
     {
@@ -152,1280 +1636,6 @@
       "courses": []
     }
   ],
-  "fallbackCourses": {
-    "496 همد": {
-      "name": "مشروع تخرج 1",
-      "academicHours": 2,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 129 ساعة",
-        "مستوى 7"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "999 همد": {
-      "name": "تدريب عملي",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 110 ساعات"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "497 همد": {
-      "name": "مشروع تخرج 2",
-      "academicHours": 2,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "496 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "104 سلم": {
-      "name": "النظام السياسي الإسلامي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "101 سلم": {
-      "name": "أصول الثقافة الإسلامية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "415 همد": {
-      "name": "مواضيع مختارة في الهندسة وإدارة التشييد",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 110 ساعات"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "413 همد": {
-      "name": "جدولة التشييد",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "419 همد مرافق"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "412 همد": {
-      "name": "تقدير تكلفة التشييد",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 110 ساعات"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "435 همد": {
-      "name": "هندسة السكك الحديدية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "431 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "429 همد": {
-      "name": "تطبيقات الحاسوب في هندسة المياه",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "424 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "428 همد": {
-      "name": "هيدروليكا القنوات المفتوحة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "324 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "426 همد": {
-      "name": "تخطيط مصادر المياه",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "424 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "444 همد": {
-      "name": "الهندسة البيئية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "448 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "439 همد": {
-      "name": "صيانة الرصف",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "431 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "464 همد": {
-      "name": "تحليل إنشائي باستخدام العناصر المحدودة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "460 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "462 همد": {
-      "name": "تحليل وتصميم المباني",
-      "academicHours": 3,
-      "lectureHours": 1,
-      "practicalHours": 4,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "470 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "460 همد": {
-      "name": "تحليل إنشائي 2",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "360 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "451 همد": {
-      "name": "المعالجة المتقدمة لمياه الشرب والصرف الصحي",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "448 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "450 همد": {
-      "name": "هندسة التحكم في تلوث الهواء",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "448 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "478 همد": {
-      "name": "مواضيع مختارة في التحليل والتصميم الإنشائي",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "470 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "468 همد": {
-      "name": "التصميم المقاوم للرياح والزلازل",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "470 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "488 همد": {
-      "name": "مواضيع مختارة في الهندسة الجيوتكنيكية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "481 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "487 همد": {
-      "name": "الهندسة الجيوتكنيكية في المناطق القاحلة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "481 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "485 همد": {
-      "name": "مقدمة لميكانيكا الصخور",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "481 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "484 همد": {
-      "name": "هندسة الأساسات العميقة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "470 همد",
-        "483 همد مرافق"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "479 همد": {
-      "name": "تأهيل المنشآت الخرسانية المسلحة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "470 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "998 همد": {
-      "name": "مشروع بحثي",
-      "academicHours": 0,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 129 ساعة"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "489 همد": {
-      "name": "مقدمة في تصميم الأنفاق",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "481 همد"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "320 همد": {
-      "name": "ميكانيكا الموائع",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "305 همد": {
-      "name": "معمل ميكانيكا المواد",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "302 همد": {
-      "name": "ميكانيكا المواد",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "281 جيو": {
-      "name": "الجيولوجيا للمهندسين",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "204 ريض": {
-      "name": "المعادلات التفاضلية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "202 هعم": {
-      "name": "الديناميكا",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "380 همد": {
-      "name": "معمل ميكانيكا التربة",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "360 همد": {
-      "name": "تحليل إنشائي -1",
-      "academicHours": 4,
-      "lectureHours": 4,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "325 همد": {
-      "name": "معمل الهيدروليكا",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "324 همد": {
-      "name": "هيدروليكا",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "306 همد": {
-      "name": "خواص واختبار المواد الإنشائية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "212 همس": {
-      "name": "القياسات المكانية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "382 همد": {
-      "name": "هندسة جيوتكنيكية -1",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "481 همد": {
-      "name": "هندسة جيوتكنيكية (2)",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "447 همد": {
-      "name": "أنظمة الإمداد بالمياه والصرف",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "430 همد": {
-      "name": "أنظمة النقل",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "424 همد": {
-      "name": "هيدرولوجيا",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "370 همد": {
-      "name": "تصميم خرسانة مسلحة (1)",
-      "academicHours": 4,
-      "lectureHours": 4,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "209 هعم": {
-      "name": "برمجة الحاسوب",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "470 همد": {
-      "name": "تصميم الخرسانة المسلحة (2)",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "448 همد": {
-      "name": "معالجة المياه ومياه الصرف",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "443 همد": {
-      "name": "معمل المياه ومياه الصرف",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "432 همد": {
-      "name": "معمل الطرق",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "431 همد": {
-      "name": "هندسة الطرق",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "254 ريض": {
-      "name": "الطرائق العددية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "483 همد": {
-      "name": "هندسة الأساسات",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "419 همد": {
-      "name": "إدارة التشييد",
-      "academicHours": 4,
-      "lectureHours": 4,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "239 عمر": {
-      "name": "إنشاء معماري -لطلبة المدني-",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 1,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "403 هعم": {
-      "name": "الاقتصاد الهندسي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "402 هعم": {
-      "name": "ادارة المشاريع الهندسية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "103 سلم": {
-      "name": "النظام الاقتصادي الإسلامي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "102 سلم": {
-      "name": "الأسرة في الإسلام",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "100 قرأ": {
-      "name": "القرآن الكريم",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "100 سلم": {
-      "name": "دراسات في السيرة النبوية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "109 سلم": {
-      "name": "المرأة ودورها التنموي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "108 سلم": {
-      "name": "قضايا معاصرة",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "106 سلم": {
-      "name": "الفقه الطبي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "105 سلم": {
-      "name": "حقوق الإنسان",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "425 همد": {
-      "name": "هيدرولوجيا المياه الجوفية والسطحية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "423 همد": {
-      "name": "المنشآت المائية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "411 همد": {
-      "name": "مقدمة لعقود التشييد",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "436 همد": {
-      "name": "هندسة المرور",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "427 همد": {
-      "name": "هيدروليكا التدفق المضغوط",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "446 همد": {
-      "name": "التقييم البيئي وإدارة الأنظمة البيئية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "445 همد": {
-      "name": "معالجة مياه الصرف وإعادة استخدامها",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "438 همد": {
-      "name": "النقل العام الحضري",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "437 همد": {
-      "name": "تحليل وتصميم أنظمة الرصف",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "449 همد": {
-      "name": "مقدمة لإدارة النفايات الصلبة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "477 همد": {
-      "name": "تكنولوجيا الخرسانة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "475 همد": {
-      "name": "تصميم الخرسانه سابقة الاجهاد",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "473 همد": {
-      "name": "الانشاءات المعدنية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "466 همد": {
-      "name": "هندسة الجسور",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "486 همد": {
-      "name": "تحسين المواد الجيوتكنيكية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    }
-  },
   "proposal": {
     "enabled": true,
     "title": "الخطة المقترحة",

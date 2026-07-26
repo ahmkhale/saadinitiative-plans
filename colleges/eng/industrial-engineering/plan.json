@@ -5,9 +5,6 @@
   "college": "كلية الهندسة",
   "major": "هندسة صناعية",
   "degree": "البكالوريوس",
-  "edition": "الطبعة الرابعة",
-  "release": "إصدار 472.1",
-  "version": "472.1",
   "expectedCredits": 151,
   "sortCourses": "code",
   "sharedSemesterSets": [
@@ -18,61 +15,584 @@
     {
       "id": "published-level-5",
       "courses": [
-        "251 صنع",
-        "244 ريض",
-        "222 صنع",
-        "214 صنع",
-        "211 هعم",
-        "204 ريض"
+        {
+          "code": "251 صنع",
+          "fallbackName": "مواد التصنيع",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "244 ريض",
+          "fallbackName": "الجبر الخطي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "222 صنع",
+          "fallbackName": "تحليل العمليات الصناعية (1)",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "214 صنع",
+          "fallbackName": "إدارة العمليات الصناعية (1)",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "211 هعم",
+          "fallbackName": "برمجة الحاسوب بلغة ++C",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "204 ريض",
+          "fallbackName": "المعادلات التفاضلية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-6",
       "courses": [
-        "337 صنع",
-        "333 صنع",
-        "322 صنع",
-        "314 صنع",
-        "252 صنع"
+        {
+          "code": "337 صنع",
+          "fallbackName": "انظمة التحكم التلقائي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "333 صنع",
+          "fallbackName": "تصميم وتحليل التجارب",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "322 صنع",
+          "fallbackName": "تحليل العمليات الصناعية -2",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "314 صنع",
+          "fallbackName": "ادارة العمليات الصناعية (2)",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "252 صنع",
+          "fallbackName": "أساليب التصنيع (1)",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-7",
       "courses": [
-        "403 هعم",
-        "360 صنع",
-        "352 صنع",
-        "341 صنع",
-        "339 صنع"
+        {
+          "code": "403 هعم",
+          "fallbackName": "الاقتصاد الهندسي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "360 صنع",
+          "fallbackName": "استخدام الحاسب في التصميم والتصنيع",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "352 صنع",
+          "fallbackName": "اساليب التصنيع (2)",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 4,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "341 صنع",
+          "fallbackName": "هندسة العوامل البشرية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "339 صنع",
+          "fallbackName": "هندسة الجودة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-8",
       "courses": [
-        "449 صنع",
-        "438 صنع",
-        "420 صنع",
-        "402 هعم",
-        "361 صنع",
-        "342 صنع"
+        {
+          "code": "449 صنع",
+          "fallbackName": "هندسة السلامة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "438 صنع",
+          "fallbackName": "هندسة الموثوقية والصيانة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "420 صنع",
+          "fallbackName": "محاكاة الأنظمة الصناعية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "402 هعم",
+          "fallbackName": "ادارة المشاريع الهندسية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "361 صنع",
+          "fallbackName": "تطوير المنتج والابتكار",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "342 صنع",
+          "fallbackName": "تصميم وتحليل العمل",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-9",
       "courses": [
-        "496 صنع",
-        "469 صنع",
-        "462 صنع",
-        "450 صنع",
-        "405 صنع"
+        {
+          "code": "496 صنع",
+          "fallbackName": "مشروع التخرج 1",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 129 ساعة",
+            "مستوى 7"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "469 صنع",
+          "fallbackName": "نظم التصنيع",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "462 صنع",
+          "fallbackName": "أنظمة المعلومات الصناعية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "450 صنع",
+          "fallbackName": "تصميم التسهيلات الصناعية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "405 صنع",
+          "fallbackName": "اقتصاديات التصنيع",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-10",
       "courses": [
-        "999 صنع",
-        "497 صنع",
-        "461 صنع"
+        {
+          "code": "999 صنع",
+          "fallbackName": "تدريب عملي",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "497 صنع",
+          "fallbackName": "مشروع التخرج 2",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "496 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "461 صنع",
+          "fallbackName": "التصنيع المتكامل بالحاسوب",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     }
   ],
@@ -83,16 +603,190 @@
       "requiredHours": 6,
       "sortCourses": "code",
       "courses": [
-        "104 سلم",
-        "103 سلم",
-        "102 سلم",
-        "101 سلم",
-        "100 قرأ",
-        "100 سلم",
-        "109 سلم",
-        "108 سلم",
-        "106 سلم",
-        "105 سلم"
+        {
+          "code": "104 سلم",
+          "fallbackName": "النظام السياسي الإسلامي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "103 سلم",
+          "fallbackName": "النظام الاقتصادي الإسلامي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "102 سلم",
+          "fallbackName": "الأسرة في الإسلام",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "101 سلم",
+          "fallbackName": "أصول الثقافة الإسلامية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "100 قرأ",
+          "fallbackName": "القرآن الكريم",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "100 سلم",
+          "fallbackName": "دراسات في السيرة النبوية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "109 سلم",
+          "fallbackName": "المرأة ودورها التنموي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "108 سلم",
+          "fallbackName": "قضايا معاصرة",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "106 سلم",
+          "fallbackName": "الفقه الطبي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "105 سلم",
+          "fallbackName": "حقوق الإنسان",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
@@ -101,19 +795,291 @@
       "requiredHours": 6,
       "sortCourses": "code",
       "courses": [
-        "485 صنع",
-        "484 صنع",
-        "483 صنع",
-        "482 صنع",
-        "481 صنع",
-        "480 صنع",
-        "491 صنع",
-        "490 صنع",
-        "489 صنع",
-        "488 صنع",
-        "487 صنع",
-        "486 صنع",
-        "998 صنع"
+        {
+          "code": "485 صنع",
+          "fallbackName": "هندسة السلامة المتقدمة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "449 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "484 صنع",
+          "fallbackName": "هندسة الجودة المتقدمة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "339 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "483 صنع",
+          "fallbackName": "تحليلات الهندسة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "322 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "482 صنع",
+          "fallbackName": "تحليل أخذ القرار",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "322 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "481 صنع",
+          "fallbackName": "سلاسل الإمداد والتموين",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "480 صنع",
+          "fallbackName": "تشغيل نظم الإنتاج",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "314 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "491 صنع",
+          "fallbackName": "هندسة الموثوقية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "438 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "490 صنع",
+          "fallbackName": "هندسة الصيانة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "489 صنع",
+          "fallbackName": "نمذجة نظم التصنيع",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [
+            "120 ساعة",
+            "352 صنع",
+            "360 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "488 صنع",
+          "fallbackName": "تقنيات التصنيع بالإضافة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "487 صنع",
+          "fallbackName": "تقنيات التصنيع المتقدم",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "352 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "486 صنع",
+          "fallbackName": "تصميم بيئة العمل",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [
+            "120 ساعة",
+            "341 صنع",
+            "342 صنع"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "998 صنع",
+          "fallbackName": "مشروع بحثي",
+          "fallbackCreditHours": 0,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 129 ساعة"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        }
       ]
     },
     {
@@ -124,833 +1090,6 @@
       "courses": []
     }
   ],
-  "fallbackCourses": {
-    "496 صنع": {
-      "name": "مشروع التخرج 1",
-      "academicHours": 2,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 129 ساعة",
-        "مستوى 7"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "999 صنع": {
-      "name": "تدريب عملي",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 110 ساعات"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "497 صنع": {
-      "name": "مشروع التخرج 2",
-      "academicHours": 2,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "496 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "104 سلم": {
-      "name": "النظام السياسي الإسلامي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "101 سلم": {
-      "name": "أصول الثقافة الإسلامية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "485 صنع": {
-      "name": "هندسة السلامة المتقدمة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 2,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 120 ساعة",
-        "449 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "484 صنع": {
-      "name": "هندسة الجودة المتقدمة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 2,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 120 ساعة",
-        "339 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "483 صنع": {
-      "name": "تحليلات الهندسة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 120 ساعة",
-        "322 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "482 صنع": {
-      "name": "تحليل أخذ القرار",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 120 ساعة",
-        "322 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "480 صنع": {
-      "name": "تشغيل نظم الإنتاج",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 120 ساعة",
-        "314 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "491 صنع": {
-      "name": "هندسة الموثوقية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 120 ساعة",
-        "438 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "489 صنع": {
-      "name": "نمذجة نظم التصنيع",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 2,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "120 ساعة",
-        "352 صنع",
-        "360 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "487 صنع": {
-      "name": "تقنيات التصنيع المتقدم",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 2,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 120 ساعة",
-        "352 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "486 صنع": {
-      "name": "تصميم بيئة العمل",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 2,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "120 ساعة",
-        "341 صنع",
-        "342 صنع"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "998 صنع": {
-      "name": "مشروع بحثي",
-      "academicHours": 0,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 129 ساعة"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "251 صنع": {
-      "name": "مواد التصنيع",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 2,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "244 ريض": {
-      "name": "الجبر الخطي",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "222 صنع": {
-      "name": "تحليل العمليات الصناعية (1)",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "214 صنع": {
-      "name": "إدارة العمليات الصناعية (1)",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "211 هعم": {
-      "name": "برمجة الحاسوب بلغة ++C",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "204 ريض": {
-      "name": "المعادلات التفاضلية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "337 صنع": {
-      "name": "انظمة التحكم التلقائي",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "333 صنع": {
-      "name": "تصميم وتحليل التجارب",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "322 صنع": {
-      "name": "تحليل العمليات الصناعية -2",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "314 صنع": {
-      "name": "ادارة العمليات الصناعية (2)",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "252 صنع": {
-      "name": "أساليب التصنيع (1)",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "403 هعم": {
-      "name": "الاقتصاد الهندسي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "360 صنع": {
-      "name": "استخدام الحاسب في التصميم والتصنيع",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "352 صنع": {
-      "name": "اساليب التصنيع (2)",
-      "academicHours": 4,
-      "lectureHours": 4,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "341 صنع": {
-      "name": "هندسة العوامل البشرية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "339 صنع": {
-      "name": "هندسة الجودة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "449 صنع": {
-      "name": "هندسة السلامة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "438 صنع": {
-      "name": "هندسة الموثوقية والصيانة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "420 صنع": {
-      "name": "محاكاة الأنظمة الصناعية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "402 هعم": {
-      "name": "ادارة المشاريع الهندسية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "361 صنع": {
-      "name": "تطوير المنتج والابتكار",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "342 صنع": {
-      "name": "تصميم وتحليل العمل",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "469 صنع": {
-      "name": "نظم التصنيع",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "462 صنع": {
-      "name": "أنظمة المعلومات الصناعية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "450 صنع": {
-      "name": "تصميم التسهيلات الصناعية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "405 صنع": {
-      "name": "اقتصاديات التصنيع",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "461 صنع": {
-      "name": "التصنيع المتكامل بالحاسوب",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "103 سلم": {
-      "name": "النظام الاقتصادي الإسلامي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "102 سلم": {
-      "name": "الأسرة في الإسلام",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "100 قرأ": {
-      "name": "القرآن الكريم",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "100 سلم": {
-      "name": "دراسات في السيرة النبوية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "109 سلم": {
-      "name": "المرأة ودورها التنموي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "108 سلم": {
-      "name": "قضايا معاصرة",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "106 سلم": {
-      "name": "الفقه الطبي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "105 سلم": {
-      "name": "حقوق الإنسان",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "481 صنع": {
-      "name": "سلاسل الإمداد والتموين",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "490 صنع": {
-      "name": "هندسة الصيانة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "488 صنع": {
-      "name": "تقنيات التصنيع بالإضافة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    }
-  },
   "proposal": {
     "enabled": true,
     "title": "الخطة المقترحة",

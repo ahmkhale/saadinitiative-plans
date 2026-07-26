@@ -5,9 +5,6 @@
   "college": "كلية الهندسة",
   "major": "هندسة المساحة",
   "degree": "البكالوريوس",
-  "edition": "الطبعة الرابعة",
-  "release": "إصدار 472.1",
-  "version": "472.1",
   "expectedCredits": 151,
   "sortCourses": "code",
   "sharedSemesterSets": [
@@ -18,61 +15,584 @@
     {
       "id": "published-level-5",
       "courses": [
-        "212 همس",
-        "202 هعم",
-        "204 ريض",
-        "209 هعم",
-        "302 همد"
+        {
+          "code": "212 همس",
+          "fallbackName": "القياسات المكانية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "202 هعم",
+          "fallbackName": "الديناميكا",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "204 ريض",
+          "fallbackName": "المعادلات التفاضلية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "209 هعم",
+          "fallbackName": "برمجة الحاسوب",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "302 همد",
+          "fallbackName": "ميكانيكا المواد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-6",
       "courses": [
-        "321 همس",
-        "314 همس",
-        "312 همس",
-        "281 جيو",
-        "329 كهر",
-        "323 همد"
+        {
+          "code": "321 همس",
+          "fallbackName": "المساحة التصويرية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "314 همس",
+          "fallbackName": "الجيوديسيا",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "312 همس",
+          "fallbackName": "مدخل للهندسة الجيوماتيكية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "281 جيو",
+          "fallbackName": "الجيولوجيا للمهندسين",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "329 كهر",
+          "fallbackName": "تحليل الاشارات لطلبة المساحة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "323 همد",
+          "fallbackName": "هندسة المياه لطلبة المساحة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-7",
       "courses": [
-        "363 همد",
-        "365 همس",
-        "331 همس",
-        "315 همس",
-        "334 همد"
+        {
+          "code": "363 همد",
+          "fallbackName": "اساسيات المنشآت الخرسانية - لطلبةالمساحة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "365 همس",
+          "fallbackName": "أساسيات الاستشعار عن بعد وتفسير الصور",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "331 همس",
+          "fallbackName": "حسابات ضبط الارصاد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "315 همس",
+          "fallbackName": "إسقاط الخرائط",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "334 همد",
+          "fallbackName": "هندسة الطرق لطلبة المساحة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-8",
       "courses": [
-        "453 همس",
-        "423 همس",
-        "422 همس",
-        "413 همس",
-        "254 ريض"
+        {
+          "code": "453 همس",
+          "fallbackName": "علم الخرائط ونظم المعلومات الجغرافية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "423 همس",
+          "fallbackName": "تحليل الصور الرقمية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "422 همس",
+          "fallbackName": "المساحة التصويرية المتقدمة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "413 همس",
+          "fallbackName": "جيوديسيا الأقمار الصناعية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "254 ريض",
+          "fallbackName": "الطرائق العددية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 2,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-9",
       "courses": [
-        "496 همس",
-        "471 همس",
-        "466 همس",
-        "403 هعم"
+        {
+          "code": "496 همس",
+          "fallbackName": "مشروع تخرج 1",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 129 ساعة",
+            "مستوى 7"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "471 همس",
+          "fallbackName": "معسكر المساحة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "466 همس",
+          "fallbackName": "التحليل المكاني في نظم المعلومات الجغرافية",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "403 هعم",
+          "fallbackName": "الاقتصاد الهندسي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
       "id": "published-level-10",
       "courses": [
-        "999 همس",
-        "497 همس",
-        "473 همس",
-        "464 همس",
-        "402 هعم"
+        {
+          "code": "999 همس",
+          "fallbackName": "تدريب عملي",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "497 همس",
+          "fallbackName": "مشروع تخرج 2",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "496 همس"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "473 همس",
+          "fallbackName": "المساحة المهنية والقانونية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "464 همس",
+          "fallbackName": "مقدمة للمساحة التصويرية الرقمية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "402 هعم",
+          "fallbackName": "ادارة المشاريع الهندسية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     }
   ],
@@ -83,16 +603,190 @@
       "requiredHours": 6,
       "sortCourses": "code",
       "courses": [
-        "104 سلم",
-        "103 سلم",
-        "102 سلم",
-        "101 سلم",
-        "100 قرأ",
-        "100 سلم",
-        "109 سلم",
-        "108 سلم",
-        "106 سلم",
-        "105 سلم"
+        {
+          "code": "104 سلم",
+          "fallbackName": "النظام السياسي الإسلامي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "103 سلم",
+          "fallbackName": "النظام الاقتصادي الإسلامي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "102 سلم",
+          "fallbackName": "الأسرة في الإسلام",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "101 سلم",
+          "fallbackName": "أصول الثقافة الإسلامية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "100 قرأ",
+          "fallbackName": "القرآن الكريم",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "100 سلم",
+          "fallbackName": "دراسات في السيرة النبوية",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "109 سلم",
+          "fallbackName": "المرأة ودورها التنموي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "108 سلم",
+          "fallbackName": "قضايا معاصرة",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "106 سلم",
+          "fallbackName": "الفقه الطبي",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "105 سلم",
+          "fallbackName": "حقوق الإنسان",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
@@ -101,15 +795,181 @@
       "requiredHours": 6,
       "sortCourses": "code",
       "courses": [
-        "431 همس",
-        "419 همس",
-        "418 همس",
-        "412 همد",
-        "411 همد",
-        "301 جيو",
-        "998 همس",
-        "467 همس",
-        "442 تخط"
+        {
+          "code": "431 همس",
+          "fallbackName": "تطبيقات الحاسب في هندسة المساحة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [
+            "209 هعم",
+            "331 همس"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "419 همس",
+          "fallbackName": "المساحة الجيوديسية المتقدمة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "418 همس",
+          "fallbackName": "المساحة المائية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "412 همد",
+          "fallbackName": "تقدير تكلفة التشييد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "411 همد",
+          "fallbackName": "مقدمة لعقود التشييد",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "301 جيو",
+          "fallbackName": "جيومورفولوجيا",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "998 همس",
+          "fallbackName": "مشروع بحثي",
+          "fallbackCreditHours": 0,
+          "fallbackLectureHours": 0,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [
+            "إتمام 129 ساعة"
+          ],
+          "corequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "manual",
+            "academicHours": "manual",
+            "lectureHours": "manual",
+            "practicalHours": "manual",
+            "exerciseHours": "manual",
+            "prerequisites": "manual"
+          }
+        },
+        {
+          "code": "467 همس",
+          "fallbackName": "نظم المعلومات الجغرافية للانترنت",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 1,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        },
+        {
+          "code": "442 تخط",
+          "fallbackName": "التخطيط الاستراتيجي الحضري",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 3,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 0,
+          "prerequisites": [],
+          "requirement": "elective",
+          "trackSpecific": false,
+          "fallbackProvenance": {
+            "name": "catalog",
+            "academicHours": "catalog",
+            "lectureHours": "catalog",
+            "exerciseHours": "catalog",
+            "practicalHours": "catalog"
+          }
+        }
       ]
     },
     {
@@ -120,732 +980,6 @@
       "courses": []
     }
   ],
-  "fallbackCourses": {
-    "496 همس": {
-      "name": "مشروع تخرج 1",
-      "academicHours": 2,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 129 ساعة",
-        "مستوى 7"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "999 همس": {
-      "name": "تدريب عملي",
-      "academicHours": 1,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 110 ساعات"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "497 همس": {
-      "name": "مشروع تخرج 2",
-      "academicHours": 2,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "496 همس"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "104 سلم": {
-      "name": "النظام السياسي الإسلامي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "101 سلم": {
-      "name": "أصول الثقافة الإسلامية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "431 همس": {
-      "name": "تطبيقات الحاسب في هندسة المساحة",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "practicalHours": 2,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "209 هعم",
-        "331 همس"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "412 همد": {
-      "name": "تقدير تكلفة التشييد",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "practicalHours": 0,
-      "exerciseHours": 1,
-      "prerequisites": [
-        "إتمام 110 ساعات"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "998 همس": {
-      "name": "مشروع بحثي",
-      "academicHours": 0,
-      "lectureHours": 0,
-      "practicalHours": 0,
-      "exerciseHours": 0,
-      "prerequisites": [
-        "إتمام 129 ساعة"
-      ],
-      "corequisites": [],
-      "_provenance": {
-        "name": "manual",
-        "academicHours": "manual",
-        "lectureHours": "manual",
-        "practicalHours": "manual",
-        "exerciseHours": "manual",
-        "prerequisites": "manual"
-      }
-    },
-    "212 همس": {
-      "name": "القياسات المكانية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "202 هعم": {
-      "name": "الديناميكا",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "204 ريض": {
-      "name": "المعادلات التفاضلية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "209 هعم": {
-      "name": "برمجة الحاسوب",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "302 همد": {
-      "name": "ميكانيكا المواد",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "321 همس": {
-      "name": "المساحة التصويرية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "314 همس": {
-      "name": "الجيوديسيا",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "312 همس": {
-      "name": "مدخل للهندسة الجيوماتيكية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "281 جيو": {
-      "name": "الجيولوجيا للمهندسين",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "329 كهر": {
-      "name": "تحليل الاشارات لطلبة المساحة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "323 همد": {
-      "name": "هندسة المياه لطلبة المساحة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "363 همد": {
-      "name": "اساسيات المنشآت الخرسانية - لطلبةالمساحة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "365 همس": {
-      "name": "أساسيات الاستشعار عن بعد وتفسير الصور",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "331 همس": {
-      "name": "حسابات ضبط الارصاد",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "315 همس": {
-      "name": "إسقاط الخرائط",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "334 همد": {
-      "name": "هندسة الطرق لطلبة المساحة",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "453 همس": {
-      "name": "علم الخرائط ونظم المعلومات الجغرافية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "423 همس": {
-      "name": "تحليل الصور الرقمية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "422 همس": {
-      "name": "المساحة التصويرية المتقدمة",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "413 همس": {
-      "name": "جيوديسيا الأقمار الصناعية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "254 ريض": {
-      "name": "الطرائق العددية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 2,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "471 همس": {
-      "name": "معسكر المساحة",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "466 همس": {
-      "name": "التحليل المكاني في نظم المعلومات الجغرافية",
-      "academicHours": 4,
-      "lectureHours": 3,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "403 هعم": {
-      "name": "الاقتصاد الهندسي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "473 همس": {
-      "name": "المساحة المهنية والقانونية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "464 همس": {
-      "name": "مقدمة للمساحة التصويرية الرقمية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "402 هعم": {
-      "name": "ادارة المشاريع الهندسية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "103 سلم": {
-      "name": "النظام الاقتصادي الإسلامي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "102 سلم": {
-      "name": "الأسرة في الإسلام",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "100 قرأ": {
-      "name": "القرآن الكريم",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "100 سلم": {
-      "name": "دراسات في السيرة النبوية",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "109 سلم": {
-      "name": "المرأة ودورها التنموي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "108 سلم": {
-      "name": "قضايا معاصرة",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "106 سلم": {
-      "name": "الفقه الطبي",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "105 سلم": {
-      "name": "حقوق الإنسان",
-      "academicHours": 2,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "419 همس": {
-      "name": "المساحة الجيوديسية المتقدمة",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "418 همس": {
-      "name": "المساحة المائية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "411 همد": {
-      "name": "مقدمة لعقود التشييد",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "301 جيو": {
-      "name": "جيومورفولوجيا",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "exerciseHours": 0,
-      "practicalHours": 2,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "467 همس": {
-      "name": "نظم المعلومات الجغرافية للانترنت",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    },
-    "442 تخط": {
-      "name": "التخطيط الاستراتيجي الحضري",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 0,
-      "practicalHours": 0,
-      "_provenance": {
-        "name": "catalog",
-        "academicHours": "catalog",
-        "lectureHours": "catalog",
-        "exerciseHours": "catalog",
-        "practicalHours": "catalog"
-      }
-    }
-  },
   "proposal": {
     "enabled": true,
     "title": "الخطة المقترحة",

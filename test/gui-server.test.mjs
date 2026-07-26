@@ -168,7 +168,9 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
 test("GUI API saves valid plans, rejects invalid plans, and reports generated files", async () => {
   const value = fixture();
   const outputRoot = path.join(value.root, "dist");
+  let exportedPlan = null;
   const fakeExport = (plan) => {
+    exportedPlan = structuredClone(plan);
     const folder = path.join(outputRoot, plan.id);
     fs.mkdirSync(folder, { recursive: true });
     const pdfPath = path.join(folder, "plan.pdf");
@@ -216,7 +218,7 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
       body: JSON.stringify({ plan: changed, collegeId: "ccis", majorId: "cs", save: false }),
     }).then((response) => response.json());
     assert.equal(generated.ok, true);
-    assert.equal(generated.files.pdf, "/dist/cs/plan.pdf");
+    assert.match(generated.files.pdf, /^\/dist\/cs\/plan\.pdf\?v=\d+$/u);
 
     const preview = await fetch(`${base}/api/preview`, {
       method: "POST",
@@ -227,6 +229,24 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
       generated.pageLayouts.map(({ width, height }) => ({ width, height })),
       preview.pageLayouts.map(({ width, height }) => ({ width, height })),
     );
+
+    const unsorted = structuredClone(changed);
+    unsorted.semesters[0].courses = ["102 عال", "101 عال"];
+    unsorted.fallbackCourses ??= {};
+    unsorted.fallbackCourses["102 عال"] = {
+      name: "مقرر آخر",
+      academicHours: 3,
+      lectureHours: 3,
+      practicalHours: 0,
+      exerciseHours: 0,
+      prerequisites: ["101 عال"],
+    };
+    await fetch(`${base}/api/generate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan: unsorted, collegeId: "ccis", majorId: "cs", save: true }),
+    }).then((response) => response.json());
+    assert.deepEqual(exportedPlan, value.store.getPlan("ccis", "cs"));
 
     const opened = await fetch(`${base}/api/open-output`, { method: "POST" })
       .then((response) => response.json());

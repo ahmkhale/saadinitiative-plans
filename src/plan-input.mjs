@@ -1,6 +1,72 @@
 import { normalizeCourseCode, numericValue } from "./normalize.mjs";
 import { labelSemesters } from "./semester-labels.mjs";
 
+const INLINE_FALLBACK_FIELDS = Object.freeze({
+  name: "fallbackName",
+  academicHours: "fallbackCreditHours",
+  lectureHours: "fallbackLectureHours",
+  exerciseHours: "fallbackExerciseHours",
+  practicalHours: "fallbackPracticalHours",
+});
+
+function inlineFallbackFacts(entry = {}) {
+  const facts = {};
+  for (const [factField, inlineField] of Object.entries(INLINE_FALLBACK_FIELDS)) {
+    if (entry[inlineField] !== undefined) facts[factField] = entry[inlineField];
+  }
+  if (entry.fallbackProvenance) facts._provenance = structuredClone(entry.fallbackProvenance);
+  return facts;
+}
+
+function ownedCourseEntries(plan) {
+  return [
+    ...(plan.semesters ?? []).flatMap((semester) => semester.courses ?? []),
+    ...(plan.electiveGroups ?? [])
+      .filter((group) => !group.sourceId)
+      .flatMap((group) => group.courses ?? []),
+  ];
+}
+
+function editorFallbackCourses(plan) {
+  const fallbacks = structuredClone(plan.fallbackCourses ?? {});
+  for (const rawEntry of ownedCourseEntries(plan)) {
+    const entry = typeof rawEntry === "string" ? { code: rawEntry } : rawEntry;
+    const code = normalizeCourseCode(entry?.code);
+    if (!code) continue;
+    const facts = inlineFallbackFacts(entry);
+    if (Object.keys(facts).length) fallbacks[code] = { ...facts, ...(fallbacks[code] ?? {}) };
+  }
+  return fallbacks;
+}
+
+function canonicalCourseEntry(rawEntry, fallbackCourses, defaultRequirement) {
+  const entry = typeof rawEntry === "string" ? { code: rawEntry } : structuredClone(rawEntry ?? {});
+  const code = normalizeCourseCode(entry.code);
+  const fallback = {
+    ...inlineFallbackFacts(entry),
+    ...(entry.fallback ?? {}),
+    ...(fallbackCourses?.[code] ?? {}),
+  };
+  const value = { ...entry, code };
+  delete value.fallback;
+  delete value.override;
+  for (const inlineField of Object.values(INLINE_FALLBACK_FIELDS)) delete value[inlineField];
+  delete value.fallbackProvenance;
+  for (const [factField, inlineField] of Object.entries(INLINE_FALLBACK_FIELDS)) {
+    value[inlineField] = fallback[factField] ?? null;
+  }
+  value.prerequisites = structuredClone(
+    entry.prerequisites ?? entry.override?.prerequisites ?? fallback.prerequisites ?? [],
+  );
+  if (entry.corequisites !== undefined || entry.override?.corequisites !== undefined || fallback.corequisites !== undefined) {
+    value.corequisites = structuredClone(entry.corequisites ?? entry.override?.corequisites ?? fallback.corequisites ?? []);
+  }
+  value.requirement = entry.requirement ?? fallback.requirement ?? defaultRequirement;
+  value.trackSpecific = Boolean(entry.trackSpecific ?? fallback.trackSpecific ?? false);
+  if (fallback._provenance) value.fallbackProvenance = structuredClone(fallback._provenance);
+  return value;
+}
+
 function normalizeStandaloneCourse(entry) {
   if (typeof entry === "string") return { code: normalizeCourseCode(entry) };
   if (!entry || typeof entry !== "object") throw new Error("Every course must be a code string or object.");
@@ -68,7 +134,9 @@ function normalizeProposal(proposal) {
 }
 
 export function preparePlanForEditor(rawPlan) {
-  return canonicalizePlanForStorage(rawPlan);
+  const plan = canonicalizePlanForStorage(rawPlan);
+  plan.fallbackCourses = editorFallbackCourses(plan);
+  return plan;
 }
 
 function stripDerivedSemesterFields(semester) {
@@ -89,6 +157,10 @@ function stripDerivedSemesterFields(semester) {
  */
 export function canonicalizePlanForStorage(rawPlan) {
   const plan = structuredClone(rawPlan ?? {});
+  const fallbackCourses = editorFallbackCourses(plan);
+  delete plan.version;
+  delete plan.edition;
+  delete plan.release;
   const usedSemesterIds = new Set((plan.semesters ?? []).map((semester) => semester?.id).filter(Boolean));
   let nextSemesterNumber = 1;
   plan.semesters = (plan.semesters ?? []).map((semester) => {
@@ -99,8 +171,14 @@ export function canonicalizePlanForStorage(rawPlan) {
       usedSemesterIds.add(value.id);
       nextSemesterNumber += 1;
     }
+    value.courses = (value.courses ?? []).map((entry) => canonicalCourseEntry(entry, fallbackCourses, "required"));
     return value;
   });
+  plan.electiveGroups = (plan.electiveGroups ?? []).map((group) => group?.sourceId ? group : ({
+    ...group,
+    courses: (group.courses ?? []).map((entry) => canonicalCourseEntry(entry, fallbackCourses, "elective")),
+  }));
+  delete plan.fallbackCourses;
   if (plan.proposal) plan.proposal = normalizeProposal(plan.proposal);
   return plan;
 }
@@ -130,7 +208,7 @@ export function normalizePlanInput(raw) {
     expectedCredits: value.expectedCredits,
     sortCourses: value.sortCourses ?? "code",
     courseColors: value.courseColors ?? {},
-    fallbackCourses: value.fallbackCourses ?? {},
+    fallbackCourses: editorFallbackCourses(value),
     phases: value.phases,
     sharedSemesterSets: value.sharedSemesterSets ?? [],
     footer: value.footer,

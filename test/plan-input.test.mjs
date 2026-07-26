@@ -30,8 +30,18 @@ test("prepares canonical proposal arrangement without storing real-course facts"
     },
   };
   const prepared = preparePlanForEditor(raw);
-  assert.deepEqual(prepared.semesters[0].courses, ["101 عال"]);
-  assert.equal(prepared.edition, "استثناء قديم");
+  assert.deepEqual(prepared.semesters[0].courses, [{
+    code: "101 عال",
+    fallbackName: null,
+    fallbackCreditHours: null,
+    fallbackLectureHours: null,
+    fallbackExerciseHours: null,
+    fallbackPracticalHours: null,
+    prerequisites: [],
+    requirement: "required",
+    trackSpecific: false,
+  }]);
+  assert.equal(prepared.edition, undefined);
   assert.equal(prepared.proposal.semesters[0].placeholders[0].name, "نائب");
   assert.deepEqual(prepared.proposal.semesters[0].courseOrder, ["101 عال"]);
   assert.equal(prepared.proposal.semesters[0].courses, undefined);

@@ -135,10 +135,10 @@ export function createGuiServer(options = {}) {
     }
     if (req.method === "POST" && url.pathname === "/api/generate") {
       const body = await readBody(req);
-      if (body.save) {
-        store.savePlan(body.collegeId, body.majorId, body.plan);
-      }
-      const result = exportDraftFn(body.plan, {
+      const planToExport = body.save
+        ? store.savePlan(body.collegeId, body.majorId, body.plan)
+        : body.plan;
+      const result = exportDraftFn(planToExport, {
         catalogService,
         settings: readSettings(settingsFile),
         sharedSemesterSets: sharedSetStore.load(),
@@ -152,9 +152,9 @@ export function createGuiServer(options = {}) {
         diagnostics: result.diagnostics,
         pageLayouts: result.document.pageLayouts,
         files: {
-          pdf: result.paths.pdfPath ? distUrl(result.paths.pdfPath, outputRoot) : null,
-          svg: body.keepSvg ? distUrl(result.paths.svgPath, outputRoot) : null,
-          png: body.png ? distUrl(result.paths.pngPath, outputRoot) : null,
+          pdf: result.paths.pdfPath ? `${distUrl(result.paths.pdfPath, outputRoot)}?v=${Date.now()}` : null,
+          svg: body.keepSvg ? `${distUrl(result.paths.svgPath, outputRoot)}?v=${Date.now()}` : null,
+          png: body.png ? `${distUrl(result.paths.pngPath, outputRoot)}?v=${Date.now()}` : null,
           folder: result.paths.folder,
         },
       });
@@ -239,7 +239,8 @@ export function createGuiServer(options = {}) {
           return json(res, 200, { ok: true, plan: preparePlanForEditor(store.getPlan(collegeId, majorId)) });
         }
         if (segments.length === 5 && req.method === "PUT") {
-          return json(res, 200, { ok: true, plan: store.savePlan(collegeId, majorId, await readBody(req)) });
+          const savedPlan = store.savePlan(collegeId, majorId, await readBody(req));
+          return json(res, 200, { ok: true, plan: preparePlanForEditor(savedPlan) });
         }
         if (segments.length === 5 && req.method === "DELETE") {
           store.deleteMajor(collegeId, majorId);

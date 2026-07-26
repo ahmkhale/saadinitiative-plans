@@ -145,7 +145,8 @@ colleges/
         └── plan.json
 ```
 
-A minimal plan usually contains only identity, expected hours, semesters, and course codes:
+A plan keeps global edition and release values in `data/settings.json`. Every
+plan-owned course is stored as a self-contained object:
 
 ```json
 {
@@ -159,23 +160,26 @@ A minimal plan usually contains only identity, expected hours, semesters, and co
   "expectedCredits": 132,
   "semesters": [
     {
-      "courses": ["101 نهج", "101 ريض", "103 فيز", "101 كهر"]
+      "courses": [
+        {
+          "code": "101 كهر",
+          "fallbackName": "مقدمة في الهندسة الكهربائية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": 2,
+          "fallbackExerciseHours": 0,
+          "fallbackPracticalHours": 2,
+          "prerequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        }
+      ]
     }
-  ],
-  "fallbackCourses": {
-    "101 كهر": {
-      "name": "مقدمة في الهندسة الكهربائية",
-      "academicHours": 3,
-      "lectureHours": 2,
-      "practicalHours": 2,
-      "exerciseHours": 0
-    }
-  }
+  ]
 }
 ```
 
-`fallbackCourses` is a durable per-plan snapshot, not a second catalog. Saving
-copies currently resolved catalog facts into it with per-field provenance.
+The inline `fallback*` fields are a durable per-course snapshot, not a second
+catalog. Saving copies currently resolved catalog facts into the course entry.
 Manual values remain authoritative until the operator explicitly refreshes the
 course from the catalog. If any activity field is known, missing sibling
 activity fields normalize to zero; if all activity fields are unknown, they
@@ -199,7 +203,7 @@ Course facts are resolved in this order:
 
 1. `override` on the course entry, for deliberate plan-specific exceptions.
 2. Male section data, then Female section data for an absent code.
-3. `fallbackCourses` or an entry-level `fallback`.
+3. The course entry's inline `fallback*` snapshot.
 4. `UNRESOLVED_COURSE`, rather than fabricated data.
 
 Placeholder cards are valid only in `proposal.semesters[].placeholders`. They

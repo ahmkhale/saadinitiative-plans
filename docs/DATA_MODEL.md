@@ -6,7 +6,7 @@ A major plan stores operator-owned decisions and durable source snapshots:
 
 - identity and expected total hours;
 - references to reusable shared semester sets;
-- major-owned semesters and course codes;
+- major-owned semesters and self-contained course entries;
 - course prerequisites, corequisites, minimum completed hours, and track status;
 - elective groups, including references to shared elective sources;
 - fallback facts with per-field `catalog` or `manual` provenance;
@@ -21,24 +21,34 @@ silently rewritten.
 
 ## Course entries and facts
 
-A course entry may be a code string or an object containing plan-owned rules:
+Every plan-owned course is an object containing its durable fallback facts and
+plan-owned rules:
 
 ```json
 {
   "code": "201 عال",
+  "fallbackName": "هياكل البيانات",
+  "fallbackCreditHours": 3,
+  "fallbackLectureHours": 3,
+  "fallbackExerciseHours": 0,
+  "fallbackPracticalHours": 0,
   "prerequisites": ["101 عال"],
   "corequisites": [],
   "minimumCompletedCredits": 30,
+  "requirement": "required",
   "trackSpecific": true
 }
 ```
 
 Catalog lookup is Male, then Female for an absent code, then a plan fallback.
-On save, catalog facts used by the plan are copied to `fallbackCourses` with
-per-field provenance so the plan remains reproducible if a catalog row later
-disappears. Operator edits are marked `manual` and are never overwritten by
-ordinary saves. The explicit refresh action replaces a snapshot from the
-current catalog.
+On save, catalog facts used by the plan are copied into the course entry's
+`fallback*` fields, with optional per-field provenance, so the plan remains
+reproducible if a catalog row later disappears. Operator edits are marked
+`manual` and are never overwritten by ordinary saves. The explicit refresh
+action replaces the inline snapshot from the current catalog.
+
+`edition`, `release`, and `version` are not plan fields. Edition and release are
+global settings in `data/settings.json`.
 
 If any activity field is known, missing sibling activity fields normalize to
 zero. If all activity fields are unknown, they stay unknown and resolution

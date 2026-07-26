@@ -28,11 +28,18 @@ test("save hydrates a durable fallback and preserves it after catalog removal", 
     plan.semesters[0].courses = [{ code: "101 عال" }];
     store.savePlan("ccis", "cs", plan);
     const saved = store.getPlan("ccis", "cs");
+    const savedCourse = saved.semesters[0].courses[0];
     assert.deepEqual(
-      Object.fromEntries(["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"].map((field) => [field, saved.fallbackCourses["101 عال"][field]])),
+      {
+        name: savedCourse.fallbackName,
+        academicHours: savedCourse.fallbackCreditHours,
+        lectureHours: savedCourse.fallbackLectureHours,
+        exerciseHours: savedCourse.fallbackExerciseHours,
+        practicalHours: savedCourse.fallbackPracticalHours,
+      },
       { name: "مقدمة البرمجة", academicHours: 3, lectureHours: 3, exerciseHours: 0, practicalHours: 0 },
     );
-    assert.equal(saved.fallbackCourses["101 عال"]._provenance.name, "catalog");
+    assert.equal(savedCourse.fallbackProvenance.name, "catalog");
 
     fs.writeFileSync(malePath, "[]");
     const diagnostics = createDiagnostics();
@@ -73,10 +80,10 @@ test("save-time hydration does not overwrite manual non-empty fields", () => {
     plan.semesters[0].courses = [{ code: "101 عال" }];
     plan.fallbackCourses = { "101 عال": { name: "اسم يدوي" } };
     store.savePlan("ccis", "cs", plan);
-    const saved = store.getPlan("ccis", "cs").fallbackCourses["101 عال"];
-    assert.equal(saved.name, "اسم يدوي");
-    assert.equal(saved._provenance.name, "manual");
-    assert.equal(saved.exerciseHours, 0);
+    const saved = store.getPlan("ccis", "cs").semesters[0].courses[0];
+    assert.equal(saved.fallbackName, "اسم يدوي");
+    assert.equal(saved.fallbackProvenance.name, "manual");
+    assert.equal(saved.fallbackExerciseHours, 0);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

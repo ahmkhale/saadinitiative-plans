@@ -7,416 +7,577 @@
   "major": "تقنية المعلومات مسار الأمن السيبراني",
   "degree": "البكالوريوس",
   "planCode": "IT-CYBERSECURITY",
-  "version": "1448",
   "expectedCredits": 117,
   "sortCourses": "code",
   "semesters": [
     {
-      "number": 1,
-      "name": "المستوى الأول",
-      "yearLabel": "السنة التحضيرية",
       "expectedCredits": 16,
       "sortCourses": "code",
       "courses": [
-        "101 كيم",
-        "101 ريد",
-        "101 احص",
-        "100 عرب",
-        "100 إنجل"
-      ]
+        {
+          "code": "101 كيم",
+          "fallbackName": "كيمياء عامة",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "101 ريد",
+          "fallbackName": "ريادة الأعمال",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "101 احص",
+          "fallbackName": "مدخل إلى الاحتمالات والاحصاء",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "100 عرب",
+          "fallbackName": "مهارات الكتابة",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "100 إنجل",
+          "fallbackName": "اللغة الإنجليزية",
+          "fallbackCreditHours": 6,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        }
+      ],
+      "id": "published-level-1"
     },
     {
-      "number": 2,
-      "name": "المستوى الثاني",
-      "yearLabel": "السنة التحضيرية",
       "expectedCredits": 16,
       "sortCourses": "code",
       "courses": [
-        "110 إنجل",
-        "101 نهج",
-        "101 فجب",
-        "101 ريض",
-        "101 تقن"
-      ]
+        {
+          "code": "110 إنجل",
+          "fallbackName": "لغة إنجليزية تخصصية",
+          "fallbackCreditHours": 6,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "100 إنجل"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "101 نهج",
+          "fallbackName": "مهارات جامعية",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "101 فجب",
+          "fallbackName": "اللياقة والثقافة الصحية",
+          "fallbackCreditHours": 1,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "101 ريض",
+          "fallbackName": "حساب التفاضل",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "101 تقن",
+          "fallbackName": "مهارات الحاسب الآلي والذكاء الاصطناعي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        }
+      ],
+      "id": "published-level-2"
     },
     {
-      "number": 3,
-      "name": "المستوى الثالث",
-      "yearLabel": "السنة الثانية",
       "expectedCredits": 15,
       "sortCourses": "code",
       "courses": [
-        "219 تم",
-        "210 تم",
-        "151 ريض",
-        "111 عال",
-        "107 سلم"
-      ]
+        {
+          "code": "219 تم",
+          "fallbackName": "الفيزياء لتقنية المعلومات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "210 تم",
+          "fallbackName": "المبادئ الأساسية لتقنية المعلومات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "151 ريض",
+          "fallbackName": "الرياضيات المحددة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "101 ريض"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "111 عال",
+          "fallbackName": "برمجة حاسبات 1",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "101 تقن"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "107 سلم",
+          "fallbackName": "أخلاقيات المهنة",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        }
+      ],
+      "id": "published-level-3"
     },
     {
-      "number": 4,
-      "name": "المستوى الرابع",
-      "yearLabel": "السنة الثانية",
       "expectedCredits": 18,
       "sortCourses": "code",
       "courses": [
-        "223 تم",
-        "222 تم",
-        "214 تم",
-        "113 عال",
-        "108 سلم",
-        "106 ريض"
-      ]
+        {
+          "code": "223 تم",
+          "fallbackName": "تنظيم وعمارة الحاسبات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "151 ريض",
+            "219 تم"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "222 تم",
+          "fallbackName": "مبادئ قواعد البيانات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "210 تم"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "214 تم",
+          "fallbackName": "تصميم تجربة المستخدم",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "111 عال"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "113 عال",
+          "fallbackName": "برمجة حاسبات 2",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "111 عال"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "108 سلم",
+          "fallbackName": "قضايا معاصرة",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "106 ريض",
+          "fallbackName": "حساب التكامل",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "101 ريض"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        }
+      ],
+      "id": "published-level-4"
     },
     {
-      "number": 5,
-      "name": "المستوى الخامس",
-      "yearLabel": "السنة الثالثة",
       "expectedCredits": 16,
       "sortCourses": "code",
       "courses": [
-        "328 تم",
-        "326 تم",
-        "324 تم",
-        "312 تم",
-        "212 عال"
-      ]
+        {
+          "code": "328 تم",
+          "fallbackName": "مبادئ شبكات الحاسب",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "219 تم"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "326 تم",
+          "fallbackName": "تنقيب البيانات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [
+            "212 عال"
+          ],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "324 تم",
+          "fallbackName": "أمن المعلومات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [
+            "328 تم"
+          ],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "312 تم",
+          "fallbackName": "هندسة تطبيقات الويب",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "111 عال"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "212 عال",
+          "fallbackName": "تراكيب البيانات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "113 عال"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        }
+      ],
+      "id": "published-level-5"
     },
     {
-      "number": 6,
-      "name": "المستوى السادس",
-      "yearLabel": "السنة الثالثة",
       "expectedCredits": 16,
       "sortCourses": "code",
       "courses": [
         {
           "code": "371 تم",
-          "trackSpecific": true
+          "trackSpecific": true,
+          "fallbackName": "أمن التطبيقات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "324 تم"
+          ],
+          "corequisites": [
+            "329 تم"
+          ],
+          "requirement": "required"
         },
-        "329 تم",
-        "320 تم",
-        "244 ريض",
-        "227 عال"
-      ]
+        {
+          "code": "329 تم",
+          "fallbackName": "تقنيات الويب المتقدمة",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "312 تم",
+            "328 تم"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "320 تم",
+          "fallbackName": "هندسة البرمجيات",
+          "fallbackCreditHours": 4,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "214 تم"
+          ],
+          "corequisites": [
+            "329 تم"
+          ],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "244 ريض",
+          "fallbackName": "الجبر الخطي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "106 ريض"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "227 عال",
+          "fallbackName": "نظم التشغيل",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "212 عال"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        }
+      ],
+      "id": "published-level-6"
     },
     {
-      "number": 7,
-      "name": "المستوى السابع",
-      "yearLabel": "السنة الرابعة",
       "expectedCredits": 14,
       "sortCourses": "code",
       "courses": [
-        "496 تم",
-        "479 تم",
+        {
+          "code": "496 تم",
+          "fallbackName": "مشروع تخرج 1",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "212 عال",
+            "320 تم"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "479 تم",
+          "fallbackName": "التدريب الميداني",
+          "fallbackCreditHours": 2,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
         {
           "code": "471 تم",
-          "trackSpecific": true
+          "trackSpecific": true,
+          "fallbackName": "إدارة الأمن الإلكتروني",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "324 تم"
+          ],
+          "corequisites": [],
+          "requirement": "required"
         },
-        "426 تم",
-        "423 تم"
-      ]
+        {
+          "code": "426 تم",
+          "fallbackName": "أساسيات الذكاء الاصطناعي",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "212 عال",
+            "244 ريض"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "423 تم",
+          "fallbackName": "مقدمة إدارة مشاريع تقنية المعلومات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "320 تم"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        }
+      ],
+      "id": "published-level-7"
     },
     {
-      "number": 8,
-      "name": "المستوى الثامن",
-      "yearLabel": "السنة الرابعة",
       "expectedCredits": 6,
       "sortCourses": "code",
       "courses": [
-        "497 تم",
-        "427 تم"
-      ]
+        {
+          "code": "497 تم",
+          "fallbackName": "مشروع تخرج 2",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "496 تم"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        },
+        {
+          "code": "427 تم",
+          "fallbackName": "ريادة الأعمال والإبداع في تقنية المعلومات",
+          "fallbackCreditHours": 3,
+          "fallbackLectureHours": null,
+          "fallbackExerciseHours": null,
+          "fallbackPracticalHours": null,
+          "prerequisites": [
+            "320 تم"
+          ],
+          "corequisites": [],
+          "requirement": "required",
+          "trackSpecific": false
+        }
+      ],
+      "id": "published-level-8"
     }
   ],
-  "fallbackCourses": {
-    "101 كيم": {
-      "name": "كيمياء عامة",
-      "academicHours": 4,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "101 ريد": {
-      "name": "ريادة الأعمال",
-      "academicHours": 1,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "101 احص": {
-      "name": "مدخل إلى الاحتمالات والاحصاء",
-      "academicHours": 3,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "100 عرب": {
-      "name": "مهارات الكتابة",
-      "academicHours": 2,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "100 إنجل": {
-      "name": "اللغة الإنجليزية",
-      "academicHours": 6,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "110 إنجل": {
-      "name": "لغة إنجليزية تخصصية",
-      "academicHours": 6,
-      "prerequisites": [
-        "100 إنجل"
-      ],
-      "corequisites": []
-    },
-    "101 نهج": {
-      "name": "مهارات جامعية",
-      "academicHours": 3,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "101 فجب": {
-      "name": "اللياقة والثقافة الصحية",
-      "academicHours": 1,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "101 ريض": {
-      "name": "حساب التفاضل",
-      "academicHours": 3,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "101 تقن": {
-      "name": "مهارات الحاسب الآلي والذكاء الاصطناعي",
-      "academicHours": 3,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "219 تم": {
-      "name": "الفيزياء لتقنية المعلومات",
-      "academicHours": 3,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "210 تم": {
-      "name": "المبادئ الأساسية لتقنية المعلومات",
-      "academicHours": 3,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "151 ريض": {
-      "name": "الرياضيات المحددة",
-      "academicHours": 3,
-      "prerequisites": [
-        "101 ريض"
-      ],
-      "corequisites": []
-    },
-    "111 عال": {
-      "name": "برمجة حاسبات 1",
-      "academicHours": 4,
-      "prerequisites": [
-        "101 تقن"
-      ],
-      "corequisites": []
-    },
-    "107 سلم": {
-      "name": "أخلاقيات المهنة",
-      "academicHours": 2,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "223 تم": {
-      "name": "تنظيم وعمارة الحاسبات",
-      "academicHours": 3,
-      "prerequisites": [
-        "151 ريض",
-        "219 تم"
-      ],
-      "corequisites": []
-    },
-    "222 تم": {
-      "name": "مبادئ قواعد البيانات",
-      "academicHours": 3,
-      "prerequisites": [
-        "210 تم"
-      ],
-      "corequisites": []
-    },
-    "214 تم": {
-      "name": "تصميم تجربة المستخدم",
-      "academicHours": 3,
-      "prerequisites": [
-        "111 عال"
-      ],
-      "corequisites": []
-    },
-    "113 عال": {
-      "name": "برمجة حاسبات 2",
-      "academicHours": 4,
-      "prerequisites": [
-        "111 عال"
-      ],
-      "corequisites": []
-    },
-    "108 سلم": {
-      "name": "قضايا معاصرة",
-      "academicHours": 2,
-      "prerequisites": [],
-      "corequisites": []
-    },
-    "106 ريض": {
-      "name": "حساب التكامل",
-      "academicHours": 3,
-      "prerequisites": [
-        "101 ريض"
-      ],
-      "corequisites": []
-    },
-    "328 تم": {
-      "name": "مبادئ شبكات الحاسب",
-      "academicHours": 4,
-      "prerequisites": [
-        "219 تم"
-      ],
-      "corequisites": []
-    },
-    "326 تم": {
-      "name": "تنقيب البيانات",
-      "academicHours": 3,
-      "prerequisites": [],
-      "corequisites": [
-        "212 عال"
-      ]
-    },
-    "324 تم": {
-      "name": "أمن المعلومات",
-      "academicHours": 3,
-      "prerequisites": [],
-      "corequisites": [
-        "328 تم"
-      ]
-    },
-    "312 تم": {
-      "name": "هندسة تطبيقات الويب",
-      "academicHours": 3,
-      "prerequisites": [
-        "111 عال"
-      ],
-      "corequisites": []
-    },
-    "212 عال": {
-      "name": "تراكيب البيانات",
-      "academicHours": 3,
-      "prerequisites": [
-        "113 عال"
-      ],
-      "corequisites": []
-    },
-    "371 تم": {
-      "name": "أمن التطبيقات",
-      "academicHours": 3,
-      "prerequisites": [
-        "324 تم"
-      ],
-      "corequisites": [
-        "329 تم"
-      ],
-      "trackSpecific": true
-    },
-    "329 تم": {
-      "name": "تقنيات الويب المتقدمة",
-      "academicHours": 3,
-      "prerequisites": [
-        "312 تم",
-        "328 تم"
-      ],
-      "corequisites": []
-    },
-    "320 تم": {
-      "name": "هندسة البرمجيات",
-      "academicHours": 4,
-      "prerequisites": [
-        "214 تم"
-      ],
-      "corequisites": [
-        "329 تم"
-      ]
-    },
-    "244 ريض": {
-      "name": "الجبر الخطي",
-      "academicHours": 3,
-      "prerequisites": [
-        "106 ريض"
-      ],
-      "corequisites": []
-    },
-    "227 عال": {
-      "name": "نظم التشغيل",
-      "academicHours": 3,
-      "prerequisites": [
-        "212 عال"
-      ],
-      "corequisites": []
-    },
-    "496 تم": {
-      "name": "مشروع تخرج 1",
-      "academicHours": 3,
-      "prerequisites": [
-        "212 عال",
-        "320 تم"
-      ],
-      "corequisites": [],
-      "minimumCompletedCredits": 90
-    },
-    "479 تم": {
-      "name": "التدريب الميداني",
-      "academicHours": 2,
-      "prerequisites": [],
-      "corequisites": [],
-      "minimumCompletedCredits": 90
-    },
-    "471 تم": {
-      "name": "إدارة الأمن الإلكتروني",
-      "academicHours": 3,
-      "prerequisites": [
-        "324 تم"
-      ],
-      "corequisites": [],
-      "trackSpecific": true
-    },
-    "426 تم": {
-      "name": "أساسيات الذكاء الاصطناعي",
-      "academicHours": 3,
-      "prerequisites": [
-        "212 عال",
-        "244 ريض"
-      ],
-      "corequisites": []
-    },
-    "423 تم": {
-      "name": "مقدمة إدارة مشاريع تقنية المعلومات",
-      "academicHours": 3,
-      "prerequisites": [
-        "320 تم"
-      ],
-      "corequisites": []
-    },
-    "497 تم": {
-      "name": "مشروع تخرج 2",
-      "academicHours": 3,
-      "prerequisites": [
-        "496 تم"
-      ],
-      "corequisites": []
-    },
-    "427 تم": {
-      "name": "ريادة الأعمال والإبداع في تقنية المعلومات",
-      "academicHours": 3,
-      "prerequisites": [
-        "320 تم"
-      ],
-      "corequisites": [],
-      "minimumCompletedCredits": 109
-    }
-  }
+  "electiveGroups": []
 }

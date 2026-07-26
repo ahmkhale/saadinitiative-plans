@@ -13,9 +13,9 @@
     "major": { "type": "string", "minLength": 1 },
     "degree": { "type": "string" },
     "planCode": { "type": "string" },
-    "version": { "type": ["string", "number"] },
-    "edition": { "type": "string" },
-    "release": { "type": "string" },
+    "version": false,
+    "edition": false,
+    "release": false,
     "headerSubtitle": { "type": "string" },
     "expectedCredits": { "type": "number", "minimum": 0 },
     "sortCourses": { "enum": ["input", "code"] },
@@ -63,10 +63,7 @@
       },
       "additionalProperties": false
     },
-    "fallbackCourses": {
-      "type": "object",
-      "additionalProperties": { "$ref": "#/$defs/courseFacts" }
-    }
+    "fallbackCourses": false
   },
   "$defs": {
     "phase": {
@@ -163,27 +160,39 @@
       "additionalProperties": true
     },
     "courseEntry": {
-      "oneOf": [
-        { "type": "string", "minLength": 1 },
-        {
+      "type": "object",
+      "required": [
+        "code",
+        "fallbackName",
+        "fallbackCreditHours",
+        "fallbackLectureHours",
+        "fallbackExerciseHours",
+        "fallbackPracticalHours",
+        "prerequisites",
+        "requirement",
+        "trackSpecific"
+      ],
+      "properties": {
+        "code": { "type": "string", "minLength": 1 },
+        "fallbackName": { "type": ["string", "null"] },
+        "fallbackCreditHours": { "type": ["number", "null"], "minimum": 0 },
+        "fallbackLectureHours": { "type": ["number", "null"], "minimum": 0 },
+        "fallbackExerciseHours": { "type": ["number", "null"], "minimum": 0 },
+        "fallbackPracticalHours": { "type": ["number", "null"], "minimum": 0 },
+        "fallbackProvenance": {
           "type": "object",
-          "required": ["code"],
-          "properties": {
-            "code": { "type": "string", "minLength": 1 },
-            "fallback": { "$ref": "#/$defs/courseFacts" },
-            "override": { "$ref": "#/$defs/courseFacts" },
-            "prerequisites": { "type": "array", "items": { "type": "string" } },
-            "corequisites": { "type": "array", "items": { "type": "string" } },
-            "minimumCompletedCredits": { "type": "number", "minimum": 0 },
-            "requirement": { "enum": ["required", "elective"] },
-            "trackSpecific": { "type": "boolean" },
-            "extinct": { "type": "boolean" },
-            "forceFallback": { "type": "boolean" },
-            "preserveSameSemesterPrerequisite": { "type": "boolean" }
-          },
-          "additionalProperties": true
-        }
-      ]
+          "additionalProperties": { "enum": ["catalog", "manual"] }
+        },
+        "prerequisites": { "type": "array", "items": { "type": "string" } },
+        "corequisites": { "type": "array", "items": { "type": "string" } },
+        "minimumCompletedCredits": { "type": "number", "minimum": 0 },
+        "requirement": { "enum": ["required", "elective"] },
+        "trackSpecific": { "type": "boolean" },
+        "extinct": { "type": "boolean" },
+        "forceFallback": { "type": "boolean" },
+        "preserveSameSemesterPrerequisite": { "type": "boolean" }
+      },
+      "additionalProperties": true
     },
     "courseFacts": {
       "type": "object",

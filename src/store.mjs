@@ -1,7 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { canonicalizePlanForStorage, normalizePlanInput, validatePlanShape } from "./plan-input.mjs";
+import {
+  canonicalizePlanForStorage,
+  normalizePlanInput,
+  preparePlanForEditor,
+  validatePlanShape,
+} from "./plan-input.mjs";
 import { defaultCatalogService } from "./catalog-service.mjs";
 import { hydrateFallbackCourses } from "./fallback-hydration.mjs";
 
@@ -58,7 +63,6 @@ function initialPlan(college, input) {
     sharedSemesterSets: [],
     semesters: [{ id: "published-level-1", courses: [] }],
     electiveGroups: [],
-    fallbackCourses: {},
   };
 }
 
@@ -164,7 +168,10 @@ export function createPlanStore(root = collegesRoot, options = {}) {
       id: nextId,
       college: input.college || college.name,
     });
-    if (catalogService) plan = hydrateFallbackCourses(plan, catalogService.snapshot().catalog).value;
+    if (catalogService) {
+      const editable = preparePlanForEditor(plan);
+      plan = canonicalizePlanForStorage(hydrateFallbackCourses(editable, catalogService.snapshot().catalog).value);
+    }
     validatePersistedPlan(plan);
     if (nextId !== currentId) {
       const nextDir = majorDir(college.id, nextId);
