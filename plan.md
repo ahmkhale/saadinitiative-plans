@@ -1,4 +1,6 @@
-Continue the Saad Plan Generator work, but correct the workflow and architecture before adding the GUI.
+Continue the Saad Plan Generator work, but correct the workflow and architecture before adding the GUI. Our goal is that I just added colleges, majors, semsters, courses and it pre/corequestes, elective groups for any major, and everything else is on the generator>
+
+[Below you might see inconsinity in rules, because I edit some of them fast]
 
 ## Git workflow
 
@@ -191,6 +193,7 @@ The operator adds:
 * semesters;
 * elective groups and the requrid hours to complete "إتمام x ساعة";
 * course codes and it's pre/corequestes, minmmum hours.
+* I can edit courses colors in another settings panels, and any useful edits there.
 
 The generator derives everything else from `courses.json` in C:\Ahkhal\Projects\saadinitiative-plans\data\courses\male, if not found then C:\Ahkhal\Projects\saadinitiative-plans\data\courses\Female 
 
@@ -201,9 +204,6 @@ The normal GUI workflow must not require manually entering:
 * lecture hours;
 * practical hours;
 * exercise hours;
-* prerequisites;
-* corequisites;
-* minimum completed hours;
 * colors;
 * parent-course markers;
 * semester totals;
@@ -306,7 +306,7 @@ The operator can:
 * add an elective group;
 * edit its name;
 * set required hours;
-* add only course codes;
+* add course codes;
 * reorder courses;
 * reorder groups;
 * delete a group.
@@ -314,9 +314,6 @@ The operator can:
 The generator calculates:
 
 * course facts;
-* included hours;
-* required-hours label;
-* parent-course relationships;
 * layout height;
 * number of rows.
 
