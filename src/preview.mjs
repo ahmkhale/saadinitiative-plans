@@ -8,6 +8,8 @@ import { normalizePlanInput, validatePlanShape } from "./plan-input.mjs";
 import { renderPlanDocumentSvg } from "./render-svg.mjs";
 import { resolvePlan } from "./resolve.mjs";
 import { defaultCatalogService } from "./catalog-service.mjs";
+import { composeSharedSemesterSets, loadSharedSemesterSets } from "./shared-semester-sets.mjs";
+import { readSettings } from "./settings.mjs";
 
 export function resolveDraft(rawPlan, options = {}) {
   const service = options.catalogService ?? defaultCatalogService;
@@ -21,7 +23,8 @@ export function resolveDraft(rawPlan, options = {}) {
     return { ok: false, plan: null, diagnostics, document: null };
   }
   const catalog = service.snapshot();
-  const plan = resolvePlan(normalized, catalog.catalog, catalog.colors, diagnostics);
+  const composed = composeSharedSemesterSets(normalized, options.sharedSemesterSets ?? loadSharedSemesterSets(), diagnostics);
+  const plan = resolvePlan(composed, catalog.catalog, catalog.colors, diagnostics, { settings: options.settings ?? readSettings() });
   const document = hasErrors(diagnostics) ? null : renderPlanDocumentSvg(plan);
   return { ok: !hasErrors(diagnostics), plan, diagnostics, document };
 }

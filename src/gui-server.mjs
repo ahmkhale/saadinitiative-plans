@@ -6,6 +6,8 @@ import { fileURLToPath } from "node:url";
 import { defaultCatalogService } from "./catalog-service.mjs";
 import { exportDraft, renderDraftPreview, resolveDraft } from "./preview.mjs";
 import { atomicWriteJson, defaultPlanStore, projectRoot } from "./store.mjs";
+import { createSharedSemesterSetStore } from "./shared-semester-sets.mjs";
+import { readSettings, saveSettings, settingsPath } from "./settings.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 const guiDir = path.join(projectRoot, "gui");
@@ -80,6 +82,8 @@ export function createGuiServer(options = {}) {
   const outputRoot = path.resolve(options.outputRoot ?? distDir);
   const exportDraftFn = options.exportDraftFn ?? exportDraft;
   const openOutputFn = options.openOutputFn ?? openDirectory;
+  const sharedSetStore = options.sharedSetStore ?? createSharedSemesterSetStore({ planStore: store });
+  const settingsFile = options.settingsPath ?? settingsPath;
 
   async function api(req, res, url) {
     const segments = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
@@ -89,6 +93,8 @@ export function createGuiServer(options = {}) {
         ok: true,
         colleges: store.listColleges(),
         catalog: catalogService.summary(),
+        settings: readSettings(settingsFile),
+        sharedSemesterSets: sharedSetStore.list(),
       });
     }
     if (req.method === "GET" && url.pathname === "/api/catalog/search") {
@@ -99,7 +105,7 @@ export function createGuiServer(options = {}) {
     }
     if (req.method === "POST" && url.pathname === "/api/validate") {
       const body = await readBody(req);
-      const result = resolveDraft(body.plan, { catalogService });
+      const result = resolveDraft(body.plan, { catalogService, settings: readSettings(settingsFile), sharedSemesterSets: sharedSetStore.load() });
       return json(res, 200, {
         ok: result.ok,
         plan: result.plan,
@@ -109,7 +115,7 @@ export function createGuiServer(options = {}) {
     }
     if (req.method === "POST" && url.pathname === "/api/preview") {
       const body = await readBody(req);
-      return json(res, 200, renderDraftPreview(body.plan, { catalogService }));
+      return json(res, 200, renderDraftPreview(body.plan, { catalogService, settings: readSettings(settingsFile), sharedSemesterSets: sharedSetStore.load() }));
     }
     if (req.method === "POST" && url.pathname === "/api/generate") {
       const body = await readBody(req);
@@ -118,6 +124,8 @@ export function createGuiServer(options = {}) {
       }
       const result = exportDraftFn(body.plan, {
         catalogService,
+        settings: readSettings(settingsFile),
+        sharedSemesterSets: sharedSetStore.load(),
         outputRoot,
         keepSvg: Boolean(body.keepSvg),
         png: Boolean(body.png),
@@ -137,6 +145,28 @@ export function createGuiServer(options = {}) {
     if (req.method === "POST" && url.pathname === "/api/open-output") {
       openOutputFn(outputRoot);
       return json(res, 200, { ok: true, folder: outputRoot });
+    }
+    if (req.method === "PUT" && url.pathname === "/api/settings") {
+      return json(res, 200, { ok: true, settings: saveSettings(await readBody(req), settingsFile) });
+    }
+    if (segments[1] === "shared-semester-sets") {
+      if (segments.length === 2 && req.method === "POST") {
+        return json(res, 201, { ok: true, sharedSemesterSet: sharedSetStore.create(await readBody(req)) });
+      }
+      const setId = segments[2];
+      if (segments.length === 3 && req.method === "GET") {
+        return json(res, 200, { ok: true, sharedSemesterSet: sharedSetStore.get(setId) });
+      }
+      if (segments.length === 3 && req.method === "PUT") {
+        return json(res, 200, { ok: true, sharedSemesterSet: sharedSetStore.save(await readBody(req), setId) });
+      }
+      if (segments.length === 3 && req.method === "DELETE") {
+        sharedSetStore.remove(setId);
+        return json(res, 200, { ok: true });
+      }
+      if (segments.length === 4 && segments[3] === "duplicate" && req.method === "POST") {
+        return json(res, 201, { ok: true, sharedSemesterSet: sharedSetStore.duplicate(setId, await readBody(req)) });
+      }
     }
     if (req.method === "PUT" && segments[1] === "colors" && segments.length === 3) {
       const body = await readBody(req);

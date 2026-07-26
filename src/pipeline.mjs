@@ -9,6 +9,8 @@ import { normalizePlanInput, validatePlanShape } from "./plan-input.mjs";
 import { renderPlanDocumentSvg } from "./render-svg.mjs";
 import { resolvePlan } from "./resolve.mjs";
 import { safeSlug } from "./normalize.mjs";
+import { composeSharedSemesterSets, loadSharedSemesterSets } from "./shared-semester-sets.mjs";
+import { readSettings } from "./settings.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(path.dirname(thisFile), "..");
@@ -37,7 +39,8 @@ export function generatePlan(options) {
   const colorsPath = options.colorsPath ?? path.join(projectRoot, "data", "course-colors.json");
   const colors = fs.existsSync(colorsPath) ? readJson(colorsPath) : { عام: "#616161" };
   const diagnostics = createDiagnostics(path.resolve(options.planPath), options.catalogPath ? path.resolve(options.catalogPath) : null);
-  const resolved = resolvePlan(plan, catalog, colors, diagnostics);
+  const composed = composeSharedSemesterSets(plan, loadSharedSemesterSets(options.sharedSetsRoot), diagnostics);
+  const resolved = resolvePlan(composed, catalog, colors, diagnostics, { settings: readSettings(options.settingsPath) });
   const paths = outputPaths(resolved, options);
   writeJson(paths.resolvedPath, resolved);
   writeJson(paths.diagnosticsPath, diagnostics);
