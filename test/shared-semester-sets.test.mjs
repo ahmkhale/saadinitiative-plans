@@ -24,6 +24,7 @@ test("shared semester sets compose without copying and cannot be deleted while r
         { name: "التحضيري الثاني", courses: ["102 ريض"] },
       ],
       fallbackCourses: {},
+      scope: { type: "institution", institutionId: "test" },
     });
     plan.sharedSemesterSets = ["preparatory-scientific"];
     planStore.savePlan("science", "physics", plan);
@@ -61,4 +62,3 @@ test("shared semester sets compose without copying and cannot be deleted while r
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
-

@@ -1,0 +1,2065 @@
+{
+  "schemaVersion": 1,
+  "id": "mechanical-engineering",
+  "major": "هندسة ميكانيكية",
+  "degree": "البكالوريوس",
+  "expectedCredits": 145,
+  "sortCourses": "code",
+  "sharedSemesterSets": [
+    "cfy-science",
+    "engineering-common"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-5",
+      "courses": [
+        {
+          "id": "major:mechanical-engineering:published-level-5:371-همك",
+          "code": "371 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-5:254-همك",
+          "code": "254 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-5:211-هعم",
+          "code": "211 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-5:204-ريض",
+          "code": "204 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-5:202-هعم",
+          "code": "202 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-5:201-همك",
+          "code": "201 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-6",
+      "courses": [
+        {
+          "id": "major:mechanical-engineering:published-level-6:384-همك",
+          "code": "384 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-6:377-همك",
+          "code": "377 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-6:363-همك",
+          "code": "363 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-6:352-همك",
+          "code": "352 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-6:254-ريض",
+          "code": "254 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-7",
+      "courses": [
+        {
+          "id": "major:mechanical-engineering:published-level-7:378-همك",
+          "code": "378 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-7:321-همك",
+          "code": "321 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-7:312-همك",
+          "code": "312 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-7:308-كهر",
+          "code": "308 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-7:304-همك",
+          "code": "304 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-8",
+      "courses": [
+        {
+          "id": "major:mechanical-engineering:published-level-8:379-همك",
+          "code": "379 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-8:365-همك",
+          "code": "365 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-8:322-همك",
+          "code": "322 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-8:313-همك",
+          "code": "313 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-8:305-همك",
+          "code": "305 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-9",
+      "courses": [
+        {
+          "id": "major:mechanical-engineering:published-level-9:496-همك",
+          "code": "496 همك",
+          "prerequisites": [
+            "إتمام 129 ساعة",
+            "مستوى 7"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-9:403-هعم",
+          "code": "403 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-9:366-همك",
+          "code": "366 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-9:323-همك",
+          "code": "323 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-10",
+      "courses": [
+        {
+          "id": "major:mechanical-engineering:published-level-10:999-همك",
+          "code": "999 همك",
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-10:497-همك",
+          "code": "497 همك",
+          "prerequisites": [
+            "496 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:published-level-10:402-هعم",
+          "code": "402 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "name": "متطلبات الجامعة",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:104-سلم",
+          "code": "104 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:103-سلم",
+          "code": "103 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:102-سلم",
+          "code": "102 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:101-سلم",
+          "code": "101 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:100-قرا",
+          "code": "100 قرأ",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:100-سلم",
+          "code": "100 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:109-سلم",
+          "code": "109 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:108-سلم",
+          "code": "108 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:106-سلم",
+          "code": "106 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:university-requirements:105-سلم",
+          "code": "105 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "department-requirements",
+      "name": "متطلبات القسم",
+      "requiredHours": 12,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:409-همك",
+          "code": "409 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:408-همك",
+          "code": "408 همك",
+          "prerequisites": [
+            "304 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:406-همك",
+          "code": "406 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:405-همك",
+          "code": "405 همك",
+          "prerequisites": [
+            "304 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:404-همك",
+          "code": "404 همك",
+          "prerequisites": [
+            "305 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:402-همك",
+          "code": "402 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:431-همك",
+          "code": "431 همك",
+          "prerequisites": [
+            "384 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:415-همك",
+          "code": "415 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:414-همك",
+          "code": "414 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:413-همك",
+          "code": "413 همك",
+          "prerequisites": [
+            "313 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:412-همك",
+          "code": "412 همك",
+          "prerequisites": [
+            "312 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:411-همك",
+          "code": "411 همك",
+          "prerequisites": [
+            "312 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:452-همك",
+          "code": "452 همك",
+          "prerequisites": [
+            "254 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:451-همك",
+          "code": "451 همك",
+          "prerequisites": [
+            "304 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:444-همك",
+          "code": "444 همك",
+          "prerequisites": [
+            "378 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:443-همك",
+          "code": "443 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:433-همك",
+          "code": "433 همك",
+          "prerequisites": [
+            "304 همك",
+            "384 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:432-همك",
+          "code": "432 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:462-همك",
+          "code": "462 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:460-همك",
+          "code": "460 همك",
+          "prerequisites": [
+            "365 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:456-همك",
+          "code": "456 همك",
+          "prerequisites": [
+            "304 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:455-همك",
+          "code": "455 همك",
+          "prerequisites": [
+            "304 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:454-همك",
+          "code": "454 همك",
+          "prerequisites": [
+            "304 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:453-همك",
+          "code": "453 همك",
+          "prerequisites": [
+            "304 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:472-همك",
+          "code": "472 همك",
+          "prerequisites": [
+            "377 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:469-همك",
+          "code": "469 همك",
+          "prerequisites": [
+            "365 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:468-همك",
+          "code": "468 همك",
+          "prerequisites": [
+            "363 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:467-همك",
+          "code": "467 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:466-همك",
+          "code": "466 همك",
+          "prerequisites": [
+            "365 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:465-همك",
+          "code": "465 همك",
+          "prerequisites": [
+            "202 هعم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:478-همك",
+          "code": "478 همك",
+          "prerequisites": [
+            "378 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:477-همك",
+          "code": "477 همك",
+          "prerequisites": [
+            "378 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:476-همك",
+          "code": "476 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:475-همك",
+          "code": "475 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:474-همك",
+          "code": "474 همك",
+          "prerequisites": [
+            "377 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:473-همك",
+          "code": "473 همك",
+          "prerequisites": [
+            "377 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:487-همك",
+          "code": "487 همك",
+          "prerequisites": [
+            "384 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:485-همك",
+          "code": "485 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:483-همك",
+          "code": "483 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:482-همك",
+          "code": "482 همك",
+          "prerequisites": [
+            "384 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:481-همك",
+          "code": "481 همك",
+          "prerequisites": [
+            "384 همك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:479-همك",
+          "code": "479 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:998-همك",
+          "code": "998 همك",
+          "prerequisites": [
+            "إتمام 129 ساعة"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:494-همك",
+          "code": "494 همك",
+          "prerequisites": [
+            "إتمام 129 ساعة"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:mechanical-engineering:elective:department-requirements:493-همك",
+          "code": "493 همك",
+          "prerequisites": [
+            "إتمام 129 ساعة"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "free-requirements",
+      "name": "متطلبات حرة",
+      "requiredHours": 2,
+      "sortCourses": "code",
+      "courses": []
+    }
+  ],
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-science-cfy-science-1",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-1",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-1:100-انجل",
+          "shared:cfy-science:cfy-science-1:100-عرب",
+          "shared:cfy-science:cfy-science-1:101-احص",
+          "shared:cfy-science:cfy-science-1:101-ريد",
+          "shared:cfy-science:cfy-science-1:101-كيم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-science-cfy-science-2",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-2",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-2:101-تقن",
+          "shared:cfy-science:cfy-science-2:101-ريض",
+          "shared:cfy-science:cfy-science-2:101-فجب",
+          "shared:cfy-science:cfy-science-2:101-نهج",
+          "shared:cfy-science:cfy-science-2:110-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-3",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-3",
+        "type": "regular",
+        "courseOrder": [
+          "shared:engineering-common:engineering-common-3:103-فيز",
+          "shared:engineering-common:engineering-common-3:104-هعم",
+          "shared:engineering-common:engineering-common-3:106-ريض",
+          "shared:engineering-common:engineering-common-3:107-ريض",
+          "shared:engineering-common:engineering-common-3:107-سلم",
+          "shared:engineering-common:engineering-common-3:109-نجم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-4",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-4",
+        "type": "regular",
+        "courseOrder": [
+          "shared:engineering-common:engineering-common-4:104-فيز",
+          "shared:engineering-common:engineering-common-4:106-هعم",
+          "shared:engineering-common:engineering-common-4:110-نجم",
+          "shared:engineering-common:engineering-common-4:201-هعم",
+          "shared:engineering-common:engineering-common-4:203-ريض",
+          "shared:engineering-common:engineering-common-4:203-هعم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-5",
+        "sourceSemesterId": "published-level-5",
+        "type": "regular",
+        "courseOrder": [
+          "major:mechanical-engineering:published-level-5:201-همك",
+          "major:mechanical-engineering:published-level-5:202-هعم",
+          "major:mechanical-engineering:published-level-5:204-ريض",
+          "major:mechanical-engineering:published-level-5:211-هعم",
+          "major:mechanical-engineering:published-level-5:254-همك",
+          "major:mechanical-engineering:published-level-5:371-همك"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-6",
+        "sourceSemesterId": "published-level-6",
+        "type": "regular",
+        "courseOrder": [
+          "major:mechanical-engineering:published-level-6:254-ريض",
+          "major:mechanical-engineering:published-level-6:352-همك",
+          "major:mechanical-engineering:published-level-6:363-همك",
+          "major:mechanical-engineering:published-level-6:377-همك",
+          "major:mechanical-engineering:published-level-6:384-همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-6-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-7",
+        "sourceSemesterId": "published-level-7",
+        "type": "regular",
+        "courseOrder": [
+          "major:mechanical-engineering:published-level-7:304-همك",
+          "major:mechanical-engineering:published-level-7:308-كهر",
+          "major:mechanical-engineering:published-level-7:312-همك",
+          "major:mechanical-engineering:published-level-7:321-همك",
+          "major:mechanical-engineering:published-level-7:378-همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-7-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-8",
+        "sourceSemesterId": "published-level-8",
+        "type": "regular",
+        "courseOrder": [
+          "major:mechanical-engineering:published-level-8:305-همك",
+          "major:mechanical-engineering:published-level-8:313-همك",
+          "major:mechanical-engineering:published-level-8:322-همك",
+          "major:mechanical-engineering:published-level-8:365-همك",
+          "major:mechanical-engineering:published-level-8:379-همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-8-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-9",
+        "sourceSemesterId": "published-level-9",
+        "type": "regular",
+        "courseOrder": [
+          "major:mechanical-engineering:published-level-9:323-همك",
+          "major:mechanical-engineering:published-level-9:366-همك",
+          "major:mechanical-engineering:published-level-9:403-هعم",
+          "major:mechanical-engineering:published-level-9:496-همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-9-1",
+            "name": "من المتطلبات الحرة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-9-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-10",
+        "sourceSemesterId": "published-level-10",
+        "type": "regular",
+        "courseOrder": [
+          "major:mechanical-engineering:published-level-10:402-هعم",
+          "major:mechanical-engineering:published-level-10:497-همك"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-10-1",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-3",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "major:mechanical-engineering:published-level-10:999-همك"
+        ],
+        "placeholders": []
+      }
+    ]
+  },
+  "fallbackCourses": {
+    "371 همك": {
+      "name": "الديناميكا الحرارية (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "254 همك": {
+      "name": "هندسة المواد",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "211 هعم": {
+      "name": "برمجة الحاسوب بلغة ++C",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "204 ريض": {
+      "name": "المعادلات التفاضلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "202 هعم": {
+      "name": "الديناميكا",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 همك": {
+      "name": "نمذجة الأشكال في الهندسة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "384 همك": {
+      "name": "ميكانيكا الموائع",
+      "academicHours": 4,
+      "lectureHours": 4,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "377 همك": {
+      "name": "الديناميكا الحرارية (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "363 همك": {
+      "name": "ميكانيكا الآلات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "352 همك": {
+      "name": "ميكانيكا المواد",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "254 ريض": {
+      "name": "الطرائق العددية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "378 همك": {
+      "name": "انتقال الحرارة",
+      "academicHours": 4,
+      "lectureHours": 4,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "321 همك": {
+      "name": "القياسات الميكانيكية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "312 همك": {
+      "name": "أساليب التصنيع (1)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "308 كهر": {
+      "name": "الدوائر والمكائن الكهربائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "304 همك": {
+      "name": "التصميم الهندسي الميكانيكي (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "379 همك": {
+      "name": "منظومات الموائع الحرارية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "365 همك": {
+      "name": "ديناميكا المنظومات الميكانيكية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "322 همك": {
+      "name": "معمل الهندسة الميكانيكية (1)",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "313 همك": {
+      "name": "أساليب التصنيع (2)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "305 همك": {
+      "name": "التصميم الهندسي الميكانيكي (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "496 همك": {
+      "name": "مشروع التخرج 1",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "403 هعم": {
+      "name": "الاقتصاد الهندسي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "366 همك": {
+      "name": "التحكم التلقائي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "323 همك": {
+      "name": "معمل الهندسة الميكانيكية (2)",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "999 همك": {
+      "name": "تدريب عملي",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "497 همك": {
+      "name": "مشروع التخرج 2",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "402 هعم": {
+      "name": "ادارة المشاريع الهندسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "104 سلم": {
+      "name": "النظام السياسي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "103 سلم": {
+      "name": "النظام الاقتصادي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 سلم": {
+      "name": "الأسرة في الإسلام",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 سلم": {
+      "name": "أصول الثقافة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "100 قرأ": {
+      "name": "القرآن الكريم",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "100 سلم": {
+      "name": "دراسات في السيرة النبوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 سلم": {
+      "name": "المرأة ودورها التنموي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "108 سلم": {
+      "name": "قضايا معاصرة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "106 سلم": {
+      "name": "الفقه الطبي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "105 سلم": {
+      "name": "حقوق الإنسان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "409 همك": {
+      "name": "اختيار المواد في التصميم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "408 همك": {
+      "name": "الاحتكاك، والتآكل والتزييت",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "406 همك": {
+      "name": "التصميم الأمثل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "405 همك": {
+      "name": "التصميم المبني على المفاهيم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "404 همك": {
+      "name": "التصميم بمساعدة الحاسوب",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "402 همك": {
+      "name": "طريقة العناصر المحددة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "431 همك": {
+      "name": "ديناميكا الهواء",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "415 همك": {
+      "name": "مقدمة في هندسة السكك الحديدية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "414 همك": {
+      "name": "آلات التحكم الرقمي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "413 همك": {
+      "name": "نظم التصنيع",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "412 همك": {
+      "name": "تحليل وتشكيل المعادن",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "411 همك": {
+      "name": "أساليب التصنيع الحديثة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "452 همك": {
+      "name": "فيزيائية الفلزات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "451 همك": {
+      "name": "السلوك الميكانيكي للمواد",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "444 همك": {
+      "name": "تكييف الهواء",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "443 همك": {
+      "name": "مبادىء التبريد",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "433 همك": {
+      "name": "مقدمة في المرونة الهوائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "432 همك": {
+      "name": "مقدمة في ميكانيكا الطيران",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "462 همك": {
+      "name": "الاهتزازات الميكانيكية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "460 همك": {
+      "name": "هندسة أنظمة السكك الحديدية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "456 همك": {
+      "name": "مقدمة في المواد المركبة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "455 همك": {
+      "name": "هياكل المركبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "454 همك": {
+      "name": "هياكل الطائرات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "453 همك": {
+      "name": "ميكانيكا المواد المتوسط",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "472 همك": {
+      "name": "محطات القوى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "469 همك": {
+      "name": "هندسة العربات -السيارات-",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "468 همك": {
+      "name": "تصميم الوصلات المفصلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "467 همك": {
+      "name": "مقدمة في الروبوتات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "466 همك": {
+      "name": "الآلات الدوارة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "465 همك": {
+      "name": "الميكاترونيكس",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "478 همك": {
+      "name": "تصميم منظومات الطاقة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "477 همك": {
+      "name": "منظومات تحويل الطاقة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "476 همك": {
+      "name": "الطاقة الشمسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "475 همك": {
+      "name": "كفاءة الطاقة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "474 همك": {
+      "name": "محركات الاحتراق الداخلي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "473 همك": {
+      "name": "مقدمة في الاحتراق",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "487 همك": {
+      "name": "التحكم في تلوث الهواء",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "485 همك": {
+      "name": "آلات الموائع",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "483 همك": {
+      "name": "مقدمة في الدفع النفاث",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "482 همك": {
+      "name": "ديناميكا الغازات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "481 همك": {
+      "name": "مقدمة ديناميكا الموائع الحسابية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "479 همك": {
+      "name": "تحلية المياه",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "998 همك": {
+      "name": "مشروع بحثي",
+      "academicHours": 0,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "494 همك": {
+      "name": "مواضيع مختارة في الهندسة الميكانيكية 2",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "493 همك": {
+      "name": "مواضيع مختارة في الهندسة الميكانيكية 1",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    }
+  }
+}

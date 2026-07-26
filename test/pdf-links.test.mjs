@@ -47,6 +47,9 @@ function facts(code) {
     color: "#00AEEF",
     prerequisites: [],
     corequisites: [],
+    prerequisiteConditions: [],
+    minimumCompletedCredits: null,
+    requirementLabel: "",
   };
 }
 

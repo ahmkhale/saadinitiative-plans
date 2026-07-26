@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "id": "cfy-science",
+  "name": "التحضيري العلمي",
+  "phaseLabel": "السنة التحضيرية",
+  "semesters": [
+    {
+      "id": "cfy-science-1",
+      "courses": [
+        {
+          "id": "shared:cfy-science:cfy-science-1:100-انجل",
+          "code": "100 إنجل",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:cfy-science:cfy-science-1:100-عرب",
+          "code": "100 عرب",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:cfy-science:cfy-science-1:101-احص",
+          "code": "101 إحص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:cfy-science:cfy-science-1:101-ريد",
+          "code": "101 ريد",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:cfy-science:cfy-science-1:101-كيم",
+          "code": "101 كيم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "cfy-science-2",
+      "courses": [
+        {
+          "id": "shared:cfy-science:cfy-science-2:110-انجل",
+          "code": "110 إنجل",
+          "prerequisites": [
+            "100 إنجل"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:cfy-science:cfy-science-2:101-فجب",
+          "code": "101 فجب",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:cfy-science:cfy-science-2:101-تقن",
+          "code": "101 تقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:cfy-science:cfy-science-2:101-ريض",
+          "code": "101 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:cfy-science:cfy-science-2:101-نهج",
+          "code": "101 نهج",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "100 إنجل": {
+      "name": "اللغة الإنجليزية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "100 عرب": {
+      "name": "مهارات الكتابة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 إحص": {
+      "name": "مدخل إلى الاحتمالات والإحصاء",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 ريد": {
+      "name": "ريادة الأعمال",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 كيم": {
+      "name": "كيمياء عامة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "110 إنجل": {
+      "name": "لغة إنجليزية تخصصية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 فجب": {
+      "name": "اللياقة والثقافة الصحية",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 تقن": {
+      "name": "مهارات الحاسب الآلي والذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 ريض": {
+      "name": "حساب التفاضل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 نهج": {
+      "name": "مهارات جامعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "scope": {
+    "type": "institution",
+    "institutionId": "ksu"
+  }
+}

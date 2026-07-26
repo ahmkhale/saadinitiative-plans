@@ -1,0 +1,1035 @@
+{
+  "schemaVersion": 1,
+  "id": "it-cybersecurity",
+  "major": "تقنية المعلومات مسار الأمن السيبراني",
+  "degree": "البكالوريوس",
+  "expectedCredits": 117,
+  "sortCourses": "code",
+  "sharedSemesterSets": [
+    "cfy-science"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-3",
+      "courses": [
+        {
+          "id": "major:it-cybersecurity:published-level-3:219-تم",
+          "code": "219 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-3:210-تم",
+          "code": "210 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-3:151-ريض",
+          "code": "151 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-3:111-عال",
+          "code": "111 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-3:107-سلم",
+          "code": "107 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-4",
+      "courses": [
+        {
+          "id": "major:it-cybersecurity:published-level-4:223-تم",
+          "code": "223 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-4:222-تم",
+          "code": "222 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-4:214-تم",
+          "code": "214 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-4:113-عال",
+          "code": "113 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-4:108-سلم",
+          "code": "108 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-4:106-ريض",
+          "code": "106 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-5",
+      "courses": [
+        {
+          "id": "major:it-cybersecurity:published-level-5:328-تم",
+          "code": "328 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-5:326-تم",
+          "code": "326 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-5:324-تم",
+          "code": "324 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-5:312-تم",
+          "code": "312 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-5:212-عال",
+          "code": "212 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-6",
+      "courses": [
+        {
+          "id": "major:it-cybersecurity:published-level-6:371-تم",
+          "code": "371 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-6:329-تم",
+          "code": "329 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-6:320-تم",
+          "code": "320 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-6:244-ريض",
+          "code": "244 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-6:227-عال",
+          "code": "227 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-7",
+      "courses": [
+        {
+          "id": "major:it-cybersecurity:published-level-7:496-تم",
+          "code": "496 تم",
+          "prerequisites": [
+            "90 ساعة",
+            "212 عال",
+            "320 تم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-7:479-تم",
+          "code": "479 تم",
+          "prerequisites": [
+            "إتمام 90 ساعة"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-7:471-تم",
+          "code": "471 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-7:426-تم",
+          "code": "426 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-7:423-تم",
+          "code": "423 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-8",
+      "courses": [
+        {
+          "id": "major:it-cybersecurity:published-level-8:497-تم",
+          "code": "497 تم",
+          "prerequisites": [
+            "496 تم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:published-level-8:427-تم",
+          "code": "427 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "name": "متطلبات الجامعة",
+      "requiredHours": 4,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:it-cybersecurity:elective:university-requirements:104-سلم",
+          "code": "104 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:university-requirements:103-سلم",
+          "code": "103 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:university-requirements:102-سلم",
+          "code": "102 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:university-requirements:101-سلم",
+          "code": "101 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:university-requirements:100-قرا",
+          "code": "100 قرأ",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:university-requirements:100-سلم",
+          "code": "100 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:university-requirements:109-سلم",
+          "code": "109 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:university-requirements:106-سلم",
+          "code": "106 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:university-requirements:105-سلم",
+          "code": "105 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "track-requirements",
+      "name": "متطلبات المسار",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:it-cybersecurity:elective:track-requirements:476-تم",
+          "code": "476 تم",
+          "prerequisites": [
+            "109 ساعة",
+            "371 تم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:track-requirements:475-تم",
+          "code": "475 تم",
+          "prerequisites": [
+            "109 ساعة",
+            "471 تم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:track-requirements:474-تم",
+          "code": "474 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:track-requirements:473-تم",
+          "code": "473 تم",
+          "prerequisites": [
+            "109 ساعة",
+            "371 تم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:it-cybersecurity:elective:track-requirements:472-تم",
+          "code": "472 تم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-science-cfy-science-1",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-1",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-1:100-انجل",
+          "shared:cfy-science:cfy-science-1:100-عرب",
+          "shared:cfy-science:cfy-science-1:101-احص",
+          "shared:cfy-science:cfy-science-1:101-ريد",
+          "shared:cfy-science:cfy-science-1:101-كيم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-science-cfy-science-2",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-2",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-2:101-تقن",
+          "shared:cfy-science:cfy-science-2:101-ريض",
+          "shared:cfy-science:cfy-science-2:101-فجب",
+          "shared:cfy-science:cfy-science-2:101-نهج",
+          "shared:cfy-science:cfy-science-2:110-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-3",
+        "sourceSemesterId": "published-level-3",
+        "type": "regular",
+        "courseOrder": [
+          "major:it-cybersecurity:published-level-3:107-سلم",
+          "major:it-cybersecurity:published-level-3:111-عال",
+          "major:it-cybersecurity:published-level-3:151-ريض",
+          "major:it-cybersecurity:published-level-3:210-تم",
+          "major:it-cybersecurity:published-level-3:219-تم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-4",
+        "sourceSemesterId": "published-level-4",
+        "type": "regular",
+        "courseOrder": [
+          "major:it-cybersecurity:published-level-4:106-ريض",
+          "major:it-cybersecurity:published-level-4:108-سلم",
+          "major:it-cybersecurity:published-level-4:113-عال",
+          "major:it-cybersecurity:published-level-4:214-تم",
+          "major:it-cybersecurity:published-level-4:222-تم",
+          "major:it-cybersecurity:published-level-4:223-تم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-5",
+        "sourceSemesterId": "published-level-5",
+        "type": "regular",
+        "courseOrder": [
+          "major:it-cybersecurity:published-level-5:212-عال",
+          "major:it-cybersecurity:published-level-5:312-تم",
+          "major:it-cybersecurity:published-level-5:324-تم",
+          "major:it-cybersecurity:published-level-5:326-تم",
+          "major:it-cybersecurity:published-level-5:328-تم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-6",
+        "sourceSemesterId": "published-level-6",
+        "type": "regular",
+        "courseOrder": [
+          "major:it-cybersecurity:published-level-6:227-عال",
+          "major:it-cybersecurity:published-level-6:244-ريض",
+          "major:it-cybersecurity:published-level-6:320-تم",
+          "major:it-cybersecurity:published-level-6:329-تم",
+          "major:it-cybersecurity:published-level-6:371-تم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-7",
+        "sourceSemesterId": "published-level-7",
+        "type": "regular",
+        "courseOrder": [
+          "major:it-cybersecurity:published-level-7:423-تم",
+          "major:it-cybersecurity:published-level-7:426-تم",
+          "major:it-cybersecurity:published-level-7:471-تم",
+          "major:it-cybersecurity:published-level-7:496-تم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-7-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-8",
+        "sourceSemesterId": "published-level-8",
+        "type": "regular",
+        "courseOrder": [
+          "major:it-cybersecurity:published-level-8:427-تم",
+          "major:it-cybersecurity:published-level-8:497-تم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-8-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-8-2",
+            "name": "من متطلبات المسار",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-8-3",
+            "name": "من متطلبات المسار",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "major:it-cybersecurity:published-level-7:479-تم"
+        ],
+        "placeholders": []
+      }
+    ]
+  },
+  "fallbackCourses": {
+    "219 تم": {
+      "name": "الفيزياء لتقنية المعلومات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "210 تم": {
+      "name": "المبادئ الاساسية لتقنية المعلومات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "151 ريض": {
+      "name": "الرياضيات المحددة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "111 عال": {
+      "name": "برمجة حاسبات (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "107 سلم": {
+      "name": "اخلاقيات المهنة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "223 تم": {
+      "name": "تنظيم وعمارة الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "222 تم": {
+      "name": "مباديء قواعد البيانات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "214 تم": {
+      "name": "تصميم تجربة المستخدم",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "113 عال": {
+      "name": "برمجة حاسبات -2-",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "108 سلم": {
+      "name": "قضايا معاصرة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "106 ريض": {
+      "name": "حساب التكامل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "328 تم": {
+      "name": "مبادئ شبكات الحاسب",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "326 تم": {
+      "name": "تنقيب البيانات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "324 تم": {
+      "name": "أمن المعلومات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "312 تم": {
+      "name": "هندسة تطبيقات الويب",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "212 عال": {
+      "name": "تراكيب البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "371 تم": {
+      "name": "أمن التطبيقات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "329 تم": {
+      "name": "تقنيات الويب المتقدمة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "320 تم": {
+      "name": "هندسة البرمجيات",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "244 ريض": {
+      "name": "الجبر الخطي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "227 عال": {
+      "name": "نظم التشغيل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "496 تم": {
+      "name": "مشروع تخرج 1",
+      "academicHours": 3,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "479 تم": {
+      "name": "التدريب الميداني",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "471 تم": {
+      "name": "إدارة الأمن الإلكتروني",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "426 تم": {
+      "name": "اساسيات الذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "423 تم": {
+      "name": "مقدمة ادارة مشاريع تقنية المعلوات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "497 تم": {
+      "name": "مشروع تخرج 2",
+      "academicHours": 3,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "427 تم": {
+      "name": "ريادة الاعمال والابداع في تقنية المعلومات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "104 سلم": {
+      "name": "النظام السياسي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "103 سلم": {
+      "name": "النظام الاقتصادي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 سلم": {
+      "name": "الأسرة في الإسلام",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 سلم": {
+      "name": "أصول الثقافة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "100 قرأ": {
+      "name": "القرآن الكريم",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "100 سلم": {
+      "name": "دراسات في السيرة النبوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 سلم": {
+      "name": "المرأة ودورها التنموي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "106 سلم": {
+      "name": "الفقه الطبي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "105 سلم": {
+      "name": "حقوق الإنسان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "476 تم": {
+      "name": "موضوعات مختارة في أمن المعلومات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "475 تم": {
+      "name": "التدقيق والمراجعة المعلوماتية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "474 تم": {
+      "name": "أمن الشبكات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "473 تم": {
+      "name": "أمن الأنظمة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "472 تم": {
+      "name": "الجريمة الإلكترونية والعلوم الجنائية الرقمية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  }
+}

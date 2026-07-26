@@ -1,0 +1,1352 @@
+{
+  "schemaVersion": 1,
+  "id": "industrial-engineering",
+  "major": "هندسة صناعية",
+  "degree": "البكالوريوس",
+  "expectedCredits": 151,
+  "sortCourses": "code",
+  "sharedSemesterSets": [
+    "cfy-science",
+    "engineering-common"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-5",
+      "courses": [
+        {
+          "id": "major:industrial-engineering:published-level-5:251-صنع",
+          "code": "251 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-5:244-ريض",
+          "code": "244 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-5:222-صنع",
+          "code": "222 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-5:214-صنع",
+          "code": "214 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-5:211-هعم",
+          "code": "211 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-5:204-ريض",
+          "code": "204 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-6",
+      "courses": [
+        {
+          "id": "major:industrial-engineering:published-level-6:337-صنع",
+          "code": "337 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-6:333-صنع",
+          "code": "333 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-6:322-صنع",
+          "code": "322 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-6:314-صنع",
+          "code": "314 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-6:252-صنع",
+          "code": "252 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-7",
+      "courses": [
+        {
+          "id": "major:industrial-engineering:published-level-7:403-هعم",
+          "code": "403 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-7:360-صنع",
+          "code": "360 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-7:352-صنع",
+          "code": "352 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-7:341-صنع",
+          "code": "341 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-7:339-صنع",
+          "code": "339 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-8",
+      "courses": [
+        {
+          "id": "major:industrial-engineering:published-level-8:449-صنع",
+          "code": "449 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-8:438-صنع",
+          "code": "438 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-8:420-صنع",
+          "code": "420 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-8:402-هعم",
+          "code": "402 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-8:361-صنع",
+          "code": "361 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-8:342-صنع",
+          "code": "342 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-9",
+      "courses": [
+        {
+          "id": "major:industrial-engineering:published-level-9:496-صنع",
+          "code": "496 صنع",
+          "prerequisites": [
+            "إتمام 129 ساعة",
+            "مستوى 7"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-9:469-صنع",
+          "code": "469 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-9:462-صنع",
+          "code": "462 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-9:450-صنع",
+          "code": "450 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-9:405-صنع",
+          "code": "405 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-10",
+      "courses": [
+        {
+          "id": "major:industrial-engineering:published-level-10:999-صنع",
+          "code": "999 صنع",
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-10:497-صنع",
+          "code": "497 صنع",
+          "prerequisites": [
+            "496 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:published-level-10:461-صنع",
+          "code": "461 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "name": "متطلبات الجامعة",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:104-سلم",
+          "code": "104 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:103-سلم",
+          "code": "103 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:102-سلم",
+          "code": "102 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:101-سلم",
+          "code": "101 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:100-قرا",
+          "code": "100 قرأ",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:100-سلم",
+          "code": "100 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:109-سلم",
+          "code": "109 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:108-سلم",
+          "code": "108 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:106-سلم",
+          "code": "106 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:university-requirements:105-سلم",
+          "code": "105 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "department-requirements",
+      "name": "متطلبات القسم",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:485-صنع",
+          "code": "485 صنع",
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "449 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:484-صنع",
+          "code": "484 صنع",
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "339 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:483-صنع",
+          "code": "483 صنع",
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "322 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:482-صنع",
+          "code": "482 صنع",
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "322 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:481-صنع",
+          "code": "481 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:480-صنع",
+          "code": "480 صنع",
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "314 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:491-صنع",
+          "code": "491 صنع",
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "438 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:490-صنع",
+          "code": "490 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:489-صنع",
+          "code": "489 صنع",
+          "prerequisites": [
+            "120 ساعة",
+            "352 صنع",
+            "360 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:488-صنع",
+          "code": "488 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:487-صنع",
+          "code": "487 صنع",
+          "prerequisites": [
+            "إتمام 120 ساعة",
+            "352 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:486-صنع",
+          "code": "486 صنع",
+          "prerequisites": [
+            "120 ساعة",
+            "341 صنع",
+            "342 صنع"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:industrial-engineering:elective:department-requirements:998-صنع",
+          "code": "998 صنع",
+          "prerequisites": [
+            "إتمام 129 ساعة"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "free-requirements",
+      "name": "متطلبات حرة",
+      "requiredHours": 2,
+      "sortCourses": "code",
+      "courses": []
+    }
+  ],
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-science-cfy-science-1",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-1",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-1:100-انجل",
+          "shared:cfy-science:cfy-science-1:100-عرب",
+          "shared:cfy-science:cfy-science-1:101-احص",
+          "shared:cfy-science:cfy-science-1:101-ريد",
+          "shared:cfy-science:cfy-science-1:101-كيم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-science-cfy-science-2",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-2",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-2:101-تقن",
+          "shared:cfy-science:cfy-science-2:101-ريض",
+          "shared:cfy-science:cfy-science-2:101-فجب",
+          "shared:cfy-science:cfy-science-2:101-نهج",
+          "shared:cfy-science:cfy-science-2:110-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-3",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-3",
+        "type": "regular",
+        "courseOrder": [
+          "shared:engineering-common:engineering-common-3:103-فيز",
+          "shared:engineering-common:engineering-common-3:104-هعم",
+          "shared:engineering-common:engineering-common-3:106-ريض",
+          "shared:engineering-common:engineering-common-3:107-ريض",
+          "shared:engineering-common:engineering-common-3:107-سلم",
+          "shared:engineering-common:engineering-common-3:109-نجم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-4",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-4",
+        "type": "regular",
+        "courseOrder": [
+          "shared:engineering-common:engineering-common-4:104-فيز",
+          "shared:engineering-common:engineering-common-4:106-هعم",
+          "shared:engineering-common:engineering-common-4:110-نجم",
+          "shared:engineering-common:engineering-common-4:201-هعم",
+          "shared:engineering-common:engineering-common-4:203-ريض",
+          "shared:engineering-common:engineering-common-4:203-هعم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-5",
+        "sourceSemesterId": "published-level-5",
+        "type": "regular",
+        "courseOrder": [
+          "major:industrial-engineering:published-level-5:204-ريض",
+          "major:industrial-engineering:published-level-5:211-هعم",
+          "major:industrial-engineering:published-level-5:214-صنع",
+          "major:industrial-engineering:published-level-5:222-صنع",
+          "major:industrial-engineering:published-level-5:244-ريض",
+          "major:industrial-engineering:published-level-5:251-صنع"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-6",
+        "sourceSemesterId": "published-level-6",
+        "type": "regular",
+        "courseOrder": [
+          "major:industrial-engineering:published-level-6:252-صنع",
+          "major:industrial-engineering:published-level-6:314-صنع",
+          "major:industrial-engineering:published-level-6:322-صنع",
+          "major:industrial-engineering:published-level-6:333-صنع",
+          "major:industrial-engineering:published-level-6:337-صنع"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-6-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-7",
+        "sourceSemesterId": "published-level-7",
+        "type": "regular",
+        "courseOrder": [
+          "major:industrial-engineering:published-level-7:339-صنع",
+          "major:industrial-engineering:published-level-7:341-صنع",
+          "major:industrial-engineering:published-level-7:352-صنع",
+          "major:industrial-engineering:published-level-7:360-صنع",
+          "major:industrial-engineering:published-level-7:403-هعم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-7-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-8",
+        "sourceSemesterId": "published-level-8",
+        "type": "regular",
+        "courseOrder": [
+          "major:industrial-engineering:published-level-8:342-صنع",
+          "major:industrial-engineering:published-level-8:361-صنع",
+          "major:industrial-engineering:published-level-8:402-هعم",
+          "major:industrial-engineering:published-level-8:420-صنع",
+          "major:industrial-engineering:published-level-8:438-صنع",
+          "major:industrial-engineering:published-level-8:449-صنع"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-9",
+        "sourceSemesterId": "published-level-9",
+        "type": "regular",
+        "courseOrder": [
+          "major:industrial-engineering:published-level-9:405-صنع",
+          "major:industrial-engineering:published-level-9:450-صنع",
+          "major:industrial-engineering:published-level-9:462-صنع",
+          "major:industrial-engineering:published-level-9:469-صنع",
+          "major:industrial-engineering:published-level-9:496-صنع"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-9-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-10",
+        "sourceSemesterId": "published-level-10",
+        "type": "regular",
+        "courseOrder": [
+          "major:industrial-engineering:published-level-10:461-صنع",
+          "major:industrial-engineering:published-level-10:497-صنع"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-10-1",
+            "name": "من المتطلبات الحرة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-3",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "major:industrial-engineering:published-level-10:999-صنع"
+        ],
+        "placeholders": []
+      }
+    ]
+  },
+  "fallbackCourses": {
+    "251 صنع": {
+      "name": "مواد التصنيع",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "244 ريض": {
+      "name": "الجبر الخطي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "222 صنع": {
+      "name": "تحليل العمليات الصناعية (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "214 صنع": {
+      "name": "إدارة العمليات الصناعية (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "211 هعم": {
+      "name": "برمجة الحاسوب بلغة ++C",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "204 ريض": {
+      "name": "المعادلات التفاضلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "337 صنع": {
+      "name": "انظمة التحكم التلقائي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "333 صنع": {
+      "name": "تصميم وتحليل التجارب",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "322 صنع": {
+      "name": "تحليل العمليات الصناعية -2",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "314 صنع": {
+      "name": "ادارة العمليات الصناعية (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "252 صنع": {
+      "name": "أساليب التصنيع (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "403 هعم": {
+      "name": "الاقتصاد الهندسي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "360 صنع": {
+      "name": "استخدام الحاسب في التصميم والتصنيع",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "352 صنع": {
+      "name": "اساليب التصنيع (2)",
+      "academicHours": 4,
+      "lectureHours": 4,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "341 صنع": {
+      "name": "هندسة العوامل البشرية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "339 صنع": {
+      "name": "هندسة الجودة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "449 صنع": {
+      "name": "هندسة السلامة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "438 صنع": {
+      "name": "هندسة الموثوقية والصيانة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "420 صنع": {
+      "name": "محاكاة الأنظمة الصناعية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "402 هعم": {
+      "name": "ادارة المشاريع الهندسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "361 صنع": {
+      "name": "تطوير المنتج والابتكار",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "342 صنع": {
+      "name": "تصميم وتحليل العمل",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "496 صنع": {
+      "name": "مشروع التخرج 1",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "469 صنع": {
+      "name": "نظم التصنيع",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "462 صنع": {
+      "name": "أنظمة المعلومات الصناعية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "450 صنع": {
+      "name": "تصميم التسهيلات الصناعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "405 صنع": {
+      "name": "اقتصاديات التصنيع",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "999 صنع": {
+      "name": "تدريب عملي",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "497 صنع": {
+      "name": "مشروع التخرج 2",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "461 صنع": {
+      "name": "التصنيع المتكامل بالحاسوب",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "104 سلم": {
+      "name": "النظام السياسي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "103 سلم": {
+      "name": "النظام الاقتصادي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 سلم": {
+      "name": "الأسرة في الإسلام",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 سلم": {
+      "name": "أصول الثقافة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "100 قرأ": {
+      "name": "القرآن الكريم",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "100 سلم": {
+      "name": "دراسات في السيرة النبوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 سلم": {
+      "name": "المرأة ودورها التنموي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "108 سلم": {
+      "name": "قضايا معاصرة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "106 سلم": {
+      "name": "الفقه الطبي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "105 سلم": {
+      "name": "حقوق الإنسان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "485 صنع": {
+      "name": "هندسة السلامة المتقدمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "484 صنع": {
+      "name": "هندسة الجودة المتقدمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "483 صنع": {
+      "name": "تحليلات الهندسة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "482 صنع": {
+      "name": "تحليل أخذ القرار",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "481 صنع": {
+      "name": "سلاسل الإمداد والتموين",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "480 صنع": {
+      "name": "تشغيل نظم الإنتاج",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "491 صنع": {
+      "name": "هندسة الموثوقية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "490 صنع": {
+      "name": "هندسة الصيانة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "489 صنع": {
+      "name": "نمذجة نظم التصنيع",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "488 صنع": {
+      "name": "تقنيات التصنيع بالإضافة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "487 صنع": {
+      "name": "تقنيات التصنيع المتقدم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "486 صنع": {
+      "name": "تصميم بيئة العمل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "998 صنع": {
+      "name": "مشروع بحثي",
+      "academicHours": 0,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    }
+  }
+}

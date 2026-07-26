@@ -117,22 +117,10 @@ function roundedRectPath(x, y, width, height, radii) {
   ].filter(Boolean).join(" ");
 }
 
-function prerequisiteLabel(course) {
-  const parts = [
-    ...(course.prerequisites ?? []),
-    ...(course.corequisites ?? []).map((value) => `${value} مرافق`),
-    ...(course.prerequisiteConditions ?? []),
-  ];
-  if (course.minimumCompletedCredits !== null && course.minimumCompletedCredits !== undefined) {
-    parts.push(`${course.minimumCompletedCredits} ساعة`);
-  }
-  return parts.join(" | ");
-}
-
 function renderCourseCard(context, course, x, y, options = {}) {
   const scale = options.scale ?? 1;
   const layout = COURSE_CARD_LAYOUT;
-  const label = prerequisiteLabel(course);
+  const label = course.requirementLabel ?? "";
   const color = course.color || COLORS.gray;
   const groupId = context.nextId("course-card");
   const parts = [`<g id="${groupId}" data-component="course-card" data-course-code="${esc(course.code)}" transform="translate(${x} ${y}) scale(${scale})">`];
@@ -156,6 +144,7 @@ function renderCourseCard(context, course, x, y, options = {}) {
       [layout.metrics.topRadius, layout.metrics.topRadius, 0, 0],
     )}" fill="${COLORS.white}" opacity="0.5"/>`);
   }
+  parts.push(`<rect data-part="metric-outline" x="${layout.metrics.outline.x}" y="${layout.metrics.outline.y}" width="${layout.metrics.outline.width}" height="${layout.metrics.outline.height}" rx="${layout.metrics.outline.radius}" fill="none" stroke="${COLORS.saad}" stroke-width="${layout.metrics.outline.strokeWidth}"/>`);
 
   if (course.isParentCourse) {
     parts.push(`<circle data-part="parent-marker" cx="${layout.parentMarker.cx}" cy="${layout.parentMarker.cy}" r="${layout.parentMarker.radius}" fill="${COLORS.parent}" stroke="${COLORS.white}" stroke-width="${layout.parentMarker.strokeWidth}"/>`);
@@ -406,7 +395,7 @@ function renderElectiveGroup(context, group, y) {
     `<path d="${roundedRectPath(summaryX, y, summaryWidth, ELECTIVE_LAYOUT.summaryHeaderHeight, [0, 4, 0, 0])}" fill="${COLORS.saadTint}"/>`,
     `<path d="${roundedRectPath(summaryX, y + ELECTIVE_LAYOUT.summaryHeaderHeight, summaryWidth, ELECTIVE_LAYOUT.summaryBodyHeight, [0, 0, 0, 4])}" fill="none" stroke="${COLORS.saadTint}" stroke-width="1"/>`,
     text({ x: summaryX + summaryWidth / 2, y: y + 15, value: group.name, size: 7, weight: 700, fill: COLORS.saad }),
-    text({ x: summaryX + summaryWidth / 2, y: y + 39.5, value: group.requirementText ?? `إتمام ${group.requiredHours ?? 0} ساعات`, size: 6, weight: 700 }),
+    text({ x: summaryX + summaryWidth / 2, y: y + 39.5, value: group.displayRequirement ?? group.requirementText ?? "", size: 6, weight: 700 }),
   ];
 
   group.courses.forEach((course, index) => {
@@ -506,6 +495,7 @@ function renderGuide(context, y) {
     practicalHours: "ع",
     exerciseHours: "ت",
     prerequisites: ["متطلب سابق"],
+    requirementLabel: "متطلب سابق",
     corequisites: [],
     prerequisiteConditions: [],
     minimumCompletedCredits: null,

@@ -1,70 +1,51 @@
-import { normalizeCourseCode, numericValue } from "./normalize.mjs";
+import { courseCodeKey, normalizeCourseCode, numericValue } from "./normalize.mjs";
 import { labelSemesters } from "./semester-labels.mjs";
 
-const INLINE_FALLBACK_FIELDS = Object.freeze({
-  name: "fallbackName",
-  academicHours: "fallbackCreditHours",
-  lectureHours: "fallbackLectureHours",
-  exerciseHours: "fallbackExerciseHours",
-  practicalHours: "fallbackPracticalHours",
-});
-
-function inlineFallbackFacts(entry = {}) {
-  const facts = {};
-  for (const [factField, inlineField] of Object.entries(INLINE_FALLBACK_FIELDS)) {
-    if (entry[inlineField] !== undefined) facts[factField] = entry[inlineField];
-  }
-  if (entry.fallbackProvenance) facts._provenance = structuredClone(entry.fallbackProvenance);
-  return facts;
+function occurrenceSlug(code) {
+  return courseCodeKey(code).replace(/\s+/gu, "-");
 }
 
-function ownedCourseEntries(plan) {
-  return [
-    ...(plan.semesters ?? []).flatMap((semester) => semester.courses ?? []),
-    ...(plan.electiveGroups ?? [])
-      .filter((group) => !group.sourceId)
-      .flatMap((group) => group.courses ?? []),
-  ];
+function normalizeRuleList(values = []) {
+  return Array.from(new Set(values.map(normalizeCourseCode).filter(Boolean)));
 }
 
-function editorFallbackCourses(plan) {
-  const fallbacks = structuredClone(plan.fallbackCourses ?? {});
-  for (const rawEntry of ownedCourseEntries(plan)) {
-    const entry = typeof rawEntry === "string" ? { code: rawEntry } : rawEntry;
-    const code = normalizeCourseCode(entry?.code);
-    if (!code) continue;
-    const facts = inlineFallbackFacts(entry);
-    if (Object.keys(facts).length) fallbacks[code] = { ...facts, ...(fallbacks[code] ?? {}) };
-  }
-  return fallbacks;
+function canonicalFallbackCourses(value = {}) {
+  return Object.fromEntries(Object.entries(value).map(([rawCode, facts = {}]) => {
+    const code = normalizeCourseCode(rawCode);
+    const source = facts.source === "catalog" ? "catalog" : "manual";
+    const presentFields = ["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"]
+      .filter((field) => facts[field] !== undefined && facts[field] !== null && facts[field] !== "");
+    return [code, {
+      name: facts.name ?? null,
+      academicHours: numericValue(facts.academicHours),
+      lectureHours: numericValue(facts.lectureHours),
+      exerciseHours: numericValue(facts.exerciseHours),
+      practicalHours: numericValue(facts.practicalHours),
+      source,
+      manuallyEditedFields: source === "manual"
+        ? Array.from(new Set(facts.manuallyEditedFields ?? presentFields))
+        : Array.from(new Set(facts.manuallyEditedFields ?? [])),
+    }];
+  }));
 }
 
-function canonicalCourseEntry(rawEntry, fallbackCourses, defaultRequirement) {
+function canonicalCourseEntry(rawEntry, occurrencePrefix) {
   const entry = typeof rawEntry === "string" ? { code: rawEntry } : structuredClone(rawEntry ?? {});
   const code = normalizeCourseCode(entry.code);
-  const fallback = {
-    ...inlineFallbackFacts(entry),
-    ...(entry.fallback ?? {}),
-    ...(fallbackCourses?.[code] ?? {}),
+  return {
+    id: entry.id ?? `${occurrencePrefix}:${occurrenceSlug(code)}`,
+    code,
+    prerequisites: normalizeRuleList(entry.prerequisites ?? []),
+    corequisites: normalizeRuleList(entry.corequisites ?? []),
+    minimumCompletedCredits: numericValue(entry.minimumCompletedCredits),
+    prerequisiteConditions: Array.from(new Set(
+      (entry.prerequisiteConditions ?? []).map((value) => String(value).trim()).filter(Boolean),
+    )),
+    trackSpecific: Boolean(entry.trackSpecific),
+    ...(entry.extinct ? { extinct: true } : {}),
+    ...(entry.forceFallback ? { forceFallback: true } : {}),
+    ...(entry.preserveSameSemesterPrerequisite ? { preserveSameSemesterPrerequisite: true } : {}),
   };
-  const value = { ...entry, code };
-  delete value.fallback;
-  delete value.override;
-  for (const inlineField of Object.values(INLINE_FALLBACK_FIELDS)) delete value[inlineField];
-  delete value.fallbackProvenance;
-  for (const [factField, inlineField] of Object.entries(INLINE_FALLBACK_FIELDS)) {
-    value[inlineField] = fallback[factField] ?? null;
-  }
-  value.prerequisites = structuredClone(
-    entry.prerequisites ?? entry.override?.prerequisites ?? fallback.prerequisites ?? [],
-  );
-  if (entry.corequisites !== undefined || entry.override?.corequisites !== undefined || fallback.corequisites !== undefined) {
-    value.corequisites = structuredClone(entry.corequisites ?? entry.override?.corequisites ?? fallback.corequisites ?? []);
-  }
-  value.requirement = entry.requirement ?? fallback.requirement ?? defaultRequirement;
-  value.trackSpecific = Boolean(entry.trackSpecific ?? fallback.trackSpecific ?? false);
-  if (fallback._provenance) value.fallbackProvenance = structuredClone(fallback._provenance);
-  return value;
 }
 
 function normalizeStandaloneCourse(entry) {
@@ -76,11 +57,14 @@ function normalizeStandaloneCourse(entry) {
   const normalized = {
     ...entry,
     code: normalizeCourseCode(entry.code),
+    prerequisites: normalizeRuleList(entry.prerequisites ?? []),
+    corequisites: normalizeRuleList(entry.corequisites ?? []),
+    prerequisiteConditions: Array.from(new Set(entry.prerequisiteConditions ?? [])),
   };
   return normalized;
 }
 
-function normalizeElectiveGroups(groups = []) {
+function normalizeElectiveGroups(groups = [], planId = "plan") {
   return groups.map((group, index) => group?.sourceId ? {
     sourceId: group.sourceId,
   } : ({
@@ -92,15 +76,28 @@ function normalizeElectiveGroups(groups = []) {
       : undefined,
     requirementText: group.requirementText,
     sortCourses: group.sortCourses ?? "code",
-    courses: (group.courses ?? []).map(normalizeStandaloneCourse),
+    courses: (group.courses ?? []).map((entry) => {
+      const course = normalizeStandaloneCourse(entry);
+      return {
+        ...course,
+        id: course.id ?? `major:${planId}:elective:${group.id ?? `elective-group-${index + 1}`}:${occurrenceSlug(course.code)}`,
+      };
+    }),
   }));
 }
 
-function normalizeSemesters(semesters = []) {
+function normalizeSemesters(semesters = [], planId = "plan") {
   return labelSemesters(semesters.map((semester, index) => ({
     ...semester,
     id: semester.id ?? `published-level-${index + 1}`,
-    courses: (semester.courses ?? []).map(normalizeStandaloneCourse),
+    courses: (semester.courses ?? []).map((entry) => {
+      const course = normalizeStandaloneCourse(entry);
+      const semesterId = semester.id ?? `published-level-${index + 1}`;
+      return {
+        ...course,
+        id: course.id ?? `major:${planId}:${semesterId}:${occurrenceSlug(course.code)}`,
+      };
+    }),
   })));
 }
 
@@ -118,7 +115,7 @@ function normalizeProposal(proposal) {
       id: semester.id ?? `level-${index + 1}`,
       sourceSemesterId: semester.sourceSemesterId ?? null,
       type: semester.type === "summer" ? "summer" : "regular",
-      courseOrder: (semester.courseOrder ?? []).map(normalizeCourseCode),
+      courseOrder: (semester.courseOrder ?? []).map((value) => String(value ?? "").trim()).filter(Boolean),
       placeholders: placeholders.map((placeholder, placeholderIndex) => ({
         ...placeholder,
         id: placeholder.id ?? `placeholder-${index + 1}-${placeholderIndex + 1}`,
@@ -134,9 +131,7 @@ function normalizeProposal(proposal) {
 }
 
 export function preparePlanForEditor(rawPlan) {
-  const plan = canonicalizePlanForStorage(rawPlan);
-  plan.fallbackCourses = editorFallbackCourses(plan);
-  return plan;
+  return canonicalizePlanForStorage(rawPlan);
 }
 
 function stripDerivedSemesterFields(semester) {
@@ -157,7 +152,8 @@ function stripDerivedSemesterFields(semester) {
  */
 export function canonicalizePlanForStorage(rawPlan) {
   const plan = structuredClone(rawPlan ?? {});
-  const fallbackCourses = editorFallbackCourses(plan);
+  delete plan.university;
+  delete plan.college;
   delete plan.version;
   delete plan.edition;
   delete plan.release;
@@ -171,14 +167,20 @@ export function canonicalizePlanForStorage(rawPlan) {
       usedSemesterIds.add(value.id);
       nextSemesterNumber += 1;
     }
-    value.courses = (value.courses ?? []).map((entry) => canonicalCourseEntry(entry, fallbackCourses, "required"));
+    value.courses = (value.courses ?? []).map((entry) => canonicalCourseEntry(
+      entry,
+      `major:${plan.id}:${value.id}`,
+    ));
     return value;
   });
   plan.electiveGroups = (plan.electiveGroups ?? []).map((group) => group?.sourceId ? group : ({
     ...group,
-    courses: (group.courses ?? []).map((entry) => canonicalCourseEntry(entry, fallbackCourses, "elective")),
+    courses: (group.courses ?? []).map((entry) => canonicalCourseEntry(
+      entry,
+      `major:${plan.id}:elective:${group.id}`,
+    )),
   }));
-  delete plan.fallbackCourses;
+  plan.fallbackCourses = canonicalFallbackCourses(plan.fallbackCourses);
   if (plan.proposal) plan.proposal = normalizeProposal(plan.proposal);
   return plan;
 }
@@ -191,7 +193,8 @@ export function normalizePlanInput(raw) {
     throw new Error("Plan JSON must use the canonical single-plan object shape.");
   }
 
-  const semesters = normalizeSemesters(value.semesters ?? []);
+  const planId = value.id ?? "plan";
+  const semesters = normalizeSemesters(value.semesters ?? [], planId);
 
   return {
     schemaVersion: value.schemaVersion ?? 1,
@@ -208,12 +211,12 @@ export function normalizePlanInput(raw) {
     expectedCredits: value.expectedCredits,
     sortCourses: value.sortCourses ?? "code",
     courseColors: value.courseColors ?? {},
-    fallbackCourses: editorFallbackCourses(value),
+    fallbackCourses: canonicalFallbackCourses(value.fallbackCourses),
     phases: value.phases,
     sharedSemesterSets: value.sharedSemesterSets ?? [],
     footer: value.footer,
     semesters,
-    electiveGroups: normalizeElectiveGroups(value.electiveGroups ?? []),
+    electiveGroups: normalizeElectiveGroups(value.electiveGroups ?? [], planId),
     proposal: normalizeProposal(value.proposal),
   };
 }

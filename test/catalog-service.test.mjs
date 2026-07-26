@@ -37,3 +37,30 @@ test("catalog service prefers male rows and falls back to female-only courses", 
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("catalog service follows the institution active term", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "saad-term-catalog-"));
+  try {
+    const institutionRoot = path.join(root, "ksu");
+    const termRoot = path.join(institutionRoot, "2026-2");
+    fs.mkdirSync(termRoot, { recursive: true });
+    fs.writeFileSync(path.join(institutionRoot, "active.json"), JSON.stringify({ termId: "2026-2" }));
+    fs.writeFileSync(path.join(termRoot, "male.json"), JSON.stringify([
+      {
+        code: "101 عال",
+        name: "برمجة",
+        academicHours: 3,
+        lectureHours: 3,
+        exerciseHours: 0,
+        practicalHours: 0,
+      },
+    ]));
+    fs.writeFileSync(path.join(termRoot, "female.json"), "[]");
+    const service = createCatalogService({ catalogRoot: root, institutionId: "ksu" });
+    assert.equal(service.termId, "2026-2");
+    assert.equal(service.summary().termId, "2026-2");
+    assert.equal(service.resolve("101 عال").found, true);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});

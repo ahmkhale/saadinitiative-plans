@@ -1,0 +1,1215 @@
+{
+  "schemaVersion": 1,
+  "id": "surveying-engineering",
+  "major": "هندسة المساحة",
+  "degree": "البكالوريوس",
+  "expectedCredits": 151,
+  "sortCourses": "code",
+  "sharedSemesterSets": [
+    "cfy-science",
+    "engineering-common"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-5",
+      "courses": [
+        {
+          "id": "major:surveying-engineering:published-level-5:212-همس",
+          "code": "212 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-5:202-هعم",
+          "code": "202 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-5:204-ريض",
+          "code": "204 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-5:209-هعم",
+          "code": "209 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-5:302-همد",
+          "code": "302 همد",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-6",
+      "courses": [
+        {
+          "id": "major:surveying-engineering:published-level-6:321-همس",
+          "code": "321 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-6:314-همس",
+          "code": "314 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-6:312-همس",
+          "code": "312 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-6:281-جيو",
+          "code": "281 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-6:329-كهر",
+          "code": "329 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-6:323-همد",
+          "code": "323 همد",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-7",
+      "courses": [
+        {
+          "id": "major:surveying-engineering:published-level-7:363-همد",
+          "code": "363 همد",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-7:365-همس",
+          "code": "365 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-7:331-همس",
+          "code": "331 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-7:315-همس",
+          "code": "315 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-7:334-همد",
+          "code": "334 همد",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-8",
+      "courses": [
+        {
+          "id": "major:surveying-engineering:published-level-8:453-همس",
+          "code": "453 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-8:423-همس",
+          "code": "423 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-8:422-همس",
+          "code": "422 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-8:413-همس",
+          "code": "413 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-8:254-ريض",
+          "code": "254 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-9",
+      "courses": [
+        {
+          "id": "major:surveying-engineering:published-level-9:496-همس",
+          "code": "496 همس",
+          "prerequisites": [
+            "إتمام 129 ساعة",
+            "مستوى 7"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-9:471-همس",
+          "code": "471 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-9:466-همس",
+          "code": "466 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-9:403-هعم",
+          "code": "403 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-10",
+      "courses": [
+        {
+          "id": "major:surveying-engineering:published-level-10:999-همس",
+          "code": "999 همس",
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-10:497-همس",
+          "code": "497 همس",
+          "prerequisites": [
+            "496 همس"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-10:473-همس",
+          "code": "473 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-10:464-همس",
+          "code": "464 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:published-level-10:402-هعم",
+          "code": "402 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "name": "متطلبات الجامعة",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:104-سلم",
+          "code": "104 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:103-سلم",
+          "code": "103 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:102-سلم",
+          "code": "102 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:101-سلم",
+          "code": "101 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:100-قرا",
+          "code": "100 قرأ",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:100-سلم",
+          "code": "100 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:109-سلم",
+          "code": "109 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:108-سلم",
+          "code": "108 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:106-سلم",
+          "code": "106 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:university-requirements:105-سلم",
+          "code": "105 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "department-requirements",
+      "name": "متطلبات القسم",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:surveying-engineering:elective:department-requirements:431-همس",
+          "code": "431 همس",
+          "prerequisites": [
+            "209 هعم",
+            "331 همس"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:department-requirements:419-همس",
+          "code": "419 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:department-requirements:418-همس",
+          "code": "418 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:department-requirements:412-همد",
+          "code": "412 همد",
+          "prerequisites": [
+            "إتمام 110 ساعات"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:department-requirements:411-همد",
+          "code": "411 همد",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:department-requirements:301-جيو",
+          "code": "301 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:department-requirements:998-همس",
+          "code": "998 همس",
+          "prerequisites": [
+            "إتمام 129 ساعة"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:department-requirements:467-همس",
+          "code": "467 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:surveying-engineering:elective:department-requirements:442-تخط",
+          "code": "442 تخط",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "free-requirements",
+      "name": "متطلبات حرة",
+      "requiredHours": 2,
+      "sortCourses": "code",
+      "courses": []
+    }
+  ],
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-science-cfy-science-1",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-1",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-1:100-انجل",
+          "shared:cfy-science:cfy-science-1:100-عرب",
+          "shared:cfy-science:cfy-science-1:101-احص",
+          "shared:cfy-science:cfy-science-1:101-ريد",
+          "shared:cfy-science:cfy-science-1:101-كيم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-science-cfy-science-2",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-2",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-2:101-تقن",
+          "shared:cfy-science:cfy-science-2:101-ريض",
+          "shared:cfy-science:cfy-science-2:101-فجب",
+          "shared:cfy-science:cfy-science-2:101-نهج",
+          "shared:cfy-science:cfy-science-2:110-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-3",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-3",
+        "type": "regular",
+        "courseOrder": [
+          "shared:engineering-common:engineering-common-3:103-فيز",
+          "shared:engineering-common:engineering-common-3:104-هعم",
+          "shared:engineering-common:engineering-common-3:106-ريض",
+          "shared:engineering-common:engineering-common-3:107-ريض",
+          "shared:engineering-common:engineering-common-3:107-سلم",
+          "shared:engineering-common:engineering-common-3:109-نجم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-4",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-4",
+        "type": "regular",
+        "courseOrder": [
+          "shared:engineering-common:engineering-common-4:104-فيز",
+          "shared:engineering-common:engineering-common-4:106-هعم",
+          "shared:engineering-common:engineering-common-4:110-نجم",
+          "shared:engineering-common:engineering-common-4:201-هعم",
+          "shared:engineering-common:engineering-common-4:203-ريض",
+          "shared:engineering-common:engineering-common-4:203-هعم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-5",
+        "sourceSemesterId": "published-level-5",
+        "type": "regular",
+        "courseOrder": [
+          "major:surveying-engineering:published-level-5:302-همد",
+          "major:surveying-engineering:published-level-5:209-هعم",
+          "major:surveying-engineering:published-level-5:204-ريض",
+          "major:surveying-engineering:published-level-5:202-هعم",
+          "major:surveying-engineering:published-level-5:212-همس"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-5-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-6",
+        "sourceSemesterId": "published-level-6",
+        "type": "regular",
+        "courseOrder": [
+          "major:surveying-engineering:published-level-6:323-همد",
+          "major:surveying-engineering:published-level-6:329-كهر",
+          "major:surveying-engineering:published-level-6:281-جيو",
+          "major:surveying-engineering:published-level-6:312-همس",
+          "major:surveying-engineering:published-level-6:314-همس",
+          "major:surveying-engineering:published-level-6:321-همس"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-7",
+        "sourceSemesterId": "published-level-7",
+        "type": "regular",
+        "courseOrder": [
+          "major:surveying-engineering:published-level-7:334-همد",
+          "major:surveying-engineering:published-level-7:315-همس",
+          "major:surveying-engineering:published-level-7:331-همس",
+          "major:surveying-engineering:published-level-7:365-همس",
+          "major:surveying-engineering:published-level-7:363-همد"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-7-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-8",
+        "sourceSemesterId": "published-level-8",
+        "type": "regular",
+        "courseOrder": [
+          "major:surveying-engineering:published-level-8:254-ريض",
+          "major:surveying-engineering:published-level-8:413-همس",
+          "major:surveying-engineering:published-level-8:422-همس",
+          "major:surveying-engineering:published-level-8:423-همس",
+          "major:surveying-engineering:published-level-8:453-همس"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-8-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-9",
+        "sourceSemesterId": "published-level-9",
+        "type": "regular",
+        "courseOrder": [
+          "major:surveying-engineering:published-level-9:403-هعم",
+          "major:surveying-engineering:published-level-9:466-همس",
+          "major:surveying-engineering:published-level-9:471-همس",
+          "major:surveying-engineering:published-level-9:496-همس"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-9-1",
+            "name": "من المتطلبات الحرة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-9-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-10",
+        "sourceSemesterId": "published-level-10",
+        "type": "regular",
+        "courseOrder": [
+          "major:surveying-engineering:published-level-10:402-هعم",
+          "major:surveying-engineering:published-level-10:464-همس",
+          "major:surveying-engineering:published-level-10:473-همس",
+          "major:surveying-engineering:published-level-10:497-همس"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-10-1",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "major:surveying-engineering:published-level-10:999-همس"
+        ],
+        "placeholders": []
+      }
+    ]
+  },
+  "fallbackCourses": {
+    "212 همس": {
+      "name": "القياسات المكانية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "202 هعم": {
+      "name": "الديناميكا",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "204 ريض": {
+      "name": "المعادلات التفاضلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "209 هعم": {
+      "name": "برمجة الحاسوب",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "302 همد": {
+      "name": "ميكانيكا المواد",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "321 همس": {
+      "name": "المساحة التصويرية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "314 همس": {
+      "name": "الجيوديسيا",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "312 همس": {
+      "name": "مدخل للهندسة الجيوماتيكية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "281 جيو": {
+      "name": "الجيولوجيا للمهندسين",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "329 كهر": {
+      "name": "تحليل الاشارات لطلبة المساحة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "323 همد": {
+      "name": "هندسة المياه لطلبة المساحة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "363 همد": {
+      "name": "اساسيات المنشآت الخرسانية - لطلبةالمساحة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "365 همس": {
+      "name": "أساسيات الاستشعار عن بعد وتفسير الصور",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "331 همس": {
+      "name": "حسابات ضبط الارصاد",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "315 همس": {
+      "name": "إسقاط الخرائط",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "334 همد": {
+      "name": "هندسة الطرق لطلبة المساحة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "453 همس": {
+      "name": "علم الخرائط ونظم المعلومات الجغرافية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "423 همس": {
+      "name": "تحليل الصور الرقمية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "422 همس": {
+      "name": "المساحة التصويرية المتقدمة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "413 همس": {
+      "name": "جيوديسيا الأقمار الصناعية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "254 ريض": {
+      "name": "الطرائق العددية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "496 همس": {
+      "name": "مشروع تخرج 1",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "471 همس": {
+      "name": "معسكر المساحة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "466 همس": {
+      "name": "التحليل المكاني في نظم المعلومات الجغرافية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "403 هعم": {
+      "name": "الاقتصاد الهندسي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "999 همس": {
+      "name": "تدريب عملي",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "497 همس": {
+      "name": "مشروع تخرج 2",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "473 همس": {
+      "name": "المساحة المهنية والقانونية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "464 همس": {
+      "name": "مقدمة للمساحة التصويرية الرقمية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "402 هعم": {
+      "name": "ادارة المشاريع الهندسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "104 سلم": {
+      "name": "النظام السياسي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "103 سلم": {
+      "name": "النظام الاقتصادي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 سلم": {
+      "name": "الأسرة في الإسلام",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 سلم": {
+      "name": "أصول الثقافة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "100 قرأ": {
+      "name": "القرآن الكريم",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "100 سلم": {
+      "name": "دراسات في السيرة النبوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 سلم": {
+      "name": "المرأة ودورها التنموي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "108 سلم": {
+      "name": "قضايا معاصرة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "106 سلم": {
+      "name": "الفقه الطبي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "105 سلم": {
+      "name": "حقوق الإنسان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "431 همس": {
+      "name": "تطبيقات الحاسب في هندسة المساحة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "419 همس": {
+      "name": "المساحة الجيوديسية المتقدمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "418 همس": {
+      "name": "المساحة المائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "412 همد": {
+      "name": "تقدير تكلفة التشييد",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "411 همد": {
+      "name": "مقدمة لعقود التشييد",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "301 جيو": {
+      "name": "جيومورفولوجيا",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "998 همس": {
+      "name": "مشروع بحثي",
+      "academicHours": 0,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "467 همس": {
+      "name": "نظم المعلومات الجغرافية للانترنت",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "442 تخط": {
+      "name": "التخطيط الاستراتيجي الحضري",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  }
+}

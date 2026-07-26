@@ -37,9 +37,24 @@ function qualityBadges(course) {
   return result;
 }
 
+function dataQuality(course) {
+  const badges = qualityBadges(course);
+  if (badges.includes("بيانات متعارضة")) return "conflicting";
+  if (badges.includes("بيانات ناقصة")) return "incomplete";
+  return "complete";
+}
+
 export function createCatalogService(options = {}) {
-  const malePath = path.resolve(options.malePath ?? path.join(projectRoot, "data", "courses", "Male", "courses.json"));
-  const femalePath = path.resolve(options.femalePath ?? path.join(projectRoot, "data", "courses", "Female", "courses.json"));
+  const institutionId = options.institutionId ?? "ksu";
+  const catalogRoot = path.resolve(options.catalogRoot ?? path.join(projectRoot, "catalogs"));
+  const activePath = path.resolve(options.activePath ?? path.join(catalogRoot, institutionId, "active.json"));
+  const explicitPaths = Boolean(options.malePath || options.femalePath);
+  const termId = options.termId
+    ?? (explicitPaths ? "custom" : readJson(activePath, {}).termId);
+  if (!termId) throw new Error(`Active catalog term is missing: ${activePath}`);
+  const termRoot = path.join(catalogRoot, institutionId, termId);
+  const malePath = path.resolve(options.malePath ?? path.join(termRoot, "male.json"));
+  const femalePath = path.resolve(options.femalePath ?? path.join(termRoot, "female.json"));
   const colorsPath = path.resolve(options.colorsPath ?? path.join(projectRoot, "data", "course-colors.json"));
 
   function load() {
@@ -73,6 +88,8 @@ export function createCatalogService(options = {}) {
         { role: "primary", path: malePath, exists: fs.existsSync(malePath), modifiedAt: fs.existsSync(malePath) ? fs.statSync(malePath).mtime.toISOString() : null, courseCount: male.size },
         { role: "fallback", path: femalePath, exists: fs.existsSync(femalePath), modifiedAt: fs.existsSync(femalePath) ? fs.statSync(femalePath).mtime.toISOString() : null, courseCount: female.size },
       ],
+      institutionId,
+      termId,
     };
   }
 
@@ -87,6 +104,8 @@ export function createCatalogService(options = {}) {
       resolvedCourseCount: state.catalog.size,
       conflictCount: state.conflicts.length,
       conflicts: state.conflicts.slice(0, 50),
+      institutionId: state.institutionId,
+      termId: state.termId,
     };
   }
 
@@ -102,6 +121,7 @@ export function createCatalogService(options = {}) {
       subject,
       sourceBadge: sourceBadge(course),
       qualityBadges: qualityBadges(course),
+      dataQuality: dataQuality(course),
       color: course.color ?? state.colors[subject] ?? state.colors[course.category] ?? state.colors.عام ?? "#616161",
     };
   }
@@ -120,6 +140,7 @@ export function createCatalogService(options = {}) {
         subject,
         sourceBadge: sourceBadge(course),
         qualityBadges: qualityBadges(course),
+        dataQuality: dataQuality(course),
         color: course.color ?? state.colors[subject] ?? state.colors[course.category] ?? state.colors.عام ?? "#616161",
       });
       if (results.length >= Math.min(100, Math.max(1, limit))) break;
@@ -127,7 +148,7 @@ export function createCatalogService(options = {}) {
     return results;
   }
 
-  return { malePath, femalePath, colorsPath, snapshot, summary, resolve, search };
+  return { institutionId, termId, activePath, malePath, femalePath, colorsPath, snapshot, summary, resolve, search };
 }
 
 export const defaultCatalogService = createCatalogService();

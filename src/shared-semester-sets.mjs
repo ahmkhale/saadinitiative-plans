@@ -5,9 +5,11 @@ import { normalizePlanInput } from "./plan-input.mjs";
 import { labelSemesters } from "./semester-labels.mjs";
 import { assertSafeId, atomicWriteJson, projectRoot } from "./store.mjs";
 import { hydrateFallbackCourses } from "./fallback-hydration.mjs";
+import { normalizeSharedScope } from "./domain/shared-scope.mjs";
 
 export const sharedSemesterSetsRoot = path.resolve(
-  process.env.SAAD_PLANS_SHARED_SETS_DIR ?? path.join(projectRoot, "data", "shared-semester-sets"),
+  process.env.SAAD_PLANS_SHARED_SETS_DIR
+    ?? path.join(projectRoot, "institutions", "ksu", "shared-semester-sources"),
 );
 
 function fileFor(root, id) {
@@ -38,6 +40,7 @@ function cleanSet(input, forcedId = null) {
       return value;
     }),
     fallbackCourses: structuredClone(input?.fallbackCourses ?? {}),
+    scope: normalizeSharedScope(input?.scope),
   };
 }
 

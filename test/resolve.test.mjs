@@ -7,13 +7,13 @@ import { resolvePlan } from "../src/resolve.mjs";
 
 const colors = { عام: "#616161", كهر: "#17529B", ريض: "#A36127" };
 
-test("catalog wins over fallback, override wins over catalog, and parent course is derived", () => {
+test("catalog facts resolve independently while same-semester rules do not create a parent marker", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
     major: "هندسة كهربائية",
     expectedCredits: 7,
     semesters: [
-      { courses: ["101 ريض", { code: "201 كهر", override: { name: "دوائر كهربائية أ" } }] },
+      { courses: ["101 ريض", { code: "201 كهر", prerequisites: ["101 ريض"], override: { name: "دوائر كهربائية أ" } }] },
     ],
     fallbackCourses: {
       "101 ريض": { name: "اسم قديم", academicHours: 3 },
@@ -29,7 +29,7 @@ test("catalog wins over fallback, override wins over catalog, and parent course 
   const [math, circuits] = resolved.semesters[0].courses;
   assert.equal(math.name, "حساب التفاضل");
   assert.equal(circuits.name, "دوائر كهربائية أ");
-  assert.equal(math.isParentCourse, true);
+  assert.equal(math.isParentCourse, false);
   assert.equal(resolved.totalHours, 7);
   assert.equal(diagnostics.summary.errors, 0);
 });
@@ -38,7 +38,7 @@ test("same-semester prerequisite becomes a corequisite automatically", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
     major: "اختبار",
-    semesters: [{ courses: ["101 ريض", "102 كهر"] }],
+    semesters: [{ courses: ["101 ريض", { code: "102 كهر", prerequisites: ["101 ريض"] }] }],
     fallbackCourses: {
       "101 ريض": { name: "رياضيات", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 },
       "102 كهر": { name: "كهرباء", academicHours: 3, prerequisites: ["101 ريض"] },
@@ -68,7 +68,7 @@ test("code-only catalog facts and dependency markers update after course deletio
     major: "اختبار الاشتقاق",
     semesters: [
       { courses: ["101 ريض", "102 كهر"] },
-      { courses: ["201 كهر"] },
+      { courses: [{ code: "201 كهر", prerequisites: ["101 ريض"], corequisites: ["102 كهر"], minimumCompletedCredits: 30 }] },
     ],
   };
   const resolved = resolvePlan(normalizePlanInput(input), catalog, colors, createDiagnostics());
@@ -87,13 +87,13 @@ test("code-only catalog facts and dependency markers update after course deletio
   assert.equal(afterDeletion.totalHours, 4);
 });
 
-test("catalog rows without prerequisite metadata preserve the plan fallback graph", () => {
+test("course requirements come from plan rules rather than catalog or fallback facts", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
     major: "اختبار",
     semesters: [
       { courses: ["101 ريض"] },
-      { courses: ["201 كهر"] },
+      { courses: [{ code: "201 كهر", prerequisites: ["101 ريض"] }] },
     ],
     fallbackCourses: {
       "101 ريض": { name: "رياضيات", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 },
@@ -106,6 +106,38 @@ test("catalog rows without prerequisite metadata preserve the plan fallback grap
   const resolved = resolvePlan(plan, catalog, colors, createDiagnostics());
   assert.deepEqual(resolved.semesters[1].courses[0].prerequisites, ["101 ريض"]);
   assert.equal(resolved.semesters[0].courses[0].isParentCourse, true);
+});
+
+test("elective dependencies and corequisites never create published parent markers", () => {
+  const facts = (name) => ({
+    name,
+    academicHours: 3,
+    lectureHours: 3,
+    exerciseHours: 0,
+    practicalHours: 0,
+  });
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار العلامات",
+    semesters: [
+      { courses: ["101 عال", "102 عال"] },
+      { courses: [{ code: "201 عال", corequisites: ["101 عال"] }] },
+    ],
+    electiveGroups: [{
+      id: "electives",
+      name: "اختياري",
+      requiredHours: 3,
+      courses: [{ code: "301 عال", prerequisites: ["102 عال"] }],
+    }],
+    fallbackCourses: Object.fromEntries(
+      ["101 عال", "102 عال", "201 عال", "301 عال"].map((code) => [code, facts(code)]),
+    ),
+  });
+  const resolved = resolvePlan(plan, new Map(), colors, createDiagnostics());
+  assert.equal(resolved.semesters[0].courses[0].isParentCourse, false);
+  assert.equal(resolved.semesters[0].courses[1].isParentCourse, false);
+  assert.equal(resolved.electiveGroups[0].courses[0].isParentCourse, false);
+  assert.deepEqual(resolved.electiveGroups[0].courses[0].prerequisites, ["102 عال"]);
 });
 
 test("proposal inherits published facts and appends black placeholders", () => {
@@ -126,8 +158,8 @@ test("proposal inherits published facts and appends black placeholders", () => {
     proposal: {
       title: "الخطة المقترحة",
       semesters: [
-        { id: "published-1", sourceSemesterId: "published-1", type: "regular", courseOrder: ["101 ريض", "102 ريض"], placeholders: [{ id: "p1", name: "من متطلبات المسار", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }] },
-        { id: "published-2", sourceSemesterId: "published-2", type: "regular", courseOrder: ["201 ريض"], placeholders: [] },
+        { id: "published-1", sourceSemesterId: "published-1", type: "regular", courseOrder: ["major:plan:published-1:101-ريض", "major:plan:published-1:102-ريض"], placeholders: [{ id: "p1", name: "من متطلبات المسار", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }] },
+        { id: "published-2", sourceSemesterId: "published-2", type: "regular", courseOrder: ["major:plan:published-2:201-ريض"], placeholders: [] },
       ],
     },
   });
@@ -235,9 +267,9 @@ test("proposal can move and reorder real courses while preserving the exact pare
     }])),
     proposal: {
       semesters: [
-        { id: "one", sourceSemesterId: "published-1", type: "regular", courseOrder: ["102 عال"], placeholders: [] },
-        { id: "summer", sourceSemesterId: null, type: "summer", courseOrder: ["201 عال"], placeholders: [{ id: "p", name: "نائب", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }] },
-        { id: "two", sourceSemesterId: "published-2", type: "regular", courseOrder: ["101 عال"], placeholders: [] },
+        { id: "one", sourceSemesterId: "published-1", type: "regular", courseOrder: ["major:plan:published-1:102-عال"], placeholders: [] },
+        { id: "summer", sourceSemesterId: null, type: "summer", courseOrder: ["major:plan:published-2:201-عال"], placeholders: [{ id: "p", name: "نائب", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }] },
+        { id: "two", sourceSemesterId: "published-2", type: "regular", courseOrder: ["major:plan:published-1:101-عال"], placeholders: [] },
       ],
     },
   });

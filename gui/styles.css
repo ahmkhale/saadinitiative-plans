@@ -1,3 +1,22 @@
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/fonts/IBMPlexSansArabic-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: block;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/fonts/IBMPlexSansArabic-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: block;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/fonts/IBMPlexSansArabic-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: block;
+}
+
 :root {
   color-scheme: light;
   --background: #f8fafc;
@@ -317,6 +336,11 @@ input:focus, textarea:focus {
   height: auto;
   background: #fff;
   box-shadow: 0 12px 34px rgba(15, 23, 42, .16);
+}
+.preview-page > svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .diagnostics {
   max-height: 230px;

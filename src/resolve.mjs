@@ -1,13 +1,17 @@
 import { addDiagnostic } from "./diagnostics.mjs";
-import { compareCourseCodes, courseCodeKey, courseSubject, normalizeCourseCode, numericValue, toWesternDigits } from "./normalize.mjs";
+import { compareCourseCodes, courseCodeKey, courseSubject, normalizeCourseCode, numericValue } from "./normalize.mjs";
 import { normalizeActivityFacts } from "./course-facts.mjs";
 import { courseNameFit, prerequisiteFit } from "./text-measure.mjs";
 import { reconcileProposal } from "./proposal-reconciliation.mjs";
+import {
+  derivePublishedParentKeys,
+  formatCourseRequirementLabel,
+} from "./domain/course-requirements.mjs";
+import { formatRequiredHours } from "./domain/arabic-format.mjs";
 
 const FACT_FIELDS = [
   "name", "academicHours", "lectureHours", "practicalHours", "exerciseHours",
-  "prerequisites", "corequisites", "minimumCompletedCredits", "category", "color",
-  "trackSpecific", "extinct", "requirement",
+  "category", "color", "extinct",
 ];
 
 function compactFacts(value = {}) {
@@ -33,36 +37,16 @@ function fallbackMap(plan) {
     map.set(courseCodeKey(code), {
       code: normalizeCourseCode(code),
       ...compactFacts(facts),
-      _provenance: structuredClone(facts._provenance ?? {}),
+      sourceType: facts.source ?? "manual",
+      manuallyEditedFields: structuredClone(facts.manuallyEditedFields ?? []),
       source: "plan-fallback",
     });
   }
   return map;
 }
 
-function isCourseRequirement(value) {
-  const text = toWesternDigits(value).replace(/\s+/gu, " ").trim();
-  if (!text || /(?:مستوى|اتمام|إتمام|ساعة|ساعات)/u.test(text)) return false;
-  return /^(?:\d+[A-Za-z]?\s+[^\d\s]+|[^\d\s]+\s+\d+[A-Za-z]?)$/u.test(text);
-}
-
-function splitRequirements(values) {
-  const courses = [];
-  const conditions = [];
-  for (const value of values ?? []) {
-    const text = toWesternDigits(value).replace(/\s+/gu, " ").trim();
-    if (!text) continue;
-    if (isCourseRequirement(text)) courses.push(normalizeCourseCode(text));
-    else conditions.push(text);
-  }
-  return {
-    courses: Array.from(new Set(courses)),
-    conditions: Array.from(new Set(conditions)),
-  };
-}
-
 function normalizeCodeList(values) {
-  return splitRequirements(values).courses;
+  return Array.from(new Set((values ?? []).map(normalizeCourseCode).filter(Boolean)));
 }
 
 function detectCycles(coursesByKey, diagnostics) {
@@ -112,19 +96,11 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
 
     const fallbackRecord = fallbacks.get(key);
     const fallback = mergeFacts(fallbackRecord ?? {}, entry.fallback ?? {});
-    const fallbackProvenance = fallbackRecord?._provenance ?? {};
-    const fallbackIsCatalogSnapshot = Object.keys(fallbackProvenance).length > 0
-      && Object.values(fallbackProvenance).every((source) => source === "catalog");
+    const fallbackManualFields = new Set(fallbackRecord?.manuallyEditedFields ?? []);
+    const fallbackIsCatalogSnapshot = fallbackRecord?.sourceType === "catalog";
     const catalogFacts = entry.forceFallback ? {} : compactFacts(catalog.get(key) ?? {});
     const override = compactFacts(entry.override ?? {});
-    const mergedFacts = mergeFacts(fallback, catalogFacts, override, {
-      prerequisites: entry.prerequisites,
-      corequisites: entry.corequisites,
-      minimumCompletedCredits: entry.minimumCompletedCredits,
-      requirement: entry.requirement,
-      trackSpecific: entry.trackSpecific,
-      extinct: entry.extinct,
-    });
+    const mergedFacts = mergeFacts(fallback, catalogFacts, override, { extinct: entry.extinct });
     const activity = normalizeActivityFacts(mergedFacts);
     const facts = activity.facts;
     const usedCatalog = Object.keys(catalogFacts).length > 0;
@@ -178,9 +154,7 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       });
     }
     if (usedCatalog && fallbackRecord) {
-      const manualFields = Object.entries(fallbackProvenance)
-        .filter(([, source]) => source === "manual")
-        .map(([field]) => field)
+      const manualFields = [...fallbackManualFields]
         .filter((field) => fallback[field] !== undefined && catalogFacts[field] !== undefined && fallback[field] !== catalogFacts[field]);
       if (manualFields.length) {
         addDiagnostic(diagnostics, "warnings", "MANUAL_FALLBACK_DIFFERS", `${code} has manual fallback facts that differ from the current catalog.`, {
@@ -196,14 +170,11 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       }
     }
 
-    const prerequisiteParts = splitRequirements(facts.prerequisites);
-    const corequisiteParts = splitRequirements(facts.corequisites);
-    let prerequisites = prerequisiteParts.courses;
-    let corequisites = corequisiteParts.courses;
-    const prerequisiteConditions = Array.from(new Set([
-      ...prerequisiteParts.conditions,
-      ...corequisiteParts.conditions,
-    ]));
+    let prerequisites = normalizeCodeList(entry.prerequisites);
+    let corequisites = normalizeCodeList(entry.corequisites);
+    const prerequisiteConditions = Array.from(new Set(
+      (entry.prerequisiteConditions ?? []).map((value) => String(value).trim()).filter(Boolean),
+    ));
     if (context.sameGroupKeys) {
       const sameSemesterPrerequisites = prerequisites.filter((prerequisite) => context.sameGroupKeys.has(courseCodeKey(prerequisite)));
       if (sameSemesterPrerequisites.length && entry.preserveSameSemesterPrerequisite !== true) {
@@ -221,6 +192,7 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     }
 
     const course = {
+      id: entry.id ?? null,
       code,
       key,
       name: facts.name ?? "مقرر غير معروف",
@@ -231,12 +203,12 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       prerequisites,
       corequisites,
       prerequisiteConditions,
-      minimumCompletedCredits: numericValue(facts.minimumCompletedCredits),
+      minimumCompletedCredits: numericValue(entry.minimumCompletedCredits),
       category,
       subject,
       color,
-      requirement: facts.requirement ?? "required",
-      isTrackSpecific: Boolean(facts.trackSpecific),
+      requirement: entry.requirement ?? "required",
+      isTrackSpecific: Boolean(entry.trackSpecific),
       isExtinct: Boolean(facts.extinct),
       isPlaceholder: false,
       isMissingFromCatalog: !usedCatalog,
@@ -254,13 +226,8 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       ],
       location: context.location,
     };
+    course.requirementLabel = formatCourseRequirementLabel(course);
     const nameFit = courseNameFit(course.name);
-    const requirementLabel = [
-      ...course.prerequisites,
-      ...course.corequisites.map((value) => `${value} مرافق`),
-      ...course.prerequisiteConditions,
-      ...(course.minimumCompletedCredits === null ? [] : [`${course.minimumCompletedCredits} ساعة`]),
-    ].join(" | ");
     if (nameFit.overflow) {
       addDiagnostic(diagnostics, "warnings", "COURSE_NAME_MINIMUM_SIZE", `${code} remains wider than the course card at the minimum readable size.`, {
         course: code,
@@ -268,7 +235,7 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
         location: context.location,
       });
     }
-    if (requirementLabel && prerequisiteFit(requirementLabel, 43).overflow) {
+    if (course.requirementLabel && prerequisiteFit(course.requirementLabel, 43).overflow) {
       addDiagnostic(diagnostics, "warnings", "PREREQUISITE_TEXT_MINIMUM_SIZE", `${code} prerequisite text remains wider than the pill at the minimum readable size.`, {
         course: code,
         location: context.location,
@@ -348,6 +315,8 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
         location: `elective-${group.id ?? groupIndex + 1}`,
       });
     }
+    const requiredHours = hasHours && !hasText ? effectiveRequiredHours : null;
+    const requirementText = hasText && !hasHours ? String(group.requirementText).trim() : null;
     return {
       id: group.id ?? `elective-group-${groupIndex + 1}`,
       name: group.name ?? `مجموعة اختيارية ${groupIndex + 1}`,
@@ -355,20 +324,19 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       sharedSource: Boolean(group.sharedSource),
       originalRequiredHours: group.sharedSource ? originalRequiredHours : null,
       excludedCourses: excluded,
-      requiredHours: hasHours && !hasText ? effectiveRequiredHours : null,
-      requirementText: hasText && !hasHours ? String(group.requirementText).trim() : null,
+      requiredHours,
+      requirementText,
+      displayRequirement: requirementText ?? formatRequiredHours(requiredHours ?? 0),
       courseDisplayOrder: group.courseDisplayOrder ?? ((group.sortCourses ?? "code") === "code" ? "rtl" : "ltr"),
       courses: resolvedCourses,
     };
   }).filter((group) => !(group.sharedSource && group.requiredHours === 0 && group.courses.length === 0));
 
   const coursesByKey = new Map();
-  for (const course of allCourses) if (!coursesByKey.has(course.key)) coursesByKey.set(course.key, course);
-  const parentKeys = new Set();
-  for (const course of allCourses) {
-    for (const prerequisite of [...course.prerequisites, ...course.corequisites]) {
+  for (const course of mainCourses) if (!coursesByKey.has(course.key)) coursesByKey.set(course.key, course);
+  for (const course of mainCourses) {
+    for (const prerequisite of course.prerequisites) {
       const prerequisiteKey = courseCodeKey(prerequisite);
-      parentKeys.add(prerequisiteKey);
       if (!coursesByKey.has(prerequisiteKey)) {
         addDiagnostic(diagnostics, "warnings", "PREREQUISITE_NOT_IN_PLAN", `${course.code} refers to ${prerequisite}, which is not present in the plan.`, {
           course: course.code,
@@ -377,7 +345,7 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       } else if (semesterLookup.has(prerequisiteKey) && semesterLookup.has(course.key)) {
         const prerequisiteSemester = semesterLookup.get(prerequisiteKey);
         const courseSemester = semesterLookup.get(course.key);
-        if (prerequisiteSemester > courseSemester && course.prerequisites.some((value) => courseCodeKey(value) === prerequisiteKey)) {
+        if (prerequisiteSemester > courseSemester) {
           addDiagnostic(diagnostics, "warnings", "PREREQUISITE_AFTER_COURSE", `${prerequisite} is placed after ${course.code}.`, {
             course: course.code,
             prerequisite,
@@ -386,7 +354,11 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       }
     }
   }
-  for (const course of allCourses) course.isParentCourse = parentKeys.has(course.key);
+  const parentKeys = derivePublishedParentKeys(resolvedSemesters);
+  for (const course of mainCourses) course.isParentCourse = parentKeys.has(course.key);
+  for (const group of resolvedElectiveGroups) {
+    for (const course of group.courses) course.isParentCourse = false;
+  }
   detectCycles(coursesByKey, diagnostics);
 
   let cumulative = 0;

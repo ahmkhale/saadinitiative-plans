@@ -24,26 +24,24 @@ test("prepares canonical proposal arrangement without storing real-course facts"
         id: "level-1",
         sourceSemesterId: "published-level-1",
         type: "regular",
-        courseOrder: ["101 عال"],
+        courseOrder: ["major:plan:published-level-1:101-عال"],
         placeholders: [{ id: "p1", name: "نائب", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }],
       }],
     },
   };
   const prepared = preparePlanForEditor(raw);
   assert.deepEqual(prepared.semesters[0].courses, [{
+    id: "major:undefined:published-level-1:101-عال",
     code: "101 عال",
-    fallbackName: null,
-    fallbackCreditHours: null,
-    fallbackLectureHours: null,
-    fallbackExerciseHours: null,
-    fallbackPracticalHours: null,
     prerequisites: [],
-    requirement: "required",
+    corequisites: [],
+    minimumCompletedCredits: null,
+    prerequisiteConditions: [],
     trackSpecific: false,
   }]);
   assert.equal(prepared.edition, undefined);
   assert.equal(prepared.proposal.semesters[0].placeholders[0].name, "نائب");
-  assert.deepEqual(prepared.proposal.semesters[0].courseOrder, ["101 عال"]);
+  assert.deepEqual(prepared.proposal.semesters[0].courseOrder, ["major:plan:published-level-1:101-عال"]);
   assert.equal(prepared.proposal.semesters[0].courses, undefined);
 });
 

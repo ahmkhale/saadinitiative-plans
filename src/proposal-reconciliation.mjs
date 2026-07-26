@@ -1,6 +1,6 @@
 import { addDiagnostic } from "./diagnostics.mjs";
 import { normalizeActivityFacts } from "./course-facts.mjs";
-import { courseCodeKey, normalizeCourseCode, numericValue } from "./normalize.mjs";
+import { courseCodeKey, numericValue } from "./normalize.mjs";
 import { semesterLevelName } from "./semester-labels.mjs";
 
 function placeholderCourse(placeholder, semesterIndex, placeholderIndex) {
@@ -35,7 +35,7 @@ export function reconcileProposal(publishedPlan, proposal, diagnostics) {
   for (const semester of publishedPlan.semesters ?? []) {
     publishedSemesterIds.add(semester.id);
     for (const course of semester.courses ?? []) {
-      authoritative.set(courseCodeKey(course.code), { course, semesterId: semester.id });
+      authoritative.set(course.id, { course, semesterId: semester.id });
     }
   }
 
@@ -43,7 +43,7 @@ export function reconcileProposal(publishedPlan, proposal, diagnostics) {
     id: semester.id ?? `proposal-semester-${index + 1}`,
     sourceSemesterId: semester.sourceSemesterId ?? null,
     type: semester.type === "summer" ? "summer" : "regular",
-    courseOrder: (semester.courseOrder ?? []).map(normalizeCourseCode),
+    courseOrder: (semester.courseOrder ?? []).map((value) => String(value ?? "").trim()).filter(Boolean),
     placeholders: structuredClone(semester.placeholders ?? []),
   }));
 
@@ -64,23 +64,24 @@ export function reconcileProposal(publishedPlan, proposal, diagnostics) {
 
   const placed = new Set();
   for (const semester of arrangement) {
-    semester.courseOrder = semester.courseOrder.filter((code) => {
-      const key = courseCodeKey(code);
-      if (!authoritative.has(key)) {
-        addDiagnostic(diagnostics, "info", "PROPOSAL_PARENT_COURSE_REMOVED", `${code} was removed because it is no longer published.`, {
-          course: code,
+    semester.courseOrder = semester.courseOrder.filter((courseId) => {
+      const referenced = authoritative.get(courseId);
+      if (!referenced) {
+        addDiagnostic(diagnostics, "info", "PROPOSAL_PARENT_COURSE_REMOVED", `${courseId} was removed because it is no longer published.`, {
+          courseOccurrenceId: courseId,
           proposalSemester: semester.id,
         });
         return false;
       }
-      if (placed.has(key)) {
-        addDiagnostic(diagnostics, "errors", "DUPLICATE_PROPOSAL_COURSE", `${code} appears more than once in the proposal arrangement.`, {
-          course: code,
+      if (placed.has(courseId)) {
+        addDiagnostic(diagnostics, "errors", "DUPLICATE_PROPOSAL_COURSE", `${referenced.course.code} appears more than once in the proposal arrangement.`, {
+          course: referenced.course.code,
+          courseOccurrenceId: courseId,
           proposalSemester: semester.id,
         });
         return false;
       }
-      placed.add(key);
+      placed.add(courseId);
       return true;
     });
   }
@@ -110,14 +111,14 @@ export function reconcileProposal(publishedPlan, proposal, diagnostics) {
     return false;
   });
 
-  for (const [key, { course, semesterId }] of authoritative) {
-    if (placed.has(key)) continue;
+  for (const [courseId, { course, semesterId }] of authoritative) {
+    if (placed.has(courseId)) continue;
     const target = arrangement.find((semester) => semester.sourceSemesterId === semesterId)
       ?? arrangement.find((semester) => semester.type === "regular")
       ?? arrangement[0];
     if (!target) continue;
-    target.courseOrder.push(course.code);
-    placed.add(key);
+    target.courseOrder.push(courseId);
+    placed.add(courseId);
     addDiagnostic(diagnostics, "info", "PROPOSAL_COURSE_INHERITED", `${course.code} was newly inherited from the published plan.`, {
       course: course.code,
       proposalSemester: target.id,
@@ -130,7 +131,7 @@ export function reconcileProposal(publishedPlan, proposal, diagnostics) {
   const proposalPlacement = new Map();
   const semesters = arrangement.map((semester, semesterIndex) => {
     const realCourses = semester.courseOrder
-      .map((code) => authoritative.get(courseCodeKey(code))?.course)
+      .map((courseId) => authoritative.get(courseId)?.course)
       .filter(Boolean)
       .map((course) => structuredClone(course));
     const placeholders = semester.placeholders.map((placeholder, placeholderIndex) => (

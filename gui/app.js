@@ -1,31 +1,13 @@
+import { state } from "./gui/state/store.mjs";
+import { selectedCollege } from "./gui/state/selectors.mjs";
+import { request } from "./gui/api-client.mjs";
+
 const $ = (id) => document.getElementById(id);
-const state = {
-  colleges: [],
-  selectedCollegeId: "",
-  selectedMajorId: "",
-  plan: null,
-  resolved: null,
-  diagnostics: null,
-  pageLayouts: [],
-  dirty: false,
-  previewTimer: null,
-  searchTimer: null,
-  previewUrls: [],
-  settings: null,
-  sharedSemesterSets: [],
-  sharedSetDraft: null,
-  sharedSetResolved: null,
-  sharedPreviewTimer: null,
-  sharedSetDirty: false,
-  sharedElectiveGroups: [],
-  sharedElectiveDraft: null,
-  sharedElectiveResolved: null,
-  sharedElectiveDirty: false,
-};
 
 const els = {
   welcome: $("welcome"),
   editorContent: $("editorContent"),
+  institutionList: $("institutionList"),
   collegeList: $("collegeList"),
   majorList: $("majorList"),
   catalogCount: $("catalogCount"),
@@ -64,6 +46,8 @@ const els = {
   sharedSetName: $("sharedSetName"),
   sharedSetId: $("sharedSetId"),
   sharedSetPhase: $("sharedSetPhase"),
+  sharedSetScopeType: $("sharedSetScopeType"),
+  sharedSetScopeTarget: $("sharedSetScopeTarget"),
   sharedSemesterList: $("sharedSemesterList"),
   sharedElectiveSourceList: $("sharedElectiveSourceList"),
   sharedElectiveSourceEditor: $("sharedElectiveSourceEditor"),
@@ -71,6 +55,8 @@ const els = {
   sharedElectiveSourceName: $("sharedElectiveSourceName"),
   sharedElectiveSourceId: $("sharedElectiveSourceId"),
   sharedElectiveSourceHours: $("sharedElectiveSourceHours"),
+  sharedElectiveScopeType: $("sharedElectiveScopeType"),
+  sharedElectiveScopeTarget: $("sharedElectiveScopeTarget"),
   sharedElectiveCourseList: $("sharedElectiveCourseList"),
 };
 let dialogResolver = null;
@@ -79,16 +65,6 @@ function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/gu, (character) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
   })[character]);
-}
-
-async function request(url, options = {}) {
-  const response = await fetch(url, {
-    ...options,
-    headers: options.body ? { "Content-Type": "application/json", ...(options.headers ?? {}) } : options.headers,
-  });
-  const body = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(body.error || `تعذر إتمام الطلب (${response.status}).`);
-  return body;
 }
 
 function askForm({ title, message = "", submit = "حفظ", danger = false, fields = [] }) {
@@ -121,10 +97,26 @@ function setDirty(dirty = true) {
 }
 
 function activeCollege() {
-  return state.colleges.find((college) => college.id === state.selectedCollegeId) ?? null;
+  return selectedCollege(state);
+}
+
+function institutionApi(suffix = "") {
+  if (!state.selectedInstitutionId) throw new Error("اختر جامعة أولًا.");
+  return `/api/institutions/${encodeURIComponent(state.selectedInstitutionId)}${suffix}`;
 }
 
 function renderNavigation() {
+  if (!state.institutions.length) {
+    els.institutionList.className = "nav-list empty-list";
+    els.institutionList.textContent = "لم تُضف جامعة بعد.";
+  } else {
+    els.institutionList.className = "nav-list";
+    els.institutionList.innerHTML = state.institutions.map((institution) => `
+      <button class="nav-item ${institution.id === state.selectedInstitutionId ? "active" : ""}" data-institution="${escapeHtml(institution.id)}" type="button">
+        ${escapeHtml(institution.name)}<small>${escapeHtml(institution.id)} · ${institution.colleges.length} كلية</small>
+      </button>
+    `).join("");
+  }
   if (!state.colleges.length) {
     els.collegeList.className = "nav-list empty-list";
     els.collegeList.textContent = "لم تُضف كلية بعد.";
@@ -154,7 +146,12 @@ function renderNavigation() {
 }
 
 async function loadState() {
-  const result = await request("/api/state");
+  const query = state.selectedInstitutionId
+    ? `?institutionId=${encodeURIComponent(state.selectedInstitutionId)}`
+    : "";
+  const result = await request(`/api/state${query}`);
+  state.institutions = result.institutions ?? [];
+  state.selectedInstitutionId = result.selectedInstitutionId ?? "";
   state.colleges = result.colleges;
   state.settings = result.settings;
   state.sharedSemesterSets = result.sharedSemesterSets ?? [];
@@ -177,6 +174,16 @@ async function loadState() {
   renderSharedSetEditor();
 }
 
+async function selectInstitution(id) {
+  if (state.dirty && !await confirmDiscard()) return;
+  state.selectedInstitutionId = id;
+  state.selectedCollegeId = "";
+  state.selectedMajorId = "";
+  state.plan = null;
+  showEditor(false);
+  await loadState();
+}
+
 async function selectCollege(id) {
   if (state.dirty && !await confirmDiscard()) return;
   state.selectedCollegeId = id;
@@ -188,7 +195,7 @@ async function selectCollege(id) {
 
 async function selectMajor(id) {
   if (state.dirty && !await confirmDiscard()) return;
-  const result = await request(`/api/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(id)}`);
+  const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(id)}`));
   state.selectedMajorId = id;
   state.plan = result.plan;
   state.resolved = null;
@@ -212,6 +219,53 @@ function entryCode(entry) {
   return typeof entry === "string" ? entry : entry?.code ?? "";
 }
 
+function entryId(entry) {
+  return typeof entry === "object" && entry?.id ? entry.id : entryCode(entry);
+}
+
+function occurrenceSlug(code) {
+  return String(code ?? "").trim().toLocaleLowerCase("ar").replace(/\s+/gu, "-");
+}
+
+function newCourseEntry(kind, index, code) {
+  const slug = occurrenceSlug(code);
+  if (kind === "shared") {
+    const semester = state.sharedSetDraft.semesters[index];
+    return { id: `shared:${state.sharedSetDraft.id}:${semester.id}:${slug}`, code };
+  }
+  if (kind === "sharedElective") {
+    return { id: `shared-elective:${state.sharedElectiveDraft.id}:${slug}`, code };
+  }
+  if (kind === "elective") {
+    return { id: `major:${state.plan.id}:elective:${state.plan.electiveGroups[index].id}:${slug}`, code };
+  }
+  const semester = state.plan.semesters[index];
+  return { id: `major:${state.plan.id}:${semester.id}:${slug}`, code };
+}
+
+function sourceAppliesToSelection(source) {
+  const scope = source?.scope;
+  if (!scope || scope.institutionId !== state.selectedInstitutionId) return false;
+  if (scope.type === "institution") return true;
+  if (scope.type === "college") return scope.collegeId === state.selectedCollegeId;
+  return scope.type === "majors" && scope.majorIds?.includes(state.selectedMajorId);
+}
+
+function scopeTarget(scope) {
+  if (scope?.type === "college") return scope.collegeId ?? "";
+  if (scope?.type === "majors") return (scope.majorIds ?? []).join(", ");
+  return "";
+}
+
+function scopeFromFields(type, target) {
+  const scope = { type, institutionId: state.selectedInstitutionId };
+  if (type === "college") scope.collegeId = target.trim();
+  if (type === "majors") {
+    scope.majorIds = target.split(/[,،\n]+/u).map((value) => value.trim()).filter(Boolean);
+  }
+  return scope;
+}
+
 function parseCodes(value) {
   const text = String(value ?? "").trim();
   if (!text) return [];
@@ -232,11 +286,11 @@ function collection(kind, index) {
 function proposalEntries(index) {
   const semester = state.plan.proposal?.semesters?.[index] ?? { placeholders: [] };
   const parentEntries = new Map(publishedDecisionSemesters().flatMap((item) => (
-    item.courses.map((entry) => [entryCode(entry), normalizedEntry(entry)])
+    item.courses.map((entry) => [entryId(entry), normalizedEntry(entry)])
   )));
   return [
-    ...(semester.courseOrder ?? []).map((code) => ({
-      ...(parentEntries.get(code) ?? { code }),
+    ...(semester.courseOrder ?? []).map((courseId) => ({
+      ...(parentEntries.get(courseId) ?? { id: courseId, code: courseId }),
       proposalRealCourse: true,
     })),
     ...(semester.placeholders ?? []).map((placeholder) => ({
@@ -290,7 +344,7 @@ function syncProposalWithPublished() {
   if (!state.plan?.proposal) return;
   const published = publishedDecisionSemesters();
   const parent = new Map(published.flatMap((semester) => (
-    semester.courses.map((entry) => [entryCode(entry), semester.id])
+    semester.courses.map((entry) => [entryId(entry), semester.id])
   )));
   const semesters = (state.plan.proposal.semesters ?? []).map((semester, index) => ({
     id: semester.id ?? `proposal-semester-${index + 1}`,
@@ -306,7 +360,9 @@ function syncProposalWithPublished() {
   });
   const placed = new Set();
   semesters.forEach((semester) => {
-    semester.courseOrder = semester.courseOrder.filter((code) => parent.has(code) && !placed.has(code) && placed.add(code));
+    semester.courseOrder = semester.courseOrder.filter((courseId) => (
+      parent.has(courseId) && !placed.has(courseId) && placed.add(courseId)
+    ));
   });
   for (let index = semesters.length - 1; index >= 0; index -= 1) {
     const semester = semesters[index];
@@ -315,11 +371,11 @@ function syncProposalWithPublished() {
     if (semester.courseOrder.length) semester.sourceSemesterId = null;
     else semesters.splice(index, 1);
   }
-  for (const [code, semesterId] of parent) {
-    if (placed.has(code)) continue;
+  for (const [courseId, semesterId] of parent) {
+    if (placed.has(courseId)) continue;
     const target = semesters.find((semester) => semester.sourceSemesterId === semesterId) ?? semesters[0];
-    target?.courseOrder.push(code);
-    placed.add(code);
+    target?.courseOrder.push(courseId);
+    placed.add(courseId);
   }
   state.plan.proposal.semesters = semesters;
   delete state.plan.proposal.phases;
@@ -382,7 +438,7 @@ function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
       ? `shared-semester-${groupIndex + 1}` : kind === "sharedElective"
         ? "shared-elective-source" : `proposal-semester-${groupIndex + 1}`;
   return `
-    <div class="course-row ${unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
+    <div class="course-row ${unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(kind === "proposal" && !isPlaceholder ? entryId(entry) : code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
       <div><div class="course-code">${escapeHtml(displayCode)}</div><div class="course-meta">${escapeHtml(displaySubject)}</div><div class="badge-list">${courseBadges(resolved, isPlaceholder)}</div></div>
       <div><div class="course-name">${escapeHtml(resolved?.name ?? (entry?.kind === "placeholder" ? entry?.fallback?.name : "مقرر غير موجود في الدليل"))}</div>
         <div class="course-meta">${resolved ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? "—"} · عملي ${resolved.practicalHours ?? "—"} · تمارين ${resolved.exerciseHours ?? "—"}` : ""}</div>
@@ -408,12 +464,13 @@ function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
           <label>ساعات التمارين<input data-manual-fact="exerciseHours" type="number" min="0" value="${escapeHtml(fallbackCoursesFor(kind)?.[code]?.exerciseHours ?? "")}" ${unresolved ? "required" : ""}></label>
           <label>ساعات العملي<input data-manual-fact="practicalHours" type="number" min="0" value="${escapeHtml(fallbackCoursesFor(kind)?.[code]?.practicalHours ?? "")}" ${unresolved ? "required" : ""}></label>
           ${["male", "female"].includes(resolved?.catalogSource) && fallbackCoursesFor(kind)?.[code] ? '<button class="button ghost refresh-catalog-facts" type="button">تحديث البيانات من الدليل</button>' : ""}
-          ${fallbackCoursesFor(kind)?.[code]?._provenance ? `<span class="source-badge">${Object.values(fallbackCoursesFor(kind)[code]._provenance).includes("manual") ? "بيانات معدلة يدويًا" : "لقطة من الدليل"}</span>` : ""}
+          ${fallbackCoursesFor(kind)?.[code]?.source ? `<span class="source-badge">${fallbackCoursesFor(kind)[code].manuallyEditedFields?.length ? "بيانات معدلة يدويًا" : "لقطة من الدليل"}</span>` : ""}
         </div>
         <p class="concept-heading">قواعد الخطة</p>` : ""}
         <div class="dependency-grid">
           ${!isPlaceholder ? `<label>المتطلبات السابقة<input data-dependency="prerequisites" value="${escapeHtml((rules.prerequisites ?? rules.override?.prerequisites ?? []).join("، "))}" placeholder="101 عال، 101 ريض"></label>
           <label>المتطلبات المرافقة<input data-dependency="corequisites" value="${escapeHtml((rules.corequisites ?? rules.override?.corequisites ?? []).join("، "))}"></label>
+          <label>شروط المتطلب النصية<input data-dependency="prerequisiteConditions" value="${escapeHtml((rules.prerequisiteConditions ?? []).join("، "))}" placeholder="مستوى 7"></label>
           <label>الحد الأدنى للساعات المجتازة<input data-dependency="minimumCompletedCredits" type="number" min="0" value="${escapeHtml(rules.minimumCompletedCredits ?? rules.override?.minimumCompletedCredits ?? "")}"></label>
           <label class="check"><input data-track-specific type="checkbox" ${rules.trackSpecific ? "checked" : ""}> مقرر خاص بالمسار</label>` : ""}
         </div>
@@ -510,6 +567,9 @@ function renderEditor() {
   els.planHeading.textContent = state.plan.major;
   document.querySelectorAll("[data-field]").forEach((input) => {
     input.value = state.plan[input.dataset.field] ?? "";
+    if (["university", "college"].includes(input.dataset.field)) {
+      input.closest("label").hidden = true;
+    }
   });
   renderCollection(els.semesterList, state.plan.semesters, "semester");
   renderInheritedSemesters();
@@ -545,6 +605,8 @@ function renderSharedSetEditor() {
   els.sharedSetName.value = draft.name ?? "";
   els.sharedSetId.value = draft.id ?? "";
   els.sharedSetPhase.value = draft.phaseLabel ?? "السنة التحضيرية";
+  els.sharedSetScopeType.value = draft.scope?.type ?? "institution";
+  els.sharedSetScopeTarget.value = scopeTarget(draft.scope);
   renderCollection(els.sharedSemesterList, draft.semesters ?? [], "shared");
 }
 
@@ -558,6 +620,8 @@ async function refreshSharedSetResolution() {
   const result = await request("/api/preview", {
     method: "POST",
     body: JSON.stringify({
+      institutionId: state.selectedInstitutionId,
+      collegeId: state.selectedCollegeId || null,
       plan: {
         schemaVersion: 1,
         id: "shared-preview",
@@ -586,6 +650,7 @@ function openSharedSetEditor(set = null) {
     phaseLabel: "السنة التحضيرية",
     semesters: [{ courses: [] }, { courses: [] }],
     fallbackCourses: {},
+    scope: { type: "institution", institutionId: state.selectedInstitutionId },
   });
   state.sharedSetDraft._originalId = set?.id ?? null;
   state.sharedSetResolved = null;
@@ -602,10 +667,17 @@ async function saveSharedSetEditor() {
   draft.name = els.sharedSetName.value.trim();
   draft.id = els.sharedSetId.value.trim();
   draft.phaseLabel = els.sharedSetPhase.value.trim() || "السنة التحضيرية";
+  draft.scope = scopeFromFields(
+    els.sharedSetScopeType.value,
+    els.sharedSetScopeTarget.value,
+  );
   const previousId = draft._originalId;
   const payload = structuredClone(draft);
+  payload.scope ??= { type: "institution", institutionId: state.selectedInstitutionId };
   delete payload._originalId;
-  await request(previousId ? `/api/shared-semester-sets/${encodeURIComponent(previousId)}` : "/api/shared-semester-sets", {
+  await request(institutionApi(previousId
+    ? `/shared-semester-sources/${encodeURIComponent(previousId)}`
+    : "/shared-semester-sources"), {
     method: previousId ? "PUT" : "POST",
     body: JSON.stringify(payload),
   });
@@ -624,9 +696,10 @@ async function saveSharedSetEditor() {
 function renderSharedSets() {
   if (els.sharedSetChoices) {
     const selected = new Set(state.plan?.sharedSemesterSets ?? []);
-    els.sharedSetChoices.innerHTML = state.sharedSemesterSets.length
+    const eligible = state.sharedSemesterSets.filter(sourceAppliesToSelection);
+    els.sharedSetChoices.innerHTML = eligible.length
       ? `<label class="choice-item"><span><strong>دون خطة مشتركة</strong><small>تبدأ مستويات التخصص مباشرة.</small></span><input data-shared-set-choice="" name="shared-foundation-choice" type="radio" ${selected.size === 0 ? "checked" : ""}></label>`
-        + state.sharedSemesterSets.map((set) => `
+        + eligible.map((set) => `
         <label class="choice-item"><span><strong>${escapeHtml(set.name)}</strong><small>${set.semesters.length} مستويات · ${escapeHtml(set.phaseLabel)}</small></span>
           <input data-shared-set-choice="${escapeHtml(set.id)}" name="shared-foundation-choice" type="radio" ${selected.has(set.id) ? "checked" : ""}>
         </label>`).join("")
@@ -654,7 +727,7 @@ function addCodes(kind, index, value) {
   for (const code of parseCodes(value)) {
     const key = code.replace(/\s+/gu, " ").trim().toLocaleLowerCase("ar");
     if (!existing.has(key)) {
-      target.push(code);
+      target.push(newCourseEntry(kind, index, code));
       existing.add(key);
     }
   }
@@ -676,15 +749,18 @@ function schedulePreview(delay = 350) {
 }
 
 function releasePreviewUrls() {
-  state.previewUrls.forEach((url) => URL.revokeObjectURL(url));
-  state.previewUrls = [];
+  els.previewHost.replaceChildren();
 }
 
 async function refreshPreview() {
   if (!state.plan) return;
   const result = await request("/api/preview", {
     method: "POST",
-    body: JSON.stringify({ plan: state.plan }),
+    body: JSON.stringify({
+      institutionId: state.selectedInstitutionId,
+      collegeId: state.selectedCollegeId,
+      plan: state.plan,
+    }),
   });
   state.resolved = result.plan;
   state.diagnostics = result.diagnostics;
@@ -698,17 +774,16 @@ async function refreshPreview() {
   renderDiagnostics();
   els.unresolvedCount.textContent = String(result.diagnostics.items.filter((item) => item.code === "UNRESOLVED_COURSE").length);
   releasePreviewUrls();
-  els.previewHost.innerHTML = "";
   if (!result.pages.length) {
     els.previewHost.innerHTML = '<p>تعذر إنشاء المعاينة. راجع الأخطاء أدناه.</p>';
     els.previewDimensions.textContent = "—";
   } else {
+    await document.fonts.ready;
     result.pages.forEach((svg, index) => {
-      const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
-      state.previewUrls.push(url);
-      const image = document.createElement("img");
+      const inlineSvg = svg;
+      const image = document.createElement("div");
       image.className = "preview-page";
-      image.src = url;
+      image.innerHTML = inlineSvg;
       image.alt = `معاينة الصفحة ${index + 1}`;
       els.previewHost.append(image);
     });
@@ -760,7 +835,7 @@ function refreshResolvedRows() {
 async function savePlan() {
   if (!state.plan) return;
   const oldId = state.selectedMajorId;
-  const result = await request(`/api/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}`, {
+  const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}`), {
     method: "PUT",
     body: JSON.stringify(state.plan),
   });
@@ -779,6 +854,7 @@ async function generatePlan(save = true) {
     method: "POST",
     body: JSON.stringify({
       plan: state.plan,
+      institutionId: state.selectedInstitutionId,
       collegeId: state.selectedCollegeId,
       majorId: state.selectedMajorId,
       save,
@@ -808,6 +884,71 @@ async function confirmDiscard() {
   }));
 }
 
+function activeInstitution() {
+  return state.institutions.find(
+    (institution) => institution.id === state.selectedInstitutionId,
+  ) ?? null;
+}
+
+async function addInstitution() {
+  const values = await askForm({
+    title: "إضافة جامعة",
+    message: "سيُستخدم المعرّف في مسار ملفات الجامعة وفهارسها.",
+    fields: [
+      { name: "name", label: "اسم الجامعة" },
+      { name: "id", label: "المعرّف الثابت", dir: "ltr" },
+    ],
+  });
+  if (!values) return;
+  const result = await request("/api/institutions", {
+    method: "POST",
+    body: JSON.stringify(values),
+  });
+  state.selectedInstitutionId = result.institution.id;
+  state.selectedCollegeId = "";
+  await loadState();
+}
+
+async function editInstitution() {
+  const institution = activeInstitution();
+  if (!institution) return setStatus("اختر جامعة أولًا.", "error");
+  const values = await askForm({
+    title: "تعديل الجامعة",
+    fields: [
+      { name: "name", label: "اسم الجامعة", value: institution.name },
+      { name: "id", label: "المعرّف الثابت", value: institution.id, dir: "ltr" },
+    ],
+  });
+  if (!values) return;
+  const result = await request(`/api/institutions/${encodeURIComponent(institution.id)}`, {
+    method: "PUT",
+    body: JSON.stringify(values),
+  });
+  state.selectedInstitutionId = result.institution.id;
+  await loadState();
+}
+
+async function deleteInstitution() {
+  const institution = activeInstitution();
+  if (!institution) return setStatus("اختر جامعة أولًا.", "error");
+  const confirmed = await askForm({
+    title: "حذف الجامعة",
+    message: `ستُحذف جامعة «${institution.name}» وكلياتها وتخصصاتها. لا يمكن التراجع عن ذلك.`,
+    submit: "حذف الجامعة",
+    danger: true,
+  });
+  if (!confirmed) return;
+  await request(`/api/institutions/${encodeURIComponent(institution.id)}`, {
+    method: "DELETE",
+  });
+  state.selectedInstitutionId = "";
+  state.selectedCollegeId = "";
+  state.selectedMajorId = "";
+  state.plan = null;
+  showEditor(false);
+  await loadState();
+}
+
 async function addCollege() {
   const values = await askForm({
     title: "إضافة كلية",
@@ -818,7 +959,7 @@ async function addCollege() {
     ],
   });
   if (!values) return;
-  const result = await request("/api/colleges", { method: "POST", body: JSON.stringify(values) });
+  const result = await request(institutionApi("/colleges"), { method: "POST", body: JSON.stringify(values) });
   state.selectedCollegeId = result.college.id;
   await loadState();
 }
@@ -834,7 +975,7 @@ async function editCollege() {
     ],
   });
   if (!values) return;
-  const result = await request(`/api/colleges/${encodeURIComponent(college.id)}`, {
+  const result = await request(institutionApi(`/colleges/${encodeURIComponent(college.id)}`), {
     method: "PUT",
     body: JSON.stringify(values),
   });
@@ -853,7 +994,7 @@ async function deleteCollege() {
     danger: true,
   });
   if (!confirmed) return;
-  await request(`/api/colleges/${encodeURIComponent(college.id)}`, { method: "DELETE" });
+  await request(institutionApi(`/colleges/${encodeURIComponent(college.id)}`), { method: "DELETE" });
   state.selectedCollegeId = "";
   state.selectedMajorId = "";
   state.plan = null;
@@ -873,7 +1014,7 @@ async function addMajor() {
     ],
   });
   if (!values) return;
-  const result = await request(`/api/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors`, {
+  const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors`), {
     method: "POST",
     body: JSON.stringify(values),
   });
@@ -891,7 +1032,7 @@ async function duplicateMajor() {
     ],
   });
   if (!values) return;
-  const result = await request(`/api/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(state.selectedMajorId)}/duplicate`, {
+  const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(state.selectedMajorId)}/duplicate`), {
     method: "POST",
     body: JSON.stringify(values),
   });
@@ -908,7 +1049,7 @@ async function deleteMajor() {
     danger: true,
   });
   if (!confirmed) return;
-  await request(`/api/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(state.selectedMajorId)}`, { method: "DELETE" });
+  await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(state.selectedMajorId)}`), { method: "DELETE" });
   state.selectedMajorId = "";
   state.plan = null;
   setDirty(false);
@@ -981,14 +1122,16 @@ function updateManualFact(row, input) {
   const code = entryCode(target[Number(row.dataset.courseIndex)]);
   const fallbacks = fallbackCoursesFor(row.dataset.kind);
   const fallback = fallbacks[code] ?? {};
-  fallback._provenance ??= {};
+  const manuallyEditedFields = new Set(fallback.manuallyEditedFields ?? []);
   if (input.value === "") {
     delete fallback[input.dataset.manualFact];
-    delete fallback._provenance[input.dataset.manualFact];
+    manuallyEditedFields.delete(input.dataset.manualFact);
   } else {
     fallback[input.dataset.manualFact] = input.type === "number" ? Number(input.value) : input.value;
-    fallback._provenance[input.dataset.manualFact] = "manual";
+    manuallyEditedFields.add(input.dataset.manualFact);
   }
+  fallback.source = manuallyEditedFields.size ? "manual" : fallback.source ?? "catalog";
+  fallback.manuallyEditedFields = [...manuallyEditedFields];
   fallbacks[code] = fallback;
   if (row.dataset.kind === "shared") sharedChanged();
   else if (row.dataset.kind === "sharedElective") sharedElectiveChanged();
@@ -1047,6 +1190,7 @@ function openSharedElectiveSourceEditor(source = null) {
     requiredHours: 0,
     courses: [],
     fallbackCourses: {},
+    scope: { type: "institution", institutionId: state.selectedInstitutionId },
   });
   state.sharedElectiveDraft._originalId = source?.id ?? null;
   state.sharedElectiveResolved = null;
@@ -1065,6 +1209,8 @@ function renderSharedElectiveSourceEditor() {
   els.sharedElectiveSourceName.value = draft.name ?? "";
   els.sharedElectiveSourceId.value = draft.id ?? "";
   els.sharedElectiveSourceHours.value = draft.requiredHours ?? 0;
+  els.sharedElectiveScopeType.value = draft.scope?.type ?? "institution";
+  els.sharedElectiveScopeTarget.value = scopeTarget(draft.scope);
   const resolved = resolvedCollection("sharedElective", 0);
   els.sharedElectiveCourseList.innerHTML = (draft.courses ?? []).map((entry, index) => (
     courseRow(typeof entry === "string" ? { code: entry } : entry, resolved[index], "sharedElective", 0, index)
@@ -1078,6 +1224,8 @@ function scheduleSharedElectiveResolution(delay = 250) {
     const result = await request("/api/preview", {
       method: "POST",
       body: JSON.stringify({
+        institutionId: state.selectedInstitutionId,
+        collegeId: state.selectedCollegeId || null,
         plan: {
           schemaVersion: 1,
           id: "shared-elective-preview",
@@ -1110,10 +1258,17 @@ async function saveSharedElectiveSourceEditor() {
   draft.name = els.sharedElectiveSourceName.value.trim();
   draft.id = els.sharedElectiveSourceId.value.trim();
   draft.requiredHours = Number(els.sharedElectiveSourceHours.value);
+  draft.scope = scopeFromFields(
+    els.sharedElectiveScopeType.value,
+    els.sharedElectiveScopeTarget.value,
+  );
   const previousId = draft._originalId;
   const payload = structuredClone(draft);
+  payload.scope ??= { type: "institution", institutionId: state.selectedInstitutionId };
   delete payload._originalId;
-  await request(previousId ? `/api/shared-elective-groups/${encodeURIComponent(previousId)}` : "/api/shared-elective-groups", {
+  await request(institutionApi(previousId
+    ? `/shared-elective-sources/${encodeURIComponent(previousId)}`
+    : "/shared-elective-sources"), {
     method: previousId ? "PUT" : "POST",
     body: JSON.stringify(payload),
   });
@@ -1139,22 +1294,24 @@ async function courseSearch(value) {
 
 function moveProposalCourse(row, action) {
   const fromIndex = Number(row.dataset.groupIndex);
-  const code = row.dataset.courseCode;
+  const courseId = row.dataset.courseCode;
   const semesters = state.plan.proposal.semesters;
   const source = semesters[fromIndex];
-  const courseIndex = source.courseOrder.indexOf(code);
+  const courseIndex = source.courseOrder.indexOf(courseId);
   if (courseIndex < 0) return;
   if (action === "up" || action === "down") {
     move(source.courseOrder, courseIndex, action === "up" ? -1 : 1);
   } else {
     let targetIndex = action === "previous" ? fromIndex - 1 : action === "next" ? fromIndex + 1 : -1;
     if (action === "home") {
-      const parent = publishedDecisionSemesters().find((semester) => semester.courses.some((entry) => entryCode(entry) === code));
+      const parent = publishedDecisionSemesters().find((semester) => (
+        semester.courses.some((entry) => entryId(entry) === courseId)
+      ));
       targetIndex = semesters.findIndex((semester) => semester.sourceSemesterId === parent?.id);
     }
     if (targetIndex < 0 || targetIndex >= semesters.length || targetIndex === fromIndex) return;
     source.courseOrder.splice(courseIndex, 1);
-    semesters[targetIndex].courseOrder.push(code);
+    semesters[targetIndex].courseOrder.push(courseId);
   }
   changed(true);
 }
@@ -1182,6 +1339,11 @@ async function refreshCatalogFallback(row) {
 }
 
 document.addEventListener("click", (event) => {
+  const institution = event.target.closest("[data-institution]");
+  if (institution) {
+    selectInstitution(institution.dataset.institution)
+      .catch((error) => setStatus(error.message, "error"));
+  }
   const college = event.target.closest("[data-college]");
   if (college) selectCollege(college.dataset.college).catch((error) => setStatus(error.message, "error"));
   const major = event.target.closest("[data-major]");
@@ -1256,12 +1418,12 @@ document.addEventListener("click", (event) => {
       ],
     }).then(async (values) => {
       if (!values) return;
-      await request(`/api/shared-semester-sets/${encodeURIComponent(sharedSet.dataset.sharedSet)}/duplicate`, { method: "POST", body: JSON.stringify(values) });
+      await request(institutionApi(`/shared-semester-sources/${encodeURIComponent(sharedSet.dataset.sharedSet)}/duplicate`), { method: "POST", body: JSON.stringify(values) });
       await loadState();
     }).catch((error) => setStatus(error.message, "error"));
   }
   if (sharedSet && event.target.closest(".delete-shared-set")) {
-    request(`/api/shared-semester-sets/${encodeURIComponent(sharedSet.dataset.sharedSet)}`, { method: "DELETE" })
+    request(institutionApi(`/shared-semester-sources/${encodeURIComponent(sharedSet.dataset.sharedSet)}`), { method: "DELETE" })
       .then(loadState).catch((error) => setStatus(error.message, "error"));
   }
   const sharedReference = event.target.closest("[data-shared-elective-reference]");
@@ -1295,13 +1457,13 @@ document.addEventListener("click", (event) => {
         fields: [{ name: "name", label: "اسم النسخة" }, { name: "id", label: "معرّف النسخة", dir: "ltr" }],
       }).then(async (values) => {
         if (!values) return;
-        await request(`/api/shared-elective-groups/${encodeURIComponent(id)}/duplicate`, { method: "POST", body: JSON.stringify(values) });
+        await request(institutionApi(`/shared-elective-sources/${encodeURIComponent(id)}/duplicate`), { method: "POST", body: JSON.stringify(values) });
         await loadState();
         renderSharedElectiveSources();
       }).catch((error) => setStatus(error.message, "error"));
     }
     if (event.target.closest(".delete-shared-elective-source")) {
-      request(`/api/shared-elective-groups/${encodeURIComponent(id)}`, { method: "DELETE" })
+      request(institutionApi(`/shared-elective-sources/${encodeURIComponent(id)}`), { method: "DELETE" })
         .then(async () => { await loadState(); renderSharedElectiveSources(); })
         .catch((error) => setStatus(error.message, "error"));
     }
@@ -1309,19 +1471,27 @@ document.addEventListener("click", (event) => {
 });
 
 document.addEventListener("input", (event) => {
-  if (["sharedElectiveSourceName", "sharedElectiveSourceId", "sharedElectiveSourceHours"].includes(event.target.id) && state.sharedElectiveDraft) {
+  if (["sharedElectiveSourceName", "sharedElectiveSourceId", "sharedElectiveSourceHours", "sharedElectiveScopeTarget"].includes(event.target.id) && state.sharedElectiveDraft) {
     state.sharedElectiveDraft.name = els.sharedElectiveSourceName.value;
     state.sharedElectiveDraft.id = els.sharedElectiveSourceId.value;
     state.sharedElectiveDraft.requiredHours = Number(els.sharedElectiveSourceHours.value);
+    state.sharedElectiveDraft.scope = scopeFromFields(
+      els.sharedElectiveScopeType.value,
+      els.sharedElectiveScopeTarget.value,
+    );
     state.sharedElectiveDirty = true;
     els.sharedElectiveSourceEditorTitle.textContent = state.sharedElectiveDraft.name || "مجموعة اختيارية جديدة";
     scheduleSharedElectiveResolution();
     return;
   }
-  if (["sharedSetName", "sharedSetId", "sharedSetPhase"].includes(event.target.id) && state.sharedSetDraft) {
+  if (["sharedSetName", "sharedSetId", "sharedSetPhase", "sharedSetScopeTarget"].includes(event.target.id) && state.sharedSetDraft) {
     state.sharedSetDraft.name = els.sharedSetName.value;
     state.sharedSetDraft.id = els.sharedSetId.value;
     state.sharedSetDraft.phaseLabel = els.sharedSetPhase.value;
+    state.sharedSetDraft.scope = scopeFromFields(
+      els.sharedSetScopeType.value,
+      els.sharedSetScopeTarget.value,
+    );
     state.sharedSetDirty = true;
     els.sharedSetEditorTitle.textContent = state.sharedSetDraft.name || "خطة مشتركة جديدة";
     return;
@@ -1342,6 +1512,24 @@ document.addEventListener("input", (event) => {
   const row = event.target.closest(".course-row");
   if (row && event.target.matches("[data-manual-fact]")) updateManualFact(row, event.target);
 
+});
+
+document.addEventListener("change", (event) => {
+  if (event.target.id === "sharedSetScopeType" && state.sharedSetDraft) {
+    state.sharedSetDraft.scope = scopeFromFields(
+      els.sharedSetScopeType.value,
+      els.sharedSetScopeTarget.value,
+    );
+    state.sharedSetDirty = true;
+  }
+  if (event.target.id === "sharedElectiveScopeType" && state.sharedElectiveDraft) {
+    state.sharedElectiveDraft.scope = scopeFromFields(
+      els.sharedElectiveScopeType.value,
+      els.sharedElectiveScopeTarget.value,
+    );
+    state.sharedElectiveDirty = true;
+    scheduleSharedElectiveResolution();
+  }
 });
 
 document.addEventListener("change", (event) => {
@@ -1430,6 +1618,9 @@ document.addEventListener("drop", (event) => {
   changed(true);
 });
 
+$("addInstitutionButton").addEventListener("click", () => addInstitution().catch((error) => setStatus(error.message, "error")));
+$("editInstitutionButton").addEventListener("click", () => editInstitution().catch((error) => setStatus(error.message, "error")));
+$("deleteInstitutionButton").addEventListener("click", () => deleteInstitution().catch((error) => setStatus(error.message, "error")));
 $("addCollegeButton").addEventListener("click", () => addCollege().catch((error) => setStatus(error.message, "error")));
 $("editCollegeButton").addEventListener("click", () => editCollege().catch((error) => setStatus(error.message, "error")));
 $("deleteCollegeButton").addEventListener("click", () => deleteCollege().catch((error) => setStatus(error.message, "error")));
@@ -1459,14 +1650,15 @@ $("addElectiveButton").addEventListener("click", () => {
   changed(true);
 });
 $("addSharedElectiveButton").addEventListener("click", async () => {
-  if (!state.sharedElectiveGroups.length) return setStatus("أنشئ مصدرًا اختياريًا مشتركًا من الإعدادات أولًا.", "error");
+  const eligible = state.sharedElectiveGroups.filter(sourceAppliesToSelection);
+  if (!eligible.length) return setStatus("لا يوجد مصدر اختياري مشترك متاح لهذا التخصص.", "error");
   const values = await askForm({
     title: "إضافة مصدر اختياري مشترك",
-    message: state.sharedElectiveGroups.map((source) => `${source.id}: ${source.name}`).join(" · "),
-    fields: [{ name: "sourceId", label: "معرّف المصدر", value: state.sharedElectiveGroups[0].id, dir: "ltr" }],
+    message: eligible.map((source) => `${source.id}: ${source.name}`).join(" · "),
+    fields: [{ name: "sourceId", label: "معرّف المصدر", value: eligible[0].id, dir: "ltr" }],
   });
   if (!values) return;
-  if (!state.sharedElectiveGroups.some((source) => source.id === values.sourceId)) return setStatus("معرّف المصدر غير موجود.", "error");
+  if (!eligible.some((source) => source.id === values.sourceId)) return setStatus("معرّف المصدر غير متاح لهذا التخصص.", "error");
   state.plan.electiveGroups.push({ sourceId: values.sourceId });
   changed(true);
 });
@@ -1481,7 +1673,7 @@ els.proposalEnabled.addEventListener("change", () => {
           id: semester.id,
           sourceSemesterId: semester.id,
           type: "regular",
-          courseOrder: semester.courses.map(entryCode),
+          courseOrder: semester.courses.map(entryId),
           placeholders: [],
         })),
       }
@@ -1527,7 +1719,7 @@ $("resetProposalButton").addEventListener("click", async () => {
     id: semester.id,
     sourceSemesterId: semester.id,
     type: "regular",
-    courseOrder: semester.courses.map(entryCode),
+    courseOrder: semester.courses.map(entryId),
     placeholders: structuredClone(placeholders.get(semester.id) ?? []),
   }));
   changed(true);
@@ -1549,7 +1741,7 @@ $("colorForm").addEventListener("submit", async (event) => {
 });
 $("globalSettingsForm").addEventListener("submit", async (event) => {
   event.preventDefault();
-  const result = await request("/api/settings", {
+  const result = await request(institutionApi("/settings"), {
     method: "PUT",
     body: JSON.stringify({ edition: $("globalEdition").value, release: $("globalRelease").value }),
   });
@@ -1579,7 +1771,7 @@ $("closeSharedElectiveSourceButton").addEventListener("click", () => {
 $("addSharedElectiveCourseButton").addEventListener("click", () => {
   const input = $("sharedElectiveCourseInput");
   const codes = parseCodes(input.value);
-  state.sharedElectiveDraft.courses.push(...codes.map((code) => ({ code })));
+  state.sharedElectiveDraft.courses.push(...codes.map((code) => newCourseEntry("sharedElective", 0, code)));
   input.value = "";
   sharedElectiveChanged(true);
 });

@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "id": "engineering-common",
+  "name": "المستويات الهندسية المشتركة",
+  "phaseLabel": "المستويات المشتركة",
+  "semesters": [
+    {
+      "id": "engineering-common-3",
+      "courses": [
+        {
+          "id": "shared:engineering-common:engineering-common-3:109-نجم",
+          "code": "109 نجم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-3:107-سلم",
+          "code": "107 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-3:107-ريض",
+          "code": "107 ريض",
+          "prerequisites": [
+            "101 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-3:106-ريض",
+          "code": "106 ريض",
+          "prerequisites": [
+            "101 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-3:104-هعم",
+          "code": "104 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-3:103-فيز",
+          "code": "103 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "engineering-common-4",
+      "courses": [
+        {
+          "id": "shared:engineering-common:engineering-common-4:203-هعم",
+          "code": "203 هعم",
+          "prerequisites": [
+            "101 كيم",
+            "101 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-4:203-ريض",
+          "code": "203 ريض",
+          "prerequisites": [
+            "106 ريض",
+            "107 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-4:201-هعم",
+          "code": "201 هعم",
+          "prerequisites": [
+            "106 ريض",
+            "107 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-4:110-نجم",
+          "code": "110 نجم",
+          "prerequisites": [
+            "109 نجم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-4:106-هعم",
+          "code": "106 هعم",
+          "prerequisites": [
+            "104 هعم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "shared:engineering-common:engineering-common-4:104-فيز",
+          "code": "104 فيز",
+          "prerequisites": [
+            "103 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "109 نجم": {
+      "name": "اللغة والتخاطب",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "107 سلم": {
+      "name": "اخلاقيات المهنة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "107 ريض": {
+      "name": "المتجهات والمصفوفات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "106 ريض": {
+      "name": "حساب التكامل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "104 هعم": {
+      "name": "اساسيات الرسم الهندسي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "103 فيز": {
+      "name": "فيزياء عامة (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "203 هعم": {
+      "name": "الهندسة والبيئة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "203 ريض": {
+      "name": "حساب التفاضل والتكامل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 هعم": {
+      "name": "الاستاتيكا",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "110 نجم": {
+      "name": "الكتابة التقنية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "106 هعم": {
+      "name": "مقدمة في التصميم الهندسي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "104 فيز": {
+      "name": "فيزياء عامه (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "scope": {
+    "type": "college",
+    "institutionId": "ksu",
+    "collegeId": "engineering"
+  }
+}

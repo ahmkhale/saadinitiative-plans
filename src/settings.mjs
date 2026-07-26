@@ -2,7 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { atomicWriteJson, projectRoot } from "./store.mjs";
 
-export const settingsPath = path.resolve(process.env.SAAD_PLANS_SETTINGS_PATH ?? path.join(projectRoot, "data", "settings.json"));
+export const settingsPath = path.resolve(
+  process.env.SAAD_PLANS_SETTINGS_PATH
+    ?? path.join(projectRoot, "institutions", "ksu", "settings.json"),
+);
 
 export function defaultSettings() {
   return { edition: "الطبعة الرابعة", release: "إصدار 472.1" };
@@ -22,4 +25,3 @@ export function saveSettings(input, filePath = settingsPath) {
   atomicWriteJson(filePath, settings);
   return settings;
 }
-

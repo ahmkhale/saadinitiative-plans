@@ -10,7 +10,7 @@ function fail(message) {
 const args = process.argv.slice(2);
 const planPath = args.find((arg) => !arg.startsWith("--") && /\.json$/iu.test(arg));
 if (!planPath) {
-  fail("Usage: npm run generate -- colleges/<college>/<major>/plan.json --catalog courses.json [--svg] [--png]");
+  fail("Usage: npm run generate -- institutions/<institution>/colleges/<college>/majors/<major>/plan.json [--svg] [--png]");
 } else {
   try {
     const result = generatePlan({

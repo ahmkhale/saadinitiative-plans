@@ -1,0 +1,2164 @@
+{
+  "schemaVersion": 1,
+  "id": "electrical-engineering",
+  "major": "هندسة كهربائية",
+  "degree": "البكالوريوس",
+  "expectedCredits": 127,
+  "sortCourses": "code",
+  "sharedSemesterSets": [
+    "cfy-science",
+    "engineering-common"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-5",
+      "courses": [
+        {
+          "id": "major:electrical-engineering:published-level-5:201-كهر",
+          "code": "201 كهر",
+          "prerequisites": [
+            "106 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-5:203-كهر",
+          "code": "203 كهر",
+          "prerequisites": [
+            "104 فيز",
+            "203 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-5:204-ريض",
+          "code": "204 ريض",
+          "prerequisites": [
+            "203 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-5:208-كهر",
+          "code": "208 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-5:210-كهر",
+          "code": "210 كهر",
+          "prerequisites": [],
+          "corequisites": [
+            "208 كهر"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-5:211-هعم",
+          "code": "211 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-6",
+      "courses": [
+        {
+          "id": "major:electrical-engineering:published-level-6:202-كهر",
+          "code": "202 كهر",
+          "prerequisites": [
+            "107 ريض",
+            "201 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-6:204-كهر",
+          "code": "204 كهر",
+          "prerequisites": [
+            "203 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-6:205-كهر",
+          "code": "205 كهر",
+          "prerequisites": [],
+          "corequisites": [
+            "202 كهر"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-6:301-كهر",
+          "code": "301 كهر",
+          "prerequisites": [
+            "201 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-6:310-كهر",
+          "code": "310 كهر",
+          "prerequisites": [
+            "201 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-6:312-كهر",
+          "code": "312 كهر",
+          "prerequisites": [],
+          "corequisites": [
+            "310 كهر"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-7",
+      "courses": [
+        {
+          "id": "major:electrical-engineering:published-level-7:254-ريض",
+          "code": "254 ريض",
+          "prerequisites": [
+            "107 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-7:302-كهر",
+          "code": "302 كهر",
+          "prerequisites": [
+            "301 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-7:320-كهر",
+          "code": "320 كهر",
+          "prerequisites": [
+            "301 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-7:330-كهر",
+          "code": "330 كهر",
+          "prerequisites": [
+            "202 كهر",
+            "203 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-7:340-كهر",
+          "code": "340 كهر",
+          "prerequisites": [
+            "202 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-7:351-كهر",
+          "code": "351 كهر",
+          "prerequisites": [
+            "301 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-7:356-كهر",
+          "code": "356 كهر",
+          "prerequisites": [],
+          "corequisites": [
+            "351 كهر"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-8",
+      "courses": [
+        {
+          "id": "major:electrical-engineering:published-level-8:353-كهر",
+          "code": "353 كهر",
+          "prerequisites": [
+            "208 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-8:357-كهر",
+          "code": "357 كهر",
+          "prerequisites": [],
+          "corequisites": [
+            "353 كهر"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-9",
+      "courses": [
+        {
+          "id": "major:electrical-engineering:published-level-9:403-هعم",
+          "code": "403 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-9:496-كهر",
+          "code": "496 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 129,
+          "prerequisiteConditions": [
+            "مستوى 7"
+          ],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-10",
+      "courses": [
+        {
+          "id": "major:electrical-engineering:published-level-10:402-هعم",
+          "code": "402 هعم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-10:497-كهر",
+          "code": "497 كهر",
+          "prerequisites": [
+            "496 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:published-level-10:999-كهر",
+          "code": "999 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 110,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "university-requirements",
+      "name": "متطلبات الجامعة",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:100-سلم",
+          "code": "100 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:100-قرا",
+          "code": "100 قرأ",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:101-سلم",
+          "code": "101 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:102-سلم",
+          "code": "102 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:103-سلم",
+          "code": "103 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:104-سلم",
+          "code": "104 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:105-سلم",
+          "code": "105 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:106-سلم",
+          "code": "106 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:108-سلم",
+          "code": "108 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:university-requirements:109-سلم",
+          "code": "109 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "laboratory-requirements",
+      "name": "متطلبات معامل",
+      "requiredHours": 3,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:electrical-engineering:elective:laboratory-requirements:402-كهر",
+          "code": "402 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:laboratory-requirements:406-كهر",
+          "code": "406 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:laboratory-requirements:421-كهر",
+          "code": "421 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:laboratory-requirements:433-كهر",
+          "code": "433 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:laboratory-requirements:445-كهر",
+          "code": "445 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:laboratory-requirements:457-كهر",
+          "code": "457 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:laboratory-requirements:459-كهر",
+          "code": "459 كهر",
+          "prerequisites": [
+            "458 كهر مرافق"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "department-requirements",
+      "name": "متطلبات القسم",
+      "requiredHours": 27,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:400-كهر",
+          "code": "400 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:403-كهر",
+          "code": "403 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:404-كهر",
+          "code": "404 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:405-كهر",
+          "code": "405 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:407-كهر",
+          "code": "407 كهر",
+          "prerequisites": [
+            "341 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:408-كهر",
+          "code": "408 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:409-كهر",
+          "code": "409 كهر",
+          "prerequisites": [
+            "310 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:410-كهر",
+          "code": "410 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:412-كهر",
+          "code": "412 كهر",
+          "prerequisites": [
+            "405 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:415-كهر",
+          "code": "415 كهر",
+          "prerequisites": [
+            "310 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:419-كهر",
+          "code": "419 كهر",
+          "prerequisites": [
+            "310 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:420-كهر",
+          "code": "420 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:422-كهر",
+          "code": "422 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:423-كهر",
+          "code": "423 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:425-كهر",
+          "code": "425 كهر",
+          "prerequisites": [
+            "341 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:426-كهر",
+          "code": "426 كهر",
+          "prerequisites": [
+            "204 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:430-كهر",
+          "code": "430 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:432-كهر",
+          "code": "432 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:435-كهر",
+          "code": "435 كهر",
+          "prerequisites": [
+            "330 كهر",
+            "432 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:436-كهر",
+          "code": "436 كهر",
+          "prerequisites": [
+            "330 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:441-كهر",
+          "code": "441 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:443-كهر",
+          "code": "443 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:444-كهر",
+          "code": "444 كهر",
+          "prerequisites": [
+            "340 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:446-كهر",
+          "code": "446 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:448-كهر",
+          "code": "448 كهر",
+          "prerequisites": [
+            "340 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:449-كهر",
+          "code": "449 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:450-كهر",
+          "code": "450 كهر",
+          "prerequisites": [
+            "357 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:453-كهر",
+          "code": "453 كهر",
+          "prerequisites": [
+            "357 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:454-كهر",
+          "code": "454 كهر",
+          "prerequisites": [
+            "453 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:456-كهر",
+          "code": "456 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:458-كهر",
+          "code": "458 كهر",
+          "prerequisites": [
+            "318 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:463-كهر",
+          "code": "463 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:464-كهر",
+          "code": "464 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:465-كهر",
+          "code": "465 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:466-كهر",
+          "code": "466 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:468-كهر",
+          "code": "468 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:469-كهر",
+          "code": "469 كهر",
+          "prerequisites": [
+            "204 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:470-كهر",
+          "code": "470 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:479-كهر",
+          "code": "479 كهر",
+          "prerequisites": [
+            "340 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:480-كهر",
+          "code": "480 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:481-كهر",
+          "code": "481 كهر",
+          "prerequisites": [
+            "357 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:482-كهر",
+          "code": "482 كهر",
+          "prerequisites": [
+            "320 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:483-كهر",
+          "code": "483 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:electrical-engineering:elective:department-requirements:998-كهر",
+          "code": "998 كهر",
+          "prerequisites": [
+            "إتمام 129 ساعة"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "free-requirements",
+      "name": "متطلبات حرة",
+      "requiredHours": 2,
+      "sortCourses": "code",
+      "courses": []
+    }
+  ],
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-science-cfy-science-1",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-1",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-1:100-انجل",
+          "shared:cfy-science:cfy-science-1:100-عرب",
+          "shared:cfy-science:cfy-science-1:101-احص",
+          "shared:cfy-science:cfy-science-1:101-ريد",
+          "shared:cfy-science:cfy-science-1:101-كيم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-science-cfy-science-2",
+        "sourceSemesterId": "shared-cfy-science-cfy-science-2",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-science:cfy-science-2:101-تقن",
+          "shared:cfy-science:cfy-science-2:101-ريض",
+          "shared:cfy-science:cfy-science-2:101-فجب",
+          "shared:cfy-science:cfy-science-2:101-نهج",
+          "shared:cfy-science:cfy-science-2:110-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-3",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-3",
+        "type": "regular",
+        "courseOrder": [
+          "shared:engineering-common:engineering-common-3:103-فيز",
+          "shared:engineering-common:engineering-common-3:104-هعم",
+          "shared:engineering-common:engineering-common-3:106-ريض",
+          "shared:engineering-common:engineering-common-3:107-ريض",
+          "shared:engineering-common:engineering-common-3:107-سلم",
+          "shared:engineering-common:engineering-common-3:109-نجم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-engineering-common-engineering-common-4",
+        "sourceSemesterId": "shared-engineering-common-engineering-common-4",
+        "type": "regular",
+        "courseOrder": [
+          "shared:engineering-common:engineering-common-4:104-فيز",
+          "shared:engineering-common:engineering-common-4:106-هعم",
+          "shared:engineering-common:engineering-common-4:110-نجم",
+          "shared:engineering-common:engineering-common-4:201-هعم",
+          "shared:engineering-common:engineering-common-4:203-ريض",
+          "shared:engineering-common:engineering-common-4:203-هعم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-5",
+        "sourceSemesterId": "published-level-5",
+        "type": "regular",
+        "courseOrder": [
+          "major:electrical-engineering:published-level-5:201-كهر",
+          "major:electrical-engineering:published-level-5:203-كهر",
+          "major:electrical-engineering:published-level-5:204-ريض",
+          "major:electrical-engineering:published-level-5:208-كهر",
+          "major:electrical-engineering:published-level-5:210-كهر",
+          "major:electrical-engineering:published-level-5:211-هعم"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-6",
+        "sourceSemesterId": "published-level-6",
+        "type": "regular",
+        "courseOrder": [
+          "major:electrical-engineering:published-level-6:202-كهر",
+          "major:electrical-engineering:published-level-6:204-كهر",
+          "major:electrical-engineering:published-level-6:205-كهر",
+          "major:electrical-engineering:published-level-6:301-كهر",
+          "major:electrical-engineering:published-level-6:310-كهر",
+          "major:electrical-engineering:published-level-6:312-كهر"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-6-1",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-7",
+        "sourceSemesterId": "published-level-7",
+        "type": "regular",
+        "courseOrder": [
+          "major:electrical-engineering:published-level-7:356-كهر",
+          "major:electrical-engineering:published-level-7:254-ريض",
+          "major:electrical-engineering:published-level-7:302-كهر",
+          "major:electrical-engineering:published-level-7:320-كهر",
+          "major:electrical-engineering:published-level-7:330-كهر",
+          "major:electrical-engineering:published-level-7:340-كهر",
+          "major:electrical-engineering:published-level-7:351-كهر"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-8",
+        "sourceSemesterId": "published-level-8",
+        "type": "regular",
+        "courseOrder": [
+          "major:electrical-engineering:published-level-8:353-كهر",
+          "major:electrical-engineering:published-level-8:357-كهر"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-8-1",
+            "name": "من متطلبات المعامل",
+            "academicHours": 1,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-8-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-8-3",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-8-4",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-8-5",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-9",
+        "sourceSemesterId": "published-level-9",
+        "type": "regular",
+        "courseOrder": [
+          "major:electrical-engineering:published-level-9:403-هعم",
+          "major:electrical-engineering:published-level-9:496-كهر"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-9-1",
+            "name": "من متطلبات المعامل",
+            "academicHours": 1,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-9-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-9-3",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-9-4",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-9-5",
+            "name": "من متطلبات الجامعة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "published-level-10",
+        "sourceSemesterId": "published-level-10",
+        "type": "regular",
+        "courseOrder": [
+          "major:electrical-engineering:published-level-10:402-هعم",
+          "major:electrical-engineering:published-level-10:497-كهر"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-10-1",
+            "name": "من متطلبات المعامل",
+            "academicHours": 1,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-2",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-3",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-4",
+            "name": "من متطلبات القسم",
+            "academicHours": 3,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          },
+          {
+            "id": "placeholder-10-5",
+            "name": "من المتطلبات الحرة",
+            "academicHours": 2,
+            "lectureHours": 0,
+            "exerciseHours": 0,
+            "practicalHours": 0
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-1",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "major:electrical-engineering:published-level-10:999-كهر"
+        ],
+        "placeholders": []
+      }
+    ]
+  },
+  "fallbackCourses": {
+    "201 كهر": {
+      "name": "اساسيات الدوائر الكهربائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "203 كهر": {
+      "name": "الكهرومغناطيسية الهندسية (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "204 ريض": {
+      "name": "المعادلات التفاضلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "208 كهر": {
+      "name": "التصميم المنطقي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "210 كهر": {
+      "name": "معمل التصميم المنطقي",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "211 هعم": {
+      "name": "برمجة الحاسوب بلغة ++C",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "202 كهر": {
+      "name": "تحليل الدوائر الكهربائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "204 كهر": {
+      "name": "الكهرومغناطيسية الهندسية (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "205 كهر": {
+      "name": "معمل الدوائر الكهربائية",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "301 كهر": {
+      "name": "تحليل الاشارات والنظم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "310 كهر": {
+      "name": "نبائط ودوائر الميكروالكترونيات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "312 كهر": {
+      "name": "معمل أساسيات الالكترونيات",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "254 ريض": {
+      "name": "الطرائق العددية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "302 كهر": {
+      "name": "معمل النمذجة والمحاكاة",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "320 كهر": {
+      "name": "مباديء الاتصالات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "330 كهر": {
+      "name": "التحويل الكهروميكانيكي للطاقة (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "340 كهر": {
+      "name": "مبادي أنظمة القوى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "351 كهر": {
+      "name": "التحكم الآلي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "356 كهر": {
+      "name": "معمل التحكم والقياسات",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "353 كهر": {
+      "name": "مقدمة في المعالجات الصغرى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "357 كهر": {
+      "name": "معمل المعالجات والحاكمات الصغرى",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "403 هعم": {
+      "name": "الاقتصاد الهندسي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "496 كهر": {
+      "name": "مشروع التخرج 1",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "402 هعم": {
+      "name": "ادارة المشاريع الهندسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "497 كهر": {
+      "name": "مشروع التخرج 2",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "999 كهر": {
+      "name": "تدريب عملي",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "100 سلم": {
+      "name": "دراسات في السيرة النبوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "100 قرأ": {
+      "name": "القرآن الكريم",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 سلم": {
+      "name": "أصول الثقافة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "102 سلم": {
+      "name": "الأسرة في الإسلام",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "103 سلم": {
+      "name": "النظام الاقتصادي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "104 سلم": {
+      "name": "النظام السياسي الإسلامي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "105 سلم": {
+      "name": "حقوق الإنسان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "106 سلم": {
+      "name": "الفقه الطبي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "108 سلم": {
+      "name": "قضايا معاصرة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 سلم": {
+      "name": "المرأة ودورها التنموي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "402 كهر": {
+      "name": "معمل الدوائر الالكترونية",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "406 كهر": {
+      "name": "معمل الدوائر المتكاملة ذات النطاق العالي جدا",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "421 كهر": {
+      "name": "معمل الاتصالات",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "433 كهر": {
+      "name": "معمل التحويل الكهروميكانيكي للطاقة",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "445 كهر": {
+      "name": "معمل القوى الكهربائية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "457 كهر": {
+      "name": "معمل تطبيقات التحكم",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "459 كهر": {
+      "name": "معمل التصميم المنطقي المتقدم",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "400 كهر": {
+      "name": "الدوائر الإلكترونية الرقمية والتماثلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "403 كهر": {
+      "name": "نبائط أشباه الموصلات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "404 كهر": {
+      "name": "الخلايا الشمسية والأنظمة الفوتوفولطائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "405 كهر": {
+      "name": "تصميم الدوائر المتكاملة ذات النطاق العالي جدا",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "407 كهر": {
+      "name": "الدوائر الإلكترونية للاتصالات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "408 كهر": {
+      "name": "تقنيات وتصنيع الدوائر المتكاملة ذات النطاق العالي جدا",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "409 كهر": {
+      "name": "إلكترونيات الأجهزة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "410 كهر": {
+      "name": "نبائط وأنظمة الألكترونيات الضوئية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "412 كهر": {
+      "name": "تصميم الدوائر المتكاملة ذات النطاق العالي جدًا منخفضة القدرة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "415 كهر": {
+      "name": "مبادئ النانوإلكترونيات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "419 كهر": {
+      "name": "مقدمة لأساليب الحرب الإلكترونية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "420 كهر": {
+      "name": "معالجة الإشارات الرقمية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "422 كهر": {
+      "name": "الاتصالات الرقمية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "423 كهر": {
+      "name": "انتشار الموجات والهوائيات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "425 كهر": {
+      "name": "اتصالات الأقمار الصناعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "426 كهر": {
+      "name": "هندسة الموجات الدقيقة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "430 كهر": {
+      "name": "التحويل الكهروميكانيكي للطاقة (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "432 كهر": {
+      "name": "الكترونيات القوى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "435 كهر": {
+      "name": "التحريك الكهربائي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "436 كهر": {
+      "name": "ديناميكية واستقرارية الآلات الكهربائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "441 كهر": {
+      "name": "تحليل أنظمة القوى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "443 كهر": {
+      "name": "التشغيل والتحكم في أنظمة القوى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "444 كهر": {
+      "name": "تخطيط أنظمة القوى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "446 كهر": {
+      "name": "هندسة الجهد العالي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "448 كهر": {
+      "name": "أنظمة توزيع الطاقة الكهربائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "449 كهر": {
+      "name": "حماية أنظمة القوى",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "450 كهر": {
+      "name": "بنية الحاسب وتنظيمه",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "453 كهر": {
+      "name": "تصميم نظم المعالجات المصغرة المبنية داخليًا",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "454 كهر": {
+      "name": "نظم التحكم المتقدمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "456 كهر": {
+      "name": "تطبيقات التحكم الآلي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "458 كهر": {
+      "name": "التصميم المنطقي المتقدم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "463 كهر": {
+      "name": "الاتصالات اللاسلكية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "464 كهر": {
+      "name": "الاتصالات الضوئية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "465 كهر": {
+      "name": "نظرية الاحتمالات وتطبيقاتها الهندسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "466 كهر": {
+      "name": "التشفير وأمن الشبكات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "468 كهر": {
+      "name": "موضوعات مختارة في الاتصالات ومعالجة الإشارات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "469 كهر": {
+      "name": "موضوعات مختارة في الكهرومغناطيسية الهندسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "470 كهر": {
+      "name": "هندسة الطاقة المتجددة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "479 كهر": {
+      "name": "موضوعات مختارة في هندسة القوى الكهربائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "480 كهر": {
+      "name": "مقدمة للذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "481 كهر": {
+      "name": "تصميم النظم ذات الزمن الحقيقي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "482 كهر": {
+      "name": "شبكات الاتصالات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "483 كهر": {
+      "name": "نظم التحكم الرقمية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "998 كهر": {
+      "name": "مشروع بحثي",
+      "academicHours": 0,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    }
+  }
+}

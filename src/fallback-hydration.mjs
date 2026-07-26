@@ -26,22 +26,19 @@ export function hydrateFallbackCourses(owner, catalog, options = {}) {
     const catalogFacts = catalog.get(courseCodeKey(code));
     if (!catalogFacts) continue;
     const current = structuredClone(fallbackCourses[code] ?? {});
-    const provenance = { ...(current._provenance ?? {}) };
+    const manuallyEditedFields = new Set(current.manuallyEditedFields ?? []);
     const normalizedCatalog = normalizeActivityFacts(catalogFacts).facts;
     let changed = false;
     for (const field of FALLBACK_FACT_FIELDS) {
-      const existingIsCatalog = provenance[field] === "catalog";
-      if (!isPresent(current[field]) || existingIsCatalog) {
+      if (!isPresent(current[field]) || !manuallyEditedFields.has(field)) {
         if (isPresent(normalizedCatalog[field])) {
           if (current[field] !== normalizedCatalog[field]) changed = true;
           current[field] = normalizedCatalog[field];
-          provenance[field] = "catalog";
         }
-      } else if (!provenance[field]) {
-        provenance[field] = "manual";
       }
     }
-    current._provenance = provenance;
+    current.source = current.source === "manual" && manuallyEditedFields.size ? "manual" : "catalog";
+    current.manuallyEditedFields = [...manuallyEditedFields];
     fallbackCourses[code] = current;
     if (changed || !owner.fallbackCourses?.[code]) diagnostics.push({ code, action: "created-or-refreshed" });
   }
@@ -58,8 +55,8 @@ export function refreshFallbackFromCatalog(owner, code, catalog) {
   result.fallbackCourses ??= {};
   result.fallbackCourses[normalizedCode] = {
     ...Object.fromEntries(FALLBACK_FACT_FIELDS.map((field) => [field, normalized[field] ?? null])),
-    _provenance: Object.fromEntries(FALLBACK_FACT_FIELDS.map((field) => [field, "catalog"])),
+    source: "catalog",
+    manuallyEditedFields: [],
   };
   return result;
 }
-

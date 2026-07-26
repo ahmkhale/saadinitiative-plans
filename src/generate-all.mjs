@@ -15,7 +15,7 @@ function walk(dir) {
 }
 
 const args = process.argv.slice(2);
-const root = path.resolve(args.find((arg) => !arg.startsWith("--")) ?? "colleges");
+const root = path.resolve(args.find((arg) => !arg.startsWith("--")) ?? "institutions");
 const catalogPath = flagValue(args, "--catalog");
 const outputRoot = path.resolve(flagValue(args, "--output-dir") ?? "dist");
 if (!fs.existsSync(root)) {

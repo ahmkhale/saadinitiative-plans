@@ -63,6 +63,7 @@ test("shared elective edits propagate and referenced sources cannot be deleted",
       requiredHours: 8,
       courses: ["100 سلم"],
       fallbackCourses: { "100 سلم": facts("السيرة") },
+      scope: { type: "institution", institutionId: "test" },
     });
     assert.throws(() => store.remove("university"), /used by 1 major/u);
     store.save({ ...store.get("university"), name: "متطلبات الجامعة المحدثة" }, "university");
@@ -88,4 +89,3 @@ test("activity normalization is applied to direct and aggregated catalog facts",
   ]).values().next().value;
   assert.deepEqual([aggregated.lectureHours, aggregated.exerciseHours, aggregated.practicalHours], [0, 0, 2]);
 });
-

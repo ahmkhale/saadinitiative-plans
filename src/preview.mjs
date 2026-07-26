@@ -1,38 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
-import { createDiagnostics, addDiagnostic, hasErrors } from "./diagnostics.mjs";
+import { createDiagnostics, addDiagnostic } from "./diagnostics.mjs";
 import { exportSvg } from "./exporter.mjs";
 import { writeJson } from "./io.mjs";
 import { safeSlug } from "./normalize.mjs";
-import { normalizePlanInput, validatePlanShape } from "./plan-input.mjs";
-import { renderPlanDocumentSvg } from "./render-svg.mjs";
-import { resolvePlan } from "./resolve.mjs";
-import { defaultCatalogService } from "./catalog-service.mjs";
-import { composeSharedSemesterSets, loadSharedSemesterSets } from "./shared-semester-sets.mjs";
-import { composeSharedElectiveGroups, loadSharedElectiveGroups } from "./shared-elective-groups.mjs";
-import { readSettings } from "./settings.mjs";
+import { executePlanPipeline } from "./application/plan-pipeline.mjs";
 
 export function resolveDraft(rawPlan, options = {}) {
-  const service = options.catalogService ?? defaultCatalogService;
-  const diagnostics = createDiagnostics(null, service.malePath);
-  let normalized;
   try {
-    normalized = normalizePlanInput(structuredClone(rawPlan));
-    validatePlanShape(normalized);
+    return executePlanPipeline(rawPlan, options);
   } catch (error) {
+    const diagnostics = createDiagnostics(null, options.catalogService?.malePath ?? null);
     addDiagnostic(diagnostics, "errors", "INVALID_PLAN", error.message);
     return { ok: false, plan: null, diagnostics, document: null };
   }
-  const catalog = service.snapshot();
-  const semestersComposed = composeSharedSemesterSets(normalized, options.sharedSemesterSets ?? loadSharedSemesterSets(), diagnostics);
-  const composed = composeSharedElectiveGroups(
-    semestersComposed,
-    options.sharedElectiveGroups ?? loadSharedElectiveGroups(),
-    diagnostics,
-  );
-  const plan = resolvePlan(composed, catalog.catalog, catalog.colors, diagnostics, { settings: options.settings ?? readSettings() });
-  const document = hasErrors(diagnostics) ? null : renderPlanDocumentSvg(plan);
-  return { ok: !hasErrors(diagnostics), plan, diagnostics, document };
 }
 
 export function renderDraftPreview(rawPlan, options = {}) {

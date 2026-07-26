@@ -53,16 +53,22 @@ test("college and major CRUD persists valid plans atomically", () => {
     assert.equal(savedPlan.edition, undefined);
     assert.equal(savedPlan.release, undefined);
     assert.equal(savedPlan.version, undefined);
-    assert.equal(savedPlan.fallbackCourses, undefined);
+    assert.deepEqual(savedPlan.fallbackCourses["100 سلم"], {
+      name: "دراسات في السيرة النبوية",
+      academicHours: 2,
+      lectureHours: 2,
+      exerciseHours: 0,
+      practicalHours: 0,
+      source: "manual",
+      manuallyEditedFields: ["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"],
+    });
     assert.deepEqual(savedPlan.semesters[0].courses[0], {
+      id: "major:information-systems:published-level-1:100-سلم",
       code: "100 سلم",
-      fallbackName: "دراسات في السيرة النبوية",
-      fallbackCreditHours: 2,
-      fallbackLectureHours: 2,
-      fallbackExerciseHours: 0,
-      fallbackPracticalHours: 0,
       prerequisites: [],
-      requirement: "required",
+      corequisites: [],
+      minimumCompletedCredits: null,
+      prerequisiteConditions: [],
       trackSpecific: false,
     });
 
@@ -76,7 +82,7 @@ test("college and major CRUD persists valid plans atomically", () => {
       /already exists/u,
     );
 
-    const temporaryFiles = fs.readdirSync(path.join(root, "computer-science", "information-systems"))
+    const temporaryFiles = fs.readdirSync(path.join(root, "computer-science", "majors", "information-systems"))
       .filter((name) => name.endsWith(".tmp"));
     assert.deepEqual(temporaryFiles, []);
 

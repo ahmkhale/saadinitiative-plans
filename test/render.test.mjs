@@ -12,9 +12,10 @@ import {
   semesterBodyHeight,
 } from "../src/render-layout.mjs";
 import { courseNameFit, measureText, prerequisiteFit } from "../src/text-measure.mjs";
+import { formatCourseRequirementLabel } from "../src/domain/course-requirements.mjs";
 
 function course(overrides = {}) {
-  return {
+  const value = {
     code: "101 كهر",
     name: "مقدمة",
     academicHours: 3,
@@ -31,6 +32,7 @@ function course(overrides = {}) {
     isExtinct: false,
     ...overrides,
   };
+  return { ...value, requirementLabel: formatCourseRequirementLabel(value) };
 }
 
 function semester(overrides = {}) {
@@ -117,6 +119,8 @@ test("renders exact card markers, metric boxes, prerequisite pill, and six-card 
   });
   assert.equal((svg.match(/data-component="course-card"/gu) ?? []).length, 6);
   assert.equal((svg.match(/data-part="metric-box"/gu) ?? []).length, 18);
+  assert.equal((svg.match(/data-part="metric-outline"/gu) ?? []).length, 6);
+  assert.match(svg, /data-part="metric-outline"[^>]+x="23"[^>]+y="42"[^>]+width="30"[^>]+height="7"[^>]+fill="none"/);
   assert.match(svg, /translate\(33\.75701904296875 102\)/);
   assert.match(svg, /data-part="parent-marker" cx="5" cy="10" r="4"/);
   assert.match(svg, /data-part="track-marker" cx="5" cy="45" r="4"/);

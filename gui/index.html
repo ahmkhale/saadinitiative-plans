@@ -29,6 +29,17 @@
     <aside class="sidebar">
       <section>
         <div class="section-title">
+          <h2>الجامعات</h2>
+          <div class="menu-actions">
+            <button id="editInstitutionButton" class="icon-button" type="button" aria-label="تعديل الجامعة">✎</button>
+            <button id="deleteInstitutionButton" class="icon-button danger" type="button" aria-label="حذف الجامعة">×</button>
+            <button id="addInstitutionButton" class="icon-button" type="button" aria-label="إضافة جامعة">+</button>
+          </div>
+        </div>
+        <div id="institutionList" class="nav-list empty-list">لم تُضف جامعة بعد.</div>
+      </section>
+      <section>
+        <div class="section-title">
           <h2>الكليات</h2>
           <div class="menu-actions">
             <button id="editCollegeButton" class="icon-button" type="button" aria-label="تعديل الكلية">✎</button>
@@ -178,6 +189,14 @@
               <label>اسم الخطة المشتركة<input id="sharedSetName" required></label>
               <label>المعرّف الثابت<input id="sharedSetId" dir="ltr" required></label>
               <label>اسم المرحلة<input id="sharedSetPhase" value="السنة التحضيرية" required></label>
+              <label>نطاق المصدر
+                <select id="sharedSetScopeType">
+                  <option value="institution">الجامعة</option>
+                  <option value="college">كلية محددة</option>
+                  <option value="majors">تخصصات محددة</option>
+                </select>
+              </label>
+              <label>معرّفات النطاق<input id="sharedSetScopeTarget" dir="ltr" placeholder="engineering أو major-a, major-b"></label>
             </div>
             <div class="section-heading main-heading">
               <div><p class="eyebrow">تُعرّف مرة واحدة</p><h2>المستويات المشتركة</h2></div>
@@ -204,6 +223,14 @@
               <label>اسم المجموعة<input id="sharedElectiveSourceName" required></label>
               <label>المعرّف الثابت<input id="sharedElectiveSourceId" dir="ltr" required></label>
               <label>الساعات المطلوبة<input id="sharedElectiveSourceHours" type="number" min="0" required></label>
+              <label>نطاق المصدر
+                <select id="sharedElectiveScopeType">
+                  <option value="institution">الجامعة</option>
+                  <option value="college">كلية محددة</option>
+                  <option value="majors">تخصصات محددة</option>
+                </select>
+              </label>
+              <label>معرّفات النطاق<input id="sharedElectiveScopeTarget" dir="ltr" placeholder="engineering أو major-a, major-b"></label>
             </div>
             <div class="course-adder">
               <input id="sharedElectiveCourseInput" list="courseSuggestions" placeholder="أدخل رمز مقرر">

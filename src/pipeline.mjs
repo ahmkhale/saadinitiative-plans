@@ -1,18 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildCourseCatalog } from "./catalog.mjs";
-import { createDiagnostics, hasErrors } from "./diagnostics.mjs";
+import { createDiagnostics } from "./diagnostics.mjs";
 import { exportSvg } from "./exporter.mjs";
 import { readJson, writeJson, writeText } from "./io.mjs";
-import { normalizePlanInput, validatePlanShape } from "./plan-input.mjs";
-import { renderPlanDocumentSvg } from "./render-svg.mjs";
-import { resolvePlan } from "./resolve.mjs";
 import { safeSlug } from "./normalize.mjs";
-import { composeSharedSemesterSets, loadSharedSemesterSets } from "./shared-semester-sets.mjs";
-import { composeSharedElectiveGroups, loadSharedElectiveGroups } from "./shared-elective-groups.mjs";
-import { readSettings } from "./settings.mjs";
 import { defaultCatalogService } from "./catalog-service.mjs";
+import { executePlanPipeline } from "./application/plan-pipeline.mjs";
+import { metadataForPlanPath } from "./infrastructure/repositories/institution-repository.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(path.dirname(thisFile), "..");
@@ -34,33 +29,36 @@ export function outputPaths(plan, options = {}) {
 
 export function generatePlan(options) {
   const rawPlan = readJson(options.planPath);
-  const plan = normalizePlanInput(rawPlan);
-  validatePlanShape(plan);
   const rawCatalog = options.catalogPath ? readJson(options.catalogPath) : null;
-  const catalogState = options.catalogPath ? null : defaultCatalogService.snapshot();
-  const catalog = options.catalogPath ? buildCourseCatalog(rawCatalog) : catalogState.catalog;
   const colorsPath = options.colorsPath ?? path.join(projectRoot, "data", "course-colors.json");
   const colors = options.colorsPath || options.catalogPath
     ? (fs.existsSync(colorsPath) ? readJson(colorsPath) : { عام: "#616161" })
-    : catalogState.colors;
+    : undefined;
   const diagnostics = createDiagnostics(path.resolve(options.planPath), options.catalogPath ? path.resolve(options.catalogPath) : null);
-  const semestersComposed = composeSharedSemesterSets(plan, loadSharedSemesterSets(options.sharedSetsRoot), diagnostics);
-  const composed = composeSharedElectiveGroups(
-    semestersComposed,
-    loadSharedElectiveGroups(options.sharedElectivesRoot),
+  const repositoryMetadata = metadataForPlanPath(options.planPath);
+  const result = executePlanPipeline(rawPlan, {
+    catalogService: defaultCatalogService,
+    rawCatalog,
+    colors,
     diagnostics,
-  );
-  const resolved = resolvePlan(composed, catalog, colors, diagnostics, { settings: readSettings(options.settingsPath) });
+    planPath: options.planPath,
+    metadata: repositoryMetadata,
+    sharedSetsRoot: options.sharedSetsRoot ?? repositoryMetadata.sharedSetsRoot,
+    sharedElectivesRoot: options.sharedElectivesRoot ?? repositoryMetadata.sharedElectivesRoot,
+    settingsPath: options.settingsPath ?? repositoryMetadata.settingsPath,
+  });
+  const resolved = result.plan;
   const paths = outputPaths(resolved, options);
   writeJson(paths.resolvedPath, resolved);
   writeJson(paths.diagnosticsPath, diagnostics);
-  if (hasErrors(diagnostics) && !options.allowErrors) {
+  if (!result.ok && !options.allowErrors) {
     const error = new Error(`Generation stopped with ${diagnostics.summary.errors} error(s). See ${paths.diagnosticsPath}`);
     error.paths = paths;
     error.diagnostics = diagnostics;
     throw error;
   }
-  const document = renderPlanDocumentSvg(resolved);
+  const document = result.document;
+  if (!document) throw new Error("Cannot render a plan with blocking diagnostics.");
   if (options.svgOnly) {
     writeText(paths.svgPath, document.svg);
   } else {

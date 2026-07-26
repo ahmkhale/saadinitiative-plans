@@ -4,10 +4,11 @@ import { addDiagnostic } from "./diagnostics.mjs";
 import { hydrateFallbackCourses } from "./fallback-hydration.mjs";
 import { normalizeCourseCode, numericValue } from "./normalize.mjs";
 import { assertSafeId, atomicWriteJson, projectRoot } from "./store.mjs";
+import { normalizeSharedScope } from "./domain/shared-scope.mjs";
 
 export const sharedElectiveGroupsRoot = path.resolve(
   process.env.SAAD_PLANS_SHARED_ELECTIVES_DIR
-    ?? path.join(projectRoot, "data", "shared-elective-groups"),
+    ?? path.join(projectRoot, "institutions", "ksu", "shared-elective-sources"),
 );
 
 function fileFor(root, id) {
@@ -30,6 +31,7 @@ function cleanSource(input, forcedId = null) {
       return { ...entry, code: normalizeCourseCode(entry.code) };
     }),
     fallbackCourses: structuredClone(input?.fallbackCourses ?? {}),
+    scope: normalizeSharedScope(input?.scope),
   };
 }
 
@@ -46,6 +48,7 @@ export function loadSharedElectiveGroups(root = sharedElectiveGroupsRoot) {
 
 export function composeSharedElectiveGroups(plan, sources, diagnostics) {
   const result = structuredClone(plan);
+  const inheritedFallbacks = {};
   result.electiveGroups = (result.electiveGroups ?? []).flatMap((group, index) => {
     if (!group?.sourceId) return [group];
     const source = sources.get(group.sourceId);
@@ -56,6 +59,7 @@ export function composeSharedElectiveGroups(plan, sources, diagnostics) {
       });
       return [];
     }
+    Object.assign(inheritedFallbacks, structuredClone(source.fallbackCourses ?? {}));
     return [{
       sourceId: source.id,
       sharedSource: true,
@@ -64,12 +68,14 @@ export function composeSharedElectiveGroups(plan, sources, diagnostics) {
       originalRequiredHours: source.requiredHours,
       sortCourses: "code",
       courses: source.courses.map((entry) => {
-        const normalized = typeof entry === "string" ? { code: entry } : structuredClone(entry);
-        const fallback = source.fallbackCourses?.[normalized.code];
-        return fallback ? { ...normalized, fallback: structuredClone(fallback) } : normalized;
+        return typeof entry === "string" ? { code: entry } : structuredClone(entry);
       }),
     }];
   });
+  result.fallbackCourses = {
+    ...inheritedFallbacks,
+    ...(result.fallbackCourses ?? {}),
+  };
   return result;
 }
 
@@ -133,4 +139,3 @@ export function createSharedElectiveGroupStore(options = {}) {
 
   return { root, list, get, create, save, duplicate, remove, usages, load: () => loadSharedElectiveGroups(root) };
 }
-
