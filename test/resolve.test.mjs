@@ -40,7 +40,7 @@ test("same-semester prerequisite becomes a corequisite automatically", () => {
     major: "اختبار",
     semesters: [{ courses: ["101 ريض", "102 كهر"] }],
     fallbackCourses: {
-      "101 ريض": { name: "رياضيات", academicHours: 3 },
+      "101 ريض": { name: "رياضيات", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 },
       "102 كهر": { name: "كهرباء", academicHours: 3, prerequisites: ["101 ريض"] },
     },
   });
@@ -96,7 +96,7 @@ test("catalog rows without prerequisite metadata preserve the plan fallback grap
       { courses: ["201 كهر"] },
     ],
     fallbackCourses: {
-      "101 ريض": { name: "رياضيات", academicHours: 3 },
+      "101 ريض": { name: "رياضيات", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 },
       "201 كهر": { name: "دوائر", academicHours: 3, prerequisites: ["101 ريض"] },
     },
   });
@@ -126,7 +126,7 @@ test("resolves a proposed page with unique black placeholders and a summer total
     major: "اختبار",
     semesters: [{ courses: ["101 ريض"] }],
     fallbackCourses: {
-      "101 ريض": { name: "رياضيات", academicHours: 3 },
+      "101 ريض": { name: "رياضيات", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 },
     },
     proposal: {
       title: "الخطة المقترحة",
@@ -153,6 +153,9 @@ test("reports fixed-card overflow instead of silently shrinking the Figma layout
     {
       name: index === 0 ? longName : `مقرر ${index + 1}`,
       academicHours: 3,
+      lectureHours: 0,
+      exerciseHours: 0,
+      practicalHours: 0,
     },
   ]));
   const plan = normalizePlanInput({
@@ -168,4 +171,134 @@ test("reports fixed-card overflow instead of silently shrinking the Figma layout
   assert.equal(diagnostics.summary.errors, 1);
   assert.ok(diagnostics.items.some((item) => item.code === "SEMESTER_CARD_OVERFLOW"));
   assert.ok(diagnostics.items.some((item) => item.code === "COURSE_NAME_OVERFLOW"));
+});
+
+test("first-class plan rules override legacy catalog rules and keep manual zero hours", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "قواعد الخطة",
+    semesters: [{
+      courses: [
+        "101 عال",
+        {
+          code: "201 عال",
+          prerequisites: ["101 عال"],
+          corequisites: ["202 عال"],
+          minimumCompletedCredits: 60,
+          trackSpecific: true,
+        },
+        "202 عال",
+        "999 جدد",
+      ],
+    }],
+    fallbackCourses: {
+      "999 جدد": {
+        name: "مقرر جديد",
+        academicHours: 3,
+        lectureHours: 2,
+        exerciseHours: 0,
+        practicalHours: 2,
+      },
+    },
+  });
+  const catalog = buildCourseCatalog([
+    { code: "101 عال", name: "مبادئ", academicHours: 3, lectureHours: 3, exerciseHours: 0, practicalHours: 0 },
+    { code: "201 عال", name: "متقدم", academicHours: 3, lectureHours: 3, exerciseHours: 0, practicalHours: 0 },
+    { code: "202 عال", name: "مختبر", academicHours: 1, lectureHours: 0, exerciseHours: 0, practicalHours: 2 },
+  ], { catalogSource: "male" });
+  const diagnostics = createDiagnostics();
+  const resolved = resolvePlan(plan, catalog, colors, diagnostics);
+  const advanced = resolved.semesters[0].courses.find((course) => course.code === "201 عال");
+  const manual = resolved.semesters[0].courses.find((course) => course.code === "999 جدد");
+  assert.deepEqual(advanced.corequisites.sort(), ["101 عال", "202 عال"]);
+  assert.equal(advanced.minimumCompletedCredits, 60);
+  assert.equal(advanced.isTrackSpecific, true);
+  assert.equal(advanced.catalogSource, "male");
+  assert.equal(manual.catalogSource, "manual");
+  assert.equal(manual.exerciseHours, 0);
+  assert.equal(manual.sourceBadge, "مدخل يدويًا");
+  assert.equal(diagnostics.summary.errors, 0);
+});
+
+test("proposal arrangement must contain every published course exactly once", () => {
+  const base = normalizePlanInput({
+    schemaVersion: 1,
+    major: "مقترح",
+    semesters: [
+      { name: "الأول", courses: ["101 عال", "102 عال"] },
+      { name: "الثاني", courses: ["201 عال"] },
+    ],
+    fallbackCourses: Object.fromEntries(["101 عال", "102 عال", "201 عال"].map((code) => [code, {
+      name: code,
+      academicHours: 3,
+      lectureHours: 3,
+      exerciseHours: 0,
+      practicalHours: 0,
+    }])),
+    proposal: {
+      semesters: [
+        { id: "one", name: "الأول", courseOrder: ["201 عال", "101 عال"], placeholders: [] },
+        { id: "two", name: "الثاني", courseOrder: ["102 عال"], placeholders: [{ id: "p", name: "نائب", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }] },
+      ],
+    },
+  });
+  const validDiagnostics = createDiagnostics();
+  const valid = resolvePlan(base, new Map(), colors, validDiagnostics);
+  assert.equal(validDiagnostics.summary.errors, 0);
+  assert.deepEqual(valid.proposal.semesters[0].courses.filter((course) => !course.isPlaceholder).map((course) => course.code), ["201 عال", "101 عال"]);
+  assert.equal(valid.proposal.semesters[1].courses.at(-1).isPlaceholder, true);
+
+  const invalid = structuredClone(base);
+  invalid.proposal.semesters[0].courseOrder.push("101 عال", "999 عال");
+  invalid.proposal.semesters[1].courseOrder = [];
+  const invalidDiagnostics = createDiagnostics();
+  resolvePlan(invalid, new Map(), colors, invalidDiagnostics);
+  assert.ok(invalidDiagnostics.items.some((item) => item.code === "PROPOSAL_DUPLICATE_REAL_COURSE"));
+  assert.ok(invalidDiagnostics.items.some((item) => item.code === "PROPOSAL_MISSING_REAL_COURSE"));
+  assert.ok(invalidDiagnostics.items.some((item) => item.code === "PROPOSAL_UNKNOWN_REAL_COURSE"));
+});
+
+test("elective requirements accept hours or custom text but not both", () => {
+  const facts = { name: "اختياري", academicHours: 3, lectureHours: 3, exerciseHours: 0, practicalHours: 0 };
+  const valid = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختياري",
+    semesters: [{ courses: [] }],
+    electiveGroups: [
+      { name: "بالساعات", requiredHours: 8, courses: ["101 حر"] },
+      { name: "بالنص", requirementText: "غير متطلب للتخرج", courses: ["102 حر"] },
+    ],
+    fallbackCourses: { "101 حر": facts, "102 حر": facts },
+  });
+  const diagnostics = createDiagnostics();
+  const resolved = resolvePlan(valid, new Map(), colors, diagnostics);
+  assert.equal(resolved.electiveGroups[0].requiredHours, 8);
+  assert.equal(resolved.electiveGroups[1].requirementText, "غير متطلب للتخرج");
+  assert.equal(diagnostics.summary.errors, 0);
+});
+
+test("plans inherit shared edition and release settings", () => {
+  const plan = normalizePlanInput({ schemaVersion: 1, major: "إعدادات", semesters: [{ courses: [] }] });
+  const resolved = resolvePlan(plan, new Map(), colors, createDiagnostics(), {
+    settings: { edition: "الطبعة الخامسة", release: "إصدار 500" },
+  });
+  assert.equal(resolved.edition, "الطبعة الخامسة");
+  assert.equal(resolved.release, "إصدار 500");
+  assert.equal(plan.edition, undefined);
+  assert.equal(plan.release, undefined);
+});
+
+test("manual course facts require every hour field while preserving explicit zero", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "يدوي",
+    semesters: [{ courses: ["999 جدد"] }],
+    fallbackCourses: {
+      "999 جدد": { name: "مقرر جديد", academicHours: 3, lectureHours: 2, exerciseHours: 0 },
+    },
+  });
+  const diagnostics = createDiagnostics();
+  resolvePlan(plan, new Map(), colors, diagnostics);
+  const item = diagnostics.items.find((diagnostic) => diagnostic.code === "INCOMPLETE_MANUAL_COURSE");
+  assert.deepEqual(item.missing, ["practicalHours"]);
 });

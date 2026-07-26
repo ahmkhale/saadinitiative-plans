@@ -34,10 +34,16 @@ function websiteCourseToEntry(course) {
 function normalizeStandaloneCourse(entry) {
   if (typeof entry === "string") return { code: normalizeCourseCode(entry) };
   if (!entry || typeof entry !== "object") throw new Error("Every course must be a code string or object.");
-  return {
+  const normalized = {
     ...entry,
     code: normalizeCourseCode(entry.code),
   };
+  for (const field of ["prerequisites", "corequisites", "minimumCompletedCredits", "trackSpecific"]) {
+    if (normalized[field] === undefined && normalized.override?.[field] !== undefined) {
+      normalized[field] = structuredClone(normalized.override[field]);
+    }
+  }
+  return normalized;
 }
 
 function normalizeElectiveGroups(groups = []) {
@@ -45,8 +51,11 @@ function normalizeElectiveGroups(groups = []) {
     ...group,
     id: group.id ?? `elective-group-${index + 1}`,
     name: group.name ?? `مجموعة اختيارية ${index + 1}`,
-    requiredHours: group.requiredHours ?? group.requiredCreditHours ?? group.expectedCredits ?? 0,
-    sortCourses: group.sortCourses ?? "input",
+    requiredHours: group.requirementText === undefined
+      ? group.requiredHours ?? group.requiredCreditHours ?? group.expectedCredits ?? 0
+      : undefined,
+    requirementText: group.requirementText,
+    sortCourses: group.sortCourses ?? "code",
     courses: (group.courses ?? []).map(normalizeStandaloneCourse),
   }));
 }
@@ -62,12 +71,44 @@ function normalizeSemesters(semesters = []) {
 
 function normalizeProposal(proposal) {
   if (!proposal || typeof proposal !== "object") return null;
+  const semesters = (proposal.semesters ?? []).map((semester, index) => {
+    if (Array.isArray(semester.courseOrder) || Array.isArray(semester.placeholders)) {
+      return {
+        ...semester,
+        id: semester.id ?? `level-${index + 1}`,
+        number: semester.number ?? index + 1,
+        name: semester.name ?? levelName(semester.number ?? index + 1),
+        courseOrder: (semester.courseOrder ?? []).map(normalizeCourseCode),
+        placeholders: (semester.placeholders ?? []).map((placeholder, placeholderIndex) => ({
+          ...placeholder,
+          id: placeholder.id ?? `placeholder-${index + 1}-${placeholderIndex + 1}`,
+        })),
+      };
+    }
+    const entries = (semester.courses ?? []).map(normalizeStandaloneCourse);
+    return {
+      ...semester,
+      id: semester.id ?? `level-${index + 1}`,
+      number: semester.number ?? index + 1,
+      name: semester.name ?? levelName(semester.number ?? index + 1),
+      courseOrder: entries.filter((entry) => entry.kind !== "placeholder").map((entry) => entry.code),
+      placeholders: entries.filter((entry) => entry.kind === "placeholder").map((entry, placeholderIndex) => ({
+        id: `placeholder-${index + 1}-${placeholderIndex + 1}`,
+        name: entry.fallback?.name ?? "مقرر نائب",
+        academicHours: entry.fallback?.academicHours,
+        lectureHours: entry.fallback?.lectureHours,
+        exerciseHours: entry.fallback?.exerciseHours,
+        practicalHours: entry.fallback?.practicalHours,
+        color: entry.fallback?.color ?? "#000000",
+      })),
+    };
+  });
   return {
     ...proposal,
     title: proposal.title ?? "الخطة المقترحة",
     expectedCredits: proposal.expectedCredits ?? proposal.credits,
     phases: proposal.phases,
-    semesters: normalizeSemesters(proposal.semesters ?? []),
+    semesters,
   };
 }
 
@@ -186,10 +227,11 @@ export function normalizePlanInput(raw, options = {}) {
     release: value.release,
     headerSubtitle: value.headerSubtitle,
     expectedCredits: value.expectedCredits ?? value.credits,
-    sortCourses: value.sortCourses ?? "input",
+    sortCourses: value.sortCourses ?? "code",
     courseColors: value.courseColors ?? {},
     fallbackCourses: value.fallbackCourses ?? {},
     phases: value.phases,
+    sharedSemesterSets: value.sharedSemesterSets ?? [],
     footer: value.footer,
     semesters,
     electiveGroups: normalizeElectiveGroups(value.electiveGroups ?? value.requirementGroups ?? []),
@@ -214,16 +256,17 @@ export function validatePlanShape(plan) {
     for (const [courseIndex, course] of (group.courses ?? []).entries()) {
       if (!course.code) errors.push(`electiveGroups[${groupIndex}].courses[${courseIndex}] has no code.`);
     }
+    const hasHours = numericValue(group.requiredHours) !== null;
+    const hasText = Boolean(String(group.requirementText ?? "").trim());
+    if (hasHours === hasText) errors.push(`electiveGroups[${groupIndex}] must define exactly one of requiredHours or requirementText.`);
   }
   if (plan.proposal) {
     if (!Array.isArray(plan.proposal.semesters) || plan.proposal.semesters.length === 0) {
       errors.push("proposal.semesters must contain at least one semester.");
     }
     for (const [semesterIndex, semester] of (plan.proposal.semesters ?? []).entries()) {
-      if (!Array.isArray(semester.courses)) errors.push(`proposal.semesters[${semesterIndex}].courses must be an array.`);
-      for (const [courseIndex, course] of (semester.courses ?? []).entries()) {
-        if (!course.code) errors.push(`proposal.semesters[${semesterIndex}].courses[${courseIndex}] has no code.`);
-      }
+      if (!Array.isArray(semester.courseOrder)) errors.push(`proposal.semesters[${semesterIndex}].courseOrder must be an array.`);
+      if (!Array.isArray(semester.placeholders)) errors.push(`proposal.semesters[${semesterIndex}].placeholders must be an array.`);
     }
   }
   if (errors.length) throw new Error(`Invalid plan:\n- ${errors.join("\n- ")}`);

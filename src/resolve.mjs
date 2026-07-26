@@ -117,6 +117,9 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     const catalogFacts = isPlaceholder || entry.forceFallback ? {} : compactFacts(catalog.get(key) ?? {});
     const override = compactFacts(entry.override ?? {});
     const facts = mergeFacts(fallback, catalogFacts, override, {
+      prerequisites: entry.prerequisites,
+      corequisites: entry.corequisites,
+      minimumCompletedCredits: entry.minimumCompletedCredits,
       requirement: entry.requirement,
       trackSpecific: entry.trackSpecific,
       extinct: entry.extinct,
@@ -124,13 +127,38 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     const usedCatalog = Object.keys(catalogFacts).length > 0;
     const usedFallback = !usedCatalog && Object.keys(fallback).length > 0;
 
+    const manualMissing = usedFallback && !isPlaceholder
+      ? ["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"]
+        .filter((field) => field === "name" ? !facts.name : numericValue(facts[field]) === null)
+      : [];
     if (!facts.name || numericValue(facts.academicHours) === null) {
       addDiagnostic(diagnostics, "errors", "UNRESOLVED_COURSE", `${code} is missing required facts in both courses.json and plan fallback.`, {
         course: code,
         missing: [!facts.name ? "name" : null, numericValue(facts.academicHours) === null ? "academicHours" : null].filter(Boolean),
+        location: context.location,
+      });
+    } else if (manualMissing.length) {
+      addDiagnostic(diagnostics, "errors", "INCOMPLETE_MANUAL_COURSE", `${code} has incomplete manual course facts.`, {
+        course: code,
+        missing: manualMissing,
+        location: context.location,
       });
     } else if (usedFallback && !isPlaceholder) {
       addDiagnostic(diagnostics, "info", "FALLBACK_USED", `${code} was not found in courses.json; plan fallback was used.`, { course: code });
+    }
+    const rawCatalog = catalog.get(key);
+    if (rawCatalog?.conflicts?.length) {
+      addDiagnostic(diagnostics, "warnings", "CONFLICTING_CATALOG_FACTS", `${code} has conflicting section-derived facts that need review.`, {
+        course: code,
+        conflicts: rawCatalog.conflicts,
+        location: context.location,
+      });
+    }
+    if (usedCatalog && fallbacks.has(key)) {
+      addDiagnostic(diagnostics, "info", "MANUAL_CATALOG_AVAILABLE", `${code} now exists in the section data; the manual definition was preserved for comparison.`, {
+        course: code,
+        location: context.location,
+      });
     }
 
     const prerequisiteParts = splitRequirements(facts.prerequisites);
@@ -178,6 +206,14 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       isPlaceholder,
       isMissingFromCatalog: !usedCatalog,
       source: usedCatalog ? "catalog" : usedFallback ? "fallback" : "unresolved",
+      catalogSource: usedCatalog ? rawCatalog?.catalogSource ?? "catalog" : usedFallback ? "manual" : null,
+      sourceBadge: rawCatalog?.conflicts?.length
+        ? "بيانات متعارضة"
+        : usedCatalog && [facts.lectureHours, facts.exerciseHours, facts.practicalHours].some((value) => numericValue(value) === null)
+          ? "بيانات ناقصة"
+          : usedCatalog
+            ? rawCatalog?.catalogSource === "female" ? "دليل الطالبات" : rawCatalog?.catalogSource === "male" ? "دليل الطلاب" : "دليل المقررات"
+            : usedFallback ? "مدخل يدويًا" : "بيانات ناقصة",
       location: context.location,
     };
     if (Array.from(course.name).length > 44) {
@@ -205,7 +241,7 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       sameGroupKeys,
       location: `semester-${semesterIndex + 1}`,
     }));
-    const sortMode = semester.sortCourses ?? plan.sortCourses ?? "input";
+    const sortMode = semester.sortCourses ?? plan.sortCourses ?? "code";
     if (sortMode === "code") resolvedCourses.sort((a, b) => compareCourseCodes(a.code, b.code));
     if (resolvedCourses.length > 6) {
       addDiagnostic(
@@ -240,11 +276,19 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       sameGroupKeys: null,
       location: `elective-${group.id ?? groupIndex + 1}`,
     }));
-    if ((group.sortCourses ?? "input") === "code") resolvedCourses.sort((a, b) => compareCourseCodes(a.code, b.code));
+    if ((group.sortCourses ?? "code") === "code") resolvedCourses.sort((a, b) => compareCourseCodes(a.code, b.code));
+    const hasHours = numericValue(group.requiredHours) !== null;
+    const hasText = Boolean(String(group.requirementText ?? "").trim());
+    if (hasHours === hasText) {
+      addDiagnostic(diagnostics, "errors", hasHours ? "ELECTIVE_REQUIREMENT_BOTH" : "ELECTIVE_REQUIREMENT_MISSING", `${group.name} must use either required hours or custom requirement text.`, {
+        location: `elective-${group.id ?? groupIndex + 1}`,
+      });
+    }
     return {
       id: group.id ?? `elective-group-${groupIndex + 1}`,
       name: group.name ?? `مجموعة اختيارية ${groupIndex + 1}`,
-      requiredHours: numericValue(group.requiredHours) ?? 0,
+      requiredHours: hasHours && !hasText ? numericValue(group.requiredHours) : null,
+      requirementText: hasText && !hasHours ? String(group.requirementText).trim() : null,
       courses: resolvedCourses,
     };
   });
@@ -299,8 +343,8 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     degree: plan.degree,
     planCode: plan.planCode,
     version: plan.version,
-    edition: plan.edition ?? null,
-    release: plan.release ?? null,
+    edition: plan.edition ?? options.settings?.edition ?? null,
+    release: plan.release ?? options.settings?.release ?? null,
     headerSubtitle: plan.headerSubtitle ?? null,
     phases: plan.phases ?? null,
     footer: plan.footer ?? null,
@@ -315,16 +359,64 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
   };
 
   if (plan.proposal && !options.skipProposal) {
+    const publishedEntries = new Map();
+    for (const semester of plan.semesters) {
+      for (const entry of semester.courses) publishedEntries.set(courseCodeKey(entry.code), entry);
+    }
+    const proposalOccurrences = new Map();
+    const proposalSemesters = plan.proposal.semesters.map((semester, semesterIndex) => {
+      const realEntries = [];
+      for (const code of semester.courseOrder ?? []) {
+        const normalizedCode = normalizeCourseCode(code);
+        const key = courseCodeKey(normalizedCode);
+        proposalOccurrences.set(key, (proposalOccurrences.get(key) ?? 0) + 1);
+        const published = publishedEntries.get(key);
+        if (!published) {
+          addDiagnostic(diagnostics, "errors", "PROPOSAL_UNKNOWN_REAL_COURSE", `${normalizedCode} is not a published-plan course.`, {
+            course: normalizedCode,
+            location: `proposal-semester-${semesterIndex + 1}`,
+          });
+          realEntries.push({ code: normalizedCode });
+        } else {
+          realEntries.push(structuredClone(published));
+        }
+      }
+      const placeholders = (semester.placeholders ?? []).map((placeholder, placeholderIndex) => ({
+        kind: "placeholder",
+        code: `مقرر ${placeholder.id ?? `${semesterIndex + 1}-${placeholderIndex + 1}`}`,
+        fallback: {
+          name: placeholder.name,
+          academicHours: placeholder.academicHours,
+          lectureHours: placeholder.lectureHours,
+          exerciseHours: placeholder.exerciseHours,
+          practicalHours: placeholder.practicalHours,
+          color: placeholder.color ?? "#000000",
+        },
+      }));
+      return {
+        ...semester,
+        sortCourses: "input",
+        courses: [...realEntries, ...placeholders],
+      };
+    });
+    for (const [key, entry] of publishedEntries) {
+      const count = proposalOccurrences.get(key) ?? 0;
+      if (count === 0) {
+        addDiagnostic(diagnostics, "errors", "PROPOSAL_MISSING_REAL_COURSE", `${entry.code} is missing from the proposed plan.`, { course: entry.code });
+      } else if (count > 1) {
+        addDiagnostic(diagnostics, "errors", "PROPOSAL_DUPLICATE_REAL_COURSE", `${entry.code} appears more than once in the proposed plan.`, { course: entry.code, count });
+      }
+    }
     const proposalPlan = {
       ...plan,
       id: plan.id ? `${plan.id}-proposal` : null,
       expectedCredits: plan.proposal.expectedCredits,
       phases: plan.proposal.phases ?? plan.phases,
-      semesters: plan.proposal.semesters,
+      semesters: proposalSemesters,
       electiveGroups: [],
       proposal: null,
     };
-    const resolvedProposal = resolvePlan(proposalPlan, catalog, colors, diagnostics, { skipProposal: true });
+    const resolvedProposal = resolvePlan(proposalPlan, catalog, colors, diagnostics, { ...options, skipProposal: true });
     result.proposal = {
       ...resolvedProposal,
       title: plan.proposal.title ?? "الخطة المقترحة",

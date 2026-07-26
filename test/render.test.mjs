@@ -265,3 +265,24 @@ test("keeps every calculated section inside deterministic page bounds", () => {
   const svg = renderPlanSvg(plan);
   assert.match(svg, new RegExp(`height="${first.height}pt"`));
 });
+
+test("renders full-year and half-year rails for even and odd semester counts", () => {
+  const even = renderPlanSvg({ major: "زوجي", semesters: [semester(), semester()] });
+  assert.match(even, />1<\/text>/u);
+  assert.match(even, />سنة<\/text>/u);
+  assert.doesNotMatch(even, /نصف سنة/u);
+
+  const odd = renderPlanSvg({ major: "فردي", semesters: [semester(), semester(), semester()] });
+  assert.match(odd, /نصف سنة/u);
+  assert.doesNotMatch(odd, />2<\/text><text[^>]*>سنة/u);
+});
+
+test("renders elective custom requirement text", () => {
+  const svg = renderPlanSvg({
+    major: "اختياري",
+    semesters: [semester()],
+    electiveGroups: [{ name: "إثرائي", requirementText: "غير متطلب للتخرج", courses: [course()] }],
+  });
+  assert.match(svg, /غير متطلب للتخرج/u);
+  assert.doesNotMatch(svg, /إتمام 0 ساعات/u);
+});

@@ -273,8 +273,12 @@ function renderYearRails(semesterCount) {
     const centerY = y + height / 2;
     parts.push(`<g data-component="year-rail">`);
     parts.push(`<rect x="${SEMESTER_LAYOUT.yearRailX}" y="${y}" width="${SEMESTER_LAYOUT.yearRailWidth}" height="${height}" rx="2" fill="${COLORS.saadTint}" stroke="${COLORS.saad}" stroke-width="1"/>`);
-    parts.push(text({ x: SEMESTER_LAYOUT.yearRailX + 6, y: centerY - 4.5, value: year + 1, size: 8, weight: 700, fill: COLORS.saad, direction: "ltr" }));
-    parts.push(text({ x: SEMESTER_LAYOUT.yearRailX + 6, y: centerY + 5, value: "سنة", size: 5, weight: 700, fill: COLORS.saad }));
+    if (rowCount === 1) {
+      parts.push(text({ x: 0, y: 0, value: "نصف سنة", size: 5, weight: 700, fill: COLORS.saad, transform: `translate(${SEMESTER_LAYOUT.yearRailX + 6} ${centerY}) rotate(-90)` }));
+    } else {
+      parts.push(text({ x: SEMESTER_LAYOUT.yearRailX + 6, y: centerY - 4.5, value: year + 1, size: 8, weight: 700, fill: COLORS.saad, direction: "ltr" }));
+      parts.push(text({ x: SEMESTER_LAYOUT.yearRailX + 6, y: centerY + 5, value: "سنة", size: 5, weight: 700, fill: COLORS.saad }));
+    }
     parts.push("</g>");
   }
   return parts.join("");
@@ -367,7 +371,7 @@ function renderElectiveGroup(context, group, y) {
     `<path d="${roundedRectPath(summaryX, y, summaryWidth, ELECTIVE_LAYOUT.summaryHeaderHeight, [0, 4, 0, 0])}" fill="${COLORS.saadTint}"/>`,
     `<path d="${roundedRectPath(summaryX, y + ELECTIVE_LAYOUT.summaryHeaderHeight, summaryWidth, ELECTIVE_LAYOUT.summaryBodyHeight, [0, 0, 0, 4])}" fill="none" stroke="${COLORS.saadTint}" stroke-width="1"/>`,
     text({ x: summaryX + summaryWidth / 2, y: y + 15, value: group.name, size: 7, weight: 700, fill: COLORS.saad }),
-    text({ x: summaryX + summaryWidth / 2, y: y + 39.5, value: `إتمام ${group.requiredHours ?? 0} ساعات`, size: 6, weight: 700 }),
+    text({ x: summaryX + summaryWidth / 2, y: y + 39.5, value: group.requirementText ?? `إتمام ${group.requiredHours ?? 0} ساعات`, size: 6, weight: 700 }),
   ];
 
   group.courses.forEach((course, index) => {

@@ -9,6 +9,6 @@ test("normalizes Arabic digits and subject-first codes", () => {
 });
 
 test("sorts by catalog number then Arabic subject", () => {
-  const values = ["210 تم", "101 ريض", "101 عرب", "103 فيز"];
-  assert.deepEqual(values.sort(compareCourseCodes), ["101 ريض", "101 عرب", "103 فيز", "210 تم"]);
+  const values = ["210 تم", "101 ريض", "101 عرب", "103 فيز", "100 ي"];
+  assert.deepEqual(values.sort(compareCourseCodes), ["100 ي", "101 ريض", "101 عرب", "103 فيز", "210 تم"]);
 });
