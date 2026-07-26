@@ -1,43 +1,32 @@
-const PAGE_WIDTH = 594;
-const PAGE_HEIGHT = 1045;
+import {
+  COLORS,
+  COURSE_CARD_LAYOUT,
+  ELECTIVE_LAYOUT,
+  GUIDE_LAYOUT,
+  PAGE_LAYOUT,
+  SEMESTER_LAYOUT,
+  electiveGroupHeight,
+  electiveTop,
+  semesterY,
+} from "./render-layout.mjs";
 
-const COLORS = Object.freeze({
-  saad: "#00AEEF",
-  saadTint: "#E6F7FD",
-  line: "#B6CFE8",
-  black: "#000000",
-  gray: "#616161",
-  white: "#FFFFFF",
-  parent: "#FF0000",
-  track: "#3BA521",
-  trackStroke: "#FFF200",
-});
-
-const MAIN_TOP = 98;
-const SEMESTER_HEIGHT = 57;
-const SEMESTER_GAP = 4;
-const SEMESTER_PITCH = SEMESTER_HEIGHT + SEMESTER_GAP;
-const COURSE_AREA_X = 28;
-const COURSE_AREA_WIDTH = 472;
-const SUMMARY_X = COURSE_AREA_X + COURSE_AREA_WIDTH;
-const SUMMARY_WIDTH = 66;
-const YEAR_RAIL_X = 568;
-const YEAR_RAIL_WIDTH = 11;
-const PHASE_RAIL_X = 15;
-const PHASE_RAIL_WIDTH = 10;
-
-const CARD_WIDTH = 74;
-const CARD_HEIGHT = 43;
-const CARD_GAP = 3;
-const CARD_RIGHT = SUMMARY_X - 5;
+function createRenderContext(prefix) {
+  let sequence = 0;
+  return Object.freeze({
+    nextId(kind) {
+      sequence += 1;
+      return `${prefix}-${kind}-${sequence}`;
+    },
+  });
+}
 
 function esc(value) {
   return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
+    .replace(/&/gu, "&amp;")
+    .replace(/</gu, "&lt;")
+    .replace(/>/gu, "&gt;")
+    .replace(/"/gu, "&quot;")
+    .replace(/'/gu, "&apos;");
 }
 
 function displayNumber(value, fallback = "-") {
@@ -45,8 +34,10 @@ function displayNumber(value, fallback = "-") {
 }
 
 function clipped(value, max) {
-  const chars = Array.from(String(value ?? ""));
-  return chars.length <= max ? chars.join("") : `${chars.slice(0, Math.max(1, max - 1)).join("")}…`;
+  const characters = Array.from(String(value ?? ""));
+  return characters.length <= max
+    ? characters.join("")
+    : `${characters.slice(0, Math.max(1, max - 1)).join("")}…`;
 }
 
 function text({
@@ -54,42 +45,70 @@ function text({
   y,
   value,
   size,
-  weight = 600,
+  weight = 400,
   anchor = "middle",
   fill = COLORS.black,
   direction = "rtl",
   opacity,
   transform,
-  letterSpacing,
-  textLength,
+  dominantBaseline = "middle",
+  letterSpacing = 0,
 }) {
-  const actualAnchor = direction === "rtl"
-    ? anchor === "start" ? "end" : anchor === "end" ? "start" : anchor
-    : anchor;
-  const fontFamily = weight >= 700
-    ? "IBM Plex Sans Arabic"
-    : weight >= 500
-      ? "IBM Plex Sans Arabic SemiBold"
-      : "IBM Plex Sans Arabic";
   const attributes = [
     `x="${x}"`,
     `y="${y}"`,
-    `text-anchor="${actualAnchor}"`,
+    `text-anchor="${anchor}"`,
     `fill="${fill}"`,
     `font-size="${size}"`,
-    `font-weight="${weight >= 700 ? 700 : 400}"`,
-    `font-family="${fontFamily}, Noto Sans Arabic, Noto Sans, sans-serif"`,
+    `font-weight="${weight}"`,
+    `font-family="IBM Plex Sans Arabic, Noto Sans Arabic, Noto Sans, sans-serif"`,
     `direction="${direction}"`,
     `unicode-bidi="plaintext"`,
+    `dominant-baseline="${dominantBaseline}"`,
+    `letter-spacing="${letterSpacing}"`,
   ];
   if (opacity !== undefined) attributes.push(`opacity="${opacity}"`);
   if (transform) attributes.push(`transform="${transform}"`);
-  if (letterSpacing !== undefined) attributes.push(`letter-spacing="${letterSpacing}"`);
-  if (textLength !== undefined) {
-    attributes.push(`textLength="${textLength}"`);
-    attributes.push(`lengthAdjust="spacingAndGlyphs"`);
-  }
   return `<text ${attributes.join(" ")}>${esc(value)}</text>`;
+}
+
+function textLines({
+  x,
+  y,
+  lines,
+  lineHeight,
+  size,
+  weight = 400,
+  anchor = "middle",
+  fill = COLORS.black,
+  direction = "rtl",
+}) {
+  return lines.map((value, index) => text({
+    x,
+    y: y + index * lineHeight,
+    value,
+    size,
+    weight,
+    anchor,
+    fill,
+    direction,
+  })).join("");
+}
+
+function roundedRectPath(x, y, width, height, radii) {
+  const [topLeft, topRight, bottomRight, bottomLeft] = radii;
+  return [
+    `M${x + topLeft} ${y}`,
+    `H${x + width - topRight}`,
+    topRight ? `A${topRight} ${topRight} 0 0 1 ${x + width} ${y + topRight}` : "",
+    `V${y + height - bottomRight}`,
+    bottomRight ? `A${bottomRight} ${bottomRight} 0 0 1 ${x + width - bottomRight} ${y + height}` : "",
+    `H${x + bottomLeft}`,
+    bottomLeft ? `A${bottomLeft} ${bottomLeft} 0 0 1 ${x} ${y + height - bottomLeft}` : "",
+    `V${y + topLeft}`,
+    topLeft ? `A${topLeft} ${topLeft} 0 0 1 ${x + topLeft} ${y}` : "",
+    "Z",
+  ].filter(Boolean).join(" ");
 }
 
 function prerequisiteLabel(course) {
@@ -104,140 +123,155 @@ function prerequisiteLabel(course) {
   return parts.join(" | ");
 }
 
-function courseNameSize(name) {
-  const length = Array.from(String(name ?? "")).length;
-  if (length <= 17) return 5.2;
-  if (length <= 25) return 4.65;
-  if (length <= 34) return 4.05;
-  return 3.6;
-}
-
-function renderCourseCard(course, x, y, options = {}) {
+function renderCourseCard(context, course, x, y, options = {}) {
   const scale = options.scale ?? 1;
+  const layout = COURSE_CARD_LAYOUT;
   const label = prerequisiteLabel(course);
   const color = course.color || COLORS.gray;
-  const parts = [`<g transform="translate(${x} ${y}) scale(${scale})">`];
+  const groupId = context.nextId("course-card");
+  const parts = [`<g id="${groupId}" data-component="course-card" transform="translate(${x} ${y}) scale(${scale})">`];
 
-  parts.push(`<rect x="0" y="0" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" rx="6" fill="${esc(color)}"/>`);
-  parts.push(`<path d="M61 0h7a6 6 0 0 1 6 6v7H61z" fill="${COLORS.white}" opacity="0.52"/>`);
+  parts.push(`<rect data-part="course-body" x="${layout.body.x}" y="${layout.body.y}" width="${layout.body.width}" height="${layout.body.height}" rx="${layout.body.radius}" fill="${esc(color)}"/>`);
+  parts.push(`<path data-part="academic-badge" d="${roundedRectPath(
+    layout.academicBadge.x,
+    layout.academicBadge.y,
+    layout.academicBadge.width,
+    layout.academicBadge.height,
+    layout.academicBadge.radii,
+  )}" fill="${COLORS.white}" opacity="0.5"/>`);
 
-  const metricY = 37.4;
-  const metricW = 7.2;
-  const metricH = 5.6;
-  const metricStart = 27.2;
-  [0, 1, 2].forEach((index) => {
-    parts.push(`<rect x="${metricStart + index * 8.5}" y="${metricY}" width="${metricW}" height="${metricH}" rx="0.6" fill="${COLORS.white}" opacity="0.50"/>`);
-  });
+  for (let index = 0; index < 3; index += 1) {
+    const metricX = layout.metrics.startX + index * (layout.metrics.width + layout.metrics.gap);
+    parts.push(`<path data-part="metric-box" d="${roundedRectPath(
+      metricX,
+      layout.metrics.y,
+      layout.metrics.width,
+      layout.metrics.height,
+      [layout.metrics.topRadius, layout.metrics.topRadius, 0, 0],
+    )}" fill="${COLORS.white}" opacity="0.5"/>`);
+  }
 
   if (course.isParentCourse) {
-    parts.push(`<circle cx="0.7" cy="4.1" r="4" fill="${COLORS.parent}" stroke="${COLORS.white}" stroke-width="0.85"/>`);
+    parts.push(`<circle data-part="parent-marker" cx="${layout.parentMarker.cx}" cy="${layout.parentMarker.cy}" r="${layout.parentMarker.radius}" fill="${COLORS.parent}" stroke="${COLORS.white}" stroke-width="${layout.parentMarker.strokeWidth}"/>`);
   }
   if (course.isTrackSpecific) {
-    parts.push(`<circle cx="0.7" cy="39.1" r="4" fill="${COLORS.track}" stroke="${COLORS.trackStroke}" stroke-width="1.25"/>`);
+    parts.push(`<circle data-part="track-marker" cx="${layout.trackMarker.cx}" cy="${layout.trackMarker.cy}" r="${layout.trackMarker.radius}" fill="${COLORS.track}" stroke="${COLORS.trackStroke}" stroke-width="${layout.trackMarker.strokeWidth}"/>`);
   }
   if (course.isExtinct) {
-    parts.push(`<circle cx="70.4" cy="39.1" r="4" fill="${COLORS.white}" stroke="${COLORS.black}" stroke-width="1"/>`);
-    parts.push(`<circle cx="70.4" cy="39.1" r="1.9" fill="${COLORS.black}"/>`);
+    parts.push(`<circle data-part="extinct-marker" cx="${layout.extinctMarker.cx}" cy="${layout.extinctMarker.cy}" r="${layout.extinctMarker.radius}" fill="${COLORS.white}" stroke="${COLORS.black}" stroke-width="${layout.extinctMarker.strokeWidth}"/>`);
+    parts.push(`<circle cx="${layout.extinctMarker.cx}" cy="${layout.extinctMarker.cy}" r="${layout.extinctMarker.innerRadius}" fill="${COLORS.black}"/>`);
   }
 
   if (label) {
-    const labelLength = Array.from(label).length;
-    const labelWidth = Math.min(55, Math.max(22, labelLength * 2.22 + 7));
-    const labelX = (CARD_WIDTH - labelWidth) / 2;
-    parts.push(`<rect x="${labelX}" y="-4.8" width="${labelWidth}" height="9.8" rx="4.9" fill="${COLORS.white}" stroke="${esc(color)}" stroke-width="0.8"/>`);
-    parts.push(text({ x: CARD_WIDTH / 2, y: 1.8, value: clipped(label, 24), size: labelLength > 18 ? 3.5 : 4, weight: 700, fill: COLORS.black }));
+    const labelValue = clipped(label, 28);
+    const labelWidth = Math.min(layout.prerequisite.maxWidth, Math.max(20, Array.from(labelValue).length * 2.15 + 8));
+    const labelX = (layout.width - labelWidth) / 2;
+    parts.push(`<rect data-part="prerequisite-pill" x="${labelX}" y="${layout.prerequisite.y + 0.5}" width="${labelWidth}" height="${layout.prerequisite.height - 1}" rx="${layout.prerequisite.radius}" fill="${COLORS.white}" stroke="${esc(color)}" stroke-width="1"/>`);
+    parts.push(text({ x: layout.width / 2, y: 6, value: labelValue, size: 4.5, weight: 700 }));
   }
 
-  parts.push(text({ x: 66.1, y: 10.85, value: displayNumber(course.academicHours, "0"), size: 9.2, weight: 700, fill: COLORS.black, direction: "ltr", anchor: "middle" }));
-  parts.push(text({ x: CARD_WIDTH / 2, y: 22.7, value: clipped(course.code, 16), size: 13.1, weight: 700, fill: COLORS.white }));
-  parts.push(text({ x: CARD_WIDTH / 2, y: 32.2, value: clipped(course.name, 42), size: courseNameSize(course.name), weight: 500, fill: COLORS.white }));
+  parts.push(text({ x: 68.5, y: 12.5, value: displayNumber(course.academicHours, "0"), size: 10, weight: 700, direction: "ltr", opacity: 0.9 }));
+  parts.push(text({ x: 38, y: 23.5, value: clipped(course.code, 18), size: 12, weight: 700, fill: COLORS.white }));
+  parts.push(text({ x: 38, y: 35, value: clipped(course.name, 44), size: 5, weight: 600, fill: COLORS.white }));
 
-  parts.push(text({ x: metricStart + metricW / 2, y: 42.0, value: displayNumber(course.exerciseHours), size: 4.3, weight: 700, fill: COLORS.black, direction: "ltr" }));
-  parts.push(text({ x: metricStart + 8.5 + metricW / 2, y: 42.0, value: displayNumber(course.practicalHours), size: 4.3, weight: 700, fill: COLORS.black, direction: "ltr" }));
-  parts.push(text({ x: metricStart + 17 + metricW / 2, y: 42.0, value: displayNumber(course.lectureHours), size: 4.3, weight: 700, fill: COLORS.black, direction: "ltr" }));
+  const metricValues = [course.exerciseHours, course.practicalHours, course.lectureHours];
+  metricValues.forEach((value, index) => {
+    const metricX = layout.metrics.startX + index * (layout.metrics.width + layout.metrics.gap);
+    parts.push(text({
+      x: metricX + layout.metrics.width / 2,
+      y: 46,
+      value: displayNumber(value),
+      size: 5,
+      weight: 700,
+      direction: "ltr",
+      opacity: 0.9,
+    }));
+  });
 
-  parts.push(`</g>`);
+  parts.push("</g>");
   return parts.join("");
-}
-
-function semesterY(index) {
-  return MAIN_TOP + index * SEMESTER_PITCH;
 }
 
 function renderSemesterSummary(semester, y) {
+  const { summaryX: x, summaryWidth: width } = SEMESTER_LAYOUT;
   const headerHeight = 17;
-  const bodyY = y + headerHeight;
-  const bodyHeight = SEMESTER_HEIGHT - headerHeight;
-  const statWidth = 26;
-  const labelWidth = SUMMARY_WIDTH - statWidth * 2;
+  const labelX = x + 50.18690490722656;
+  const labelWidth = width - 50.18690490722656;
+  const statX = x + 1.24298095703125;
   const parts = [
-    `<g>`,
-    `<rect x="${SUMMARY_X}" y="${y}" width="${SUMMARY_WIDTH}" height="${SEMESTER_HEIGHT}" rx="3" fill="${COLORS.white}" stroke="${COLORS.line}" stroke-width="0.65"/>`,
-    `<path d="M${SUMMARY_X + 3} ${y}H${SUMMARY_X + SUMMARY_WIDTH - 3}a3 3 0 0 1 3 3v14H${SUMMARY_X}V${y + 3}a3 3 0 0 1 3-3z" fill="${COLORS.saad}"/>`,
-    `<rect x="${SUMMARY_X}" y="${bodyY}" width="${statWidth}" height="${bodyHeight}" fill="${COLORS.white}"/>`,
-    `<rect x="${SUMMARY_X + statWidth}" y="${bodyY}" width="${statWidth}" height="${bodyHeight}" fill="${COLORS.white}"/>`,
-    `<rect x="${SUMMARY_X + statWidth * 2}" y="${bodyY}" width="${labelWidth}" height="${bodyHeight}" fill="${COLORS.saadTint}"/>`,
-    `<line x1="${SUMMARY_X + statWidth}" y1="${bodyY}" x2="${SUMMARY_X + statWidth}" y2="${y + SEMESTER_HEIGHT}" stroke="${COLORS.line}" stroke-width="0.55"/>`,
-    `<line x1="${SUMMARY_X + statWidth * 2}" y1="${bodyY}" x2="${SUMMARY_X + statWidth * 2}" y2="${y + SEMESTER_HEIGHT}" stroke="${COLORS.line}" stroke-width="0.55"/>`,
+    `<g data-component="semester-summary">`,
+    `<path data-part="summary-title" d="${roundedRectPath(x, y, width, headerHeight, [0, 4, 0, 0])}" fill="${COLORS.saad}"/>`,
+    `<path data-part="summary-hours-label" d="${roundedRectPath(labelX, y + 17.1, labelWidth, 39.9, [0, 0, 4, 0])}" fill="${COLORS.saadTint}"/>`,
+    `<rect x="${x}" y="${y + 56.43}" width="50.186916373174" height="0.57" fill="${COLORS.line}"/>`,
+    `<line x1="${statX + 24.5}" y1="${y + 24}" x2="${statX + 24.5}" y2="${y + 50}" stroke="${COLORS.saadTint}" stroke-width="1"/>`,
+    text({ x: x + width / 2, y: y + 8.5, value: semester.name, size: 8, weight: 700, fill: COLORS.white }),
+    text({ x: statX + 12.25, y: y + 28, value: "تراكمية", size: 5, weight: 700 }),
+    text({ x: statX + 12.25, y: y + 42, value: semester.cumulativeHours, size: 10, weight: 700, direction: "ltr" }),
+    text({ x: statX + 36.75, y: y + 28, value: "فصلية", size: 5, weight: 700 }),
+    text({ x: statX + 36.75, y: y + 42, value: semester.academicHours, size: 10, weight: 700, direction: "ltr" }),
+    text({
+      x: 0,
+      y: 0,
+      value: "الساعات",
+      size: 5,
+      weight: 700,
+      transform: `translate(${labelX + labelWidth / 2} ${y + 37}) rotate(-90)`,
+    }),
+    "</g>",
   ];
-
-  parts.push(text({ x: SUMMARY_X + SUMMARY_WIDTH / 2 - 0.6, y: y + 10.7, value: semester.name, size: 8, weight: 700, fill: COLORS.white }));
-  parts.push(text({ x: SUMMARY_X + statWidth / 2, y: bodyY + 13, value: "تراكمية", size: 4.4, weight: 600, fill: COLORS.black }));
-  parts.push(text({ x: SUMMARY_X + statWidth / 2, y: bodyY + 29.2, value: semester.cumulativeHours, size: 9.2, weight: 700, fill: COLORS.black, direction: "ltr" }));
-  parts.push(text({ x: SUMMARY_X + statWidth + statWidth / 2, y: bodyY + 13, value: "فصلية", size: 4.4, weight: 600, fill: COLORS.black }));
-  parts.push(text({ x: SUMMARY_X + statWidth + statWidth / 2, y: bodyY + 29.2, value: semester.academicHours, size: 9.2, weight: 700, fill: COLORS.black, direction: "ltr" }));
-  parts.push(text({
-    x: 0,
-    y: 0,
-    value: "الساعات",
-    size: 4.6,
-    weight: 600,
-    fill: COLORS.black,
-    transform: `translate(${SUMMARY_X + statWidth * 2 + labelWidth / 2 + 1.7} ${bodyY + bodyHeight / 2 + 0.5}) rotate(-90)`,
-  }));
-  parts.push(`</g>`);
   return parts.join("");
 }
 
-function renderSemesterRow(semester, index) {
+function courseRowBorder(y, height = SEMESTER_LAYOUT.height) {
+  const x = SEMESTER_LAYOUT.courseAreaX;
+  const width = SEMESTER_LAYOUT.courseAreaWidth;
+  const radius = SEMESTER_LAYOUT.cornerRadius;
+  const path = [
+    `M${x + radius} ${y}`,
+    `H${x + width}`,
+    `V${y + height}`,
+    `H${x + radius}`,
+    `A${radius} ${radius} 0 0 1 ${x} ${y + height - radius}`,
+    `V${y + radius}`,
+    `A${radius} ${radius} 0 0 1 ${x + radius} ${y}`,
+    "Z",
+  ].join(" ");
+  return `<path data-part="course-row-border" d="${path}" fill="none" stroke="${COLORS.line}" stroke-width="${SEMESTER_LAYOUT.strokeWidth}"/>`;
+}
+
+function renderSemesterRow(context, semester, index) {
   const y = semesterY(index);
-  const parts = [
-    `<g>`,
-    `<rect x="${COURSE_AREA_X}" y="${y}" width="${COURSE_AREA_WIDTH}" height="${SEMESTER_HEIGHT}" rx="3" fill="${COLORS.white}" stroke="${COLORS.line}" stroke-width="0.65"/>`,
-  ];
-
-  const count = Math.min(semester.courses.length, 6);
-  const totalWidth = count * CARD_WIDTH + Math.max(0, count - 1) * CARD_GAP;
-  const startX = CARD_RIGHT - totalWidth;
-  const cardY = y + 9;
-  semester.courses.slice(0, 6).forEach((course, courseIndex) => {
-    parts.push(renderCourseCard(course, startX + courseIndex * (CARD_WIDTH + CARD_GAP), cardY));
+  const courses = semester.courses.slice(0, 6);
+  const totalWidth = courses.length * COURSE_CARD_LAYOUT.width
+    + Math.max(0, courses.length - 1) * COURSE_CARD_LAYOUT.gap;
+  const startX = COURSE_CARD_LAYOUT.rowRight - totalWidth;
+  const parts = [`<g data-component="semester-row" data-row="${index + 1}">`, courseRowBorder(y)];
+  courses.forEach((course, courseIndex) => {
+    parts.push(renderCourseCard(
+      context,
+      course,
+      startX + courseIndex * (COURSE_CARD_LAYOUT.width + COURSE_CARD_LAYOUT.gap),
+      y + 4,
+    ));
   });
-
-  parts.push(renderSemesterSummary(semester, y));
-  parts.push(`</g>`);
+  parts.push(renderSemesterSummary(semester, y), "</g>");
   return parts.join("");
 }
 
 function renderYearRails(semesterCount) {
   const parts = [];
-  const years = Math.ceil(semesterCount / 2);
-  for (let year = 0; year < years; year += 1) {
+  const yearCount = Math.ceil(semesterCount / 2);
+  for (let year = 0; year < yearCount; year += 1) {
     const startIndex = year * 2;
-    const rows = Math.min(2, semesterCount - startIndex);
+    const rowCount = Math.min(2, semesterCount - startIndex);
     const y = semesterY(startIndex);
-    const height = rows * SEMESTER_HEIGHT + (rows - 1) * SEMESTER_GAP;
-    parts.push(`<rect x="${YEAR_RAIL_X}" y="${y}" width="${YEAR_RAIL_WIDTH}" height="${height}" rx="1.5" fill="${COLORS.white}" stroke="${COLORS.saad}" stroke-width="1"/>`);
-    parts.push(text({ x: YEAR_RAIL_X + YEAR_RAIL_WIDTH / 2, y: y + height / 2 - 4, value: year + 1, size: 7, weight: 700, fill: COLORS.saad, direction: "ltr" }));
-    parts.push(text({
-      x: 0,
-      y: 0,
-      value: "سنة",
-      size: 4.7,
-      weight: 600,
-      fill: COLORS.saad,
-      transform: `translate(${YEAR_RAIL_X + YEAR_RAIL_WIDTH / 2 + 1.3} ${y + height / 2 + 12}) rotate(-90)`,
-    }));
+    const height = rowCount * SEMESTER_LAYOUT.height + Math.max(0, rowCount - 1) * SEMESTER_LAYOUT.gap;
+    const centerY = y + height / 2;
+    parts.push(`<g data-component="year-rail">`);
+    parts.push(`<rect x="${SEMESTER_LAYOUT.yearRailX}" y="${y}" width="${SEMESTER_LAYOUT.yearRailWidth}" height="${height}" rx="2" fill="${COLORS.saadTint}" stroke="${COLORS.saad}" stroke-width="1"/>`);
+    parts.push(text({ x: SEMESTER_LAYOUT.yearRailX + 6, y: centerY - 4.5, value: year + 1, size: 8, weight: 700, fill: COLORS.saad, direction: "ltr" }));
+    parts.push(text({ x: SEMESTER_LAYOUT.yearRailX + 6, y: centerY + 5, value: "سنة", size: 5, weight: 700, fill: COLORS.saad }));
+    parts.push("</g>");
   }
   return parts.join("");
 }
@@ -254,60 +288,168 @@ function inferredPhases(plan) {
   return [{ label: "الخطة الدراسية", start: 1, end: plan.semesters.length }];
 }
 
+function renderVerticalRail({ x, y, width, height, label, fontSize = 5 }) {
+  return [
+    `<g data-component="vertical-rail">`,
+    `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="2" fill="${COLORS.saadTint}" stroke="${COLORS.saad}" stroke-width="1"/>`,
+    text({
+      x: 0,
+      y: 0,
+      value: label,
+      size: fontSize,
+      weight: 700,
+      fill: COLORS.saad,
+      transform: `translate(${x + width / 2} ${y + height / 2}) rotate(-90)`,
+    }),
+    "</g>",
+  ].join("");
+}
+
 function renderPhaseRails(plan) {
   return inferredPhases(plan).map((phase) => {
     const start = Math.max(1, Number(phase.start ?? 1));
     const end = Math.min(plan.semesters.length, Number(phase.end ?? plan.semesters.length));
-    const y = semesterY(start - 1);
-    const rows = Math.max(1, end - start + 1);
-    const height = rows * SEMESTER_HEIGHT + (rows - 1) * SEMESTER_GAP;
-    return [
-      `<rect x="${PHASE_RAIL_X}" y="${y}" width="${PHASE_RAIL_WIDTH}" height="${height}" rx="1.4" fill="${COLORS.white}" stroke="${COLORS.saad}" stroke-width="1"/>`,
-      text({
-        x: 0,
-        y: 0,
-        value: phase.label,
-        size: 4.5,
-        weight: 600,
-        fill: COLORS.saad,
-        transform: `translate(${PHASE_RAIL_X + PHASE_RAIL_WIDTH / 2 + 1.3} ${y + height / 2}) rotate(-90)`,
-      }),
-    ].join("");
+    const rowCount = Math.max(1, end - start + 1);
+    return renderVerticalRail({
+      x: SEMESTER_LAYOUT.phaseRailX,
+      y: semesterY(start - 1),
+      width: SEMESTER_LAYOUT.phaseRailWidth,
+      height: rowCount * SEMESTER_LAYOUT.height + Math.max(0, rowCount - 1) * SEMESTER_LAYOUT.gap,
+      label: phase.label,
+    });
   }).join("");
 }
 
 function renderLogo() {
   return [
-    `<g transform="translate(547 25)">`,
-    `<path fill="${COLORS.saad}" transform="scale(0.0475)" d="M423.1,0C261.11,0,129.32,131.79,129.32,293.78H0V423.1h129.32c0,35.7,14.47,68.04,37.87,91.45,23.4,23.4,55.75,37.87,91.45,37.87V423.1h458.24V293.78C716.88,131.79,585.06,0,423.1,0Zm-164.46,293.78c0-90.66,73.77-164.44,164.46-164.44s164.44,73.77,164.44,164.44Z"/>`,
-    text({ x: 15, y: 35.2, value: "مبادرة صاد", size: 7.5, weight: 700, fill: COLORS.black }),
-    `</g>`,
+    `<g data-component="saad-logo" transform="translate(545 25.9)">`,
+    `<path fill="${COLORS.saad}" d="M12.2704 13.9335C12.2704 9.63227 15.7698 6.13294 20.071 6.13294C24.3723 6.13294 27.8716 9.63227 27.8716 13.9335H12.2704ZM20.071 0C12.3843 0 6.13294 6.2514 6.13294 13.9335H0V20.0665H6.13294C6.13294 21.7614 6.82096 23.2924 7.92817 24.4042C9.03993 25.5159 10.5709 26.1994 12.2659 26.1994V20.0665H34V13.9335C34.0045 6.2514 27.7531 0 20.071 0Z"/>`,
+    text({ x: 17, y: 33, value: "مبادرة صاد", size: 8, weight: 600 }),
+    "</g>",
   ].join("");
 }
 
-function renderHeader(plan) {
-  const titleLength = Array.from(String(plan.major ?? "")).length;
-  const titleSize = titleLength > 42 ? 14.5 : titleLength > 31 ? 15.7 : 16;
-  const estimatedTitleWidth = Math.max(60, titleLength * titleSize * 0.43);
-  const titleCenterX = 518 - estimatedTitleWidth / 2;
-  const subtitleSize = 13.5;
-  const subtitleLength = Array.from(String(plan.headerSubtitle || (plan.degree ? `درجة ${plan.degree}` : ""))).length;
-  const estimatedSubtitleWidth = Math.max(50, subtitleLength * subtitleSize * 0.43);
-  const subtitleCenterX = 518 - estimatedSubtitleWidth / 2;
-  const edition = plan.edition || "الطبعة الأولى";
+function renderHeader(plan, options = {}) {
+  const proposal = options.proposal === true;
+  const edition = plan.edition || "الطبعة الرابعة";
   const release = plan.release || (plan.version ? `إصدار ${plan.version}` : "إصدار 1.0");
-  const subtitle = plan.headerSubtitle || (plan.degree ? `درجة ${plan.degree}` : "");
+  const title = proposal ? "الخطة المقترحة" : plan.major;
+  const subtitle = proposal
+    ? (options.parentMajor ?? plan.headerSubtitle ?? "")
+    : (plan.headerSubtitle || (plan.degree ? `درجة ${plan.degree}` : "درجة البكالوريوس"));
   return [
+    `<g data-component="header">`,
+    `<rect x="15" y="26" width="80" height="40" rx="6" fill="${COLORS.white}" stroke="${COLORS.black}" stroke-width="0.8"/>`,
+    text({ x: 55, y: 39.5, value: edition, size: 12, weight: 700 }),
+    text({ x: 55, y: 55, value: release, size: 9, weight: 500 }),
+    text({ x: 517, y: 35, value: title, size: 16, weight: 600, anchor: "start" }),
+    text({ x: 517, y: 55.5, value: subtitle, size: 14, weight: 400, anchor: "start" }),
     renderLogo(),
-    text({ x: titleCenterX, y: 41.5, value: plan.major, size: titleSize, weight: 700, anchor: "middle", fill: COLORS.black }),
-    text({ x: subtitleCenterX, y: 60.3, value: subtitle, size: subtitleSize, weight: 500, anchor: "middle", fill: COLORS.black }),
-    `<rect x="15" y="26" width="80" height="39" rx="6" fill="${COLORS.white}" stroke="${COLORS.black}" stroke-width="0.9"/>`,
-    text({ x: 55, y: 43, value: edition, size: 12, weight: 700, fill: COLORS.black }),
-    `<g transform="translate(55 0) scale(1.45 1) translate(-55 0)">${text({ x: 55, y: 56.05, value: release, size: 6.4, weight: 600, fill: COLORS.black })}</g>`,
+    "</g>",
   ].join("");
 }
 
-function renderGenericLegendCard(x, y, scale = 1.75) {
+function electiveCardsHeight(group) {
+  return electiveGroupHeight(group);
+}
+
+function renderElectiveGroup(context, group, y) {
+  const height = electiveCardsHeight(group);
+  const summaryX = SEMESTER_LAYOUT.summaryX;
+  const summaryWidth = ELECTIVE_LAYOUT.summaryWidth;
+  const parts = [
+    `<g data-component="elective-group">`,
+    `<rect x="${SEMESTER_LAYOUT.courseAreaX}" y="${y}" width="${SEMESTER_LAYOUT.courseAreaWidth}" height="${height}" rx="4" fill="none" stroke="${COLORS.line}" stroke-width="0.5"/>`,
+    `<path d="${roundedRectPath(summaryX, y, summaryWidth, ELECTIVE_LAYOUT.summaryHeaderHeight, [0, 4, 0, 0])}" fill="${COLORS.saadTint}"/>`,
+    `<path d="${roundedRectPath(summaryX, y + ELECTIVE_LAYOUT.summaryHeaderHeight, summaryWidth, ELECTIVE_LAYOUT.summaryBodyHeight, [0, 0, 0, 4])}" fill="none" stroke="${COLORS.saadTint}" stroke-width="1"/>`,
+    text({ x: summaryX + summaryWidth / 2, y: y + 15, value: group.name, size: 7, weight: 700, fill: COLORS.saad }),
+    text({ x: summaryX + summaryWidth / 2, y: y + 39.5, value: `إتمام ${group.requiredHours ?? 0} ساعات`, size: 6, weight: 700 }),
+  ];
+
+  group.courses.forEach((course, index) => {
+    const row = Math.floor(index / 6);
+    const rowCourses = group.courses.slice(row * 6, row * 6 + 6);
+    const rowWidth = rowCourses.length * COURSE_CARD_LAYOUT.width
+      + Math.max(0, rowCourses.length - 1) * COURSE_CARD_LAYOUT.gap;
+    const startX = COURSE_CARD_LAYOUT.rowRight - rowWidth;
+    const column = index % 6;
+    parts.push(renderCourseCard(
+      context,
+      course,
+      startX + column * (COURSE_CARD_LAYOUT.width + COURSE_CARD_LAYOUT.gap),
+      y + ELECTIVE_LAYOUT.padding + row * (COURSE_CARD_LAYOUT.height + ELECTIVE_LAYOUT.rowGap),
+    ));
+  });
+  parts.push("</g>");
+  return { svg: parts.join(""), height };
+}
+
+function renderElectiveGroups(context, groups, semesterCount) {
+  const y = electiveTop(semesterCount);
+  const totalHeight = groups.reduce((sum, group) => sum + electiveCardsHeight(group), 0)
+    + Math.max(0, groups.length - 1) * ELECTIVE_LAYOUT.groupGap;
+  const parts = [renderVerticalRail({
+    x: SEMESTER_LAYOUT.phaseRailX,
+    y,
+    width: SEMESTER_LAYOUT.phaseRailWidth,
+    height: totalHeight,
+    label: "مقررات اختيارية",
+  })];
+  let cursor = y;
+  groups.forEach((group, index) => {
+    const rendered = renderElectiveGroup(context, group, cursor);
+    parts.push(rendered.svg);
+    cursor += rendered.height + (index < groups.length - 1 ? ELECTIVE_LAYOUT.groupGap : 0);
+  });
+  return parts.join("");
+}
+
+function telegramIcon(x, y) {
+  return `<g transform="translate(${x} ${y}) scale(1)"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09" fill="${COLORS.black}"/></g>`;
+}
+
+function globeIcon(x, y) {
+  return `<g transform="translate(${x} ${y}) scale(.6667)" fill="none" stroke="${COLORS.black}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></g>`;
+}
+
+function xIcon(x, y) {
+  return `<g transform="translate(${x} ${y}) scale(.0533)"><path d="m236 0h46l-101 115 118 156h-92.6l-72.5-94.8-83 94.8h-46l107-123-113-148h94.9l65.5 86.6zm-16.1 244h25.5l-165-218h-27.4z" fill="${COLORS.black}"/></g>`;
+}
+
+function helpIcon(x, y) {
+  return `<g transform="translate(${x} ${y}) scale(.6667)" fill="none" stroke="${COLORS.black}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></g>`;
+}
+
+function footerItem({ x, width, icon, title, value }) {
+  const iconX = x + width - 16;
+  return [
+    icon(iconX, 1.5),
+    text({ x: iconX - 4, y: 4.2, value: title, size: 8.457, weight: 700, anchor: "start" }),
+    text({ x: iconX - 4, y: 14.1, value, size: 8.457, weight: 400, anchor: "end", direction: "ltr" }),
+  ].join("");
+}
+
+function renderFooter(plan, y = PAGE_LAYOUT.footerY) {
+  const copyright = plan.footer?.copyright || "مبادرة صاد. جميع الحقوق محفوظة للتصميم والهوية البصرية.";
+  return [
+    `<g data-component="footer">`,
+    `<g transform="translate(0 ${y + 16})">`,
+    footerItem({ x: 62.5, width: 119, icon: helpIcon, title: "للاستفسارات", value: "t.me/SaadInitiative?direct" }),
+    footerItem({ x: 205.5, width: 97, icon: xIcon, title: "حساب مبادرة صاد", value: "x.com/saadinitiative" }),
+    footerItem({ x: 326.5, width: 89, icon: globeIcon, title: "موقع مبادرة صاد", value: "saadinitiative.com" }),
+    footerItem({ x: 439.5, width: 92, icon: telegramIcon, title: "قناة مبادرة صاد", value: "t.me/saadinitiative" }),
+    "</g>",
+    text({ x: PAGE_LAYOUT.width / 2, y: y + 56, value: copyright, size: 8.457, weight: 400, fill: COLORS.copyright }),
+    `<rect x="0" y="${y + 78}" width="${PAGE_LAYOUT.width}" height="6" fill="${COLORS.saad}"/>`,
+    "</g>",
+  ].join("");
+}
+
+function line(x1, y1, x2, y2, stroke = COLORS.line, width = 0.8) {
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${width}"/>`;
+}
+
+function renderGuide(context) {
   const demo = {
     code: "رمز المقرر",
     name: "اسم المقرر",
@@ -324,276 +466,87 @@ function renderGenericLegendCard(x, y, scale = 1.75) {
     isTrackSpecific: true,
     isExtinct: true,
   };
-  return renderCourseCard(demo, x, y, { scale });
-}
+  const y = GUIDE_LAYOUT.y;
+  const cardX = 228.88;
+  const cardY = y;
+  const scale = GUIDE_LAYOUT.cardScale;
+  const cardWidth = COURSE_CARD_LAYOUT.width * scale;
+  const cardHeight = COURSE_CARD_LAYOUT.height * scale;
+  const parts = [renderCourseCard(context, demo, cardX, cardY, { scale })];
 
-function line(x1, y1, x2, y2, stroke = COLORS.line, width = 0.8) {
-  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${width}"/>`;
-}
+  parts.push(line(cardX + 4, cardY + 14, 211, cardY + 14));
+  parts.push(text({ x: 208, y: cardY + 17, value: "مقرر أب", size: 8.457, weight: 700, anchor: "start" }));
+  parts.push(textLines({ x: 208, y: cardY + 30, lines: ["يعد هذا المقرر متطلبًا سابقًا لمقررات في مستويات", "قادمة."], lineHeight: 10, size: 8.457, anchor: "start" }));
 
-function renderLegendPanel(y = 625) {
-  const parts = [
-    `<rect x="${PHASE_RAIL_X}" y="${y}" width="${PHASE_RAIL_WIDTH}" height="303" rx="1.4" fill="${COLORS.white}" stroke="${COLORS.saad}" stroke-width="1"/>`,
-    text({ x: 0, y: 0, value: "دليل الخطة", size: 4.8, weight: 600, fill: COLORS.saad, transform: `translate(${PHASE_RAIL_X + PHASE_RAIL_WIDTH / 2 + 1.2} ${y + 151.5}) rotate(-90)` }),
-    text({ x: 297, y: y + 24, value: "دليل بطاقة المقرر", size: 12.2, weight: 700, fill: COLORS.black }),
-    text({ x: 297, y: y + 40, value: "كل ما يظهر في البطاقة يُستخرج آليًّا من بيانات المقرر والخطة", size: 6.2, weight: 500, fill: COLORS.gray }),
+  parts.push(line(cardX + 4, cardY + cardHeight - 14, 211, cardY + cardHeight - 14));
+  parts.push(text({ x: 208, y: cardY + 88, value: "مقرر تابع للمسار", size: 8.457, weight: 700, anchor: "start" }));
+  parts.push(textLines({ x: 208, y: cardY + 101, lines: ["علامة تبين أن المقرر تابع للمسار الحالي، وتنطبق", "فقط على التخصصات التي تحوي مسارات."], lineHeight: 10, size: 8.457, anchor: "start" }));
+
+  parts.push(line(cardX + cardWidth, cardY + 21, 434, cardY + 21));
+  parts.push(text({ x: 540, y: cardY + 17, value: "الساعات الأكاديمية", size: 8.457, weight: 700, anchor: "start" }));
+  parts.push(textLines({ x: 540, y: cardY + 30, lines: ["الساعات التي يتم اعتمادها في حساب", "المعدلات الدراسية والساعات التراكمية."], lineHeight: 10, size: 8.457, anchor: "start" }));
+
+  parts.push(line(cardX + cardWidth - 14, cardY + cardHeight - 14, 434, cardY + cardHeight - 14));
+  parts.push(text({ x: 540, y: cardY + 88, value: "مقرر منقرض", size: 8.457, weight: 700, anchor: "start" }));
+  parts.push(textLines({ x: 540, y: cardY + 101, lines: ["لم يظهر المقرر خلال السنين الماضية ضمن", "المقررات المطروحة."], lineHeight: 10, size: 8.457, anchor: "start" }));
+
+  const headingY = cardY + 151;
+  const details = [
+    { x: 145, targetX: cardX + 53 * scale, heading: "ساعات التمارين", lines: ["عدد ساعات التمارين أسبوعيًا."] },
+    { x: 259, targetX: cardX + 38 * scale, heading: "ساعات العملي", lines: ["عدد ساعات العملي أسبوعيًا."] },
+    { x: 382, targetX: cardX + 48 * scale, heading: "ساعات المحاضرة", lines: ["عدد ساعات المحاضرة أسبوعيًا."] },
+    { x: 539, targetX: cardX + 28 * scale, heading: "الساعات الفعلية", lines: ["الساعات التي يتم تدريس المقرر فيها بشكل", "أسبوعي، وهي الساعات التي يتم اعتمادها", "في حساب الحرمان."] },
   ];
-
-  const cardX = 232;
-  const cardY = y + 91;
-  const scale = 1.75;
-  const cardW = CARD_WIDTH * scale;
-  const cardH = CARD_HEIGHT * scale;
-  parts.push(renderGenericLegendCard(cardX, cardY, scale));
-
-  // Right-side callouts.
-  parts.push(line(cardX + cardW, cardY + 11, 446, cardY + 11));
-  parts.push(text({ x: 452, y: cardY + 7, value: "الساعات الأكاديمية", size: 7, weight: 700, anchor: "start", fill: COLORS.black }));
-  parts.push(text({ x: 452, y: cardY + 18, value: "الساعات المعتمدة في المعدل والتراكمي", size: 5.3, weight: 400, anchor: "start", fill: COLORS.black }));
-
-  parts.push(line(cardX + cardW - 7, cardY + cardH - 7, 446, cardY + cardH - 7));
-  parts.push(text({ x: 452, y: cardY + cardH - 11, value: "مقرر منقرض", size: 7, weight: 700, anchor: "start", fill: COLORS.black }));
-  parts.push(text({ x: 452, y: cardY + cardH + 1, value: "لم يظهر ضمن المقررات المطروحة حديثًا", size: 5.3, weight: 400, anchor: "start", fill: COLORS.black }));
-
-  // Left-side callouts.
-  parts.push(line(cardX + 2, cardY + 7, 155, cardY + 7));
-  parts.push(text({ x: 149, y: cardY + 3, value: "مقرر أب", size: 7, weight: 700, anchor: "end", fill: COLORS.black }));
-  parts.push(text({ x: 149, y: cardY + 14, value: "متطلب سابق لمقررات في مستويات قادمة", size: 5.3, weight: 400, anchor: "end", fill: COLORS.black }));
-
-  parts.push(line(cardX + 2, cardY + cardH - 7, 155, cardY + cardH - 7));
-  parts.push(text({ x: 149, y: cardY + cardH - 11, value: "مقرر تابع للمسار", size: 7, weight: 700, anchor: "end", fill: COLORS.black }));
-  parts.push(text({ x: 149, y: cardY + cardH + 1, value: "علامة تظهر في التخصصات ذات المسارات", size: 5.3, weight: 400, anchor: "end", fill: COLORS.black }));
-
-  const metricY = cardY + cardH + 72;
-  const metricXs = [120, 238, 356, 474];
-  const headings = ["ساعات التمارين", "ساعات العملي", "ساعات المحاضرة", "الساعات الفعلية"];
-  const descriptions = [
-    "عدد ساعات التمارين أسبوعيًّا.",
-    "عدد ساعات العملي أسبوعيًّا.",
-    "عدد ساعات المحاضرة أسبوعيًّا.",
-    "الساعات الأسبوعية المعتمدة في حساب الحرمان.",
-  ];
-  const targetXs = [cardX + 54, cardX + 68, cardX + 83, cardX + 104];
-  metricXs.forEach((x, index) => {
-    parts.push(line(targetXs[index], cardY + cardH - 3, x, metricY - 18));
-    parts.push(text({ x, y: metricY, value: headings[index], size: 6.7, weight: 700, fill: COLORS.black }));
-    parts.push(text({ x, y: metricY + 12, value: descriptions[index], size: 4.9, weight: 400, fill: COLORS.black }));
+  details.forEach((item) => {
+    parts.push(line(item.targetX, cardY + cardHeight - 6, item.x - 24, headingY - 14, item.x === 539 ? COLORS.saad : COLORS.line, item.x === 539 ? 1 : 0.8));
+    parts.push(text({ x: item.x, y: headingY, value: item.heading, size: 8.457, weight: 700, anchor: "start" }));
+    parts.push(textLines({ x: item.x, y: headingY + 15, lines: item.lines, lineHeight: 10, size: 8.457, anchor: "start" }));
   });
-
-  return parts.join("");
-}
-
-function electiveGroupHeight(group) {
-  const rows = Math.max(1, Math.ceil(group.courses.length / 6));
-  return rows * 50 + 12;
-}
-
-function renderElectiveGroup(group, y) {
-  const rows = Math.max(1, Math.ceil(group.courses.length / 6));
-  const height = electiveGroupHeight(group);
-  const parts = [
-    `<rect x="${COURSE_AREA_X}" y="${y}" width="${COURSE_AREA_WIDTH}" height="${height}" rx="3" fill="${COLORS.white}" stroke="${COLORS.line}" stroke-width="0.65"/>`,
-    `<rect x="${SUMMARY_X}" y="${y}" width="${SUMMARY_WIDTH}" height="${height}" rx="3" fill="${COLORS.white}" stroke="${COLORS.line}" stroke-width="0.65"/>`,
-    `<path d="M${SUMMARY_X + 3} ${y}H${SUMMARY_X + SUMMARY_WIDTH - 3}a3 3 0 0 1 3 3v${Math.min(31, height - 3)}H${SUMMARY_X}V${y + 3}a3 3 0 0 1 3-3z" fill="${COLORS.saadTint}"/>`,
-    text({ x: SUMMARY_X + SUMMARY_WIDTH / 2, y: y + 18.5, value: group.name, size: 6.2, weight: 700, fill: COLORS.saad }),
-    text({ x: SUMMARY_X + SUMMARY_WIDTH / 2, y: y + Math.min(height - 11, 47), value: `إتمام ${group.requiredHours ?? 0} ساعات`, size: 5.1, weight: 700, fill: COLORS.black }),
-  ];
-
-  group.courses.forEach((course, index) => {
-    const row = Math.floor(index / 6);
-    const rowCourses = group.courses.slice(row * 6, row * 6 + 6);
-    const rowCount = rowCourses.length;
-    const rowStart = CARD_RIGHT - (rowCount * CARD_WIDTH + Math.max(0, rowCount - 1) * CARD_GAP);
-    const col = index % 6;
-    parts.push(renderCourseCard(course, rowStart + col * (CARD_WIDTH + CARD_GAP), y + 8 + row * 50));
-  });
-  return { svg: parts.join(""), height };
-}
-
-function renderElectiveGroups(groups, y = 615) {
-  const gap = 15;
-  const totalHeight = groups.reduce((sum, group) => sum + electiveGroupHeight(group), 0) + Math.max(0, groups.length - 1) * gap;
-  const parts = [
-    `<rect x="${PHASE_RAIL_X}" y="${y}" width="${PHASE_RAIL_WIDTH}" height="${totalHeight}" rx="1.4" fill="${COLORS.white}" stroke="${COLORS.saad}" stroke-width="1"/>`,
-    text({ x: 0, y: 0, value: "المقررات الاختيارية", size: 4.7, weight: 600, fill: COLORS.saad, transform: `translate(${PHASE_RAIL_X + PHASE_RAIL_WIDTH / 2 + 1.2} ${y + totalHeight / 2}) rotate(-90)` }),
-  ];
-  let cursor = y;
-  groups.forEach((group, index) => {
-    const rendered = renderElectiveGroup(group, cursor);
-    parts.push(rendered.svg);
-    cursor += rendered.height + (index < groups.length - 1 ? gap : 0);
-  });
-  return parts.join("");
-}
-
-function telegramIcon(x, y) {
-  return `<g transform="translate(${x} ${y})"><circle cx="0" cy="0" r="7" fill="${COLORS.black}"/><path d="M-4-1 4-4 1.5 4-.2 1.5-2.2 3-1.4.2z" fill="${COLORS.white}"/></g>`;
-}
-
-function globeIcon(x, y) {
-  return `<g transform="translate(${x} ${y})" fill="none" stroke="${COLORS.black}" stroke-width="1.4"><circle r="7"/><ellipse rx="3.2" ry="7"/><path d="M-6 0h12M-5-3.6h10M-5 3.6h10"/></g>`;
-}
-
-function xIcon(x, y) {
-  return `<g transform="translate(${x} ${y})" stroke="${COLORS.black}" stroke-width="2.1" stroke-linecap="round"><path d="M-5-7 5 7M4-7-5 7"/></g>`;
-}
-
-function helpIcon(x, y) {
-  return `<g transform="translate(${x} ${y})"><circle r="7" fill="none" stroke="${COLORS.black}" stroke-width="1.4"/>${text({ x: 0, y: 3.3, value: "؟", size: 8, weight: 700, fill: COLORS.black })}</g>`;
-}
-
-function footerItem({ x, icon, title, value }) {
-  return [
-    icon(x + 42, 0),
-    text({ x: x + 30, y: -2, value: title, size: 6.2, weight: 700, anchor: "end", fill: COLORS.black }),
-    text({ x: x + 30, y: 8, value, size: 5.5, weight: 400, anchor: "end", fill: COLORS.black, direction: "ltr" }),
-  ].join("");
-}
-
-function renderFooter(plan) {
-  const itemsY = 978;
-  const copyright = plan.footer?.copyright || "مبادرة صاد. جميع الحقوق محفوظة للتصميم والهوية البصرية.";
-  return [
-    `<g transform="translate(0 ${itemsY})">`,
-    footerItem({ x: 448, icon: telegramIcon, title: "قناة مبادرة صاد", value: "t.me/saadinitiative" }),
-    footerItem({ x: 326, icon: globeIcon, title: "موقع مبادرة صاد", value: "saadinitiative.com" }),
-    footerItem({ x: 205, icon: xIcon, title: "حساب مبادرة صاد", value: "x.com/saadinitiative" }),
-    footerItem({ x: 84, icon: helpIcon, title: "للاستفسارات", value: "t.me/SaadInitiative?direct" }),
-    `</g>`,
-    text({ x: PAGE_WIDTH / 2, y: 1017, value: copyright, size: 5.4, weight: 400, fill: "#9A9A9A" }),
-    `<rect x="0" y="1040" width="${PAGE_WIDTH}" height="5" fill="${COLORS.saad}"/>`,
-  ].join("");
-}
-
-function textLines({ x, y, lines, lineHeight, size, weight = 400, anchor = "middle", fill = COLORS.black, direction = "rtl" }) {
-  return lines.map((value, index) => text({
-    x,
-    y: y + index * lineHeight,
-    value,
-    size,
-    weight,
-    anchor,
-    fill,
-    direction,
-  })).join("");
+  return `<g data-component="course-guide">${parts.join("")}</g>`;
 }
 
 function renderSummerRail(y) {
-  return [
-    `<rect x="${YEAR_RAIL_X}" y="${y}" width="${YEAR_RAIL_WIDTH}" height="${SEMESTER_HEIGHT}" rx="1.5" fill="${COLORS.white}" stroke="${COLORS.saad}" stroke-width="1"/>`,
-    text({
-      x: 0,
-      y: 0,
-      value: "فصل صيفي",
-      size: 4.2,
-      weight: 600,
-      fill: COLORS.saad,
-      transform: `translate(${YEAR_RAIL_X + YEAR_RAIL_WIDTH / 2 + 1.2} ${y + SEMESTER_HEIGHT / 2}) rotate(-90)`,
-    }),
-  ].join("");
-}
-
-function renderProposalLegend(y = 704) {
-  const cardX = 232;
-  const cardY = y;
-  const scale = 1.75;
-  const cardW = CARD_WIDTH * scale;
-  const cardH = CARD_HEIGHT * scale;
-  const parts = [renderGenericLegendCard(cardX, cardY, scale)];
-
-  // The four badges around the card.
-  parts.push(line(cardX + 2, cardY + 7, 151, cardY + 7));
-  parts.push(text({ x: 145, y: cardY + 4, value: "مقرر أب", size: 7, weight: 700, anchor: "end" }));
-  parts.push(textLines({
-    x: 145,
-    y: cardY + 16,
-    lines: ["يعد هذا المقرر متطلبًا سابقًا لمقررات في مستويات", "قادمة."],
-    lineHeight: 8,
-    size: 5.2,
-    anchor: "end",
-  }));
-
-  parts.push(line(cardX + 2, cardY + cardH - 7, 151, cardY + cardH - 7));
-  parts.push(text({ x: 145, y: cardY + cardH - 11, value: "مقرر تابع للمسار", size: 7, weight: 700, anchor: "end" }));
-  parts.push(textLines({
-    x: 145,
-    y: cardY + cardH + 1,
-    lines: ["علامة تبين أن المقرر تابع للمسار الحالي، وتنطبق", "فقط على التخصصات التي تحوي مسارات."],
-    lineHeight: 8,
-    size: 5.2,
-    anchor: "end",
-  }));
-
-  parts.push(line(cardX + cardW, cardY + 11, 446, cardY + 11));
-  parts.push(text({ x: 452, y: cardY + 7, value: "الساعات الأكاديمية", size: 7, weight: 700, anchor: "start" }));
-  parts.push(textLines({
-    x: 452,
-    y: cardY + 19,
-    lines: ["الساعات التي يتم اعتمادها في حساب", "المعدلات الدراسية والساعات التراكمية."],
-    lineHeight: 8,
-    size: 5.2,
-    anchor: "start",
-  }));
-
-  parts.push(line(cardX + cardW - 7, cardY + cardH - 7, 446, cardY + cardH - 7));
-  parts.push(text({ x: 452, y: cardY + cardH - 11, value: "مقرر منقرض", size: 7, weight: 700, anchor: "start" }));
-  parts.push(textLines({
-    x: 452,
-    y: cardY + cardH + 1,
-    lines: ["لم يظهر المقرر خلال السنين الماضية ضمن", "المقررات المطروحة."],
-    lineHeight: 8,
-    size: 5.2,
-    anchor: "start",
-  }));
-
-  const headingY = cardY + cardH + 72;
-  const details = [
-    { x: 105, targetX: cardX + 53, heading: "ساعات التمارين", lines: ["عدد ساعات التمارين أسبوعيًّا."] },
-    { x: 226, targetX: cardX + 68, heading: "ساعات العملي", lines: ["عدد ساعات العملي أسبوعيًّا."] },
-    { x: 347, targetX: cardX + 83, heading: "ساعات المحاضرة", lines: ["عدد ساعات المحاضرة أسبوعيًّا."] },
-    { x: 477, targetX: cardX + 104, heading: "الساعات الفعلية", lines: ["الساعات التي يتم تدريس المقرر فيها بشكل", "أسبوعي، وهي الساعات التي يتم اعتمادها", "في حساب الحرمان."] },
-  ];
-  details.forEach((item) => {
-    parts.push(line(item.targetX, cardY + cardH - 3, item.x, headingY - 18, item.x === 477 ? COLORS.saad : COLORS.line, item.x === 477 ? 1 : 0.8));
-    parts.push(text({ x: item.x, y: headingY, value: item.heading, size: 6.7, weight: 700 }));
-    parts.push(textLines({ x: item.x, y: headingY + 12, lines: item.lines, lineHeight: 7.4, size: 4.9 }));
+  return renderVerticalRail({
+    x: SEMESTER_LAYOUT.yearRailX,
+    y,
+    width: SEMESTER_LAYOUT.yearRailWidth,
+    height: SEMESTER_LAYOUT.height,
+    label: "فصل صيفي",
   });
-
-  return parts.join("");
 }
 
 function pageSvg(parts) {
   return [
     `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${PAGE_WIDTH}pt" height="${PAGE_HEIGHT}pt" viewBox="0 0 ${PAGE_WIDTH} ${PAGE_HEIGHT}">`,
-    `<style>text{font-kerning:normal}</style>`,
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${PAGE_LAYOUT.width}pt" height="${PAGE_LAYOUT.height}pt" viewBox="0 0 ${PAGE_LAYOUT.width} ${PAGE_LAYOUT.height}">`,
+    `<style>text{font-kerning:normal;font-synthesis:none}</style>`,
     ...parts,
-    `</svg>`,
+    "</svg>",
   ].join("\n");
 }
 
 export function calculatePage() {
-  return { width: PAGE_WIDTH, height: PAGE_HEIGHT, rows: 8, panelHeight: SEMESTER_HEIGHT };
+  return {
+    width: PAGE_LAYOUT.width,
+    height: PAGE_LAYOUT.height,
+    rows: 8,
+    panelHeight: SEMESTER_LAYOUT.height,
+  };
 }
 
 export function renderPlanSvg(plan) {
+  const context = createRenderContext("published");
   const semesters = plan.semesters.slice(0, 8);
   const renderPlan = { ...plan, semesters };
   const parts = [
-    `<rect width="${PAGE_WIDTH}" height="${PAGE_HEIGHT}" fill="${COLORS.white}"/>`,
+    `<rect width="${PAGE_LAYOUT.width}" height="${PAGE_LAYOUT.height}" fill="${COLORS.white}"/>`,
     renderHeader(renderPlan),
   ];
-
-  semesters.forEach((semester, index) => parts.push(renderSemesterRow(semester, index)));
-  parts.push(renderYearRails(semesters.length));
-  parts.push(renderPhaseRails(renderPlan));
-
+  semesters.forEach((semester, index) => parts.push(renderSemesterRow(context, semester, index)));
+  parts.push(renderYearRails(semesters.length), renderPhaseRails(renderPlan));
   if (Array.isArray(plan.electiveGroups) && plan.electiveGroups.length) {
-    parts.push(renderElectiveGroups(plan.electiveGroups));
-  } else {
-    parts.push(renderLegendPanel());
+    parts.push(renderElectiveGroups(context, plan.electiveGroups, semesters.length));
   }
-
   parts.push(renderFooter(plan));
   return pageSvg(parts);
 }
@@ -601,26 +554,20 @@ export function renderPlanSvg(plan) {
 export function renderProposalSvg(plan) {
   const proposal = plan.proposal;
   if (!proposal) throw new Error("The plan has no proposal page.");
+  const context = createRenderContext("proposal");
   const regularSemesters = proposal.semesters.slice(0, 8);
   const summerSemester = proposal.semesters[8] ?? null;
-  const renderPlan = {
-    ...proposal,
-    major: proposal.title ?? "الخطة المقترحة",
-    headerSubtitle: plan.major,
-    footer: plan.footer,
-  };
+  const renderPlan = { ...proposal, semesters: proposal.semesters };
   const parts = [
-    `<rect width="${PAGE_WIDTH}" height="${PAGE_HEIGHT}" fill="${COLORS.white}"/>`,
-    renderHeader(renderPlan),
+    `<rect width="${PAGE_LAYOUT.width}" height="${PAGE_LAYOUT.height}" fill="${COLORS.white}"/>`,
+    renderHeader(renderPlan, { proposal: true, parentMajor: plan.major }),
   ];
-
-  regularSemesters.forEach((semester, index) => parts.push(renderSemesterRow(semester, index)));
-  if (summerSemester) parts.push(renderSemesterRow(summerSemester, 8));
+  regularSemesters.forEach((semester, index) => parts.push(renderSemesterRow(context, semester, index)));
+  if (summerSemester) parts.push(renderSemesterRow(context, summerSemester, 8));
   parts.push(renderYearRails(regularSemesters.length));
   if (summerSemester) parts.push(renderSummerRail(semesterY(8)));
-  parts.push(renderPhaseRails({ ...renderPlan, semesters: proposal.semesters }));
-  parts.push(renderProposalLegend());
-  parts.push(renderFooter(plan));
+  parts.push(renderPhaseRails(renderPlan));
+  parts.push(renderGuide(context), renderFooter(plan, 899.748779296875));
   return pageSvg(parts);
 }
 
@@ -633,18 +580,15 @@ function pageInner(svg) {
 export function combineSvgPages(pages) {
   if (pages.length === 1) return pages[0];
   const pageGap = 10;
-  const pagePitch = PAGE_HEIGHT + pageGap;
-  const namedPages = pages.map((_, index) => `<inkscape:page x="0" y="${index * pagePitch}" width="${PAGE_WIDTH}" height="${PAGE_HEIGHT}"/>`).join("");
-  const contents = pages.map((svg, index) => `<g transform="translate(0 ${index * pagePitch})">${pageInner(svg)}</g>`).join("\n");
-  // Inkscape rounds a 1045pt multipage document to 1046pt. The 1044.5pt
-  // physical height preserves the exact 594 x 1045 pt page size while the
-  // viewBox and all design coordinates remain the Figma-authored 594 x 1045.
+  const pagePitch = PAGE_LAYOUT.height + pageGap;
+  const namedPages = pages.map((_, index) => `<inkscape:page x="0" y="${index * pagePitch}" width="${PAGE_LAYOUT.width}" height="${PAGE_LAYOUT.height}"/>`).join("");
+  const contents = pages.map((svg, index) => `<g data-page="${index + 1}" transform="translate(0 ${index * pagePitch})">${pageInner(svg)}</g>`).join("\n");
   return [
     `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="${PAGE_WIDTH}pt" height="1044.5pt" viewBox="0 0 ${PAGE_WIDTH} ${PAGE_HEIGHT}">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="${PAGE_LAYOUT.width}pt" height="1044.5pt" viewBox="0 0 ${PAGE_LAYOUT.width} ${PAGE_LAYOUT.height}">`,
     `<sodipodi:namedview pagecolor="#ffffff">${namedPages}</sodipodi:namedview>`,
     contents,
-    `</svg>`,
+    "</svg>",
   ].join("\n");
 }
 
