@@ -61,28 +61,32 @@ test("renders the Figma-shaped course card and plan metadata", () => {
   assert.match(svg, /#17529B/);
 });
 
-test("uses the exact Figma page dimensions", () => {
-  assert.deepEqual(calculatePage(), { width: 594, height: 1045, rows: 8, panelHeight: 57 });
-  const svg = renderPlanSvg({
+test("keeps width fixed while deriving page height from content", () => {
+  const plan = {
     major: "اختبار",
     degree: "البكالوريوس",
     semesters: [{ name: "المستوى الأول", academicHours: 0, cumulativeHours: 0, courses: [] }],
     electiveGroups: [],
-  });
-  assert.match(svg, /width="594pt" height="1045pt" viewBox="0 0 594 1045"/);
+  };
+  const layout = calculatePage(plan);
+  const svg = renderPlanSvg(plan);
+  assert.equal(layout.width, 594);
+  assert.equal(layout.height, 271);
+  assert.match(svg, /width="594pt" height="271pt" viewBox="0 0 594 271"/);
 });
 
 test("exposes the measured Figma layout instead of provisional approximations", () => {
   assert.deepEqual(PAGE_LAYOUT, {
     width: 594,
-    height: 1045,
     innerX: 15,
     innerY: 24,
     innerWidth: 564,
     headerHeight: 42,
     contentTop: 98,
-    footerY: 961,
+    sectionGap: 32,
+    footerGap: 32,
     footerHeight: 84,
+    pageGap: 10,
   });
   assert.equal(SEMESTER_LAYOUT.courseAreaWidth, 471.75701904296875);
   assert.equal(SEMESTER_LAYOUT.summaryWidth, 65.24298858642578);
@@ -144,7 +148,9 @@ test("renders measured semester summary, rails, elective groups, and footer boun
   assert.match(svg, /data-part="summary-title" d="M499\.75701904296875 98 /);
   assert.equal((svg.match(/data-component="year-rail"/gu) ?? []).length, 4);
   assert.equal((svg.match(/data-component="elective-group"/gu) ?? []).length, 2);
-  assert.match(svg, /x="0" y="1039" width="594" height="6"/);
+  const layout = calculatePage({ semesters, electiveGroups });
+  assert.equal(layout.footerY, 833);
+  assert.match(svg, /x="0" y="911" width="594" height="6"/);
 });
 
 test("keeps generated IDs unique and output deterministic", () => {
@@ -178,9 +184,81 @@ test("builds an Inkscape multipage SVG for a proposed plan", () => {
   });
   assert.equal(document.pageCount, 2);
   assert.equal((document.svg.match(/<inkscape:page /g) ?? []).length, 2);
-  assert.match(document.svg, /height="1044\.5pt"/);
+  assert.equal(document.pageLayouts[0].height, 271);
+  assert.equal(document.pageLayouts[1].height, 983.748779296875);
+  assert.match(document.svg, /<inkscape:page x="0" y="0" width="594" height="271"\/>/);
+  assert.match(document.svg, /<inkscape:page x="0" y="281" width="594" height="983\.748779296875"\/>/);
   assert.match(document.pages[1], /data-component="course-guide"/);
   assert.match(document.pages[1], /فصل صيفي/);
   const ids = allIds(document.svg);
   assert.equal(new Set(ids).size, ids.length);
+});
+
+test("grows published pages for semesters, elective groups, and wrapped elective rows", () => {
+  const sixSemesters = Array.from({ length: 6 }, () => semester());
+  const eightSemesters = Array.from({ length: 8 }, () => semester());
+  const noElectives = calculatePage({ semesters: sixSemesters, electiveGroups: [] });
+  const eightLevels = calculatePage({ semesters: eightSemesters, electiveGroups: [] });
+  const oneRow = calculatePage({
+    semesters: sixSemesters,
+    electiveGroups: [{ name: "اختياري", requiredHours: 3, courses: Array.from({ length: 6 }, () => course()) }],
+  });
+  const twoRows = calculatePage({
+    semesters: sixSemesters,
+    electiveGroups: [{ name: "اختياري", requiredHours: 3, courses: Array.from({ length: 7 }, () => course()) }],
+  });
+  const secondGroup = calculatePage({
+    semesters: sixSemesters,
+    electiveGroups: [
+      { name: "اختياري أ", requiredHours: 3, courses: [course()] },
+      { name: "اختياري ب", requiredHours: 3, courses: [course()] },
+    ],
+  });
+
+  assert.equal(noElectives.width, 594);
+  assert.ok(noElectives.height < eightLevels.height);
+  assert.ok(oneRow.height > noElectives.height);
+  assert.equal(twoRows.height - oneRow.height, COURSE_CARD_LAYOUT.height + ELECTIVE_LAYOUT.rowGap);
+  assert.ok(secondGroup.height > oneRow.height);
+});
+
+test("grows proposal pages independently for summer and guide content", () => {
+  const regular = Array.from({ length: 8 }, () => semester());
+  const summer = semester({ name: "صيفي" });
+  const base = {
+    major: "اختبار",
+    semesters: [semester()],
+    proposal: { semesters: regular, showGuide: false },
+  };
+  const withoutGuide = calculatePage(base, { proposal: true });
+  const withSummer = calculatePage({
+    ...base,
+    proposal: { semesters: [...regular, summer], showGuide: false },
+  }, { proposal: true });
+  const withGuide = calculatePage({
+    ...base,
+    proposal: { semesters: regular, showGuide: true },
+  }, { proposal: true });
+
+  assert.equal(withoutGuide.width, 594);
+  assert.ok(withSummer.height > withoutGuide.height);
+  assert.equal(withGuide.height - withoutGuide.height, PAGE_LAYOUT.sectionGap + 192.748779296875);
+  assert.notEqual(calculatePage(base).height, withGuide.height);
+});
+
+test("keeps every calculated section inside deterministic page bounds", () => {
+  const plan = {
+    major: "اختبار",
+    semesters: Array.from({ length: 6 }, () => semester()),
+    electiveGroups: [{ name: "اختياري", requiredHours: 3, courses: Array.from({ length: 8 }, () => course()) }],
+  };
+  const first = calculatePage(plan);
+  const second = calculatePage(structuredClone(plan));
+  assert.deepEqual(first, second);
+  assert.ok(first.semesterBottom <= first.contentBottom);
+  assert.ok(first.electivesY + first.electivesHeight <= first.contentBottom);
+  assert.ok(first.contentBottom < first.footerY);
+  assert.equal(first.footerY + PAGE_LAYOUT.footerHeight, first.height);
+  const svg = renderPlanSvg(plan);
+  assert.match(svg, new RegExp(`height="${first.height}pt"`));
 });

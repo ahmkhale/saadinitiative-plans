@@ -5,7 +5,10 @@ import {
   GUIDE_LAYOUT,
   PAGE_LAYOUT,
   SEMESTER_LAYOUT,
+  calculateProposalPageLayout,
+  calculatePublishedPageLayout,
   electiveGroupHeight,
+  electiveGroupsHeight,
   electiveTop,
   semesterY,
 } from "./render-layout.mjs";
@@ -386,8 +389,7 @@ function renderElectiveGroup(context, group, y) {
 
 function renderElectiveGroups(context, groups, semesterCount) {
   const y = electiveTop(semesterCount);
-  const totalHeight = groups.reduce((sum, group) => sum + electiveCardsHeight(group), 0)
-    + Math.max(0, groups.length - 1) * ELECTIVE_LAYOUT.groupGap;
+  const totalHeight = electiveGroupsHeight(groups);
   const parts = [renderVerticalRail({
     x: SEMESTER_LAYOUT.phaseRailX,
     y,
@@ -429,7 +431,7 @@ function footerItem({ x, width, icon, title, value }) {
   ].join("");
 }
 
-function renderFooter(plan, y = PAGE_LAYOUT.footerY) {
+function renderFooter(plan, y) {
   const copyright = plan.footer?.copyright || "مبادرة صاد. جميع الحقوق محفوظة للتصميم والهوية البصرية.";
   return [
     `<g data-component="footer">`,
@@ -449,7 +451,7 @@ function line(x1, y1, x2, y2, stroke = COLORS.line, width = 0.8) {
   return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${width}"/>`;
 }
 
-function renderGuide(context) {
+function renderGuide(context, y) {
   const demo = {
     code: "رمز المقرر",
     name: "اسم المقرر",
@@ -466,7 +468,6 @@ function renderGuide(context) {
     isTrackSpecific: true,
     isExtinct: true,
   };
-  const y = GUIDE_LAYOUT.y;
   const cardX = 228.88;
   const cardY = y;
   const scale = GUIDE_LAYOUT.cardScale;
@@ -515,31 +516,29 @@ function renderSummerRail(y) {
   });
 }
 
-function pageSvg(parts) {
+function pageSvg(parts, layout) {
   return [
     `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${PAGE_LAYOUT.width}pt" height="${PAGE_LAYOUT.height}pt" viewBox="0 0 ${PAGE_LAYOUT.width} ${PAGE_LAYOUT.height}">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${layout.width}pt" height="${layout.height}pt" viewBox="0 0 ${layout.width} ${layout.height}" data-page-width="${layout.width}" data-page-height="${layout.height}">`,
     `<style>text{font-kerning:normal;font-synthesis:none}</style>`,
     ...parts,
     "</svg>",
   ].join("\n");
 }
 
-export function calculatePage() {
-  return {
-    width: PAGE_LAYOUT.width,
-    height: PAGE_LAYOUT.height,
-    rows: 8,
-    panelHeight: SEMESTER_LAYOUT.height,
-  };
+export function calculatePage(plan, options = {}) {
+  return options.proposal
+    ? calculateProposalPageLayout(plan)
+    : calculatePublishedPageLayout(plan);
 }
 
 export function renderPlanSvg(plan) {
   const context = createRenderContext("published");
-  const semesters = plan.semesters.slice(0, 8);
+  const semesters = plan.semesters;
   const renderPlan = { ...plan, semesters };
+  const layout = calculatePublishedPageLayout(renderPlan);
   const parts = [
-    `<rect width="${PAGE_LAYOUT.width}" height="${PAGE_LAYOUT.height}" fill="${COLORS.white}"/>`,
+    `<rect width="${layout.width}" height="${layout.height}" fill="${COLORS.white}"/>`,
     renderHeader(renderPlan),
   ];
   semesters.forEach((semester, index) => parts.push(renderSemesterRow(context, semester, index)));
@@ -547,8 +546,8 @@ export function renderPlanSvg(plan) {
   if (Array.isArray(plan.electiveGroups) && plan.electiveGroups.length) {
     parts.push(renderElectiveGroups(context, plan.electiveGroups, semesters.length));
   }
-  parts.push(renderFooter(plan));
-  return pageSvg(parts);
+  parts.push(renderFooter(plan, layout.footerY));
+  return pageSvg(parts, layout);
 }
 
 export function renderProposalSvg(plan) {
@@ -558,8 +557,9 @@ export function renderProposalSvg(plan) {
   const regularSemesters = proposal.semesters.slice(0, 8);
   const summerSemester = proposal.semesters[8] ?? null;
   const renderPlan = { ...proposal, semesters: proposal.semesters };
+  const layout = calculateProposalPageLayout(plan);
   const parts = [
-    `<rect width="${PAGE_LAYOUT.width}" height="${PAGE_LAYOUT.height}" fill="${COLORS.white}"/>`,
+    `<rect width="${layout.width}" height="${layout.height}" fill="${COLORS.white}"/>`,
     renderHeader(renderPlan, { proposal: true, parentMajor: plan.major }),
   ];
   regularSemesters.forEach((semester, index) => parts.push(renderSemesterRow(context, semester, index)));
@@ -567,8 +567,9 @@ export function renderProposalSvg(plan) {
   parts.push(renderYearRails(regularSemesters.length));
   if (summerSemester) parts.push(renderSummerRail(semesterY(8)));
   parts.push(renderPhaseRails(renderPlan));
-  parts.push(renderGuide(context), renderFooter(plan, 899.748779296875));
-  return pageSvg(parts);
+  if (layout.includesGuide) parts.push(renderGuide(context, layout.guideY));
+  parts.push(renderFooter(plan, layout.footerY));
+  return pageSvg(parts, layout);
 }
 
 function pageInner(svg) {
@@ -579,13 +580,23 @@ function pageInner(svg) {
 
 export function combineSvgPages(pages) {
   if (pages.length === 1) return pages[0];
-  const pageGap = 10;
-  const pagePitch = PAGE_LAYOUT.height + pageGap;
-  const namedPages = pages.map((_, index) => `<inkscape:page x="0" y="${index * pagePitch}" width="${PAGE_LAYOUT.width}" height="${PAGE_LAYOUT.height}"/>`).join("");
-  const contents = pages.map((svg, index) => `<g data-page="${index + 1}" transform="translate(0 ${index * pagePitch})">${pageInner(svg)}</g>`).join("\n");
+  const dimensions = pages.map((svg) => {
+    const match = svg.match(/data-page-width="([0-9.]+)" data-page-height="([0-9.]+)"/u);
+    if (!match) throw new Error("Could not read generated SVG page dimensions.");
+    return { width: Number(match[1]), height: Number(match[2]) };
+  });
+  const offsets = [];
+  let cursor = 0;
+  for (const page of dimensions) {
+    offsets.push(cursor);
+    cursor += page.height + PAGE_LAYOUT.pageGap;
+  }
+  const namedPages = dimensions.map((page, index) => `<inkscape:page x="0" y="${offsets[index]}" width="${page.width}" height="${page.height}"/>`).join("");
+  const contents = pages.map((svg, index) => `<g data-page="${index + 1}" transform="translate(0 ${offsets[index]})">${pageInner(svg)}</g>`).join("\n");
+  const firstPage = dimensions[0];
   return [
     `<?xml version="1.0" encoding="UTF-8"?>`,
-    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="${PAGE_LAYOUT.width}pt" height="1044.5pt" viewBox="0 0 ${PAGE_LAYOUT.width} ${PAGE_LAYOUT.height}">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="${firstPage.width}pt" height="${firstPage.height}pt" viewBox="0 0 ${firstPage.width} ${firstPage.height}">`,
     `<sodipodi:namedview pagecolor="#ffffff">${namedPages}</sodipodi:namedview>`,
     contents,
     "</svg>",
@@ -595,5 +606,7 @@ export function combineSvgPages(pages) {
 export function renderPlanDocumentSvg(plan) {
   const pages = [renderPlanSvg(plan)];
   if (plan.proposal) pages.push(renderProposalSvg(plan));
-  return { svg: combineSvgPages(pages), pageCount: pages.length, pages };
+  const pageLayouts = [calculatePublishedPageLayout(plan)];
+  if (plan.proposal) pageLayouts.push(calculateProposalPageLayout(plan));
+  return { svg: combineSvgPages(pages), pageCount: pages.length, pages, pageLayouts };
 }

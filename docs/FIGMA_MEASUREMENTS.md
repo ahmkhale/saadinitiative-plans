@@ -7,7 +7,7 @@ generated output. The fixed values live in `src/render-layout.mjs`.
 
 | Renderer area | Figma node | Notes |
 | --- | --- | --- |
-| Published reference page | `122:33350` | Exact `594 × 1045` plan for the repository reference example |
+| Published reference page | `122:33350` | `594 × 1045` composition for the repository reference example |
 | Proposal and course guide | `122:34146` | Proposal grid, summer row, guide, and footer composition |
 | Current science plan page | `381:76418` | Cross-check of shared layout components |
 | User-linked course instance | `381:80662` | Normal card without prerequisite |
@@ -20,7 +20,8 @@ generated output. The fixed values live in `src/render-layout.mjs`.
 
 ## Page and section geometry
 
-- Published page: `594 × 1045 pt`.
+- Page width: always `594 pt`; height is content-derived.
+- The inspected published reference happens to be `594 × 1045 pt`.
 - Inner content frame: `x=15`, `y=24`, `w=564`.
 - Header: `564 × 42`.
 - Semester grid top: `y=98`.
@@ -29,10 +30,12 @@ generated output. The fixed values live in `src/render-layout.mjs`.
 - Summary: `x=499.757019`, `w=65.242989`.
 - Year rail: `x=567`, `w=12`.
 - Phase rail: `x=15`, `w=10`.
-- Footer: `y=961`, `h=84`; cyan end bar is `y=1039`, `h=6`.
-- The proposal/guide composition is `594 × 983.748779`. It is top-aligned
-  inside the required `594 × 1045` published page; its footer begins at
-  `y=899.748779` and the remaining bottom area stays blank.
+- Footer height: `84`; it begins `32` after the final content section.
+- In the inspected published composition, content ends at `y=929`, the footer
+  begins at `y=961`, and the page therefore ends at `1045`.
+- The inspected proposal/guide composition is `594 × 983.748779`; its content
+  ends at `y=867.748779` and its footer begins at `y=899.748779`.
+- These heights describe those compositions, not universal page bounds.
 
 ## Course component geometry
 

@@ -8,4 +8,4 @@
 - PDF and PNG output require Inkscape.
 - `courses.json` section rows normally do not include prerequisite metadata. The resolver intentionally preserves the plan fallback graph in that case.
 - Font files are deliberately not bundled. Exact typography depends on the IBM Plex Sans Arabic weights installed on the machine that exports the PDF.
-- The Figma proposal/guide frame is `594 × 983.748779 pt`, while the published PDF contract is `594 × 1045 pt`. Its measured content remains top-aligned and the remaining `61.251221 pt` is intentionally blank rather than stretching or moving the Figma-authored composition.
+- Page width is fixed at `594 pt`; each page height follows its own content. Existing `1045` and `983.748779` fixtures remain valid examples, not global constants.

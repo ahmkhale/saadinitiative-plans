@@ -16,7 +16,7 @@ Figma and the approved Saad PDFs are the visual source of truth. Do not replace 
 - Unknown required course facts are errors; do not invent them.
 - `isParentCourse` is graph-derived across semester and elective courses.
 - Semester, cumulative, published-plan, and proposed-plan totals are model output, never renderer calculations.
-- Published pages are exactly `594 × 1045 pt`.
+- Every page is exactly `594 pt` wide; its height is derived independently from its content.
 - The course-card background is `74 × 43` inside the Figma component proportions.
 - A proposal is an optional second page in the same PDF; placeholder cards are explicit data, not fake catalog courses.
 - PDF is default; persistent SVG is opt-in.

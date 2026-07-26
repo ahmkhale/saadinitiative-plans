@@ -11,7 +11,7 @@ Version 0.2 implements the visual-parity architecture:
 3. plan fallback only when the catalog lacks a course;
 4. automatic prerequisite graph, parent-course flags, colors, hours, and totals;
 5. measured Figma geometry for the header, edition badge, logo, semester rows, course cards, summaries, year/phase rails, elective groups, and footer;
-6. exact `594 × 1045 pt` PDF pages;
+6. exact `594 pt` page width with content-derived height for each PDF page;
 7. an optional second proposal page with a summer row, black placeholder courses, and the illustrated card guide;
 8. PDF by default, optional multipage SVG and per-page PNG previews;
 9. resolved data and diagnostics beside every output.

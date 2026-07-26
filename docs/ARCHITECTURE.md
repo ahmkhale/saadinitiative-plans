@@ -11,8 +11,11 @@ All authoritative geometry is centralized in `src/render-layout.mjs`. See
 Each page owns a deterministic render context that allocates unique IDs with a
 page-specific prefix, so repeated cards and multipage output cannot collide.
 
-Published and proposed pages retain the fixed `594 × 1045 pt` output contract.
-The proposal guide uses the measured Figma composition inside those page bounds.
+Published and proposed pages retain a fixed `594 pt` width. `render-layout.mjs`
+calculates each page height from its own semester composition, elective groups,
+optional summer row, optional guide, footer gap, and footer. The same dimensions
+drive the SVG root, viewBox, Inkscape page definitions, PDF, and PNG export.
+Components are never compressed to fit a universal height.
 
 ```text
 plan.json
