@@ -50,3 +50,36 @@ The split mirrors the calendar generator:
 - Figma geometry and styles are centralized in one renderer;
 - PDF is the product and SVG is optional;
 - uncertainty is reported instead of guessed.
+
+## Local GUI
+
+`src/gui-server.mjs` binds to `127.0.0.1` and serves the Arabic RTL application
+in `gui/`. Its API is intentionally thin:
+
+```text
+browser draft
+  -> preview.mjs
+     -> normalize + validate + resolve
+     -> shared SVG renderer
+  -> actual SVG pages + diagnostics + page dimensions
+
+save
+  -> store.mjs
+     -> schema validation
+     -> sibling temporary file
+     -> atomic rename to colleges/<college>/<major>/plan.json
+
+export
+  -> preview.mjs
+     -> same resolved document
+     -> exporter.mjs
+     -> PDF by default, optional SVG/PNG
+```
+
+`catalog-service.mjs` merges the Female catalog first and then overlays the Male
+catalog, which gives Male rows precedence while retaining Female-only codes. It
+also reports conflicting duplicate definitions and owns the shared subject-color
+map. The GUI never writes course facts back to either catalog.
+
+Unsaved editor state remains in the browser. Preview and draft export accept that
+state directly, so saving is not a prerequisite for visual feedback.

@@ -50,6 +50,43 @@ test("same-semester prerequisite becomes a corequisite automatically", () => {
   assert.deepEqual(course.corequisites, ["101 ريض"]);
 });
 
+test("code-only catalog facts and dependency markers update after course deletion", () => {
+  const catalog = buildCourseCatalog([
+    { code: "101 ريض", name: "رياضيات", academicHours: 3 },
+    { code: "102 كهر", name: "مختبر", academicHours: 1 },
+    {
+      code: "201 كهر",
+      name: "دوائر",
+      academicHours: 4,
+      prerequisites: ["101 ريض"],
+      corequisites: ["102 كهر"],
+      minimumCompletedCredits: 30,
+    },
+  ]);
+  const input = {
+    schemaVersion: 1,
+    major: "اختبار الاشتقاق",
+    semesters: [
+      { courses: ["101 ريض", "102 كهر"] },
+      { courses: ["201 كهر"] },
+    ],
+  };
+  const resolved = resolvePlan(normalizePlanInput(input), catalog, colors, createDiagnostics());
+  const dependent = resolved.semesters[1].courses[0];
+  assert.equal(dependent.name, "دوائر");
+  assert.deepEqual(dependent.prerequisites, ["101 ريض"]);
+  assert.deepEqual(dependent.corequisites, ["102 كهر"]);
+  assert.equal(dependent.minimumCompletedCredits, 30);
+  assert.equal(resolved.semesters[0].courses[0].isParentCourse, true);
+  assert.equal(resolved.totalHours, 8);
+
+  const reduced = structuredClone(input);
+  reduced.semesters[1].courses = [];
+  const afterDeletion = resolvePlan(normalizePlanInput(reduced), catalog, colors, createDiagnostics());
+  assert.equal(afterDeletion.semesters[0].courses[0].isParentCourse, false);
+  assert.equal(afterDeletion.totalHours, 4);
+});
+
 test("catalog rows without prerequisite metadata preserve the plan fallback graph", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,

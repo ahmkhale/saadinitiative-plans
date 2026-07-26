@@ -74,6 +74,24 @@ npm run generate -- \
   --catalog examples/catalog/courses.json
 ```
 
+### Local Arabic GUI
+
+Start the localhost-only editor:
+
+```bash
+npm run gui
+```
+
+Then open `http://127.0.0.1:4174`. Add colleges and majors, enter semester and
+elective course codes, review the actual shared-renderer preview, then save and
+generate the PDF. Plans are stored atomically under
+`colleges/<college-id>/<major-id>/plan.json`.
+
+The GUI reads `data/courses/Male/courses.json` first and uses
+`data/courses/Female/courses.json` only for missing codes. Blocking diagnostics
+disable export; warnings do not. See [docs/GUI.md](./docs/GUI.md) for the full
+workflow and screenshots.
+
 Keep SVG and render per-page PNG previews when reviewing visual parity:
 
 ```bash
@@ -318,7 +336,12 @@ data/
 docs/
   ARCHITECTURE.md                Pipeline and module boundaries
   DATA_MODEL.md                  Persisted and resolved data contracts
+  GUI.md                         Local editor workflow and screenshots
   KNOWN_LIMITATIONS.md           Current layout and export constraints
+gui/
+  index.html                     Arabic RTL application shell
+  app.js                         Editor state, API calls, and live preview
+  styles.css                     Three-pane operator layout
 schemas/
   plan.schema.json               JSON Schema for plan files
 src/
@@ -328,12 +351,15 @@ src/
   exporter.mjs                   Inkscape PDF/PNG export
   generate.mjs                   Single-plan CLI
   generate-all.mjs               Recursive batch CLI
+  gui-server.mjs                 Local static server and JSON API
   io.mjs                         File loading and output helpers
   normalize.mjs                  Arabic course-code normalization and sorting
   pipeline.mjs                   End-to-end generation orchestration
   plan-input.mjs                 Native and website-registry input adapters
   render-svg.mjs                 Protected Figma-faithful renderer
   resolve.mjs                    Course resolution, graph analysis, and totals
+  store.mjs                      Atomic college and plan persistence
+  preview.mjs                    Shared preview and draft-export boundary
 test/                            Catalog, input, resolver, and renderer tests
 ```
 
@@ -342,6 +368,7 @@ test/                            Catalog, input, resolver, and renderer tests
 ```bash
 npm test          # domain, input, resolver, and renderer tests
 npm run validate  # tests plus JavaScript syntax checks
+npm run gui       # localhost GUI for the manual smoke workflow
 ```
 
 Before merging a visual change, also generate the real reference plan with `--svg --png` and compare
@@ -361,7 +388,6 @@ A coding agent must read these files before changing the repository:
 
 - The renderer is optimized for eight regular levels and one optional summer row.
 - A regular semester row currently displays up to six course cards.
-- There is no local GUI or live preview yet; operation is JSON plus CLI.
 - PDF and PNG export require Inkscape.
 - Exact typography depends on locally installed IBM Plex Sans Arabic weights.
 - Pixel parity must be verified separately for each distinct legacy plan family.

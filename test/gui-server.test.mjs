@@ -85,6 +85,15 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
     const unresolved = await fetch(`${base}/api/catalog/course?code=${encodeURIComponent("999 عال")}`)
       .then((response) => response.json());
     assert.equal(unresolved.course.found, false);
+
+    draft.semesters[0].courses.push("999 عال");
+    const unresolvedPreview = await fetch(`${base}/api/preview`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan: draft }),
+    }).then((response) => response.json());
+    assert.equal(unresolvedPreview.ok, false);
+    assert.ok(unresolvedPreview.diagnostics.items.some((item) => item.code === "UNRESOLVED_COURSE"));
   } finally {
     await close(server);
     fs.rmSync(value.root, { recursive: true, force: true });
@@ -105,11 +114,15 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
       paths: { folder, pdfPath, svgPath: path.join(folder, "plan.svg"), pngPath: path.join(folder, "plan.png") },
     };
   };
+  let openedFolder = null;
   const server = createGuiServer({
     store: value.store,
     catalogService: value.catalogService,
     outputRoot,
     exportDraftFn: fakeExport,
+    openOutputFn: (folder) => {
+      openedFolder = folder;
+    },
   });
   const address = await listen(server);
   const base = `http://127.0.0.1:${address.port}`;
@@ -137,6 +150,21 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
     }).then((response) => response.json());
     assert.equal(generated.ok, true);
     assert.equal(generated.files.pdf, "/dist/cs/plan.pdf");
+
+    const preview = await fetch(`${base}/api/preview`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan: changed }),
+    }).then((response) => response.json());
+    assert.deepEqual(
+      generated.pageLayouts.map(({ width, height }) => ({ width, height })),
+      preview.pageLayouts.map(({ width, height }) => ({ width, height })),
+    );
+
+    const opened = await fetch(`${base}/api/open-output`, { method: "POST" })
+      .then((response) => response.json());
+    assert.equal(opened.ok, true);
+    assert.equal(openedFolder, outputRoot);
   } finally {
     await close(server);
     fs.rmSync(value.root, { recursive: true, force: true });

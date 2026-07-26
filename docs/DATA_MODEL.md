@@ -31,3 +31,30 @@
 - diagnostics.
 
 Generated resolved output is never hand-edited.
+
+## GUI persistence
+
+The GUI adds no private data model. It reads and writes the same schema-compatible
+`plan.json` files used by the CLI:
+
+```text
+colleges/<college-id>/<major-id>/plan.json
+```
+
+College IDs and major IDs are safe stable path segments. College display names
+are stored in the college directory metadata; a major's display name and all plan
+decisions remain in its `plan.json`.
+
+Ordinary semester and elective entries persist only a normalized course code.
+An object entry is used only when the operator makes an explicit per-plan
+override or dependency decision. Missing catalog courses may be described under
+`fallbackCourses`; proposal placeholders carry their own explicit fallback facts.
+
+Resolution order is protected:
+
+```text
+override -> Male/Female merged catalog -> fallback -> unresolved error
+```
+
+The Male catalog wins a conflicting shared code. The Female catalog contributes
+codes absent from the Male catalog. Neither file is mutated by the GUI.

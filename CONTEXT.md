@@ -17,3 +17,10 @@ Version 0.2 implements the visual-parity architecture:
 9. resolved data and diagnostics beside every output.
 
 The supplied `saad-web` code informs the PlanDefinition adapter, catalog-row adapter, and domain rules. The calendar generator informs the CLI and temporary-SVG-to-PDF workflow. The approved Figma frame and supplied two-page Saad plan are the regression reference for visual work.
+
+Version 0.2 also includes a localhost-only Arabic RTL editor. The GUI reuses the
+calendar generator's successful workflow boundaries—atomic JSON persistence,
+live unsaved preview, and PDF-first export—without importing calendar-specific
+logic. Operators now manage colleges, majors, semesters, phases, elective
+groups, course codes and their deliberate dependency decisions. Catalog facts,
+graph markers, totals, geometry, and page height remain generator output.

@@ -28,6 +28,7 @@ Figma and the approved Saad PDFs are the visual source of truth. Do not replace 
 ```bash
 npm test
 npm run validate
+npm run gui
 npm run generate -- <plan.json> --catalog <courses.json> --svg --png
 npm run generate:all -- colleges --catalog <courses.json>
 ```
