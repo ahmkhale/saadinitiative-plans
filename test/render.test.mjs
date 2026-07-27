@@ -406,6 +406,8 @@ test("wraps every complete footer item in an absolute SVG link", () => {
     for (const destination of destinations) {
       assert.ok(page.includes(`href="${destination.replace("&", "&amp;")}"`));
       assert.ok(page.includes(`xlink:href="${destination.replace("&", "&amp;")}"`));
+      assert.ok(page.includes('rel="noopener noreferrer"'));
+      assert.ok(page.includes('pointer-events="all"'));
     }
   }
 });

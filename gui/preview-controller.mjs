@@ -73,16 +73,27 @@ export function createPreviewController(options) {
 
   function renderDiagnostics() {
     const items = state.diagnostics?.items ?? [];
-    els.diagnosticCount.textContent = String(items.length);
+    const actionable = items.filter((item) => item.severity !== "info");
+    const informational = items.filter((item) => item.severity === "info");
+    els.diagnosticCount.textContent = String(actionable.length);
+    els.diagnosticLabel.textContent = actionable.length ? "التنبيهات التي تحتاج مراجعة" : "لا تنبيهات مانعة";
     if (!items.length) {
       els.diagnosticList.innerHTML = '<p class="muted">لا تنبيهات.</p>';
       return;
     }
-    els.diagnosticList.innerHTML = items.map((item) => `
+    const renderItems = (values) => values.map((item) => `
       <button class="diagnostic ${item.severity === "errors" ? "error" : item.severity === "warnings" ? "warning" : "info"}" type="button" data-focus="${escapeHtml(item.location ?? (item.semester ? `semester-${item.semester}` : ""))}">
         <strong>${escapeHtml(item.code)}</strong><br>${escapeHtml(item.message)}
       </button>
     `).join("");
+    els.diagnosticList.innerHTML = [
+      renderItems(actionable),
+      informational.length ? `
+        <details class="diagnostic-info-group">
+          <summary>${informational.length.toLocaleString("ar-SA")} ملاحظات معلوماتية غير مانعة</summary>
+          <div class="diagnostic-info-list">${renderItems(informational)}</div>
+        </details>` : "",
+    ].join("");
   }
 
   function refreshResolvedRows() {
@@ -90,8 +101,11 @@ export function createPreviewController(options) {
       const groupIndex = Number(row.dataset.groupIndex);
       const courseIndex = Number(row.dataset.courseIndex);
       const resolved = resolvedCollection(row.dataset.kind, groupIndex)[courseIndex];
-      const unresolved = !resolved || resolved.source === "unresolved";
+      const wasPending = row.classList.contains("pending");
+      const pending = !resolved;
+      const unresolved = resolved?.source === "unresolved";
       const placeholder = row.dataset.placeholderId !== "";
+      row.classList.toggle("pending", pending);
       row.classList.toggle("unresolved", unresolved);
       row.querySelector(".course-code").textContent = placeholder ? "مقرر" : resolved?.code
         ?? entryCode(collection(row.dataset.kind, groupIndex)[courseIndex]);
@@ -106,6 +120,14 @@ export function createPreviewController(options) {
       if (metadata[2]) metadata[2].textContent = resolved?.prerequisites?.length
         ? `سابق: ${resolved.prerequisites.join("، ")}`
         : "لا متطلب سابق";
+      const details = row.querySelector(".course-details");
+      if (details) {
+        const summary = details.querySelector("summary");
+        if (summary) summary.textContent = unresolved ? "أكمل بيانات المقرر" : "تفاصيل المقرر وقواعد الخطة";
+        details.querySelectorAll("[data-manual-fact]").forEach((input) => input.toggleAttribute("required", unresolved));
+        if (unresolved && wasPending && !placeholder) details.open = true;
+        if (!unresolved) details.open = false;
+      }
     });
   }
 

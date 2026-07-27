@@ -1,4 +1,10 @@
 export function renderNavigation({ state, els, activeCollege, escapeHtml }) {
+  const selectedInstitution = state.institutions.find((item) => item.id === state.selectedInstitutionId);
+  const selectedCollege = state.colleges.find((item) => item.id === state.selectedCollegeId);
+  const selectedMajor = selectedCollege?.majors?.find((item) => item.id === state.selectedMajorId);
+  els.contextTrail.textContent = [selectedInstitution?.name, selectedCollege?.name, selectedMajor?.major]
+    .filter(Boolean)
+    .join(" / ") || "اختر جامعة وكلية وتخصصًا";
   if (!state.institutions.length) {
     els.institutionList.className = "nav-list empty-list";
     els.institutionList.textContent = "لم تُضف جامعة بعد.";

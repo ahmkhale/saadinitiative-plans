@@ -20,8 +20,9 @@ export function helpIcon(x, y) {
 export function footerItem({ x, width, icon, title, value, href }) {
   const iconX = x + width - 16;
   return [
-    `<a href="${esc(href)}" xlink:href="${esc(href)}" target="_blank">`,
-    `<rect data-part="footer-hit-area" x="${x}" y="-5" width="${width}" height="27" fill="${COLORS.white}" fill-opacity="0"/>`,
+    `<a href="${esc(href)}" xlink:href="${esc(href)}" target="_blank" rel="noopener noreferrer" pointer-events="all" style="cursor:pointer">`,
+    `<title>${esc(`${title}: ${value}`)}</title>`,
+    `<rect data-part="footer-hit-area" x="${x}" y="-5" width="${width}" height="27" fill="${COLORS.white}" fill-opacity="0" pointer-events="all"/>`,
     icon(iconX, 1.5),
     text({ x: iconX - 4, y: 4.2, value: title, size: 8.457, weight: 700, anchor: "start" }),
     text({ x: iconX - 4, y: 14.1, value, size: 8.457, weight: 400, anchor: "end", direction: "ltr" }),

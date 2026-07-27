@@ -1,4 +1,9 @@
 import { entryCode, entryId } from "./plan-model.mjs";
+import { escapeHtml } from "./html.mjs";
+
+function icon(name) {
+  return `<img src="/assets/icon-${name}.svg" alt="">`;
+}
 
 function badgeClass(label, source) {
   if (source === "male") return "male";
@@ -9,8 +14,9 @@ function badgeClass(label, source) {
   return "";
 }
 
-export function courseBadges(resolved, isPlaceholder, escapeHtml) {
+export function courseBadges(resolved, isPlaceholder) {
   if (isPlaceholder) return '<span class="source-badge manual">مقرر نائب</span>';
+  if (!resolved) return '<span class="source-badge pending">جارٍ التحقق من الدليل</span>';
   const sourceLabel = resolved?.sourceBadge ?? "غير موجود في الدليل";
   const quality = resolved?.qualityBadges ?? [];
   return [sourceLabel, ...quality]
@@ -30,7 +36,8 @@ export function renderCourseRow({
 }) {
   const code = entryCode(entry);
   const rules = typeof entry === "object" ? entry : {};
-  const unresolved = !resolved || resolved.source === "unresolved";
+  const pending = !resolved;
+  const unresolved = resolved?.source === "unresolved";
   const isPlaceholder = entry?.kind === "placeholder" || Boolean(entry?.placeholderId);
   const displayCode = isPlaceholder ? "مقرر" : resolved?.code ?? code;
   const displaySubject = isPlaceholder ? "" : resolved?.subject ?? "";
@@ -40,21 +47,21 @@ export function renderCourseRow({
         ? "shared-elective-source" : `proposal-semester-${groupIndex + 1}`;
   const fallback = fallbackCourses?.[code];
   return `
-    <div class="course-row ${unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(kind === "proposal" && !isPlaceholder ? entryId(entry) : code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
-      <div><div class="course-code">${escapeHtml(displayCode)}</div><div class="course-meta">${escapeHtml(displaySubject)}</div><div class="badge-list">${courseBadges(resolved, isPlaceholder, escapeHtml)}</div></div>
-      <div><div class="course-name">${escapeHtml(resolved?.name ?? (entry?.kind === "placeholder" ? entry?.fallback?.name : "مقرر غير موجود في الدليل"))}</div>
+    <div class="course-row ${pending ? "pending" : unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(kind === "proposal" && !isPlaceholder ? entryId(entry) : code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
+      <div class="course-identity"><div class="course-code">${escapeHtml(displayCode)}</div><div class="course-meta">${escapeHtml(displaySubject)}</div><div class="badge-list">${courseBadges(resolved, isPlaceholder)}</div></div>
+      <div class="course-summary"><div class="course-name">${escapeHtml(resolved?.name ?? entry?.fallback?.name ?? fallback?.name ?? (pending ? "جارٍ قراءة بيانات المقرر…" : "مقرر غير موجود في الدليل"))}</div>
         <div class="course-meta">${resolved ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? "—"} · عملي ${resolved.practicalHours ?? "—"} · تمارين ${resolved.exerciseHours ?? "—"}` : ""}</div>
       </div>
       <div class="course-meta">${resolved?.prerequisites?.length ? `سابق: ${escapeHtml(resolved.prerequisites.join("، "))}` : "لا متطلب سابق"}</div>
       <div class="course-actions">
         ${kind === "proposal" && !isPlaceholder ? `
-          <button class="icon-button proposal-course-up" type="button" aria-label="نقل المقرر إلى أعلى">↑</button>
-          <button class="icon-button proposal-course-down" type="button" aria-label="نقل المقرر إلى أسفل">↓</button>
+          <button class="icon-button proposal-course-up" type="button" aria-label="نقل المقرر إلى أعلى">${icon("chevron-up")}</button>
+          <button class="icon-button proposal-course-down" type="button" aria-label="نقل المقرر إلى أسفل">${icon("chevron-down")}</button>
           <button class="button ghost proposal-course-previous" type="button">الفصل السابق</button>
           <button class="button ghost proposal-course-next" type="button">الفصل التالي</button>
           <button class="button ghost proposal-course-home" type="button">إعادة إلى المستوى المنشور</button>` : ""}
-        ${kind === "proposal" && isPlaceholder ? '<button class="icon-button edit-placeholder" type="button" aria-label="تعديل المقرر النائب">✎</button>' : ""}
-        ${kind !== "proposal" || isPlaceholder ? '<button class="icon-button course-delete danger" type="button" aria-label="حذف">×</button>' : ""}
+        ${kind === "proposal" && isPlaceholder ? `<button class="icon-button edit-placeholder" type="button" aria-label="تعديل المقرر النائب">${icon("edit")}</button>` : ""}
+        ${kind !== "proposal" || isPlaceholder ? `<button class="icon-button course-delete danger" type="button" aria-label="حذف">${icon("trash")}</button>` : ""}
       </div>
       <details class="course-details" ${kind === "proposal" ? "hidden" : unresolved && !isPlaceholder ? "open" : ""}>
         <summary>${unresolved ? "أكمل بيانات المقرر" : "تفاصيل المقرر وقواعد الخطة"}</summary>

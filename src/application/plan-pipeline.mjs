@@ -1,6 +1,6 @@
 import { buildCourseCatalog } from "../infrastructure/catalog/catalog-aggregator.mjs";
 import { defaultCatalogService } from "../infrastructure/catalog/catalog-service.mjs";
-import { createDiagnostics, hasErrors } from "../domain/diagnostics.mjs";
+import { addDiagnostic, createDiagnostics, hasErrors } from "../domain/diagnostics.mjs";
 import { normalizePlanInput, validatePlanShape } from "../plan-input.mjs";
 import { renderPlanDocumentSvg } from "../presentation/svg/document.mjs";
 import { validateRenderedText } from "../presentation/layout/text-validation.mjs";
@@ -50,7 +50,14 @@ export function executePlanPipeline(rawPlan, options = {}) {
   const plan = resolvePlan(composed, snapshot.catalog, options.colors ?? snapshot.colors, diagnostics, {
     settings: options.settings ?? readSettings(options.settingsPath),
   });
-  validateRenderedText(plan, diagnostics);
-  const document = hasErrors(diagnostics) ? null : renderPlanDocumentSvg(plan);
+  let document = null;
+  try {
+    validateRenderedText(plan, diagnostics);
+    if (!hasErrors(diagnostics)) document = renderPlanDocumentSvg(plan);
+  } catch (error) {
+    addDiagnostic(diagnostics, "errors", "PRESENTATION_UNAVAILABLE", error.message, {
+      cause: error.name,
+    });
+  }
   return { ok: !hasErrors(diagnostics), plan, diagnostics, document };
 }

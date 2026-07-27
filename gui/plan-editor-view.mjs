@@ -14,6 +14,7 @@ export function createPlanEditorView(options) {
     syncProposalWithPublished,
   } = options;
   const template = () => document.getElementById("semesterTemplate");
+  const icon = (name) => `<img src="/assets/icon-${name}.svg" alt="">`;
 
   function configureSemesterCard(card, item, index, kind) {
     card.dataset.kind = kind;
@@ -75,10 +76,10 @@ export function createPlanEditorView(options) {
           <div class="card-heading">
             <div><p class="eyebrow">مصدر مشترك موروث</p><h2>${escapeHtml(source?.name ?? item.sourceId)}</h2></div>
             <div class="menu-actions">
-              <button class="icon-button move-up" type="button" aria-label="نقل إلى أعلى">↑</button>
-              <button class="icon-button move-down" type="button" aria-label="نقل إلى أسفل">↓</button>
+              <button class="icon-button move-up" type="button" aria-label="نقل إلى أعلى">${icon("chevron-up")}</button>
+              <button class="icon-button move-down" type="button" aria-label="نقل إلى أسفل">${icon("chevron-down")}</button>
               <button class="button ghost open-shared-elective-source" type="button">فتح المصدر</button>
-              <button class="icon-button remove-shared-elective-reference danger" type="button" aria-label="إزالة المصدر">×</button>
+              <button class="icon-button remove-shared-elective-reference danger" type="button" aria-label="إزالة المصدر">${icon("trash")}</button>
             </div>
           </div>
           <div class="badge-list"><span class="source-badge">مشترك</span></div>

@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "id": "cfy-medic",
+  "name": "التحضيري صحي",
+  "phaseLabel": "السنة التحضيرية",
+  "semesters": [
+    {
+      "id": "shared-semester-87d3338b-d97a-41e9-bd5d-6fa7fe0f7694",
+      "courses": [
+        {
+          "id": "shared:cfy-medic:shared-semester-87d3338b-d97a-41e9-bd5d-6fa7fe0f7694:107-انجل",
+          "code": "107 انجل",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-medic:shared-semester-87d3338b-d97a-41e9-bd5d-6fa7fe0f7694:101-نهج",
+          "code": "101 نهج",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-medic:shared-semester-87d3338b-d97a-41e9-bd5d-6fa7fe0f7694:109-احص",
+          "code": "109 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-medic:shared-semester-87d3338b-d97a-41e9-bd5d-6fa7fe0f7694:101-تقن",
+          "code": "101 تقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-medic:shared-semester-87d3338b-d97a-41e9-bd5d-6fa7fe0f7694:101-فجب",
+          "code": "101 فجب",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "shared-semester-0e6077cc-d177-4818-a6f3-0ec257826967",
+      "courses": [
+        {
+          "id": "shared:cfy-medic:shared-semester-0e6077cc-d177-4818-a6f3-0ec257826967:114-انجل",
+          "code": "114 انجل",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-medic:shared-semester-0e6077cc-d177-4818-a6f3-0ec257826967:109-كيم",
+          "code": "109 كيم",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-medic:shared-semester-0e6077cc-d177-4818-a6f3-0ec257826967:109-حين",
+          "code": "109 حين",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-medic:shared-semester-0e6077cc-d177-4818-a6f3-0ec257826967:109-فيز",
+          "code": "109 فيز",
+          "prerequisites": [
+            "107 انجل"
+          ],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "107 انجل": {
+      "name": "اللغة الإنجليزية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 نهج": {
+      "name": "مهارات جامعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 احص": {
+      "name": "الإحصاء الحيوي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 تقن": {
+      "name": "مهارات الحاسب الآلي والذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 فجب": {
+      "name": "اللياقة والثقافة الصحية",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "114 انجل": {
+      "name": "لغة إنجليزية تخصصية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 كيم": {
+      "name": "مقدمة في الكيمياء العضوية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 حين": {
+      "name": "علم الأحياء",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 فيز": {
+      "name": "فيزياء عامه",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "scope": {
+    "type": "institution",
+    "institutionId": "ksu"
+  }
+}
