@@ -6,11 +6,13 @@ The visual contract comes from the approved [Plans Figma file](https://www.figma
 
 ## Quick start
 
-Requirements: Node.js 20+, Inkscape, and local IBM Plex Sans Arabic font files in ignored `font/` or `SAAD_FONT_DIR`.
+Requirements: Node.js 20+, Inkscape, and local IBM Plex Sans Arabic font files in ignored `font/` or `SAAD_FONT_DIR`. Ghostscript is optional but recommended; when available, PDF export automatically compacts the final vector document while preserving fonts, page dimensions, and clickable links.
 
 ```powershell
 npm install
 npm run validate
+# Optional rendered-font verification when Chromium can run headlessly
+npm run test:browser
 npm run gui
 ```
 
@@ -20,6 +22,8 @@ Generate one repository plan:
 
 ```powershell
 npm run generate -- "institutions/ksu/colleges/engineering/majors/electrical-engineering/plan.json" --svg --png
+# Disable the optional Ghostscript pass only for debugging:
+# npm run generate -- ".../plan.json" --no-pdf-optimize
 ```
 
 Generate every institution plan:
@@ -29,6 +33,21 @@ npm run generate:all -- institutions --svg --png
 ```
 
 Output is ignored under `dist/<plan-id>/`: PDF, optional SVG/PNG, resolved JSON, and diagnostics JSON.
+
+
+## Compact PDF export
+
+Course-card badge and activity-box translucency is pre-composed into equivalent solid colors before export. This prevents Inkscape from creating hundreds of transparency Form XObjects while keeping the approved appearance unchanged.
+
+When Ghostscript is found (`GHOSTSCRIPT_PATH`, `--ghostscript`, or a standard installation), the exporter performs a second vector-preserving rewrite that collapses remaining SVG group overhead. URL annotations and subset fonts remain intact. Without Ghostscript, export still succeeds and is substantially smaller than earlier releases; it is simply not maximally compact.
+
+Relevant CLI controls:
+
+```powershell
+--no-pdf-optimize       # skip Ghostscript
+--require-pdf-optimize  # fail when Ghostscript is unavailable
+--ghostscript <path>    # explicit executable path
+```
 
 ## Repository model
 
@@ -117,10 +136,10 @@ repository plan + scoped shared sources + active catalog + settings
 → reconcile proposal
 → measured presentation layout
 → deterministic SVG
-→ PDF / PNG
+→ compact PDF / PNG
 ```
 
-CLI generation, GUI preview, GUI validation, and export all call `src/application/plan-pipeline.mjs`.
+CLI generation, GUI preview, GUI validation, and export all call `src/application/plan-pipeline.mjs`. Domain rules, application workflows, infrastructure adapters, measured layout, SVG components, GUI modules, and localhost API routing are separated. Legacy root entry points remain thin compatibility facades.
 
 See [architecture](./docs/ARCHITECTURE.md), [data model](./docs/DATA_MODEL.md), [GUI](./docs/GUI.md), [Figma measurements](./docs/FIGMA_MEASUREMENTS.md), and [limitations](./docs/KNOWN_LIMITATIONS.md).
 

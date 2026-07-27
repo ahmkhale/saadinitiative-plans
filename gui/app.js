@@ -1,6 +1,38 @@
 import { state } from "./gui/state/store.mjs";
 import { selectedCollege } from "./gui/state/selectors.mjs";
 import { request } from "./gui/api-client.mjs";
+import { courseBadges, renderCourseRow } from "./gui/course-view.mjs";
+import { createEntityActions } from "./gui/entity-actions.mjs";
+import { createSharedSourceEditors } from "./gui/shared-source-editors.mjs";
+import { createPlanEditorView } from "./gui/plan-editor-view.mjs";
+import { createDialogController } from "./gui/dialog.mjs";
+import { escapeHtml } from "./gui/html.mjs";
+import { renderNavigation as renderNavigationView } from "./gui/navigation-view.mjs";
+import { createPreviewController } from "./gui/preview-controller.mjs";
+import { createExportController } from "./gui/export-controller.mjs";
+import {
+  createProposalFromPublished,
+  createProposalSemester,
+  dropProposalCourse,
+  moveItem,
+  moveProposalCourse as applyProposalCourseMove,
+  resetProposalToPublished,
+} from "./gui/proposal-actions.mjs";
+import {
+  buildPublishedDecisionSemesters,
+  compareCourseEntries,
+  createCourseEntry,
+  entryCode,
+  entryId,
+  normalizedEntry,
+  parseCodes,
+  reconcileProposalDraft,
+  scopeFromFields as buildScopeFromFields,
+  scopeTarget,
+  semesterLabel,
+  sortPublishedCollections,
+  sourceAppliesToSelection as appliesToSelection,
+} from "./gui/plan-model.mjs";
 
 const $ = (id) => document.getElementById(id);
 
@@ -59,31 +91,8 @@ const els = {
   sharedElectiveScopeTarget: $("sharedElectiveScopeTarget"),
   sharedElectiveCourseList: $("sharedElectiveCourseList"),
 };
-let dialogResolver = null;
 
-function escapeHtml(value) {
-  return String(value ?? "").replace(/[&<>"']/gu, (character) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-  })[character]);
-}
-
-function askForm({ title, message = "", submit = "حفظ", danger = false, fields = [] }) {
-  els.dialogTitle.textContent = title;
-  $("dialogMessage").textContent = message;
-  els.dialogSubmit.textContent = submit;
-  els.dialogSubmit.className = `button ${danger ? "danger-ghost" : "primary"}`;
-  els.dialogFields.innerHTML = fields.map((field) => `
-    <label>${escapeHtml(field.label)}
-      <input name="${escapeHtml(field.name)}" value="${escapeHtml(field.value ?? "")}" ${field.type ? `type="${escapeHtml(field.type)}"` : ""} ${field.required === false ? "" : "required"} ${field.min !== undefined ? `min="${field.min}"` : ""} ${field.dir ? `dir="${field.dir}"` : ""}>
-    </label>
-  `).join("");
-  els.dialogFields.hidden = fields.length === 0;
-  els.formDialog.showModal();
-  els.dialogFields.querySelector("input")?.focus();
-  return new Promise((resolve) => {
-    dialogResolver = resolve;
-  });
-}
+const { askForm, bind: bindDialog } = createDialogController({ els, escapeHtml });
 
 function setStatus(message = "", type = "") {
   els.globalStatus.textContent = message;
@@ -106,43 +115,7 @@ function institutionApi(suffix = "") {
 }
 
 function renderNavigation() {
-  if (!state.institutions.length) {
-    els.institutionList.className = "nav-list empty-list";
-    els.institutionList.textContent = "لم تُضف جامعة بعد.";
-  } else {
-    els.institutionList.className = "nav-list";
-    els.institutionList.innerHTML = state.institutions.map((institution) => `
-      <button class="nav-item ${institution.id === state.selectedInstitutionId ? "active" : ""}" data-institution="${escapeHtml(institution.id)}" type="button">
-        ${escapeHtml(institution.name)}<small>${escapeHtml(institution.id)} · ${institution.colleges.length} كلية</small>
-      </button>
-    `).join("");
-  }
-  if (!state.colleges.length) {
-    els.collegeList.className = "nav-list empty-list";
-    els.collegeList.textContent = "لم تُضف كلية بعد.";
-  } else {
-    els.collegeList.className = "nav-list";
-    els.collegeList.innerHTML = state.colleges.map((college) => `
-      <button class="nav-item ${college.id === state.selectedCollegeId ? "active" : ""}" data-college="${escapeHtml(college.id)}" type="button">
-        ${escapeHtml(college.name)}<small>${escapeHtml(college.id)} · ${college.majors.length} تخصص</small>
-      </button>
-    `).join("");
-  }
-  const college = activeCollege();
-  if (!college) {
-    els.majorList.className = "nav-list empty-list";
-    els.majorList.textContent = "اختر كلية أولًا.";
-  } else if (!college.majors.length) {
-    els.majorList.className = "nav-list empty-list";
-    els.majorList.textContent = "لم يُضف تخصص بعد.";
-  } else {
-    els.majorList.className = "nav-list";
-    els.majorList.innerHTML = college.majors.map((major) => `
-      <button class="nav-item ${major.id === state.selectedMajorId ? "active" : ""}" data-major="${escapeHtml(major.id)}" type="button">
-        ${escapeHtml(major.major)}<small>${major.semesterCount} فصول${major.hasProposal ? " · له خطة مقترحة" : ""}</small>
-      </button>
-    `).join("");
-  }
+  renderNavigationView({ state, els, activeCollege, escapeHtml });
 }
 
 async function loadState() {
@@ -211,67 +184,27 @@ function showEditor(show) {
   els.editorContent.hidden = !show;
 }
 
-function normalizedEntry(entry) {
-  return typeof entry === "string" ? { code: entry } : structuredClone(entry);
-}
-
-function entryCode(entry) {
-  return typeof entry === "string" ? entry : entry?.code ?? "";
-}
-
-function entryId(entry) {
-  return typeof entry === "object" && entry?.id ? entry.id : entryCode(entry);
-}
-
-function occurrenceSlug(code) {
-  return String(code ?? "").trim().toLocaleLowerCase("ar").replace(/\s+/gu, "-");
-}
-
 function newCourseEntry(kind, index, code) {
-  const slug = occurrenceSlug(code);
-  if (kind === "shared") {
-    const semester = state.sharedSetDraft.semesters[index];
-    return { id: `shared:${state.sharedSetDraft.id}:${semester.id}:${slug}`, code };
-  }
-  if (kind === "sharedElective") {
-    return { id: `shared-elective:${state.sharedElectiveDraft.id}:${slug}`, code };
-  }
-  if (kind === "elective") {
-    return { id: `major:${state.plan.id}:elective:${state.plan.electiveGroups[index].id}:${slug}`, code };
-  }
-  const semester = state.plan.semesters[index];
-  return { id: `major:${state.plan.id}:${semester.id}:${slug}`, code };
+  return createCourseEntry({
+    kind,
+    index,
+    code,
+    plan: state.plan,
+    sharedSetDraft: state.sharedSetDraft,
+    sharedElectiveDraft: state.sharedElectiveDraft,
+  });
 }
 
 function sourceAppliesToSelection(source) {
-  const scope = source?.scope;
-  if (!scope || scope.institutionId !== state.selectedInstitutionId) return false;
-  if (scope.type === "institution") return true;
-  if (scope.type === "college") return scope.collegeId === state.selectedCollegeId;
-  return scope.type === "majors" && scope.majorIds?.includes(state.selectedMajorId);
-}
-
-function scopeTarget(scope) {
-  if (scope?.type === "college") return scope.collegeId ?? "";
-  if (scope?.type === "majors") return (scope.majorIds ?? []).join(", ");
-  return "";
+  return appliesToSelection(source, {
+    institutionId: state.selectedInstitutionId,
+    collegeId: state.selectedCollegeId,
+    majorId: state.selectedMajorId,
+  });
 }
 
 function scopeFromFields(type, target) {
-  const scope = { type, institutionId: state.selectedInstitutionId };
-  if (type === "college") scope.collegeId = target.trim();
-  if (type === "majors") {
-    scope.majorIds = target.split(/[,،\n]+/u).map((value) => value.trim()).filter(Boolean);
-  }
-  return scope;
-}
-
-function parseCodes(value) {
-  const text = String(value ?? "").trim();
-  if (!text) return [];
-  if (/[\n,،;]/u.test(text)) return text.split(/[\n,،;]+/u).map((item) => item.trim()).filter(Boolean);
-  const matches = [...text.matchAll(/\d+[A-Za-z]?\s+[\p{L}]+/gu)].map((match) => match[0].trim());
-  return matches.length > 1 && matches.join(" ") === text.replace(/\s+/gu, " ") ? matches : [text];
+  return buildScopeFromFields(type, target, state.selectedInstitutionId);
 }
 
 function collection(kind, index) {
@@ -302,84 +235,16 @@ function proposalEntries(index) {
   ];
 }
 
-const courseCollator = new Intl.Collator("ar", { sensitivity: "base", numeric: true });
-const semesterOrdinals = ["الأول", "الثاني", "الثالث", "الرابع", "الخامس", "السادس", "السابع", "الثامن", "التاسع", "العاشر", "الحادي عشر", "الثاني عشر", "الثالث عشر", "الرابع عشر", "الخامس عشر", "السادس عشر", "السابع عشر", "الثامن عشر", "التاسع عشر", "العشرون"];
-function semesterLabel(level) {
-  return `المستوى ${semesterOrdinals[level - 1] ?? "غير المدعوم"}`;
-}
-
 function compareCodes(left, right) {
-  const a = entryCode(left);
-  const b = entryCode(right);
-  const an = Number.parseInt(a, 10);
-  const bn = Number.parseInt(b, 10);
-  if (an !== bn) return an - bn;
-  return courseCollator.compare(a, b);
-}
-
-function sortPublishedCollections() {
-  state.plan.semesters.forEach((semester) => semester.courses.sort(compareCodes));
-  (state.plan.electiveGroups ?? []).forEach((group) => group.courses?.sort(compareCodes));
-  state.sharedSetDraft?.semesters?.forEach((semester) => semester.courses.sort(compareCodes));
+  return compareCourseEntries(left, right);
 }
 
 function publishedDecisionSemesters() {
-  const inherited = (state.plan.sharedSemesterSets ?? []).flatMap((id) => {
-    const set = state.sharedSemesterSets.find((item) => item.id === id);
-    return (set?.semesters ?? []).map((semester, index) => ({
-      ...semester,
-      id: `shared-${id}-${semester.id ?? `level-${index + 1}`}`,
-    }));
-  });
-  return [...inherited, ...state.plan.semesters].map((semester, index) => ({
-    ...semester,
-    id: semester.id ?? `published-level-${index + 1}`,
-    number: index + 1,
-    name: semesterLabel(index + 1),
-    courses: [...(semester.courses ?? [])].sort(compareCodes),
-  }));
+  return buildPublishedDecisionSemesters(state.plan, state.sharedSemesterSets);
 }
 
 function syncProposalWithPublished() {
-  if (!state.plan?.proposal) return;
-  const published = publishedDecisionSemesters();
-  const parent = new Map(published.flatMap((semester) => (
-    semester.courses.map((entry) => [entryId(entry), semester.id])
-  )));
-  const semesters = (state.plan.proposal.semesters ?? []).map((semester, index) => ({
-    id: semester.id ?? `proposal-semester-${index + 1}`,
-    sourceSemesterId: semester.sourceSemesterId ?? null,
-    type: semester.type === "summer" ? "summer" : "regular",
-    courseOrder: semester.courseOrder ?? [],
-    placeholders: semester.placeholders ?? [],
-  }));
-  published.forEach((semester) => {
-    if (!semesters.some((item) => item.sourceSemesterId === semester.id)) {
-      semesters.push({ id: semester.id, sourceSemesterId: semester.id, type: "regular", courseOrder: [], placeholders: [] });
-    }
-  });
-  const placed = new Set();
-  semesters.forEach((semester) => {
-    semester.courseOrder = semester.courseOrder.filter((courseId) => (
-      parent.has(courseId) && !placed.has(courseId) && placed.add(courseId)
-    ));
-  });
-  for (let index = semesters.length - 1; index >= 0; index -= 1) {
-    const semester = semesters[index];
-    if (!semester.sourceSemesterId || published.some((item) => item.id === semester.sourceSemesterId)) continue;
-    if (semester.placeholders.length) continue;
-    if (semester.courseOrder.length) semester.sourceSemesterId = null;
-    else semesters.splice(index, 1);
-  }
-  for (const [courseId, semesterId] of parent) {
-    if (placed.has(courseId)) continue;
-    const target = semesters.find((semester) => semester.sourceSemesterId === semesterId) ?? semesters[0];
-    target?.courseOrder.push(courseId);
-    placed.add(courseId);
-  }
-  state.plan.proposal.semesters = semesters;
-  delete state.plan.proposal.phases;
-  delete state.plan.proposal.expectedCredits;
+  reconcileProposalDraft(state.plan, state.sharedSemesterSets);
 }
 
 function resolvedCollection(kind, index) {
@@ -408,318 +273,93 @@ function fallbackCoursesFor(kind) {
   return state.plan.fallbackCourses;
 }
 
-function badgeClass(label, source) {
-  if (source === "male") return "male";
-  if (source === "female") return "female";
-  if (source === "manual") return "manual";
-  if (label === "بيانات متعارضة") return "conflict";
-  if (label === "بيانات ناقصة" || label === "غير موجود في الدليل") return "missing";
-  return "";
-}
-
-function courseBadges(resolved, isPlaceholder = false) {
-  if (isPlaceholder) return '<span class="source-badge manual">مقرر نائب</span>';
-  const sourceLabel = resolved?.sourceBadge ?? "غير موجود في الدليل";
-  const quality = resolved?.qualityBadges ?? [];
-  return [sourceLabel, ...quality]
-    .map((label, index) => `<span class="source-badge ${badgeClass(label, index === 0 ? resolved?.catalogSource : null)}">${escapeHtml(label)}</span>`)
-    .join("");
-}
-
 function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
-  const code = entryCode(entry);
-  const rules = typeof entry === "object" ? entry : {};
-  const unresolved = !resolved || resolved.source === "unresolved";
-  const isPlaceholder = entry?.kind === "placeholder" || Boolean(entry?.placeholderId);
-  const displayCode = isPlaceholder ? "مقرر" : resolved?.code ?? code;
-  const displaySubject = isPlaceholder ? "" : resolved?.subject ?? "";
-  const location = kind === "semester" ? `semester-${groupIndex + 1}` : kind === "elective"
-    ? `elective-${state.plan.electiveGroups[groupIndex]?.id ?? groupIndex + 1}` : kind === "shared"
-      ? `shared-semester-${groupIndex + 1}` : kind === "sharedElective"
-        ? "shared-elective-source" : `proposal-semester-${groupIndex + 1}`;
-  return `
-    <div class="course-row ${unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(kind === "proposal" && !isPlaceholder ? entryId(entry) : code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
-      <div><div class="course-code">${escapeHtml(displayCode)}</div><div class="course-meta">${escapeHtml(displaySubject)}</div><div class="badge-list">${courseBadges(resolved, isPlaceholder)}</div></div>
-      <div><div class="course-name">${escapeHtml(resolved?.name ?? (entry?.kind === "placeholder" ? entry?.fallback?.name : "مقرر غير موجود في الدليل"))}</div>
-        <div class="course-meta">${resolved ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? "—"} · عملي ${resolved.practicalHours ?? "—"} · تمارين ${resolved.exerciseHours ?? "—"}` : ""}</div>
-      </div>
-      <div class="course-meta">${resolved?.prerequisites?.length ? `سابق: ${escapeHtml(resolved.prerequisites.join("، "))}` : "لا متطلب سابق"}</div>
-      <div class="course-actions">
-        ${kind === "proposal" && !isPlaceholder ? `
-          <button class="icon-button proposal-course-up" type="button" aria-label="نقل المقرر إلى أعلى">↑</button>
-          <button class="icon-button proposal-course-down" type="button" aria-label="نقل المقرر إلى أسفل">↓</button>
-          <button class="button ghost proposal-course-previous" type="button">الفصل السابق</button>
-          <button class="button ghost proposal-course-next" type="button">الفصل التالي</button>
-          <button class="button ghost proposal-course-home" type="button">إعادة إلى المستوى المنشور</button>` : ""}
-        ${kind === "proposal" && isPlaceholder ? '<button class="icon-button edit-placeholder" type="button" aria-label="تعديل المقرر النائب">✎</button>' : ""}
-        ${kind !== "proposal" || isPlaceholder ? '<button class="icon-button course-delete danger" type="button" aria-label="حذف">×</button>' : ""}
-      </div>
-      <details class="course-details" ${kind === "proposal" ? "hidden" : unresolved && !isPlaceholder ? "open" : ""}>
-        <summary>${unresolved ? "أكمل بيانات المقرر" : "تفاصيل المقرر وقواعد الخطة"}</summary>
-        ${!isPlaceholder ? `<p class="concept-heading">بيانات المقرر</p>
-        <div class="facts-grid">
-          <label class="wide">اسم المقرر<input data-manual-fact="name" value="${escapeHtml(fallbackCoursesFor(kind)?.[code]?.name ?? "")}" ${unresolved ? "required" : ""}></label>
-          <label>الساعات الأكاديمية<input data-manual-fact="academicHours" type="number" min="0" value="${escapeHtml(fallbackCoursesFor(kind)?.[code]?.academicHours ?? "")}" ${unresolved ? "required" : ""}></label>
-          <label>ساعات المحاضرة<input data-manual-fact="lectureHours" type="number" min="0" value="${escapeHtml(fallbackCoursesFor(kind)?.[code]?.lectureHours ?? "")}" ${unresolved ? "required" : ""}></label>
-          <label>ساعات التمارين<input data-manual-fact="exerciseHours" type="number" min="0" value="${escapeHtml(fallbackCoursesFor(kind)?.[code]?.exerciseHours ?? "")}" ${unresolved ? "required" : ""}></label>
-          <label>ساعات العملي<input data-manual-fact="practicalHours" type="number" min="0" value="${escapeHtml(fallbackCoursesFor(kind)?.[code]?.practicalHours ?? "")}" ${unresolved ? "required" : ""}></label>
-          ${["male", "female"].includes(resolved?.catalogSource) && fallbackCoursesFor(kind)?.[code] ? '<button class="button ghost refresh-catalog-facts" type="button">تحديث البيانات من الدليل</button>' : ""}
-          ${fallbackCoursesFor(kind)?.[code]?.source ? `<span class="source-badge">${fallbackCoursesFor(kind)[code].manuallyEditedFields?.length ? "بيانات معدلة يدويًا" : "لقطة من الدليل"}</span>` : ""}
-        </div>
-        <p class="concept-heading">قواعد الخطة</p>` : ""}
-        <div class="dependency-grid">
-          ${!isPlaceholder ? `<label>المتطلبات السابقة<input data-dependency="prerequisites" value="${escapeHtml((rules.prerequisites ?? rules.override?.prerequisites ?? []).join("، "))}" placeholder="101 عال، 101 ريض"></label>
-          <label>المتطلبات المرافقة<input data-dependency="corequisites" value="${escapeHtml((rules.corequisites ?? rules.override?.corequisites ?? []).join("، "))}"></label>
-          <label>شروط المتطلب النصية<input data-dependency="prerequisiteConditions" value="${escapeHtml((rules.prerequisiteConditions ?? []).join("، "))}" placeholder="مستوى 7"></label>
-          <label>الحد الأدنى للساعات المجتازة<input data-dependency="minimumCompletedCredits" type="number" min="0" value="${escapeHtml(rules.minimumCompletedCredits ?? rules.override?.minimumCompletedCredits ?? "")}"></label>
-          <label class="check"><input data-track-specific type="checkbox" ${rules.trackSpecific ? "checked" : ""}> مقرر خاص بالمسار</label>` : ""}
-        </div>
-      </details>
-    </div>
-  `;
-}
-
-function configureSemesterCard(card, item, index, kind) {
-  card.dataset.kind = kind;
-  card.dataset.groupIndex = index;
-  card.dataset.location = kind === "semester" ? `semester-${index + 1}` : kind === "elective"
-    ? `elective-${item.id ?? index + 1}` : kind === "shared" ? `shared-semester-${index + 1}` : `proposal-semester-${index + 1}`;
-  const name = card.querySelector(".semester-name");
-  const secondary = card.querySelector(".semester-year");
-  const inheritedCount = kind === "semester" ? publishedDecisionSemesters().length - state.plan.semesters.length : 0;
-  const level = kind === "semester" ? inheritedCount + index + 1 : index + 1;
-  if (kind === "elective") {
-    name.hidden = false;
-    name.value = item.name ?? "";
-    secondary.hidden = true;
-    card.querySelector(".card-heading").insertAdjacentHTML("afterend", `
-      <div class="requirement-editor">
-        <label>نوع المتطلب<select class="requirement-mode"><option value="hours" ${item.requirementText === undefined ? "selected" : ""}>عدد ساعات</option><option value="text" ${item.requirementText !== undefined ? "selected" : ""}>نص مخصص</option></select></label>
-        <label class="requirement-value-label">${item.requirementText === undefined ? "الساعات المطلوبة" : "نص المتطلب"}<input class="requirement-value" ${item.requirementText === undefined ? 'type="number" min="0"' : ""} value="${escapeHtml(item.requirementText ?? item.requiredHours ?? 0)}"></label>
-      </div>`);
-  } else {
-    name.hidden = true;
-    secondary.hidden = true;
-    let derivedName = semesterLabel(level);
-    if (kind === "proposal") {
-      const preceding = state.plan.proposal.semesters.slice(0, index + 1);
-      if (item.type === "summer") {
-        const summerNumber = preceding.filter((semester) => semester.type === "summer").length;
-        derivedName = summerNumber === 1 ? "فصل صيفي" : `فصل صيفي ${summerNumber}`;
-      } else {
-        derivedName = semesterLabel(preceding.filter((semester) => semester.type !== "summer").length);
-      }
-    }
-    card.querySelector(".semester-fields").insertAdjacentHTML("afterbegin", `<h3 class="derived-semester-name">${escapeHtml(derivedName)}</h3>`);
-  }
-  card.querySelector(".add-placeholder").hidden = kind !== "proposal";
-  card.querySelector(".course-code-input").hidden = kind === "proposal";
-  card.querySelector(".add-course").hidden = kind === "proposal";
-  card.querySelectorAll(".move-up,.move-down").forEach((button) => { button.hidden = false; });
-  card.querySelector(".delete-item").hidden = kind === "proposal"
-    && ((item.courseOrder?.length ?? 0) > 0 || (item.placeholders?.length ?? 0) > 0);
-  const resolved = resolvedCollection(kind, index);
-  const entries = kind === "proposal" ? proposalEntries(index) : item.courses;
-  card.querySelector(".course-list").innerHTML = entries.map((entry, courseIndex) => (
-    courseRow(entry, resolved[courseIndex], kind, index, courseIndex)
-  )).join("");
-}
-
-function renderCollection(host, items, kind) {
-  host.innerHTML = "";
-  items.forEach((item, index) => {
-    if (kind === "elective" && item.sourceId) {
-      const source = state.sharedElectiveGroups.find((value) => value.id === item.sourceId);
-      const resolved = state.resolved?.electiveGroups?.find((group) => group.sourceId === item.sourceId);
-      const article = document.createElement("article");
-      article.className = "card inherited-semester";
-      article.dataset.sharedElectiveReference = item.sourceId;
-      article.dataset.groupIndex = index;
-      article.innerHTML = `
-        <div class="card-heading">
-          <div><p class="eyebrow">مصدر مشترك موروث</p><h2>${escapeHtml(source?.name ?? item.sourceId)}</h2></div>
-          <div class="menu-actions">
-            <button class="icon-button move-up" type="button" aria-label="نقل إلى أعلى">↑</button>
-            <button class="icon-button move-down" type="button" aria-label="نقل إلى أسفل">↓</button>
-            <button class="button ghost open-shared-elective-source" type="button">فتح المصدر</button>
-            <button class="icon-button remove-shared-elective-reference danger" type="button" aria-label="إزالة المصدر">×</button>
-          </div>
-        </div>
-        <div class="badge-list"><span class="source-badge">مشترك</span></div>
-        <p class="muted">المتطلب الأصلي: ${source?.requiredHours ?? "—"} ساعات · المتبقي: ${resolved?.requiredHours ?? source?.requiredHours ?? "—"} ساعات</p>
-        <p class="muted">المستبعدة لوجودها في الفصول: ${escapeHtml(resolved?.excludedCourses?.map((course) => course.code).join("، ") || "لا يوجد")}</p>
-        <p class="muted">المرشحات المتبقية: ${escapeHtml(resolved?.courses?.map((course) => course.code).join("، ") || source?.courses?.map(entryCode).join("، ") || "لا يوجد")}</p>`;
-      host.append(article);
-      return;
-    }
-    const fragment = $("semesterTemplate").content.cloneNode(true);
-    const card = fragment.querySelector(".semester-card");
-    configureSemesterCard(card, item, index, kind);
-    host.append(fragment);
+  return renderCourseRow({
+    entry,
+    resolved,
+    kind,
+    groupIndex,
+    courseIndex,
+    plan: state.plan,
+    fallbackCourses: fallbackCoursesFor(kind),
+    escapeHtml,
   });
-  if (!items.length) host.innerHTML = '<div class="card muted">لا عناصر هنا بعد.</div>';
 }
+
+const {
+  renderCollection,
+  renderEditorCore,
+} = createPlanEditorView({
+  state,
+  els,
+  escapeHtml,
+  semesterLabel,
+  entryCode,
+  publishedDecisionSemesters,
+  proposalEntries,
+  resolvedCollection,
+  courseRow,
+  compareCodes,
+  sortPublishedCollections: () => sortPublishedCollections(state.plan),
+  syncProposalWithPublished,
+});
+
+const {
+  changed,
+  refreshPreview,
+  releasePreviewUrls,
+  schedulePreview,
+} = createPreviewController({
+  state,
+  els,
+  request,
+  setDirty,
+  setStatus,
+  syncProposalWithPublished,
+  renderEditor: () => renderEditor(),
+  escapeHtml,
+  resolvedCollection,
+  collection,
+  entryCode,
+  courseBadges,
+});
+
+const {
+  renderSharedSetEditor,
+  scheduleSharedSetResolution,
+  sharedChanged,
+  openSharedSetEditor,
+  saveSharedSetEditor,
+  renderSharedSets,
+  editSharedSet,
+  renderSharedElectiveSources,
+  renderSharedElectiveSourceEditor,
+  scheduleSharedElectiveResolution,
+  sharedElectiveChanged,
+  openSharedElectiveSourceEditor,
+  saveSharedElectiveSourceEditor,
+} = createSharedSourceEditors({
+  state,
+  els,
+  request,
+  escapeHtml,
+  setStatus,
+  institutionApi,
+  loadState,
+  renderCollection,
+  renderEditor,
+  schedulePreview,
+  courseRow,
+  resolvedCollection,
+  sourceAppliesToSelection,
+  scopeFromFields,
+});
 
 function renderEditor() {
-  if (!state.plan) return;
-  sortPublishedCollections();
-  syncProposalWithPublished();
-  els.planHeading.textContent = state.plan.major;
-  document.querySelectorAll("[data-field]").forEach((input) => {
-    input.value = state.plan[input.dataset.field] ?? "";
-    if (["university", "college"].includes(input.dataset.field)) {
-      input.closest("label").hidden = true;
-    }
-  });
-  renderCollection(els.semesterList, state.plan.semesters, "semester");
-  renderInheritedSemesters();
-  renderCollection(els.electiveList, state.plan.electiveGroups ?? [], "elective");
-  els.proposalEnabled.checked = Boolean(state.plan.proposal);
-  els.proposalEditor.hidden = !state.plan.proposal;
-  els.guideEnabled.checked = state.plan.proposal?.showGuide !== false;
-  renderCollection(els.proposalSemesterList, state.plan.proposal?.semesters ?? [], "proposal");
+  renderEditorCore();
   renderSharedSets();
   renderSharedElectiveSources();
 }
-
-function renderInheritedSemesters() {
-  const selected = new Set(state.plan.sharedSemesterSets ?? []);
-  const sets = state.sharedSemesterSets.filter((set) => selected.has(set.id));
-  let level = 0;
-  els.inheritedSemesterList.innerHTML = sets.flatMap((set) => set.semesters.map((semester) => {
-    level += 1;
-    return `
-    <article class="card inherited-semester" data-shared-set="${escapeHtml(set.id)}">
-      <div class="card-heading"><div><p class="eyebrow">مستوى مشترك من ${escapeHtml(set.name)}</p><h2>${escapeHtml(semesterLabel(level))}</h2></div>
-        <button class="button ghost edit-shared-set" type="button">فتح المصدر المشترك</button></div>
-      <p class="muted">${[...(semester.courses ?? [])].sort(compareCodes).map(entryCode).map(escapeHtml).join("، ") || "لا مقررات في هذا المستوى."}</p>
-    </article>`;
-  })).join("");
-}
-
-function renderSharedSetEditor() {
-  const draft = state.sharedSetDraft;
-  els.sharedSetEditor.hidden = !draft;
-  if (!draft) return;
-  els.sharedSetEditorTitle.textContent = draft.name || "خطة مشتركة جديدة";
-  els.sharedSetName.value = draft.name ?? "";
-  els.sharedSetId.value = draft.id ?? "";
-  els.sharedSetPhase.value = draft.phaseLabel ?? "السنة التحضيرية";
-  els.sharedSetScopeType.value = draft.scope?.type ?? "institution";
-  els.sharedSetScopeTarget.value = scopeTarget(draft.scope);
-  renderCollection(els.sharedSemesterList, draft.semesters ?? [], "shared");
-}
-
-function scheduleSharedSetResolution(delay = 250) {
-  clearTimeout(state.sharedPreviewTimer);
-  state.sharedPreviewTimer = setTimeout(() => refreshSharedSetResolution().catch((error) => setStatus(error.message, "error")), delay);
-}
-
-async function refreshSharedSetResolution() {
-  if (!state.sharedSetDraft) return;
-  const result = await request("/api/preview", {
-    method: "POST",
-    body: JSON.stringify({
-      institutionId: state.selectedInstitutionId,
-      collegeId: state.selectedCollegeId || null,
-      plan: {
-        schemaVersion: 1,
-        id: "shared-preview",
-        major: state.sharedSetDraft.name || "الخطة المشتركة",
-        semesters: state.sharedSetDraft.semesters,
-        fallbackCourses: state.sharedSetDraft.fallbackCourses ?? {},
-        electiveGroups: [],
-      },
-    }),
-  });
-  state.sharedSetResolved = result.plan;
-  renderCollection(els.sharedSemesterList, state.sharedSetDraft.semesters, "shared");
-}
-
-function sharedChanged(render = false) {
-  state.sharedSetDirty = true;
-  if (render) renderSharedSetEditor();
-  scheduleSharedSetResolution();
-}
-
-function openSharedSetEditor(set = null) {
-  state.sharedSetDraft = structuredClone(set ?? {
-    schemaVersion: 1,
-    id: "",
-    name: "",
-    phaseLabel: "السنة التحضيرية",
-    semesters: [{ courses: [] }, { courses: [] }],
-    fallbackCourses: {},
-    scope: { type: "institution", institutionId: state.selectedInstitutionId },
-  });
-  state.sharedSetDraft._originalId = set?.id ?? null;
-  state.sharedSetResolved = null;
-  state.sharedSetDirty = false;
-  renderSharedSetEditor();
-  document.querySelector('[data-tab="settings"]')?.click();
-  els.sharedSetEditor.scrollIntoView({ behavior: "smooth", block: "start" });
-  scheduleSharedSetResolution(0);
-}
-
-async function saveSharedSetEditor() {
-  const draft = state.sharedSetDraft;
-  if (!draft) return;
-  draft.name = els.sharedSetName.value.trim();
-  draft.id = els.sharedSetId.value.trim();
-  draft.phaseLabel = els.sharedSetPhase.value.trim() || "السنة التحضيرية";
-  draft.scope = scopeFromFields(
-    els.sharedSetScopeType.value,
-    els.sharedSetScopeTarget.value,
-  );
-  const previousId = draft._originalId;
-  const payload = structuredClone(draft);
-  payload.scope ??= { type: "institution", institutionId: state.selectedInstitutionId };
-  delete payload._originalId;
-  await request(institutionApi(previousId
-    ? `/shared-semester-sources/${encodeURIComponent(previousId)}`
-    : "/shared-semester-sources"), {
-    method: previousId ? "PUT" : "POST",
-    body: JSON.stringify(payload),
-  });
-  state.sharedSetDraft = null;
-  state.sharedSetResolved = null;
-  state.sharedSetDirty = false;
-  await loadState();
-  renderSharedSetEditor();
-  if (state.plan) {
-    renderEditor();
-    schedulePreview(0);
-  }
-  setStatus("حُفظت الخطة المشتركة، وستظهر في كل تخصص مرتبط بها.", "success");
-}
-
-function renderSharedSets() {
-  if (els.sharedSetChoices) {
-    const selected = new Set(state.plan?.sharedSemesterSets ?? []);
-    const eligible = state.sharedSemesterSets.filter(sourceAppliesToSelection);
-    els.sharedSetChoices.innerHTML = eligible.length
-      ? `<label class="choice-item"><span><strong>دون خطة مشتركة</strong><small>تبدأ مستويات التخصص مباشرة.</small></span><input data-shared-set-choice="" name="shared-foundation-choice" type="radio" ${selected.size === 0 ? "checked" : ""}></label>`
-        + eligible.map((set) => `
-        <label class="choice-item"><span><strong>${escapeHtml(set.name)}</strong><small>${set.semesters.length} مستويات · ${escapeHtml(set.phaseLabel)}</small></span>
-          <input data-shared-set-choice="${escapeHtml(set.id)}" name="shared-foundation-choice" type="radio" ${selected.has(set.id) ? "checked" : ""}>
-        </label>`).join("")
-      : '<p class="muted">لم تُعرّف خطة مشتركة بعد.</p>';
-  }
-  if (els.sharedSetList) {
-    els.sharedSetList.innerHTML = state.sharedSemesterSets.length
-      ? state.sharedSemesterSets.map((set) => `
-        <div class="shared-set-item" data-shared-set="${escapeHtml(set.id)}">
-          <span><strong>${escapeHtml(set.name)}</strong><small>${set.semesters.length} فصول · تستخدمها ${set.usages?.length ?? 0} خطط</small></span>
-          <span class="menu-actions">
-            <button class="button ghost edit-shared-set" type="button">تعديل</button>
-            <button class="button ghost duplicate-shared-set" type="button">نسخ</button>
-            <button class="button danger-ghost delete-shared-set" type="button">حذف</button>
-          </span>
-        </div>`).join("")
-      : '<p class="muted">أنشئ خطة مشتركة، مثل التحضيري العلمي، ثم أضف مقرراتها مرة واحدة.</p>';
-  }
-}
-
 
 function addCodes(kind, index, value) {
   const target = collection(kind, index);
@@ -736,144 +376,19 @@ function addCodes(kind, index, value) {
   else changed(true);
 }
 
-function changed(render = false) {
-  syncProposalWithPublished();
-  setDirty(true);
-  if (render) renderEditor();
-  schedulePreview();
-}
 
-function schedulePreview(delay = 350) {
-  clearTimeout(state.previewTimer);
-  state.previewTimer = setTimeout(() => refreshPreview().catch((error) => setStatus(error.message, "error")), delay);
-}
 
-function releasePreviewUrls() {
-  els.previewHost.replaceChildren();
-}
-
-async function refreshPreview() {
-  if (!state.plan) return;
-  const result = await request("/api/preview", {
-    method: "POST",
-    body: JSON.stringify({
-      institutionId: state.selectedInstitutionId,
-      collegeId: state.selectedCollegeId,
-      plan: state.plan,
-    }),
-  });
-  state.resolved = result.plan;
-  state.diagnostics = result.diagnostics;
-  state.pageLayouts = result.pageLayouts;
-  const hasBlockingErrors = result.diagnostics.summary.errors > 0;
-  els.generateButton.disabled = hasBlockingErrors;
-  els.generateDraftButton.disabled = hasBlockingErrors;
-  const exportReason = hasBlockingErrors ? "عالج الأخطاء قبل إنشاء ملف PDF." : "";
-  els.generateButton.title = exportReason;
-  els.generateDraftButton.title = exportReason;
-  renderDiagnostics();
-  els.unresolvedCount.textContent = String(result.diagnostics.items.filter((item) => item.code === "UNRESOLVED_COURSE").length);
-  releasePreviewUrls();
-  if (!result.pages.length) {
-    els.previewHost.innerHTML = '<p>تعذر إنشاء المعاينة. راجع الأخطاء أدناه.</p>';
-    els.previewDimensions.textContent = "—";
-  } else {
-    await document.fonts.ready;
-    result.pages.forEach((svg, index) => {
-      const inlineSvg = svg;
-      const image = document.createElement("div");
-      image.className = "preview-page";
-      image.innerHTML = inlineSvg;
-      image.alt = `معاينة الصفحة ${index + 1}`;
-      els.previewHost.append(image);
-    });
-    els.previewDimensions.textContent = result.pageLayouts
-      .map((page, index) => `${index + 1}: ${page.width} × ${Number(page.height.toFixed(3))} pt`)
-      .join(" · ");
-  }
-  refreshResolvedRows();
-}
-
-function renderDiagnostics() {
-  const items = state.diagnostics?.items ?? [];
-  els.diagnosticCount.textContent = String(items.length);
-  if (!items.length) {
-    els.diagnosticList.innerHTML = '<p class="muted">لا تنبيهات.</p>';
-    return;
-  }
-  els.diagnosticList.innerHTML = items.map((item) => `
-    <button class="diagnostic ${item.severity === "errors" ? "error" : item.severity === "warnings" ? "warning" : "info"}" type="button" data-focus="${escapeHtml(item.location ?? (item.semester ? `semester-${item.semester}` : ""))}">
-      <strong>${escapeHtml(item.code)}</strong><br>${escapeHtml(item.message)}
-    </button>
-  `).join("");
-}
-
-function refreshResolvedRows() {
-  document.querySelectorAll(".course-row").forEach((row) => {
-    const groupIndex = Number(row.dataset.groupIndex);
-    const courseIndex = Number(row.dataset.courseIndex);
-    const resolved = resolvedCollection(row.dataset.kind, groupIndex)[courseIndex];
-    const unresolved = !resolved || resolved.source === "unresolved";
-    const placeholder = row.dataset.placeholderId !== "";
-    row.classList.toggle("unresolved", unresolved);
-    row.querySelector(".course-code").textContent = placeholder ? "مقرر" : resolved?.code
-      ?? entryCode(collection(row.dataset.kind, groupIndex)[courseIndex]);
-    row.querySelector(".course-name").textContent = resolved?.name ?? "مقرر غير موجود في الدليل";
-    const badges = row.querySelector(".badge-list");
-    if (badges) badges.innerHTML = courseBadges(resolved, placeholder);
-    const metadata = row.querySelectorAll(".course-meta");
-    if (metadata[0]) metadata[0].textContent = placeholder ? "" : resolved?.subject ?? "";
-    if (metadata[1]) metadata[1].textContent = resolved
-      ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? "—"} · عملي ${resolved.practicalHours ?? "—"} · تمارين ${resolved.exerciseHours ?? "—"}`
-      : "";
-    if (metadata[2]) metadata[2].textContent = resolved?.prerequisites?.length
-      ? `سابق: ${resolved.prerequisites.join("، ")}`
-      : "لا متطلب سابق";
-  });
-}
-
-async function savePlan() {
-  if (!state.plan) return;
-  const oldId = state.selectedMajorId;
-  const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}`), {
-    method: "PUT",
-    body: JSON.stringify(state.plan),
-  });
-  state.plan = result.plan;
-  state.selectedMajorId = result.plan.id;
-  setDirty(false);
-  await loadState();
-  renderEditor();
-  setStatus("حُفظت الخطة.", "success");
-}
-
-async function generatePlan(save = true) {
-  if (!state.plan) return;
-  setStatus("جارٍ إنشاء الملف…");
-  const result = await request("/api/generate", {
-    method: "POST",
-    body: JSON.stringify({
-      plan: state.plan,
-      institutionId: state.selectedInstitutionId,
-      collegeId: state.selectedCollegeId,
-      majorId: state.selectedMajorId,
-      save,
-      keepSvg: $("keepSvg").checked,
-      png: $("exportPng").checked,
-    }),
-  });
-  if (save) {
-    setDirty(false);
-    await loadState();
-  }
-  const link = document.createElement("a");
-  link.href = result.files.pdf;
-  link.target = "_blank";
-  link.rel = "noopener";
-  link.textContent = "فتح ملف PDF";
-  els.globalStatus.className = "status success";
-  els.globalStatus.replaceChildren(document.createTextNode(save ? "حُفظت الخطة واكتمل الإنشاء. " : "اكتمل الإنشاء دون حفظ الخطة. "), link);
-}
+const { savePlan, generatePlan } = createExportController({
+  state,
+  els,
+  request,
+  institutionApi,
+  setDirty,
+  loadState,
+  renderEditor,
+  setStatus,
+  exportOptions: () => ({ keepSvg: $("keepSvg").checked, png: $("exportPng").checked }),
+});
 
 async function confirmDiscard() {
   return Boolean(await askForm({
@@ -884,184 +399,27 @@ async function confirmDiscard() {
   }));
 }
 
-function activeInstitution() {
-  return state.institutions.find(
-    (institution) => institution.id === state.selectedInstitutionId,
-  ) ?? null;
-}
-
-async function addInstitution() {
-  const values = await askForm({
-    title: "إضافة جامعة",
-    message: "سيُستخدم المعرّف في مسار ملفات الجامعة وفهارسها.",
-    fields: [
-      { name: "name", label: "اسم الجامعة" },
-      { name: "id", label: "المعرّف الثابت", dir: "ltr" },
-    ],
-  });
-  if (!values) return;
-  const result = await request("/api/institutions", {
-    method: "POST",
-    body: JSON.stringify(values),
-  });
-  state.selectedInstitutionId = result.institution.id;
-  state.selectedCollegeId = "";
-  await loadState();
-}
-
-async function editInstitution() {
-  const institution = activeInstitution();
-  if (!institution) return setStatus("اختر جامعة أولًا.", "error");
-  const values = await askForm({
-    title: "تعديل الجامعة",
-    fields: [
-      { name: "name", label: "اسم الجامعة", value: institution.name },
-      { name: "id", label: "المعرّف الثابت", value: institution.id, dir: "ltr" },
-    ],
-  });
-  if (!values) return;
-  const result = await request(`/api/institutions/${encodeURIComponent(institution.id)}`, {
-    method: "PUT",
-    body: JSON.stringify(values),
-  });
-  state.selectedInstitutionId = result.institution.id;
-  await loadState();
-}
-
-async function deleteInstitution() {
-  const institution = activeInstitution();
-  if (!institution) return setStatus("اختر جامعة أولًا.", "error");
-  const confirmed = await askForm({
-    title: "حذف الجامعة",
-    message: `ستُحذف جامعة «${institution.name}» وكلياتها وتخصصاتها. لا يمكن التراجع عن ذلك.`,
-    submit: "حذف الجامعة",
-    danger: true,
-  });
-  if (!confirmed) return;
-  await request(`/api/institutions/${encodeURIComponent(institution.id)}`, {
-    method: "DELETE",
-  });
-  state.selectedInstitutionId = "";
-  state.selectedCollegeId = "";
-  state.selectedMajorId = "";
-  state.plan = null;
-  showEditor(false);
-  await loadState();
-}
-
-async function addCollege() {
-  const values = await askForm({
-    title: "إضافة كلية",
-    message: "سيُستخدم المعرّف في مسار ملفات الخطط.",
-    fields: [
-      { name: "name", label: "اسم الكلية" },
-      { name: "id", label: "المعرّف الثابت", dir: "ltr" },
-    ],
-  });
-  if (!values) return;
-  const result = await request(institutionApi("/colleges"), { method: "POST", body: JSON.stringify(values) });
-  state.selectedCollegeId = result.college.id;
-  await loadState();
-}
-
-async function editCollege() {
-  const college = activeCollege();
-  if (!college) return setStatus("اختر كلية أولًا.", "error");
-  const values = await askForm({
-    title: "تعديل الكلية",
-    fields: [
-      { name: "name", label: "اسم الكلية", value: college.name },
-      { name: "id", label: "المعرّف الثابت", value: college.id, dir: "ltr" },
-    ],
-  });
-  if (!values) return;
-  const result = await request(institutionApi(`/colleges/${encodeURIComponent(college.id)}`), {
-    method: "PUT",
-    body: JSON.stringify(values),
-  });
-  state.selectedCollegeId = result.college.id;
-  await loadState();
-  setStatus("حُدّثت بيانات الكلية.", "success");
-}
-
-async function deleteCollege() {
-  const college = activeCollege();
-  if (!college) return setStatus("اختر كلية أولًا.", "error");
-  const confirmed = await askForm({
-    title: "حذف الكلية",
-    message: `ستُحذف كلية «${college.name}» وجميع تخصصاتها وخططها. لا يمكن التراجع عن ذلك.`,
-    submit: "حذف الكلية",
-    danger: true,
-  });
-  if (!confirmed) return;
-  await request(institutionApi(`/colleges/${encodeURIComponent(college.id)}`), { method: "DELETE" });
-  state.selectedCollegeId = "";
-  state.selectedMajorId = "";
-  state.plan = null;
-  setDirty(false);
-  showEditor(false);
-  await loadState();
-}
-
-async function addMajor() {
-  if (!state.selectedCollegeId) return setStatus("اختر كلية أولًا.", "error");
-  const values = await askForm({
-    title: "إضافة تخصص",
-    message: "سينشئ المولّد ملف خطة صالحًا بفصل أول فارغ.",
-    fields: [
-      { name: "major", label: "اسم التخصص" },
-      { name: "id", label: "المعرّف الثابت", dir: "ltr" },
-    ],
-  });
-  if (!values) return;
-  const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors`), {
-    method: "POST",
-    body: JSON.stringify(values),
-  });
-  await loadState();
-  await selectMajor(result.plan.id);
-}
-
-async function duplicateMajor() {
-  if (!state.plan) return;
-  const values = await askForm({
-    title: "نسخ التخصص",
-    fields: [
-      { name: "major", label: "اسم النسخة", value: `${state.plan.major} - نسخة` },
-      { name: "id", label: "معرّف النسخة", dir: "ltr" },
-    ],
-  });
-  if (!values) return;
-  const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(state.selectedMajorId)}/duplicate`), {
-    method: "POST",
-    body: JSON.stringify(values),
-  });
-  await loadState();
-  await selectMajor(result.plan.id);
-}
-
-async function deleteMajor() {
-  if (!state.plan) return;
-  const confirmed = await askForm({
-    title: "حذف التخصص",
-    message: `سيُحذف تخصص «${state.plan.major}» وملف خطته. لا يمكن التراجع عن ذلك.`,
-    submit: "حذف التخصص",
-    danger: true,
-  });
-  if (!confirmed) return;
-  await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(state.selectedMajorId)}`), { method: "DELETE" });
-  state.selectedMajorId = "";
-  state.plan = null;
-  setDirty(false);
-  showEditor(false);
-  await loadState();
-}
-
-function move(array, index, direction) {
-  const next = index + direction;
-  if (next < 0 || next >= array.length) return;
-  [array[index], array[next]] = [array[next], array[index]];
-}
+const {
+  addInstitution,
+  editInstitution,
+  deleteInstitution,
+  addCollege,
+  editCollege,
+  deleteCollege,
+  addMajor,
+  duplicateMajor,
+  deleteMajor,
+} = createEntityActions({
+  state,
+  request,
+  askForm,
+  setStatus,
+  setDirty,
+  loadState,
+  selectMajor,
+  showEditor,
+  institutionApi,
+});
 
 async function addPlaceholder(card) {
   const values = await askForm({
@@ -1156,131 +514,6 @@ function updateDependency(row, input) {
   else changed();
 }
 
-async function addSharedSet() {
-  openSharedSetEditor();
-}
-
-async function editSharedSet(id) {
-  const current = state.sharedSemesterSets.find((set) => set.id === id);
-  if (!current) throw new Error("لم يُعثر على الخطة المشتركة.");
-  openSharedSetEditor(current);
-}
-
-function renderSharedElectiveSources() {
-  els.sharedElectiveSourceList.innerHTML = state.sharedElectiveGroups.map((source) => `
-    <article class="shared-set-row" data-shared-elective-source="${escapeHtml(source.id)}">
-      <div><strong>${escapeHtml(source.name)}</strong>
-        <small>${source.courses.length} مقررات · ${source.requiredHours} ساعات · مستخدم في ${source.usages?.length ?? 0} تخصص</small>
-        ${source.usages?.length ? `<small>${escapeHtml(source.usages.map((usage) => `${usage.college} — ${usage.major}`).join(" · "))}</small>` : ""}
-      </div>
-      <div class="menu-actions">
-        <button class="button ghost edit-shared-elective-source" type="button">تعديل</button>
-        <button class="button ghost duplicate-shared-elective-source" type="button">نسخ</button>
-        <button class="button danger-ghost delete-shared-elective-source" type="button">حذف</button>
-      </div>
-    </article>
-  `).join("") || '<p class="muted">لا توجد مصادر اختيارية مشتركة.</p>';
-}
-
-function openSharedElectiveSourceEditor(source = null) {
-  state.sharedElectiveDraft = structuredClone(source ?? {
-    schemaVersion: 1,
-    id: "",
-    name: "",
-    requiredHours: 0,
-    courses: [],
-    fallbackCourses: {},
-    scope: { type: "institution", institutionId: state.selectedInstitutionId },
-  });
-  state.sharedElectiveDraft._originalId = source?.id ?? null;
-  state.sharedElectiveResolved = null;
-  state.sharedElectiveDirty = false;
-  renderSharedElectiveSourceEditor();
-  document.querySelector('[data-tab="settings"]')?.click();
-  els.sharedElectiveSourceEditor.scrollIntoView({ behavior: "smooth", block: "start" });
-  scheduleSharedElectiveResolution(0);
-}
-
-function renderSharedElectiveSourceEditor() {
-  const draft = state.sharedElectiveDraft;
-  els.sharedElectiveSourceEditor.hidden = !draft;
-  if (!draft) return;
-  els.sharedElectiveSourceEditorTitle.textContent = draft.name || "مجموعة اختيارية جديدة";
-  els.sharedElectiveSourceName.value = draft.name ?? "";
-  els.sharedElectiveSourceId.value = draft.id ?? "";
-  els.sharedElectiveSourceHours.value = draft.requiredHours ?? 0;
-  els.sharedElectiveScopeType.value = draft.scope?.type ?? "institution";
-  els.sharedElectiveScopeTarget.value = scopeTarget(draft.scope);
-  const resolved = resolvedCollection("sharedElective", 0);
-  els.sharedElectiveCourseList.innerHTML = (draft.courses ?? []).map((entry, index) => (
-    courseRow(typeof entry === "string" ? { code: entry } : entry, resolved[index], "sharedElective", 0, index)
-  )).join("") || '<p class="muted">لا مقررات في هذا المصدر.</p>';
-}
-
-function scheduleSharedElectiveResolution(delay = 250) {
-  clearTimeout(state.sharedPreviewTimer);
-  state.sharedPreviewTimer = setTimeout(async () => {
-    if (!state.sharedElectiveDraft) return;
-    const result = await request("/api/preview", {
-      method: "POST",
-      body: JSON.stringify({
-        institutionId: state.selectedInstitutionId,
-        collegeId: state.selectedCollegeId || null,
-        plan: {
-          schemaVersion: 1,
-          id: "shared-elective-preview",
-          major: state.sharedElectiveDraft.name || "مجموعة اختيارية",
-          semesters: [{ id: "preview-level", courses: [] }],
-          fallbackCourses: state.sharedElectiveDraft.fallbackCourses ?? {},
-          electiveGroups: [{
-            id: "preview-elective",
-            name: state.sharedElectiveDraft.name || "مجموعة اختيارية",
-            requiredHours: Number(state.sharedElectiveDraft.requiredHours ?? 0),
-            courses: state.sharedElectiveDraft.courses ?? [],
-          }],
-        },
-      }),
-    });
-    state.sharedElectiveResolved = result.plan;
-    renderSharedElectiveSourceEditor();
-  }, delay);
-}
-
-function sharedElectiveChanged(render = false) {
-  state.sharedElectiveDirty = true;
-  if (render) renderSharedElectiveSourceEditor();
-  scheduleSharedElectiveResolution();
-}
-
-async function saveSharedElectiveSourceEditor() {
-  const draft = state.sharedElectiveDraft;
-  if (!draft) return;
-  draft.name = els.sharedElectiveSourceName.value.trim();
-  draft.id = els.sharedElectiveSourceId.value.trim();
-  draft.requiredHours = Number(els.sharedElectiveSourceHours.value);
-  draft.scope = scopeFromFields(
-    els.sharedElectiveScopeType.value,
-    els.sharedElectiveScopeTarget.value,
-  );
-  const previousId = draft._originalId;
-  const payload = structuredClone(draft);
-  payload.scope ??= { type: "institution", institutionId: state.selectedInstitutionId };
-  delete payload._originalId;
-  await request(institutionApi(previousId
-    ? `/shared-elective-sources/${encodeURIComponent(previousId)}`
-    : "/shared-elective-sources"), {
-    method: previousId ? "PUT" : "POST",
-    body: JSON.stringify(payload),
-  });
-  state.sharedElectiveDraft = null;
-  state.sharedElectiveResolved = null;
-  state.sharedElectiveDirty = false;
-  await loadState();
-  renderSharedElectiveSourceEditor();
-  if (state.plan) renderEditor();
-  setStatus("حُفظ المصدر الاختياري المشترك.", "success");
-}
-
 async function courseSearch(value) {
   clearTimeout(state.searchTimer);
   state.searchTimer = setTimeout(async () => {
@@ -1293,27 +526,14 @@ async function courseSearch(value) {
 }
 
 function moveProposalCourse(row, action) {
-  const fromIndex = Number(row.dataset.groupIndex);
-  const courseId = row.dataset.courseCode;
-  const semesters = state.plan.proposal.semesters;
-  const source = semesters[fromIndex];
-  const courseIndex = source.courseOrder.indexOf(courseId);
-  if (courseIndex < 0) return;
-  if (action === "up" || action === "down") {
-    move(source.courseOrder, courseIndex, action === "up" ? -1 : 1);
-  } else {
-    let targetIndex = action === "previous" ? fromIndex - 1 : action === "next" ? fromIndex + 1 : -1;
-    if (action === "home") {
-      const parent = publishedDecisionSemesters().find((semester) => (
-        semester.courses.some((entry) => entryId(entry) === courseId)
-      ));
-      targetIndex = semesters.findIndex((semester) => semester.sourceSemesterId === parent?.id);
-    }
-    if (targetIndex < 0 || targetIndex >= semesters.length || targetIndex === fromIndex) return;
-    source.courseOrder.splice(courseIndex, 1);
-    semesters[targetIndex].courseOrder.push(courseId);
-  }
-  changed(true);
+  const changedPosition = applyProposalCourseMove({
+    proposal: state.plan.proposal,
+    publishedSemesters: publishedDecisionSemesters(),
+    fromIndex: Number(row.dataset.groupIndex),
+    courseId: row.dataset.courseCode,
+    action,
+  });
+  if (changedPosition) changed(true);
 }
 
 async function refreshCatalogFallback(row) {
@@ -1371,7 +591,7 @@ document.addEventListener("click", (event) => {
   }
   if (card && (event.target.closest(".move-up") || event.target.closest(".move-down"))) {
     const source = card.dataset.kind === "semester" ? state.plan.semesters : card.dataset.kind === "elective" ? state.plan.electiveGroups : card.dataset.kind === "shared" ? state.sharedSetDraft.semesters : state.plan.proposal.semesters;
-    move(source, Number(card.dataset.groupIndex), event.target.closest(".move-up") ? -1 : 1);
+    moveItem(source, Number(card.dataset.groupIndex), event.target.closest(".move-up") ? -1 : 1);
     if (card.dataset.kind === "shared") sharedChanged(true);
     else changed(true);
   }
@@ -1605,17 +825,16 @@ document.addEventListener("drop", (event) => {
   event.preventDefault();
   const payload = JSON.parse(event.dataTransfer.getData("application/x-saad-proposal-course") || "null");
   if (!payload) return;
-  const from = state.plan.proposal.semesters[payload.semesterIndex];
   const targetIndex = Number(card.dataset.groupIndex);
-  const target = state.plan.proposal.semesters[targetIndex];
-  const index = from.courseOrder.indexOf(payload.code);
-  if (index < 0) return;
   const targetRow = event.target.closest('.course-row[data-kind="proposal"][draggable="true"]');
-  if (payload.semesterIndex === targetIndex && targetRow?.dataset.courseCode === payload.code) return;
-  from.courseOrder.splice(index, 1);
-  const insertAt = targetRow ? Math.max(0, target.courseOrder.indexOf(targetRow.dataset.courseCode)) : target.courseOrder.length;
-  target.courseOrder.splice(insertAt, 0, payload.code);
-  changed(true);
+  const moved = dropProposalCourse({
+    proposal: state.plan.proposal,
+    fromIndex: payload.semesterIndex,
+    targetIndex,
+    courseId: payload.code,
+    beforeCourseId: targetRow?.dataset.courseCode ?? null,
+  });
+  if (moved) changed(true);
 });
 
 $("addInstitutionButton").addEventListener("click", () => addInstitution().catch((error) => setStatus(error.message, "error")));
@@ -1663,41 +882,17 @@ $("addSharedElectiveButton").addEventListener("click", async () => {
   changed(true);
 });
 els.proposalEnabled.addEventListener("change", () => {
-  const published = publishedDecisionSemesters();
   state.plan.proposal = els.proposalEnabled.checked
-    ? {
-        enabled: true,
-        title: "الخطة المقترحة",
-        showGuide: true,
-        semesters: published.map((semester) => ({
-          id: semester.id,
-          sourceSemesterId: semester.id,
-          type: "regular",
-          courseOrder: semester.courses.map(entryId),
-          placeholders: [],
-        })),
-      }
+    ? createProposalFromPublished(publishedDecisionSemesters())
     : null;
   changed(true);
 });
 $("addProposalSemesterButton").addEventListener("click", () => {
-  state.plan.proposal.semesters.push({
-    id: `proposal-regular-${Date.now().toString(36)}`,
-    sourceSemesterId: null,
-    type: "regular",
-    courseOrder: [],
-    placeholders: [],
-  });
+  state.plan.proposal.semesters.push(createProposalSemester("regular"));
   changed(true);
 });
 $("addProposalSummerButton").addEventListener("click", () => {
-  state.plan.proposal.semesters.push({
-    id: `proposal-summer-${Date.now().toString(36)}`,
-    sourceSemesterId: null,
-    type: "summer",
-    courseOrder: [],
-    placeholders: [],
-  });
+  state.plan.proposal.semesters.push(createProposalSemester("summer"));
   changed(true);
 });
 $("syncProposalButton").addEventListener("click", () => {
@@ -1713,15 +908,7 @@ $("resetProposalButton").addEventListener("click", async () => {
     danger: true,
   });
   if (!confirmed) return;
-  const placeholders = new Map(state.plan.proposal.semesters.filter((semester) => semester.sourceSemesterId)
-    .map((semester) => [semester.sourceSemesterId, semester.placeholders ?? []]));
-  state.plan.proposal.semesters = publishedDecisionSemesters().map((semester) => ({
-    id: semester.id,
-    sourceSemesterId: semester.id,
-    type: "regular",
-    courseOrder: semester.courses.map(entryId),
-    placeholders: structuredClone(placeholders.get(semester.id) ?? []),
-  }));
+  state.plan.proposal.semesters = resetProposalToPublished(state.plan.proposal, publishedDecisionSemesters());
   changed(true);
 });
 els.guideEnabled.addEventListener("change", () => {
@@ -1753,7 +940,7 @@ $("resetSettingsButton").addEventListener("click", () => {
   $("globalEdition").value = state.settings.edition;
   $("globalRelease").value = state.settings.release;
 });
-$("addSharedSetButton").addEventListener("click", () => addSharedSet().catch((error) => setStatus(error.message, "error")));
+$("addSharedSetButton").addEventListener("click", () => openSharedSetEditor());
 $("saveSharedSetButton").addEventListener("click", () => saveSharedSetEditor().catch((error) => setStatus(error.message, "error")));
 $("closeSharedSetButton").addEventListener("click", () => { state.sharedSetDraft = null; state.sharedSetResolved = null; state.sharedSetDirty = false; renderSharedSetEditor(); });
 $("addSharedSemesterButton").addEventListener("click", () => {
@@ -1785,23 +972,6 @@ window.addEventListener("beforeunload", (event) => {
 });
 window.addEventListener("unload", releasePreviewUrls);
 
-els.dialogForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const submitter = event.submitter?.value;
-  const values = submitter === "confirm"
-    ? Object.fromEntries(new FormData(els.dialogForm).entries())
-    : null;
-  els.formDialog.close();
-  const resolve = dialogResolver;
-  dialogResolver = null;
-  resolve?.(values);
-});
-els.formDialog.addEventListener("cancel", (event) => {
-  event.preventDefault();
-  els.formDialog.close();
-  const resolve = dialogResolver;
-  dialogResolver = null;
-  resolve?.(null);
-});
+bindDialog();
 
 loadState().catch((error) => setStatus(error.message, "error"));

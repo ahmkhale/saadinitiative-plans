@@ -1,12 +1,14 @@
-import { buildCourseCatalog } from "../catalog.mjs";
-import { defaultCatalogService } from "../catalog-service.mjs";
-import { createDiagnostics, hasErrors } from "../diagnostics.mjs";
+import { buildCourseCatalog } from "../infrastructure/catalog/catalog-aggregator.mjs";
+import { defaultCatalogService } from "../infrastructure/catalog/catalog-service.mjs";
+import { createDiagnostics, hasErrors } from "../domain/diagnostics.mjs";
 import { normalizePlanInput, validatePlanShape } from "../plan-input.mjs";
 import { renderPlanDocumentSvg } from "../presentation/svg/document.mjs";
-import { resolvePlan } from "../resolve.mjs";
-import { composeSharedElectiveGroups, loadSharedElectiveGroups } from "../shared-elective-groups.mjs";
-import { composeSharedSemesterSets, loadSharedSemesterSets } from "../shared-semester-sets.mjs";
-import { readSettings } from "../settings.mjs";
+import { validateRenderedText } from "../presentation/layout/text-validation.mjs";
+import { resolvePlan } from "./resolve-plan.mjs";
+import { composeSharedElectiveGroups, composeSharedSemesterSets } from "./compose-published-plan.mjs";
+import { loadSharedElectiveGroups } from "../infrastructure/repositories/shared-elective-repository.mjs";
+import { loadSharedSemesterSets } from "../infrastructure/repositories/shared-semester-repository.mjs";
+import { readSettings } from "../infrastructure/repositories/settings-repository.mjs";
 import { scopeAllows } from "../domain/shared-scope.mjs";
 
 function applicableSources(sources, metadata, majorId) {
@@ -48,6 +50,7 @@ export function executePlanPipeline(rawPlan, options = {}) {
   const plan = resolvePlan(composed, snapshot.catalog, options.colors ?? snapshot.colors, diagnostics, {
     settings: options.settings ?? readSettings(options.settingsPath),
   });
+  validateRenderedText(plan, diagnostics);
   const document = hasErrors(diagnostics) ? null : renderPlanDocumentSvg(plan);
   return { ok: !hasErrors(diagnostics), plan, diagnostics, document };
 }

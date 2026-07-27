@@ -123,3 +123,13 @@ test("saving a proposal writes only the canonical plan", () => {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+
+test("plan schema forbids derived semester presentation fields", () => {
+  const schema = JSON.parse(fs.readFileSync(new URL("../schemas/plan.schema.json", import.meta.url), "utf8"));
+  const semester = schema.$defs.semester;
+  assert.equal(semester.additionalProperties, false);
+  for (const field of ["number", "level", "name", "yearLabel"]) {
+    assert.equal(Object.hasOwn(semester.properties, field), false, `${field} must remain derived`);
+  }
+});

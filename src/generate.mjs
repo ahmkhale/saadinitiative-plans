@@ -1,6 +1,6 @@
 import path from "node:path";
 import { flagValue } from "./args.mjs";
-import { generatePlan } from "./pipeline.mjs";
+import { generatePlan } from "./application/generate-plan.mjs";
 
 function fail(message) {
   console.error(`\nError: ${message}\n`);
@@ -10,7 +10,7 @@ function fail(message) {
 const args = process.argv.slice(2);
 const planPath = args.find((arg) => !arg.startsWith("--") && /\.json$/iu.test(arg));
 if (!planPath) {
-  fail("Usage: npm run generate -- institutions/<institution>/colleges/<college>/majors/<major>/plan.json [--svg] [--png]");
+  fail("Usage: npm run generate -- institutions/<institution>/colleges/<college>/majors/<major>/plan.json [--svg] [--png] [--no-pdf-optimize]");
 } else {
   try {
     const result = generatePlan({
@@ -23,6 +23,9 @@ if (!planPath) {
       svgOnly: args.includes("--svg-only"),
       png: args.includes("--png"),
       allowErrors: args.includes("--allow-errors"),
+      optimizePdf: !args.includes("--no-pdf-optimize"),
+      requirePdfOptimization: args.includes("--require-pdf-optimize"),
+      ghostscript: flagValue(args, "--ghostscript"),
     });
     if (!args.includes("--svg-only")) console.log(`PDF: ${result.paths.pdfPath}`);
     if (args.includes("--svg") || args.includes("--svg-only")) console.log(`SVG: ${result.paths.svgPath}`);

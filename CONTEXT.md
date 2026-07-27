@@ -24,4 +24,10 @@ The proposed page is an overlay on the published plan. It stores stable occurren
 
 ## Rendering
 
-Resolved academic data enters measured presentation layout, then deterministic SVG, then Inkscape PDF/PNG export. Course cards never resize. Semester bodies wrap cumulatively. Local IBM Plex Sans Arabic files drive both fontkit measurement and inline localhost preview.
+Resolved academic data enters measured presentation layout, then deterministic SVG, then Inkscape PDF/PNG export. Course-card overlays are pre-composed to avoid transparency-object bloat; Ghostscript automatically compacts the PDF further when available. Course cards never resize. Semester bodies wrap cumulatively. Local IBM Plex Sans Arabic files drive both fontkit measurement and inline localhost preview.
+
+## Current architecture pass
+
+The renderer is split under `src/presentation/svg/`; page, semester, elective, and proposal layout are separate; academic resolution and proposal reconciliation live under `src/application/`; catalogs, repositories, font metrics, Fontconfig, and Inkscape live under `src/infrastructure/`; and GUI navigation, dialogs, editor rendering, preview, export, entity, proposal, and shared-source behavior live outside `gui/app.js`. Localhost API routing and context composition also live outside `gui-server.mjs`. Compatibility entry points remain intentionally small.
+
+Actual browser text-width verification is available through `npm run test:browser`. It is optional because it requires local IBM Plex Sans Arabic fonts and a Chromium-compatible executable.

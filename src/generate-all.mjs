@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { flagValue } from "./args.mjs";
-import { generatePlan } from "./pipeline.mjs";
-import { safeSlug } from "./normalize.mjs";
+import { generatePlan } from "./application/generate-plan.mjs";
+import { safeSlug } from "./infrastructure/fs/safe-slug.mjs";
 
 function walk(dir) {
   const results = [];

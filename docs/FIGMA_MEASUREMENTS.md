@@ -23,7 +23,7 @@ Reference: [Plans](https://www.figma.com/design/3r0vSL0tBOx2y2PKPz4FK3/Plans?nod
 - Extinct marker: approved black/white target.
 - Requirement pill: height `12 pt`, maximum width `51 pt`, radius `6 pt`.
 
-Course names measure at `5 pt` SemiBold against approximately `68 pt`, then binary-search down to `3.75 pt`. Requirement labels measure at `4.5 pt` Bold down to `3.5 pt`. Both remain one line, never add ellipsis, never change geometry, and emit a targeted warning if the readable floor still overflows.
+Course names measure at `5 pt` SemiBold against approximately `68 pt`, then binary-search down to `2.75 pt`. Requirement labels measure at `4.5 pt` Bold down to `3.5 pt`. Both remain one line, never add ellipsis, never change geometry, and emit a targeted warning if the readable floor still overflows.
 
 ## Semester
 

@@ -1,14 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import {
-  canonicalizePlanForStorage,
-  normalizePlanInput,
-  preparePlanForEditor,
-  validatePlanShape,
-} from "../../plan-input.mjs";
-import { defaultCatalogService } from "../../catalog-service.mjs";
-import { hydrateFallbackCourses } from "../../fallback-hydration.mjs";
+import { normalizePlanInput, validatePlanShape } from "../../application/normalize-plan-input.mjs";
+import { canonicalizePlanForStorage, preparePlanForEditor } from "../../application/plan-storage.mjs";
+import { defaultCatalogService } from "../catalog/catalog-service.mjs";
+import { hydrateFallbackCourses } from "../../application/hydrate-fallbacks.mjs";
+import { assertStableId } from "../../domain/ids.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 export const projectRoot = path.resolve(path.dirname(thisFile), "../../..");
@@ -16,13 +13,7 @@ export const collegesRoot = path.resolve(
   process.env.SAAD_PLANS_COLLEGES_DIR ?? path.join(projectRoot, "institutions", "ksu", "colleges"),
 );
 
-export function assertSafeId(value, field = "id") {
-  const id = String(value ?? "").trim().toLowerCase();
-  if (!/^[a-z0-9](?:[a-z0-9-]{0,62})$/u.test(id)) {
-    throw new Error(`${field} must use lowercase letters, numbers, and single hyphens only.`);
-  }
-  return id;
-}
+export const assertSafeId = assertStableId;
 
 function readJson(filePath) {
   if (!fs.existsSync(filePath)) throw new Error(`File not found: ${filePath}`);

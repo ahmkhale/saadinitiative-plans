@@ -1,7 +1,2 @@
-export {
-  composeSharedSemesterSets,
-} from "../shared-semester-sets.mjs";
-
-export {
-  composeSharedElectiveGroups,
-} from "../shared-elective-groups.mjs";
+export { composeSharedSemesterSets } from "./shared-semester-source.mjs";
+export { composeSharedElectiveGroups } from "./shared-elective-source.mjs";

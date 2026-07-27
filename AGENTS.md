@@ -20,14 +20,26 @@ Always think and communicate with the user in English. Arabic remains appropriat
 - Every page is `594 pt` wide with independently derived height.
 - Use shaped IBM Plex Sans Arabic measurement and the same local font in browser preview/export.
 - Keep footer hyperlinks intact.
+- Preserve compact-PDF behavior: course-card translucency stays pre-composed, and Ghostscript optimization must retain fonts, dimensions, and links.
 - Keep atomic writes.
+
+## Module boundaries
+
+- Put pure academic rules in `src/domain/`.
+- Put orchestration in `src/application/`.
+- Put filesystem, catalogs, and export adapters in `src/infrastructure/`.
+- Put measured layout and SVG composition in `src/presentation/`.
+- Keep root compatibility files such as `render-svg.mjs`, `resolve.mjs`, `plan-input.mjs`, `catalog.mjs`, `catalog-service.mjs`, `exporter.mjs`, `pipeline.mjs`, and `preview.mjs` thin facades.
+- Keep GUI state transformations and views in focused modules; `gui/app.js` is only the browser composition root. Keep `gui-server.mjs` as a thin localhost transport root.
 
 ## Validation
 
 ```powershell
 npm run validate
+# Optional when Chromium and local fonts are available
+npm run test:browser
 npm run gui
 npm run generate -- "institutions/ksu/colleges/engineering/majors/electrical-engineering/plan.json" --svg --png
 ```
 
-Inspect SVG, high-resolution PNG, PDF page sizes, PDF URLs, and the localhost GUI. Do not claim a still-running or failed validation as complete.
+Inspect SVG, high-resolution PNG, PDF page sizes, PDF URLs, PDF file size, and the localhost GUI. Do not claim a still-running or failed validation as complete.

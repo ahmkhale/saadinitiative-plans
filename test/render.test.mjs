@@ -119,13 +119,31 @@ test("renders exact card markers, metric boxes, prerequisite pill, and six-card 
   });
   assert.equal((svg.match(/data-component="course-card"/gu) ?? []).length, 6);
   assert.equal((svg.match(/data-part="metric-box"/gu) ?? []).length, 18);
-  assert.equal((svg.match(/data-part="metric-outline"/gu) ?? []).length, 6);
-  assert.match(svg, /data-part="metric-outline"[^>]+x="23"[^>]+y="42"[^>]+width="30"[^>]+height="7"[^>]+fill="none"/);
+  assert.equal((svg.match(/data-part="metric-outline"/gu) ?? []).length, 0);
+  assert.equal((svg.match(/data-part="guide-activity-outline"/gu) ?? []).length, 0);
+  assert.doesNotMatch(svg, /data-part="(?:academic-badge|metric-box)"[^>]+opacity=/u);
+  assert.doesNotMatch(svg, /<text[^>]+opacity="0\.9"/u);
+  assert.match(svg, /data-part="academic-badge"[^>]+fill="#8BA9CD"/u);
+  assert.match(svg, /data-part="metric-box"[^>]+fill="#8BA9CD"/u);
+  assert.match(svg, /x="68\.5"[^>]+fill="#0E1114"/u);
   assert.match(svg, /translate\(33\.75701904296875 102\)/);
   assert.match(svg, /data-part="parent-marker" cx="5" cy="10" r="4"/);
   assert.match(svg, /data-part="track-marker" cx="5" cy="45" r="4"/);
   assert.match(svg, /data-part="extinct-marker" cx="71" cy="45" r="4"/);
   assert.match(svg, /data-part="prerequisite-pill"[^>]+height="11"[^>]+rx="6"/);
+});
+
+test("renders the cyan activity outline only in the explanatory guide", () => {
+  const document = renderPlanDocumentSvg({
+    major: "اختبار",
+    degree: "البكالوريوس",
+    semesters: [semester()],
+    electiveGroups: [],
+    proposal: { enabled: true, showGuide: true, semesters: [semester()] },
+  });
+  assert.equal((document.pages[0].match(/data-part="guide-activity-outline"/gu) ?? []).length, 0);
+  assert.equal((document.pages[1].match(/data-part="guide-activity-outline"/gu) ?? []).length, 1);
+  assert.equal((document.pages.join("").match(/data-part="metric-outline"/gu) ?? []).length, 0);
 });
 
 test("places automatically sorted courses in Arabic reading order", () => {
@@ -361,12 +379,12 @@ test("fits Arabic text with shaped glyph advances and a readable floor", () => {
   const fitting = courseNameFit("برمجة حاسبات");
   assert.equal(fitting.size, 5);
   const slightlyLong = courseNameFit("تصميم البرمجيات المعتمدة على المكونات");
-  assert.ok(slightlyLong.size < 5 && slightlyLong.size >= 3.75);
+  assert.ok(slightlyLong.size < 5 && slightlyLong.size >= 2.75);
   assert.ok(measureText("سلام", 5, "semibold") !== measureText("سسسس", 5, "semibold"));
   assert.ok(measureText("تصميم البرمجيات المعتمدة على المكونات", slightlyLong.size, "semibold") <= 68);
   assert.ok(measureText("تصميم البرمجيات المعتمدة على المكونات", slightlyLong.size + 0.002, "semibold") > 68);
   const long = courseNameFit("مقدمة شاملة جدًا في هندسة البرمجيات وتطبيقات الأنظمة الموزعة المتقدمة للغاية");
-  assert.ok(long.size >= 3.75);
+  assert.ok(long.size >= 2.75);
   const prerequisite = prerequisiteFit("101 عال | 102 عال مرافق | إتمام 60 ساعة", 43);
   assert.ok(prerequisite.size >= 3.5);
 });
