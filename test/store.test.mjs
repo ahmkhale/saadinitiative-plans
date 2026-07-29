@@ -123,41 +123,122 @@ test("saving a proposal writes only the canonical plan", () => {
   }
 });
 
-test("majors own nested tracks and derive track-specific courses from sibling membership", () => {
+test("tracks inherit one editable parent plan and store only child additions", () => {
   const { root, store } = temporaryStore();
   try {
     store.createCollege({ id: "ccis", name: "كلية علوم الحاسب والمعلومات" });
-    const general = store.createMajor("ccis", { id: "cs", major: "علوم الحاسب" });
-    general.semesters[0].courses = ["101 عال", "201 عال"];
-    store.savePlan("ccis", "cs", general);
+    const parent = store.createMajor("ccis", { id: "cs", major: "علوم الحاسب" });
+    parent.semesters[0].courses = ["101 عال", "201 عال"];
+    store.savePlan("ccis", "cs", parent);
 
+    store.createTrack("ccis", "cs", {
+      id: "general",
+      name: "المسار العام",
+    });
     store.createTrack("ccis", "cs", {
       id: "ai",
       name: "مسار الذكاء الاصطناعي",
-      rootTrackId: "general",
-      rootTrackName: "المسار العام",
-      sourceTrackId: "cs",
     });
+    store.createTrack("ccis", "cs", {
+      id: "networks",
+      name: "مسار الشبكات",
+    });
+    const general = store.getPlan("ccis", "cs", "general");
+    general.semesters.push({ id: "general-level-1", courses: ["302 عال"] });
+    general.fallbackCourses["302 عال"] = {
+      name: "مقرر مشترك بين المسارات",
+      academicHours: 3,
+      lectureHours: 2,
+      exerciseHours: 1,
+      practicalHours: 0,
+      source: "manual",
+      manuallyEditedFields: ["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"],
+    };
+    store.savePlan("ccis", "cs", general, "general");
     const ai = store.getPlan("ccis", "cs", "ai");
-    ai.semesters[0].courses = ai.semesters[0].courses.filter((course) => course.code !== "201 عال");
-    ai.semesters[0].courses.push("301 عال");
+    ai.semesters.push({ id: "ai-level-1", courses: ["301 عال", "302 عال"] });
     store.savePlan("ccis", "cs", ai, "ai");
 
     const summary = store.listMajors("ccis")[0];
-    assert.deepEqual(summary.tracks.map((track) => track.name), [
+    assert.deepEqual(new Set(summary.tracks.map((track) => track.name)), new Set([
       "المسار العام",
       "مسار الذكاء الاصطناعي",
-    ]);
-    const derivedGeneral = store.getPlanForEditor("ccis", "cs", "general");
-    const derivedAi = store.getPlanForEditor("ccis", "cs", "ai");
+      "مسار الشبكات",
+    ]));
+    const derivedGeneral = store.getComposedPlan("ccis", "cs", "general");
+    const derivedAi = store.getComposedPlan("ccis", "cs", "ai");
     assert.equal(derivedGeneral.semesters[0].courses.find((course) => course.code === "101 عال").trackSpecific, undefined);
-    assert.equal(derivedGeneral.semesters[0].courses.find((course) => course.code === "201 عال").trackSpecific, true);
-    assert.equal(derivedAi.semesters[0].courses.find((course) => course.code === "301 عال").trackSpecific, true);
-    assert.equal(store.getPlan("ccis", "cs", "ai").semesters[0].courses.some((course) => course.trackSpecific), false);
+    assert.equal(derivedGeneral.semesters[0].courses.find((course) => course.code === "201 عال").trackSpecific, undefined);
+    assert.equal(derivedGeneral.semesters[1].courses.find((course) => course.code === "302 عال").trackSpecific, undefined);
+    assert.equal(derivedAi.semesters[1].courses.find((course) => course.code === "302 عال").trackSpecific, undefined);
+    assert.equal(derivedAi.fallbackCourses["302 عال"].name, "مقرر مشترك بين المسارات");
+    assert.equal(store.getPlan("ccis", "cs", "ai").fallbackCourses["302 عال"], undefined);
+    assert.equal(derivedAi.semesters[1].courses.find((course) => course.code === "301 عال").trackSpecific, true);
+    assert.equal(store.getPlan("ccis", "cs", "ai").semesters[0].courses[0].code, "301 عال");
+    assert.equal(store.getPlan("ccis", "cs", "ai").fallbackCourses["101 عال"], undefined);
+
+    const parentDraft = store.getPlan("ccis", "cs");
+    parentDraft.semesters[0].courses.push("203 عال");
+    assert.ok(store.getComposedPlan("ccis", "cs", null, parentDraft)
+      .semesters[0].courses.some((course) => course.code === "203 عال"));
+    assert.equal(store.getPlan("ccis", "cs").semesters[0].courses.some((course) => course.code === "203 عال"), false);
+
+    const editedParent = store.getPlan("ccis", "cs");
+    editedParent.semesters[0].courses.push("202 عال");
+    store.savePlan("ccis", "cs", editedParent);
+    assert.ok(store.getComposedPlan("ccis", "cs", "general").semesters[0].courses.some((course) => course.code === "202 عال"));
+    assert.ok(store.getComposedPlan("ccis", "cs", "ai").semesters[0].courses.some((course) => course.code === "202 عال"));
 
     store.duplicateMajor("ccis", "cs", { id: "cs-copy", major: "علوم الحاسب - نسخة" });
-    assert.deepEqual(store.listTracks("ccis", "cs-copy").map((track) => track.id), ["general", "ai"]);
+    assert.deepEqual(
+      new Set(store.listTracks("ccis", "cs-copy").map((track) => track.id)),
+      new Set(["general", "ai", "networks"]),
+    );
     assert.equal(store.getPlan("ccis", "cs-copy", "ai").major, "علوم الحاسب - نسخة");
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("manual course facts are reused across majors without sharing plan requirements", () => {
+  const { root, store } = temporaryStore();
+  try {
+    store.createCollege({ id: "ccis", name: "كلية علوم الحاسب والمعلومات" });
+    const computerScience = store.createMajor("ccis", { id: "cs", major: "علوم الحاسب" });
+    computerScience.semesters[0].courses = ["216 عال"];
+    computerScience.fallbackCourses["216 عال"] = {
+      name: "البرمجة بلغة Python",
+      academicHours: 3,
+      lectureHours: 2,
+      exerciseHours: 0,
+      practicalHours: 2,
+      source: "manual",
+      manuallyEditedFields: ["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"],
+    };
+    store.savePlan("ccis", "cs", computerScience);
+
+    const informationSystems = store.createMajor("ccis", { id: "is", major: "نظم المعلومات" });
+    informationSystems.semesters[0].courses = [{
+      code: "216 عال",
+      prerequisites: ["101 عال"],
+    }];
+    store.savePlan("ccis", "is", informationSystems);
+    store.createTrack("ccis", "is", { id: "data", name: "مسار البيانات" });
+
+    const track = store.getPlan("ccis", "is", "data");
+    track.semesters.push({
+      id: "data-level-1",
+      courses: [{ code: "216 عال", corequisites: ["201 عال"] }],
+    });
+    const composed = store.getComposedPlan("ccis", "is", "data", track);
+    const composedParent = store.getComposedPlan("ccis", "is");
+
+    assert.equal(composed.fallbackCourses["216 عال"].name, "البرمجة بلغة Python");
+    assert.equal(composedParent.fallbackCourses["216 عال"].name, "البرمجة بلغة Python");
+    assert.deepEqual(composed.semesters[0].courses[0].prerequisites, ["101 عال"]);
+    assert.deepEqual(composed.semesters[1].courses[0].corequisites, ["201 عال"]);
+    assert.equal(store.getPlan("ccis", "is").fallbackCourses["216 عال"], undefined);
+    assert.equal(store.getPlan("ccis", "is", "data").fallbackCourses["216 عال"], undefined);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

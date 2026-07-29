@@ -65,6 +65,7 @@ export function createEntityActions({
     state.selectedMajorId = "";
     state.selectedTrackId = "";
     state.plan = null;
+    state.parentPlan = null;
     setDirty(false);
     showEditor(false);
     await loadState();
@@ -124,6 +125,7 @@ export function createEntityActions({
     state.selectedMajorId = "";
     state.selectedTrackId = "";
     state.plan = null;
+    state.parentPlan = null;
     setDirty(false);
     showEditor(false);
     await loadState();
@@ -172,7 +174,7 @@ export function createEntityActions({
     }
     const values = await askForm({
       title: "إضافة مسار",
-      message: "سيُنشأ المسار من الخطة المحددة حاليًا. المقررات التي لا تظهر في جميع المسارات ستُعلّم تلقائيًا كمقررات خاصة بالمسار.",
+      message: "سيرث المسار الخطة الأساسية دائمًا. وإذا كان مسار آخر محددًا الآن، فستُنسخ إضافاته الخاصة أيضًا.",
       fields: [
         { name: "name", label: "اسم المسار" },
         { name: "id", label: "المعرّف الثابت للمسار", dir: "ltr" },
@@ -191,9 +193,6 @@ export function createEntityActions({
     if (!state.plan?.track || !state.selectedTrackId) {
       return setStatus("أضف مسارًا آخر أولًا؛ الخطة الوحيدة هي الخطة الأساسية للتخصص.", "error");
     }
-    const major = selectedCollege(state)?.majors?.find((item) => item.id === state.selectedMajorId);
-    const selected = major?.tracks?.find((item) => item.id === state.selectedTrackId);
-    if (selected?.isRoot) return setStatus("لا يمكن حذف المسار الأساسي للتخصص.", "error");
     const confirmed = await askForm({
       title: "حذف المسار",
       message: `سيُحذف مسار «${state.plan.track.name}» وخطته. لا يمكن التراجع عن ذلك.`,
@@ -207,6 +206,7 @@ export function createEntityActions({
     const majorId = state.selectedMajorId;
     state.selectedTrackId = "";
     state.plan = null;
+    state.parentPlan = null;
     await loadState();
     await selectMajor(majorId);
   }
@@ -224,6 +224,7 @@ export function createEntityActions({
     state.selectedMajorId = "";
     state.selectedTrackId = "";
     state.plan = null;
+    state.parentPlan = null;
     setDirty(false);
     showEditor(false);
     await loadState();

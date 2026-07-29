@@ -6,6 +6,7 @@ export const state = {
   selectedMajorId: "",
   selectedTrackId: "",
   plan: null,
+  parentPlan: null,
   resolved: null,
   diagnostics: null,
   pageLayouts: [],

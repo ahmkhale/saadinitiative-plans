@@ -89,7 +89,7 @@ Course occurrences have stable IDs and store plan-owned rules:
 }
 ```
 
-Majors may own multiple plans: the root `plan.json` is the root track and additional plans live under `tracks/<track-id>/plan.json`. Each plan stores a `{ "track": { "id", "name" } }` identity. Track markers are derived by comparing normalized course membership across sibling tracks and are never operator-authored or persisted.
+Every major’s root `plan.json` is its editable parent plan. Track files under `tracks/<track-id>/plan.json` are child overlays: they inherit all parent semesters, electives, shared-source choices, rules, and fallbacks, then append only their own content. Each child stores a `{ "track": { "id", "name" } }` identity. Track markers are derived after parent/child composition and are never operator-authored or persisted.
 
 The owning file stores factual durability once:
 

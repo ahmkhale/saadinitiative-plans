@@ -50,7 +50,9 @@ export function validatePlanShape(plan) {
   const errors = [];
   if (plan.schemaVersion !== 1) errors.push("schemaVersion must be 1.");
   if (!String(plan.major ?? "").trim()) errors.push("major is required.");
-  if (!Array.isArray(plan.semesters) || plan.semesters.length === 0) errors.push("semesters must contain at least one semester.");
+  if (!Array.isArray(plan.semesters) || (!plan.track && plan.semesters.length === 0)) {
+    errors.push("parent plans must contain at least one semester.");
+  }
   for (const [index, semester] of (plan.semesters ?? []).entries()) {
     if (!Array.isArray(semester.courses)) errors.push(`semesters[${index}].courses must be an array.`);
     for (const [courseIndex, course] of (semester.courses ?? []).entries()) {

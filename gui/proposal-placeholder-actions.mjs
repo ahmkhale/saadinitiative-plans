@@ -18,21 +18,39 @@ export function createProposalPlaceholderActions({
     const values = await askForm({
       title: "إضافة مقرر نائب اختياري",
       message: "اختر المجموعة. سيُخصم مقرر واحد من ساعاتها المتبقية، وتبقى ساعات البطاقة شرطات حتى اختيار المقرر الحقيقي.",
-      fields: [{
-        name: "electiveGroupId",
-        label: "المجموعة الاختيارية",
-        options: options.map((option) => ({
-          value: option.id,
-          label: `${option.name} — المتبقي ${option.remainingHours} ساعات`,
+      fields: [
+        {
+          name: "electiveGroupId",
+          label: "المجموعة الاختيارية",
+          options: options.map((option) => ({
+            value: option.id,
+            label: `${option.name} — المتبقي ${option.remainingHours} ساعات`,
+          })),
+        },
+        ...options.filter((option) => option.hasVariableCourseHours).map((option) => ({
+          name: `allocationHours:${option.id}`,
+          label: "الساعات المحتسبة من المتطلب",
+          type: "number",
+          min: 1,
+          max: option.remainingHours,
+          step: 1,
+          value: option.allocationHours,
+          visibleWhen: {
+            name: "electiveGroupId",
+            values: [option.id],
+          },
         })),
-      }],
+      ],
     });
     if (!values) return;
     const option = options.find((item) => item.id === values.electiveGroupId);
     if (!option) throw new Error("لم يُعثر على المجموعة الاختيارية.");
+    const allocationHours = option.hasVariableCourseHours
+      ? Number(values[`allocationHours:${option.id}`])
+      : option.allocationHours;
     const semester = state.plan.proposal.semesters[Number(card.dataset.groupIndex)];
     semester.placeholders ??= [];
-    semester.placeholders.push(createElectivePlaceholder(option));
+    semester.placeholders.push(createElectivePlaceholder({ ...option, allocationHours }));
     changed(true);
   }
 

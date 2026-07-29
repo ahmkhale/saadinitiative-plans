@@ -6,7 +6,12 @@ import { canonicalizePlanForStorage, preparePlanForEditor } from "../../applicat
 import { defaultCatalogService } from "../catalog/catalog-service.mjs";
 import { hydrateFallbackCourses } from "../../application/hydrate-fallbacks.mjs";
 import { assertStableId } from "../../domain/ids.mjs";
-import { cleanTrack, deriveTrackSpecificCourses } from "../../domain/tracks.mjs";
+import {
+  collectFallbackCourses,
+  cleanTrack,
+  composeTrackPlan,
+  deriveTrackSpecificCourses,
+} from "../../domain/tracks.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 export const projectRoot = path.resolve(path.dirname(thisFile), "../../..");
@@ -84,44 +89,46 @@ export function createPlanStore(root = collegesRoot, options = {}) {
 
   function listTracks(collegeId, majorId) {
     const rootPlan = readJson(planFile(collegeId, majorId));
-    const rootTrack = rootPlan.track
-      ? cleanTrack(rootPlan.track, assertSafeId(rootPlan.track.id, "trackId"))
-      : { id: majorId, name: "الخطة العامة" };
     const childrenRoot = tracksDir(collegeId, majorId);
-    const children = !fs.existsSync(childrenRoot) ? [] : fs.readdirSync(childrenRoot, { withFileTypes: true })
+    return (!fs.existsSync(childrenRoot) ? [] : fs.readdirSync(childrenRoot, { withFileTypes: true })
       .filter((entry) => entry.isDirectory() && fs.existsSync(childTrackFile(collegeId, majorId, entry.name)))
       .map((entry) => {
         const plan = readJson(childTrackFile(collegeId, majorId, entry.name));
+        const composed = composeTrackPlan(rootPlan, plan);
         return {
           ...cleanTrack(plan.track, entry.name),
-          semesterCount: plan.semesters?.length ?? 0,
-          hasProposal: Boolean(plan.proposal),
-          isRoot: false,
+          semesterCount: composed.semesters?.length ?? 0,
+          ownSemesterCount: plan.semesters?.length ?? 0,
+          hasProposal: Boolean(composed.proposal),
         };
       })
-      .sort((a, b) => a.name.localeCompare(b.name, "ar"));
-    return [{
-      ...rootTrack,
-      semesterCount: rootPlan.semesters?.length ?? 0,
-      hasProposal: Boolean(rootPlan.proposal),
-      isRoot: true,
-    }, ...children];
-  }
-
-  function trackFile(collegeId, majorId, trackId = null) {
-    const rootPath = planFile(collegeId, majorId);
-    if (!trackId) return rootPath;
-    const rootPlan = readJson(rootPath);
-    const rootTrackId = rootPlan.track?.id ?? majorId;
-    return trackId === rootTrackId ? rootPath : childTrackFile(collegeId, majorId, trackId);
+      .sort((a, b) => a.name.localeCompare(b.name, "ar")));
   }
 
   function allTrackPlans(collegeId, majorId) {
-    return listTracks(collegeId, majorId).map((track) => readJson(trackFile(
+    return listTracks(collegeId, majorId).map((track) => readJson(childTrackFile(
       collegeId,
       majorId,
       track.id,
     )));
+  }
+
+  function allInstitutionPlans() {
+    if (!fs.existsSync(root)) return [];
+    return fs.readdirSync(root, { withFileTypes: true })
+      .filter((college) => college.isDirectory())
+      .sort((left, right) => left.name.localeCompare(right.name, "en"))
+      .flatMap((college) => {
+        const rootMajors = majorsDir(college.name);
+        if (!fs.existsSync(rootMajors)) return [];
+        return fs.readdirSync(rootMajors, { withFileTypes: true })
+          .filter((major) => major.isDirectory() && fs.existsSync(planFile(college.name, major.name)))
+          .sort((left, right) => left.name.localeCompare(right.name, "en"))
+          .flatMap((major) => [
+            getPlan(college.name, major.name),
+            ...allTrackPlans(college.name, major.name),
+          ]);
+      });
   }
 
   function getCollege(id) {
@@ -178,6 +185,10 @@ export function createPlanStore(root = collegesRoot, options = {}) {
           expectedCredits: plan.expectedCredits ?? null,
           semesterCount: plan.semesters?.length ?? 0,
           hasProposal: Boolean(plan.proposal),
+          parent: {
+            semesterCount: plan.semesters?.length ?? 0,
+            hasProposal: Boolean(plan.proposal),
+          },
           tracks: listTracks(collegeId, entry.name),
         };
       })
@@ -185,16 +196,49 @@ export function createPlanStore(root = collegesRoot, options = {}) {
   }
 
   function getPlan(collegeId, majorId, trackId = null) {
-    return readJson(trackFile(collegeId, majorId, trackId));
+    return readJson(trackId
+      ? childTrackFile(collegeId, majorId, trackId)
+      : planFile(collegeId, majorId));
   }
 
   function getPlanForEditor(collegeId, majorId, trackId = null, draft = null) {
+    return preparePlanForEditor(draft ?? getPlan(collegeId, majorId, trackId));
+  }
+
+  function getComposedPlan(collegeId, majorId, trackId = null, draft = null) {
+    const parent = preparePlanForEditor(
+      !trackId && draft ? draft : getPlan(collegeId, majorId),
+    );
+    if (!trackId) {
+      return {
+        ...parent,
+        fallbackCourses: collectFallbackCourses([
+          ...allInstitutionPlans(),
+          parent,
+        ]),
+      };
+    }
     const selected = preparePlanForEditor(draft ?? getPlan(collegeId, majorId, trackId));
-    const selectedTrackId = selected.track?.id ?? trackId ?? majorId;
-    const siblings = allTrackPlans(collegeId, majorId).map((plan) => (
-      (plan.track?.id ?? majorId) === selectedTrackId ? selected : plan
+    const siblingTracks = allTrackPlans(collegeId, majorId).map((plan) => (
+      plan.track?.id === trackId ? selected : preparePlanForEditor(plan)
     ));
-    return deriveTrackSpecificCourses(selected, siblings);
+    const parentWithInstitutionFallbacks = {
+      ...parent,
+      fallbackCourses: collectFallbackCourses([
+        ...allInstitutionPlans(),
+        parent,
+        ...siblingTracks,
+      ]),
+    };
+    const composedSiblings = siblingTracks.map((plan) => composeTrackPlan(
+      parentWithInstitutionFallbacks,
+      plan,
+    ));
+    return deriveTrackSpecificCourses(
+      composeTrackPlan(parentWithInstitutionFallbacks, selected),
+      composedSiblings,
+      parent,
+    );
   }
 
   function createMajor(collegeId, input) {
@@ -225,7 +269,6 @@ export function createPlanStore(root = collegesRoot, options = {}) {
       );
     }
     validatePersistedPlan(plan);
-    const currentTrackId = trackId ?? getPlan(collegeId, currentId).track?.id ?? currentId;
     if (trackId && input?.track?.id && input.track.id !== trackId) {
       throw new Error("Track id cannot be changed from the plan form.");
     }
@@ -234,11 +277,13 @@ export function createPlanStore(root = collegesRoot, options = {}) {
       if (fs.existsSync(nextDir)) throw new Error(`Major already exists: ${nextId}`);
       fs.renameSync(currentDir, nextDir);
     }
-    const destination = trackFile(collegeId, nextId, currentTrackId);
+    const destination = trackId
+      ? childTrackFile(collegeId, nextId, trackId)
+      : planFile(collegeId, nextId);
     atomicWriteJson(destination, plan);
     for (const sibling of listTracks(collegeId, nextId)) {
-      if (sibling.id === currentTrackId) continue;
-      const siblingPath = trackFile(collegeId, nextId, sibling.id);
+      if (sibling.id === trackId) continue;
+      const siblingPath = childTrackFile(collegeId, nextId, sibling.id);
       const siblingPlan = canonicalizePlanForStorage({
         ...readJson(siblingPath),
         id: nextId,
@@ -254,25 +299,23 @@ export function createPlanStore(root = collegesRoot, options = {}) {
   function createTrack(collegeId, majorId, input) {
     const rootPlan = getPlan(collegeId, majorId);
     const track = cleanTrack(input);
-    const hadExplicitRootTrack = Boolean(rootPlan.track);
-    const requestedSourceTrackId = input?.sourceTrackId;
     assertSafeId(track.id, "trackId");
     if (listTracks(collegeId, majorId).some((item) => item.id === track.id)) {
       throw new Error(`Track already exists: ${track.id}`);
     }
-    if (!rootPlan.track) {
-      rootPlan.track = cleanTrack({
-        id: input?.rootTrackId ?? "general",
-        name: input?.rootTrackName ?? "المسار العام",
-      });
-      assertSafeId(rootPlan.track.id, "trackId");
-      atomicWriteJson(planFile(collegeId, majorId), canonicalizePlanForStorage(rootPlan));
-    }
-    if (track.id === rootPlan.track.id) throw new Error(`Track already exists: ${track.id}`);
-    const sourceTrackId = !hadExplicitRootTrack && requestedSourceTrackId === majorId
-      ? rootPlan.track.id
-      : requestedSourceTrackId ?? rootPlan.track.id;
-    const source = getPlan(collegeId, majorId, sourceTrackId);
+    const source = input?.sourceTrackId
+      ? getPlan(collegeId, majorId, input.sourceTrackId)
+      : {
+        schemaVersion: 1,
+        id: majorId,
+        major: rootPlan.major,
+        degree: rootPlan.degree,
+        expectedCredits: rootPlan.expectedCredits ?? 0,
+        sharedSemesterSets: [],
+        semesters: [],
+        electiveGroups: [],
+        fallbackCourses: {},
+      };
     const copy = canonicalizePlanForStorage({
       ...structuredClone(source),
       id: majorId,
@@ -287,7 +330,6 @@ export function createPlanStore(root = collegesRoot, options = {}) {
   function deleteTrack(collegeId, majorId, trackId) {
     const track = listTracks(collegeId, majorId).find((item) => item.id === trackId);
     if (!track) throw new Error(`Track not found: ${trackId}`);
-    if (track.isRoot) throw new Error("The root track cannot be deleted.");
     fs.rmSync(path.dirname(childTrackFile(collegeId, majorId, trackId)), { recursive: true, force: true });
   }
 
@@ -304,7 +346,7 @@ export function createPlanStore(root = collegesRoot, options = {}) {
     }
     validatePersistedPlan(copy);
     atomicWriteJson(planFile(collegeId, nextId), copy);
-    for (const track of listTracks(collegeId, majorId).filter((item) => !item.isRoot)) {
+    for (const track of listTracks(collegeId, majorId)) {
       const trackCopy = canonicalizePlanForStorage({
         ...getPlan(collegeId, majorId, track.id),
         id: nextId,
@@ -335,6 +377,7 @@ export function createPlanStore(root = collegesRoot, options = {}) {
     listTracks,
     getPlan,
     getPlanForEditor,
+    getComposedPlan,
     createMajor,
     savePlan,
     createTrack,

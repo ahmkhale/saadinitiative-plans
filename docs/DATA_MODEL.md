@@ -4,8 +4,8 @@
 
 - `institution.json`: stable `id`, display `name`.
 - `college.json`: stable `id`, display `name`.
-- `majors/<major>/plan.json`: the major’s root track.
-- `majors/<major>/tracks/<track>/plan.json`: additional tracks nested under the same major.
+- `majors/<major>/plan.json`: the editable parent plan inherited by every track.
+- `majors/<major>/tracks/<track>/plan.json`: a child overlay containing only that track’s additions and proposal.
 - `settings.json`: edition, release, and shared presentation defaults.
 
 Plan files do not contain university, college, edition, release, or version.
@@ -25,13 +25,13 @@ Plan files do not contain university, college, edition, release, or version.
 
 The same rule shape is used in shared semester sources and custom/shared elective candidates. Compact code strings are not persisted.
 
-Track plans declare only their identity:
+Track plans declare their identity and may contain additional semesters, electives, fallbacks, and a proposal:
 
 ```json
 { "track": { "id": "artificial-intelligence", "name": "مسار الذكاء الاصطناعي" } }
 ```
 
-`trackSpecific` is derived at read/preview/export time. A course is track-specific when its normalized code is absent from at least one sibling track; the flag is never stored.
+Parent semesters and electives are composed before the child’s additions. Parent facts remain owned once by the parent file. `trackSpecific` is derived after composition: parent courses are present in every track, while a child course is marked when its normalized code is absent from at least one sibling track. The flag is never stored.
 
 ## Factual snapshot
 

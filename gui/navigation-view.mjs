@@ -3,7 +3,10 @@ export function renderNavigation({ state, els, activeCollege, escapeHtml }) {
   const selectedCollege = state.colleges.find((item) => item.id === state.selectedCollegeId);
   const selectedMajor = selectedCollege?.majors?.find((item) => item.id === state.selectedMajorId);
   const selectedTrack = selectedMajor?.tracks?.find((item) => item.id === state.selectedTrackId);
-  els.contextTrail.textContent = [selectedInstitution?.name, selectedCollege?.name, selectedMajor?.major, selectedTrack?.name]
+  const selectedPlanName = selectedMajor
+    ? selectedTrack?.name ?? "الخطة الأساسية"
+    : null;
+  els.contextTrail.textContent = [selectedInstitution?.name, selectedCollege?.name, selectedMajor?.major, selectedPlanName]
     .filter(Boolean)
     .join(" / ") || "اختر جامعة وكلية وتخصصًا";
   if (!state.institutions.length) {
@@ -41,9 +44,13 @@ export function renderNavigation({ state, els, activeCollege, escapeHtml }) {
       const active = major.id === state.selectedMajorId;
       return `<div class="major-nav-group">
         <button class="nav-item ${active ? "active" : ""}" data-major="${escapeHtml(major.id)}" type="button">
-          ${escapeHtml(major.major)}<small>${major.tracks?.length ?? 1} مسار · ${major.semesterCount} فصول${major.hasProposal ? " · له خطة مقترحة" : ""}</small>
+          ${escapeHtml(major.major)}<small>${major.tracks?.length ?? 0} مسار · ${major.semesterCount} فصول أساسية</small>
         </button>
-        ${active ? `<div class="track-nav-list">${(major.tracks ?? []).map((track) => `
+        ${active ? `<div class="track-nav-list">
+          <button class="track-nav-item ${state.selectedTrackId ? "" : "active"}" data-major-parent="${escapeHtml(major.id)}" type="button">
+            الخطة الأساسية<small>${major.parent?.semesterCount ?? major.semesterCount} فصول · تورّث لكل المسارات</small>
+          </button>
+          ${(major.tracks ?? []).map((track) => `
           <button class="track-nav-item ${track.id === state.selectedTrackId ? "active" : ""}" data-major-track="${escapeHtml(major.id)}" data-track="${escapeHtml(track.id)}" type="button">
             ${escapeHtml(track.name)}<small>${track.semesterCount} فصول${track.hasProposal ? " · له خطة مقترحة" : ""}</small>
           </button>`).join("")}</div>` : ""}

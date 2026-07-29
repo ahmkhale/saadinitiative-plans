@@ -15,6 +15,13 @@ function typicalCourseHours(group) {
     .sort((left, right) => right[1] - left[1] || right[0] - left[0])[0]?.[0] ?? 3;
 }
 
+function distinctCourseHours(group) {
+  return [...new Set((group?.courses ?? [])
+    .map((course) => Number(course.academicHours))
+    .filter((hours) => hours > 0))]
+    .sort((left, right) => left - right);
+}
+
 export function proposalElectiveOptions(electiveGroups, proposal) {
   const allocated = new Map();
   for (const placeholder of (proposal?.semesters ?? []).flatMap((semester) => semester.placeholders ?? [])) {
@@ -30,11 +37,13 @@ export function proposalElectiveOptions(electiveGroups, proposal) {
     if (!id || !(requiredHours > 0)) return [];
     const remainingHours = Math.max(0, requiredHours - (allocated.get(id) ?? 0));
     if (remainingHours === 0) return [];
+    const courseHours = distinctCourseHours(group);
     return [{
       id,
       name: group.name,
       remainingHours,
       allocationHours: Math.min(remainingHours, typicalCourseHours(group)),
+      hasVariableCourseHours: courseHours.length > 1,
     }];
   });
 }

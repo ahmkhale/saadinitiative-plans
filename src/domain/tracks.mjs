@@ -15,17 +15,26 @@ export function trackCourseKeys(plan = {}) {
     .filter(Boolean));
 }
 
-export function deriveTrackSpecificCourses(plan, siblingPlans = []) {
+export function collectFallbackCourses(plans = []) {
+  return Object.fromEntries(
+    plans
+      .flatMap((plan) => Object.entries(plan?.fallbackCourses ?? {}))
+      .map(([code, facts]) => [normalizeCourseCode(code), structuredClone(facts)]),
+  );
+}
+
+export function deriveTrackSpecificCourses(plan, siblingPlans = [], parentPlan = null) {
   const result = structuredClone(plan ?? {});
   const tracks = siblingPlans.length ? siblingPlans : [result];
   const courseSets = tracks.map(trackCourseKeys);
-  const trackCount = courseSets.length;
+  const parentCourseKeys = trackCourseKeys(parentPlan ?? {});
 
   const deriveEntry = (entry) => {
     const value = typeof entry === "string" ? { code: normalizeCourseCode(entry) } : structuredClone(entry ?? {});
     delete value.trackSpecific;
     const key = courseCodeKey(value.code);
-    if (trackCount > 1 && courseSets.filter((set) => set.has(key)).length < trackCount) {
+    const owningTrackCount = courseSets.filter((set) => set.has(key)).length;
+    if (!parentCourseKeys.has(key) && owningTrackCount === 1) {
       value.trackSpecific = true;
     }
     return value;
@@ -48,4 +57,36 @@ export function cleanTrack(input, forcedId = null) {
   if (!id) throw new Error("Track id is required.");
   if (!name) throw new Error("Track name is required.");
   return { id, name };
+}
+
+export function composeTrackPlan(parentPlan, trackPlan) {
+  if (!trackPlan?.track) return structuredClone(parentPlan ?? {});
+  const parent = structuredClone(parentPlan ?? {});
+  const child = structuredClone(trackPlan);
+  return {
+    ...parent,
+    ...child,
+    schemaVersion: parent.schemaVersion ?? child.schemaVersion ?? 1,
+    id: parent.id,
+    major: parent.major,
+    degree: parent.degree,
+    track: child.track,
+    sharedSemesterSets: Array.from(new Set([
+      ...(parent.sharedSemesterSets ?? []),
+      ...(child.sharedSemesterSets ?? []),
+    ])),
+    semesters: [
+      ...(parent.semesters ?? []),
+      ...(child.semesters ?? []),
+    ],
+    electiveGroups: [
+      ...(parent.electiveGroups ?? []),
+      ...(child.electiveGroups ?? []),
+    ],
+    fallbackCourses: {
+      ...(parent.fallbackCourses ?? {}),
+      ...(child.fallbackCourses ?? {}),
+    },
+    proposal: child.proposal ?? null,
+  };
 }

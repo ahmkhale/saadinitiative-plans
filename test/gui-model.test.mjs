@@ -13,6 +13,7 @@ import {
   proposalElectiveOptions,
   resetProposalToPublished,
 } from "../gui/proposal-actions.mjs";
+import { createProposalPlaceholderActions } from "../gui/proposal-placeholder-actions.mjs";
 
 test("published GUI collections sort by number then Arabic subject", () => {
   const plan = {
@@ -94,6 +95,7 @@ test("proposal elective helpers add one typical course until a group reaches zer
     name: "اختياري التخصص",
     remainingHours: 6,
     allocationHours: 3,
+    hasVariableCourseHours: true,
   });
   proposal.semesters[0].placeholders.push(createElectivePlaceholder(option, "p1"));
 
@@ -110,4 +112,82 @@ test("proposal elective helpers add one typical course until a group reaches zer
     hoursDisplay: "unknown",
     color: "#000000",
   });
+});
+
+test("proposal elective options only flag groups with differing course hours", () => {
+  const groups = [
+    {
+      id: "equal",
+      name: "متساوية",
+      requiredHours: 6,
+      courses: [{ academicHours: 3 }, { academicHours: 3 }],
+    },
+    {
+      id: "variable",
+      name: "متفاوتة",
+      requiredHours: 8,
+      courses: [{ academicHours: 1 }, { academicHours: 2 }, { academicHours: 3 }, { academicHours: 5 }],
+    },
+  ];
+
+  const options = proposalElectiveOptions(groups, { semesters: [] });
+  assert.equal(options[0].hasVariableCourseHours, false);
+  assert.equal(options[1].hasVariableCourseHours, true);
+});
+
+test("proposal placeholder action asks for and applies hours only for a variable-hours group", async () => {
+  const state = {
+    resolved: {
+      electiveGroups: [
+        {
+          id: "equal",
+          name: "متساوية",
+          requiredHours: 6,
+          courses: [{ academicHours: 3 }, { academicHours: 3 }],
+        },
+        {
+          id: "variable",
+          name: "متفاوتة",
+          requiredHours: 8,
+          courses: [{ academicHours: 1 }, { academicHours: 2 }, { academicHours: 3 }, { academicHours: 5 }],
+        },
+      ],
+    },
+    plan: {
+      proposal: {
+        semesters: [{ placeholders: [] }],
+      },
+    },
+  };
+  let fields;
+  const actions = createProposalPlaceholderActions({
+    state,
+    askForm: async (request) => {
+      fields = request.fields;
+      return {
+        electiveGroupId: "variable",
+        "allocationHours:variable": "5",
+      };
+    },
+    changed() {},
+    setStatus() {},
+  });
+
+  await actions.addPlaceholder({ dataset: { groupIndex: "0" } });
+
+  assert.equal(fields.some((field) => field.name === "allocationHours:equal"), false);
+  assert.deepEqual(fields.find((field) => field.name === "allocationHours:variable"), {
+    name: "allocationHours:variable",
+    label: "الساعات المحتسبة من المتطلب",
+    type: "number",
+    min: 1,
+    max: 8,
+    step: 1,
+    value: 5,
+    visibleWhen: {
+      name: "electiveGroupId",
+      values: ["variable"],
+    },
+  });
+  assert.equal(state.plan.proposal.semesters[0].placeholders[0].allocationHours, 5);
 });

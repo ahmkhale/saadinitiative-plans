@@ -90,8 +90,12 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
     const facts = activity.facts;
     const usedCatalog = Object.keys(catalogFacts).length > 0;
     const usedFallback = !usedCatalog && Object.keys(fallback).length > 0;
-    const unknownExtinctElective = Boolean(
-      context.markUnknownActivityAsExtinct
+    const missingCatalogElective = Boolean(
+      context.markMissingCatalogAsExtinct
+      && !usedCatalog,
+    );
+    const unknownElectiveActivity = Boolean(
+      context.markMissingCatalogAsExtinct
       && !usedCatalog
       && activity.allUnknown,
     );
@@ -107,7 +111,7 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
         location: context.location,
       });
     } else if (activity.allUnknown) {
-      addDiagnostic(diagnostics, "warnings", "UNKNOWN_ACTIVITY_HOURS", unknownExtinctElective
+      addDiagnostic(diagnostics, "warnings", "UNKNOWN_ACTIVITY_HOURS", unknownElectiveActivity
         ? `${code} has no known lecture, exercise, or practical hours; dashes and the extinct-course marker are used for display.`
         : `${code} has no known lecture, exercise, or practical hours; zeroes are used for display.`, {
         course: code,
@@ -208,10 +212,10 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
       color,
       requirement: entry.requirement ?? "required",
       isTrackSpecific: Boolean(entry.trackSpecific),
-      isExtinct: Boolean(facts.extinct) || unknownExtinctElective,
+      isExtinct: Boolean(facts.extinct) || missingCatalogElective,
       isPlaceholder: false,
       isMissingFromCatalog: !usedCatalog,
-      hoursDisplay: unknownExtinctElective ? "unknown" : "known",
+      hoursDisplay: unknownElectiveActivity ? "unknown" : "known",
       source: usedCatalog ? "catalog" : usedFallback ? (fallbackIsCatalogSnapshot ? "catalog-snapshot" : "fallback") : "unresolved",
       catalogSource: usedCatalog
         ? rawCatalog?.catalogSource ?? "catalog"

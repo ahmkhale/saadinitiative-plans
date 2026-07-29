@@ -1,0 +1,519 @@
+{
+  "schemaVersion": 1,
+  "id": "cs",
+  "major": "علوم الحاسب",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [],
+  "semesters": [
+    {
+      "id": "published-c9616adc-96f1-4053-a610-a38fce2be0ac",
+      "courses": [
+        {
+          "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:212-عال",
+          "code": "212 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:216-عال",
+          "code": "216 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:304-عال",
+          "code": "304 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:339-عال",
+          "code": "339 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:380-عال",
+          "code": "380 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-73e70878-68e6-474f-80c3-00b44d0e4f9b",
+      "courses": [
+        {
+          "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:227-عال",
+          "code": "227 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:311-عال",
+          "code": "311 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:329-عال",
+          "code": "329 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:361-عال",
+          "code": "361 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:429-عال",
+          "code": "429 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-c1437183-89bc-4972-a35c-1ab899efb9b5",
+      "courses": [
+        {
+          "id": "major:cs:published-c1437183-89bc-4972-a35c-1ab899efb9b5:340-عال",
+          "code": "340 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c1437183-89bc-4972-a35c-1ab899efb9b5:343-عال",
+          "code": "343 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c1437183-89bc-4972-a35c-1ab899efb9b5:462-عال",
+          "code": "462 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c1437183-89bc-4972-a35c-1ab899efb9b5:479-عال",
+          "code": "479 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c1437183-89bc-4972-a35c-1ab899efb9b5:494-عال",
+          "code": "494 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-6ad1d4f1-8c6e-4d16-b72f-c9c4de1cc122",
+      "courses": [
+        {
+          "id": "major:cs:published-6ad1d4f1-8c6e-4d16-b72f-c9c4de1cc122:453-عال",
+          "code": "453 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-6ad1d4f1-8c6e-4d16-b72f-c9c4de1cc122:495-عال",
+          "code": "495 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "elective-group-1",
+      "name": "متطلبات المسار",
+      "requiredHours": 12,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:cs:elective:elective-group-1:463-عال",
+          "code": "463 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:463-نال",
+          "code": "463 نال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:464-عال",
+          "code": "464 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:465-عال",
+          "code": "465 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:466-عال",
+          "code": "466 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:469-عال",
+          "code": "469 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:472-عال",
+          "code": "472 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:474-عال",
+          "code": "474 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:478-عال",
+          "code": "478 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "453 عال": {
+      "name": "المعالجة المتوازية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "495 عال": {
+      "name": "مشروع تخرج (2) في الذكاء الاصطناعي",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "494 عال": {
+      "name": "مشروع تخرج (1) في الذكاء الاصطناعي",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "212 عال": {
+      "name": "تراكيب البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "227 عال": {
+      "name": "نظم التشغيل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "311 عال": {
+      "name": "تصميم وتحليل الخوارزميات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "329 عال": {
+      "name": "شبكات الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "361 عال": {
+      "name": "الذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "429 عال": {
+      "name": "أمن الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "340 عال": {
+      "name": "لغات البرمجة والترجمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "343 عال": {
+      "name": "تحليل وتصميم الأنظمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "462 عال": {
+      "name": "تعليم الآلة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "479 عال": {
+      "name": "التدريب الميداني",
+      "academicHours": 1,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "304 عال": {
+      "name": "اخلاقيات الحوسبة وطرق البحث",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "339 عال": {
+      "name": "نظرية الحوسبة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "380 عال": {
+      "name": "اسس نظم قواعد البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "464 عال": {
+      "name": "معالجة اللغة الطبيعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "465 عال": {
+      "name": "برمجة الألعاب",
+      "academicHours": 4,
+      "lectureHours": 4,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "466 عال": {
+      "name": "تعزيز التعلم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "469 عال": {
+      "name": "مواضيع مختارة في الذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "472 عال": {
+      "name": "الرؤية بالحاسب",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "474 عال": {
+      "name": "الروبوتات والأنظمة غير المأهولة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "463 نال": {
+      "name": "مقدمة في التنقيب في البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "478 عال": {
+      "name": "معالجة وتحليل الصور الرقمية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "track": {
+    "id": "ai",
+    "name": "مسار الذكاء الاصطناعي"
+  },
+  "proposal": null
+}

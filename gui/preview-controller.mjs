@@ -130,6 +130,8 @@ export function createPreviewController(options) {
         : "لا متطلب سابق";
       const details = row.querySelector(".course-details");
       if (details) {
+        const derivedTrackRule = details.querySelector(".derived-track-rule");
+        if (derivedTrackRule) derivedTrackRule.hidden = !resolved?.isTrackSpecific;
         const summary = details.querySelector("summary");
         if (summary) summary.textContent = unresolved ? "أكمل بيانات المقرر" : "تفاصيل المقرر وقواعد الخطة";
         const optionalActivityHours = row.dataset.optionalActivityHours === "true";

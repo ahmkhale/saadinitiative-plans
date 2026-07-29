@@ -23,6 +23,7 @@ import {
 import {
   buildPublishedDecisionSemesters,
   compareCourseEntries,
+  composeParentTrackPlan,
   createCourseEntry,
   entryCode,
   entryId,
@@ -155,6 +156,7 @@ async function loadState() {
     state.selectedCollegeId = "";
     state.selectedMajorId = "";
     state.selectedTrackId = "";
+    state.parentPlan = null;
   }
   renderNavigation();
   renderSharedSets();
@@ -169,6 +171,7 @@ async function selectInstitution(id) {
   state.selectedMajorId = "";
   state.selectedTrackId = "";
   state.plan = null;
+  state.parentPlan = null;
   showEditor(false);
   await loadState();
 }
@@ -179,6 +182,7 @@ async function selectCollege(id) {
   state.selectedMajorId = "";
   state.selectedTrackId = "";
   state.plan = null;
+  state.parentPlan = null;
   showEditor(false);
   renderNavigation();
 }
@@ -186,15 +190,15 @@ async function selectCollege(id) {
 async function selectMajor(id, trackId = null) {
   if (state.dirty && !await confirmDiscard()) return;
   const major = activeCollege()?.majors?.find((item) => item.id === id);
-  const selectedTrackId = trackId ?? major?.tracks?.[0]?.id ?? id;
-  const rootTrack = major?.tracks?.find((item) => item.id === selectedTrackId)?.isRoot !== false;
-  const suffix = rootTrack
-    ? `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(id)}`
-    : `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(id)}/tracks/${encodeURIComponent(selectedTrackId)}`;
+  const selectedTrackId = trackId ?? "";
+  const suffix = selectedTrackId
+    ? `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(id)}/tracks/${encodeURIComponent(selectedTrackId)}`
+    : `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(id)}`;
   const result = await request(institutionApi(suffix));
   state.selectedMajorId = id;
-  state.selectedTrackId = result.plan.track?.id ?? selectedTrackId;
+  state.selectedTrackId = result.plan.track?.id ?? "";
   state.plan = result.plan;
+  state.parentPlan = result.parentPlan ?? null;
   state.resolved = null;
   setDirty(false);
   showEditor(true);
@@ -263,12 +267,22 @@ function compareCodes(left, right) {
   return compareCourseEntries(left, right);
 }
 
+function editorPublishedPlan() {
+  return composeParentTrackPlan(state.parentPlan, state.plan);
+}
+
 function publishedDecisionSemesters() {
-  return buildPublishedDecisionSemesters(state.plan, state.sharedSemesterSets);
+  return buildPublishedDecisionSemesters(editorPublishedPlan(), state.sharedSemesterSets);
 }
 
 function syncProposalWithPublished() {
-  reconcileProposalDraft(state.plan, state.sharedSemesterSets);
+  if (!state.parentPlan) {
+    reconcileProposalDraft(state.plan, state.sharedSemesterSets);
+    return;
+  }
+  const composed = editorPublishedPlan();
+  reconcileProposalDraft(composed, state.sharedSemesterSets);
+  state.plan.proposal = composed.proposal;
 }
 
 function resolvedCollection(kind, index) {
@@ -279,7 +293,10 @@ function resolvedCollection(kind, index) {
     const inheritedCount = publishedDecisionSemesters().length - state.plan.semesters.length;
     return state.resolved.semesters?.[inheritedCount + index]?.courses ?? [];
   }
-  if (kind === "elective") return state.resolved.electiveGroups?.[index]?.courses ?? [];
+  if (kind === "elective") {
+    const inheritedElectiveCount = state.parentPlan?.electiveGroups?.length ?? 0;
+    return state.resolved.electiveGroups?.[inheritedElectiveCount + index]?.courses ?? [];
+  }
   if (kind === "proposal") return state.resolved.proposal?.semesters?.[index]?.courses ?? [];
   return [];
 }
@@ -320,6 +337,7 @@ function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
 const {
   renderCollection,
   renderEditorCore,
+  renderElectives,
 } = createPlanEditorView({
   state,
   els,
@@ -418,7 +436,11 @@ function addCodes(kind, index, value) {
   }
   if (kind === "shared") sharedChanged(true);
   else if (kind === "sharedElective") sharedElectiveChanged(true);
-  else changed(true);
+  else if (kind === "elective") {
+    sortPublishedCollections(state.plan);
+    changed();
+    renderElectives();
+  } else changed(true);
 }
 
 
@@ -570,8 +592,17 @@ document.addEventListener("click", (event) => {
   if (track) {
     selectMajor(track.dataset.majorTrack, track.dataset.track).catch((error) => setStatus(error.message, "error"));
   } else {
+    const parent = event.target.closest("[data-major-parent]");
+    if (parent) {
+      selectMajor(parent.dataset.majorParent).catch((error) => setStatus(error.message, "error"));
+      return;
+    }
     const major = event.target.closest("[data-major]");
     if (major) selectMajor(major.dataset.major).catch((error) => setStatus(error.message, "error"));
+  }
+  if (event.target.closest(".open-parent-plan")) {
+    selectMajor(state.selectedMajorId).catch((error) => setStatus(error.message, "error"));
+    return;
   }
   const tab = event.target.closest("[data-tab]");
   if (tab) {
@@ -731,7 +762,7 @@ document.addEventListener("input", (event) => {
     state.plan[field.dataset.field] = field.type === "number" ? Number(field.value) : field.value;
     els.planHeading.textContent = state.plan.track?.name
       ? `${state.plan.major} — ${state.plan.track.name}`
-      : state.plan.major;
+      : `${state.plan.major} — الخطة الأساسية`;
     changed();
   }
   const card = event.target.closest(".semester-card");

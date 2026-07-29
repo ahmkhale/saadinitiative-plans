@@ -43,7 +43,7 @@ export function createGuiApiRouter(options) {
       const context = selectedContext(url, body);
       const operation = url.pathname === "/api/preview" ? renderDraftPreview : resolveDraft;
       const plan = body.majorId
-        ? context.store.getPlanForEditor(body.collegeId, body.majorId, body.trackId, body.plan)
+        ? context.store.getComposedPlan(body.collegeId, body.majorId, body.trackId, body.plan)
         : body.plan;
       const result = operation(plan, pipelineOptions(context, body.collegeId));
       return json(res, 200, url.pathname === "/api/validate" ? {
@@ -60,7 +60,7 @@ export function createGuiApiRouter(options) {
         ? context.store.savePlan(body.collegeId, body.majorId, body.plan, body.trackId)
         : body.plan;
       const planToExport = body.majorId
-        ? context.store.getPlanForEditor(body.collegeId, body.majorId, body.trackId, savedPlan)
+        ? context.store.getComposedPlan(body.collegeId, body.majorId, body.trackId, savedPlan)
         : savedPlan;
       const result = exportDraftFn(planToExport, {
         ...pipelineOptions(context, body.collegeId),
@@ -210,6 +210,10 @@ async function routeColleges({ req, res, segments, context, institutions, instit
           ...context.store.getPlanForEditor(collegeId, majorId, trackId),
           ...metadata,
         },
+        parentPlan: {
+          ...context.store.getPlanForEditor(collegeId, majorId),
+          ...metadata,
+        },
       });
     }
     if (req.method === "PUT") {
@@ -218,6 +222,10 @@ async function routeColleges({ req, res, segments, context, institutions, instit
         ok: true,
         plan: {
           ...context.store.getPlanForEditor(collegeId, plan.id, trackId),
+          ...metadata,
+        },
+        parentPlan: {
+          ...context.store.getPlanForEditor(collegeId, plan.id),
           ...metadata,
         },
       });

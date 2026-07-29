@@ -551,3 +551,29 @@ test("non-university electives without catalog activity facts use dashes and the
   assert.equal(universityCourse.hoursDisplay, "known");
   assert.equal(universityCourse.isExtinct, false);
 });
+
+test("non-university manual electives with complete activity facts still use the extinct marker", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "مجهول",
+    semesters: [{ courses: [] }],
+    electiveGroups: [
+      { name: "متطلبات القسم", requiredHours: 4, courses: ["210 فيز"] },
+    ],
+    fallbackCourses: {
+      "210 فيز": {
+        name: "ميكانيكا تقليدية (1)",
+        academicHours: 4,
+        lectureHours: 3,
+        exerciseHours: 1,
+        practicalHours: 0,
+      },
+    },
+  });
+
+  const course = resolvePlan(plan, new Map(), colors, createDiagnostics()).electiveGroups[0].courses[0];
+
+  assert.equal(course.hoursDisplay, "known");
+  assert.equal(course.isMissingFromCatalog, true);
+  assert.equal(course.isExtinct, true);
+});

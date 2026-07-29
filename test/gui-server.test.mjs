@@ -145,20 +145,33 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
       body: JSON.stringify({
         id: "ai",
         name: "مسار الذكاء الاصطناعي",
-        sourceTrackId: "cs",
       }),
     }).then((response) => response.json());
     assert.equal(createdTrack.plan.track.name, "مسار الذكاء الاصطناعي");
-    createdTrack.plan.semesters[0].courses = [];
+    assert.deepEqual(createdTrack.plan.semesters, []);
     const savedTrack = await fetch(`${base}/api/institutions/test-university/colleges/ccis/majors/cs/tracks/ai`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(createdTrack.plan),
     }).then((response) => response.json());
     assert.equal(savedTrack.plan.track.id, "ai");
+    assert.equal(savedTrack.parentPlan.semesters[0].courses[0].code, "101 عال");
+    const trackPreview = await fetch(`${base}/api/preview`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        institutionId: "test-university",
+        collegeId: "ccis",
+        majorId: "cs",
+        trackId: "ai",
+        plan: savedTrack.plan,
+      }),
+    }).then((response) => response.json());
+    assert.equal(trackPreview.plan.semesters[0].courses[0].code, "101 عال");
+    assert.equal(trackPreview.plan.major, "علوم الحاسب مسار الذكاء الاصطناعي");
     const derivedRoot = await fetch(`${base}/api/institutions/test-university/colleges/ccis/majors/cs`)
       .then((response) => response.json());
-    assert.equal(derivedRoot.plan.semesters[0].courses[0].trackSpecific, true);
+    assert.equal(derivedRoot.plan.semesters[0].courses[0].trackSpecific, undefined);
     assert.equal(value.store.getPlan("ccis", "cs").semesters[0].courses[0].trackSpecific, undefined);
 
     const draft = structuredClone(derivedRoot.plan);
@@ -170,18 +183,23 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
         institutionId: "test-university",
         collegeId: "ccis",
         majorId: "cs",
-        trackId: "general",
         plan: draft,
       }),
     }).then((response) => response.json());
     assert.equal(validation.ok, true);
+    assert.equal(validation.plan.major, "علوم الحاسب - غير محفوظ");
     assert.equal(validation.plan.semesters[0].courses[0].name, "مقدمة في البرمجة");
     assert.equal(value.store.getPlan("ccis", "cs").major, "علوم الحاسب");
 
     const preview = await fetch(`${base}/api/preview`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ institutionId: "test-university", collegeId: "ccis", plan: draft }),
+      body: JSON.stringify({
+        institutionId: "test-university",
+        collegeId: "ccis",
+        majorId: "cs",
+        plan: draft,
+      }),
     }).then((response) => response.json());
     assert.equal(preview.ok, true);
     assert.match(preview.pages[0], /غير محفوظ/u);
@@ -195,7 +213,12 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
     const unresolvedPreview = await fetch(`${base}/api/preview`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ institutionId: "test-university", collegeId: "ccis", plan: draft }),
+      body: JSON.stringify({
+        institutionId: "test-university",
+        collegeId: "ccis",
+        majorId: "cs",
+        plan: draft,
+      }),
     }).then((response) => response.json());
     assert.equal(unresolvedPreview.ok, false);
     assert.ok(unresolvedPreview.diagnostics.items.some((item) => item.code === "UNRESOLVED_COURSE"));

@@ -1,0 +1,519 @@
+{
+  "schemaVersion": 1,
+  "id": "cs",
+  "major": "علوم الحاسب",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [],
+  "semesters": [
+    {
+      "id": "published-53179a85-1ed9-4382-957a-ab657b687199",
+      "courses": [
+        {
+          "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:212-عال",
+          "code": "212 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:215-عال",
+          "code": "215 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:304-عال",
+          "code": "304 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:339-عال",
+          "code": "339 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:380-عال",
+          "code": "380 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-415422d7-47e8-4a02-b4be-fae2a0aa9796",
+      "courses": [
+        {
+          "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:227-عال",
+          "code": "227 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:311-عال",
+          "code": "311 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:329-عال",
+          "code": "329 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:361-عال",
+          "code": "361 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:429-عال",
+          "code": "429 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-c82b2409-0133-4278-9dce-577eb72dfbd7",
+      "courses": [
+        {
+          "id": "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:340-عال",
+          "code": "340 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:343-عال",
+          "code": "343 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:437-عال",
+          "code": "437 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:479-عال",
+          "code": "479 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:488-عال",
+          "code": "488 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-7cdbae5f-df45-4451-bb96-683f1b51b3c4",
+      "courses": [
+        {
+          "id": "major:cs:published-7cdbae5f-df45-4451-bb96-683f1b51b3c4:453-عال",
+          "code": "453 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:published-7cdbae5f-df45-4451-bb96-683f1b51b3c4:492-عال",
+          "code": "492 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "id": "elective-group-1",
+      "name": "متطلبات المسار",
+      "requiredHours": 12,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:cs:elective:elective-group-1:427-عال",
+          "code": "427 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:432-عال",
+          "code": "432 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:433-عال",
+          "code": "433 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:434-عال",
+          "code": "434 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:435-عال",
+          "code": "435 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:436-عال",
+          "code": "436 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:439-عال",
+          "code": "439 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:445-هال",
+          "code": "445 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:cs:elective:elective-group-1:462-عال",
+          "code": "462 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "492 عال": {
+      "name": "مشروع تخرج (2) في الشبكات والأمن السيبراني",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "488 عال": {
+      "name": "مشروع تخرج (1) في الشبكات والأمن السيبراني",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "212 عال": {
+      "name": "تراكيب البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "215 عال": {
+      "name": "البرمجة الإجرائية بلغة \"C\"",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "304 عال": {
+      "name": "اخلاقيات الحوسبة وطرق البحث",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "339 عال": {
+      "name": "نظرية الحوسبة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "380 عال": {
+      "name": "اسس نظم قواعد البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "227 عال": {
+      "name": "نظم التشغيل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "311 عال": {
+      "name": "تصميم وتحليل الخوارزميات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "329 عال": {
+      "name": "شبكات الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "361 عال": {
+      "name": "الذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "429 عال": {
+      "name": "أمن الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "340 عال": {
+      "name": "لغات البرمجة والترجمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "343 عال": {
+      "name": "تحليل وتصميم الأنظمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "479 عال": {
+      "name": "التدريب الميداني",
+      "academicHours": 1,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "453 عال": {
+      "name": "المعالجة المتوازية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "427 عال": {
+      "name": "اختبار الاختراق وتقييم نقاط الضعف",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "433 عال": {
+      "name": "أمن التطبيقات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "434 عال": {
+      "name": "التشفير التطبيقي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "435 عال": {
+      "name": "أساسيات الخصوصية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "436 عال": {
+      "name": "الجرائم السيبرانية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "439 عال": {
+      "name": "مواضيع مختارة في الأمن السيبراني",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "445 هال": {
+      "name": "بروتوكولات وخوارزميات الشبكات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "462 عال": {
+      "name": "تعليم الآلة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "track": {
+    "id": "ncs",
+    "name": "مسار الشبكات والأمن السيبراني"
+  },
+  "proposal": null
+}

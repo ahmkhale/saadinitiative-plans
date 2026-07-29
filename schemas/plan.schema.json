@@ -88,7 +88,6 @@
     },
     "semesters": {
       "type": "array",
-      "minItems": 1,
       "items": {
         "$ref": "#/$defs/semester"
       }
@@ -131,6 +130,16 @@
       }
     }
   },
+  "allOf": [
+    {
+      "if": { "not": { "required": ["track"] } },
+      "then": {
+        "properties": {
+          "semesters": { "minItems": 1 }
+        }
+      }
+    }
+  ],
   "$defs": {
     "phase": {
       "type": "object",

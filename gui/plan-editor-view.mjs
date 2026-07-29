@@ -98,11 +98,12 @@ export function createPlanEditorView(options) {
   }
 
   function renderInheritedSemesters() {
-    const sets = (state.plan.sharedSemesterSets ?? [])
+    const sourcePlan = state.parentPlan ?? state.plan;
+    const sets = (sourcePlan.sharedSemesterSets ?? [])
       .map((id) => state.sharedSemesterSets.find((set) => set.id === id))
       .filter(Boolean);
     let level = 0;
-    els.inheritedSemesterList.innerHTML = sets.flatMap((set) => set.semesters.map((semester) => {
+    const sharedCards = sets.flatMap((set) => set.semesters.map((semester) => {
       level += 1;
       return `
       <article class="card inherited-semester" data-shared-set="${escapeHtml(set.id)}">
@@ -110,7 +111,39 @@ export function createPlanEditorView(options) {
           <button class="button ghost edit-shared-set" type="button">فتح المصدر المشترك</button></div>
         <p class="muted">${[...(semester.courses ?? [])].sort(compareCodes).map(entryCode).map(escapeHtml).join("، ") || "لا مقررات في هذا المستوى."}</p>
       </article>`;
-    })).join("");
+    }));
+    const parentCards = (state.parentPlan?.semesters ?? []).map((semester) => {
+      level += 1;
+      return `
+      <article class="card inherited-semester" data-parent-semester="${escapeHtml(semester.id)}">
+        <div class="card-heading">
+          <div><p class="eyebrow">موروث من الخطة الأساسية</p><h2>${escapeHtml(semesterLabel(level))}</h2></div>
+          <button class="button ghost open-parent-plan" type="button">فتح الخطة الأساسية</button>
+        </div>
+        <p class="muted">${[...(semester.courses ?? [])].sort(compareCodes).map(entryCode).map(escapeHtml).join("، ") || "لا مقررات في هذا المستوى."}</p>
+      </article>`;
+    });
+    els.inheritedSemesterList.innerHTML = [...sharedCards, ...parentCards].join("");
+  }
+
+  function renderElectives() {
+    renderCollection(els.electiveList, state.plan.electiveGroups ?? [], "elective");
+    if (!state.parentPlan?.electiveGroups?.length) return;
+    const inheritedElectives = state.parentPlan.electiveGroups.map((group) => {
+      const source = group.sourceId
+        ? state.sharedElectiveGroups.find((item) => item.id === group.sourceId)
+        : null;
+      const name = source?.name ?? group.name ?? group.sourceId ?? "مجموعة اختيارية";
+      const codes = source?.courses ?? group.courses ?? [];
+      return `<article class="card inherited-semester">
+        <div class="card-heading">
+          <div><p class="eyebrow">موروث من الخطة الأساسية</p><h2>${escapeHtml(name)}</h2></div>
+          <button class="button ghost open-parent-plan" type="button">فتح الخطة الأساسية</button>
+        </div>
+        <p class="muted">${codes.map(entryCode).map(escapeHtml).join("، ") || "لا مقررات في هذه المجموعة."}</p>
+      </article>`;
+    }).join("");
+    els.electiveList.insertAdjacentHTML("afterbegin", inheritedElectives);
   }
 
   function renderEditorCore() {
@@ -119,25 +152,27 @@ export function createPlanEditorView(options) {
     syncProposalWithPublished();
     els.planHeading.textContent = state.plan.track?.name
       ? `${state.plan.major} — ${state.plan.track.name}`
-      : state.plan.major;
+      : `${state.plan.major} — الخطة الأساسية`;
     const selectedMajor = state.colleges
       .find((college) => college.id === state.selectedCollegeId)
       ?.majors?.find((major) => major.id === state.selectedMajorId);
     const selectedTrack = selectedMajor?.tracks?.find((track) => track.id === state.selectedTrackId);
     const deleteTrackButton = document.getElementById("deleteTrackButton");
-    if (deleteTrackButton) deleteTrackButton.hidden = !state.plan.track || selectedTrack?.isRoot !== false;
+    if (deleteTrackButton) deleteTrackButton.hidden = !state.plan.track;
     document.querySelectorAll("[data-field]").forEach((input) => {
       input.value = state.plan[input.dataset.field] ?? "";
-      if (["university", "college"].includes(input.dataset.field)) input.closest("label").hidden = true;
+      const parentOwned = state.parentPlan && ["major", "id", "degree"].includes(input.dataset.field);
+      input.closest("label").hidden = ["university", "college"].includes(input.dataset.field) || Boolean(parentOwned);
     });
+    document.querySelector(".shared-selection").hidden = Boolean(state.parentPlan);
     renderCollection(els.semesterList, state.plan.semesters, "semester");
     renderInheritedSemesters();
-    renderCollection(els.electiveList, state.plan.electiveGroups ?? [], "elective");
+    renderElectives();
     els.proposalEnabled.checked = Boolean(state.plan.proposal);
     els.proposalEditor.hidden = !state.plan.proposal;
     els.guideEnabled.checked = state.plan.proposal?.showGuide !== false;
     renderCollection(els.proposalSemesterList, state.plan.proposal?.semesters ?? [], "proposal");
   }
 
-  return { renderCollection, renderEditorCore, renderInheritedSemesters };
+  return { renderCollection, renderEditorCore, renderElectives, renderInheritedSemesters };
 }

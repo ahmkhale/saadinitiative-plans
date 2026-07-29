@@ -14,18 +14,15 @@ export function createExportController(options) {
   async function savePlan() {
     if (!state.plan) return;
     const oldId = state.selectedMajorId;
-    const major = state.colleges
-      .find((college) => college.id === state.selectedCollegeId)
-      ?.majors?.find((item) => item.id === oldId);
-    const rootTrack = major?.tracks?.find((item) => item.id === state.selectedTrackId)?.isRoot !== false;
-    const suffix = rootTrack
-      ? `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}`
-      : `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}/tracks/${encodeURIComponent(state.selectedTrackId)}`;
+    const suffix = state.selectedTrackId
+      ? `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}/tracks/${encodeURIComponent(state.selectedTrackId)}`
+      : `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}`;
     const result = await request(institutionApi(suffix), {
       method: "PUT",
       body: JSON.stringify(state.plan),
     });
     state.plan = result.plan;
+    state.parentPlan = result.parentPlan ?? null;
     state.selectedMajorId = result.plan.id;
     state.selectedTrackId = result.plan.track?.id ?? state.selectedTrackId;
     setDirty(false);

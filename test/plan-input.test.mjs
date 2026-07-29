@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { preparePlanForEditor, normalizePlanInput } from "../src/plan-input.mjs";
+import { preparePlanForEditor, normalizePlanInput, validatePlanShape } from "../src/plan-input.mjs";
 
 test("rejects registry and array compatibility shapes", () => {
   assert.throws(() => normalizePlanInput([{ schemaVersion: 1 }]), /canonical single-plan/u);
@@ -11,6 +11,25 @@ test("rejects registry and array compatibility shapes", () => {
     semesters: [{ courses: [] }],
     proposal: { semesters: [{ id: "old", courses: ["101 عال"], placeholders: [] }] },
   }), /courseOrder references/u);
+});
+
+test("parent plans require content while child track overlays may start empty", () => {
+  const emptyParent = normalizePlanInput({
+    schemaVersion: 1,
+    id: "cs",
+    major: "علوم الحاسب",
+    semesters: [],
+  });
+  assert.throws(() => validatePlanShape(emptyParent), /parent plans must contain/u);
+
+  const emptyTrack = normalizePlanInput({
+    schemaVersion: 1,
+    id: "cs",
+    major: "علوم الحاسب",
+    track: { id: "ai", name: "مسار الذكاء الاصطناعي" },
+    semesters: [],
+  });
+  assert.doesNotThrow(() => validatePlanShape(emptyTrack));
 });
 
 test("prepares canonical proposal arrangement without storing real-course facts", () => {

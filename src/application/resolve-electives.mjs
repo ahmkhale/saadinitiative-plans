@@ -34,7 +34,7 @@ export function resolveElectiveGroups(plan, resolver, diagnostics) {
       entryIndex,
       sameGroupKeys: null,
       location: `elective-${group.id ?? groupIndex + 1}`,
-      markUnknownActivityAsExtinct: allowsUnknownActivityHours(group.name),
+      markMissingCatalogAsExtinct: allowsUnknownActivityHours(group.name),
     }));
     if ((group.sortCourses ?? "code") === "code") resolvedCourses.sort((a, b) => compareCourseCodes(a.code, b.code));
     const originalRequiredHours = numericValue(group.originalRequiredHours ?? group.requiredHours);

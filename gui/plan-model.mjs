@@ -101,6 +101,28 @@ export function sortPublishedCollections(plan) {
   return plan;
 }
 
+export function composeParentTrackPlan(parentPlan, trackPlan) {
+  if (!parentPlan) return trackPlan;
+  return {
+    ...parentPlan,
+    ...trackPlan,
+    id: parentPlan.id,
+    major: parentPlan.major,
+    track: trackPlan.track,
+    sharedSemesterSets: Array.from(new Set([
+      ...(parentPlan.sharedSemesterSets ?? []),
+      ...(trackPlan.sharedSemesterSets ?? []),
+    ])),
+    semesters: [...(parentPlan.semesters ?? []), ...(trackPlan.semesters ?? [])],
+    electiveGroups: [...(parentPlan.electiveGroups ?? []), ...(trackPlan.electiveGroups ?? [])],
+    fallbackCourses: {
+      ...(parentPlan.fallbackCourses ?? {}),
+      ...(trackPlan.fallbackCourses ?? {}),
+    },
+    proposal: trackPlan.proposal ?? null,
+  };
+}
+
 export function buildPublishedDecisionSemesters(plan, sharedSemesterSets) {
   const inherited = (plan.sharedSemesterSets ?? []).flatMap((id) => {
     const set = sharedSemesterSets.find((item) => item.id === id);
