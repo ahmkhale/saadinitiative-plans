@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "cs",
+  "major": "علوم الحاسب",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": []
+    }
+  ],
+  "electiveGroups": [],
+  "fallbackCourses": {}
+}

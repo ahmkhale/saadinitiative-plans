@@ -1,6 +1,7 @@
 import { addDiagnostic } from "../domain/diagnostics.mjs";
 import { formatRequiredHours } from "../domain/arabic-format.mjs";
 import { compareCourseCodes, courseCodeKey, normalizeCourseCode, numericValue } from "../domain/course-code.mjs";
+import { allowsUnknownActivityHours } from "../domain/elective-course-rules.mjs";
 
 export function resolveElectiveGroups(plan, resolver, diagnostics) {
   const publishedHours = new Map(resolver.mainCourses.map((course) => [course.key, course.academicHours]));
@@ -33,6 +34,7 @@ export function resolveElectiveGroups(plan, resolver, diagnostics) {
       entryIndex,
       sameGroupKeys: null,
       location: `elective-${group.id ?? groupIndex + 1}`,
+      markUnknownActivityAsExtinct: allowsUnknownActivityHours(group.name),
     }));
     if ((group.sortCourses ?? "code") === "code") resolvedCourses.sort((a, b) => compareCourseCodes(a.code, b.code));
     const originalRequiredHours = numericValue(group.originalRequiredHours ?? group.requiredHours);

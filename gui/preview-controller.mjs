@@ -130,7 +130,12 @@ export function createPreviewController(options) {
       if (details) {
         const summary = details.querySelector("summary");
         if (summary) summary.textContent = unresolved ? "أكمل بيانات المقرر" : "تفاصيل المقرر وقواعد الخطة";
-        details.querySelectorAll("[data-manual-fact]").forEach((input) => input.toggleAttribute("required", unresolved));
+        const optionalActivityHours = row.dataset.optionalActivityHours === "true";
+        details.querySelectorAll("[data-manual-fact]").forEach((input) => {
+          const isActivity = ["lectureHours", "exerciseHours", "practicalHours"]
+            .includes(input.dataset.manualFact);
+          input.toggleAttribute("required", unresolved && !(optionalActivityHours && isActivity));
+        });
         details.open = courseDetailsOpenState({
           currentOpen: details.open,
           unresolved,

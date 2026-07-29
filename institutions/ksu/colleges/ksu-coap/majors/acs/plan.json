@@ -1290,5 +1290,167 @@
         "academicHours"
       ]
     }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-411b7d16-3c0a-4861-b036-802857cc9ce0",
+        "sourceSemesterId": "published-411b7d16-3c0a-4861-b036-802857cc9ce0",
+        "type": "regular",
+        "courseOrder": [
+          "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:101-عرب",
+          "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:104-ريض",
+          "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:250-عمر",
+          "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:254-عمر",
+          "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:255-عمر",
+          "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:256-عمر"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:acs:published-level-1:105-فيز",
+          "major:acs:published-level-1:251-همس",
+          "major:acs:published-level-1:260-عمر",
+          "major:acs:published-level-1:264-عمر",
+          "major:acs:published-level-1:266-عمر",
+          "major:acs:published-level-1:268-عمر",
+          "major:acs:published-level-1:269-عمر"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-cff254fa-b107-4266-8b69-421f8e21f0bd",
+        "sourceSemesterId": "published-cff254fa-b107-4266-8b69-421f8e21f0bd",
+        "type": "regular",
+        "courseOrder": [
+          "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:118-عرب",
+          "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:265-عمر",
+          "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:350-عمر",
+          "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:351-عمر",
+          "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:352-عمر",
+          "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:353-عمر",
+          "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:357-عمر"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-95906df1-9c81-42fc-bbdf-ac526f2448a3",
+        "sourceSemesterId": "published-95906df1-9c81-42fc-bbdf-ac526f2448a3",
+        "type": "regular",
+        "courseOrder": [
+          "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:355-عمر",
+          "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:360-عمر",
+          "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:361-عمر",
+          "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:363-عمر",
+          "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:366-عمر",
+          "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:368-عمر"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms5po2uv",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-6a27d9d7-615c-40f1-8329-6195d3605524",
+        "sourceSemesterId": "published-6a27d9d7-615c-40f1-8329-6195d3605524",
+        "type": "regular",
+        "courseOrder": [
+          "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:339-همك",
+          "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:410-عمر",
+          "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:411-عمر",
+          "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:412-عمر",
+          "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:414-عمر",
+          "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:415-عمر",
+          "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:416-عمر",
+          "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:418-عمر"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22",
+        "sourceSemesterId": "published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22",
+        "type": "regular",
+        "courseOrder": [
+          "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:265-همد",
+          "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:420-عمر",
+          "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:421-عمر",
+          "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:424-عمر",
+          "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:425-عمر",
+          "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:426-عمر",
+          "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:427-عمر"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-8ac56539-ccf5-45d7-b48e-b6ee78be0733",
+        "sourceSemesterId": "published-8ac56539-ccf5-45d7-b48e-b6ee78be0733",
+        "type": "regular",
+        "courseOrder": [
+          "major:acs:published-8ac56539-ccf5-45d7-b48e-b6ee78be0733:378-همد",
+          "major:acs:published-8ac56539-ccf5-45d7-b48e-b6ee78be0733:430-عمر",
+          "major:acs:published-8ac56539-ccf5-45d7-b48e-b6ee78be0733:434-عمر",
+          "major:acs:published-8ac56539-ccf5-45d7-b48e-b6ee78be0733:435-عمر"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-7b4b4989-4596-4cb2-bf06-4e9e0a40af72",
+        "sourceSemesterId": "published-7b4b4989-4596-4cb2-bf06-4e9e0a40af72",
+        "type": "regular",
+        "courseOrder": [
+          "major:acs:published-7b4b4989-4596-4cb2-bf06-4e9e0a40af72:491-عمر",
+          "major:acs:published-7b4b4989-4596-4cb2-bf06-4e9e0a40af72:495-عمر"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "proposal-summer-a4661e73-76a4-4d1b-b337-8c6d9737f958",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:999-عمر"
+        ],
+        "placeholders": []
+      }
+    ]
   }
 }

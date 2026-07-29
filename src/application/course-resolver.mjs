@@ -90,6 +90,11 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
     const facts = activity.facts;
     const usedCatalog = Object.keys(catalogFacts).length > 0;
     const usedFallback = !usedCatalog && Object.keys(fallback).length > 0;
+    const unknownExtinctElective = Boolean(
+      context.markUnknownActivityAsExtinct
+      && !usedCatalog
+      && activity.allUnknown,
+    );
 
     const manualMissing = usedFallback
       ? ["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"]
@@ -102,7 +107,9 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
         location: context.location,
       });
     } else if (activity.allUnknown) {
-      addDiagnostic(diagnostics, "warnings", "UNKNOWN_ACTIVITY_HOURS", `${code} has no known lecture, exercise, or practical hours; zeroes are used for display.`, {
+      addDiagnostic(diagnostics, "warnings", "UNKNOWN_ACTIVITY_HOURS", unknownExtinctElective
+        ? `${code} has no known lecture, exercise, or practical hours; dashes and the extinct-course marker are used for display.`
+        : `${code} has no known lecture, exercise, or practical hours; zeroes are used for display.`, {
         course: code,
         location: context.location,
       });
@@ -201,15 +208,17 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
       color,
       requirement: entry.requirement ?? "required",
       isTrackSpecific: Boolean(entry.trackSpecific),
-      isExtinct: Boolean(facts.extinct),
+      isExtinct: Boolean(facts.extinct) || unknownExtinctElective,
       isPlaceholder: false,
       isMissingFromCatalog: !usedCatalog,
+      hoursDisplay: unknownExtinctElective ? "unknown" : "known",
       source: usedCatalog ? "catalog" : usedFallback ? (fallbackIsCatalogSnapshot ? "catalog-snapshot" : "fallback") : "unresolved",
       catalogSource: usedCatalog
         ? rawCatalog?.catalogSource ?? "catalog"
         : usedFallback ? (fallbackIsCatalogSnapshot ? "catalog-snapshot" : "manual") : null,
+      catalogTermId: usedCatalog ? rawCatalog?.catalogTermId ?? null : null,
       sourceBadge: usedCatalog
-        ? rawCatalog?.catalogSource === "female" ? "دليل الطالبات" : rawCatalog?.catalogSource === "male" ? "دليل الطلاب" : "دليل المقررات"
+        ? `${rawCatalog?.catalogSource === "female" ? "دليل الطالبات" : rawCatalog?.catalogSource === "male" ? "دليل الطلاب" : "دليل المقررات"}${rawCatalog?.catalogIsHistorical ? ` · ${rawCatalog.catalogTermId}` : ""}`
         : usedFallback ? (fallbackIsCatalogSnapshot ? "لقطة من الدليل" : "مدخل يدويًا") : "غير موجود في الدليل",
       qualityBadges: [
         ...(rawCatalog?.conflicts?.length || rawCatalog?.activityAliasConflicts?.length || rawCatalog?.crossSourceConflict ? ["بيانات متعارضة"] : []),

@@ -146,6 +146,26 @@ test("renders exact card markers, metric boxes, prerequisite pill, and six-card 
   assert.match(svg, /data-part="prerequisite-pill"[^>]+height="11"[^>]+rx="6"/);
 });
 
+test("unknown weekly hours render as dashes without hiding credit hours", () => {
+  const svg = renderCourseCard(
+    createRenderContext(),
+    course({
+      academicHours: 2,
+      lectureHours: null,
+      practicalHours: null,
+      exerciseHours: null,
+      hoursDisplay: "unknown",
+      isExtinct: true,
+    }),
+    0,
+    0,
+  );
+
+  assert.match(svg, /data-part="extinct-marker"/u);
+  assert.match(svg, />2<\/text>/u);
+  assert.equal((svg.match(/>—<\/text>/gu) ?? []).length, 3);
+});
+
 test("renders the cyan activity outline only in the explanatory guide", () => {
   const document = renderPlanDocumentSvg({
     major: "اختبار",

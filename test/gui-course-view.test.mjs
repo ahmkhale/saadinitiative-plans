@@ -73,3 +73,43 @@ test("elective proposal placeholders display dashes instead of zero-hour facts",
   assert.match(html, /3 ساعات · محاضرة — · عملي — · تمارين —/u);
   assert.doesNotMatch(html, /محاضرة 0/u);
 });
+
+test("non-university elective rows require identity facts but leave weekly hours optional", () => {
+  const html = renderCourseRow({
+    ...baseArgs,
+    kind: "elective",
+    electiveGroupName: "متطلبات القسم",
+    resolved: {
+      code: "431 عمر",
+      source: "unresolved",
+      sourceBadge: "غير موجود في الدليل",
+      qualityBadges: [],
+      prerequisites: [],
+    },
+  });
+
+  assert.match(html, /data-manual-fact="name"[^>]+required/u);
+  assert.match(html, /data-manual-fact="academicHours"[^>]+required/u);
+  assert.doesNotMatch(html, /data-manual-fact="lectureHours"[^>]+required/u);
+  assert.doesNotMatch(html, /data-manual-fact="exerciseHours"[^>]+required/u);
+  assert.doesNotMatch(html, /data-manual-fact="practicalHours"[^>]+required/u);
+});
+
+test("university elective rows still require weekly hours when unresolved", () => {
+  const html = renderCourseRow({
+    ...baseArgs,
+    kind: "elective",
+    electiveGroupName: "متطلبات الجامعة",
+    resolved: {
+      code: "101 سلم",
+      source: "unresolved",
+      sourceBadge: "غير موجود في الدليل",
+      qualityBadges: [],
+      prerequisites: [],
+    },
+  });
+
+  assert.match(html, /data-manual-fact="lectureHours"[^>]+required/u);
+  assert.match(html, /data-manual-fact="exerciseHours"[^>]+required/u);
+  assert.match(html, /data-manual-fact="practicalHours"[^>]+required/u);
+});

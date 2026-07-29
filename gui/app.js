@@ -288,6 +288,12 @@ function fallbackCoursesFor(kind) {
 }
 
 function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
+  const electiveGroupName = kind === "sharedElective"
+    ? state.sharedElectiveDraft?.name
+    : kind === "elective"
+      ? state.resolved?.electiveGroups?.[groupIndex]?.name
+        ?? state.plan.electiveGroups?.[groupIndex]?.name
+      : null;
   return renderCourseRow({
     entry,
     resolved,
@@ -296,6 +302,7 @@ function courseRow(entry, resolved, kind, groupIndex, courseIndex) {
     courseIndex,
     plan: state.plan,
     fallbackCourses: fallbackCoursesFor(kind),
+    electiveGroupName,
     escapeHtml,
   });
 }

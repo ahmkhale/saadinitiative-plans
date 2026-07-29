@@ -34,6 +34,27 @@ test("catalog facts resolve independently while same-semester rules do not creat
   assert.equal(diagnostics.summary.errors, 0);
 });
 
+test("resolved courses retain historical catalog term provenance", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "تاريخي",
+    semesters: [{ courses: ["101 عال"] }],
+  });
+  const catalog = buildCourseCatalog([
+    { code: "101 عال", name: "برمجة", academicHours: 3, lectureHours: 3, exerciseHours: 0, practicalHours: 0 },
+  ], { catalogSource: "male" });
+  const historical = new Map([...catalog].map(([key, course]) => [
+    key,
+    { ...course, catalogTermId: "471", catalogIsHistorical: true },
+  ]));
+
+  const resolved = resolvePlan(plan, historical, colors, createDiagnostics());
+  const course = resolved.semesters[0].courses[0];
+
+  assert.equal(course.catalogTermId, "471");
+  assert.equal(course.sourceBadge, "دليل الطلاب · 471");
+});
+
 test("warns when a course supplies multiple aliases for one displayed activity field", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
@@ -485,4 +506,30 @@ test("all three unknown activity values remain unknown and produce a non-blockin
   assert.ok(diagnostics.items.some((item) => (
     item.code === "UNKNOWN_ACTIVITY_HOURS" && item.severity === "warnings"
   )));
+});
+
+test("non-university electives without catalog activity facts use dashes and the extinct marker", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "مجهول",
+    semesters: [{ courses: [] }],
+    electiveGroups: [
+      { name: "متطلبات القسم", requiredHours: 2, courses: ["431 عمر"] },
+      { name: "متطلبات الجامعة", requiredHours: 2, courses: ["101 سلم"] },
+    ],
+    fallbackCourses: {
+      "431 عمر": { name: "اختياري قسم", academicHours: 2 },
+      "101 سلم": { name: "اختياري جامعة", academicHours: 2 },
+    },
+  });
+
+  const resolved = resolvePlan(plan, new Map(), colors, createDiagnostics());
+  const departmentCourse = resolved.electiveGroups[0].courses[0];
+  const universityCourse = resolved.electiveGroups[1].courses[0];
+
+  assert.equal(departmentCourse.academicHours, 2);
+  assert.equal(departmentCourse.hoursDisplay, "unknown");
+  assert.equal(departmentCourse.isExtinct, true);
+  assert.equal(universityCourse.hoursDisplay, "known");
+  assert.equal(universityCourse.isExtinct, false);
 });

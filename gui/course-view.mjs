@@ -1,6 +1,10 @@
 import { entryCode, entryId } from "./plan-model.mjs";
 import { escapeHtml } from "./html.mjs";
 
+function allowsUnknownElectiveActivityHours(groupName) {
+  return String(groupName ?? "").trim() !== "متطلبات الجامعة";
+}
+
 function icon(name) {
   return `<img src="/assets/icon-${name}.svg" alt="">`;
 }
@@ -32,6 +36,7 @@ export function renderCourseRow({
   courseIndex,
   plan,
   fallbackCourses,
+  electiveGroupName,
   escapeHtml,
 }) {
   const code = entryCode(entry);
@@ -39,6 +44,8 @@ export function renderCourseRow({
   const pending = !resolved;
   const unresolved = resolved?.source === "unresolved";
   const isPlaceholder = entry?.kind === "placeholder" || Boolean(entry?.placeholderId);
+  const optionalActivityHours = ["elective", "sharedElective"].includes(kind)
+    && allowsUnknownElectiveActivityHours(electiveGroupName);
   const displayCode = isPlaceholder ? "مقرر" : resolved?.code ?? code;
   const displaySubject = isPlaceholder ? "" : resolved?.subject ?? "";
   const displayHours = resolved?.hoursDisplay === "unknown"
@@ -52,7 +59,7 @@ export function renderCourseRow({
         ? "shared-elective-source" : `proposal-semester-${groupIndex + 1}`;
   const fallback = fallbackCourses?.[code];
   return `
-    <div class="course-row ${pending ? "pending" : unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(kind === "proposal" && !isPlaceholder ? entryId(entry) : code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
+    <div class="course-row ${pending ? "pending" : unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(kind === "proposal" && !isPlaceholder ? entryId(entry) : code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" data-optional-activity-hours="${optionalActivityHours}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
       <div class="course-identity"><div class="course-code">${escapeHtml(displayCode)}</div><div class="course-meta">${escapeHtml(displaySubject)}</div><div class="badge-list">${courseBadges(resolved, isPlaceholder)}</div></div>
       <div class="course-summary"><div class="course-name">${escapeHtml(resolved?.name ?? entry?.fallback?.name ?? fallback?.name ?? (pending ? "جارٍ قراءة بيانات المقرر…" : "مقرر غير موجود في الدليل"))}</div>
         <div class="course-meta">${displayHours}</div>
@@ -74,9 +81,9 @@ export function renderCourseRow({
         <div class="facts-grid">
           <label class="wide">اسم المقرر<input data-manual-fact="name" value="${escapeHtml(fallback?.name ?? "")}" ${unresolved ? "required" : ""}></label>
           <label>الساعات الأكاديمية<input data-manual-fact="academicHours" type="number" min="0" value="${escapeHtml(fallback?.academicHours ?? "")}" ${unresolved ? "required" : ""}></label>
-          <label>ساعات المحاضرة<input data-manual-fact="lectureHours" type="number" min="0" value="${escapeHtml(fallback?.lectureHours ?? "")}" ${unresolved ? "required" : ""}></label>
-          <label>ساعات التمارين<input data-manual-fact="exerciseHours" type="number" min="0" value="${escapeHtml(fallback?.exerciseHours ?? "")}" ${unresolved ? "required" : ""}></label>
-          <label>ساعات العملي<input data-manual-fact="practicalHours" type="number" min="0" value="${escapeHtml(fallback?.practicalHours ?? "")}" ${unresolved ? "required" : ""}></label>
+          <label>ساعات المحاضرة<input data-manual-fact="lectureHours" type="number" min="0" value="${escapeHtml(fallback?.lectureHours ?? "")}" ${unresolved && !optionalActivityHours ? "required" : ""}></label>
+          <label>ساعات التمارين<input data-manual-fact="exerciseHours" type="number" min="0" value="${escapeHtml(fallback?.exerciseHours ?? "")}" ${unresolved && !optionalActivityHours ? "required" : ""}></label>
+          <label>ساعات العملي<input data-manual-fact="practicalHours" type="number" min="0" value="${escapeHtml(fallback?.practicalHours ?? "")}" ${unresolved && !optionalActivityHours ? "required" : ""}></label>
           ${["male", "female"].includes(resolved?.catalogSource) && fallback ? '<button class="button ghost refresh-catalog-facts" type="button">تحديث البيانات من الدليل</button>' : ""}
           ${fallback?.source ? `<span class="source-badge">${fallback.manuallyEditedFields?.length ? "بيانات معدلة يدويًا" : "لقطة من الدليل"}</span>` : ""}
         </div>
