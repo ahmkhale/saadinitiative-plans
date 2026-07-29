@@ -6,7 +6,6 @@ import path from "node:path";
 import os from "node:os";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import { findChromium } from "../src/exporter.mjs";
 import { renderPlanSvg } from "../src/render-svg.mjs";
 import { formatCourseRequirementLabel } from "../src/domain/course-requirements.mjs";
 
@@ -14,7 +13,8 @@ const execFileAsync = promisify(execFile);
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const fontRoot = path.resolve(process.env.SAAD_FONT_DIR ?? path.join(projectRoot, "font"));
-const chromium = findChromium();
+const chromium = ["/usr/bin/chromium", "/usr/bin/chromium-browser", "/usr/bin/google-chrome"]
+  .find((candidate) => fs.existsSync(candidate));
 const semiboldPath = path.join(fontRoot, "IBMPlexSansArabic-SemiBold.ttf");
 const boldPath = path.join(fontRoot, "IBMPlexSansArabic-Bold.ttf");
 

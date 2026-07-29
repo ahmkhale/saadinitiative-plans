@@ -6,7 +6,7 @@ The visual contract comes from the approved [Plans Figma file](https://www.figma
 
 ## Quick start
 
-Requirements: Node.js 20+, Chrome/Chromium/Edge, Inkscape for PNG export, and local IBM Plex Sans Arabic font files in ignored `font/` or `SAAD_FONT_DIR`. Set `SAAD_CHROMIUM_PATH` when the browser is outside a standard installation location. Ghostscript is optional; when available, PDF export can apply a second compaction pass while preserving fonts, page dimensions, searchable text, and clickable links.
+Requirements: Node.js 20+, Inkscape, and local IBM Plex Sans Arabic font files in ignored `font/` or `SAAD_FONT_DIR`. Ghostscript is optional but recommended; when available, PDF export automatically compacts the final vector document while preserving fonts, page dimensions, and clickable links.
 
 ```powershell
 npm install
@@ -35,13 +35,11 @@ npm run generate:all -- institutions --svg --png
 Output is ignored under `dist/<plan-id>/`: PDF, optional SVG/PNG, resolved JSON, and diagnostics JSON.
 
 
-## Searchable, compact PDF export
+## Compact PDF export
 
-PDF pages use the same independently measured SVG geometry and local IBM Plex Sans Arabic fonts as browser preview. Chromium's marked-content text layer preserves the logical Unicode source behind shaped Arabic glyphs, including required lam–alef ligatures such as `لا` and `لآ`, so copy, paste, and search work correctly without changing the visible typography.
+Course-card badge and activity-box translucency is pre-composed into equivalent solid colors before export. This prevents Inkscape from creating hundreds of transparency Form XObjects while keeping the approved appearance unchanged.
 
-Course-card badge and activity-box translucency is pre-composed into equivalent solid colors before export. This avoids redundant transparency objects while keeping the approved appearance unchanged.
-
-When Ghostscript is found (`GHOSTSCRIPT_PATH`, `--ghostscript`, or a standard installation), the exporter performs a second vector-preserving rewrite with marked-content preservation enabled. Searchable text, URL annotations, and subset fonts remain intact. Without Ghostscript, export still succeeds; it is simply not maximally compact.
+When Ghostscript is found (`GHOSTSCRIPT_PATH`, `--ghostscript`, or a standard installation), the exporter performs a second vector-preserving rewrite that collapses remaining SVG group overhead. URL annotations and subset fonts remain intact. Without Ghostscript, export still succeeds and is substantially smaller than earlier releases; it is simply not maximally compact.
 
 Relevant CLI controls:
 
@@ -49,7 +47,6 @@ Relevant CLI controls:
 --no-pdf-optimize       # skip Ghostscript
 --require-pdf-optimize  # fail when Ghostscript is unavailable
 --ghostscript <path>    # explicit executable path
---chromium <path>       # explicit Chrome/Chromium/Edge executable
 ```
 
 ## Repository model

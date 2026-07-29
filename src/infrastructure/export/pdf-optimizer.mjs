@@ -61,7 +61,6 @@ function runGhostscript(command, inputPath, outputPath) {
     "-dCompressFonts=true",
     "-dSubsetFonts=true",
     "-dEmbedAllFonts=true",
-    "-dPreserveMarkedContent=true",
     "-dPreserveAnnots=true",
     `-sOutputFile=${outputPath}`,
     inputPath,
@@ -87,12 +86,13 @@ function replaceAtomically(sourcePath, replacementPath) {
 }
 
 /**
- * Rewrites a generated PDF through Ghostscript's pdfwrite device.
+ * Rewrites an Inkscape PDF through Ghostscript's pdfwrite device.
  *
- * Ghostscript can collapse redundant vector-document overhead while retaining
- * vector artwork, subset fonts, page dimensions, searchable text, and URL
+ * Inkscape preserves many SVG groups as separate Form XObjects. Ghostscript
+ * safely collapses those groups into compact page content streams while
+ * retaining vector artwork, subset fonts, page dimensions, and URL
  * annotations. Optimization is opportunistic: when Ghostscript is missing,
- * the already compact browser PDF remains valid.
+ * the already compact pre-composed Inkscape PDF remains valid.
  */
 export function optimizePdf(pdfPath, options = {}) {
   if (options.enabled === false) return Object.freeze({ optimized: false, reason: "disabled" });

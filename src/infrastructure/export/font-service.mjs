@@ -7,7 +7,6 @@ const projectRoot = path.resolve(path.dirname(thisFile), "../../..");
 
 export const REQUIRED_FONT_FILES = Object.freeze([
   "IBMPlexSansArabic-Regular.ttf",
-  "IBMPlexSansArabic-Medium.ttf",
   "IBMPlexSansArabic-SemiBold.ttf",
   "IBMPlexSansArabic-Bold.ttf",
 ]);

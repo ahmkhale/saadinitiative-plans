@@ -2,7 +2,6 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import { exportPagesToPdf } from "./chromium-pdf-exporter.mjs";
 import { createFontconfigEnvironment } from "./font-service.mjs";
 import { optimizePdf } from "./pdf-optimizer.mjs";
 
@@ -38,15 +37,16 @@ export function exportSvg(svg, paths, options = {}) {
   const tempSvg = path.join(tempDir, "plan.svg");
   const fontconfig = createFontconfigEnvironment(tempDir, { fontDir: options.fontDir });
   fs.writeFileSync(tempSvg, svg, "utf8");
-  let pdfExport = null;
   let pdfOptimization = null;
   try {
     if (options.keepSvg) fs.copyFileSync(tempSvg, paths.svgPath);
     if (options.pdf !== false) {
-      pdfExport = exportPagesToPdf(options.pages ?? [svg], paths.pdfPath, {
-        chromium: options.chromium,
-        fontDir: fontconfig.fontDir,
-      });
+      run(options.inkscape ?? findInkscape(), [
+        tempSvg,
+        "--export-type=pdf",
+        `--export-filename=${paths.pdfPath}`,
+        "--export-area-page",
+      ], { env: fontconfig.env });
       pdfOptimization = optimizePdf(paths.pdfPath, {
         enabled: options.optimizePdf !== false,
         required: Boolean(options.requirePdfOptimization),
@@ -73,5 +73,5 @@ export function exportSvg(svg, paths, options = {}) {
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
-  return Object.freeze({ pdfExport, pdfOptimization });
+  return Object.freeze({ pdfOptimization });
 }

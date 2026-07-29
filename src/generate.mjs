@@ -23,7 +23,6 @@ if (!planPath) {
       svgOnly: args.includes("--svg-only"),
       png: args.includes("--png"),
       allowErrors: args.includes("--allow-errors"),
-      chromium: flagValue(args, "--chromium"),
       optimizePdf: !args.includes("--no-pdf-optimize"),
       requirePdfOptimization: args.includes("--require-pdf-optimize"),
       ghostscript: flagValue(args, "--ghostscript"),

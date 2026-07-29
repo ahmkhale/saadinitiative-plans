@@ -3,7 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { exportSvg, findChromium, findGhostscript, optimizePdf } from "../src/exporter.mjs";
+import { exportSvg, findGhostscript, findInkscape, optimizePdf } from "../src/exporter.mjs";
 import { renderPlanDocumentSvg } from "../src/render-svg.mjs";
 
 function commandExists(command) {
@@ -33,9 +33,9 @@ function course(index) {
 }
 
 const ghostscript = findGhostscript();
-const chromium = findChromium();
+const inkscape = findInkscape();
 
-const hasTools = Boolean(ghostscript && commandExists(chromium));
+const hasTools = Boolean(ghostscript && commandExists(inkscape));
 
 test("pre-composed card artwork avoids per-card transparency groups", () => {
   const document = renderPlanDocumentSvg({
@@ -53,7 +53,7 @@ test("pre-composed card artwork avoids per-card transparency groups", () => {
   assert.doesNotMatch(document.svg, /<text[^>]+opacity="0\.9"/u);
 });
 
-test("Ghostscript compacts a browser PDF while preserving a valid document", {
+test("Ghostscript compacts an Inkscape PDF while preserving a valid document", {
   skip: !hasTools,
 }, () => {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "saad-pdf-optimize-"));
@@ -77,12 +77,11 @@ test("Ghostscript compacts a browser PDF while preserving a valid document", {
       pngPath: path.join(temp, "plan.png"),
     };
     exportSvg(document.svg, paths, {
-      chromium,
+      inkscape,
       keepSvg: false,
       pdf: true,
       optimizePdf: false,
       pageCount: document.pageCount,
-      pages: document.pages,
     });
     const unoptimizedSize = fs.statSync(paths.pdfPath).size;
     const result = optimizePdf(paths.pdfPath, { ghostscript, required: true });

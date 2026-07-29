@@ -1,7 +1,8 @@
+import fs from "node:fs";
 import { spawnSync } from "node:child_process";
-import { findChromium } from "../src/exporter.mjs";
 
-const chromium = findChromium();
+const chromium = ["/usr/bin/chromium", "/usr/bin/chromium-browser", "/usr/bin/google-chrome"]
+  .find((candidate) => fs.existsSync(candidate));
 
 if (!chromium) {
   console.log("Browser-render verification skipped: Chromium is not installed.");
