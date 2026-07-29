@@ -78,6 +78,7 @@ const els = {
   dialogSubmit: $("dialogSubmit"),
   generateButton: $("generateButton"),
   generateDraftButton: $("generateDraftButton"),
+  generateInstitutionButton: $("generateInstitutionButton"),
   sharedSetChoices: $("sharedSetChoices"),
   sharedSetList: $("sharedSetList"),
   sharedSetEditor: $("sharedSetEditor"),
@@ -444,7 +445,7 @@ function addCodes(kind, index, value) {
 
 
 
-const { savePlan, generatePlan } = createExportController({
+const { bind: bindExport, savePlan } = createExportController({
   state,
   els,
   request,
@@ -495,6 +496,7 @@ const { addPlaceholder, editPlaceholder } = createProposalPlaceholderActions({
   changed,
   setStatus,
 });
+bindExport();
 
 function updateManualFact(row, input) {
   const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
@@ -891,8 +893,6 @@ $("duplicateMajorButton").addEventListener("click", () => duplicateMajor().catch
 $("deleteTrackButton").addEventListener("click", () => deleteTrack().catch((error) => setStatus(error.message, "error")));
 $("deleteMajorButton").addEventListener("click", () => deleteMajor().catch((error) => setStatus(error.message, "error")));
 $("saveButton").addEventListener("click", () => savePlan().catch((error) => setStatus(error.message, "error")));
-els.generateButton.addEventListener("click", () => generatePlan(true).catch((error) => setStatus(error.message, "error")));
-els.generateDraftButton.addEventListener("click", () => generatePlan(false).catch((error) => setStatus(error.message, "error")));
 $("openOutputButton").addEventListener("click", async () => {
   try {
     await request("/api/open-output", { method: "POST" });

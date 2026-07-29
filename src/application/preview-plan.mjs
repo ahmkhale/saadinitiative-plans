@@ -35,7 +35,12 @@ export function exportDraft(rawPlan, options = {}) {
     throw error;
   }
   const root = path.resolve(options.outputRoot ?? path.join(process.cwd(), "dist"));
-  const folder = path.join(root, safeSlug(result.plan.id ?? result.plan.major, "plan"));
+  const folder = path.join(root, safeSlug(
+    result.plan.track?.id
+      ? `${result.plan.id ?? result.plan.major}-${result.plan.track.id}`
+      : result.plan.id ?? result.plan.major,
+    "plan",
+  ));
   const base = options.outputName ?? "plan";
   const paths = {
     folder,

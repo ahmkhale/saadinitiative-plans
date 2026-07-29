@@ -3,6 +3,7 @@ export function renderNavigation({ state, els, activeCollege, escapeHtml }) {
   const selectedCollege = state.colleges.find((item) => item.id === state.selectedCollegeId);
   const selectedMajor = selectedCollege?.majors?.find((item) => item.id === state.selectedMajorId);
   const selectedTrack = selectedMajor?.tracks?.find((item) => item.id === state.selectedTrackId);
+  els.generateInstitutionButton.disabled = !selectedInstitution;
   const selectedPlanName = selectedMajor
     ? selectedTrack?.name ?? "الخطة الأساسية"
     : null;

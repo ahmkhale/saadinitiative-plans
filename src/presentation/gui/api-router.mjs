@@ -1,4 +1,5 @@
 import { refreshFallbackFromCatalog } from "../../application/hydrate-fallbacks.mjs";
+import { exportInstitutionPlans } from "../../application/export-institution.mjs";
 import { renderDraftPreview, resolveDraft } from "../../application/preview-plan.mjs";
 import { readSettings, saveSettings } from "../../infrastructure/repositories/settings-repository.mjs";
 import { saveCourseColorAliases } from "../../infrastructure/repositories/course-color-repository.mjs";
@@ -111,6 +112,27 @@ export function createGuiApiRouter(options) {
       return json(res, 201, { ok: true, institution: institutions.create(await readBody(req)) });
     }
     const institutionId = segments[2];
+    if (segments[3] === "generate" && segments.length === 4 && req.method === "POST") {
+      const body = await readBody(req);
+      const context = institutionContext(institutionId);
+      const result = exportInstitutionPlans({
+        store: context.store,
+        exportPlan: exportDraftFn,
+        optionsForCollege: (collegeId) => pipelineOptions(context, collegeId),
+        outputRoot,
+        keepSvg: Boolean(body.keepSvg),
+        png: Boolean(body.png),
+      });
+      return json(res, 200, {
+        ok: result.failed.length === 0,
+        total: result.total,
+        exported: result.exported.map((item) => ({
+          ...item,
+          pdf: `${distUrl(item.pdfPath, outputRoot)}?v=${Date.now()}`,
+        })),
+        failed: result.failed,
+      });
+    }
     if (segments.length === 3 && req.method === "PUT") {
       return json(res, 200, { ok: true, institution: institutions.update(institutionId, await readBody(req)) });
     }

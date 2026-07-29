@@ -319,6 +319,62 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
   }
 });
 
+test("GUI API exports every base plan and track in an institution", async () => {
+  const value = fixture();
+  value.store.createTrack("ccis", "cs", {
+    id: "ai",
+    name: "مسار الذكاء الاصطناعي",
+  });
+  const outputRoot = path.join(value.root, "dist");
+  const exported = [];
+  const fakeExport = (plan, options) => {
+    exported.push({ plan: structuredClone(plan), options });
+    const slug = plan.track?.id ? `${plan.id}-${plan.track.id}` : plan.id;
+    const folder = path.join(outputRoot, slug);
+    return {
+      diagnostics: { summary: { errors: 0, warnings: 0, info: 0 }, items: [] },
+      document: { pageLayouts: [{ width: 594, height: 271 }] },
+      paths: {
+        folder,
+        pdfPath: path.join(folder, "plan.pdf"),
+        svgPath: path.join(folder, "plan.svg"),
+        pngPath: path.join(folder, "plan.png"),
+      },
+    };
+  };
+  const server = createGuiServer({
+    institutionRepository: value.institutionRepository,
+    catalogService: value.catalogService,
+    outputRoot,
+    exportDraftFn: fakeExport,
+  });
+  const address = await listen(server);
+  const base = `http://127.0.0.1:${address.port}`;
+  try {
+    const response = await fetch(`${base}/api/institutions/test-university/generate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ keepSvg: true, png: true }),
+    }).then((item) => item.json());
+
+    assert.equal(response.ok, true);
+    assert.equal(response.total, 2);
+    assert.equal(response.exported.length, 2);
+    assert.equal(response.failed.length, 0);
+    assert.deepEqual(
+      exported.map((item) => item.plan.track?.id ?? null),
+      [null, "ai"],
+    );
+    assert.ok(exported.every((item) => item.options.keepSvg && item.options.png));
+    assert.ok(exported.every((item) => item.options.settings.edition === "الطبعة الرابعة"));
+    assert.match(response.exported[0].pdf, /^\/dist\/cs\/plan\.pdf\?v=\d+$/u);
+    assert.match(response.exported[1].pdf, /^\/dist\/cs-ai\/plan\.pdf\?v=\d+$/u);
+  } finally {
+    await close(server);
+    fs.rmSync(value.root, { recursive: true, force: true });
+  }
+});
+
 test("GUI API rejects path traversal", async () => {
   const value = fixture();
   const server = createGuiServer({
