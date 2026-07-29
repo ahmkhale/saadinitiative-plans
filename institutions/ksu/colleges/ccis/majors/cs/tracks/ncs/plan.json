@@ -3,7 +3,7 @@
   "id": "cs",
   "major": "علوم الحاسب",
   "degree": "البكالوريوس",
-  "expectedCredits": 0,
+  "expectedCredits": 128,
   "sharedSemesterSets": [],
   "semesters": [
     {
@@ -515,5 +515,180 @@
     "id": "ncs",
     "name": "مسار الشبكات والأمن السيبراني"
   },
-  "proposal": null
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:cs:published-level-1:106-ريض",
+          "major:cs:published-level-1:107-سلم",
+          "major:cs:published-level-1:111-عال",
+          "major:cs:published-level-1:151-ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms5wxqm4",
+            "name": "من متطلبات علمية",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 4,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-babf818e-3503-4d42-b492-c58bb35d078a",
+        "sourceSemesterId": "published-babf818e-3503-4d42-b492-c58bb35d078a",
+        "type": "regular",
+        "courseOrder": [
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:108-سلم",
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:113-عال",
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:220-عال",
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:244-ريض",
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:281-عال"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-53179a85-1ed9-4382-957a-ab657b687199",
+        "sourceSemesterId": "published-53179a85-1ed9-4382-957a-ab657b687199",
+        "type": "regular",
+        "courseOrder": [
+          "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:212-عال",
+          "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:215-عال",
+          "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:304-عال",
+          "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:339-عال",
+          "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:380-عال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms5wykdn",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-415422d7-47e8-4a02-b4be-fae2a0aa9796",
+        "sourceSemesterId": "published-415422d7-47e8-4a02-b4be-fae2a0aa9796",
+        "type": "regular",
+        "courseOrder": [
+          "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:227-عال",
+          "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:311-عال",
+          "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:329-عال",
+          "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:361-عال",
+          "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:429-عال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms5wyngl",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-c82b2409-0133-4278-9dce-577eb72dfbd7",
+        "sourceSemesterId": "published-c82b2409-0133-4278-9dce-577eb72dfbd7",
+        "type": "regular",
+        "courseOrder": [
+          "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:340-عال",
+          "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:343-عال",
+          "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:437-عال",
+          "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:488-عال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms5wzawk",
+            "name": "من متطلبات المسار",
+            "electiveGroupId": "elective-group-1",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-7cdbae5f-df45-4451-bb96-683f1b51b3c4",
+        "sourceSemesterId": "published-7cdbae5f-df45-4451-bb96-683f1b51b3c4",
+        "type": "regular",
+        "courseOrder": [
+          "major:cs:published-7cdbae5f-df45-4451-bb96-683f1b51b3c4:453-عال",
+          "major:cs:published-7cdbae5f-df45-4451-bb96-683f1b51b3c4:492-عال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms5wzezr",
+            "name": "من متطلبات المسار",
+            "electiveGroupId": "elective-group-1",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms5wzgu6",
+            "name": "من متطلبات المسار",
+            "electiveGroupId": "elective-group-1",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms5wzikt",
+            "name": "من متطلبات المسار",
+            "electiveGroupId": "elective-group-1",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-6605b66f-eb4b-499c-bd85-d48699d4618c",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:479-عال"
+        ],
+        "placeholders": []
+      }
+    ]
+  }
 }

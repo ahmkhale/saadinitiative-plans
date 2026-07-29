@@ -3,7 +3,7 @@
   "id": "cs",
   "major": "علوم الحاسب",
   "degree": "البكالوريوس",
-  "expectedCredits": 0,
+  "expectedCredits": 128,
   "sharedSemesterSets": [],
   "semesters": [
     {
