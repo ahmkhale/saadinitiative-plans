@@ -8,6 +8,9 @@ import { validatePublishedCourseGraph } from "./validate-course-graph.mjs";
 import { reconcileProposal } from "./reconcile-proposal.mjs";
 
 export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
+  const displayMajor = plan.track?.name
+    ? `${plan.major} ${plan.track.name}`
+    : plan.major;
   const resolver = createCourseResolver({ plan, catalog, colors, diagnostics });
   const resolvedSemesters = resolvePublishedSemesters(plan, resolver, diagnostics);
   const resolvedElectiveGroups = resolveElectiveGroups(plan, resolver, diagnostics);
@@ -45,7 +48,9 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     id: plan.id ?? null,
     university: plan.university,
     college: plan.college,
-    major: plan.major,
+    major: displayMajor,
+    baseMajor: plan.major,
+    track: plan.track ?? null,
     degree: plan.degree,
     planCode: plan.planCode,
     version: plan.version,
@@ -76,7 +81,7 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       degree: result.degree,
       edition: result.edition,
       release: result.release,
-      headerSubtitle: plan.major,
+      headerSubtitle: displayMajor,
     };
   }
 

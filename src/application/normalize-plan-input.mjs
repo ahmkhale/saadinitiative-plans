@@ -23,6 +23,10 @@ export function normalizePlanInput(raw) {
     university: value.university ?? "جامعة الملك سعود",
     college: value.college ?? "",
     major: value.major,
+    track: value.track ? {
+      id: String(value.track.id ?? "").trim(),
+      name: String(value.track.name ?? "").trim(),
+    } : null,
     degree: value.degree ?? "البكالوريوس",
     planCode: value.planCode ?? "",
     version: value.version ?? "",

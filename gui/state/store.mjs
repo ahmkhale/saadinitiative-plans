@@ -4,6 +4,7 @@ export const state = {
   colleges: [],
   selectedCollegeId: "",
   selectedMajorId: "",
+  selectedTrackId: "",
   plan: null,
   resolved: null,
   diagnostics: null,

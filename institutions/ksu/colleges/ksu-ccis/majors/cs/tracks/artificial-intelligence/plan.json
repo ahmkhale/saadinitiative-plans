@@ -3,8 +3,8 @@
   "id": "cs",
   "major": "علوم الحاسب",
   "track": {
-    "id": "general",
-    "name": "المسار العام"
+    "id": "artificial-intelligence",
+    "name": "مسار الذكاء الاصطناعي"
   },
   "degree": "البكالوريوس",
   "expectedCredits": 0,

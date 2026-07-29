@@ -2,7 +2,8 @@ export function renderNavigation({ state, els, activeCollege, escapeHtml }) {
   const selectedInstitution = state.institutions.find((item) => item.id === state.selectedInstitutionId);
   const selectedCollege = state.colleges.find((item) => item.id === state.selectedCollegeId);
   const selectedMajor = selectedCollege?.majors?.find((item) => item.id === state.selectedMajorId);
-  els.contextTrail.textContent = [selectedInstitution?.name, selectedCollege?.name, selectedMajor?.major]
+  const selectedTrack = selectedMajor?.tracks?.find((item) => item.id === state.selectedTrackId);
+  els.contextTrail.textContent = [selectedInstitution?.name, selectedCollege?.name, selectedMajor?.major, selectedTrack?.name]
     .filter(Boolean)
     .join(" / ") || "اختر جامعة وكلية وتخصصًا";
   if (!state.institutions.length) {
@@ -36,10 +37,17 @@ export function renderNavigation({ state, els, activeCollege, escapeHtml }) {
     els.majorList.textContent = "لم يُضف تخصص بعد.";
   } else {
     els.majorList.className = "nav-list";
-    els.majorList.innerHTML = college.majors.map((major) => `
-      <button class="nav-item ${major.id === state.selectedMajorId ? "active" : ""}" data-major="${escapeHtml(major.id)}" type="button">
-        ${escapeHtml(major.major)}<small>${major.semesterCount} فصول${major.hasProposal ? " · له خطة مقترحة" : ""}</small>
-      </button>
-    `).join("");
+    els.majorList.innerHTML = college.majors.map((major) => {
+      const active = major.id === state.selectedMajorId;
+      return `<div class="major-nav-group">
+        <button class="nav-item ${active ? "active" : ""}" data-major="${escapeHtml(major.id)}" type="button">
+          ${escapeHtml(major.major)}<small>${major.tracks?.length ?? 1} مسار · ${major.semesterCount} فصول${major.hasProposal ? " · له خطة مقترحة" : ""}</small>
+        </button>
+        ${active ? `<div class="track-nav-list">${(major.tracks ?? []).map((track) => `
+          <button class="track-nav-item ${track.id === state.selectedTrackId ? "active" : ""}" data-major-track="${escapeHtml(major.id)}" data-track="${escapeHtml(track.id)}" type="button">
+            ${escapeHtml(track.name)}<small>${track.semesterCount} فصول${track.hasProposal ? " · له خطة مقترحة" : ""}</small>
+          </button>`).join("")}</div>` : ""}
+      </div>`;
+    }).join("");
   }
 }

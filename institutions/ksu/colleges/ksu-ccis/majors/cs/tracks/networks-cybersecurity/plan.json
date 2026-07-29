@@ -3,8 +3,8 @@
   "id": "cs",
   "major": "علوم الحاسب",
   "track": {
-    "id": "general",
-    "name": "المسار العام"
+    "id": "networks-cybersecurity",
+    "name": "مسار الشبكات والأمن السيبراني"
   },
   "degree": "البكالوريوس",
   "expectedCredits": 0,

@@ -117,7 +117,15 @@ export function createPlanEditorView(options) {
     if (!state.plan) return;
     sortPublishedCollections();
     syncProposalWithPublished();
-    els.planHeading.textContent = state.plan.major;
+    els.planHeading.textContent = state.plan.track?.name
+      ? `${state.plan.major} — ${state.plan.track.name}`
+      : state.plan.major;
+    const selectedMajor = state.colleges
+      .find((college) => college.id === state.selectedCollegeId)
+      ?.majors?.find((major) => major.id === state.selectedMajorId);
+    const selectedTrack = selectedMajor?.tracks?.find((track) => track.id === state.selectedTrackId);
+    const deleteTrackButton = document.getElementById("deleteTrackButton");
+    if (deleteTrackButton) deleteTrackButton.hidden = !state.plan.track || selectedTrack?.isRoot !== false;
     document.querySelectorAll("[data-field]").forEach((input) => {
       input.value = state.plan[input.dataset.field] ?? "";
       if (["university", "college"].includes(input.dataset.field)) input.closest("label").hidden = true;

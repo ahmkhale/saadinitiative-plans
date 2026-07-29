@@ -85,10 +85,11 @@ Course occurrences have stable IDs and store plan-owned rules:
   "prerequisites": ["201 كهر"],
   "corequisites": [],
   "minimumCompletedCredits": null,
-  "prerequisiteConditions": [],
-  "trackSpecific": false
+  "prerequisiteConditions": []
 }
 ```
+
+Majors may own multiple plans: the root `plan.json` is the root track and additional plans live under `tracks/<track-id>/plan.json`. Each plan stores a `{ "track": { "id", "name" } }` identity. Track markers are derived by comparing normalized course membership across sibling tracks and are never operator-authored or persisted.
 
 The owning file stores factual durability once:
 

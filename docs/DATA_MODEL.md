@@ -4,7 +4,8 @@
 
 - `institution.json`: stable `id`, display `name`.
 - `college.json`: stable `id`, display `name`.
-- `plan.json`: stable major `id`, major/degree decisions, shared references, own semesters, electives, proposal, owning fallbacks.
+- `majors/<major>/plan.json`: the major’s root track.
+- `majors/<major>/tracks/<track>/plan.json`: additional tracks nested under the same major.
 - `settings.json`: edition, release, and shared presentation defaults.
 
 Plan files do not contain university, college, edition, release, or version.
@@ -18,12 +19,19 @@ Plan files do not contain university, college, edition, release, or version.
   "prerequisites": ["106 ريض"],
   "corequisites": [],
   "minimumCompletedCredits": null,
-  "prerequisiteConditions": [],
-  "trackSpecific": false
+  "prerequisiteConditions": []
 }
 ```
 
 The same rule shape is used in shared semester sources and custom/shared elective candidates. Compact code strings are not persisted.
+
+Track plans declare only their identity:
+
+```json
+{ "track": { "id": "artificial-intelligence", "name": "مسار الذكاء الاصطناعي" } }
+```
+
+`trackSpecific` is derived at read/preview/export time. A course is track-specific when its normalized code is absent from at least one sibling track; the flag is never stored.
 
 ## Factual snapshot
 

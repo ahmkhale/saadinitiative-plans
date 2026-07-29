@@ -37,7 +37,6 @@ test("prepares canonical proposal arrangement without storing real-course facts"
     corequisites: [],
     minimumCompletedCredits: null,
     prerequisiteConditions: [],
-    trackSpecific: false,
   }]);
   assert.equal(prepared.edition, undefined);
   assert.equal(prepared.proposal.semesters[0].placeholders[0].name, "نائب");

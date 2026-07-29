@@ -41,6 +41,8 @@ export function createPreviewController(options) {
       body: JSON.stringify({
         institutionId: state.selectedInstitutionId,
         collegeId: state.selectedCollegeId,
+        majorId: state.selectedMajorId,
+        trackId: state.selectedTrackId,
         plan: state.plan,
       }),
     });

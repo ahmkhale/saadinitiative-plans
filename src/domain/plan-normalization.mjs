@@ -47,7 +47,6 @@ export function canonicalCourseEntry(rawEntry, occurrencePrefix) {
     prerequisiteConditions: Array.from(new Set(
       (entry.prerequisiteConditions ?? []).map((value) => String(value).trim()).filter(Boolean),
     )),
-    trackSpecific: Boolean(entry.trackSpecific),
     ...(entry.extinct ? { extinct: true } : {}),
     ...(entry.forceFallback ? { forceFallback: true } : {}),
     ...(entry.preserveSameSemesterPrerequisite ? { preserveSameSemesterPrerequisite: true } : {}),

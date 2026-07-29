@@ -508,6 +508,24 @@ test("all three unknown activity values remain unknown and produce a non-blockin
   )));
 });
 
+test("track plans derive the rendered title from the major and track names", () => {
+  const plan = {
+    schemaVersion: 1,
+    id: "cs",
+    major: "علوم الحاسب",
+    track: { id: "general", name: "المسار العام" },
+    degree: "البكالوريوس",
+    semesters: [{ id: "published-level-1", courses: [] }],
+    electiveGroups: [],
+    fallbackCourses: {},
+  };
+  const diagnostics = createDiagnostics();
+  const resolved = resolvePlan(plan, new Map(), {}, diagnostics);
+  assert.equal(resolved.major, "علوم الحاسب المسار العام");
+  assert.equal(resolved.baseMajor, "علوم الحاسب");
+  assert.deepEqual(resolved.track, plan.track);
+});
+
 test("non-university electives without catalog activity facts use dashes and the extinct marker", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,

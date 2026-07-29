@@ -25,6 +25,15 @@
       "type": "string",
       "minLength": 1
     },
+    "track": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
     "degree": {
       "type": "string"
     },
@@ -340,8 +349,7 @@
         "prerequisites",
         "corequisites",
         "minimumCompletedCredits",
-        "prerequisiteConditions",
-        "trackSpecific"
+        "prerequisiteConditions"
       ],
       "properties": {
         "id": {
@@ -377,9 +385,6 @@
             "type": "string",
             "minLength": 1
           }
-        },
-        "trackSpecific": {
-          "type": "boolean"
         },
         "extinct": {
           "type": "boolean"

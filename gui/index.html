@@ -55,9 +55,16 @@
         <div id="collegeList" class="nav-list empty-list">لم تُضف كلية بعد.</div>
       </section>
       <section>
-        <div class="section-title">
+        <div class="section-title major-section-title">
           <h2>التخصصات</h2>
-          <button id="addMajorButton" class="icon-button" type="button" aria-label="إضافة تخصص"><img src="/assets/icon-plus.svg" alt=""></button>
+          <div class="menu-actions navigation-create-actions">
+            <button id="addTrackButton" class="button ghost compact-create-button" type="button">
+              <img src="/assets/icon-plus.svg" alt=""><span>إضافة مسار</span>
+            </button>
+            <button id="addMajorButton" class="button ghost compact-create-button" type="button">
+              <img src="/assets/icon-plus.svg" alt=""><span>إضافة تخصص</span>
+            </button>
+          </div>
         </div>
         <div id="majorList" class="nav-list empty-list">اختر كلية أولًا.</div>
       </section>
@@ -92,6 +99,7 @@
             <div class="card-heading">
               <div><p class="eyebrow">بيانات الخطة</p><h2 id="planHeading">التخصص</h2></div>
               <div class="menu-actions">
+                <button id="deleteTrackButton" class="button danger-ghost" type="button">حذف المسار</button>
                 <button id="duplicateMajorButton" class="button ghost" type="button">نسخ التخصص</button>
                 <button id="deleteMajorButton" class="button danger-ghost" type="button">حذف التخصص</button>
               </div>

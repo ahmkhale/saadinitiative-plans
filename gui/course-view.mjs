@@ -93,7 +93,7 @@ export function renderCourseRow({
           <label>المتطلبات المرافقة<input data-dependency="corequisites" value="${escapeHtml((rules.corequisites ?? rules.override?.corequisites ?? []).join("، "))}"></label>
           <label>شروط المتطلب النصية<input data-dependency="prerequisiteConditions" value="${escapeHtml((rules.prerequisiteConditions ?? []).join("، "))}" placeholder="مستوى 7"></label>
           <label>الحد الأدنى للساعات المجتازة<input data-dependency="minimumCompletedCredits" type="number" min="0" value="${escapeHtml(rules.minimumCompletedCredits ?? rules.override?.minimumCompletedCredits ?? "")}"></label>
-          <label class="check"><input data-track-specific type="checkbox" ${rules.trackSpecific ? "checked" : ""}> مقرر خاص بالمسار</label>` : ""}
+          ${rules.trackSpecific ? '<span class="derived-track-rule">مقرر خاص بهذا المسار · محتسب تلقائيًا</span>' : ""}` : ""}
         </div>
       </details>
     </div>

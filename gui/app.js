@@ -154,6 +154,7 @@ async function loadState() {
   if (state.selectedCollegeId && !state.colleges.some((college) => college.id === state.selectedCollegeId)) {
     state.selectedCollegeId = "";
     state.selectedMajorId = "";
+    state.selectedTrackId = "";
   }
   renderNavigation();
   renderSharedSets();
@@ -166,6 +167,7 @@ async function selectInstitution(id) {
   state.selectedInstitutionId = id;
   state.selectedCollegeId = "";
   state.selectedMajorId = "";
+  state.selectedTrackId = "";
   state.plan = null;
   showEditor(false);
   await loadState();
@@ -175,15 +177,23 @@ async function selectCollege(id) {
   if (state.dirty && !await confirmDiscard()) return;
   state.selectedCollegeId = id;
   state.selectedMajorId = "";
+  state.selectedTrackId = "";
   state.plan = null;
   showEditor(false);
   renderNavigation();
 }
 
-async function selectMajor(id) {
+async function selectMajor(id, trackId = null) {
   if (state.dirty && !await confirmDiscard()) return;
-  const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(id)}`));
+  const major = activeCollege()?.majors?.find((item) => item.id === id);
+  const selectedTrackId = trackId ?? major?.tracks?.[0]?.id ?? id;
+  const rootTrack = major?.tracks?.find((item) => item.id === selectedTrackId)?.isRoot !== false;
+  const suffix = rootTrack
+    ? `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(id)}`
+    : `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(id)}/tracks/${encodeURIComponent(selectedTrackId)}`;
+  const result = await request(institutionApi(suffix));
   state.selectedMajorId = id;
+  state.selectedTrackId = result.plan.track?.id ?? selectedTrackId;
   state.plan = result.plan;
   state.resolved = null;
   setDirty(false);
@@ -442,7 +452,9 @@ const {
   editCollege,
   deleteCollege,
   addMajor,
+  addTrack,
   duplicateMajor,
+  deleteTrack,
   deleteMajor,
 } = createEntityActions({
   state,
@@ -554,8 +566,13 @@ document.addEventListener("click", (event) => {
   }
   const college = event.target.closest("[data-college]");
   if (college) selectCollege(college.dataset.college).catch((error) => setStatus(error.message, "error"));
-  const major = event.target.closest("[data-major]");
-  if (major) selectMajor(major.dataset.major).catch((error) => setStatus(error.message, "error"));
+  const track = event.target.closest("[data-major-track]");
+  if (track) {
+    selectMajor(track.dataset.majorTrack, track.dataset.track).catch((error) => setStatus(error.message, "error"));
+  } else {
+    const major = event.target.closest("[data-major]");
+    if (major) selectMajor(major.dataset.major).catch((error) => setStatus(error.message, "error"));
+  }
   const tab = event.target.closest("[data-tab]");
   if (tab) {
     document.querySelectorAll(".tab").forEach((node) => node.classList.toggle("active", node === tab));
@@ -712,7 +729,9 @@ document.addEventListener("input", (event) => {
   const field = event.target.closest("[data-field]");
   if (field && state.plan) {
     state.plan[field.dataset.field] = field.type === "number" ? Number(field.value) : field.value;
-    els.planHeading.textContent = state.plan.major;
+    els.planHeading.textContent = state.plan.track?.name
+      ? `${state.plan.major} — ${state.plan.track.name}`
+      : state.plan.major;
     changed();
   }
   const card = event.target.closest(".semester-card");
@@ -751,17 +770,6 @@ document.addEventListener("change", (event) => {
   const row = event.target.closest(".course-row");
   if (row && event.target.matches("[data-manual-fact]")) updateManualFact(row, event.target);
   if (row && event.target.matches("[data-dependency]")) updateDependency(row, event.target);
-  if (row && event.target.matches("[data-track-specific]")) {
-    const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
-    const index = Number(row.dataset.courseIndex);
-    const entry = normalizedEntry(target[index]);
-    if (event.target.checked) entry.trackSpecific = true;
-    else delete entry.trackSpecific;
-    target[index] = Object.keys(entry).length === 1 ? entry.code : entry;
-    if (row.dataset.kind === "shared") sharedChanged();
-    else if (row.dataset.kind === "sharedElective") sharedElectiveChanged();
-    else changed();
-  }
   if (event.target.matches("[data-shared-set-choice]")) {
     const id = event.target.dataset.sharedSetChoice;
     if (!id) {
@@ -846,7 +854,9 @@ $("addCollegeButton").addEventListener("click", () => addCollege().catch((error)
 $("editCollegeButton").addEventListener("click", () => editCollege().catch((error) => setStatus(error.message, "error")));
 $("deleteCollegeButton").addEventListener("click", () => deleteCollege().catch((error) => setStatus(error.message, "error")));
 $("addMajorButton").addEventListener("click", () => addMajor().catch((error) => setStatus(error.message, "error")));
+$("addTrackButton").addEventListener("click", () => addTrack().catch((error) => setStatus(error.message, "error")));
 $("duplicateMajorButton").addEventListener("click", () => duplicateMajor().catch((error) => setStatus(error.message, "error")));
+$("deleteTrackButton").addEventListener("click", () => deleteTrack().catch((error) => setStatus(error.message, "error")));
 $("deleteMajorButton").addEventListener("click", () => deleteMajor().catch((error) => setStatus(error.message, "error")));
 $("saveButton").addEventListener("click", () => savePlan().catch((error) => setStatus(error.message, "error")));
 els.generateButton.addEventListener("click", () => generatePlan(true).catch((error) => setStatus(error.message, "error")));

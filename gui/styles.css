@@ -138,6 +138,19 @@ img { display: block; }
 .section-title { justify-content: space-between; margin-bottom: 8px; }
 .section-title h2 { font-size: 12px; font-weight: 700; color: #404040; }
 .menu-actions { flex-wrap: wrap; }
+.major-section-title { flex-wrap: wrap; }
+.major-section-title > h2 { width: 100%; }
+.navigation-create-actions { width: 100%; flex-wrap: nowrap; gap: 4px; }
+.compact-create-button {
+  flex: 1 1 0;
+  justify-content: center;
+  min-height: 30px;
+  padding: 5px 8px;
+  gap: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.compact-create-button img { width: 12px; height: 12px; }
 .nav-list { display: grid; gap: 2px; }
 .nav-item {
   width: 100%;
@@ -166,6 +179,32 @@ img { display: block; }
   direction: ltr;
   text-align: right;
 }
+.major-nav-group { display: grid; gap: 2px; }
+.track-nav-list {
+  display: grid;
+  gap: 2px;
+  margin: 2px 12px 6px 0;
+  padding-right: 10px;
+  border-right: 2px solid #dbeafe;
+}
+.track-nav-item {
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: 7px;
+  text-align: right;
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+.track-nav-item:hover { background: var(--muted); color: var(--foreground); }
+.track-nav-item.active {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: var(--primary-subtle-foreground);
+  font-weight: 700;
+}
+.track-nav-item small { display: block; margin-top: 1px; font-size: 9px; font-weight: 400; }
 .empty-list { color: var(--muted-foreground); font-size: 11px; padding: 8px 10px; }
 .catalog-card {
   padding: 12px;
@@ -310,6 +349,16 @@ input:focus, textarea:focus, select:focus {
 .course-details summary { color: var(--primary-subtle-foreground); font-size: 10px; font-weight: 600; cursor: pointer; }
 .course-details summary::marker { color: var(--muted-foreground); }
 .dependency-grid { display: grid; grid-template-columns: 1fr 1fr 120px; gap: 8px; padding-top: 8px; }
+.derived-track-rule {
+  align-self: end;
+  border: 1px solid #bbf7d0;
+  background: #f0fdf4;
+  color: #166534;
+  border-radius: 7px;
+  padding: 8px;
+  font-size: 10px;
+  font-weight: 600;
+}
 .facts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding-top: 9px; }
 .facts-grid .wide { grid-column: 1 / -1; }
 .concept-heading { margin-top: 10px; font-size: 10px; font-weight: 700; color: #525252; }

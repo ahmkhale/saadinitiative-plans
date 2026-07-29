@@ -14,12 +14,20 @@ export function createExportController(options) {
   async function savePlan() {
     if (!state.plan) return;
     const oldId = state.selectedMajorId;
-    const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}`), {
+    const major = state.colleges
+      .find((college) => college.id === state.selectedCollegeId)
+      ?.majors?.find((item) => item.id === oldId);
+    const rootTrack = major?.tracks?.find((item) => item.id === state.selectedTrackId)?.isRoot !== false;
+    const suffix = rootTrack
+      ? `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}`
+      : `/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(oldId)}/tracks/${encodeURIComponent(state.selectedTrackId)}`;
+    const result = await request(institutionApi(suffix), {
       method: "PUT",
       body: JSON.stringify(state.plan),
     });
     state.plan = result.plan;
     state.selectedMajorId = result.plan.id;
+    state.selectedTrackId = result.plan.track?.id ?? state.selectedTrackId;
     setDirty(false);
     await loadState();
     renderEditor();
@@ -37,6 +45,7 @@ export function createExportController(options) {
         institutionId: state.selectedInstitutionId,
         collegeId: state.selectedCollegeId,
         majorId: state.selectedMajorId,
+        trackId: state.selectedTrackId,
         save,
         keepSvg: output.keepSvg,
         png: output.png,

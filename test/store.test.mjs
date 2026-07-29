@@ -69,7 +69,6 @@ test("college and major CRUD persists valid plans atomically", () => {
       corequisites: [],
       minimumCompletedCredits: null,
       prerequisiteConditions: [],
-      trackSpecific: false,
     });
 
     store.duplicateMajor("computer-science", "information-systems", {
@@ -119,6 +118,46 @@ test("saving a proposal writes only the canonical plan", () => {
     store.savePlan("science", "math", plan);
     const files = fs.readdirSync(path.dirname(store.planPath("science", "math")));
     assert.deepEqual(files, ["plan.json"]);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("majors own nested tracks and derive track-specific courses from sibling membership", () => {
+  const { root, store } = temporaryStore();
+  try {
+    store.createCollege({ id: "ccis", name: "كلية علوم الحاسب والمعلومات" });
+    const general = store.createMajor("ccis", { id: "cs", major: "علوم الحاسب" });
+    general.semesters[0].courses = ["101 عال", "201 عال"];
+    store.savePlan("ccis", "cs", general);
+
+    store.createTrack("ccis", "cs", {
+      id: "ai",
+      name: "مسار الذكاء الاصطناعي",
+      rootTrackId: "general",
+      rootTrackName: "المسار العام",
+      sourceTrackId: "cs",
+    });
+    const ai = store.getPlan("ccis", "cs", "ai");
+    ai.semesters[0].courses = ai.semesters[0].courses.filter((course) => course.code !== "201 عال");
+    ai.semesters[0].courses.push("301 عال");
+    store.savePlan("ccis", "cs", ai, "ai");
+
+    const summary = store.listMajors("ccis")[0];
+    assert.deepEqual(summary.tracks.map((track) => track.name), [
+      "المسار العام",
+      "مسار الذكاء الاصطناعي",
+    ]);
+    const derivedGeneral = store.getPlanForEditor("ccis", "cs", "general");
+    const derivedAi = store.getPlanForEditor("ccis", "cs", "ai");
+    assert.equal(derivedGeneral.semesters[0].courses.find((course) => course.code === "101 عال").trackSpecific, undefined);
+    assert.equal(derivedGeneral.semesters[0].courses.find((course) => course.code === "201 عال").trackSpecific, true);
+    assert.equal(derivedAi.semesters[0].courses.find((course) => course.code === "301 عال").trackSpecific, true);
+    assert.equal(store.getPlan("ccis", "cs", "ai").semesters[0].courses.some((course) => course.trackSpecific), false);
+
+    store.duplicateMajor("ccis", "cs", { id: "cs-copy", major: "علوم الحاسب - نسخة" });
+    assert.deepEqual(store.listTracks("ccis", "cs-copy").map((track) => track.id), ["general", "ai"]);
+    assert.equal(store.getPlan("ccis", "cs-copy", "ai").major, "علوم الحاسب - نسخة");
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

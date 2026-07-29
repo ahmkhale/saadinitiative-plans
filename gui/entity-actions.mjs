@@ -63,6 +63,7 @@ export function createEntityActions({
     state.selectedInstitutionId = "";
     state.selectedCollegeId = "";
     state.selectedMajorId = "";
+    state.selectedTrackId = "";
     state.plan = null;
     setDirty(false);
     showEditor(false);
@@ -121,6 +122,7 @@ export function createEntityActions({
     await request(institutionApi(`/colleges/${encodeURIComponent(college.id)}`), { method: "DELETE" });
     state.selectedCollegeId = "";
     state.selectedMajorId = "";
+    state.selectedTrackId = "";
     state.plan = null;
     setDirty(false);
     showEditor(false);
@@ -164,6 +166,51 @@ export function createEntityActions({
     await selectMajor(result.plan.id);
   }
 
+  async function addTrack() {
+    if (!state.plan || !state.selectedMajorId) {
+      return setStatus("اختر تخصصًا أولًا.", "error");
+    }
+    const values = await askForm({
+      title: "إضافة مسار",
+      message: "سيُنشأ المسار من الخطة المحددة حاليًا. المقررات التي لا تظهر في جميع المسارات ستُعلّم تلقائيًا كمقررات خاصة بالمسار.",
+      fields: [
+        { name: "name", label: "اسم المسار" },
+        { name: "id", label: "المعرّف الثابت للمسار", dir: "ltr" },
+      ],
+    });
+    if (!values) return;
+    const result = await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(state.selectedMajorId)}/tracks`), {
+      method: "POST",
+      body: JSON.stringify({ ...values, sourceTrackId: state.selectedTrackId }),
+    });
+    await loadState();
+    await selectMajor(state.selectedMajorId, result.plan.track.id);
+  }
+
+  async function deleteTrack() {
+    if (!state.plan?.track || !state.selectedTrackId) {
+      return setStatus("أضف مسارًا آخر أولًا؛ الخطة الوحيدة هي الخطة الأساسية للتخصص.", "error");
+    }
+    const major = selectedCollege(state)?.majors?.find((item) => item.id === state.selectedMajorId);
+    const selected = major?.tracks?.find((item) => item.id === state.selectedTrackId);
+    if (selected?.isRoot) return setStatus("لا يمكن حذف المسار الأساسي للتخصص.", "error");
+    const confirmed = await askForm({
+      title: "حذف المسار",
+      message: `سيُحذف مسار «${state.plan.track.name}» وخطته. لا يمكن التراجع عن ذلك.`,
+      submit: "حذف المسار",
+      danger: true,
+    });
+    if (!confirmed) return;
+    await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(state.selectedMajorId)}/tracks/${encodeURIComponent(state.selectedTrackId)}`), {
+      method: "DELETE",
+    });
+    const majorId = state.selectedMajorId;
+    state.selectedTrackId = "";
+    state.plan = null;
+    await loadState();
+    await selectMajor(majorId);
+  }
+
   async function deleteMajor() {
     if (!state.plan) return;
     const confirmed = await askForm({
@@ -175,6 +222,7 @@ export function createEntityActions({
     if (!confirmed) return;
     await request(institutionApi(`/colleges/${encodeURIComponent(state.selectedCollegeId)}/majors/${encodeURIComponent(state.selectedMajorId)}`), { method: "DELETE" });
     state.selectedMajorId = "";
+    state.selectedTrackId = "";
     state.plan = null;
     setDirty(false);
     showEditor(false);
@@ -189,7 +237,9 @@ export function createEntityActions({
     editCollege,
     deleteCollege,
     addMajor,
+    addTrack,
     duplicateMajor,
+    deleteTrack,
     deleteMajor,
   };
 }

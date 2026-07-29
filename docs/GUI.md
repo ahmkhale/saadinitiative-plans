@@ -6,14 +6,14 @@ Run `npm run gui` and open `http://127.0.0.1:4174`.
 
 1. Create/select an institution.
 2. Create/select a college.
-3. Create/select a major.
-4. Select applicable shared semester sources.
-5. Add major-owned semesters and course codes.
-6. Enter plan-owned prerequisites, corequisites, minimum hours, text conditions, and track status.
-7. Add scoped shared or custom electives.
-8. Enable and arrange the proposal.
-9. Review diagnostics.
-10. Save and export.
+3. Create/select a major and one of its nested tracks.
+4. Add tracks by copying the currently selected track when needed.
+5. Select applicable shared semester sources.
+6. Add major-owned semesters and course codes.
+7. Enter plan-owned prerequisites, corequisites, minimum hours, and text conditions.
+8. Add scoped shared or custom electives.
+9. Enable and arrange the proposal.
+10. Review diagnostics, save, and export.
 
 Institution/college names and edition/release are not editable per plan. Institution settings own shared release metadata.
 
@@ -27,7 +27,7 @@ Search results expose catalog provenance separately from data-quality badges. Mi
 
 ## Requirements and markers
 
-The editor exposes previous requirements, concurrent requirements, text conditions, minimum completed credits, and track status. Preview uses the resolved rule label:
+The editor exposes previous requirements, concurrent requirements, text conditions, and minimum completed credits. Track status is read-only and automatic: a course is marked track-specific when it does not exist in every sibling track. Preview uses the resolved rule label:
 
 - prerequisite codes render in the requirement pill;
 - corequisites render with `مرافق`;

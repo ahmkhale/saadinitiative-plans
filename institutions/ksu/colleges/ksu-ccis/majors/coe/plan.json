@@ -17,8 +17,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-8c9b1abd-c97a-4630-87b1-67a65f1f8af5:106-ريض",
@@ -26,8 +25,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-8c9b1abd-c97a-4630-87b1-67a65f1f8af5:111-عال",
@@ -35,8 +33,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-8c9b1abd-c97a-4630-87b1-67a65f1f8af5:151-ريض",
@@ -44,8 +41,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     },
@@ -58,8 +54,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-840802f5-ce23-45ee-905d-560c3e6b4aa6:109-نجم",
@@ -67,8 +62,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-840802f5-ce23-45ee-905d-560c3e6b4aa6:113-عال",
@@ -76,8 +70,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-840802f5-ce23-45ee-905d-560c3e6b4aa6:205-ريض",
@@ -85,8 +78,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-840802f5-ce23-45ee-905d-560c3e6b4aa6:211-هال",
@@ -94,8 +86,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     },
@@ -108,8 +99,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-486c83b7-fc45-442c-b36a-1144ea6d8af3:204-ريض",
@@ -117,8 +107,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-486c83b7-fc45-442c-b36a-1144ea6d8af3:207-كهر",
@@ -126,8 +115,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-486c83b7-fc45-442c-b36a-1144ea6d8af3:212-عال",
@@ -135,8 +123,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-486c83b7-fc45-442c-b36a-1144ea6d8af3:212-هال",
@@ -144,8 +131,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     },
@@ -158,8 +144,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-a7dd9e3d-7e8b-40bc-8c2b-5c12a1698a40:244-ريض",
@@ -167,8 +152,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-a7dd9e3d-7e8b-40bc-8c2b-5c12a1698a40:310-كهر",
@@ -176,8 +160,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-a7dd9e3d-7e8b-40bc-8c2b-5c12a1698a40:312-كهر",
@@ -185,8 +168,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-a7dd9e3d-7e8b-40bc-8c2b-5c12a1698a40:316-هال",
@@ -194,8 +176,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-a7dd9e3d-7e8b-40bc-8c2b-5c12a1698a40:351-هال",
@@ -203,8 +184,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     },
@@ -217,8 +197,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-dcac15cd-4cb9-43cf-91ca-507baf69ec41:318-هال",
@@ -226,8 +205,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-dcac15cd-4cb9-43cf-91ca-507baf69ec41:341-هال",
@@ -235,8 +213,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-dcac15cd-4cb9-43cf-91ca-507baf69ec41:352-هال",
@@ -244,8 +221,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-dcac15cd-4cb9-43cf-91ca-507baf69ec41:390-هال",
@@ -253,8 +229,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     },
@@ -267,8 +242,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-ccd580e5-a74b-4437-9740-d7c0c4e7e2f4:415-هال",
@@ -276,8 +250,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-ccd580e5-a74b-4437-9740-d7c0c4e7e2f4:441-هال",
@@ -285,8 +258,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-ccd580e5-a74b-4437-9740-d7c0c4e7e2f4:453-هال",
@@ -294,8 +266,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-ccd580e5-a74b-4437-9740-d7c0c4e7e2f4:490-هال",
@@ -303,8 +274,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     },
@@ -317,8 +287,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-0720a397-4a62-4900-84e6-8c619aa96980:442-هال",
@@ -326,8 +295,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:published-0720a397-4a62-4900-84e6-8c619aa96980:492-هال",
@@ -335,8 +303,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     },
@@ -349,8 +316,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     }
@@ -371,8 +337,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:413-هال",
@@ -380,8 +345,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:414-هال",
@@ -389,8 +353,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:416-هال",
@@ -398,8 +361,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:443-هال",
@@ -407,8 +369,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:445-هال",
@@ -416,8 +377,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:446-هال",
@@ -425,8 +385,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:454-هال",
@@ -434,8 +393,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:459-هال",
@@ -443,8 +401,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:460-هال",
@@ -452,8 +409,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:465-هال",
@@ -461,8 +417,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-2:491-هال",
@@ -470,8 +425,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     },
@@ -487,8 +441,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:204-كهر",
@@ -496,8 +449,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:230-نال",
@@ -505,8 +457,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:312-هاب",
@@ -514,8 +465,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:321-هاب",
@@ -523,8 +473,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:335-نال",
@@ -532,8 +481,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:361-عال",
@@ -541,8 +489,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:380-عال",
@@ -550,8 +497,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:385-نال",
@@ -559,8 +505,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:422-كهر",
@@ -568,8 +513,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:423-كهر",
@@ -577,8 +521,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:429-عال",
@@ -586,8 +529,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:453-عال",
@@ -595,8 +537,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:456-كهر",
@@ -604,8 +545,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:457-عال",
@@ -613,8 +553,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:462-عال",
@@ -622,8 +561,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:463-كهر",
@@ -631,8 +569,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:464-كهر",
@@ -640,8 +577,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         },
         {
           "id": "major:coe:elective:elective-group-3:486-هاب",
@@ -649,8 +585,7 @@
           "prerequisites": [],
           "corequisites": [],
           "minimumCompletedCredits": null,
-          "prerequisiteConditions": [],
-          "trackSpecific": false
+          "prerequisiteConditions": []
         }
       ]
     }

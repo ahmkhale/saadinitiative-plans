@@ -1,7 +1,6 @@
 import { refreshFallbackFromCatalog } from "../../application/hydrate-fallbacks.mjs";
 import { renderDraftPreview, resolveDraft } from "../../application/preview-plan.mjs";
 import { readSettings, saveSettings } from "../../infrastructure/repositories/settings-repository.mjs";
-import { preparePlanForEditor } from "../../application/plan-storage.mjs";
 import { saveCourseColorAliases } from "../../infrastructure/repositories/course-color-repository.mjs";
 import { distUrl, json, readBody } from "./http.mjs";
 
@@ -43,7 +42,10 @@ export function createGuiApiRouter(options) {
       const body = await readBody(req);
       const context = selectedContext(url, body);
       const operation = url.pathname === "/api/preview" ? renderDraftPreview : resolveDraft;
-      const result = operation(body.plan, pipelineOptions(context, body.collegeId));
+      const plan = body.majorId
+        ? context.store.getPlanForEditor(body.collegeId, body.majorId, body.trackId, body.plan)
+        : body.plan;
+      const result = operation(plan, pipelineOptions(context, body.collegeId));
       return json(res, 200, url.pathname === "/api/validate" ? {
         ok: result.ok,
         plan: result.plan,
@@ -54,9 +56,12 @@ export function createGuiApiRouter(options) {
     if (req.method === "POST" && url.pathname === "/api/generate") {
       const body = await readBody(req);
       const context = selectedContext(url, body);
-      const planToExport = body.save
-        ? context.store.savePlan(body.collegeId, body.majorId, body.plan)
+      const savedPlan = body.save
+        ? context.store.savePlan(body.collegeId, body.majorId, body.plan, body.trackId)
         : body.plan;
+      const planToExport = body.majorId
+        ? context.store.getPlanForEditor(body.collegeId, body.majorId, body.trackId, savedPlan)
+        : savedPlan;
       const result = exportDraftFn(planToExport, {
         ...pipelineOptions(context, body.collegeId),
         outputRoot,
@@ -173,12 +178,15 @@ async function routeColleges({ req, res, segments, context, institutions, instit
   if (segments.length === 7 && req.method === "GET") {
     return json(res, 200, {
       ok: true,
-      plan: { ...preparePlanForEditor(context.store.getPlan(collegeId, majorId)), ...metadata },
+      plan: { ...context.store.getPlanForEditor(collegeId, majorId), ...metadata },
     });
   }
   if (segments.length === 7 && req.method === "PUT") {
     const plan = context.store.savePlan(collegeId, majorId, await readBody(req));
-    return json(res, 200, { ok: true, plan: { ...preparePlanForEditor(plan), ...metadata } });
+    return json(res, 200, {
+      ok: true,
+      plan: { ...context.store.getPlanForEditor(collegeId, plan.id), ...metadata },
+    });
   }
   if (segments.length === 7 && req.method === "DELETE") {
     context.store.deleteMajor(collegeId, majorId);
@@ -186,6 +194,38 @@ async function routeColleges({ req, res, segments, context, institutions, instit
   }
   if (segments[7] === "duplicate" && req.method === "POST") {
     return json(res, 201, { ok: true, plan: context.store.duplicateMajor(collegeId, majorId, await readBody(req)) });
+  }
+  if (segments[7] === "tracks" && segments.length === 8 && req.method === "POST") {
+    return json(res, 201, {
+      ok: true,
+      plan: context.store.createTrack(collegeId, majorId, await readBody(req)),
+    });
+  }
+  if (segments[7] === "tracks" && segments.length === 9) {
+    const trackId = segments[8];
+    if (req.method === "GET") {
+      return json(res, 200, {
+        ok: true,
+        plan: {
+          ...context.store.getPlanForEditor(collegeId, majorId, trackId),
+          ...metadata,
+        },
+      });
+    }
+    if (req.method === "PUT") {
+      const plan = context.store.savePlan(collegeId, majorId, await readBody(req), trackId);
+      return json(res, 200, {
+        ok: true,
+        plan: {
+          ...context.store.getPlanForEditor(collegeId, plan.id, trackId),
+          ...metadata,
+        },
+      });
+    }
+    if (req.method === "DELETE") {
+      context.store.deleteTrack(collegeId, majorId, trackId);
+      return json(res, 200, { ok: true });
+    }
   }
   return json(res, 404, { ok: false, error: "Major route not found." });
 }

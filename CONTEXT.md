@@ -2,7 +2,7 @@
 
 Academic plans were previously assembled manually in Figma. This repository preserves that approved visual system while making plans scalable across institutions, colleges, majors, shared academic blocks, and catalog terms.
 
-The operator manages institutional hierarchy, major-owned semesters, course codes, prerequisites/corequisites, minimum-hour/text conditions, track flags, elective decisions, proposal placement, and genuinely missing facts. The application derives everything repetitive.
+The operator manages institutional hierarchy, major tracks, track-owned semesters, course codes, prerequisites/corequisites, minimum-hour/text conditions, elective decisions, proposal placement, and genuinely missing facts. The application derives track-specific markers and everything repetitive.
 
 ## Shared academic sources
 

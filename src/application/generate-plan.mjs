@@ -8,6 +8,7 @@ import { safeSlug } from "../infrastructure/fs/safe-slug.mjs";
 import { defaultCatalogService } from "../infrastructure/catalog/catalog-service.mjs";
 import { executePlanPipeline } from "./plan-pipeline.mjs";
 import { metadataForPlanPath } from "../infrastructure/repositories/institution-repository.mjs";
+import { readPlanWithDerivedTrackStatus } from "../infrastructure/repositories/track-plan-loader.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(path.dirname(thisFile), "../..");
@@ -15,7 +16,10 @@ const projectRoot = path.resolve(path.dirname(thisFile), "../..");
 export function outputPaths(plan, options = {}) {
   const folder = options.outputDir
     ? path.resolve(options.outputDir)
-    : path.join(projectRoot, "dist", safeSlug(plan.id ?? plan.planCode ?? plan.major, "plan"));
+    : path.join(projectRoot, "dist", safeSlug(
+      plan.track?.id ? `${plan.id ?? plan.major}-${plan.track.id}` : plan.id ?? plan.planCode ?? plan.major,
+      "plan",
+    ));
   const base = options.outputName ?? "plan";
   return {
     folder,
@@ -28,7 +32,7 @@ export function outputPaths(plan, options = {}) {
 }
 
 export function generatePlan(options) {
-  const rawPlan = readJson(options.planPath);
+  const rawPlan = readPlanWithDerivedTrackStatus(options.planPath);
   const rawCatalog = options.catalogPath ? readJson(options.catalogPath) : null;
   const colorsPath = options.colorsPath ?? path.join(projectRoot, "data", "course-colors.json");
   const colors = options.colorsPath || options.catalogPath

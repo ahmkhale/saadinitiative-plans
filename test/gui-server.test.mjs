@@ -139,12 +139,40 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
     const read = await fetch(`${base}/api/institutions/test-university/colleges/ccis/majors/cs`).then((response) => response.json());
     assert.equal(read.plan.major, "علوم الحاسب");
 
-    const draft = structuredClone(read.plan);
+    const createdTrack = await fetch(`${base}/api/institutions/test-university/colleges/ccis/majors/cs/tracks`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: "ai",
+        name: "مسار الذكاء الاصطناعي",
+        sourceTrackId: "cs",
+      }),
+    }).then((response) => response.json());
+    assert.equal(createdTrack.plan.track.name, "مسار الذكاء الاصطناعي");
+    createdTrack.plan.semesters[0].courses = [];
+    const savedTrack = await fetch(`${base}/api/institutions/test-university/colleges/ccis/majors/cs/tracks/ai`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(createdTrack.plan),
+    }).then((response) => response.json());
+    assert.equal(savedTrack.plan.track.id, "ai");
+    const derivedRoot = await fetch(`${base}/api/institutions/test-university/colleges/ccis/majors/cs`)
+      .then((response) => response.json());
+    assert.equal(derivedRoot.plan.semesters[0].courses[0].trackSpecific, true);
+    assert.equal(value.store.getPlan("ccis", "cs").semesters[0].courses[0].trackSpecific, undefined);
+
+    const draft = structuredClone(derivedRoot.plan);
     draft.major = "علوم الحاسب - غير محفوظ";
     const validation = await fetch(`${base}/api/validate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ institutionId: "test-university", collegeId: "ccis", plan: draft }),
+      body: JSON.stringify({
+        institutionId: "test-university",
+        collegeId: "ccis",
+        majorId: "cs",
+        trackId: "general",
+        plan: draft,
+      }),
     }).then((response) => response.json());
     assert.equal(validation.ok, true);
     assert.equal(validation.plan.semesters[0].courses[0].name, "مقدمة في البرمجة");
