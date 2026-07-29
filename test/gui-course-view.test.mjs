@@ -132,3 +132,32 @@ test("university elective rows still require weekly hours when unresolved", () =
   assert.match(html, /data-manual-fact="exerciseHours"[^>]+required/u);
   assert.match(html, /data-manual-fact="practicalHours"[^>]+required/u);
 });
+
+test("published course rows expose one merged requirements editor outside details", () => {
+  const html = renderCourseRow({
+    ...baseArgs,
+    entry: {
+      ...baseArgs.entry,
+      prerequisites: ["101 ريض"],
+      corequisites: ["204 فيز"],
+      prerequisiteConditions: ["مستوى 4"],
+      minimumCompletedCredits: 45,
+    },
+    resolved: {
+      code: "204 ريض",
+      name: "المعادلات التفاضلية",
+      academicHours: 3,
+      prerequisites: ["101 ريض"],
+    },
+  });
+
+  assert.match(html, /class="quick-requirements"/u);
+  assert.match(html, /data-dependency="requirements" value="101 ريض، 204 فيز"/u);
+  assert.match(html, /data-dependency="prerequisiteConditions" value="مستوى 4"/u);
+  assert.match(html, /data-dependency="minimumCompletedCredits"[^>]+value="45"/u);
+  assert.doesNotMatch(html, /data-dependency="prerequisites"/u);
+  assert.doesNotMatch(html, /data-dependency="corequisites"/u);
+
+  const detailsIndex = html.indexOf('<details class="course-details"');
+  assert.ok(html.indexOf('data-dependency="requirements"') < detailsIndex);
+});

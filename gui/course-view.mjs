@@ -58,6 +58,10 @@ export function renderCourseRow({
       ? `shared-semester-${groupIndex + 1}` : kind === "sharedElective"
         ? "shared-elective-source" : `proposal-semester-${groupIndex + 1}`;
   const fallback = fallbackCourses?.[code];
+  const requirementCodes = Array.from(new Set([
+    ...(rules.prerequisites ?? rules.override?.prerequisites ?? []),
+    ...(rules.corequisites ?? rules.override?.corequisites ?? []),
+  ]));
   return `
     <div class="course-row ${pending ? "pending" : unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(kind === "proposal" && !isPlaceholder ? entryId(entry) : code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" data-optional-activity-hours="${optionalActivityHours}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
       <div class="course-identity"><div class="course-code">${escapeHtml(displayCode)}</div><div class="course-meta">${escapeHtml(displaySubject)}</div><div class="badge-list">${courseBadges(resolved, isPlaceholder)}</div></div>
@@ -73,6 +77,16 @@ export function renderCourseRow({
         ${kind === "proposal" && isPlaceholder ? `<button class="icon-button edit-placeholder" type="button" aria-label="تعديل المقرر النائب">${icon("edit")}</button>` : ""}
         ${kind !== "proposal" || isPlaceholder ? `<button class="icon-button course-delete danger" type="button" aria-label="حذف">${icon("trash")}</button>` : ""}
       </div>
+      ${kind !== "proposal" && !isPlaceholder ? `
+      <div class="quick-requirements">
+        <label class="requirements-courses">المتطلبات
+          <input data-dependency="requirements" value="${escapeHtml(requirementCodes.join("، "))}" placeholder="101 عال، 101 ريض">
+          <small>تُصنّف مقررات المستوى نفسه تلقائيًا كمتطلبات مرافقة، وما عداها كمتطلبات سابقة.</small>
+        </label>
+        <label>شروط المتطلب النصية<input data-dependency="prerequisiteConditions" value="${escapeHtml((rules.prerequisiteConditions ?? []).join("، "))}" placeholder="مستوى 7"></label>
+        <label>الحد الأدنى للساعات المجتازة<input data-dependency="minimumCompletedCredits" type="number" min="0" value="${escapeHtml(rules.minimumCompletedCredits ?? rules.override?.minimumCompletedCredits ?? "")}"></label>
+        <span class="derived-track-rule" ${resolved?.isTrackSpecific ? "" : "hidden"}>مقرر خاص بهذا المسار · محتسب تلقائيًا</span>
+      </div>` : ""}
       <details class="course-details" ${kind === "proposal" ? "hidden" : unresolved && !isPlaceholder ? "open" : ""}>
         <summary>${unresolved ? "أكمل بيانات المقرر" : "تفاصيل المقرر وقواعد الخطة"}</summary>
         ${!isPlaceholder ? `<p class="concept-heading">بيانات المقرر</p>
@@ -85,14 +99,7 @@ export function renderCourseRow({
           ${["male", "female"].includes(resolved?.catalogSource) && fallback ? '<button class="button ghost refresh-catalog-facts" type="button">تحديث البيانات من الدليل</button>' : ""}
           ${fallback?.source ? `<span class="source-badge">${fallback.manuallyEditedFields?.length ? "بيانات معدلة يدويًا" : "لقطة من الدليل"}</span>` : ""}
         </div>
-        <p class="concept-heading">قواعد الخطة</p>` : ""}
-        <div class="dependency-grid">
-          ${!isPlaceholder ? `<label>المتطلبات السابقة<input data-dependency="prerequisites" value="${escapeHtml((rules.prerequisites ?? rules.override?.prerequisites ?? []).join("، "))}" placeholder="101 عال، 101 ريض"></label>
-          <label>المتطلبات المرافقة<input data-dependency="corequisites" value="${escapeHtml((rules.corequisites ?? rules.override?.corequisites ?? []).join("، "))}"></label>
-          <label>شروط المتطلب النصية<input data-dependency="prerequisiteConditions" value="${escapeHtml((rules.prerequisiteConditions ?? []).join("، "))}" placeholder="مستوى 7"></label>
-          <label>الحد الأدنى للساعات المجتازة<input data-dependency="minimumCompletedCredits" type="number" min="0" value="${escapeHtml(rules.minimumCompletedCredits ?? rules.override?.minimumCompletedCredits ?? "")}"></label>
-          <span class="derived-track-rule" ${resolved?.isTrackSpecific ? "" : "hidden"}>مقرر خاص بهذا المسار · محتسب تلقائيًا</span>` : ""}
-        </div>
+        ` : ""}
       </details>
     </div>
   `;

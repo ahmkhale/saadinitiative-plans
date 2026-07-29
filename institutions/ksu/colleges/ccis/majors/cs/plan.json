@@ -159,7 +159,9 @@
         {
           "id": "major:cs:elective:elective-group-2:210-فيز",
           "code": "210 فيز",
-          "prerequisites": [],
+          "prerequisites": [
+            "101 ريض"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []

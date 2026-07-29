@@ -3,7 +3,7 @@
   "id": "cs",
   "major": "علوم الحاسب",
   "degree": "البكالوريوس",
-  "expectedCredits": 128,
+  "expectedCredits": 0,
   "sharedSemesterSets": [],
   "semesters": [
     {
@@ -12,7 +12,9 @@
         {
           "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:212-عال",
           "code": "212 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "113 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -20,7 +22,9 @@
         {
           "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:215-عال",
           "code": "215 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "111 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -28,7 +32,9 @@
         {
           "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:304-عال",
           "code": "304 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "113 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -36,7 +42,9 @@
         {
           "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:339-عال",
           "code": "339 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "281 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -45,7 +53,9 @@
           "id": "major:cs:published-53179a85-1ed9-4382-957a-ab657b687199:380-عال",
           "code": "380 عال",
           "prerequisites": [],
-          "corequisites": [],
+          "corequisites": [
+            "212 عال"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         }
@@ -57,7 +67,9 @@
         {
           "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:227-عال",
           "code": "227 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "212 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -65,7 +77,10 @@
         {
           "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:311-عال",
           "code": "311 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "212 عال",
+            "281 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -74,14 +89,18 @@
           "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:329-عال",
           "code": "329 عال",
           "prerequisites": [],
-          "corequisites": [],
+          "corequisites": [
+            "227 عال"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         },
         {
           "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:361-عال",
           "code": "361 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "212 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -90,7 +109,9 @@
           "id": "major:cs:published-415422d7-47e8-4a02-b4be-fae2a0aa9796:429-عال",
           "code": "429 عال",
           "prerequisites": [],
-          "corequisites": [],
+          "corequisites": [
+            "329 عال"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         }
@@ -102,7 +123,9 @@
         {
           "id": "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:340-عال",
           "code": "340 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "329 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -110,7 +133,9 @@
         {
           "id": "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:343-عال",
           "code": "343 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "212 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -118,7 +143,9 @@
         {
           "id": "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:437-عال",
           "code": "437 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "429 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -128,15 +155,17 @@
           "code": "479 عال",
           "prerequisites": [],
           "corequisites": [],
-          "minimumCompletedCredits": null,
+          "minimumCompletedCredits": 90,
           "prerequisiteConditions": []
         },
         {
           "id": "major:cs:published-c82b2409-0133-4278-9dce-577eb72dfbd7:488-عال",
           "code": "488 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "429 عال"
+          ],
           "corequisites": [],
-          "minimumCompletedCredits": null,
+          "minimumCompletedCredits": 90,
           "prerequisiteConditions": []
         }
       ]
@@ -147,7 +176,9 @@
         {
           "id": "major:cs:published-7cdbae5f-df45-4451-bb96-683f1b51b3c4:453-عال",
           "code": "453 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "227 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -155,7 +186,9 @@
         {
           "id": "major:cs:published-7cdbae5f-df45-4451-bb96-683f1b51b3c4:492-عال",
           "code": "492 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "488 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -173,7 +206,9 @@
         {
           "id": "major:cs:elective:elective-group-1:427-عال",
           "code": "427 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "429 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -181,7 +216,9 @@
         {
           "id": "major:cs:elective:elective-group-1:432-عال",
           "code": "432 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "429 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -189,7 +226,9 @@
         {
           "id": "major:cs:elective:elective-group-1:433-عال",
           "code": "433 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "429 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -197,7 +236,9 @@
         {
           "id": "major:cs:elective:elective-group-1:434-عال",
           "code": "434 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "429 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -205,7 +246,9 @@
         {
           "id": "major:cs:elective:elective-group-1:435-عال",
           "code": "435 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "429 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -213,7 +256,9 @@
         {
           "id": "major:cs:elective:elective-group-1:436-عال",
           "code": "436 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "429 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -221,7 +266,9 @@
         {
           "id": "major:cs:elective:elective-group-1:439-عال",
           "code": "439 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "429 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -229,7 +276,9 @@
         {
           "id": "major:cs:elective:elective-group-1:445-هال",
           "code": "445 هال",
-          "prerequisites": [],
+          "prerequisites": [
+            "329 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -237,7 +286,9 @@
         {
           "id": "major:cs:elective:elective-group-1:462-عال",
           "code": "462 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "361 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []

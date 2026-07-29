@@ -290,7 +290,7 @@ img { display: block; }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 label { color: #525252; font-size: 10px; font-weight: 600; }
 label input, label textarea, label select, .semester-fields input, .course-adder input, .inline-form input,
-.dialog-fields input, .dialog-fields textarea, .phase-row input, .facts-grid input, .dependency-grid input,
+.dialog-fields input, .dialog-fields textarea, .phase-row input, .facts-grid input, .dependency-grid input, .quick-requirements input,
 .requirement-editor select {
   display: block;
   width: 100%;
@@ -339,6 +339,21 @@ input:focus, textarea:focus, select:focus {
 .course-name { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .course-meta { color: var(--muted-foreground); font-size: 9px; }
 .course-actions { display: flex; justify-content: flex-end; gap: 4px; flex-wrap: wrap; }
+.quick-requirements {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(220px, 1.8fr) minmax(140px, 1fr) 150px auto;
+  gap: 8px;
+  align-items: end;
+  padding-top: 4px;
+}
+.quick-requirements small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted-foreground);
+  font-size: 8px;
+  line-height: 1.4;
+}
 .course-details {
   grid-column: 1 / -1;
   margin: 1px -2px -2px;
@@ -660,7 +675,7 @@ input:focus, textarea:focus, select:focus {
   .sidebar { position: static; width: 100%; height: auto; border-bottom: 1px solid var(--border); }
   .editor { padding-inline: 14px; }
   .tabs { margin-inline: -14px; padding-inline: 14px; overflow-x: auto; }
-  .form-grid, .facts-grid, .dependency-grid, .color-row { grid-template-columns: 1fr; }
+  .form-grid, .facts-grid, .dependency-grid, .quick-requirements, .color-row { grid-template-columns: 1fr; }
   .course-row { grid-template-columns: 1fr; }
   .course-actions { justify-content: flex-start; }
   .course-name { white-space: normal; }

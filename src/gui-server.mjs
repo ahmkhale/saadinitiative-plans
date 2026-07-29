@@ -13,6 +13,7 @@ import { contentType, json, safeFile, serveFile, text } from "./presentation/gui
 
 const thisFile = fileURLToPath(import.meta.url);
 const guiDir = path.join(projectRoot, "gui");
+const domainDir = path.join(projectRoot, "src", "domain");
 const distDir = path.join(projectRoot, "dist");
 const fontDir = path.resolve(process.env.SAAD_FONT_DIR ?? path.join(projectRoot, "font"));
 const defaultPort = Number(process.env.PORT || 4174);
@@ -50,6 +51,10 @@ export function createGuiServer(options = {}) {
       if (req.method === "GET" && url.pathname.startsWith("/gui/")) {
         const target = safeFile(guiDir, decodeURIComponent(url.pathname.slice("/gui/".length)));
         return target ? serveFile(res, target, contentType(target)) : text(res, 403, "Forbidden");
+      }
+      if (req.method === "GET" && url.pathname.startsWith("/src/domain/")) {
+        const target = safeFile(domainDir, decodeURIComponent(url.pathname.slice("/src/domain/".length)));
+        return target?.endsWith(".mjs") ? serveFile(res, target, contentType(target)) : text(res, 403, "Forbidden");
       }
       if (req.method === "GET" && ["/app.js", "/styles.css"].includes(url.pathname)) {
         return serveFile(res, path.join(guiDir, path.basename(url.pathname)), contentType(url.pathname));

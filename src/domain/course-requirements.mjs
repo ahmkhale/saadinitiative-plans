@@ -11,6 +11,25 @@ export function normalizeRequirementRules(entry = {}) {
   };
 }
 
+export function classifyRequirementCourses(requirements = [], sameLevelCourses = []) {
+  const sameLevelKeys = new Set(sameLevelCourses.map((course) => (
+    courseCodeKey(typeof course === "string" ? course : course?.code)
+  )).filter(Boolean));
+  const prerequisites = [];
+  const corequisites = [];
+  const seen = new Set();
+
+  for (const value of requirements) {
+    const code = normalizeCourseCode(value);
+    const key = courseCodeKey(code);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    (sameLevelKeys.has(key) ? corequisites : prerequisites).push(code);
+  }
+
+  return { prerequisites, corequisites };
+}
+
 export function formatCourseRequirementLabel(course = {}) {
   const parts = [
     ...(course.prerequisites ?? []),

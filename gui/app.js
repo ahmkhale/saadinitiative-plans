@@ -12,6 +12,7 @@ import { createPreviewController } from "./gui/preview-controller.mjs";
 import { createExportController } from "./gui/export-controller.mjs";
 import { createColorEditor } from "./gui/color-editor.mjs";
 import { createProposalPlaceholderActions } from "./gui/proposal-placeholder-actions.mjs";
+import { classifyRequirementCourses } from "./src/domain/course-requirements.mjs";
 import {
   createProposalFromPublished,
   createProposalSemester,
@@ -383,7 +384,6 @@ const { render: renderCourseColors } = createColorEditor({
   setStatus,
   schedulePreview,
 });
-
 const {
   renderSharedSetEditor,
   scheduleSharedSetResolution,
@@ -423,7 +423,6 @@ function renderEditor() {
   renderSharedSets();
   renderSharedElectiveSources();
 }
-
 function addCodes(kind, index, value) {
   const target = collection(kind, index);
   const existing = new Set(target.map((entry) => entryCode(entry).replace(/\s+/gu, " ").trim().toLocaleLowerCase("ar")));
@@ -522,7 +521,12 @@ function updateDependency(row, input) {
   const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
   const index = Number(row.dataset.courseIndex);
   const entry = normalizedEntry(target[index]);
-  if (input.dataset.dependency === "minimumCompletedCredits") {
+  if (input.dataset.dependency === "requirements") {
+    const sameLevelCourses = ["semester", "shared"].includes(row.dataset.kind) ? target : [];
+    const classified = classifyRequirementCourses(parseCodes(input.value), sameLevelCourses);
+    if (classified.prerequisites.length) entry.prerequisites = classified.prerequisites; else delete entry.prerequisites;
+    if (classified.corequisites.length) entry.corequisites = classified.corequisites; else delete entry.corequisites;
+  } else if (input.dataset.dependency === "minimumCompletedCredits") {
     if (input.value === "") delete entry.minimumCompletedCredits;
     else entry.minimumCompletedCredits = Number(input.value);
   } else {
