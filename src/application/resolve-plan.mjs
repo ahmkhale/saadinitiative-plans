@@ -72,8 +72,9 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
   };
 
   if (plan.proposal && !options.skipProposal) {
+    const reconciledProposal = reconcileProposal(result, plan.proposal, diagnostics);
     result.proposal = {
-      ...reconcileProposal(result, plan.proposal, diagnostics),
+      ...reconciledProposal,
       id: plan.id ? `${plan.id}-proposal` : null,
       university: result.university,
       college: result.college,
@@ -83,6 +84,21 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
       release: result.release,
       headerSubtitle: displayMajor,
     };
+    if (reconciledProposal.totalHours !== totalHours) {
+      addDiagnostic(
+        diagnostics,
+        "warnings",
+        "PROPOSAL_HOURS_MISMATCH",
+        `Proposal hours are ${reconciledProposal.totalHours}, but the main plan totals ${totalHours} (${cumulative} published + ${electiveHours} elective).`,
+        {
+          proposal: reconciledProposal.totalHours,
+          mainPlan: totalHours,
+          published: cumulative,
+          elective: electiveHours,
+          difference: reconciledProposal.totalHours - totalHours,
+        },
+      );
+    }
   }
 
   return result;

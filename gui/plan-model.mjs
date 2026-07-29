@@ -103,6 +103,17 @@ export function sortPublishedCollections(plan) {
 
 export function composeParentTrackPlan(parentPlan, trackPlan) {
   if (!parentPlan) return trackPlan;
+  const parentElectiveKeys = new Set((parentPlan.electiveGroups ?? [])
+    .map((group) => group?.sourceId ?? group?.id)
+    .filter(Boolean));
+  const trackElectiveGroups = (trackPlan.electiveGroups ?? []).map((group) => {
+    const key = group?.sourceId ?? group?.id;
+    if (!key || !parentElectiveKeys.has(key)) return group;
+    return {
+      ...group,
+      proposalRequirementId: `track:${trackPlan.track?.id ?? "default"}:elective:${key}`,
+    };
+  });
   return {
     ...parentPlan,
     ...trackPlan,
@@ -114,7 +125,7 @@ export function composeParentTrackPlan(parentPlan, trackPlan) {
       ...(trackPlan.sharedSemesterSets ?? []),
     ])),
     semesters: [...(parentPlan.semesters ?? []), ...(trackPlan.semesters ?? [])],
-    electiveGroups: [...(parentPlan.electiveGroups ?? []), ...(trackPlan.electiveGroups ?? [])],
+    electiveGroups: [...(parentPlan.electiveGroups ?? []), ...trackElectiveGroups],
     fallbackCourses: {
       ...(parentPlan.fallbackCourses ?? {}),
       ...(trackPlan.fallbackCourses ?? {}),
@@ -177,6 +188,15 @@ export function reconcileProposalDraft(plan, sharedSemesterSets) {
     target?.courseOrder.push(courseId);
     placed.add(courseId);
   }
+  const publishedEntries = new Map(published.flatMap((semester) => (
+    semester.courses.map((entry) => [entryId(entry), entry])
+  )));
+  semesters.forEach((semester) => {
+    semester.courseOrder.sort((left, right) => compareCourseEntries(
+      publishedEntries.get(left) ?? { code: left },
+      publishedEntries.get(right) ?? { code: right },
+    ));
+  });
   plan.proposal.semesters = semesters;
   delete plan.proposal.phases;
   delete plan.proposal.expectedCredits;

@@ -53,6 +53,7 @@ export function resolveElectiveGroups(plan, resolver, diagnostics) {
     const requirementText = hasText && !hasHours ? String(group.requirementText).trim() : null;
     return {
       id: group.id ?? `elective-group-${groupIndex + 1}`,
+      proposalRequirementId: group.proposalRequirementId ?? null,
       name: group.name ?? `مجموعة اختيارية ${groupIndex + 1}`,
       sourceId: group.sourceId ?? null,
       sharedSource: Boolean(group.sharedSource),

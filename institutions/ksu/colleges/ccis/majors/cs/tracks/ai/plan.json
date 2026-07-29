@@ -12,7 +12,9 @@
         {
           "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:212-عال",
           "code": "212 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "113 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -20,7 +22,9 @@
         {
           "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:216-عال",
           "code": "216 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "111 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -28,7 +32,9 @@
         {
           "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:304-عال",
           "code": "304 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "113 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -36,7 +42,9 @@
         {
           "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:339-عال",
           "code": "339 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "281 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -45,7 +53,9 @@
           "id": "major:cs:published-c9616adc-96f1-4053-a610-a38fce2be0ac:380-عال",
           "code": "380 عال",
           "prerequisites": [],
-          "corequisites": [],
+          "corequisites": [
+            "212 عال"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         }
@@ -57,7 +67,9 @@
         {
           "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:227-عال",
           "code": "227 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "212 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -65,7 +77,10 @@
         {
           "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:311-عال",
           "code": "311 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "212 عال",
+            "281 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -74,14 +89,18 @@
           "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:329-عال",
           "code": "329 عال",
           "prerequisites": [],
-          "corequisites": [],
+          "corequisites": [
+            "227 عال"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         },
         {
           "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:361-عال",
           "code": "361 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "212 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -90,7 +109,9 @@
           "id": "major:cs:published-73e70878-68e6-474f-80c3-00b44d0e4f9b:429-عال",
           "code": "429 عال",
           "prerequisites": [],
-          "corequisites": [],
+          "corequisites": [
+            "329 عال"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         }

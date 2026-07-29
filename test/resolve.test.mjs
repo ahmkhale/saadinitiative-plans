@@ -310,6 +310,66 @@ test("proposal inherits published facts and appends black placeholders", () => {
   );
   assert.equal(placeholder.color, "#000000");
   assert.equal(diagnostics.summary.errors, 0);
+  assert.deepEqual(
+    diagnostics.items.find((item) => item.code === "PROPOSAL_HOURS_MISMATCH"),
+    {
+      severity: "warnings",
+      code: "PROPOSAL_HOURS_MISMATCH",
+      message: "Proposal hours are 12, but the main plan totals 9 (9 published + 0 elective).",
+      proposal: 12,
+      mainPlan: 9,
+      published: 9,
+      elective: 0,
+      difference: 3,
+    },
+  );
+});
+
+test("proposal hours match published courses plus elective requirements", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار",
+    semesters: [{ id: "published-1", courses: ["101 ريض"] }],
+    electiveGroups: [{
+      id: "elective-1",
+      name: "متطلبات المسار",
+      requiredHours: 3,
+      courses: ["201 ريض"],
+    }],
+    fallbackCourses: Object.fromEntries(["101 ريض", "201 ريض"].map((code) => [code, {
+      name: code,
+      academicHours: 3,
+      lectureHours: 3,
+      exerciseHours: 0,
+      practicalHours: 0,
+    }])),
+    proposal: {
+      semesters: [{
+        id: "published-1",
+        sourceSemesterId: "published-1",
+        type: "regular",
+        courseOrder: ["major:plan:published-1:101-ريض"],
+        placeholders: [{
+          id: "p1",
+          name: "من متطلبات المسار",
+          electiveGroupId: "elective-1",
+          allocationHours: 3,
+          hoursDisplay: "unknown",
+        }],
+      }],
+    },
+  });
+  const diagnostics = createDiagnostics();
+  const resolved = resolvePlan(plan, new Map(), colors, diagnostics);
+
+  assert.equal(resolved.publishedHours, 3);
+  assert.equal(resolved.electiveHours, 3);
+  assert.equal(resolved.totalHours, 6);
+  assert.equal(resolved.proposal.totalHours, 6);
+  assert.equal(
+    diagnostics.items.some((item) => item.code === "PROPOSAL_HOURS_MISMATCH"),
+    false,
+  );
 });
 
 test("accepts seven-course semesters without an overflow error", () => {

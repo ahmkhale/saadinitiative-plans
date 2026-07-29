@@ -67,8 +67,6 @@ export function renderCourseRow({
       <div class="course-meta">${resolved?.prerequisites?.length ? `سابق: ${escapeHtml(resolved.prerequisites.join("، "))}` : "لا متطلب سابق"}</div>
       <div class="course-actions">
         ${kind === "proposal" && !isPlaceholder ? `
-          <button class="icon-button proposal-course-up" type="button" aria-label="نقل المقرر إلى أعلى">${icon("chevron-up")}</button>
-          <button class="icon-button proposal-course-down" type="button" aria-label="نقل المقرر إلى أسفل">${icon("chevron-down")}</button>
           <button class="button ghost proposal-course-previous" type="button">الفصل السابق</button>
           <button class="button ghost proposal-course-next" type="button">الفصل التالي</button>
           <button class="button ghost proposal-course-home" type="button">إعادة إلى المستوى المنشور</button>` : ""}

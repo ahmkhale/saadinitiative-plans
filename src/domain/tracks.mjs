@@ -63,6 +63,17 @@ export function composeTrackPlan(parentPlan, trackPlan) {
   if (!trackPlan?.track) return structuredClone(parentPlan ?? {});
   const parent = structuredClone(parentPlan ?? {});
   const child = structuredClone(trackPlan);
+  const parentElectiveKeys = new Set((parent.electiveGroups ?? [])
+    .map((group) => group?.sourceId ?? group?.id)
+    .filter(Boolean));
+  const childElectiveGroups = (child.electiveGroups ?? []).map((group) => {
+    const key = group?.sourceId ?? group?.id;
+    if (!key || !parentElectiveKeys.has(key)) return group;
+    return {
+      ...group,
+      proposalRequirementId: `track:${child.track.id}:elective:${key}`,
+    };
+  });
   return {
     ...parent,
     ...child,
@@ -81,7 +92,7 @@ export function composeTrackPlan(parentPlan, trackPlan) {
     ],
     electiveGroups: [
       ...(parent.electiveGroups ?? []),
-      ...(child.electiveGroups ?? []),
+      ...childElectiveGroups,
     ],
     fallbackCourses: {
       ...(parent.fallbackCourses ?? {}),

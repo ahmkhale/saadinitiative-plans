@@ -1,7 +1,19 @@
-import { entryId } from "./plan-model.mjs";
+import { compareCourseEntries, entryId } from "./plan-model.mjs";
 
 function groupKey(group) {
-  return group?.sourceId ?? group?.id ?? "";
+  return group?.proposalRequirementId ?? group?.sourceId ?? group?.id ?? "";
+}
+
+function sortProposalCourseOrders(proposal, publishedSemesters) {
+  const entries = new Map((publishedSemesters ?? []).flatMap((semester) => (
+    (semester.courses ?? []).map((entry) => [entryId(entry), entry])
+  )));
+  for (const semester of proposal?.semesters ?? []) {
+    semester.courseOrder.sort((left, right) => compareCourseEntries(
+      entries.get(left) ?? { code: left },
+      entries.get(right) ?? { code: right },
+    ));
+  }
 }
 
 function typicalCourseHours(group) {
@@ -67,7 +79,7 @@ export function moveItem(array, index, direction) {
 }
 
 export function createProposalFromPublished(publishedSemesters) {
-  return {
+  const proposal = {
     enabled: true,
     title: "الخطة المقترحة",
     showGuide: true,
@@ -79,6 +91,8 @@ export function createProposalFromPublished(publishedSemesters) {
       placeholders: [],
     })),
   };
+  sortProposalCourseOrders(proposal, publishedSemesters);
+  return proposal;
 }
 
 export function createProposalSemester(type = "regular") {
@@ -99,9 +113,7 @@ export function moveProposalCourse({ proposal, publishedSemesters, fromIndex, co
   const courseIndex = source.courseOrder.indexOf(courseId);
   if (courseIndex < 0) return false;
 
-  if (action === "up" || action === "down") {
-    return moveItem(source.courseOrder, courseIndex, action === "up" ? -1 : 1);
-  }
+  if (action === "up" || action === "down") return false;
 
   let targetIndex = action === "previous" ? fromIndex - 1 : action === "next" ? fromIndex + 1 : -1;
   if (action === "home") {
@@ -113,23 +125,22 @@ export function moveProposalCourse({ proposal, publishedSemesters, fromIndex, co
   if (targetIndex < 0 || targetIndex >= semesters.length || targetIndex === fromIndex) return false;
   source.courseOrder.splice(courseIndex, 1);
   semesters[targetIndex].courseOrder.push(courseId);
+  sortProposalCourseOrders(proposal, publishedSemesters);
   return true;
 }
 
-export function dropProposalCourse({ proposal, fromIndex, targetIndex, courseId, beforeCourseId = null }) {
+export function dropProposalCourse({ proposal, publishedSemesters, fromIndex, targetIndex, courseId }) {
   const semesters = proposal?.semesters ?? [];
   const source = semesters[fromIndex];
   const target = semesters[targetIndex];
   if (!source || !target) return false;
   const sourceIndex = source.courseOrder.indexOf(courseId);
   if (sourceIndex < 0) return false;
-  if (fromIndex === targetIndex && beforeCourseId === courseId) return false;
+  if (fromIndex === targetIndex) return false;
 
   source.courseOrder.splice(sourceIndex, 1);
-  let insertAt = beforeCourseId ? target.courseOrder.indexOf(beforeCourseId) : target.courseOrder.length;
-  if (insertAt < 0) insertAt = target.courseOrder.length;
-  if (source === target && sourceIndex < insertAt) insertAt -= 1;
-  target.courseOrder.splice(Math.max(0, insertAt), 0, courseId);
+  target.courseOrder.push(courseId);
+  sortProposalCourseOrders(proposal, publishedSemesters);
   return true;
 }
 

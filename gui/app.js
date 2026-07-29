@@ -635,8 +635,6 @@ document.addEventListener("click", (event) => {
   const row = event.target.closest(".course-row");
 
   if (row?.dataset.kind === "proposal") {
-    if (event.target.closest(".proposal-course-up")) moveProposalCourse(row, "up");
-    if (event.target.closest(".proposal-course-down")) moveProposalCourse(row, "down");
     if (event.target.closest(".proposal-course-previous")) moveProposalCourse(row, "previous");
     if (event.target.closest(".proposal-course-next")) moveProposalCourse(row, "next");
     if (event.target.closest(".proposal-course-home")) moveProposalCourse(row, "home");
@@ -867,13 +865,12 @@ document.addEventListener("drop", (event) => {
   const payload = JSON.parse(event.dataTransfer.getData("application/x-saad-proposal-course") || "null");
   if (!payload) return;
   const targetIndex = Number(card.dataset.groupIndex);
-  const targetRow = event.target.closest('.course-row[data-kind="proposal"][draggable="true"]');
   const moved = dropProposalCourse({
     proposal: state.plan.proposal,
+    publishedSemesters: publishedDecisionSemesters(),
     fromIndex: payload.semesterIndex,
     targetIndex,
     courseId: payload.code,
-    beforeCourseId: targetRow?.dataset.courseCode ?? null,
   });
   if (moved) changed(true);
 });

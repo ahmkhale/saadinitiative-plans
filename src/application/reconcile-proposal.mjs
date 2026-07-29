@@ -1,6 +1,6 @@
 import { addDiagnostic } from "../domain/diagnostics.mjs";
 import { normalizeActivityFacts } from "../domain/course-facts.mjs";
-import { courseCodeKey, numericValue } from "../domain/course-code.mjs";
+import { compareCourseCodes, courseCodeKey, numericValue } from "../domain/course-code.mjs";
 import { semesterLevelName } from "../domain/semester.mjs";
 
 function placeholderCourse(placeholder, semesterIndex, placeholderIndex) {
@@ -138,7 +138,8 @@ export function reconcileProposal(publishedPlan, proposal, diagnostics) {
     const realCourses = semester.courseOrder
       .map((courseId) => authoritative.get(courseId)?.course)
       .filter(Boolean)
-      .map((course) => structuredClone(course));
+      .map((course) => structuredClone(course))
+      .sort((left, right) => compareCourseCodes(left.code, right.code));
     const placeholders = semester.placeholders.map((placeholder, placeholderIndex) => (
       placeholderCourse(placeholder, semesterIndex, placeholderIndex)
     ));

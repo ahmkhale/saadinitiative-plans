@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   buildPublishedDecisionSemesters,
+  composeParentTrackPlan,
   sortPublishedCollections,
 } from "../gui/plan-model.mjs";
 import {
@@ -65,17 +66,47 @@ test("proposal actions preserve the parent course set while allowing movement", 
 
   assert.equal(dropProposalCourse({
     proposal,
+    publishedSemesters: published,
     fromIndex: 0,
-    targetIndex: 0,
+    targetIndex: 1,
     courseId: "c2",
-    beforeCourseId: "c1",
   }), true);
-  assert.deepEqual(proposal.semesters[0].courseOrder, ["c2", "c1"]);
+  assert.deepEqual(proposal.semesters[0].courseOrder, ["c1"]);
+  assert.deepEqual(proposal.semesters[1].courseOrder, ["c2"]);
+  assert.equal(dropProposalCourse({
+    proposal,
+    publishedSemesters: published,
+    fromIndex: 1,
+    targetIndex: 1,
+    courseId: "c2",
+  }), false);
 
   proposal.semesters[0].placeholders.push({ id: "p1", name: "من متطلبات المسار" });
   const reset = resetProposalToPublished(proposal, published);
   assert.deepEqual(reset[0].courseOrder, ["c1", "c2"]);
   assert.deepEqual(reset[0].placeholders, [{ id: "p1", name: "من متطلبات المسار" }]);
+});
+
+test("proposal course order is automatic within every level", () => {
+  const published = [{
+    id: "published",
+    courses: [
+      { id: "c497", code: "497 عال" },
+      { id: "c453", code: "453 عال" },
+      { id: "c479", code: "479 عال" },
+    ],
+  }];
+  const proposal = createProposalFromPublished(published);
+
+  assert.deepEqual(proposal.semesters[0].courseOrder, ["c453", "c479", "c497"]);
+  assert.equal(moveProposalCourse({
+    proposal,
+    publishedSemesters: published,
+    fromIndex: 0,
+    courseId: "c479",
+    action: "up",
+  }), false);
+  assert.deepEqual(proposal.semesters[0].courseOrder, ["c453", "c479", "c497"]);
 });
 
 test("proposal elective helpers add one typical course until a group reaches zero", () => {
@@ -133,6 +164,33 @@ test("proposal elective options only flag groups with differing course hours", (
   const options = proposalElectiveOptions(groups, { semesters: [] });
   assert.equal(options[0].hasVariableCourseHours, false);
   assert.equal(options[1].hasVariableCourseHours, true);
+});
+
+test("proposal elective options distinguish colliding parent and track group ids", () => {
+  const composed = composeParentTrackPlan({
+    id: "cs",
+    electiveGroups: [{ id: "elective-group-2", name: "متطلبات علمية" }],
+  }, {
+    track: { id: "general" },
+    electiveGroups: [{ id: "elective-group-2", name: "متطلبات المسار العام" }],
+  });
+  const groups = composed.electiveGroups.map((group) => ({
+    ...group,
+    requiredHours: 3,
+    courses: [{ academicHours: 3 }],
+  }));
+  const options = proposalElectiveOptions(groups, { semesters: [] });
+
+  assert.deepEqual(options.map((option) => option.id), [
+    "elective-group-2",
+    "track:general:elective:elective-group-2",
+  ]);
+  const proposal = { semesters: [{ placeholders: [
+    createElectivePlaceholder(options[1], "track-placeholder"),
+  ] }] };
+  assert.deepEqual(proposalElectiveOptions(groups, proposal).map((option) => option.name), [
+    "متطلبات علمية",
+  ]);
 });
 
 test("proposal placeholder action asks for and applies hours only for a variable-hours group", async () => {

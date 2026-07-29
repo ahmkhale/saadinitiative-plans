@@ -74,6 +74,25 @@ test("elective proposal placeholders display dashes instead of zero-hour facts",
   assert.doesNotMatch(html, /محاضرة 0/u);
 });
 
+test("proposal rows keep cross-level controls without within-level ordering controls", () => {
+  const html = renderCourseRow({
+    ...baseArgs,
+    kind: "proposal",
+    resolved: {
+      code: "204 ريض",
+      name: "المعادلات التفاضلية",
+      academicHours: 3,
+      prerequisites: [],
+    },
+  });
+
+  assert.match(html, /proposal-course-previous/u);
+  assert.match(html, /proposal-course-next/u);
+  assert.match(html, /proposal-course-home/u);
+  assert.doesNotMatch(html, /proposal-course-up/u);
+  assert.doesNotMatch(html, /proposal-course-down/u);
+});
+
 test("non-university elective rows require identity facts but leave weekly hours optional", () => {
   const html = renderCourseRow({
     ...baseArgs,
