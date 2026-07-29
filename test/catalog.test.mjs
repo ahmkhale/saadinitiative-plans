@@ -37,3 +37,41 @@ test("keeps section provenance and reports conflicting derived facts", () => {
   assert.ok(course.conflicts.some((conflict) => conflict.field === "academicHours"));
   assert.ok(course.conflicts.some((conflict) => conflict.field === "lectureHours"));
 });
+
+test("maps source activity aliases into the existing three displayed fields", () => {
+  const rows = [
+    ["محاضرة", "101"],
+    ["عيادة", "102"],
+    ["ستوديو", "103"],
+    ["حقلي", "104"],
+    ["تدريب", "105"],
+    ["مشروع", "106"],
+  ].flatMap(([activity, number]) => [{
+    code: `${number} تجر`,
+    name: activity,
+    activity,
+    creditHours: "1",
+    schedule: [{ startTime: "08:00", endTime: "09:40" }],
+  }]);
+  const catalog = buildCourseCatalog(rows);
+
+  assert.equal(catalog.get(courseCodeKey("101 تجر")).lectureHours, 2);
+  assert.equal(catalog.get(courseCodeKey("102 تجر")).exerciseHours, 2);
+  for (const code of ["103 تجر", "104 تجر", "105 تجر", "106 تجر"]) {
+    assert.equal(catalog.get(courseCodeKey(code)).practicalHours, 2);
+  }
+});
+
+test("activity aliases are alternatives rather than additive values", () => {
+  const catalog = buildCourseCatalog([
+    { code: "201 تجر", name: "تطبيقي", activity: "ستوديو", creditHours: "2", schedule: [{ startTime: "08:00", endTime: "09:40" }] },
+    { code: "201 تجر", name: "تطبيقي", activity: "مشروع", creditHours: "2", schedule: [{ startTime: "10:00", endTime: "12:30" }] },
+  ]);
+  const course = catalog.get(courseCodeKey("201 تجر"));
+
+  assert.equal(course.practicalHours, 2);
+  assert.deepEqual(course.activityAliasConflicts, [{
+    field: "practicalHours",
+    aliases: ["ستوديو", "مشروع"],
+  }]);
+});

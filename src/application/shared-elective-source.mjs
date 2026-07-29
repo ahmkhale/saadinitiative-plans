@@ -1,6 +1,7 @@
 import { addDiagnostic } from "../domain/diagnostics.mjs";
 import { assertStableId } from "../domain/ids.mjs";
 import { normalizeCourseCode, numericValue } from "../domain/course-code.mjs";
+import { canonicalFallbackCourses } from "../domain/plan-normalization.mjs";
 import { normalizeSharedScope } from "../domain/shared-scope.mjs";
 
 export function normalizeSharedElectiveSource(input, forcedId = null) {
@@ -14,12 +15,13 @@ export function normalizeSharedElectiveSource(input, forcedId = null) {
     id,
     name,
     requiredHours,
+    excludePublishedCourses: input?.excludePublishedCourses !== false,
     courses: (input?.courses ?? []).map((entry) => (
       typeof entry === "string"
         ? normalizeCourseCode(entry)
         : { ...entry, code: normalizeCourseCode(entry.code) }
     )),
-    fallbackCourses: structuredClone(input?.fallbackCourses ?? {}),
+    fallbackCourses: canonicalFallbackCourses(input?.fallbackCourses ?? {}),
     scope: normalizeSharedScope(input?.scope),
   };
 }
@@ -44,6 +46,7 @@ export function composeSharedElectiveGroups(plan, sources, diagnostics) {
       name: source.name,
       requiredHours: source.requiredHours,
       originalRequiredHours: source.requiredHours,
+      excludePublishedCourses: source.excludePublishedCourses !== false,
       sortCourses: "code",
       courses: source.courses.map((entry) => (
         typeof entry === "string" ? { code: entry } : structuredClone(entry)

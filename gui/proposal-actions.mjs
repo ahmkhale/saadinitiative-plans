@@ -1,5 +1,55 @@
 import { entryId } from "./plan-model.mjs";
 
+function groupKey(group) {
+  return group?.sourceId ?? group?.id ?? "";
+}
+
+function typicalCourseHours(group) {
+  const frequencies = new Map();
+  for (const course of group?.courses ?? []) {
+    const hours = Number(course.academicHours);
+    if (!(hours > 0)) continue;
+    frequencies.set(hours, (frequencies.get(hours) ?? 0) + 1);
+  }
+  return [...frequencies.entries()]
+    .sort((left, right) => right[1] - left[1] || right[0] - left[0])[0]?.[0] ?? 3;
+}
+
+export function proposalElectiveOptions(electiveGroups, proposal) {
+  const allocated = new Map();
+  for (const placeholder of (proposal?.semesters ?? []).flatMap((semester) => semester.placeholders ?? [])) {
+    if (!placeholder.electiveGroupId) continue;
+    allocated.set(
+      placeholder.electiveGroupId,
+      (allocated.get(placeholder.electiveGroupId) ?? 0) + (Number(placeholder.allocationHours) || 0),
+    );
+  }
+  return (electiveGroups ?? []).flatMap((group) => {
+    const id = groupKey(group);
+    const requiredHours = Number(group.requiredHours);
+    if (!id || !(requiredHours > 0)) return [];
+    const remainingHours = Math.max(0, requiredHours - (allocated.get(id) ?? 0));
+    if (remainingHours === 0) return [];
+    return [{
+      id,
+      name: group.name,
+      remainingHours,
+      allocationHours: Math.min(remainingHours, typicalCourseHours(group)),
+    }];
+  });
+}
+
+export function createElectivePlaceholder(option, id = `placeholder-${Date.now().toString(36)}`) {
+  return {
+    id,
+    name: `من ${option.name}`,
+    electiveGroupId: option.id,
+    allocationHours: option.allocationHours,
+    hoursDisplay: "unknown",
+    color: "#000000",
+  };
+}
+
 export function moveItem(array, index, direction) {
   const next = index + direction;
   if (next < 0 || next >= array.length) return false;

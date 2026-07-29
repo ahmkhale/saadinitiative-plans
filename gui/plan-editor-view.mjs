@@ -83,9 +83,9 @@ export function createPlanEditorView(options) {
             </div>
           </div>
           <div class="badge-list"><span class="source-badge">مشترك</span></div>
-          <p class="muted">المتطلب الأصلي: ${source?.requiredHours ?? "—"} ساعات · المتبقي: ${resolved?.requiredHours ?? source?.requiredHours ?? "—"} ساعات</p>
-          <p class="muted">المستبعدة لوجودها في الفصول: ${escapeHtml(resolved?.excludedCourses?.map((course) => course.code).join("، ") || "لا يوجد")}</p>
-          <p class="muted">المرشحات المتبقية: ${escapeHtml(resolved?.courses?.map((course) => course.code).join("، ") || source?.courses?.map(entryCode).join("، ") || "لا يوجد")}</p>`;
+          <p class="muted" data-shared-elective-summary>المتطلب الأصلي: ${source?.requiredHours ?? "—"} ساعات · المتبقي: ${resolved?.requiredHours ?? source?.requiredHours ?? "—"} ساعات</p>
+          <p class="muted" data-shared-elective-excluded>المستبعدة لوجودها في الفصول: ${escapeHtml(resolved?.excludedCourses?.map((course) => course.code).join("، ") || "لا يوجد")}</p>
+          <p class="muted" data-shared-elective-candidates>المرشحات المتبقية: ${escapeHtml(resolved?.courses?.map((course) => course.code).join("، ") || source?.courses?.map(entryCode).join("، ") || "لا يوجد")}</p>`;
         host.append(article);
         return;
       }
@@ -98,8 +98,9 @@ export function createPlanEditorView(options) {
   }
 
   function renderInheritedSemesters() {
-    const selected = new Set(state.plan.sharedSemesterSets ?? []);
-    const sets = state.sharedSemesterSets.filter((set) => selected.has(set.id));
+    const sets = (state.plan.sharedSemesterSets ?? [])
+      .map((id) => state.sharedSemesterSets.find((set) => set.id === id))
+      .filter(Boolean);
     let level = 0;
     els.inheritedSemesterList.innerHTML = sets.flatMap((set) => set.semesters.map((semester) => {
       level += 1;

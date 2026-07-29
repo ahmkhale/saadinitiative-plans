@@ -10,6 +10,8 @@ import { escapeHtml } from "./gui/html.mjs";
 import { renderNavigation as renderNavigationView } from "./gui/navigation-view.mjs";
 import { createPreviewController } from "./gui/preview-controller.mjs";
 import { createExportController } from "./gui/export-controller.mjs";
+import { createColorEditor } from "./gui/color-editor.mjs";
+import { createProposalPlaceholderActions } from "./gui/proposal-placeholder-actions.mjs";
 import {
   createProposalFromPublished,
   createProposalSemester,
@@ -27,6 +29,7 @@ import {
   normalizedEntry,
   parseCodes,
   reconcileProposalDraft,
+  removeCourseEntry,
   scopeFromFields as buildScopeFromFields,
   scopeTarget,
   semesterLabel,
@@ -86,12 +89,19 @@ const els = {
   sharedElectiveSourceList: $("sharedElectiveSourceList"),
   sharedElectiveSourceEditor: $("sharedElectiveSourceEditor"),
   sharedElectiveSourceEditorTitle: $("sharedElectiveSourceEditorTitle"),
+  saveSharedElectiveSourceButton: $("saveSharedElectiveSourceButton"),
   sharedElectiveSourceName: $("sharedElectiveSourceName"),
   sharedElectiveSourceId: $("sharedElectiveSourceId"),
   sharedElectiveSourceHours: $("sharedElectiveSourceHours"),
   sharedElectiveScopeType: $("sharedElectiveScopeType"),
   sharedElectiveScopeTarget: $("sharedElectiveScopeTarget"),
+  sharedElectiveExcludePublished: $("sharedElectiveExcludePublished"),
+  sharedElectiveValidation: $("sharedElectiveValidation"),
   sharedElectiveCourseList: $("sharedElectiveCourseList"),
+  colorList: $("colorList"),
+  colorForm: $("colorForm"),
+  colorSubject: $("colorSubject"),
+  colorValue: $("colorValue"),
 };
 
 const { askForm, bind: bindDialog } = createDialogController({ els, escapeHtml });
@@ -129,6 +139,7 @@ async function loadState() {
   state.selectedInstitutionId = result.selectedInstitutionId ?? "";
   state.colleges = result.colleges;
   state.settings = result.settings;
+  state.courseColors = result.colors ?? {};
   state.sharedSemesterSets = result.sharedSemesterSets ?? [];
   state.sharedElectiveGroups = result.sharedElectiveGroups ?? [];
   $("globalEdition").value = state.settings.edition;
@@ -147,6 +158,7 @@ async function loadState() {
   renderNavigation();
   renderSharedSets();
   renderSharedSetEditor();
+  renderCourseColors();
 }
 
 async function selectInstitution(id) {
@@ -326,6 +338,17 @@ const {
   courseBadges,
 });
 
+const { render: renderCourseColors } = createColorEditor({
+  container: els.colorList,
+  form: els.colorForm,
+  subjectInput: els.colorSubject,
+  colorInput: els.colorValue,
+  state,
+  request,
+  setStatus,
+  schedulePreview,
+});
+
 const {
   renderSharedSetEditor,
   scheduleSharedSetResolution,
@@ -334,6 +357,7 @@ const {
   saveSharedSetEditor,
   renderSharedSets,
   editSharedSet,
+  addSharedElectiveReference,
   renderSharedElectiveSources,
   renderSharedElectiveSourceEditor,
   scheduleSharedElectiveResolution,
@@ -344,6 +368,7 @@ const {
   state,
   els,
   request,
+  askForm,
   escapeHtml,
   setStatus,
   institutionApi,
@@ -351,6 +376,7 @@ const {
   renderCollection,
   renderEditor,
   schedulePreview,
+  changed,
   courseRow,
   resolvedCollection,
   sourceAppliesToSelection,
@@ -423,59 +449,12 @@ const {
   institutionApi,
 });
 
-async function addPlaceholder(card) {
-  const values = await askForm({
-    title: "إضافة مقرر نائب",
-    message: "سيظهر بعد جميع مقررات المستوى، ورمزه في البطاقة «مقرر».",
-    fields: [
-      { name: "name", label: "وصف المقرر", value: "من متطلبات المسار" },
-      { name: "academicHours", label: "الساعات الأكاديمية", type: "number", min: 0, value: 3 },
-      { name: "lectureHours", label: "ساعات المحاضرة", type: "number", min: 0, value: 0 },
-      { name: "exerciseHours", label: "ساعات التمارين", type: "number", min: 0, value: 0 },
-      { name: "practicalHours", label: "ساعات العملي", type: "number", min: 0, value: 0 },
-    ],
-  });
-  if (!values) return;
-  const semester = state.plan.proposal.semesters[Number(card.dataset.groupIndex)];
-  semester.placeholders ??= [];
-  semester.placeholders.push({
-    id: `placeholder-${Date.now().toString(36)}`,
-    name: values.name,
-    academicHours: Number(values.academicHours),
-    lectureHours: Number(values.lectureHours),
-    exerciseHours: Number(values.exerciseHours),
-    practicalHours: Number(values.practicalHours),
-    color: "#000000",
-  });
-  changed(true);
-}
-
-async function editPlaceholder(row) {
-  const semester = state.plan.proposal.semesters[Number(row.dataset.groupIndex)];
-  const placeholder = semester.placeholders.find((item) => item.id === row.dataset.placeholderId);
-  if (!placeholder) throw new Error("لم يُعثر على المقرر النائب.");
-  const values = await askForm({
-    title: "تعديل المقرر النائب",
-    message: "سيبقى رمز البطاقة «مقرر»، وسيظهر المقرر بعد جميع المقررات الأصلية.",
-    fields: [
-      { name: "name", label: "وصف المقرر", value: placeholder.name },
-      { name: "academicHours", label: "الساعات الأكاديمية", type: "number", min: 0, value: placeholder.academicHours ?? 0 },
-      { name: "lectureHours", label: "ساعات المحاضرة", type: "number", min: 0, value: placeholder.lectureHours ?? 0 },
-      { name: "exerciseHours", label: "ساعات التمارين", type: "number", min: 0, value: placeholder.exerciseHours ?? 0 },
-      { name: "practicalHours", label: "ساعات العملي", type: "number", min: 0, value: placeholder.practicalHours ?? 0 },
-    ],
-  });
-  if (!values) return;
-  Object.assign(placeholder, {
-    name: values.name,
-    academicHours: Number(values.academicHours),
-    lectureHours: Number(values.lectureHours),
-    exerciseHours: Number(values.exerciseHours),
-    practicalHours: Number(values.practicalHours),
-    color: "#000000",
-  });
-  changed(true);
-}
+const { addPlaceholder, editPlaceholder } = createProposalPlaceholderActions({
+  state,
+  askForm,
+  changed,
+  setStatus,
+});
 
 function updateManualFact(row, input) {
   const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
@@ -618,7 +597,8 @@ document.addEventListener("click", (event) => {
       const index = placeholders.findIndex((placeholder) => placeholder.id === row.dataset.placeholderId);
       if (index >= 0) placeholders.splice(index, 1);
     } else {
-      collection(row.dataset.kind, Number(row.dataset.groupIndex)).splice(Number(row.dataset.courseIndex), 1);
+      const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
+      removeCourseEntry(target, Number(row.dataset.courseIndex), row.dataset.kind === "sharedElective" ? state.sharedElectiveDraft.fallbackCourses : null);
     }
     if (row.dataset.kind === "shared") sharedChanged(true);
     else if (row.dataset.kind === "sharedElective") sharedElectiveChanged(true);
@@ -647,6 +627,10 @@ document.addEventListener("click", (event) => {
   if (sharedSet && event.target.closest(".delete-shared-set")) {
     request(institutionApi(`/shared-semester-sources/${encodeURIComponent(sharedSet.dataset.sharedSet)}`), { method: "DELETE" })
       .then(loadState).catch((error) => setStatus(error.message, "error"));
+  }
+  const sharedSetChoice = event.target.closest("[data-shared-set-choice-row]");
+  if (sharedSetChoice && (event.target.closest(".shared-set-order-up") || event.target.closest(".shared-set-order-down"))) {
+    if (moveItem(state.plan.sharedSemesterSets, state.plan.sharedSemesterSets.indexOf(sharedSetChoice.dataset.sharedSetChoiceRow), event.target.closest(".shared-set-order-up") ? -1 : 1)) changed(true);
   }
   const sharedReference = event.target.closest("[data-shared-elective-reference]");
   if (sharedReference) {
@@ -731,9 +715,6 @@ document.addEventListener("input", (event) => {
   }
 
   if (event.target.classList.contains("course-code-input") || event.target.id === "sharedElectiveCourseInput") courseSearch(event.target.value);
-  const row = event.target.closest(".course-row");
-  if (row && event.target.matches("[data-manual-fact]")) updateManualFact(row, event.target);
-
 });
 
 document.addEventListener("change", (event) => {
@@ -752,10 +733,16 @@ document.addEventListener("change", (event) => {
     state.sharedElectiveDirty = true;
     scheduleSharedElectiveResolution();
   }
+  if (event.target.id === "sharedElectiveExcludePublished" && state.sharedElectiveDraft) {
+    state.sharedElectiveDraft.excludePublishedCourses = event.target.checked;
+    state.sharedElectiveDirty = true;
+    scheduleSharedElectiveResolution();
+  }
 });
 
 document.addEventListener("change", (event) => {
   const row = event.target.closest(".course-row");
+  if (row && event.target.matches("[data-manual-fact]")) updateManualFact(row, event.target);
   if (row && event.target.matches("[data-dependency]")) updateDependency(row, event.target);
   if (row && event.target.matches("[data-track-specific]")) {
     const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
@@ -769,8 +756,14 @@ document.addEventListener("change", (event) => {
     else changed();
   }
   if (event.target.matches("[data-shared-set-choice]")) {
-    state.plan.sharedSemesterSets = event.target.checked && event.target.dataset.sharedSetChoice ? [event.target.dataset.sharedSetChoice] : [];
-    renderInheritedSemesters();
+    const id = event.target.dataset.sharedSetChoice;
+    if (!id) {
+      state.plan.sharedSemesterSets = [];
+    } else if (event.target.checked && !state.plan.sharedSemesterSets.includes(id)) {
+      state.plan.sharedSemesterSets.push(id);
+    } else if (!event.target.checked) {
+      state.plan.sharedSemesterSets = state.plan.sharedSemesterSets.filter((selectedId) => selectedId !== id);
+    }
     changed(true);
   }
   if (event.target.classList.contains("requirement-mode")) {
@@ -863,26 +856,12 @@ $("addSemesterButton").addEventListener("click", () => {
   state.plan.semesters.push({ id: `published-${crypto.randomUUID()}`, courses: [] });
   changed(true);
 });
-
-
 $("addElectiveButton").addEventListener("click", () => {
   state.plan.electiveGroups ??= [];
   state.plan.electiveGroups.push({ id: `elective-group-${state.plan.electiveGroups.length + 1}`, name: "مجموعة اختيارية", requiredHours: 0, sortCourses: "code", courses: [] });
   changed(true);
 });
-$("addSharedElectiveButton").addEventListener("click", async () => {
-  const eligible = state.sharedElectiveGroups.filter(sourceAppliesToSelection);
-  if (!eligible.length) return setStatus("لا يوجد مصدر اختياري مشترك متاح لهذا التخصص.", "error");
-  const values = await askForm({
-    title: "إضافة مصدر اختياري مشترك",
-    message: eligible.map((source) => `${source.id}: ${source.name}`).join(" · "),
-    fields: [{ name: "sourceId", label: "معرّف المصدر", value: eligible[0].id, dir: "ltr" }],
-  });
-  if (!values) return;
-  if (!eligible.some((source) => source.id === values.sourceId)) return setStatus("معرّف المصدر غير متاح لهذا التخصص.", "error");
-  state.plan.electiveGroups.push({ sourceId: values.sourceId });
-  changed(true);
-});
+$("addSharedElectiveButton").addEventListener("click", () => addSharedElectiveReference().catch((error) => setStatus(error.message, "error")));
 els.proposalEnabled.addEventListener("change", () => {
   state.plan.proposal = els.proposalEnabled.checked
     ? createProposalFromPublished(publishedDecisionSemesters())
@@ -919,15 +898,6 @@ els.guideEnabled.addEventListener("change", () => {
 });
 
 
-$("colorForm").addEventListener("submit", async (event) => {
-  event.preventDefault();
-  await request(`/api/colors/${encodeURIComponent($("colorSubject").value.trim())}`, {
-    method: "PUT",
-    body: JSON.stringify({ color: $("colorValue").value }),
-  });
-  setStatus("حُفظ اللون العام.", "success");
-  schedulePreview(0);
-});
 $("globalSettingsForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   const result = await request(institutionApi("/settings"), {

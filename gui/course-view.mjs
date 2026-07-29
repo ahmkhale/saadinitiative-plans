@@ -41,6 +41,11 @@ export function renderCourseRow({
   const isPlaceholder = entry?.kind === "placeholder" || Boolean(entry?.placeholderId);
   const displayCode = isPlaceholder ? "مقرر" : resolved?.code ?? code;
   const displaySubject = isPlaceholder ? "" : resolved?.subject ?? "";
+  const displayHours = resolved?.hoursDisplay === "unknown"
+    ? `${resolved.academicHours ?? "—"} ساعات · محاضرة — · عملي — · تمارين —`
+    : resolved
+      ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? 0} · عملي ${resolved.practicalHours ?? 0} · تمارين ${resolved.exerciseHours ?? 0}`
+      : "";
   const location = kind === "semester" ? `semester-${groupIndex + 1}` : kind === "elective"
     ? `elective-${plan.electiveGroups[groupIndex]?.id ?? groupIndex + 1}` : kind === "shared"
       ? `shared-semester-${groupIndex + 1}` : kind === "sharedElective"
@@ -50,7 +55,7 @@ export function renderCourseRow({
     <div class="course-row ${pending ? "pending" : unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(kind === "proposal" && !isPlaceholder ? entryId(entry) : code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
       <div class="course-identity"><div class="course-code">${escapeHtml(displayCode)}</div><div class="course-meta">${escapeHtml(displaySubject)}</div><div class="badge-list">${courseBadges(resolved, isPlaceholder)}</div></div>
       <div class="course-summary"><div class="course-name">${escapeHtml(resolved?.name ?? entry?.fallback?.name ?? fallback?.name ?? (pending ? "جارٍ قراءة بيانات المقرر…" : "مقرر غير موجود في الدليل"))}</div>
-        <div class="course-meta">${resolved ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? "—"} · عملي ${resolved.practicalHours ?? "—"} · تمارين ${resolved.exerciseHours ?? "—"}` : ""}</div>
+        <div class="course-meta">${displayHours}</div>
       </div>
       <div class="course-meta">${resolved?.prerequisites?.length ? `سابق: ${escapeHtml(resolved.prerequisites.join("، "))}` : "لا متطلب سابق"}</div>
       <div class="course-actions">

@@ -1,3 +1,7 @@
+export function courseDetailsOpenState({ currentOpen, unresolved, wasPending, placeholder }) {
+  return unresolved && wasPending && !placeholder ? true : currentOpen;
+}
+
 export function createPreviewController(options) {
   const {
     state,
@@ -114,9 +118,11 @@ export function createPreviewController(options) {
       if (badges) badges.innerHTML = courseBadges(resolved, placeholder);
       const metadata = row.querySelectorAll(".course-meta");
       if (metadata[0]) metadata[0].textContent = placeholder ? "" : resolved?.subject ?? "";
-      if (metadata[1]) metadata[1].textContent = resolved
-        ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? "—"} · عملي ${resolved.practicalHours ?? "—"} · تمارين ${resolved.exerciseHours ?? "—"}`
-        : "";
+      if (metadata[1]) metadata[1].textContent = resolved?.hoursDisplay === "unknown"
+        ? `${resolved.academicHours ?? "—"} ساعات · محاضرة — · عملي — · تمارين —`
+        : resolved
+          ? `${resolved.academicHours ?? "—"} ساعات · محاضرة ${resolved.lectureHours ?? 0} · عملي ${resolved.practicalHours ?? 0} · تمارين ${resolved.exerciseHours ?? 0}`
+          : "";
       if (metadata[2]) metadata[2].textContent = resolved?.prerequisites?.length
         ? `سابق: ${resolved.prerequisites.join("، ")}`
         : "لا متطلب سابق";
@@ -125,9 +131,25 @@ export function createPreviewController(options) {
         const summary = details.querySelector("summary");
         if (summary) summary.textContent = unresolved ? "أكمل بيانات المقرر" : "تفاصيل المقرر وقواعد الخطة";
         details.querySelectorAll("[data-manual-fact]").forEach((input) => input.toggleAttribute("required", unresolved));
-        if (unresolved && wasPending && !placeholder) details.open = true;
-        if (!unresolved) details.open = false;
+        details.open = courseDetailsOpenState({
+          currentOpen: details.open,
+          unresolved,
+          wasPending,
+          placeholder,
+        });
       }
+    });
+    document.querySelectorAll("[data-shared-elective-reference]").forEach((card) => {
+      const sourceId = card.dataset.sharedElectiveReference;
+      const source = state.sharedElectiveGroups.find((item) => item.id === sourceId);
+      const resolved = state.resolved?.electiveGroups?.find((group) => group.sourceId === sourceId);
+      if (!resolved) return;
+      const summary = card.querySelector("[data-shared-elective-summary]");
+      const excluded = card.querySelector("[data-shared-elective-excluded]");
+      const candidates = card.querySelector("[data-shared-elective-candidates]");
+      if (summary) summary.textContent = `المتطلب الأصلي: ${source?.requiredHours ?? "—"} ساعات · المتبقي: ${resolved.requiredHours ?? "—"} ساعات`;
+      if (excluded) excluded.textContent = `المستبعدة لوجودها في الفصول: ${resolved.excludedCourses?.map((course) => course.code).join("، ") || "لا يوجد"}`;
+      if (candidates) candidates.textContent = `المرشحات المتبقية: ${resolved.courses?.map((course) => course.code).join("، ") || "لا يوجد"}`;
     });
   }
 

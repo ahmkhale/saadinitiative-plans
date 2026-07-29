@@ -12,6 +12,7 @@ export const state = {
   previewTimer: null,
   searchTimer: null,
   settings: null,
+  courseColors: {},
   sharedSemesterSets: [],
   sharedSetDraft: null,
   sharedSetResolved: null,

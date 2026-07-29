@@ -4,15 +4,22 @@ import { compareCourseCodes, courseCodeKey, normalizeCourseCode, numericValue } 
 
 export function resolveElectiveGroups(plan, resolver, diagnostics) {
   const publishedHours = new Map(resolver.mainCourses.map((course) => [course.key, course.academicHours]));
+  const fallbackHours = new Map(Object.entries(plan.fallbackCourses ?? {}).map(([code, facts]) => [
+    courseCodeKey(code),
+    numericValue(facts.academicHours),
+  ]));
   return (plan.electiveGroups ?? []).map((group, groupIndex) => {
     const excluded = [];
     const candidateEntries = (group.courses ?? []).filter((entry) => {
-      if (!group.sharedSource) return true;
+      if (!group.sharedSource || group.excludePublishedCourses === false) return true;
       const code = normalizeCourseCode(entry.code);
       const key = courseCodeKey(code);
       if (!publishedHours.has(key)) return true;
       if (!excluded.some((item) => item.key === key)) {
-        excluded.push({ code, key, academicHours: publishedHours.get(key) ?? 0 });
+        const academicHours = group.sharedSource
+          ? fallbackHours.get(key) ?? publishedHours.get(key) ?? 0
+          : publishedHours.get(key) ?? 0;
+        excluded.push({ code, key, academicHours });
         addDiagnostic(diagnostics, "info", "ELECTIVE_CANDIDATE_EXCLUDED", `${code} was excluded because it already exists in a published semester.`, {
           course: code,
           sourceId: group.sourceId,
@@ -30,7 +37,7 @@ export function resolveElectiveGroups(plan, resolver, diagnostics) {
     if ((group.sortCourses ?? "code") === "code") resolvedCourses.sort((a, b) => compareCourseCodes(a.code, b.code));
     const originalRequiredHours = numericValue(group.originalRequiredHours ?? group.requiredHours);
     const excludedHours = excluded.reduce((sum, course) => sum + course.academicHours, 0);
-    const effectiveRequiredHours = group.sharedSource
+    const effectiveRequiredHours = group.sharedSource && group.excludePublishedCourses !== false
       ? Math.max(0, (originalRequiredHours ?? 0) - excludedHours)
       : numericValue(group.requiredHours);
     const hasHours = effectiveRequiredHours !== null;
@@ -47,6 +54,7 @@ export function resolveElectiveGroups(plan, resolver, diagnostics) {
       name: group.name ?? `مجموعة اختيارية ${groupIndex + 1}`,
       sourceId: group.sourceId ?? null,
       sharedSource: Boolean(group.sharedSource),
+      excludePublishedCourses: group.sharedSource ? group.excludePublishedCourses !== false : null,
       originalRequiredHours: group.sharedSource ? originalRequiredHours : null,
       excludedCourses: excluded,
       requiredHours,

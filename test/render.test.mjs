@@ -13,6 +13,8 @@ import {
 } from "../src/render-layout.mjs";
 import { courseNameFit, measureText, prerequisiteFit } from "../src/text-measure.mjs";
 import { formatCourseRequirementLabel } from "../src/domain/course-requirements.mjs";
+import { renderCourseCard } from "../src/presentation/svg/course-card.mjs";
+import { createRenderContext } from "../src/presentation/svg/primitives.mjs";
 
 function course(overrides = {}) {
   const value = {
@@ -64,6 +66,17 @@ test("renders the Figma-shaped course card and plan metadata", () => {
   assert.match(svg, /data-part="course-body" x="1" y="6" width="74" height="43" rx="6"/);
   assert.match(svg, /هندسة كهربائية/);
   assert.match(svg, /#17529B/);
+});
+
+test("displays zeroes when all three canonical activity values are unknown", () => {
+  const svg = renderCourseCard(
+    createRenderContext("unknown-activities"),
+    course({ lectureHours: null, practicalHours: null, exerciseHours: null }),
+    0,
+    0,
+  );
+
+  assert.equal((svg.match(/>0<\/text>/gu) ?? []).length, 3);
 });
 
 test("keeps width fixed while deriving page height from content", () => {

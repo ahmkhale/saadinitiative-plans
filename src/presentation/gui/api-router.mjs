@@ -1,8 +1,8 @@
-import { atomicWriteJson } from "../../infrastructure/repositories/plan-repository.mjs";
 import { refreshFallbackFromCatalog } from "../../application/hydrate-fallbacks.mjs";
 import { renderDraftPreview, resolveDraft } from "../../application/preview-plan.mjs";
 import { readSettings, saveSettings } from "../../infrastructure/repositories/settings-repository.mjs";
 import { preparePlanForEditor } from "../../application/plan-storage.mjs";
+import { saveCourseColorAliases } from "../../infrastructure/repositories/course-color-repository.mjs";
 import { distUrl, json, readBody } from "./http.mjs";
 
 export function createGuiApiRouter(options) {
@@ -27,6 +27,7 @@ export function createGuiApiRouter(options) {
         selectedInstitutionId: context.institution.id,
         colleges: context.store.listColleges(),
         catalog: catalogService.summary(),
+        colors: catalogService.snapshot().colors,
         settings: readSettings(context.settingsFile),
         sharedSemesterSets: context.sharedSetStore.list(),
         sharedElectiveGroups: context.sharedElectiveStore.list(),
@@ -84,13 +85,17 @@ export function createGuiApiRouter(options) {
       const refreshed = refreshFallbackFromCatalog(body.owner, body.code, catalogService.snapshot().catalog);
       return json(res, 200, { ok: true, owner: refreshed });
     }
-    if (req.method === "PUT" && segments[1] === "colors" && segments.length === 3) {
+    if (req.method === "PUT" && segments[1] === "colors" && [2, 3].includes(segments.length)) {
       const body = await readBody(req);
-      const color = String(body.color ?? "").toUpperCase();
-      if (!/^#[0-9A-F]{6}$/u.test(color)) throw new Error("Color must be a six-digit hex value.");
       const state = catalogService.snapshot();
-      atomicWriteJson(catalogService.colorsPath, { ...state.colors, [segments[2]]: color });
-      return json(res, 200, { ok: true, subject: segments[2], color });
+      const subjects = body.subjects ?? (segments[2] ? [segments[2]] : []);
+      const colors = saveCourseColorAliases({
+        colors: state.colors,
+        subjects,
+        previousSubjects: body.previousSubjects,
+        color: body.color,
+      }, catalogService.colorsPath);
+      return json(res, 200, { ok: true, subjects, color: String(body.color).toUpperCase(), colors });
     }
 
     if (segments[1] !== "institutions") {

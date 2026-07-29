@@ -1,6 +1,7 @@
 import path from "node:path";
 import { normalizeSharedElectiveSource } from "../../application/shared-elective-source.mjs";
 import { hydrateFallbackCourses } from "../../application/hydrate-fallbacks.mjs";
+import { assertSharedElectiveIntegrity } from "../../domain/shared-elective-integrity.mjs";
 import { createJsonSourceRepository } from "./json-source-repository.mjs";
 import { projectRoot } from "./plan-repository.mjs";
 
@@ -37,11 +38,15 @@ export function createSharedElectiveGroupStore(options = {}) {
     entityName: "Shared elective source",
     clean: normalizeSharedElectiveSource,
     usages,
-    beforeSave: (value) => catalogService
-      ? hydrateFallbackCourses(value, catalogService.snapshot().catalog, {
+    beforeSave: (value) => {
+      const catalog = catalogService?.snapshot().catalog ?? new Map();
+      const hydrated = catalogService
+        ? hydrateFallbackCourses(value, catalog, {
         codes: value.courses.map((entry) => typeof entry === "string" ? entry : entry.code),
-      }).value
-      : value,
+        }).value
+        : value;
+      return assertSharedElectiveIntegrity(hydrated, catalog);
+    },
     duplicateValue: (source, input) => ({
       ...source,
       ...input,

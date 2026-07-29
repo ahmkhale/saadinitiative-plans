@@ -4,6 +4,7 @@ export function createSharedSourceEditors({
   state,
   els,
   request,
+  askForm,
   escapeHtml,
   setStatus,
   institutionApi,
@@ -11,6 +12,7 @@ export function createSharedSourceEditors({
   renderCollection,
   renderEditor,
   schedulePreview,
+  changed,
   courseRow,
   resolvedCollection,
   sourceAppliesToSelection,
@@ -113,14 +115,35 @@ export function createSharedSourceEditors({
 
   function renderSharedSets() {
     if (els.sharedSetChoices) {
-      const selected = new Set(state.plan?.sharedSemesterSets ?? []);
+      const selectedIds = state.plan?.sharedSemesterSets ?? [];
+      const selected = new Set(selectedIds);
       const eligible = state.sharedSemesterSets.filter(sourceAppliesToSelection);
+      const eligibleById = new Map(eligible.map((set) => [set.id, set]));
+      const ordered = [
+        ...selectedIds.map((id) => eligibleById.get(id)).filter(Boolean),
+        ...eligible.filter((set) => !selected.has(set.id)),
+      ];
       els.sharedSetChoices.innerHTML = eligible.length
-        ? `<label class="choice-item"><span><strong>دون خطة مشتركة</strong><small>تبدأ مستويات التخصص مباشرة.</small></span><input data-shared-set-choice="" name="shared-foundation-choice" type="radio" ${selected.size === 0 ? "checked" : ""}></label>`
-          + eligible.map((set) => `
-          <label class="choice-item"><span><strong>${escapeHtml(set.name)}</strong><small>${set.semesters.length} مستويات · ${escapeHtml(set.phaseLabel)}</small></span>
-            <input data-shared-set-choice="${escapeHtml(set.id)}" name="shared-foundation-choice" type="radio" ${selected.has(set.id) ? "checked" : ""}>
-          </label>`).join("")
+        ? `<p class="muted shared-selection-help">اختر خطة مشتركة واحدة أو أكثر، ثم رتّب المحدد منها بحسب أسبقية ظهورها.</p>
+          <label class="choice-item shared-set-choice ${selected.size === 0 ? "selected" : ""}">
+            <span><strong>دون خطة مشتركة</strong><small>تبدأ مستويات التخصص مباشرة.</small></span>
+            <input data-shared-set-choice="" type="checkbox" ${selected.size === 0 ? "checked" : ""}>
+          </label>`
+          + ordered.map((set) => {
+            const selectedIndex = selectedIds.indexOf(set.id);
+            const isSelected = selectedIndex >= 0;
+            return `
+          <div class="choice-item shared-set-choice ${isSelected ? "selected" : ""}" data-shared-set-choice-row="${escapeHtml(set.id)}">
+            <label>
+              <span><strong>${escapeHtml(set.name)}</strong><small>${set.semesters.length} مستويات · ${escapeHtml(set.phaseLabel)}</small></span>
+              <input data-shared-set-choice="${escapeHtml(set.id)}" type="checkbox" ${isSelected ? "checked" : ""}>
+            </label>
+            ${isSelected ? `<span class="menu-actions shared-set-order-actions">
+              <button class="icon-button shared-set-order-up" type="button" aria-label="تقديم ${escapeHtml(set.name)}" ${selectedIndex === 0 ? "disabled" : ""}>↑</button>
+              <button class="icon-button shared-set-order-down" type="button" aria-label="تأخير ${escapeHtml(set.name)}" ${selectedIndex === selectedIds.length - 1 ? "disabled" : ""}>↓</button>
+            </span>` : ""}
+          </div>`;
+          }).join("")
         : '<p class="muted">لم تُعرّف خطة مشتركة بعد.</p>';
     }
     if (els.sharedSetList) {
@@ -170,6 +193,9 @@ export function createSharedSourceEditors({
     els.sharedElectiveSourceHours.value = draft.requiredHours ?? 0;
     els.sharedElectiveScopeType.value = draft.scope?.type ?? "institution";
     els.sharedElectiveScopeTarget.value = scopeTarget(draft.scope);
+    els.sharedElectiveExcludePublished.checked = draft.excludePublishedCourses !== false;
+    els.sharedElectiveValidation.textContent = "جارٍ التحقق من بيانات المصدر…";
+    els.sharedElectiveValidation.className = "muted";
     const resolved = resolvedCollection("sharedElective", 0);
     els.sharedElectiveCourseList.innerHTML = (draft.courses ?? []).map((entry, index) => (
       courseRow(typeof entry === "string" ? { code: entry } : entry, resolved[index], "sharedElective", 0, index)
@@ -200,6 +226,43 @@ export function createSharedSourceEditors({
     });
     state.sharedElectiveResolved = result.plan;
     renderSharedElectiveSourceEditor();
+    const errors = result.diagnostics.items.filter((item) => item.severity === "errors");
+    els.saveSharedElectiveSourceButton.disabled = errors.length > 0;
+    els.sharedElectiveValidation.textContent = errors.length
+      ? `لا يمكن الحفظ: ${errors.map((item) => `${item.course ?? item.code}: ${item.message}`).join(" · ")}`
+      : "المصدر مكتمل وجاهز للحفظ.";
+    els.sharedElectiveValidation.className = errors.length ? "status error" : "status success";
+  }
+
+  async function addSharedElectiveReference() {
+    const selected = new Set((state.plan.electiveGroups ?? []).map((group) => group.sourceId).filter(Boolean));
+    const eligible = state.sharedElectiveGroups
+      .filter(sourceAppliesToSelection)
+      .filter((source) => !selected.has(source.id));
+    if (!eligible.length) {
+      setStatus("لا يوجد مصدر اختياري مشترك متاح لهذا التخصص.", "error");
+      return;
+    }
+    const values = await askForm({
+      title: "إضافة مصدر اختياري مشترك",
+      message: "اختر مصدرًا من المصادر المتاحة لنطاق هذا التخصص.",
+      fields: [{
+        name: "sourceId",
+        label: "المصدر المشترك",
+        value: eligible[0].id,
+        options: eligible.map((source) => ({
+          value: source.id,
+          label: `${source.name} — ${source.requiredHours} ساعات`,
+        })),
+      }],
+    });
+    if (!values) return;
+    if (!eligible.some((source) => source.id === values.sourceId)) {
+      setStatus("معرّف المصدر غير متاح لهذا التخصص.", "error");
+      return;
+    }
+    state.plan.electiveGroups.push({ sourceId: values.sourceId });
+    changed(true);
   }
 
   function scheduleSharedElectiveResolution(delay = 250) {
@@ -221,6 +284,7 @@ export function createSharedSourceEditors({
       id: "",
       name: "",
       requiredHours: 0,
+      excludePublishedCourses: true,
       courses: [],
       fallbackCourses: {},
       scope: { type: "institution", institutionId: state.selectedInstitutionId },
@@ -228,6 +292,7 @@ export function createSharedSourceEditors({
     state.sharedElectiveDraft._originalId = source?.id ?? null;
     state.sharedElectiveResolved = null;
     state.sharedElectiveDirty = false;
+    els.saveSharedElectiveSourceButton.disabled = false;
     renderSharedElectiveSourceEditor();
     document.querySelector('[data-tab="settings"]')?.click();
     els.sharedElectiveSourceEditor.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -268,6 +333,7 @@ export function createSharedSourceEditors({
     saveSharedSetEditor,
     renderSharedSets,
     editSharedSet,
+    addSharedElectiveReference,
     renderSharedElectiveSources,
     renderSharedElectiveSourceEditor,
     scheduleSharedElectiveResolution,

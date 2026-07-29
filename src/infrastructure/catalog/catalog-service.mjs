@@ -27,7 +27,9 @@ function sourceBadge(course) {
 
 function qualityBadges(course) {
   const result = [];
-  if ((course?.conflicts?.length ?? 0) > 0 || course?.crossSourceConflict) result.push("بيانات متعارضة");
+  if ((course?.conflicts?.length ?? 0) > 0
+    || (course?.activityAliasConflicts?.length ?? 0) > 0
+    || course?.crossSourceConflict) result.push("بيانات متعارضة");
   if (!course?.name || course?.academicHours === null || course?.academicHours === undefined
     || course?.lectureHours === null || course?.lectureHours === undefined
     || course?.exerciseHours === null || course?.exerciseHours === undefined
@@ -65,6 +67,8 @@ export function createCatalogService(options = {}) {
     const conflicts = [
       ...[...male.values()].flatMap((course) => (course.conflicts ?? []).map((conflict) => ({ code: course.code, source: "male", ...conflict }))),
       ...[...female.values()].flatMap((course) => (course.conflicts ?? []).map((conflict) => ({ code: course.code, source: "female", ...conflict }))),
+      ...[...male.values()].flatMap((course) => (course.activityAliasConflicts ?? []).map((conflict) => ({ code: course.code, source: "male", type: "activity-alias", ...conflict }))),
+      ...[...female.values()].flatMap((course) => (course.activityAliasConflicts ?? []).map((conflict) => ({ code: course.code, source: "female", type: "activity-alias", ...conflict }))),
     ];
     for (const [key, maleCourse] of male) {
       const femaleCourse = female.get(key);

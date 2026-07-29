@@ -24,11 +24,18 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     cumulative += semester.academicHours;
     semester.cumulativeHours = cumulative;
   }
-  const totalHours = cumulative;
-  if (numericValue(plan.expectedCredits) !== null && totalHours !== numericValue(plan.expectedCredits)) {
-    addDiagnostic(diagnostics, "warnings", "PLAN_HOURS_MISMATCH", `Calculated plan hours are ${totalHours}, expected ${plan.expectedCredits}.`, {
+  const electiveHours = resolvedElectiveGroups.reduce(
+    (sum, group) => sum + (numericValue(group.requiredHours) ?? 0),
+    0,
+  );
+  const totalHours = cumulative + electiveHours;
+  const expectedCredits = numericValue(plan.expectedCredits);
+  if (expectedCredits !== null && expectedCredits > 0 && totalHours !== expectedCredits) {
+    addDiagnostic(diagnostics, "warnings", "PLAN_HOURS_MISMATCH", `Calculated plan hours are ${totalHours} (${cumulative} published + ${electiveHours} elective), expected ${plan.expectedCredits}.`, {
       calculated: totalHours,
-      expected: plan.expectedCredits,
+      published: cumulative,
+      elective: electiveHours,
+      expected: expectedCredits,
     });
   }
 
@@ -47,7 +54,9 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     headerSubtitle: plan.headerSubtitle ?? null,
     phases: plan.phases ?? null,
     footer: plan.footer ?? null,
-    expectedCredits: numericValue(plan.expectedCredits),
+    expectedCredits,
+    publishedHours: cumulative,
+    electiveHours,
     totalHours,
     semesterCount: resolvedSemesters.length,
     courseCount: resolver.mainCourses.length,

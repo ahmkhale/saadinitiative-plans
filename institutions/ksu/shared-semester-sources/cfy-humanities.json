@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "id": "cfy-humanities",
+  "name": "تحضيري إنساني",
+  "phaseLabel": "السنة التحضيرية",
+  "semesters": [
+    {
+      "id": "shared-semester-25523e2c-3c61-4303-97a1-bd49e4dc8bd8",
+      "courses": [
+        {
+          "id": "shared:cfy-humanities:shared-semester-25523e2c-3c61-4303-97a1-bd49e4dc8bd8:101-انجل",
+          "code": "101 انجل",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-humanities:shared-semester-25523e2c-3c61-4303-97a1-bd49e4dc8bd8:101-نهج",
+          "code": "101 نهج",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-humanities:shared-semester-25523e2c-3c61-4303-97a1-bd49e4dc8bd8:102-احص",
+          "code": "102 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-humanities:shared-semester-25523e2c-3c61-4303-97a1-bd49e4dc8bd8:102-تقن",
+          "code": "102 تقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-humanities:shared-semester-25523e2c-3c61-4303-97a1-bd49e4dc8bd8:101-فجب",
+          "code": "101 فجب",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "101 انجل": {
+      "name": "اللغة الإنجليزية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 نهج": {
+      "name": "مهارات جامعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 احص": {
+      "name": "مبادىْ في الإحصاء والاحتمالات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 تقن": {
+      "name": "مهارات الحاسب الآلي والذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 فجب": {
+      "name": "اللياقة والثقافة الصحية",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "scope": {
+    "type": "institution",
+    "institutionId": "ksu"
+  }
+}

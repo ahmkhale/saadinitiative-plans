@@ -8,12 +8,16 @@ export function createDialogController({ els, escapeHtml }) {
     els.dialogSubmit.className = `button ${danger ? "danger-ghost" : "primary"}`;
     els.dialogFields.innerHTML = fields.map((field) => `
       <label>${escapeHtml(field.label)}
-        <input name="${escapeHtml(field.name)}" value="${escapeHtml(field.value ?? "")}" ${field.type ? `type="${escapeHtml(field.type)}"` : ""} ${field.required === false ? "" : "required"} ${field.min !== undefined ? `min="${field.min}"` : ""} ${field.dir ? `dir="${field.dir}"` : ""}>
+        ${field.options
+          ? `<select name="${escapeHtml(field.name)}" ${field.required === false ? "" : "required"}>
+              ${field.options.map((option) => `<option value="${escapeHtml(option.value)}" ${option.value === field.value ? "selected" : ""}>${escapeHtml(option.label)}</option>`).join("")}
+            </select>`
+          : `<input name="${escapeHtml(field.name)}" value="${escapeHtml(field.value ?? "")}" ${field.type ? `type="${escapeHtml(field.type)}"` : ""} ${field.required === false ? "" : "required"} ${field.min !== undefined ? `min="${field.min}"` : ""} ${field.dir ? `dir="${field.dir}"` : ""}>`}
       </label>
     `).join("");
     els.dialogFields.hidden = fields.length === 0;
     els.formDialog.showModal();
-    els.dialogFields.querySelector("input")?.focus();
+    els.dialogFields.querySelector("input, select")?.focus();
     return new Promise((resolve) => { resolver = resolve; });
   }
 

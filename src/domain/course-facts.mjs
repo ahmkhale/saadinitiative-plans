@@ -6,6 +6,18 @@ export const ACTIVITY_FIELDS = Object.freeze([
   "practicalHours",
 ]);
 
+export const ACTIVITY_SOURCE_ALIASES = Object.freeze({
+  lectureHours: Object.freeze(["محاضرة"]),
+  exerciseHours: Object.freeze(["تمارين", "عيادة"]),
+  practicalHours: Object.freeze(["عملي", "ستوديو", "حقلي", "تدريب", "مشروع"]),
+});
+
+export function matchingActivityAliases(activities, field) {
+  const aliases = ACTIVITY_SOURCE_ALIASES[field] ?? [];
+  const present = new Set((activities ?? []).map((activity) => String(activity ?? "").trim()));
+  return aliases.filter((alias) => present.has(alias));
+}
+
 export const FALLBACK_FACT_FIELDS = Object.freeze([
   "name",
   "academicHours",

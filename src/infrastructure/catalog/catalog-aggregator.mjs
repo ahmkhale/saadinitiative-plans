@@ -1,5 +1,9 @@
 import { courseCodeKey, normalizeCourseCode, numericValue } from "../../domain/course-code.mjs";
-import { normalizeActivityFacts } from "../../domain/course-facts.mjs";
+import {
+  ACTIVITY_FIELDS,
+  matchingActivityAliases,
+  normalizeActivityFacts,
+} from "../../domain/course-facts.mjs";
 
 function minutes(value) {
   const match = /^(\d{1,2}):(\d{2})$/u.exec(String(value ?? ""));
@@ -118,14 +122,25 @@ export function buildCourseCatalog(raw, options = {}) {
   for (const [key, rows] of rowsByCode.entries()) {
     const code = normalizeCourseCode(rows[0].code);
     const conflicts = [];
-    const byActivity = (activityNames, field) => {
-      const values = [];
-      for (const row of rows) {
-        if (!activityNames.includes(String(row.activity).trim())) continue;
-        const value = scheduleHours(row.schedule);
-        if (value !== null) values.push(value);
+    const sourceActivities = rows.map((row) => row.activity);
+    const aliasesByField = Object.fromEntries(
+      ACTIVITY_FIELDS.map((field) => [field, matchingActivityAliases(sourceActivities, field)]),
+    );
+    const activityAliasConflicts = ACTIVITY_FIELDS.flatMap((field) => (
+      aliasesByField[field].length > 1 ? [{ field, aliases: aliasesByField[field] }] : []
+    ));
+    const byActivity = (field) => {
+      for (const alias of aliasesByField[field]) {
+        const values = [];
+        for (const row of rows) {
+          if (String(row.activity).trim() !== alias) continue;
+          const value = scheduleHours(row.schedule);
+          if (value !== null) values.push(value);
+        }
+        const selected = chooseValue(values, field, conflicts);
+        if (selected !== null) return selected;
       }
-      return chooseValue(values, field, conflicts);
+      return null;
     };
     const credits = chooseValue(rows.map((row) => numericValue(row.creditHours)), "academicHours", conflicts);
     const name = chooseValue(rows.map((row) => String(row.name ?? "").trim() || null), "name", conflicts);
@@ -133,9 +148,9 @@ export function buildCourseCatalog(raw, options = {}) {
       code,
       name,
       academicHours: credits,
-      lectureHours: byActivity(["محاضرة"], "lectureHours"),
-      practicalHours: byActivity(["عملي", "ستوديو", "تدريب"], "practicalHours"),
-      exerciseHours: byActivity(["تمارين"], "exerciseHours"),
+      lectureHours: byActivity("lectureHours"),
+      practicalHours: byActivity("practicalHours"),
+      exerciseHours: byActivity("exerciseHours"),
       prerequisites: undefined,
       corequisites: undefined,
       minimumCompletedCredits: null,
@@ -144,6 +159,7 @@ export function buildCourseCatalog(raw, options = {}) {
       extinct: false,
       catalogSource,
       conflicts,
+      activityAliasConflicts,
     }).facts);
   }
 

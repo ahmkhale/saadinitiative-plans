@@ -16,8 +16,8 @@ test("catalog facts resolve independently while same-semester rules do not creat
       { courses: ["101 ريض", { code: "201 كهر", prerequisites: ["101 ريض"], override: { name: "دوائر كهربائية أ" } }] },
     ],
     fallbackCourses: {
-      "101 ريض": { name: "اسم قديم", academicHours: 3 },
-      "201 كهر": { name: "دوائر كهربائية", academicHours: 4, prerequisites: ["101 ريض"] },
+      "101 ريض": { name: "اسم قديم", academicHours: 3, source: "catalog" },
+      "201 كهر": { name: "دوائر كهربائية", academicHours: 4, source: "catalog" },
     },
   });
   const catalog = buildCourseCatalog({ courses: [
@@ -32,6 +32,115 @@ test("catalog facts resolve independently while same-semester rules do not creat
   assert.equal(math.isParentCourse, false);
   assert.equal(resolved.totalHours, 7);
   assert.equal(diagnostics.summary.errors, 0);
+});
+
+test("warns when a course supplies multiple aliases for one displayed activity field", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار",
+    semesters: [{ courses: ["201 تجر"] }],
+  });
+  const catalog = buildCourseCatalog([
+    { code: "201 تجر", name: "تطبيقي", activity: "عملي", creditHours: "2", schedule: [{ startTime: "08:00", endTime: "09:40" }] },
+    { code: "201 تجر", name: "تطبيقي", activity: "مشروع", creditHours: "2", schedule: [{ startTime: "10:00", endTime: "12:30" }] },
+  ]);
+  const diagnostics = createDiagnostics();
+
+  resolvePlan(plan, catalog, colors, diagnostics);
+
+  const warning = diagnostics.items.find((item) => item.code === "MULTIPLE_ACTIVITY_ALIASES");
+  assert.equal(warning?.severity, "warnings");
+  assert.deepEqual(warning?.conflicts, [{
+    field: "practicalHours",
+    aliases: ["عملي", "مشروع"],
+  }]);
+});
+
+test("zero expected plan hours disables the plan-hours mismatch check", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار",
+    expectedCredits: 0,
+    semesters: [{ courses: ["101 ريض"] }],
+    fallbackCourses: {
+      "101 ريض": {
+        name: "رياضيات",
+        academicHours: 3,
+        lectureHours: 3,
+        exerciseHours: 0,
+        practicalHours: 0,
+      },
+    },
+  });
+  const diagnostics = createDiagnostics();
+
+  const resolved = resolvePlan(plan, new Map(), colors, diagnostics);
+
+  assert.equal(resolved.expectedCredits, 0);
+  assert.equal(resolved.totalHours, 3);
+  assert.equal(diagnostics.items.some((item) => item.code === "PLAN_HOURS_MISMATCH"), false);
+});
+
+test("plan hours include published semesters and numeric elective requirements", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار",
+    expectedCredits: 24,
+    semesters: [{ courses: ["101 ريض"] }],
+    electiveGroups: [
+      { id: "major", name: "اختياري التخصص", requiredHours: 12, courses: ["201 ريض"] },
+      { id: "college", name: "اختياري الكلية", requiredHours: 6, courses: ["202 ريض"] },
+      { id: "university", name: "اختياري الجامعة", requiredHours: 3, courses: ["203 ريض"] },
+    ],
+    fallbackCourses: Object.fromEntries(["101 ريض", "201 ريض", "202 ريض", "203 ريض"].map((code) => [code, {
+      name: code,
+      academicHours: 3,
+      lectureHours: 3,
+      exerciseHours: 0,
+      practicalHours: 0,
+    }])),
+  });
+  const diagnostics = createDiagnostics();
+
+  const resolved = resolvePlan(plan, new Map(), colors, diagnostics);
+
+  assert.equal(resolved.publishedHours, 3);
+  assert.equal(resolved.electiveHours, 21);
+  assert.equal(resolved.totalHours, 24);
+  assert.equal(diagnostics.items.some((item) => item.code === "PLAN_HOURS_MISMATCH"), false);
+});
+
+test("explicitly edited fallback fields override only their matching catalog facts", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار",
+    semesters: [{ courses: ["413 هال"] }],
+    fallbackCourses: {
+      "413 هال": {
+        name: "اسم يدوي قديم",
+        academicHours: 3,
+        lectureHours: 3,
+        source: "manual",
+        manuallyEditedFields: ["lectureHours"],
+      },
+    },
+  });
+  const catalog = buildCourseCatalog([{
+    code: "413 هال",
+    name: "عمارة الحاسبات (2)",
+    academicHours: 3,
+    lectureHours: 1,
+    exerciseHours: 1,
+    practicalHours: 0,
+  }]);
+
+  const resolved = resolvePlan(plan, catalog, colors, createDiagnostics());
+  const course = resolved.semesters[0].courses[0];
+
+  assert.equal(course.name, "عمارة الحاسبات (2)");
+  assert.equal(course.lectureHours, 3);
+  assert.equal(course.exerciseHours, 1);
+  assert.equal(course.source, "catalog");
 });
 
 test("same-semester prerequisite becomes a corequisite automatically", () => {
@@ -158,7 +267,7 @@ test("proposal inherits published facts and appends black placeholders", () => {
     proposal: {
       title: "الخطة المقترحة",
       semesters: [
-        { id: "published-1", sourceSemesterId: "published-1", type: "regular", courseOrder: ["major:plan:published-1:101-ريض", "major:plan:published-1:102-ريض"], placeholders: [{ id: "p1", name: "من متطلبات المسار", academicHours: 3, lectureHours: 0, exerciseHours: 0, practicalHours: 0 }] },
+        { id: "published-1", sourceSemesterId: "published-1", type: "regular", courseOrder: ["major:plan:published-1:101-ريض", "major:plan:published-1:102-ريض"], placeholders: [{ id: "p1", name: "من متطلبات المسار", allocationHours: 3, hoursDisplay: "unknown" }] },
         { id: "published-2", sourceSemesterId: "published-2", type: "regular", courseOrder: ["major:plan:published-2:201-ريض"], placeholders: [] },
       ],
     },
@@ -173,6 +282,11 @@ test("proposal inherits published facts and appends black placeholders", () => {
   const placeholder = resolved.proposal.semesters[0].courses.at(-1);
   assert.equal(placeholder.isPlaceholder, true);
   assert.equal(placeholder.code, "مقرر");
+  assert.equal(placeholder.academicHours, 3);
+  assert.deepEqual(
+    [placeholder.lectureHours, placeholder.exerciseHours, placeholder.practicalHours],
+    [null, null, null],
+  );
   assert.equal(placeholder.color, "#000000");
   assert.equal(diagnostics.summary.errors, 0);
 });
@@ -357,7 +471,7 @@ test("manual activity facts normalize missing siblings to explicit zero", () => 
   assert.ok(diagnostics.items.some((diagnostic) => diagnostic.code === "ACTIVITY_HOURS_NORMALIZED"));
 });
 
-test("all three unknown activity values remain unknown and produce a targeted error", () => {
+test("all three unknown activity values remain unknown and produce a non-blocking display warning", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
     major: "مجهول",
@@ -367,5 +481,8 @@ test("all three unknown activity values remain unknown and produce a targeted er
   const diagnostics = createDiagnostics();
   const resolved = resolvePlan(plan, new Map(), colors, diagnostics);
   assert.equal(resolved.semesters[0].courses[0].lectureHours, null);
-  assert.ok(diagnostics.items.some((item) => item.code === "UNKNOWN_ACTIVITY_HOURS"));
+  assert.equal(diagnostics.summary.errors, 0);
+  assert.ok(diagnostics.items.some((item) => (
+    item.code === "UNKNOWN_ACTIVITY_HOURS" && item.severity === "warnings"
+  )));
 });

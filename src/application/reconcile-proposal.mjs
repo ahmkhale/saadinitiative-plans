@@ -5,15 +5,19 @@ import { semesterLevelName } from "../domain/semester.mjs";
 
 function placeholderCourse(placeholder, semesterIndex, placeholderIndex) {
   const activity = normalizeActivityFacts(placeholder);
+  const hidesHours = placeholder.hoursDisplay === "unknown";
   return {
     code: "مقرر",
     key: `__placeholder__${placeholder.id ?? `${semesterIndex + 1}-${placeholderIndex + 1}`}`,
     placeholderId: placeholder.id ?? `placeholder-${semesterIndex + 1}-${placeholderIndex + 1}`,
     name: placeholder.name,
-    academicHours: numericValue(placeholder.academicHours) ?? 0,
-    lectureHours: numericValue(activity.facts.lectureHours),
-    exerciseHours: numericValue(activity.facts.exerciseHours),
-    practicalHours: numericValue(activity.facts.practicalHours),
+    academicHours: hidesHours
+      ? numericValue(placeholder.allocationHours)
+      : numericValue(placeholder.academicHours) ?? 0,
+    allocationHours: numericValue(placeholder.allocationHours),
+    lectureHours: hidesHours ? null : numericValue(activity.facts.lectureHours),
+    exerciseHours: hidesHours ? null : numericValue(activity.facts.exerciseHours),
+    practicalHours: hidesHours ? null : numericValue(activity.facts.practicalHours),
     prerequisites: [],
     corequisites: [],
     prerequisiteConditions: [],
@@ -25,7 +29,8 @@ function placeholderCourse(placeholder, semesterIndex, placeholderIndex) {
     isPlaceholder: true,
     source: "proposal-placeholder",
     sourceBadge: "مقرر نائب",
-    qualityBadges: activity.allUnknown ? ["بيانات ناقصة"] : [],
+    qualityBadges: hidesHours ? [] : activity.allUnknown ? ["بيانات ناقصة"] : [],
+    hoursDisplay: hidesHours ? "unknown" : "known",
   };
 }
 
@@ -141,7 +146,9 @@ export function reconcileProposal(publishedPlan, proposal, diagnostics) {
       ? (++summerIndex === 1 ? "فصل صيفي" : `فصل صيفي ${summerIndex}`)
       : semesterLevelName(++regularIndex);
     const academicHours = [...realCourses, ...placeholders]
-      .reduce((sum, course) => sum + (numericValue(course.academicHours) ?? 0), 0);
+      .reduce((sum, course) => sum + (
+        numericValue(course.allocationHours) ?? numericValue(course.academicHours) ?? 0
+      ), 0);
     for (const course of realCourses) {
       proposalPlacement.set(courseCodeKey(course.code), { semesterIndex, semesterId: semester.id });
     }

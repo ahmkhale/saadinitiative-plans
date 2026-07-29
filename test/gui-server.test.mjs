@@ -61,6 +61,30 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
     assert.equal(state.colleges[0].majors[0].id, "cs");
     assert.equal(state.catalog.resolvedCourseCount, 1);
     assert.equal(state.settings.edition, "الطبعة الرابعة");
+    assert.equal(state.colors.عال, "#008899");
+
+    const savedColors = await fetch(`${base}/api/colors`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        subjects: ["إحص", "احص"],
+        color: "#165b86",
+      }),
+    }).then((response) => response.json());
+    assert.equal(savedColors.colors["إحص"], "#165B86");
+    assert.equal(savedColors.colors.احص, "#165B86");
+
+    const renamedColors = await fetch(`${base}/api/colors`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        subjects: ["إحص"],
+        previousSubjects: ["إحص", "احص"],
+        color: "#123456",
+      }),
+    }).then((response) => response.json());
+    assert.equal(renamedColors.colors["إحص"], "#123456");
+    assert.equal(renamedColors.colors.احص, undefined);
 
     const savedSettings = await fetch(`${base}/api/institutions/test-university/settings`, {
       method: "PUT",

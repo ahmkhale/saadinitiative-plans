@@ -79,8 +79,13 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
     const fallbackManualFields = new Set(fallbackRecord?.manuallyEditedFields ?? []);
     const fallbackIsCatalogSnapshot = fallbackRecord?.sourceType === "catalog";
     const catalogFacts = entry.forceFallback ? {} : compactFacts(catalog.get(key) ?? {});
+    const manualOverrides = Object.fromEntries(
+      [...fallbackManualFields]
+        .filter((field) => fallback[field] !== undefined)
+        .map((field) => [field, fallback[field]]),
+    );
     const override = compactFacts(entry.override ?? {});
-    const mergedFacts = mergeFacts(fallback, catalogFacts, override, { extinct: entry.extinct });
+    const mergedFacts = mergeFacts(fallback, catalogFacts, manualOverrides, override, { extinct: entry.extinct });
     const activity = normalizeActivityFacts(mergedFacts);
     const facts = activity.facts;
     const usedCatalog = Object.keys(catalogFacts).length > 0;
@@ -97,7 +102,7 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
         location: context.location,
       });
     } else if (activity.allUnknown) {
-      addDiagnostic(diagnostics, "errors", "UNKNOWN_ACTIVITY_HOURS", `${code} has no known lecture, exercise, or practical hours.`, {
+      addDiagnostic(diagnostics, "warnings", "UNKNOWN_ACTIVITY_HOURS", `${code} has no known lecture, exercise, or practical hours; zeroes are used for display.`, {
         course: code,
         location: context.location,
       });
@@ -130,6 +135,13 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
       addDiagnostic(diagnostics, "warnings", "CONFLICTING_CATALOG_FACTS", `${code} has conflicting section-derived facts that need review.`, {
         course: code,
         conflicts: rawCatalog.conflicts,
+        location: context.location,
+      });
+    }
+    if (rawCatalog?.activityAliasConflicts?.length) {
+      addDiagnostic(diagnostics, "warnings", "MULTIPLE_ACTIVITY_ALIASES", `${code} has more than one source activity alias for the same displayed field.`, {
+        course: code,
+        conflicts: rawCatalog.activityAliasConflicts,
         location: context.location,
       });
     }
@@ -200,7 +212,7 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
         ? rawCatalog?.catalogSource === "female" ? "دليل الطالبات" : rawCatalog?.catalogSource === "male" ? "دليل الطلاب" : "دليل المقررات"
         : usedFallback ? (fallbackIsCatalogSnapshot ? "لقطة من الدليل" : "مدخل يدويًا") : "غير موجود في الدليل",
       qualityBadges: [
-        ...(rawCatalog?.conflicts?.length || rawCatalog?.crossSourceConflict ? ["بيانات متعارضة"] : []),
+        ...(rawCatalog?.conflicts?.length || rawCatalog?.activityAliasConflicts?.length || rawCatalog?.crossSourceConflict ? ["بيانات متعارضة"] : []),
         ...(usedCatalog && [facts.name, facts.academicHours, facts.lectureHours, facts.exerciseHours, facts.practicalHours]
           .some((value) => value === null || value === undefined || value === "") ? ["بيانات ناقصة"] : []),
       ],

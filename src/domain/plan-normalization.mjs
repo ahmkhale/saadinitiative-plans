@@ -10,12 +10,17 @@ export function normalizeRuleList(values = []) {
 }
 
 export function canonicalFallbackCourses(value = {}) {
-  return Object.fromEntries(Object.entries(value).map(([rawCode, facts = {}]) => {
+  const result = {};
+  const keys = new Set();
+  for (const [rawCode, facts = {}] of Object.entries(value)) {
     const code = normalizeCourseCode(rawCode);
+    const key = courseCodeKey(code);
+    if (keys.has(key)) throw new Error(`Fallback course code appears more than once after normalization: ${code}`);
+    keys.add(key);
     const source = facts.source === "catalog" ? "catalog" : "manual";
     const presentFields = ["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"]
       .filter((field) => facts[field] !== undefined && facts[field] !== null && facts[field] !== "");
-    return [code, {
+    result[code] = {
       name: facts.name ?? null,
       academicHours: numericValue(facts.academicHours),
       lectureHours: numericValue(facts.lectureHours),
@@ -25,8 +30,9 @@ export function canonicalFallbackCourses(value = {}) {
       manuallyEditedFields: source === "manual"
         ? Array.from(new Set(facts.manuallyEditedFields ?? presentFields))
         : Array.from(new Set(facts.manuallyEditedFields ?? [])),
-    }];
-  }));
+    };
+  }
+  return result;
 }
 
 export function canonicalCourseEntry(rawEntry, occurrencePrefix) {

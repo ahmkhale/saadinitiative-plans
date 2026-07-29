@@ -1,0 +1,1294 @@
+{
+  "schemaVersion": 1,
+  "id": "acs",
+  "major": "عمارة وعلوم البناء",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-411b7d16-3c0a-4861-b036-802857cc9ce0",
+      "courses": [
+        {
+          "id": "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:101-عرب",
+          "code": "101 عرب",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:104-ريض",
+          "code": "104 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:250-عمر",
+          "code": "250 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:254-عمر",
+          "code": "254 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:255-عمر",
+          "code": "255 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-411b7d16-3c0a-4861-b036-802857cc9ce0:256-عمر",
+          "code": "256 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-level-1",
+      "courses": [
+        {
+          "id": "major:acs:published-level-1:105-فيز",
+          "code": "105 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-level-1:251-همس",
+          "code": "251 همس",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-level-1:260-عمر",
+          "code": "260 عمر",
+          "prerequisites": [
+            "250 عمر",
+            "255 عمر",
+            "256 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-level-1:264-عمر",
+          "code": "264 عمر",
+          "prerequisites": [
+            "254 عمر",
+            "255 عمر",
+            "256 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-level-1:266-عمر",
+          "code": "266 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-level-1:268-عمر",
+          "code": "268 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-level-1:269-عمر",
+          "code": "269 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-cff254fa-b107-4266-8b69-421f8e21f0bd",
+      "courses": [
+        {
+          "id": "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:118-عرب",
+          "code": "118 عرب",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:265-عمر",
+          "code": "265 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:350-عمر",
+          "code": "350 عمر",
+          "prerequisites": [
+            "105 فيز",
+            "260 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:351-عمر",
+          "code": "351 عمر",
+          "prerequisites": [
+            "105 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:352-عمر",
+          "code": "352 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:353-عمر",
+          "code": "353 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-cff254fa-b107-4266-8b69-421f8e21f0bd:357-عمر",
+          "code": "357 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-95906df1-9c81-42fc-bbdf-ac526f2448a3",
+      "courses": [
+        {
+          "id": "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:355-عمر",
+          "code": "355 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:360-عمر",
+          "code": "360 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:361-عمر",
+          "code": "361 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:363-عمر",
+          "code": "363 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:366-عمر",
+          "code": "366 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-95906df1-9c81-42fc-bbdf-ac526f2448a3:368-عمر",
+          "code": "368 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-6a27d9d7-615c-40f1-8329-6195d3605524",
+      "courses": [
+        {
+          "id": "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:339-همك",
+          "code": "339 همك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:410-عمر",
+          "code": "410 عمر",
+          "prerequisites": [
+            "355 عمر",
+            "360 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:411-عمر",
+          "code": "411 عمر",
+          "prerequisites": [
+            "361 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:412-عمر",
+          "code": "412 عمر",
+          "prerequisites": [
+            "352 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:414-عمر",
+          "code": "414 عمر",
+          "prerequisites": [
+            "105 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:415-عمر",
+          "code": "415 عمر",
+          "prerequisites": [
+            "366 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:416-عمر",
+          "code": "416 عمر",
+          "prerequisites": [
+            "366 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:418-عمر",
+          "code": "418 عمر",
+          "prerequisites": [
+            "268 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-6a27d9d7-615c-40f1-8329-6195d3605524:999-عمر",
+          "code": "999 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 95,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22",
+      "courses": [
+        {
+          "id": "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:265-همد",
+          "code": "265 همد",
+          "prerequisites": [
+            "414 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:420-عمر",
+          "code": "420 عمر",
+          "prerequisites": [
+            "410 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:421-عمر",
+          "code": "421 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:424-عمر",
+          "code": "424 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:425-عمر",
+          "code": "425 عمر",
+          "prerequisites": [
+            "416 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:426-عمر",
+          "code": "426 عمر",
+          "prerequisites": [
+            "416 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-62def4ec-59c8-4967-8ff6-ad3f1bd40d22:427-عمر",
+          "code": "427 عمر",
+          "prerequisites": [
+            "105 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-8ac56539-ccf5-45d7-b48e-b6ee78be0733",
+      "courses": [
+        {
+          "id": "major:acs:published-8ac56539-ccf5-45d7-b48e-b6ee78be0733:378-همد",
+          "code": "378 همد",
+          "prerequisites": [
+            "265 همد"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-8ac56539-ccf5-45d7-b48e-b6ee78be0733:430-عمر",
+          "code": "430 عمر",
+          "prerequisites": [
+            "265 همد",
+            "339 همك",
+            "420 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-8ac56539-ccf5-45d7-b48e-b6ee78be0733:434-عمر",
+          "code": "434 عمر",
+          "prerequisites": [
+            "424 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-8ac56539-ccf5-45d7-b48e-b6ee78be0733:435-عمر",
+          "code": "435 عمر",
+          "prerequisites": [
+            "425 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "published-7b4b4989-4596-4cb2-bf06-4e9e0a40af72",
+      "courses": [
+        {
+          "id": "major:acs:published-7b4b4989-4596-4cb2-bf06-4e9e0a40af72:491-عمر",
+          "code": "491 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:published-7b4b4989-4596-4cb2-bf06-4e9e0a40af72:495-عمر",
+          "code": "495 عمر",
+          "prerequisites": [
+            "430 عمر",
+            "434 عمر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    },
+    {
+      "id": "elective-group-2",
+      "name": "متطلبات القسم",
+      "requiredHours": 8,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:acs:elective:elective-group-2:431-عمر",
+          "code": "431 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:432-عمر",
+          "code": "432 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:433-عمر",
+          "code": "433 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:436-عمر",
+          "code": "436 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:437-عمر",
+          "code": "437 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:438-عمر",
+          "code": "438 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:439-عمر",
+          "code": "439 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:441-عمر",
+          "code": "441 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:442-عمر",
+          "code": "442 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:443-عمر",
+          "code": "443 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:446-عمر",
+          "code": "446 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:447-عمر",
+          "code": "447 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:448-عمر",
+          "code": "448 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:449-عمر",
+          "code": "449 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:451-عمر",
+          "code": "451 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        },
+        {
+          "id": "major:acs:elective:elective-group-2:456-عمر",
+          "code": "456 عمر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": [],
+          "trackSpecific": false
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "101 عرب": {
+      "name": "المهارات اللغوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "104 ريض": {
+      "name": "رياضيات عامة (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "250 عمر": {
+      "name": "تصميم معماري (1)",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 8,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "254 عمر": {
+      "name": "الرسم الحر",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "255 عمر": {
+      "name": "مهارات الرسم المعماري",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 8,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "256 عمر": {
+      "name": "أسس التصميم",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "105 فيز": {
+      "name": "فيزياء عامة للعمارة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "251 همس": {
+      "name": "المساحة لغير طلبة الهندسة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "260 عمر": {
+      "name": "تصميم معماري (2)",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 8,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "264 عمر": {
+      "name": "الظل والمنظور",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "266 عمر": {
+      "name": "مواد البناء",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "268 عمر": {
+      "name": "تاريخ العمارة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "269 عمر": {
+      "name": "تحليل وتنسيق المواقع",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "118 عرب": {
+      "name": "مهارات القراءة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "265 عمر": {
+      "name": "مهارات الرسم بالحاسوب (1)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "350 عمر": {
+      "name": "تصميم معماري (3)",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 8,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "351 عمر": {
+      "name": "دراسات في التحكم البيئي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "352 عمر": {
+      "name": "نظريات العمارة (1)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "353 عمر": {
+      "name": "مبادئ التصميم العمراني",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "357 عمر": {
+      "name": "انظمة البناء والعمران",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "355 عمر": {
+      "name": "مهارات الرسم بالحاسوب (2)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "360 عمر": {
+      "name": "تصميم معماري (4)",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 8,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "361 عمر": {
+      "name": "الإنسان والبيئة المبنية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "363 عمر": {
+      "name": "الإسكان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "366 عمر": {
+      "name": "تشييد مباني (1)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "368 عمر": {
+      "name": "تاريخ العمران",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "339 همك": {
+      "name": "تركيبات ميكانيكية (لطلبة العمارة)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "410 عمر": {
+      "name": "تصميم معماري (5)",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 8,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "411 عمر": {
+      "name": "تطبيقات الإنسانيات في العمارة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "412 عمر": {
+      "name": "نظريات العمارة (2)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "414 عمر": {
+      "name": "الاستاتيكا ومقاومة المواد",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "415 عمر": {
+      "name": "التركيبات الصحية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "416 عمر": {
+      "name": "تشييد مباني (2)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "418 عمر": {
+      "name": "تاريخ عمارة المسلمين",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "999 عمر": {
+      "name": "تدريب عملي",
+      "academicHours": 1,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "265 همد": {
+      "name": "التحليل الانشائي للعمارة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "420 عمر": {
+      "name": "تصميم معماري (6)",
+      "academicHours": 4,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 8,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "421 عمر": {
+      "name": "التصميم الداخلي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "424 عمر": {
+      "name": "برمجة المشاريع المعمارية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "425 عمر": {
+      "name": "العقود والكميات والمواصفات",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 1,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "426 عمر": {
+      "name": "تصميمات تنفيذية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "427 عمر": {
+      "name": "الإضاءة والصوتيات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "378 همد": {
+      "name": "تصميم المنشآت الخرسانيه -1- (طلبةالعمارة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "430 عمر": {
+      "name": "تصميم معماري (7)",
+      "academicHours": 5,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 10,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "434 عمر": {
+      "name": "مشروع التخرج (1)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "435 عمر": {
+      "name": "إدارة المشاريع",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "491 عمر": {
+      "name": "ممارسة مهنة العمارة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "495 عمر": {
+      "name": "مشروع التخرج (2)",
+      "academicHours": 5,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 10,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "432 عمر": {
+      "name": "تاريخ العمارة الداخلية والأثاث",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    },
+    "431 عمر": {
+      "name": "تطبيقات متقدمة للحاسب في التصميم المعماري",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "433 عمر": {
+      "name": "مهارات التصميم الحضري",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "437 عمر": {
+      "name": "تقويم أداء المباني باستخدام الحاسوب",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "438 عمر": {
+      "name": "العمارة التقليدية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "441 عمر": {
+      "name": "الإنشاء والشكل المعماري",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "443 عمر": {
+      "name": "نظريات التصميم الحضري",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "451 عمر": {
+      "name": "التذوق الفني",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "456 عمر": {
+      "name": "اقتصاديات البناء",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "436 عمر": {
+      "name": "طرق التشييد المعاصرة في المباني",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    },
+    "439 عمر": {
+      "name": "أنظمة إدارة المشاريع",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    },
+    "442 عمر": {
+      "name": "تصميم الأثاث والمعالجات الداخلية",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    },
+    "446 عمر": {
+      "name": "النظم الإنشائية المتقدمة في العمارة",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    },
+    "447 عمر": {
+      "name": "تقنية تكامل أنظمة الطاقة المتجددة في المباني",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    },
+    "448 عمر": {
+      "name": "العمارة الإسلامية",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    },
+    "449 عمر": {
+      "name": "إدارة عقود تنفيذ المشاريع",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    }
+  }
+}

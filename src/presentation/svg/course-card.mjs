@@ -64,7 +64,8 @@ export function renderCourseCard(context, course, x, y, options = {}) {
     }));
   }
 
-  parts.push(text({ x: 68.5, y: 12.5, value: displayNumber(course.academicHours, "0"), size: 10, weight: 700, direction: "ltr", fill: insetTextColor }));
+  const unknownHours = course.hoursDisplay === "unknown";
+  parts.push(text({ x: 68.5, y: 12.5, value: displayNumber(course.academicHours, unknownHours ? "—" : "0"), size: 10, weight: 700, direction: "ltr", fill: insetTextColor }));
   parts.push(text({ x: 38, y: 23.5, value: clipped(course.code, 18), size: 12, weight: 700, fill: COLORS.white }));
   const fittedName = courseNameFit(course.name);
   parts.push(`<g data-part="course-name-clip" clip-path="url(#${nameClipId})">`);
@@ -85,7 +86,7 @@ export function renderCourseCard(context, course, x, y, options = {}) {
     parts.push(text({
       x: metricX + layout.metrics.width / 2,
       y: 46,
-      value: displayNumber(value),
+      value: displayNumber(value, unknownHours ? "—" : "0"),
       size: 5,
       weight: 700,
       direction: "ltr",

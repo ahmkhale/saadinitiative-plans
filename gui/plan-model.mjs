@@ -10,6 +10,14 @@ export function entryId(entry) {
   return typeof entry === "object" && entry?.id ? entry.id : entryCode(entry);
 }
 
+export function removeCourseEntry(target, index, fallbackCourses = null) {
+  const removedCode = entryCode(target[index]);
+  target.splice(index, 1);
+  if (fallbackCourses && !target.some((entry) => entryCode(entry) === removedCode)) {
+    delete fallbackCourses[removedCode];
+  }
+}
+
 export function occurrenceSlug(code) {
   return String(code ?? "").trim().toLocaleLowerCase("ar").replace(/\s+/gu, "-");
 }

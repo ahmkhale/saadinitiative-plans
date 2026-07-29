@@ -51,3 +51,25 @@ test("course rows reserve the missing state for a confirmed unresolved course", 
   assert.match(html, /غير موجود في الدليل/u);
   assert.match(html, /<details[^>]*open/u);
 });
+
+test("elective proposal placeholders display dashes instead of zero-hour facts", () => {
+  const html = renderCourseRow({
+    ...baseArgs,
+    entry: { kind: "placeholder", placeholderId: "p1", code: "مقرر" },
+    kind: "proposal",
+    resolved: {
+      code: "مقرر",
+      name: "من اختياري التخصص",
+      isPlaceholder: true,
+      hoursDisplay: "unknown",
+      academicHours: 3,
+      lectureHours: null,
+      exerciseHours: null,
+      practicalHours: null,
+      prerequisites: [],
+    },
+  });
+
+  assert.match(html, /3 ساعات · محاضرة — · عملي — · تمارين —/u);
+  assert.doesNotMatch(html, /محاضرة 0/u);
+});

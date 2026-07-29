@@ -166,14 +166,16 @@
             </form>
           </div>
           <div class="card">
-            <p class="eyebrow">ألوان البطاقات</p>
-            <h2>لون رمز المقرر</h2>
-            <p class="muted">يُطبق اللون على جميع الخطط، ولا يُكرر داخل كل مقرر.</p>
+            <div class="card-heading">
+              <div><p class="eyebrow">ألوان البطاقات</p><h2>ألوان رموز المقررات</h2></div>
+            </div>
+            <p class="muted">تُطبق الألوان على جميع الخطط. افصل بين الصيغ البديلة بعلامة &amp;، مثل: إحص &amp; احص.</p>
             <form id="colorForm" class="inline-form">
-              <label>رمز القسم<input id="colorSubject" placeholder="عال" required></label>
+              <label>رموز القسم<input id="colorSubject" placeholder="إحص & احص" required></label>
               <label>اللون<input id="colorValue" type="color" value="#00AEEF"></label>
-              <button class="button secondary" type="submit">حفظ اللون</button>
+              <button class="button secondary" type="submit">إضافة اللون</button>
             </form>
+            <div id="colorList" class="color-list"></div>
           </div>
           <div class="card">
             <div class="card-heading">
@@ -236,11 +238,16 @@
                 </select>
               </label>
               <label>معرّفات النطاق<input id="sharedElectiveScopeTarget" dir="ltr" placeholder="engineering أو major-a, major-b"></label>
+              <label class="choice-item">
+                <span><strong>استبعاد المقررات المنشورة</strong><small>يستبعد المقرر الموجود في الخطة ويخصم ساعاته من المتطلب.</small></span>
+                <input id="sharedElectiveExcludePublished" type="checkbox" checked>
+              </label>
             </div>
             <div class="course-adder">
               <input id="sharedElectiveCourseInput" list="courseSuggestions" placeholder="أدخل رمز مقرر">
               <button id="addSharedElectiveCourseButton" class="button ghost" type="button">إضافة مقرر</button>
             </div>
+            <p id="sharedElectiveValidation" class="muted"></p>
             <div id="sharedElectiveCourseList" class="course-list"></div>
           </div>
           <div class="card">
@@ -301,10 +308,10 @@
       <div class="course-adder">
         <input class="course-code-input" list="courseSuggestions" placeholder="أدخل رمز مقرر، مثل: 101 عال">
         <button class="button ghost add-course" type="button">إضافة</button>
-        <button class="button ghost add-placeholder" type="button">إضافة مقرر نائب</button>
+        <button class="button ghost add-placeholder" type="button">إضافة مقرر نائب اختياري</button>
       </div>
     </article>
   </template>
-  <script type="module" src="/app.js?v=20260727a"></script>
+  <script type="module" src="/app.js?v=20260729a"></script>
 </body>
 </html>

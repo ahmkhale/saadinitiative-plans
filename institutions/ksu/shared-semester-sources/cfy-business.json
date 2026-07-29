@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "id": "cfy-business",
+  "name": "تحضيري إدارة أعمال",
+  "phaseLabel": "السنة التحضيرية",
+  "semesters": [
+    {
+      "id": "shared-semester-4396fc5a-23b0-4395-9523-d85058c9b846",
+      "courses": [
+        {
+          "id": "shared:cfy-business:shared-semester-4396fc5a-23b0-4395-9523-d85058c9b846:104-انجل",
+          "code": "104 انجل",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-business:shared-semester-4396fc5a-23b0-4395-9523-d85058c9b846:101-تقن",
+          "code": "101 تقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-business:shared-semester-4396fc5a-23b0-4395-9523-d85058c9b846:101-نهج",
+          "code": "101 نهج",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-business:shared-semester-4396fc5a-23b0-4395-9523-d85058c9b846:107-كمى",
+          "code": "107 كمى",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-business:shared-semester-4396fc5a-23b0-4395-9523-d85058c9b846:101-فجب",
+          "code": "101 فجب",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "shared-semester-d736403e-6dfc-482f-82f5-01567f8ad234",
+      "courses": [
+        {
+          "id": "shared:cfy-business:shared-semester-d736403e-6dfc-482f-82f5-01567f8ad234:111-انجل",
+          "code": "111 انجل",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-business:shared-semester-d736403e-6dfc-482f-82f5-01567f8ad234:101-ريد",
+          "code": "101 ريد",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-business:shared-semester-d736403e-6dfc-482f-82f5-01567f8ad234:101-ادا",
+          "code": "101 ادا",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-business:shared-semester-d736403e-6dfc-482f-82f5-01567f8ad234:101-قصد",
+          "code": "101 قصد",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "shared:cfy-business:shared-semester-d736403e-6dfc-482f-82f5-01567f8ad234:207-كمى",
+          "code": "207 كمى",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "104 انجل": {
+      "name": "اللغة الإنجليزية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 تقن": {
+      "name": "مهارات الحاسب الآلي والذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 نهج": {
+      "name": "مهارات جامعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "107 كمى": {
+      "name": "مباديء الإحصاء في الإدارة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 فجب": {
+      "name": "اللياقة والثقافة الصحية",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "111 انجل": {
+      "name": "لغة إنجليزية تخصصية",
+      "academicHours": 6,
+      "lectureHours": 15,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 ريد": {
+      "name": "ريادة الأعمال",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 ادا": {
+      "name": "مباديء الإدارة والأعمال",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 قصد": {
+      "name": "مباديء الاقتصاد الجزئي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "207 كمى": {
+      "name": "الإحصاء الإداري",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "scope": {
+    "type": "institution",
+    "institutionId": "ksu"
+  }
+}
