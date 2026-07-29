@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
-import { exportSvg, findInkscape } from "../src/exporter.mjs";
+import { exportSvg, findChromium } from "../src/exporter.mjs";
 import { renderPlanDocumentSvg } from "../src/render-svg.mjs";
 
 function commandWorks(command, args = ["--version"]) {
@@ -32,9 +32,9 @@ function findPdfInfo() {
   return commandWorks(bundled, ["-v"]) ? bundled : null;
 }
 
-const inkscape = findInkscape();
+const chromium = findChromium();
 const pdfinfo = findPdfInfo();
-const hasTools = commandWorks(inkscape);
+const hasTools = Boolean(chromium);
 
 function facts(code) {
   return {
@@ -53,7 +53,7 @@ function facts(code) {
   };
 }
 
-test("Inkscape preserves four footer URL annotations on published and proposal pages", {
+test("browser PDF export preserves four footer URL annotations on published and proposal pages", {
   skip: !hasTools || !pdfinfo,
 }, () => {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "saad-pdf-links-"));
@@ -76,10 +76,11 @@ test("Inkscape preserves four footer URL annotations on published and proposal p
       pngPath: path.join(temp, "plan.png"),
     };
     exportSvg(document.svg, paths, {
-      inkscape,
+      chromium,
       keepSvg: true,
       pdf: true,
       pageCount: document.pages.length,
+      pages: document.pages,
     });
 
     const result = spawnSync(pdfinfo, ["-url", paths.pdfPath], { encoding: "utf8", shell: false });

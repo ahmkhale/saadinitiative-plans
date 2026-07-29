@@ -39,6 +39,7 @@ for (const planPath of plans) {
       keepSvg: args.includes("--svg"),
       png: args.includes("--png"),
       allowErrors: args.includes("--allow-errors"),
+      chromium: flagValue(args, "--chromium"),
     });
     console.log(`OK  ${planPath} -> ${result.paths.pdfPath}`);
   } catch (error) {

@@ -72,7 +72,7 @@ catalogs/<institution>/<term>/male.json
 catalogs/<institution>/<term>/female.json
 ```
 
-Shared semester and elective stores use the same repository primitive while retaining separate domain semantics. Catalog aggregation and active-term lookup live under `src/infrastructure/catalog/`; Inkscape export, Fontconfig setup, shaped font metrics, and optional Ghostscript PDF compaction live under `src/infrastructure/export/`.
+Shared semester and elective stores use the same repository primitive while retaining separate domain semantics. Catalog aggregation and active-term lookup live under `src/infrastructure/catalog/`; Chromium PDF export, Inkscape PNG export, local-font setup, shaped font metrics, and optional Ghostscript PDF compaction live under `src/infrastructure/export/`.
 
 ### Presentation
 
@@ -109,7 +109,7 @@ repository plan + scoped shared sources + active catalog + settings
 → measured layout
 → deterministic SVG
 → pre-composed SVG artwork
-→ Inkscape PDF / PNG
+→ Chromium PDF / Inkscape PNG
 → optional Ghostscript PDF compaction
 ```
 
@@ -142,6 +142,6 @@ There is no migration layer while the product remains pre-production. Canonical 
 
 ## PDF size architecture
 
-The Figma card uses white 50% overlays and black 90% text on fully opaque card backgrounds. Rendering those as SVG opacity groups caused Inkscape to create one transparency Form XObject per badge, metric box, and metric label. The course-card renderer now pre-composes those colors in sRGB, which is visually equivalent on the opaque card and eliminates most PDF object overhead.
+The Figma card uses white 50% overlays and black 90% text on fully opaque card backgrounds. The course-card renderer pre-composes those colors in sRGB, which is visually equivalent on the opaque card and avoids redundant transparency objects in PDF and PNG exports.
 
-`pdf-optimizer.mjs` then opportunistically rewrites the Inkscape PDF through Ghostscript `pdfwrite`. It keeps vector artwork, subset fonts, dimensions, and URL annotations, but collapses remaining nested Form XObjects into compact page streams. The optimizer replaces the file only when the result is smaller and falls back safely when Ghostscript is unavailable.
+Chromium prints each independently sized SVG page with the same local IBM Plex Sans Arabic weights used by measurement and preview. Marked-content `/ActualText` preserves logical Unicode for shaped Arabic, including required lam–alef ligatures, while leaving the approved visible glyphs unchanged. `pdf-optimizer.mjs` can then opportunistically rewrite the browser PDF through Ghostscript `pdfwrite` with marked-content preservation enabled; it keeps vector artwork, subset fonts, dimensions, text, and URL annotations. The optimizer replaces the file only when the result is smaller and falls back safely when Ghostscript is unavailable.
