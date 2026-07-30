@@ -12,7 +12,7 @@ export function courseNameFit(value) {
 export function prerequisiteFit(value, maxWidth) {
   return fitMeasuredText(value, {
     baseSize: 4.5,
-    minimumSize: 3.5,
+    minimumSize: 2.5,
     maxWidth,
     style: "bold",
   });

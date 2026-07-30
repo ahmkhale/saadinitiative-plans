@@ -195,14 +195,14 @@ test("places automatically sorted courses in Arabic reading order", () => {
 
 test("fits long course and prerequisite text without changing card or pill geometry", () => {
   const longName = "مقدمة شاملة في برمجة الحاسبات وتطبيقاتها الهندسية المتقدمة";
+  const longPrerequisites = ["381 جيو", "384 جيو", "385 جيو", "386 جيو"];
   const svg = renderPlanSvg({
     major: "اختبار",
     degree: "البكالوريوس",
     semesters: [semester({
       courses: [course({
         name: longName,
-        prerequisites: ["101 تقن", "113 عال"],
-        corequisites: ["114 عال"],
+        prerequisites: longPrerequisites,
       })],
     })],
     electiveGroups: [],
@@ -217,7 +217,7 @@ test("fits long course and prerequisite text without changing card or pill geome
   assert.match(svg, /data-part="course-body" x="1" y="6" width="74" height="43" rx="6"/u);
   assert.match(svg, /data-part="prerequisite-pill"[^>]+width="51"[^>]+height="11"[^>]+rx="6"/u);
   assert.ok(svg.includes(longName));
-  assert.ok(svg.includes("101 تقن | 113 عال | 114 عال مرافق"));
+  assert.ok(svg.includes(longPrerequisites.join(" | ")));
   assert.ok(!svg.includes("…"));
 });
 
@@ -418,8 +418,12 @@ test("fits Arabic text with shaped glyph advances and a readable floor", () => {
   assert.ok(measureText("تصميم البرمجيات المعتمدة على المكونات", slightlyLong.size + 0.002, "semibold") > 68);
   const long = courseNameFit("مقدمة شاملة جدًا في هندسة البرمجيات وتطبيقات الأنظمة الموزعة المتقدمة للغاية");
   assert.ok(long.size >= 2.75);
+  const geologyPrerequisite = prerequisiteFit("381 جيو | 384 جيو | 385 جيو | 386 جيو", 43);
+  assert.equal(geologyPrerequisite.overflow, false);
+  assert.ok(geologyPrerequisite.size >= 2.5 && geologyPrerequisite.size < 3);
+  assert.ok(geologyPrerequisite.width <= 43);
   const prerequisite = prerequisiteFit("101 عال | 102 عال مرافق | إتمام 60 ساعة", 43);
-  assert.ok(prerequisite.size >= 3.5);
+  assert.ok(prerequisite.size >= 2.5);
 });
 
 test("wraps every complete footer item in an absolute SVG link", () => {
