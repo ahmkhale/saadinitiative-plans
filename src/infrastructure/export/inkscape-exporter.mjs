@@ -2,6 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import { createFontconfigEnvironment } from "./font-service.mjs";
 import { optimizePdf } from "./pdf-optimizer.mjs";
 
@@ -31,6 +32,14 @@ function run(command, args, options = {}) {
   if (result.status !== 0) throw new Error(`${path.basename(command)} exited with code ${result.status}: ${result.stderr?.trim() ?? ""}`);
 }
 
+function correctPdfLinks(pdfPath, pageCount) {
+  if (pageCount < 2) return;
+  run(process.execPath, [
+    fileURLToPath(new URL("./pdf-link-corrector.mjs", import.meta.url)),
+    pdfPath,
+  ]);
+}
+
 export function exportSvg(svg, paths, options = {}) {
   fs.mkdirSync(path.dirname(paths.svgPath), { recursive: true });
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "saad-plan-"));
@@ -47,6 +56,7 @@ export function exportSvg(svg, paths, options = {}) {
         `--export-filename=${paths.pdfPath}`,
         "--export-area-page",
       ], { env: fontconfig.env });
+      correctPdfLinks(paths.pdfPath, Math.max(1, Number(options.pageCount ?? 1)));
       pdfOptimization = optimizePdf(paths.pdfPath, {
         enabled: options.optimizePdf !== false,
         required: Boolean(options.requirePdfOptimization),

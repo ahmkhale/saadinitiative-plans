@@ -14,12 +14,17 @@ const thisFile = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(path.dirname(thisFile), "../..");
 
 export function outputPaths(plan, options = {}) {
+  const outputRoot = path.resolve(options.outputRoot ?? path.join(projectRoot, "dist"));
   const folder = options.outputDir
     ? path.resolve(options.outputDir)
-    : path.join(projectRoot, "dist", safeSlug(
-      plan.track?.id ? `${plan.id ?? plan.major}-${plan.track.id}` : plan.id ?? plan.planCode ?? plan.major,
-      "plan",
-    ));
+    : path.join(
+      outputRoot,
+      ...(options.institutionId ? [safeSlug(options.institutionId, "institution")] : []),
+      safeSlug(
+        plan.track?.id ? `${plan.id ?? plan.major}-${plan.track.id}` : plan.id ?? plan.planCode ?? plan.major,
+        "plan",
+      ),
+    );
   const base = options.outputName ?? "plan";
   return {
     folder,
@@ -52,7 +57,10 @@ export function generatePlan(options) {
     settingsPath: options.settingsPath ?? repositoryMetadata.settingsPath,
   });
   const resolved = result.plan;
-  const paths = outputPaths(resolved, options);
+  const paths = outputPaths(resolved, {
+    ...options,
+    institutionId: options.institutionId ?? repositoryMetadata.institutionId,
+  });
   writeJson(paths.resolvedPath, resolved);
   writeJson(paths.diagnosticsPath, diagnostics);
   if (!result.ok && !options.allowErrors) {

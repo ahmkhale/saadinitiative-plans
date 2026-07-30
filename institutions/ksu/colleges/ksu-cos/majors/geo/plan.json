@@ -1,0 +1,892 @@
+{
+  "schemaVersion": 1,
+  "id": "geo",
+  "major": "الجيولوجيا",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": [
+        {
+          "id": "major:geo:published-level-1:100-جيو",
+          "code": "100 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-level-1:101-فيز",
+          "code": "101 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-level-1:107-جيو",
+          "code": "107 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-level-1:201-جاف",
+          "code": "201 جاف",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-9522ad9a-fb75-46fa-9648-8b704564404d",
+      "courses": [
+        {
+          "id": "major:geo:published-9522ad9a-fb75-46fa-9648-8b704564404d:221-جيو",
+          "code": "221 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-9522ad9a-fb75-46fa-9648-8b704564404d:237-جيو",
+          "code": "237 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-9522ad9a-fb75-46fa-9648-8b704564404d:246-جيو",
+          "code": "246 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-9522ad9a-fb75-46fa-9648-8b704564404d:274-جيو",
+          "code": "274 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-7fbfe739-6868-42c6-b65c-66548b26700b",
+      "courses": [
+        {
+          "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:301-جاف",
+          "code": "301 جاف",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:324-جيو",
+          "code": "324 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:334-جيو",
+          "code": "334 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:381-جيو",
+          "code": "381 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:382-جيو",
+          "code": "382 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-abf934c5-3af0-4798-aef0-a3a11c8d031b",
+      "courses": [
+        {
+          "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:326-جيو",
+          "code": "326 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:383-جيو",
+          "code": "383 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:384-جيو",
+          "code": "384 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:385-جيو",
+          "code": "385 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:386-جيو",
+          "code": "386 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-5f1e2594-1b39-415e-b4f1-c8f3872ef5b0",
+      "courses": [
+        {
+          "id": "major:geo:published-5f1e2594-1b39-415e-b4f1-c8f3872ef5b0:393-جيو",
+          "code": "393 جيو",
+          "prerequisites": [
+            "381 جيو",
+            "384 جيو",
+            "385 جيو",
+            "386 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-d9bc4bc8-1204-438f-98ab-b4590f4413b7",
+      "courses": [
+        {
+          "id": "major:geo:published-d9bc4bc8-1204-438f-98ab-b4590f4413b7:450-جيو",
+          "code": "450 جيو",
+          "prerequisites": [
+            "324 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-d9bc4bc8-1204-438f-98ab-b4590f4413b7:451-جيو",
+          "code": "451 جيو",
+          "prerequisites": [
+            "221 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-d9bc4bc8-1204-438f-98ab-b4590f4413b7:452-جيو",
+          "code": "452 جيو",
+          "prerequisites": [
+            "237 جيو",
+            "381 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-d9bc4bc8-1204-438f-98ab-b4590f4413b7:455-جيو",
+          "code": "455 جيو",
+          "prerequisites": [
+            "237 جيو",
+            "381 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-d9bc4bc8-1204-438f-98ab-b4590f4413b7:497-جيو",
+          "code": "497 جيو",
+          "prerequisites": [
+            "393 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-d3676286-18f0-49c5-9e81-d0fdf0555e5f",
+      "courses": [
+        {
+          "id": "major:geo:published-d3676286-18f0-49c5-9e81-d0fdf0555e5f:410-جاف",
+          "code": "410 جاف",
+          "prerequisites": [
+            "201 جاف"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-d3676286-18f0-49c5-9e81-d0fdf0555e5f:454-جيو",
+          "code": "454 جيو",
+          "prerequisites": [
+            "450 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-d3676286-18f0-49c5-9e81-d0fdf0555e5f:462-جيو",
+          "code": "462 جيو",
+          "prerequisites": [
+            "451 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-d3676286-18f0-49c5-9e81-d0fdf0555e5f:463-جيو",
+          "code": "463 جيو",
+          "prerequisites": [
+            "381 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:published-d3676286-18f0-49c5-9e81-d0fdf0555e5f:498-جيو",
+          "code": "498 جيو",
+          "prerequisites": [
+            "497 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    },
+    {
+      "id": "elective-group-2",
+      "name": "متطلبات التخصص",
+      "requiredHours": 14,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:geo:elective:elective-group-2:242-جيو",
+          "code": "242 جيو",
+          "prerequisites": [
+            "246 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:301-جيو",
+          "code": "301 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:341-جيو",
+          "code": "341 جيو",
+          "prerequisites": [
+            "246 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:342-جيو",
+          "code": "342 جيو",
+          "prerequisites": [
+            "237 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:421-جيو",
+          "code": "421 جيو",
+          "prerequisites": [
+            "324 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:431-جيو",
+          "code": "431 جيو",
+          "prerequisites": [
+            "334 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:432-جيو",
+          "code": "432 جيو",
+          "prerequisites": [
+            "237 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:435-جيو",
+          "code": "435 جيو",
+          "prerequisites": [
+            "237 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:441-جيو",
+          "code": "441 جيو",
+          "prerequisites": [
+            "246 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:445-جيو",
+          "code": "445 جيو",
+          "prerequisites": [
+            "334 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:456-جيو",
+          "code": "456 جيو",
+          "prerequisites": [
+            "452 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:457-جيو",
+          "code": "457 جيو",
+          "prerequisites": [
+            "381 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:483-جيو",
+          "code": "483 جيو",
+          "prerequisites": [
+            "385 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:geo:elective:elective-group-2:495-جيو",
+          "code": "495 جيو",
+          "prerequisites": [
+            "107 جيو"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "393 جيو": {
+      "name": "جيولوجيا الحقل",
+      "academicHours": 6,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": 12,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "academicHours",
+        "practicalHours",
+        "name"
+      ]
+    },
+    "100 جيو": {
+      "name": "جيولوجيا عامة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 فيز": {
+      "name": "فيزياء عامة (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "107 جيو": {
+      "name": "جيولوجيا تاريخية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 جاف": {
+      "name": "أسس الجيوفيزياء",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "221 جيو": {
+      "name": "علم المعادن",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "237 جيو": {
+      "name": "علم الرسوبيات والطبقات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "246 جيو": {
+      "name": "علم الأحافير",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "274 جيو": {
+      "name": "تقارير جيولوجية",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "301 جاف": {
+      "name": "الاستكشاف الجيوفيزيائي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "324 جيو": {
+      "name": "علم الصخور النارية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "334 جيو": {
+      "name": "علم الصخور الرسوبية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "381 جيو": {
+      "name": "جيولوجيا بنائية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "382 جيو": {
+      "name": "نظم المعلومات المكانية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "326 جيو": {
+      "name": "علم الصخور المتحولة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "383 جيو": {
+      "name": "الاستشعار عن بعد",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "384 جيو": {
+      "name": "مساحة جيولوجية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "385 جيو": {
+      "name": "الغطاء الرسوبي للمملكة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "386 جيو": {
+      "name": "جيولوجية الدرع العربي",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "450 جيو": {
+      "name": "جيولوجيا الخامات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "451 جيو": {
+      "name": "جيوكيمياء",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "452 جيو": {
+      "name": "جيولوجيا البترول",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "455 جيو": {
+      "name": "جيولوجيا المياه",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "497 جيو": {
+      "name": "مشروع تخرج -1-",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "410 جاف": {
+      "name": "القياسات الجيوفيزيائية للآبار",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "454 جيو": {
+      "name": "جيولوجيا التعدين",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "462 جيو": {
+      "name": "الجيولوجيا البيئية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "463 جيو": {
+      "name": "حركية الصفائح",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "498 جيو": {
+      "name": "مشروع تخرج -2-",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "483 جيو": {
+      "name": "الجيولوجيا الإقليمية للشرق الأوسط",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "341 جيو": {
+      "name": "علم النباتات القديمة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "431 جيو": {
+      "name": "صخور الكربونات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "342 جيو": {
+      "name": "علم البيئات القديمة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "432 جيو": {
+      "name": "جيولوجية العصر الرباعي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "445 جيو": {
+      "name": "تحليل الاحواض الرسوبية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "456 جيو": {
+      "name": "تطبيقات في جولوجيا البترول",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "242 جيو": {
+      "name": "مبادىء الاحافير الدقيقة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "301 جيو": {
+      "name": "جيومورفولوجيا",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "421 جيو": {
+      "name": "علم البراكين",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "435 جيو": {
+      "name": "جيولوجيا البحار",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "441 جيو": {
+      "name": "مبادىء الأحافير الفقرية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "457 جيو": {
+      "name": "الجيولوجيا الهندسية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "495 جيو": {
+      "name": "تاريخ الجيولوجيا",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  }
+}

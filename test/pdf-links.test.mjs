@@ -4,6 +4,14 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
+import {
+  PDFArray,
+  PDFDict,
+  PDFDocument,
+  PDFName,
+  PDFNumber,
+  PDFString,
+} from "pdf-lib";
 import { exportSvg, findInkscape } from "../src/exporter.mjs";
 import { renderPlanDocumentSvg } from "../src/render-svg.mjs";
 
@@ -53,9 +61,27 @@ function facts(code) {
   };
 }
 
-test("Inkscape preserves four footer URL annotations on published and proposal pages", {
+function uriRectangles(page) {
+  const annotations = page.node.lookupMaybe(PDFName.of("Annots"), PDFArray);
+  if (!annotations) return [];
+  const rectangles = [];
+  for (let index = 0; index < annotations.size(); index += 1) {
+    const annotation = annotations.lookup(index, PDFDict);
+    const action = annotation?.lookupMaybe(PDFName.of("A"), PDFDict);
+    const uri = action?.lookupMaybe(PDFName.of("URI"), PDFString);
+    const rect = annotation?.lookupMaybe(PDFName.of("Rect"), PDFArray);
+    if (!uri || !rect) continue;
+    rectangles.push(Array.from(
+      { length: 4 },
+      (_, item) => rect.lookup(item, PDFNumber).asNumber(),
+    ));
+  }
+  return rectangles;
+}
+
+test("Inkscape preserves four on-page footer URL annotations on unequal-height pages", {
   skip: !hasTools || !pdfinfo,
-}, () => {
+}, async () => {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "saad-pdf-links-"));
   try {
     const semester = {
@@ -68,7 +94,7 @@ test("Inkscape preserves four footer URL annotations on published and proposal p
     const document = renderPlanDocumentSvg({
       major: "اختبار الروابط",
       semesters: [semester],
-      proposal: { semesters: [semester], showGuide: false },
+      proposal: { semesters: [semester], showGuide: true },
     });
     const paths = {
       svgPath: path.join(temp, "plan.svg"),
@@ -92,6 +118,19 @@ test("Inkscape preserves four footer URL annotations on published and proposal p
     ];
     for (const url of urls) {
       assert.equal(result.stdout.split(url).length - 1, 2, `${url} must occur once on each PDF page`);
+    }
+
+    const pdf = await PDFDocument.load(fs.readFileSync(paths.pdfPath));
+    const pages = pdf.getPages();
+    assert.notEqual(pages[0].getHeight(), pages[1].getHeight());
+    const pageRectangles = pages.map(uriRectangles);
+    for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
+      assert.equal(pageRectangles[pageIndex].length, 4);
+      for (const [, y1, , y2] of pageRectangles[pageIndex]) {
+        assert.ok(y1 >= 0, `page ${pageIndex + 1} link must start inside its page`);
+        assert.ok(y2 <= pages[pageIndex].getHeight(), `page ${pageIndex + 1} link must end inside its page`);
+        assert.ok(Math.abs(y1 - 46) <= 1, `page ${pageIndex + 1} link must align with the footer`);
+      }
     }
   } finally {
     fs.rmSync(temp, { recursive: true, force: true });

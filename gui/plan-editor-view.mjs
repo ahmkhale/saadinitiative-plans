@@ -29,7 +29,7 @@ export function createPlanEditorView(options) {
       name.hidden = false;
       name.value = item.name ?? "";
       secondary.hidden = true;
-      card.querySelector(".card-heading").insertAdjacentHTML("afterend", `
+      card.querySelector(".course-list").insertAdjacentHTML("beforebegin", `
         <div class="requirement-editor">
           <label>نوع المتطلب<select class="requirement-mode"><option value="hours" ${item.requirementText === undefined ? "selected" : ""}>عدد ساعات</option><option value="text" ${item.requirementText !== undefined ? "selected" : ""}>نص مخصص</option></select></label>
           <label class="requirement-value-label">${item.requirementText === undefined ? "الساعات المطلوبة" : "نص المتطلب"}<input class="requirement-value" ${item.requirementText === undefined ? 'type="number" min="0"' : ""} value="${escapeHtml(item.requirementText ?? item.requiredHours ?? 0)}"></label>

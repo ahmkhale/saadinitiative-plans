@@ -127,6 +127,14 @@ test("academic course resolution does not depend on text measurement or SVG", ()
 test("default generation output stays at repository-level dist", async () => {
   const { outputPaths } = await import("../src/application/generate-plan.mjs");
   const paths = outputPaths({ id: "sample-plan", major: "عينة" });
+  const institutionPaths = outputPaths(
+    { id: "sample-plan", major: "عينة" },
+    { institutionId: "test-university" },
+  );
   assert.match(paths.folder.replaceAll("\\", "/"), /\/dist\/sample-plan$/u);
+  assert.match(
+    institutionPaths.folder.replaceAll("\\", "/"),
+    /\/dist\/test-university\/sample-plan$/u,
+  );
   assert.equal(paths.folder.replaceAll("\\", "/").includes("/src/dist/"), false);
 });

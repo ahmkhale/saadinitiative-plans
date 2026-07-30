@@ -1,0 +1,1345 @@
+{
+  "schemaVersion": 1,
+  "id": "zool",
+  "major": "علم الحيوان",
+  "degree": "البكالوريوس",
+  "expectedCredits": 136,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": [
+        {
+          "id": "major:zool:published-level-1:101-كيح",
+          "code": "101 كيح",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-level-1:102-نبت",
+          "code": "102 نبت",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-level-1:103-حين",
+          "code": "103 حين",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-level-1:105-جيو",
+          "code": "105 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-level-1:140-حدق",
+          "code": "140 حدق",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-11a6fe80-083e-4edc-a9dd-365c38796c76",
+      "courses": [
+        {
+          "id": "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:205-فيز",
+          "code": "205 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:212-حين",
+          "code": "212 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:242-حين",
+          "code": "242 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:305-حين",
+          "code": "305 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:332-حين",
+          "code": "332 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:352-حين",
+          "code": "352 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-68b21c18-b473-4a8c-907b-ec8342349e0a",
+      "courses": [
+        {
+          "id": "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:245-حين",
+          "code": "245 حين",
+          "prerequisites": [
+            "242 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:311-حين",
+          "code": "311 حين",
+          "prerequisites": [
+            "305 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:320-حين",
+          "code": "320 حين",
+          "prerequisites": [
+            "305 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:325-حين",
+          "code": "325 حين",
+          "prerequisites": [
+            "305 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:327-حين",
+          "code": "327 حين",
+          "prerequisites": [
+            "305 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:373-حين",
+          "code": "373 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-a1b42d4a-021b-473d-a334-ddc7d14031d1",
+      "courses": [
+        {
+          "id": "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:262-حين",
+          "code": "262 حين",
+          "prerequisites": [
+            "245 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:317-حين",
+          "code": "317 حين",
+          "prerequisites": [
+            "311 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:326-حين",
+          "code": "326 حين",
+          "prerequisites": [
+            "305 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:342-حين",
+          "code": "342 حين",
+          "prerequisites": [
+            "242 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:374-حين",
+          "code": "374 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-a29fbdbf-0bb8-4df7-8339-53d6a1c84219",
+      "courses": [
+        {
+          "id": "major:zool:published-a29fbdbf-0bb8-4df7-8339-53d6a1c84219:465-حين",
+          "code": "465 حين",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 34,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-050370e9-57aa-4904-80c1-c2818c94ba31",
+      "courses": [
+        {
+          "id": "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:375-حين",
+          "code": "375 حين",
+          "prerequisites": [
+            "373 حين",
+            "374 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:420-حين",
+          "code": "420 حين",
+          "prerequisites": [
+            "325 حين",
+            "326 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:423-حين",
+          "code": "423 حين",
+          "prerequisites": [
+            "242 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:432-حين",
+          "code": "432 حين",
+          "prerequisites": [
+            "332 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:441-حين",
+          "code": "441 حين",
+          "prerequisites": [
+            "245 حين",
+            "262 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:456-حين",
+          "code": "456 حين",
+          "prerequisites": [
+            "342 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:497-حين",
+          "code": "497 حين",
+          "prerequisites": [
+            "342 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b",
+      "courses": [
+        {
+          "id": "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:424-حين",
+          "code": "424 حين",
+          "prerequisites": [
+            "423 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:425-حين",
+          "code": "425 حين",
+          "prerequisites": [
+            "320 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:433-حين",
+          "code": "433 حين",
+          "prerequisites": [
+            "332 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:461-حين",
+          "code": "461 حين",
+          "prerequisites": [
+            "262 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:471-حين",
+          "code": "471 حين",
+          "prerequisites": [
+            "373 حين",
+            "374 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:498-حين",
+          "code": "498 حين",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 95,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    },
+    {
+      "id": "elective-group-2",
+      "name": "متطلبات التخصص",
+      "requiredHours": 10,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:zool:elective:elective-group-2:355-حين",
+          "code": "355 حين",
+          "prerequisites": [
+            "352 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:366-حين",
+          "code": "366 حين",
+          "prerequisites": [
+            "320 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:381-حين",
+          "code": "381 حين",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:382-حين",
+          "code": "382 حين",
+          "prerequisites": [
+            "311 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:412-حين",
+          "code": "412 حين",
+          "prerequisites": [
+            "212 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:413-حين",
+          "code": "413 حين",
+          "prerequisites": [
+            "311 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:434-حين",
+          "code": "434 حين",
+          "prerequisites": [
+            "332 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:435-حين",
+          "code": "435 حين",
+          "prerequisites": [
+            "332 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:436-حين",
+          "code": "436 حين",
+          "prerequisites": [
+            "332 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:455-حين",
+          "code": "455 حين",
+          "prerequisites": [
+            "342 حين",
+            "352 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:457-حين",
+          "code": "457 حين",
+          "prerequisites": [
+            "342 حين",
+            "352 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:458-حين",
+          "code": "458 حين",
+          "prerequisites": [
+            "342 حين",
+            "352 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:462-حين",
+          "code": "462 حين",
+          "prerequisites": [
+            "212 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:464-حين",
+          "code": "464 حين",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:466-حين",
+          "code": "466 حين",
+          "prerequisites": [
+            "375 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:480-حين",
+          "code": "480 حين",
+          "prerequisites": [
+            "373 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:481-حين",
+          "code": "481 حين",
+          "prerequisites": [
+            "327 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:zool:elective:elective-group-2:482-حين",
+          "code": "482 حين",
+          "prerequisites": [
+            "325 حين",
+            "326 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "101 كيح": {
+      "name": "كيمياء حيوية عامة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 نبت": {
+      "name": "علم النبات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "103 حين": {
+      "name": "مبادئ في علم الحيوان",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "105 جيو": {
+      "name": "مقدمة في الجيولوجيا",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "140 حدق": {
+      "name": "علم الإحياء الدقيقة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "205 فيز": {
+      "name": "فيزياء حيوية لطلاب علم الحيوان",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "212 حين": {
+      "name": "علم الطفيليات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "242 حين": {
+      "name": "بيولوجيا وفسيولوجيا الخلية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "305 حين": {
+      "name": "التصنيف الحديث للحيوان",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "332 حين": {
+      "name": "الفسيولوجيا العامة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "352 حين": {
+      "name": "أساسيات علم الوراثة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "245 حين": {
+      "name": "علم الانسجة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "311 حين": {
+      "name": "علم الحشرات العام",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "320 حين": {
+      "name": "علم الأسماك",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "325 حين": {
+      "name": "علم الطيور",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "327 حين": {
+      "name": "علم البرمائيات والزواحف",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "373 حين": {
+      "name": "بيئة برية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "262 حين": {
+      "name": "تحضيرات مجهرية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "317 حين": {
+      "name": "مفصليات طبية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "326 حين": {
+      "name": "علم الثدييات",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "342 حين": {
+      "name": "بيولوجيا جزيئية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "374 حين": {
+      "name": "بيئة مائية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "423 حين": {
+      "name": "مبادىء علم الأجنة الوصفي",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "375 حين": {
+      "name": "التلوث",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "420 حين": {
+      "name": "تشريح الفقاريات المقارن",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "432 حين": {
+      "name": "علم الغدد الصماء",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "441 حين": {
+      "name": "كيمياء الانسجة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "456 حين": {
+      "name": "المعلوماتية الحيوية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "497 حين": {
+      "name": "تدريب تطبيقي في علم الحيوان",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "424 حين": {
+      "name": "مبادىء علم الأجنة التجريبي",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "425 حين": {
+      "name": "أسماك وقشريات اقتصادية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "433 حين": {
+      "name": "علم المناعة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "461 حين": {
+      "name": "تقنية مختبرات عملية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "471 حين": {
+      "name": "سلوك الحيوان",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "498 حين": {
+      "name": "مشروع بحث التخرج",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "465 حين": {
+      "name": "دراسات ميدانية",
+      "academicHours": 5,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 10,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "355 حين": {
+      "name": "ورثة الأ،واع الفطرية الحيوانية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "482 حين": {
+      "name": "تحورات عضوية في الحبليات",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "464 حين": {
+      "name": "تقنيات حيوية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "462 حين": {
+      "name": "علم الطفيليات التجريبي",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "457 حين": {
+      "name": "وراثة خلوية وزراعة خلايا",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "434 حين": {
+      "name": "فسيولوجيا الإخراج",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "435 حين": {
+      "name": "فسيولوجيا الأعصاب",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "412 حين": {
+      "name": "علم مناعة الطفيليات",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "382 حين": {
+      "name": "التنوع الحشري في المملكة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "381 حين": {
+      "name": "اقتصاديات الاستزراع السمكي",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "366 حين": {
+      "name": "إدارة المزارع السمكية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "413 حين": {
+      "name": "الحشرات وصحة البيئة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "436 حين": {
+      "name": "فسيولوجيا التناسل",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "455 حين": {
+      "name": "هندسة وراثية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "458 حين": {
+      "name": "الوراثة في الإنسان",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "466 حين": {
+      "name": "تلوث بيئي صناعي",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "480 حين": {
+      "name": "حماية الحياة الفطرية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "481 حين": {
+      "name": "الحيوانات السامة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:zool:published-level-1:101-كيح",
+          "major:zool:published-level-1:102-نبت",
+          "major:zool:published-level-1:103-حين",
+          "major:zool:published-level-1:105-جيو",
+          "major:zool:published-level-1:140-حدق"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms79b4t4",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-11a6fe80-083e-4edc-a9dd-365c38796c76",
+        "sourceSemesterId": "published-11a6fe80-083e-4edc-a9dd-365c38796c76",
+        "type": "regular",
+        "courseOrder": [
+          "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:205-فيز",
+          "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:212-حين",
+          "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:242-حين",
+          "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:305-حين",
+          "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:332-حين",
+          "major:zool:published-11a6fe80-083e-4edc-a9dd-365c38796c76:352-حين"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms79b869",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-68b21c18-b473-4a8c-907b-ec8342349e0a",
+        "sourceSemesterId": "published-68b21c18-b473-4a8c-907b-ec8342349e0a",
+        "type": "regular",
+        "courseOrder": [
+          "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:245-حين",
+          "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:311-حين",
+          "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:320-حين",
+          "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:325-حين",
+          "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:327-حين",
+          "major:zool:published-68b21c18-b473-4a8c-907b-ec8342349e0a:373-حين"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms79bbh9",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-a1b42d4a-021b-473d-a334-ddc7d14031d1",
+        "sourceSemesterId": "published-a1b42d4a-021b-473d-a334-ddc7d14031d1",
+        "type": "regular",
+        "courseOrder": [
+          "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:262-حين",
+          "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:317-حين",
+          "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:326-حين",
+          "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:342-حين",
+          "major:zool:published-a1b42d4a-021b-473d-a334-ddc7d14031d1:374-حين"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms79bjs4",
+            "name": "من متطلبات التخصص",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms79blus",
+            "name": "من متطلبات التخصص",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms79bo86",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-a29fbdbf-0bb8-4df7-8339-53d6a1c84219",
+        "sourceSemesterId": "published-a29fbdbf-0bb8-4df7-8339-53d6a1c84219",
+        "type": "regular",
+        "courseOrder": [
+          "major:zool:published-a29fbdbf-0bb8-4df7-8339-53d6a1c84219:465-حين"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-050370e9-57aa-4904-80c1-c2818c94ba31",
+        "sourceSemesterId": "published-050370e9-57aa-4904-80c1-c2818c94ba31",
+        "type": "regular",
+        "courseOrder": [
+          "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:375-حين",
+          "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:420-حين",
+          "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:423-حين",
+          "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:432-حين",
+          "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:441-حين",
+          "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:456-حين",
+          "major:zool:published-050370e9-57aa-4904-80c1-c2818c94ba31:497-حين"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms79c9b3",
+            "name": "من متطلبات التخصص",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b",
+        "sourceSemesterId": "published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b",
+        "type": "regular",
+        "courseOrder": [
+          "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:424-حين",
+          "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:425-حين",
+          "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:433-حين",
+          "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:461-حين",
+          "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:471-حين",
+          "major:zool:published-7499a0fd-0e65-48e8-81ca-d020bdd1f68b:498-حين"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms79cd2v",
+            "name": "من متطلبات التخصص",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms79ceur",
+            "name": "من متطلبات التخصص",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      }
+    ]
+  }
+}

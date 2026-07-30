@@ -65,6 +65,50 @@ test("catalog service follows the institution active term", () => {
   }
 });
 
+test("catalog service completes missing male facts from female without reporting a conflict", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "saad-plan-catalog-completion-"));
+  try {
+    const malePath = path.join(root, "male.json");
+    const femalePath = path.join(root, "female.json");
+    const colorsPath = path.join(root, "colors.json");
+    fs.writeFileSync(malePath, JSON.stringify([
+      { code: "497 كيم", name: "تدريب كيميائي", academicHours: 2 },
+    ]));
+    fs.writeFileSync(femalePath, JSON.stringify([
+      {
+        code: "497 كيم",
+        name: "تدريب كيميائي",
+        academicHours: 2,
+        lectureHours: 0,
+        exerciseHours: 0,
+        practicalHours: 4,
+      },
+    ]));
+    fs.writeFileSync(colorsPath, JSON.stringify({ عام: "#616161" }));
+
+    const service = createCatalogService({ malePath, femalePath, colorsPath });
+    const course = service.resolve("497 كيم");
+
+    assert.equal(course.catalogSource, "male");
+    assert.equal(course.sourceBadge, "دليل الطلاب · استكمال من دليل الطالبات");
+    assert.deepEqual(course.completedFromFemaleFields, ["lectureHours", "practicalHours", "exerciseHours"]);
+    assert.deepEqual(course.catalogFieldSources, {
+      name: "male",
+      academicHours: "male",
+      lectureHours: "female",
+      practicalHours: "female",
+      exerciseHours: "female",
+    });
+    assert.equal(course.lectureHours, 0);
+    assert.equal(course.practicalHours, 4);
+    assert.equal(course.exerciseHours, 0);
+    assert.deepEqual(course.qualityBadges, []);
+    assert.equal(service.summary().conflictCount, 0);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("catalog service searches terms newest-to-oldest and male-before-female within each term", () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "saad-history-catalog-"));
   try {

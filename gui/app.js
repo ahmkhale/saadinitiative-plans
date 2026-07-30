@@ -518,7 +518,6 @@ function updateManualFact(row, input) {
   else if (row.dataset.kind === "sharedElective") sharedElectiveChanged();
   else changed();
 }
-
 function updateDependency(row, input) {
   const target = collection(row.dataset.kind, Number(row.dataset.groupIndex));
   const index = Number(row.dataset.courseIndex);
@@ -526,8 +525,9 @@ function updateDependency(row, input) {
   if (input.dataset.dependency === "requirements") {
     const sameLevelCourses = ["semester", "shared"].includes(row.dataset.kind) ? target : [];
     const classified = classifyRequirementCourses(parseCodes(input.value), sameLevelCourses);
-    if (classified.prerequisites.length) entry.prerequisites = classified.prerequisites; else delete entry.prerequisites;
-    if (classified.corequisites.length) entry.corequisites = classified.corequisites; else delete entry.corequisites;
+    for (const key of ["prerequisites", "corequisites", "forcedCorequisites", "prerequisiteAlternatives"]) {
+      if (classified[key].length) entry[key] = classified[key]; else delete entry[key];
+    }
   } else if (input.dataset.dependency === "minimumCompletedCredits") {
     if (input.value === "") delete entry.minimumCompletedCredits;
     else entry.minimumCompletedCredits = Number(input.value);

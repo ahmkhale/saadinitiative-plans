@@ -17,6 +17,8 @@ Plan files do not contain university, college, edition, release, or version.
   "id": "major:electrical-engineering:published-level-5:201-كهر",
   "code": "201 كهر",
   "prerequisites": ["106 ريض"],
+  "forcedCorequisites": [],
+  "prerequisiteAlternatives": [],
   "corequisites": [],
   "minimumCompletedCredits": null,
   "prerequisiteConditions": []
@@ -24,6 +26,8 @@ Plan files do not contain university, college, edition, release, or version.
 ```
 
 The same rule shape is used in shared semester sources and custom/shared elective candidates. Compact code strings are not persisted.
+
+In the merged requirements editor, commas keep their existing meaning. Prefix a code with `#` to force it to be stored as a companion requirement (`مرافق`), even outside the same level. Join two or more codes with `^` to store one alternative prerequisite group rendered with `أو`; at least one option must exist in the published plan.
 
 Track plans declare their identity and may contain additional semesters, electives, fallbacks, and a proposal:
 

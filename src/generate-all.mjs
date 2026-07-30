@@ -2,7 +2,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { flagValue } from "./args.mjs";
 import { generatePlan } from "./application/generate-plan.mjs";
-import { safeSlug } from "./infrastructure/fs/safe-slug.mjs";
 
 function walk(dir) {
   const results = [];
@@ -30,12 +29,10 @@ if (!plans.length) {
 let failures = 0;
 for (const planPath of plans) {
   try {
-    const plan = JSON.parse(fs.readFileSync(planPath, "utf8"));
-    const outputDir = path.join(outputRoot, safeSlug(plan.id ?? plan.planCode ?? plan.major, "plan"));
     const result = generatePlan({
       planPath,
       catalogPath,
-      outputDir,
+      outputRoot,
       keepSvg: args.includes("--svg"),
       png: args.includes("--png"),
       allowErrors: args.includes("--allow-errors"),

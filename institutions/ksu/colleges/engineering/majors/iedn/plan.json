@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "iedn",
+  "major": "الهندسة الصناعية",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [
+    "cfy-scientific",
+    "eng-cfy"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": []
+    }
+  ],
+  "electiveGroups": [],
+  "fallbackCourses": {}
+}

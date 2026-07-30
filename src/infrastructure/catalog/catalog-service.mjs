@@ -12,21 +12,70 @@ function readJson(filePath, fallback) {
   return fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf8")) : fallback;
 }
 
-function comparable(course) {
-  return JSON.stringify({
-    name: course?.name ?? null,
-    academicHours: course?.academicHours ?? null,
-    lectureHours: course?.lectureHours ?? null,
-    practicalHours: course?.practicalHours ?? null,
-    exerciseHours: course?.exerciseHours ?? null,
-  });
+const COMPOSABLE_FACT_FIELDS = Object.freeze([
+  "name",
+  "academicHours",
+  "lectureHours",
+  "practicalHours",
+  "exerciseHours",
+]);
+
+function isPresent(value) {
+  return value !== null && value !== undefined && value !== "";
+}
+
+function composeGenderCatalogFacts(maleCourse, femaleCourse, termId) {
+  if (!maleCourse) return femaleCourse ? { ...femaleCourse } : null;
+  if (!femaleCourse) return { ...maleCourse };
+  const completedFromFemaleFields = [];
+  const conflictingFields = [];
+  const fieldSources = {};
+  const result = { ...maleCourse };
+  for (const field of COMPOSABLE_FACT_FIELDS) {
+    const maleValue = maleCourse[field];
+    const femaleValue = femaleCourse[field];
+    if (isPresent(maleValue)) {
+      fieldSources[field] = "male";
+      if (isPresent(femaleValue) && maleValue !== femaleValue) {
+        conflictingFields.push({ field, male: maleValue, female: femaleValue });
+      }
+    } else if (isPresent(femaleValue)) {
+      result[field] = femaleValue;
+      fieldSources[field] = "female";
+      completedFromFemaleFields.push(field);
+    }
+  }
+  result.catalogFieldSources = fieldSources;
+  result.completedFromFemaleFields = completedFromFemaleFields;
+  result.conflicts = [
+    ...(maleCourse.conflicts ?? []),
+    ...(femaleCourse.conflicts ?? []).filter((conflict) => completedFromFemaleFields.includes(conflict.field)),
+  ];
+  result.activityAliasConflicts = [
+    ...(maleCourse.activityAliasConflicts ?? []),
+    ...(femaleCourse.activityAliasConflicts ?? []).filter((conflict) => completedFromFemaleFields.includes(conflict.field)),
+  ];
+  if (conflictingFields.length) {
+    result.crossSourceConflict = {
+      code: maleCourse.code,
+      termId,
+      fields: conflictingFields,
+      male: maleCourse,
+      female: femaleCourse,
+    };
+  }
+  return result;
 }
 
 function sourceBadge(course, activeTermId) {
   const source = course.catalogSource === "female" ? "دليل الطالبات" : "دليل الطلاب";
-  return course.catalogTermId && course.catalogTermId !== activeTermId
-    ? `${source} · ${course.catalogTermId}`
-    : source;
+  const term = course.catalogTermId && course.catalogTermId !== activeTermId
+    ? ` · ${course.catalogTermId}`
+    : "";
+  const completion = course.completedFromFemaleFields?.length
+    ? " · استكمال من دليل الطالبات"
+    : "";
+  return `${source}${term}${completion}`;
 }
 
 function qualityBadges(course) {
@@ -84,7 +133,9 @@ function loadCatalogTerm({ termId, malePath, femalePath, active }) {
     active,
   );
   const catalog = new Map([...female].map(([key, value]) => [key, { ...value }]));
-  for (const [key, value] of male) catalog.set(key, { ...value });
+  for (const [key, maleCourse] of male) {
+    catalog.set(key, composeGenderCatalogFacts(maleCourse, female.get(key), termId));
+  }
   const conflicts = [
     ...[...male.values()].flatMap((course) => (course.conflicts ?? []).map((conflict) => ({ code: course.code, termId, source: "male", ...conflict }))),
     ...[...female.values()].flatMap((course) => (course.conflicts ?? []).map((conflict) => ({ code: course.code, termId, source: "female", ...conflict }))),
@@ -93,16 +144,8 @@ function loadCatalogTerm({ termId, malePath, femalePath, active }) {
   ];
   for (const [key, maleCourse] of male) {
     const femaleCourse = female.get(key);
-    if (femaleCourse && comparable(maleCourse) !== comparable(femaleCourse)) {
-      const conflict = {
-        code: maleCourse.code,
-        termId,
-        male: maleCourse,
-        female: femaleCourse,
-      };
-      conflicts.push(conflict);
-      catalog.set(key, { ...catalog.get(key), crossSourceConflict: conflict });
-    }
+    const conflict = catalog.get(key)?.crossSourceConflict;
+    if (femaleCourse && conflict) conflicts.push(conflict);
   }
   return {
     termId,

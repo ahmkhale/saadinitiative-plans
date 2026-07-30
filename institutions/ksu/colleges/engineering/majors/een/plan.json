@@ -1,11 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "testing-college-plan",
-  "major": "test",
+  "id": "een",
+  "major": "الهندسة الكهربائية",
   "degree": "البكالوريوس",
   "expectedCredits": 0,
   "sharedSemesterSets": [
-    "cfy-humanities"
+    "cfy-scientific",
+    "eng-cfy"
   ],
   "semesters": [
     {

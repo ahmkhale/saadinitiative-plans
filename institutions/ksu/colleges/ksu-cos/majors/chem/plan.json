@@ -1,0 +1,1291 @@
+{
+  "schemaVersion": 1,
+  "id": "chem",
+  "major": "الكيمياء",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": [
+        {
+          "id": "major:chem:published-level-1:201-كيم",
+          "code": "201 كيم",
+          "prerequisites": [
+            "101 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-level-1:211-ريض",
+          "code": "211 ريض",
+          "prerequisites": [
+            "101 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-level-1:240-كيم",
+          "code": "240 كيم",
+          "prerequisites": [
+            "101 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-level-1:247-كيم",
+          "code": "247 كيم",
+          "prerequisites": [
+            "101 كيم"
+          ],
+          "corequisites": [
+            "240 كيم"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-level-1:252-كيم",
+          "code": "252 كيم",
+          "prerequisites": [
+            "101 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c",
+      "courses": [
+        {
+          "id": "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:101-فيز",
+          "code": "101 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:223-كيم",
+          "code": "223 كيم",
+          "prerequisites": [
+            "201 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:232-كيم",
+          "code": "232 كيم",
+          "prerequisites": [
+            "201 كيم",
+            "211 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:241-كيم",
+          "code": "241 كيم",
+          "prerequisites": [
+            "240 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:256-كيم",
+          "code": "256 كيم",
+          "prerequisites": [
+            "252 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-d2bef56e-96b6-4783-a137-f6aa31aae1a9",
+      "courses": [
+        {
+          "id": "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:323-كيم",
+          "code": "323 كيم",
+          "prerequisites": [
+            "223 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:335-كيم",
+          "code": "335 كيم",
+          "prerequisites": [
+            "232 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:342-كيم",
+          "code": "342 كيم",
+          "prerequisites": [
+            "241 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:344-كيم",
+          "code": "344 كيم",
+          "prerequisites": [
+            "241 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:345-كيم",
+          "code": "345 كيم",
+          "prerequisites": [
+            "241 كيم",
+            "247 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:353-كيم",
+          "code": "353 كيم",
+          "prerequisites": [
+            "256 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-430b8f50-762b-49ea-8a82-bc446aa1fa3e",
+      "courses": [
+        {
+          "id": "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:320-كيم",
+          "code": "320 كيم",
+          "prerequisites": [
+            "201 كيم",
+            "211 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:329-كيم",
+          "code": "329 كيم",
+          "prerequisites": [
+            "323 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:330-كيم",
+          "code": "330 كيم",
+          "prerequisites": [
+            "232 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:336-كيم",
+          "code": "336 كيم",
+          "prerequisites": [
+            "232 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:341-كيم",
+          "code": "341 كيم",
+          "prerequisites": [
+            "241 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-f1911dec-42e7-4711-9a19-a045c480439a",
+      "courses": [
+        {
+          "id": "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:425-كيم",
+          "code": "425 كيم",
+          "prerequisites": [
+            "323 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:430-كيم",
+          "code": "430 كيم",
+          "prerequisites": [
+            "335 كيم",
+            "336 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:436-كيم",
+          "code": "436 كيم",
+          "prerequisites": [
+            "335 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:441-كيم",
+          "code": "441 كيم",
+          "prerequisites": [
+            "241 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:458-كيم",
+          "code": "458 كيم",
+          "prerequisites": [
+            "353 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:497-كيم",
+          "code": "497 كيم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 100,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb",
+      "courses": [
+        {
+          "id": "major:chem:published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb:421-كيم",
+          "code": "421 كيم",
+          "prerequisites": [
+            "323 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb:429-كيم",
+          "code": "429 كيم",
+          "prerequisites": [],
+          "corequisites": [
+            "421 كيم"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb:457-كيم",
+          "code": "457 كيم",
+          "prerequisites": [
+            "353 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb:499-كيم",
+          "code": "499 كيم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 116,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    },
+    {
+      "id": "elective-group-2",
+      "name": "متطلبات خارج القسم",
+      "requiredHours": 7,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:chem:elective:elective-group-2:101-جيو",
+          "code": "101 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-2:101-كيح",
+          "code": "101 كيح",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-2:102-فيز",
+          "code": "102 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-2:102-نبت",
+          "code": "102 نبت",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-2:103-حين",
+          "code": "103 حين",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-2:140-حدق",
+          "code": "140 حدق",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "elective-group-3",
+      "name": "متطلبات داخل القسم",
+      "requiredHours": 10,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:chem:elective:elective-group-3:310-كيم",
+          "code": "310 كيم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:326-كيم",
+          "code": "326 كيم",
+          "prerequisites": [
+            "323 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:328-كيم",
+          "code": "328 كيم",
+          "prerequisites": [
+            "320 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:333-كيم",
+          "code": "333 كيم",
+          "prerequisites": [
+            "232 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:334-كيم",
+          "code": "334 كيم",
+          "prerequisites": [
+            "201 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:418-كيم",
+          "code": "418 كيم",
+          "prerequisites": [
+            "323 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:422-كيم",
+          "code": "422 كيم",
+          "prerequisites": [
+            "323 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:427-كيم",
+          "code": "427 كيم",
+          "prerequisites": [
+            "323 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:434-كيم",
+          "code": "434 كيم",
+          "prerequisites": [
+            "330 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:442-كيم",
+          "code": "442 كيم",
+          "prerequisites": [
+            "342 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:443-كيم",
+          "code": "443 كيم",
+          "prerequisites": [
+            "341 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:447-كيم",
+          "code": "447 كيم",
+          "prerequisites": [
+            "345 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:455-كيم",
+          "code": "455 كيم",
+          "prerequisites": [
+            "353 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:460-كيم",
+          "code": "460 كيم",
+          "prerequisites": [
+            "336 كيم"
+          ],
+          "corequisites": [
+            "436 كيم"
+          ],
+          "forcedCorequisites": [
+            "436 كيم"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:chem:elective:elective-group-3:461-كيم",
+          "code": "461 كيم",
+          "prerequisites": [
+            "430 كيم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "elective-group-4",
+      "name": "متطلبات حرة",
+      "requiredHours": 3,
+      "sortCourses": "code",
+      "courses": []
+    }
+  ],
+  "fallbackCourses": {
+    "497 كيم": {
+      "name": "التدريب على أجهزة التحليل الآلي الكيميائية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 كيم": {
+      "name": "كيمياء عامة (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "211 ريض": {
+      "name": "الرياضيات للكيميائيين",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "240 كيم": {
+      "name": "الكيمياء العضوية (1)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "247 كيم": {
+      "name": "التعرف على المركبات العضوية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "252 كيم": {
+      "name": "أساسيات الكيمياء التحليلية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 فيز": {
+      "name": "فيزياء عامة (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "223 كيم": {
+      "name": "كيمياء المجموعات الرئيسية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "232 كيم": {
+      "name": "الثيرموداينمك الكيميائي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "241 كيم": {
+      "name": "الكيمياء العضوية (2)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "256 كيم": {
+      "name": "طرق التحليل الطيفي",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "323 كيم": {
+      "name": "كيمياء العناصر الإنتقالية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "335 كيم": {
+      "name": "الحركية الكيميائية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "342 كيم": {
+      "name": "البوليمرات والبتروكيماويات",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "344 كيم": {
+      "name": "ميكانيكية التفاعلات العضوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "345 كيم": {
+      "name": "تحضيرات عضوية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "353 كيم": {
+      "name": "طرق التحليل الكهروكيميائية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "320 كيم": {
+      "name": "كيمياء الكم (1)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "329 كيم": {
+      "name": "أطياف المركبات غير العضوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "330 كيم": {
+      "name": "الكيمياء الفيزيائية للبوليمرات",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "336 كيم": {
+      "name": "الكيمياء الفيزيائية للمحاليل",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "341 كيم": {
+      "name": "الكيمياء العضوية غير المتجانسة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "425 كيم": {
+      "name": "ميكانيكية التفاعلات غير العضوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "430 كيم": {
+      "name": "الكيمياء الكهربية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "436 كيم": {
+      "name": "كيمياء السطوح والحفز",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "441 كيم": {
+      "name": "أطياف المركبات العضوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "458 كيم": {
+      "name": "طرق الفصل الكيميائية والكروماتوجرافية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "421 كيم": {
+      "name": "الكيمياء العضو معدنية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "429 كيم": {
+      "name": "عملي كيمياء غير العضوية (2)",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "457 كيم": {
+      "name": "التحليل البيئي",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "499 كيم": {
+      "name": "مشروع التخرج",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 جيو": {
+      "name": "جيولوجيا فيزيائية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "328 كيم": {
+      "name": "كيمياء الكم (2)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours"
+      ]
+    },
+    "461 كيم": {
+      "name": "التآكل",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "434 كيم": {
+      "name": "تجارب في الكيمياء الفيزيائية للبوليمرات",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "442 كيم": {
+      "name": "الصناعات العضوية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "447 كيم": {
+      "name": "عملي كيمياء عضوية متقدم",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "101 كيح": {
+      "name": "كيمياء حيوية عامة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 فيز": {
+      "name": "فيزياء عامه (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 نبت": {
+      "name": "علم النبات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "103 حين": {
+      "name": "مبادئ في علم الحيوان",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "140 حدق": {
+      "name": "علم الإحياء الدقيقة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "310 كيم": {
+      "name": "تطبيقات الحاسب الآلي في الكيمياء",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "326 كيم": {
+      "name": "الكيمياء اللامائية",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "333 كيم": {
+      "name": "الكيمياء الصناعية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "334 كيم": {
+      "name": "الكيمياء النووية والإشعاعية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "418 كيم": {
+      "name": "الكيمياء غير العضوية الحيوية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "422 كيم": {
+      "name": "كيمياء الحالة الصلبة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "427 كيم": {
+      "name": "الكيمياء غير العضوية الصناعية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "443 كيم": {
+      "name": "كيمياء المنتجات الطبيعية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "455 كيم": {
+      "name": "المعالجة الإحصائية للبيانات الكيميائية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "460 كيم": {
+      "name": "الكيمياء الخضراء",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:chem:published-level-1:201-كيم",
+          "major:chem:published-level-1:211-ريض",
+          "major:chem:published-level-1:240-كيم",
+          "major:chem:published-level-1:247-كيم",
+          "major:chem:published-level-1:252-كيم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6vn6dm",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c",
+        "sourceSemesterId": "published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c",
+        "type": "regular",
+        "courseOrder": [
+          "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:101-فيز",
+          "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:223-كيم",
+          "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:232-كيم",
+          "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:241-كيم",
+          "major:chem:published-e95f3281-9ce1-43f0-86c1-bc70f7eaa75c:256-كيم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6vn90u",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-d2bef56e-96b6-4783-a137-f6aa31aae1a9",
+        "sourceSemesterId": "published-d2bef56e-96b6-4783-a137-f6aa31aae1a9",
+        "type": "regular",
+        "courseOrder": [
+          "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:323-كيم",
+          "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:335-كيم",
+          "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:342-كيم",
+          "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:344-كيم",
+          "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:345-كيم",
+          "major:chem:published-d2bef56e-96b6-4783-a137-f6aa31aae1a9:353-كيم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6vq8qm",
+            "name": "من متطلبات داخل القسم",
+            "electiveGroupId": "elective-group-3",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6vqag7",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-430b8f50-762b-49ea-8a82-bc446aa1fa3e",
+        "sourceSemesterId": "published-430b8f50-762b-49ea-8a82-bc446aa1fa3e",
+        "type": "regular",
+        "courseOrder": [
+          "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:320-كيم",
+          "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:329-كيم",
+          "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:330-كيم",
+          "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:336-كيم",
+          "major:chem:published-430b8f50-762b-49ea-8a82-bc446aa1fa3e:341-كيم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6vxls1",
+            "name": "من متطلبات خارج القسم",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 4,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6vy71e",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-f1911dec-42e7-4711-9a19-a045c480439a",
+        "sourceSemesterId": "published-f1911dec-42e7-4711-9a19-a045c480439a",
+        "type": "regular",
+        "courseOrder": [
+          "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:425-كيم",
+          "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:430-كيم",
+          "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:436-كيم",
+          "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:441-كيم",
+          "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:458-كيم",
+          "major:chem:published-f1911dec-42e7-4711-9a19-a045c480439a:497-كيم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6vvjp9",
+            "name": "من متطلبات خارج القسم",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6vvq0r",
+            "name": "من متطلبات داخل القسم",
+            "electiveGroupId": "elective-group-3",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb",
+        "sourceSemesterId": "published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb",
+        "type": "regular",
+        "courseOrder": [
+          "major:chem:published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb:421-كيم",
+          "major:chem:published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb:429-كيم",
+          "major:chem:published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb:457-كيم",
+          "major:chem:published-d13bf9ca-da6e-4a27-9a85-3dd27c03cacb:499-كيم"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6vynnb",
+            "name": "من متطلبات داخل القسم",
+            "electiveGroupId": "elective-group-3",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6vyrs0",
+            "name": "من متطلبات داخل القسم",
+            "electiveGroupId": "elective-group-3",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6vyu6t",
+            "name": "من متطلبات حرة",
+            "electiveGroupId": "elective-group-4",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      }
+    ]
+  }
+}

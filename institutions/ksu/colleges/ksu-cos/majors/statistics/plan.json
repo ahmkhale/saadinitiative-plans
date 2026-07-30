@@ -1,0 +1,459 @@
+{
+  "schemaVersion": 1,
+  "id": "statistics",
+  "major": "الإحصاء",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": [
+        {
+          "id": "major:statistics:published-level-1:100-بحث",
+          "code": "100 بحث",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-level-1:105-احص",
+          "code": "105 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-level-1:111-ريض",
+          "code": "111 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-level-1:111-عال",
+          "code": "111 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-1f153d86-ba9a-420a-8b55-7753cb5ce5be",
+      "courses": [
+        {
+          "id": "major:statistics:published-1f153d86-ba9a-420a-8b55-7753cb5ce5be:215-احص",
+          "code": "215 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-1f153d86-ba9a-420a-8b55-7753cb5ce5be:244-ريض",
+          "code": "244 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-1f153d86-ba9a-420a-8b55-7753cb5ce5be:328-احص",
+          "code": "328 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-1f153d86-ba9a-420a-8b55-7753cb5ce5be:333-احص",
+          "code": "333 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-54bd4ca3-5c7c-4339-8943-4c7777de2bb0",
+      "courses": [
+        {
+          "id": "major:statistics:published-54bd4ca3-5c7c-4339-8943-4c7777de2bb0:201-ريض",
+          "code": "201 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-54bd4ca3-5c7c-4339-8943-4c7777de2bb0:322-احص",
+          "code": "322 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-54bd4ca3-5c7c-4339-8943-4c7777de2bb0:331-احص",
+          "code": "331 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-54bd4ca3-5c7c-4339-8943-4c7777de2bb0:332-احص",
+          "code": "332 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-e39cbd2a-487e-49a0-80c7-300d3ec94f7f",
+      "courses": [
+        {
+          "id": "major:statistics:published-e39cbd2a-487e-49a0-80c7-300d3ec94f7f:336-احص",
+          "code": "336 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-e39cbd2a-487e-49a0-80c7-300d3ec94f7f:337-احص",
+          "code": "337 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-e39cbd2a-487e-49a0-80c7-300d3ec94f7f:339-احص",
+          "code": "339 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-e39cbd2a-487e-49a0-80c7-300d3ec94f7f:340-احص",
+          "code": "340 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-6d9c57e1-949f-454a-ae07-8b3caf15a3f7",
+      "courses": [
+        {
+          "id": "major:statistics:published-6d9c57e1-949f-454a-ae07-8b3caf15a3f7:419-احص",
+          "code": "419 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-6d9c57e1-949f-454a-ae07-8b3caf15a3f7:429-احص",
+          "code": "429 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-6d9c57e1-949f-454a-ae07-8b3caf15a3f7:438-احص",
+          "code": "438 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-6d9c57e1-949f-454a-ae07-8b3caf15a3f7:497-احص",
+          "code": "497 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-d1303721-5250-4112-8073-2a59ae00b52e",
+      "courses": [
+        {
+          "id": "major:statistics:published-d1303721-5250-4112-8073-2a59ae00b52e:415-احص",
+          "code": "415 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-d1303721-5250-4112-8073-2a59ae00b52e:423-احص",
+          "code": "423 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-d1303721-5250-4112-8073-2a59ae00b52e:440-احص",
+          "code": "440 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:statistics:published-d1303721-5250-4112-8073-2a59ae00b52e:498-احص",
+          "code": "498 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [],
+  "fallbackCourses": {
+    "440 احص": {
+      "name": "تحليل بيانات طولية",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    },
+    "339 احص": {
+      "name": "تحليل بيانات",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours"
+      ]
+    },
+    "100 بحث": {
+      "name": "مقدمة في بحوث العمليات",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "105 احص": {
+      "name": "طرق احصائية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "111 ريض": {
+      "name": "حساب التكامل",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "111 عال": {
+      "name": "برمجة حاسبات (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "215 احص": {
+      "name": "احتمال (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "244 ريض": {
+      "name": "الجبر الخطي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "328 احص": {
+      "name": "حزم احصائية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "333 احص": {
+      "name": "طرق احصائية لا معلمية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 ريض": {
+      "name": "حساب التفاضل والتكامل",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "322 احص": {
+      "name": "نظريه القرارات",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "331 احص": {
+      "name": "تقنيات المعاينة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "332 احص": {
+      "name": "تحليل الانحدار",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "336 احص": {
+      "name": "سلاسل زمنيه وتنبؤ",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "337 احص": {
+      "name": "تصميم وتحليل التجارب",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "340 احص": {
+      "name": "نظرية الإحصاء (1)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "419 احص": {
+      "name": "نظرية الإحصاء ( 2)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "429 احص": {
+      "name": "طرق المسح الإحصائي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "438 احص": {
+      "name": "طرق احصائية متعددة المتغيرات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "497 احص": {
+      "name": "مشروع تخرج (1)",
+      "academicHours": 1,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "415 احص": {
+      "name": "احتمال (2)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "423 احص": {
+      "name": "مراقبة الجودة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "498 احص": {
+      "name": "مشروع تخرج (2)",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  }
+}

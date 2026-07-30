@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": 1,
+  "id": "math",
+  "major": "الرياضيات",
+  "degree": "البكالوريوس",
+  "expectedCredits": 136,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": [
+        {
+          "id": "major:math:published-level-1:105-احص",
+          "code": "105 احص",
+          "prerequisites": [
+            "101 احص"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-level-1:111-ريض",
+          "code": "111 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteAlternatives": [
+            [
+              "101 ريض",
+              "150 ريض"
+            ]
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-level-1:115-عال",
+          "code": "115 عال",
+          "prerequisites": [
+            "101 تقن"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-level-1:131-ريض",
+          "code": "131 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteAlternatives": [
+            [
+              "101 ريض",
+              "150 ريض"
+            ]
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-ece9fa3e-3600-47a8-a909-c3669f824a43",
+      "courses": [
+        {
+          "id": "major:math:published-ece9fa3e-3600-47a8-a909-c3669f824a43:201-ريض",
+          "code": "201 ريض",
+          "prerequisites": [
+            "111 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-ece9fa3e-3600-47a8-a909-c3669f824a43:202-ريض",
+          "code": "202 ريض",
+          "prerequisites": [],
+          "corequisites": [
+            "201 ريض"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-ece9fa3e-3600-47a8-a909-c3669f824a43:243-ريض",
+          "code": "243 ريض",
+          "prerequisites": [
+            "131 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-ece9fa3e-3600-47a8-a909-c3669f824a43:246-ريض",
+          "code": "246 ريض",
+          "prerequisites": [
+            "131 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449",
+      "courses": [
+        {
+          "id": "major:math:published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449:216-احص",
+          "code": "216 احص",
+          "prerequisites": [
+            "201 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449:225-ريض",
+          "code": "225 ريض",
+          "prerequisites": [
+            "201 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449:352-ريض",
+          "code": "352 ريض",
+          "prerequisites": [
+            "246 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449:382-ريض",
+          "code": "382 ريض",
+          "prerequisites": [
+            "201 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-d78ddac5-df4c-4638-9d27-f3f274a2b64f",
+      "courses": [
+        {
+          "id": "major:math:published-d78ddac5-df4c-4638-9d27-f3f274a2b64f:316-ريض",
+          "code": "316 ريض",
+          "prerequisites": [
+            "202 ريض",
+            "225 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-d78ddac5-df4c-4638-9d27-f3f274a2b64f:343-ريض",
+          "code": "343 ريض",
+          "prerequisites": [
+            "243 ريض",
+            "246 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-d78ddac5-df4c-4638-9d27-f3f274a2b64f:373-ريض",
+          "code": "373 ريض",
+          "prerequisites": [
+            "382 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-1a1ff734-a22c-4f53-b060-4516cf1519c6",
+      "courses": [
+        {
+          "id": "major:math:published-1a1ff734-a22c-4f53-b060-4516cf1519c6:425-ريض",
+          "code": "425 ريض",
+          "prerequisites": [
+            "316 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-1a1ff734-a22c-4f53-b060-4516cf1519c6:431-ريض",
+          "code": "431 ريض",
+          "prerequisites": [
+            "246 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-1a1ff734-a22c-4f53-b060-4516cf1519c6:441-ريض",
+          "code": "441 ريض",
+          "prerequisites": [
+            "343 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-1a1ff734-a22c-4f53-b060-4516cf1519c6:481-ريض",
+          "code": "481 ريض",
+          "prerequisites": [
+            "382 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-79e38e1d-f8fd-4b63-ab0d-ee9e71c7c3c8",
+      "courses": [
+        {
+          "id": "major:math:published-79e38e1d-f8fd-4b63-ab0d-ee9e71c7c3c8:473-ريض",
+          "code": "473 ريض",
+          "prerequisites": [
+            "202 ريض",
+            "246 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-79e38e1d-f8fd-4b63-ab0d-ee9e71c7c3c8:487-ريض",
+          "code": "487 ريض",
+          "prerequisites": [
+            "382 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:published-79e38e1d-f8fd-4b63-ab0d-ee9e71c7c3c8:499-ريض",
+          "code": "499 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 100,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    },
+    {
+      "id": "elective-group-2",
+      "name": "متطلبات التخصص",
+      "requiredHours": 9,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:math:elective:elective-group-2:101-ادا",
+          "code": "101 ادا",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:101-فيز",
+          "code": "101 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:101-قصد",
+          "code": "101 قصد",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:102-فيز",
+          "code": "102 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:102-قصد",
+          "code": "102 قصد",
+          "prerequisites": [
+            "101 قصد"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:200-مال",
+          "code": "200 مال",
+          "prerequisites": [
+            "201 حسب"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:201-حسب",
+          "code": "201 حسب",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:202-عال",
+          "code": "202 عال",
+          "prerequisites": [
+            "115 عال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:222-صنع",
+          "code": "222 صنع",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:262-ريك",
+          "code": "262 ريك",
+          "prerequisites": [
+            "200 مال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:328-احص",
+          "code": "328 احص",
+          "prerequisites": [
+            "105 احص"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:371-ريك",
+          "code": "371 ريك",
+          "prerequisites": [],
+          "corequisites": [],
+          "prerequisiteAlternatives": [
+            [
+              "111 ريض",
+              "106 ريض"
+            ]
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:379-ريض",
+          "code": "379 ريض",
+          "prerequisites": [
+            "202 ريض",
+            "246 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:391-ريض",
+          "code": "391 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:426-ريض",
+          "code": "426 ريض",
+          "prerequisites": [
+            "225 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:433-ريض",
+          "code": "433 ريض",
+          "prerequisites": [
+            "431 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:436-ريض",
+          "code": "436 ريض",
+          "prerequisites": [
+            "131 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:442-ريض",
+          "code": "442 ريض",
+          "prerequisites": [
+            "441 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:453-ريض",
+          "code": "453 ريض",
+          "prerequisites": [
+            "352 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:456-ريض",
+          "code": "456 ريض",
+          "prerequisites": [
+            "246 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:466-ريض",
+          "code": "466 ريض",
+          "prerequisites": [
+            "316 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:math:elective:elective-group-2:482-ريض",
+          "code": "482 ريض",
+          "prerequisites": [
+            "246 ريض",
+            "481 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "105 احص": {
+      "name": "طرق احصائية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "111 ريض": {
+      "name": "حساب التكامل",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "115 عال": {
+      "name": "مُقدمة للبرمجة بلغة ++C",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "131 ريض": {
+      "name": "اسس الرياضيات",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 ريض": {
+      "name": "حساب التفاضل والتكامل",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "202 ريض": {
+      "name": "حساب المتجهات",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "243 ريض": {
+      "name": "نظرية الاعداد",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "246 ريض": {
+      "name": "الجبر الخطي",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "216 احص": {
+      "name": "احتمال اكتواري",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "225 ريض": {
+      "name": "مقدمة في المعادلات التفاضلية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "352 ريض": {
+      "name": "التحليل العددي (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "382 ريض": {
+      "name": "التحليل الحقيقي (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "316 ريض": {
+      "name": "الطرائق الرياضية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "343 ريض": {
+      "name": "نظرية الزمر",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "373 ريض": {
+      "name": "مقدمة فى التوبولوجيا",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "425 ريض": {
+      "name": "معادلات تفاضلية جزئية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "431 ريض": {
+      "name": "التركيبات ونظرية الرسومات (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "441 ريض": {
+      "name": "الحلقات والحقول",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "481 ريض": {
+      "name": "التحليل الحقيقي (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "473 ريض": {
+      "name": "مقدمة في الهندسة التفاضلية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "487 ريض": {
+      "name": "التحليل المركب",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "499 ريض": {
+      "name": "مشروع بحث",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "482 ريض": {
+      "name": "التحليل في عدة متغيرات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "466 ريض": {
+      "name": "النظم الديناميكية والتشوش",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "453 ريض": {
+      "name": "التحليل العددي (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "442 ريض": {
+      "name": "تطبيقات الجبر",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "101 ادا": {
+      "name": "مباديء الإدارة والأعمال",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 فيز": {
+      "name": "فيزياء عامة (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 قصد": {
+      "name": "مباديء الاقتصاد الجزئي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 فيز": {
+      "name": "فيزياء عامه (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 قصد": {
+      "name": "مباديء الاقتصاد الكلي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "200 مال": {
+      "name": "مبادئ المالية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 حسب": {
+      "name": "مباديء المحاسبة والتقرير المالي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "222 صنع": {
+      "name": "تحليل العمليات الصناعية (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "262 ريك": {
+      "name": "مالية الشركات الاكتوارية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "328 احص": {
+      "name": "حزم احصائية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "371 ريك": {
+      "name": "الرياضيات المالية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "391 ريض": {
+      "name": "تاريخ الرياضيات",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "456 ريض": {
+      "name": "المدخل الى البرمجة الرياضية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "436 ريض": {
+      "name": "المنطق الرياضي",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "433 ريض": {
+      "name": "التركيبات ونظرية الرسومات (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "426 ريض": {
+      "name": "النمذجة في علم الأحياء الرياضي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "379 ريض": {
+      "name": "أسس الهندسة الإقليدية واللاإقليدية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "202 عال": {
+      "name": "برمجة الحاسب الآلي باستخدام الماتلاب",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:math:published-level-1:105-احص",
+          "major:math:published-level-1:111-ريض",
+          "major:math:published-level-1:115-عال",
+          "major:math:published-level-1:131-ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6obsu8",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-ece9fa3e-3600-47a8-a909-c3669f824a43",
+        "sourceSemesterId": "published-ece9fa3e-3600-47a8-a909-c3669f824a43",
+        "type": "regular",
+        "courseOrder": [
+          "major:math:published-ece9fa3e-3600-47a8-a909-c3669f824a43:201-ريض",
+          "major:math:published-ece9fa3e-3600-47a8-a909-c3669f824a43:202-ريض",
+          "major:math:published-ece9fa3e-3600-47a8-a909-c3669f824a43:243-ريض",
+          "major:math:published-ece9fa3e-3600-47a8-a909-c3669f824a43:246-ريض"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449",
+        "sourceSemesterId": "published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449",
+        "type": "regular",
+        "courseOrder": [
+          "major:math:published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449:216-احص",
+          "major:math:published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449:225-ريض",
+          "major:math:published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449:352-ريض",
+          "major:math:published-b3c1fa30-ceeb-4546-a309-6ba2fc95d449:382-ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6obn7y",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-d78ddac5-df4c-4638-9d27-f3f274a2b64f",
+        "sourceSemesterId": "published-d78ddac5-df4c-4638-9d27-f3f274a2b64f",
+        "type": "regular",
+        "courseOrder": [
+          "major:math:published-d78ddac5-df4c-4638-9d27-f3f274a2b64f:316-ريض",
+          "major:math:published-d78ddac5-df4c-4638-9d27-f3f274a2b64f:343-ريض",
+          "major:math:published-d78ddac5-df4c-4638-9d27-f3f274a2b64f:373-ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6obg7a",
+            "name": "من متطلبات التخصص",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6obho2",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-1a1ff734-a22c-4f53-b060-4516cf1519c6",
+        "sourceSemesterId": "published-1a1ff734-a22c-4f53-b060-4516cf1519c6",
+        "type": "regular",
+        "courseOrder": [
+          "major:math:published-1a1ff734-a22c-4f53-b060-4516cf1519c6:425-ريض",
+          "major:math:published-1a1ff734-a22c-4f53-b060-4516cf1519c6:431-ريض",
+          "major:math:published-1a1ff734-a22c-4f53-b060-4516cf1519c6:441-ريض",
+          "major:math:published-1a1ff734-a22c-4f53-b060-4516cf1519c6:481-ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6ob8l6",
+            "name": "من متطلبات التخصص",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-79e38e1d-f8fd-4b63-ab0d-ee9e71c7c3c8",
+        "sourceSemesterId": "published-79e38e1d-f8fd-4b63-ab0d-ee9e71c7c3c8",
+        "type": "regular",
+        "courseOrder": [
+          "major:math:published-79e38e1d-f8fd-4b63-ab0d-ee9e71c7c3c8:473-ريض",
+          "major:math:published-79e38e1d-f8fd-4b63-ab0d-ee9e71c7c3c8:487-ريض",
+          "major:math:published-79e38e1d-f8fd-4b63-ab0d-ee9e71c7c3c8:499-ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6ob08x",
+            "name": "من متطلبات التخصص",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6ob2r6",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      }
+    ]
+  }
+}

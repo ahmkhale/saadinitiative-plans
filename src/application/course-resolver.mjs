@@ -7,6 +7,7 @@ import {
 } from "../domain/course-code.mjs";
 import { normalizeActivityFacts } from "../domain/course-facts.mjs";
 import { formatCourseRequirementLabel } from "../domain/course-requirements.mjs";
+import { normalizeRequirementAlternatives } from "../domain/course-requirements.mjs";
 
 const FACT_FIELDS = Object.freeze([
   "name",
@@ -175,6 +176,8 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
 
     let prerequisites = normalizeCodeList(entry.prerequisites);
     let corequisites = normalizeCodeList(entry.corequisites);
+    const forcedCorequisites = normalizeCodeList(entry.forcedCorequisites);
+    const prerequisiteAlternatives = normalizeRequirementAlternatives(entry.prerequisiteAlternatives);
     const prerequisiteConditions = Array.from(new Set(
       (entry.prerequisiteConditions ?? []).map((value) => String(value).trim()).filter(Boolean),
     ));
@@ -205,6 +208,8 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
       exerciseHours: numericValue(facts.exerciseHours),
       prerequisites,
       corequisites,
+      forcedCorequisites,
+      prerequisiteAlternatives,
       prerequisiteConditions,
       minimumCompletedCredits: numericValue(entry.minimumCompletedCredits),
       category,
@@ -222,7 +227,7 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
         : usedFallback ? (fallbackIsCatalogSnapshot ? "catalog-snapshot" : "manual") : null,
       catalogTermId: usedCatalog ? rawCatalog?.catalogTermId ?? null : null,
       sourceBadge: usedCatalog
-        ? `${rawCatalog?.catalogSource === "female" ? "دليل الطالبات" : rawCatalog?.catalogSource === "male" ? "دليل الطلاب" : "دليل المقررات"}${rawCatalog?.catalogIsHistorical ? ` · ${rawCatalog.catalogTermId}` : ""}`
+        ? `${rawCatalog?.catalogSource === "female" ? "دليل الطالبات" : rawCatalog?.catalogSource === "male" ? "دليل الطلاب" : "دليل المقررات"}${rawCatalog?.catalogIsHistorical ? ` · ${rawCatalog.catalogTermId}` : ""}${rawCatalog?.completedFromFemaleFields?.length ? " · استكمال من دليل الطالبات" : ""}`
         : usedFallback ? (fallbackIsCatalogSnapshot ? "لقطة من الدليل" : "مدخل يدويًا") : "غير موجود في الدليل",
       qualityBadges: [
         ...(rawCatalog?.conflicts?.length || rawCatalog?.activityAliasConflicts?.length || rawCatalog?.crossSourceConflict ? ["بيانات متعارضة"] : []),

@@ -34,6 +34,49 @@ test("catalog facts resolve independently while same-semester rules do not creat
   assert.equal(diagnostics.summary.errors, 0);
 });
 
+test("prerequisite alternatives allow absent options when another option exists in the plan", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار البدائل",
+    semesters: [
+      { courses: ["101 ريض"] },
+      { courses: [{ code: "201 كهر", prerequisiteAlternatives: [["101 ريض", "102 ريض"]] }] },
+    ],
+    fallbackCourses: {
+      "101 ريض": { name: "رياضيات", academicHours: 3, lectureHours: 3, exerciseHours: 0, practicalHours: 0 },
+      "201 كهر": { name: "دوائر", academicHours: 3, lectureHours: 3, exerciseHours: 0, practicalHours: 0 },
+    },
+  });
+  const diagnostics = createDiagnostics();
+  const resolved = resolvePlan(plan, buildCourseCatalog([]), colors, diagnostics);
+
+  assert.equal(resolved.semesters[1].courses[0].requirementLabel, "101 ريض أو 102 ريض");
+  assert.equal(resolved.semesters[0].courses[0].isParentCourse, true);
+  assert.equal(diagnostics.items.some((item) => item.code === "PREREQUISITE_NOT_IN_PLAN"), false);
+  assert.equal(diagnostics.items.some((item) => item.code === "PREREQUISITE_ALTERNATIVE_NOT_IN_PLAN"), false);
+});
+
+test("prerequisite alternatives report an error only when no option exists in the plan", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار البدائل",
+    semesters: [
+      { courses: [{ code: "201 كهر", prerequisiteAlternatives: [["101 ريض", "102 ريض"]] }] },
+    ],
+    fallbackCourses: {
+      "201 كهر": { name: "دوائر", academicHours: 3, lectureHours: 3, exerciseHours: 0, practicalHours: 0 },
+    },
+  });
+  const diagnostics = createDiagnostics();
+
+  resolvePlan(plan, buildCourseCatalog([]), colors, diagnostics);
+
+  assert.equal(
+    diagnostics.items.find((item) => item.code === "PREREQUISITE_ALTERNATIVE_NOT_IN_PLAN")?.severity,
+    "errors",
+  );
+});
+
 test("resolved courses retain historical catalog term provenance", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
@@ -268,6 +311,58 @@ test("elective dependencies and corequisites never create published parent marke
   assert.equal(resolved.semesters[0].courses[1].isParentCourse, false);
   assert.equal(resolved.electiveGroups[0].courses[0].isParentCourse, false);
   assert.deepEqual(resolved.electiveGroups[0].courses[0].prerequisites, ["102 عال"]);
+});
+
+test("elective requirements report missing published courses without changing alternative semantics", () => {
+  const facts = (name) => ({
+    name,
+    academicHours: 3,
+    lectureHours: 3,
+    exerciseHours: 0,
+    practicalHours: 0,
+  });
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار متطلبات الاختياري",
+    semesters: [{ courses: ["101 عال"] }],
+    electiveGroups: [{
+      id: "electives",
+      name: "اختياري",
+      requiredHours: 3,
+      courses: [
+        { code: "301 عال", prerequisites: ["999 عال"] },
+        { code: "302 عال", corequisites: ["998 عال"] },
+        { code: "303 عال", prerequisiteAlternatives: [["101 عال", "997 عال"]] },
+        { code: "304 عال", prerequisiteAlternatives: [["996 عال", "995 عال"]] },
+        { code: "305 عال", prerequisites: ["301 عال"] },
+      ],
+    }],
+    fallbackCourses: Object.fromEntries(
+      ["101 عال", "301 عال", "302 عال", "303 عال", "304 عال", "305 عال"].map((code) => [code, facts(code)]),
+    ),
+  });
+  const diagnostics = createDiagnostics();
+
+  resolvePlan(plan, new Map(), colors, diagnostics);
+
+  const missingPrerequisite = diagnostics.items.find((item) => (
+    item.code === "PREREQUISITE_NOT_IN_PLAN" && item.course === "301 عال"
+  ));
+  const missingCorequisite = diagnostics.items.find((item) => (
+    item.code === "COREQUISITE_NOT_IN_PLAN" && item.course === "302 عال"
+  ));
+  assert.equal(missingPrerequisite?.prerequisite, "999 عال");
+  assert.equal(missingPrerequisite?.location, "elective-electives");
+  assert.equal(missingCorequisite?.corequisite, "998 عال");
+  assert.equal(missingCorequisite?.location, "elective-electives");
+  assert.equal(diagnostics.items.some((item) => (
+    item.course === "305 عال" && ["PREREQUISITE_NOT_IN_PLAN", "COREQUISITE_NOT_IN_PLAN"].includes(item.code)
+  )), false);
+  assert.equal(diagnostics.items.some((item) => item.alternatives?.includes("997 عال")), false);
+  assert.equal(
+    diagnostics.items.find((item) => item.code === "PREREQUISITE_ALTERNATIVE_NOT_IN_PLAN")?.course,
+    "304 عال",
+  );
 });
 
 test("proposal inherits published facts and appends black placeholders", () => {

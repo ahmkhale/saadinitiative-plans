@@ -1,0 +1,1159 @@
+{
+  "schemaVersion": 1,
+  "id": "physics",
+  "major": "فيزياء",
+  "degree": "البكالوريوس",
+  "expectedCredits": 136,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": [
+        {
+          "id": "major:physics:published-level-1:102-فلك",
+          "code": "102 فلك",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-level-1:110-فيز",
+          "code": "110 فيز",
+          "prerequisites": [
+            "101 ريض"
+          ],
+          "corequisites": [
+            "111 فيز"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-level-1:111-ريض",
+          "code": "111 ريض",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-level-1:111-فيز",
+          "code": "111 فيز",
+          "prerequisites": [],
+          "corequisites": [
+            "110 فيز"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-461382da-7025-4889-a3a7-dfd553314f5f",
+      "courses": [
+        {
+          "id": "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:201-فيز",
+          "code": "201 فيز",
+          "prerequisites": [
+            "111 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:209-ريض",
+          "code": "209 ريض",
+          "prerequisites": [
+            "111 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:212-فيز",
+          "code": "212 فيز",
+          "prerequisites": [
+            "110 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:221-فيز",
+          "code": "221 فيز",
+          "prerequisites": [
+            "111 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:230-فيز",
+          "code": "230 فيز",
+          "prerequisites": [
+            "111 فيز"
+          ],
+          "corequisites": [
+            "209 ريض"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-3dd57b78-b7fb-47fc-835a-15112d90fc29",
+      "courses": [
+        {
+          "id": "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:241-فيز",
+          "code": "241 فيز",
+          "prerequisites": [
+            "111 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:312-فيز",
+          "code": "312 فيز",
+          "prerequisites": [
+            "212 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:323-فيز",
+          "code": "323 فيز",
+          "prerequisites": [
+            "221 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:331-فيز",
+          "code": "331 فيز",
+          "prerequisites": [
+            "230 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:353-فيز",
+          "code": "353 فيز",
+          "prerequisites": [
+            "209 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:394-فيز",
+          "code": "394 فيز",
+          "prerequisites": [
+            "221 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d",
+      "courses": [
+        {
+          "id": "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:301-فيز",
+          "code": "301 فيز",
+          "prerequisites": [
+            "209 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:325-فيز",
+          "code": "325 فيز",
+          "prerequisites": [
+            "221 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:342-فيز",
+          "code": "342 فيز",
+          "prerequisites": [
+            "241 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:371-فيز",
+          "code": "371 فيز",
+          "prerequisites": [
+            "353 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:391-فيز",
+          "code": "391 فيز",
+          "prerequisites": [
+            "241 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:395-فيز",
+          "code": "395 فيز",
+          "prerequisites": [
+            "331 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0",
+      "courses": [
+        {
+          "id": "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:393-فيز",
+          "code": "393 فيز",
+          "prerequisites": [
+            "353 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:400-فيز",
+          "code": "400 فيز",
+          "prerequisites": [
+            "301 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:404-فيز",
+          "code": "404 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:452-فيز",
+          "code": "452 فيز",
+          "prerequisites": [
+            "353 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:481-فيز",
+          "code": "481 فيز",
+          "prerequisites": [],
+          "corequisites": [
+            "452 فيز"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:490-فيز",
+          "code": "490 فيز",
+          "prerequisites": [],
+          "corequisites": [
+            "400 فيز"
+          ],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-00211bbe-cb2a-4a91-bf79-aa37c808fdc5",
+      "courses": [
+        {
+          "id": "major:physics:published-00211bbe-cb2a-4a91-bf79-aa37c808fdc5:491-فيز",
+          "code": "491 فيز",
+          "prerequisites": [
+            "371 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-00211bbe-cb2a-4a91-bf79-aa37c808fdc5:492-فيز",
+          "code": "492 فيز",
+          "prerequisites": [
+            "481 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:published-00211bbe-cb2a-4a91-bf79-aa37c808fdc5:499-فيز",
+          "code": "499 فيز",
+          "prerequisites": [
+            "490 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    },
+    {
+      "id": "elective-group-2",
+      "name": "متطلبات التخصص أ",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:physics:elective:elective-group-2:435-فيز",
+          "code": "435 فيز",
+          "prerequisites": [
+            "331 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-2:460-فيز",
+          "code": "460 فيز",
+          "prerequisites": [
+            "481 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-2:473-فيز",
+          "code": "473 فيز",
+          "prerequisites": [
+            "371 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-2:477-فيز",
+          "code": "477 فيز",
+          "prerequisites": [
+            "371 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "elective-group-3",
+      "name": "متطلبات التخصص ب",
+      "requiredHours": 4,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:physics:elective:elective-group-3:411-فيز",
+          "code": "411 فيز",
+          "prerequisites": [
+            "102 فلك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:412-فيز",
+          "code": "412 فيز",
+          "prerequisites": [
+            "102 فلك"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:423-فيز",
+          "code": "423 فيز",
+          "prerequisites": [
+            "371 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:456-فيز",
+          "code": "456 فيز",
+          "prerequisites": [
+            "353 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:457-فيز",
+          "code": "457 فيز",
+          "prerequisites": [
+            "435 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:462-فيز",
+          "code": "462 فيز",
+          "prerequisites": [
+            "460 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:463-فيز",
+          "code": "463 فيز",
+          "prerequisites": [
+            "353 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:476-فيز",
+          "code": "476 فيز",
+          "prerequisites": [
+            "473 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:480-فيز",
+          "code": "480 فيز",
+          "prerequisites": [
+            "481 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:485-فيز",
+          "code": "485 فيز",
+          "prerequisites": [
+            "481 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:486-فيز",
+          "code": "486 فيز",
+          "prerequisites": [
+            "481 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:physics:elective:elective-group-3:488-فيز",
+          "code": "488 فيز",
+          "prerequisites": [
+            "481 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "102 فلك": {
+      "name": "مقدمة المجموعة النجمية والشمسية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "110 فيز": {
+      "name": "فيزياء عامة (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "111 ريض": {
+      "name": "حساب التكامل",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "111 فيز": {
+      "name": "فيزياء عامة (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 فيز": {
+      "name": "فيزياء رياضية (1)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "209 ريض": {
+      "name": "معادلات تفاضلية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "212 فيز": {
+      "name": "ميكانيكا تقليدية (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "221 فيز": {
+      "name": "كهرومغناطيسيه (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "230 فيز": {
+      "name": "اهتزازات وموجات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "241 فيز": {
+      "name": "فيزياء حراريه",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "312 فيز": {
+      "name": "ميكانيكا تقليدية (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "323 فيز": {
+      "name": "كهرومغناطيسية (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "331 فيز": {
+      "name": "بصريات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "353 فيز": {
+      "name": "فيزياء حديثه -1-",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "394 فيز": {
+      "name": "مختبر كهرومغناطيسية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "301 فيز": {
+      "name": "فيزياء رياضية (2)",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "325 فيز": {
+      "name": "إلكترونيات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "342 فيز": {
+      "name": "فيزياء إحصائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "371 فيز": {
+      "name": "فيزياء جوامد (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "391 فيز": {
+      "name": "مختبر فيزياء حرارية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "395 فيز": {
+      "name": "مختبر فيزياء موجيه",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "393 فيز": {
+      "name": "مختبر فيزياء حديثة",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "400 فيز": {
+      "name": "فيزياء حاسوبية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "404 فيز": {
+      "name": "فيزياء رياضية (3)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "452 فيز": {
+      "name": "ميكانيكا الكم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "481 فيز": {
+      "name": "الفيزياء النوويه (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "490 فيز": {
+      "name": "مهارات بحثية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "491 فيز": {
+      "name": "مختبر فيزياء الجوامد",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "492 فيز": {
+      "name": "مختبر الفيزياء النووية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "499 فيز": {
+      "name": "مشروع بحث",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "473 فيز": {
+      "name": "علم المواد",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "435 فيز": {
+      "name": "فيزياء الليزر",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "460 فيز": {
+      "name": "فيزياء حيوية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "477 فيز": {
+      "name": "فيزياء الطاقة والبيئة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "412 فيز": {
+      "name": "فيزياء فلكية (2)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "457 فيز": {
+      "name": "مختبر الليزر",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "462 فيز": {
+      "name": "فيزياء طبية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "463 فيز": {
+      "name": "فيزياء جوامد (2)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "485 فيز": {
+      "name": "فيزياء المعجلات",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "488 فيز": {
+      "name": "فيزياء المفاعلات النووية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "411 فيز": {
+      "name": "فيزياء فلكية (1)",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "423 فيز": {
+      "name": "فيزياء أشباه الموصلات",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "456 فيز": {
+      "name": "أطياف ذرية وجزيئية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "476 فيز": {
+      "name": "مقدمة في علم وتقنيات النانو",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "480 فيز": {
+      "name": "فيزياء الجسيمات الأولية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "486 فيز": {
+      "name": "فيزياء اشعاعية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:physics:published-level-1:102-فلك",
+          "major:physics:published-level-1:110-فيز",
+          "major:physics:published-level-1:111-ريض",
+          "major:physics:published-level-1:111-فيز"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6s27fn",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-461382da-7025-4889-a3a7-dfd553314f5f",
+        "sourceSemesterId": "published-461382da-7025-4889-a3a7-dfd553314f5f",
+        "type": "regular",
+        "courseOrder": [
+          "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:201-فيز",
+          "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:209-ريض",
+          "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:212-فيز",
+          "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:221-فيز",
+          "major:physics:published-461382da-7025-4889-a3a7-dfd553314f5f:230-فيز"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6s21lq",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-3dd57b78-b7fb-47fc-835a-15112d90fc29",
+        "sourceSemesterId": "published-3dd57b78-b7fb-47fc-835a-15112d90fc29",
+        "type": "regular",
+        "courseOrder": [
+          "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:241-فيز",
+          "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:312-فيز",
+          "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:323-فيز",
+          "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:331-فيز",
+          "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:353-فيز",
+          "major:physics:published-3dd57b78-b7fb-47fc-835a-15112d90fc29:394-فيز"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d",
+        "sourceSemesterId": "published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d",
+        "type": "regular",
+        "courseOrder": [
+          "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:301-فيز",
+          "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:325-فيز",
+          "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:342-فيز",
+          "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:371-فيز",
+          "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:391-فيز",
+          "major:physics:published-9b3a3d72-70a9-4421-ba6a-9b92c9af9b3d:395-فيز"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6s1trz",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0",
+        "sourceSemesterId": "published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0",
+        "type": "regular",
+        "courseOrder": [
+          "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:393-فيز",
+          "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:400-فيز",
+          "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:404-فيز",
+          "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:452-فيز",
+          "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:481-فيز",
+          "major:physics:published-6e5ddd99-76be-4f9c-bbd0-912e72da24e0:490-فيز"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6s1mjo",
+            "name": "من متطلبات التخصص أ",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-00211bbe-cb2a-4a91-bf79-aa37c808fdc5",
+        "sourceSemesterId": "published-00211bbe-cb2a-4a91-bf79-aa37c808fdc5",
+        "type": "regular",
+        "courseOrder": [
+          "major:physics:published-00211bbe-cb2a-4a91-bf79-aa37c808fdc5:491-فيز",
+          "major:physics:published-00211bbe-cb2a-4a91-bf79-aa37c808fdc5:492-فيز",
+          "major:physics:published-00211bbe-cb2a-4a91-bf79-aa37c808fdc5:499-فيز"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms6s0y9c",
+            "name": "من متطلبات التخصص أ",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6s13vq",
+            "name": "من متطلبات التخصص ب",
+            "electiveGroupId": "elective-group-3",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6s17vs",
+            "name": "من متطلبات التخصص ب",
+            "electiveGroupId": "elective-group-3",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms6s1ep0",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      }
+    ]
+  }
+}

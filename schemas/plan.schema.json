@@ -381,6 +381,23 @@
             "type": "string"
           }
         },
+        "forcedCorequisites": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prerequisiteAlternatives": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
         "minimumCompletedCredits": {
           "type": [
             "number",

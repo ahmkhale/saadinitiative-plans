@@ -161,3 +161,25 @@ test("published course rows expose one merged requirements editor outside detail
   const detailsIndex = html.indexOf('<details class="course-details"');
   assert.ok(html.indexOf('data-dependency="requirements"') < detailsIndex);
 });
+
+test("merged requirements editor preserves forced companions and alternatives", () => {
+  const html = renderCourseRow({
+    ...baseArgs,
+    entry: {
+      ...baseArgs.entry,
+      prerequisites: ["101 ريض"],
+      corequisites: ["204 فيز", "205 فيز"],
+      forcedCorequisites: ["205 فيز"],
+      prerequisiteAlternatives: [["201 كيم", "202 كيم"]],
+    },
+    resolved: {
+      code: "204 ريض",
+      name: "المعادلات التفاضلية",
+      academicHours: 3,
+      prerequisites: ["101 ريض"],
+    },
+  });
+
+  assert.match(html, /value="101 ريض، 204 فيز، # 205 فيز، 201 كيم \^ 202 كيم"/u);
+  assert.match(html, /استخدم # لفرض «مرافق»، و \^ بين بدائل «أو»/u);
+});

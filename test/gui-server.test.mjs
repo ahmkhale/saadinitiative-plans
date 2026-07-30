@@ -232,9 +232,11 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
   const value = fixture();
   const outputRoot = path.join(value.root, "dist");
   let exportedPlan = null;
-  const fakeExport = (plan) => {
+  let exportedOptions = null;
+  const fakeExport = (plan, options) => {
     exportedPlan = structuredClone(plan);
-    const folder = path.join(outputRoot, plan.id);
+    exportedOptions = options;
+    const folder = path.join(options.outputRoot, plan.id);
     fs.mkdirSync(folder, { recursive: true });
     const pdfPath = path.join(folder, "plan.pdf");
     fs.writeFileSync(pdfPath, "pdf");
@@ -279,7 +281,8 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
       body: JSON.stringify({ institutionId: "test-university", plan: changed, collegeId: "ccis", majorId: "cs", save: false }),
     }).then((response) => response.json());
     assert.equal(generated.ok, true);
-    assert.match(generated.files.pdf, /^\/dist\/cs\/plan\.pdf\?v=\d+$/u);
+    assert.equal(exportedOptions.outputRoot, path.join(outputRoot, "test-university"));
+    assert.match(generated.files.pdf, /^\/dist\/test-university\/cs\/plan\.pdf\?v=\d+$/u);
 
     const preview = await fetch(`${base}/api/preview`, {
       method: "POST",
@@ -330,7 +333,7 @@ test("GUI API exports every base plan and track in an institution", async () => 
   const fakeExport = (plan, options) => {
     exported.push({ plan: structuredClone(plan), options });
     const slug = plan.track?.id ? `${plan.id}-${plan.track.id}` : plan.id;
-    const folder = path.join(outputRoot, slug);
+    const folder = path.join(options.outputRoot, slug);
     return {
       diagnostics: { summary: { errors: 0, warnings: 0, info: 0 }, items: [] },
       document: { pageLayouts: [{ width: 594, height: 271 }] },
@@ -367,8 +370,9 @@ test("GUI API exports every base plan and track in an institution", async () => 
     );
     assert.ok(exported.every((item) => item.options.keepSvg && item.options.png));
     assert.ok(exported.every((item) => item.options.settings.edition === "الطبعة الرابعة"));
-    assert.match(response.exported[0].pdf, /^\/dist\/cs\/plan\.pdf\?v=\d+$/u);
-    assert.match(response.exported[1].pdf, /^\/dist\/cs-ai\/plan\.pdf\?v=\d+$/u);
+    assert.ok(exported.every((item) => item.options.outputRoot === path.join(outputRoot, "test-university")));
+    assert.match(response.exported[0].pdf, /^\/dist\/test-university\/cs\/plan\.pdf\?v=\d+$/u);
+    assert.match(response.exported[1].pdf, /^\/dist\/test-university\/cs-ai\/plan\.pdf\?v=\d+$/u);
   } finally {
     await close(server);
     fs.rmSync(value.root, { recursive: true, force: true });

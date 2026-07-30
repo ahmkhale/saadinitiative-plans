@@ -1,5 +1,8 @@
 import { refreshFallbackFromCatalog } from "../../application/hydrate-fallbacks.mjs";
-import { exportInstitutionPlans } from "../../application/export-institution.mjs";
+import {
+  exportInstitutionPlans,
+  institutionExportRoot,
+} from "../../application/export-institution.mjs";
 import { renderDraftPreview, resolveDraft } from "../../application/preview-plan.mjs";
 import { readSettings, saveSettings } from "../../infrastructure/repositories/settings-repository.mjs";
 import { saveCourseColorAliases } from "../../infrastructure/repositories/course-color-repository.mjs";
@@ -63,9 +66,10 @@ export function createGuiApiRouter(options) {
       const planToExport = body.majorId
         ? context.store.getComposedPlan(body.collegeId, body.majorId, body.trackId, savedPlan)
         : savedPlan;
+      const scopedOutputRoot = institutionExportRoot(outputRoot, context.institution.id);
       const result = exportDraftFn(planToExport, {
         ...pipelineOptions(context, body.collegeId),
-        outputRoot,
+        outputRoot: scopedOutputRoot,
         keepSvg: Boolean(body.keepSvg),
         png: Boolean(body.png),
       });
@@ -120,6 +124,7 @@ export function createGuiApiRouter(options) {
         exportPlan: exportDraftFn,
         optionsForCollege: (collegeId) => pipelineOptions(context, collegeId),
         outputRoot,
+        institutionId: context.institution.id,
         keepSvg: Boolean(body.keepSvg),
         png: Boolean(body.png),
       });

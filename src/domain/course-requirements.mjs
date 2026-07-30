@@ -1,9 +1,27 @@
 import { courseCodeKey, normalizeCourseCode, numericValue } from "./course-code.mjs";
 
+export function normalizeRequirementAlternatives(groups = []) {
+  const seenGroups = new Set();
+  const result = [];
+  for (const group of groups ?? []) {
+    const alternatives = Array.from(new Set(
+      (Array.isArray(group) ? group : [group]).map(normalizeCourseCode).filter(Boolean),
+    ));
+    if (alternatives.length < 2) continue;
+    const identity = alternatives.map(courseCodeKey).sort().join("|");
+    if (seenGroups.has(identity)) continue;
+    seenGroups.add(identity);
+    result.push(alternatives);
+  }
+  return result;
+}
+
 export function normalizeRequirementRules(entry = {}) {
   return {
     prerequisites: Array.from(new Set((entry.prerequisites ?? []).map(normalizeCourseCode).filter(Boolean))),
     corequisites: Array.from(new Set((entry.corequisites ?? []).map(normalizeCourseCode).filter(Boolean))),
+    forcedCorequisites: Array.from(new Set((entry.forcedCorequisites ?? []).map(normalizeCourseCode).filter(Boolean))),
+    prerequisiteAlternatives: normalizeRequirementAlternatives(entry.prerequisiteAlternatives),
     minimumCompletedCredits: numericValue(entry.minimumCompletedCredits),
     prerequisiteConditions: Array.from(new Set(
       (entry.prerequisiteConditions ?? []).map((value) => String(value).trim()).filter(Boolean),
@@ -17,23 +35,40 @@ export function classifyRequirementCourses(requirements = [], sameLevelCourses =
   )).filter(Boolean));
   const prerequisites = [];
   const corequisites = [];
+  const forcedCorequisites = [];
+  const prerequisiteAlternatives = [];
   const seen = new Set();
 
   for (const value of requirements) {
-    const code = normalizeCourseCode(value);
+    const alternatives = String(value ?? "").split("^").map((item) => normalizeCourseCode(item.replace(/^\s*#\s*/u, ""))).filter(Boolean);
+    if (alternatives.length > 1) {
+      const uniqueAlternatives = alternatives.filter((code, index) => (
+        alternatives.findIndex((candidate) => courseCodeKey(candidate) === courseCodeKey(code)) === index
+      ));
+      if (uniqueAlternatives.length > 1) prerequisiteAlternatives.push(uniqueAlternatives);
+      continue;
+    }
+    const forced = /^\s*#/u.test(String(value ?? ""));
+    const code = alternatives[0] ?? "";
     const key = courseCodeKey(code);
     if (!key || seen.has(key)) continue;
     seen.add(key);
-    (sameLevelKeys.has(key) ? corequisites : prerequisites).push(code);
+    if (forced || sameLevelKeys.has(key)) {
+      corequisites.push(code);
+      if (forced) forcedCorequisites.push(code);
+    } else {
+      prerequisites.push(code);
+    }
   }
 
-  return { prerequisites, corequisites };
+  return { prerequisites, corequisites, forcedCorequisites, prerequisiteAlternatives };
 }
 
 export function formatCourseRequirementLabel(course = {}) {
   const parts = [
     ...(course.prerequisites ?? []),
     ...(course.corequisites ?? []).map((value) => `${value} مرافق`),
+    ...(course.prerequisiteAlternatives ?? []).map((values) => values.join(" أو ")),
     ...(course.prerequisiteConditions ?? []),
   ];
   if (course.minimumCompletedCredits !== null && course.minimumCompletedCredits !== undefined) {
@@ -59,6 +94,15 @@ export function derivePublishedParentKeys(semesters = []) {
         const prerequisiteSemester = semesterByKey.get(prerequisiteKey);
         if (prerequisiteSemester !== undefined && prerequisiteSemester < semesterIndex) {
           parentKeys.add(prerequisiteKey);
+        }
+      }
+      for (const alternatives of course.prerequisiteAlternatives ?? []) {
+        for (const prerequisite of alternatives) {
+          const prerequisiteKey = courseCodeKey(prerequisite);
+          const prerequisiteSemester = semesterByKey.get(prerequisiteKey);
+          if (prerequisiteSemester !== undefined && prerequisiteSemester < semesterIndex) {
+            parentKeys.add(prerequisiteKey);
+          }
         }
       }
     }

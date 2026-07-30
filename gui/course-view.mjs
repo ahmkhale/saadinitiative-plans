@@ -58,10 +58,16 @@ export function renderCourseRow({
       ? `shared-semester-${groupIndex + 1}` : kind === "sharedElective"
         ? "shared-elective-source" : `proposal-semester-${groupIndex + 1}`;
   const fallback = fallbackCourses?.[code];
-  const requirementCodes = Array.from(new Set([
+  const forcedCorequisiteKeys = new Set(
+    (rules.forcedCorequisites ?? []).map((value) => String(value).trim().toLocaleLowerCase("ar")),
+  );
+  const requirementCodes = [
     ...(rules.prerequisites ?? rules.override?.prerequisites ?? []),
-    ...(rules.corequisites ?? rules.override?.corequisites ?? []),
-  ]));
+    ...(rules.corequisites ?? rules.override?.corequisites ?? []).map((value) => (
+      forcedCorequisiteKeys.has(String(value).trim().toLocaleLowerCase("ar")) ? `# ${value}` : value
+    )),
+    ...(rules.prerequisiteAlternatives ?? []).map((values) => values.join(" ^ ")),
+  ];
   return `
     <div class="course-row ${pending ? "pending" : unresolved ? "unresolved" : ""}" data-kind="${kind}" data-group-index="${groupIndex}" data-course-index="${courseIndex}" data-course-code="${escapeHtml(kind === "proposal" && !isPlaceholder ? entryId(entry) : code)}" data-placeholder-id="${escapeHtml(entry?.placeholderId ?? "")}" data-location="${escapeHtml(location)}" data-optional-activity-hours="${optionalActivityHours}" ${kind === "proposal" && !isPlaceholder ? 'draggable="true"' : ""}>
       <div class="course-identity"><div class="course-code">${escapeHtml(displayCode)}</div><div class="course-meta">${escapeHtml(displaySubject)}</div><div class="badge-list">${courseBadges(resolved, isPlaceholder)}</div></div>
@@ -81,7 +87,7 @@ export function renderCourseRow({
       <div class="quick-requirements">
         <label class="requirements-courses">المتطلبات
           <input data-dependency="requirements" value="${escapeHtml(requirementCodes.join("، "))}" placeholder="101 عال، 101 ريض">
-          <small>تُصنّف مقررات المستوى نفسه تلقائيًا كمتطلبات مرافقة، وما عداها كمتطلبات سابقة.</small>
+          <small>تُصنّف مقررات المستوى نفسه تلقائيًا كمرافقة. استخدم # لفرض «مرافق»، و ^ بين بدائل «أو».</small>
         </label>
         <label>شروط المتطلب النصية<input data-dependency="prerequisiteConditions" value="${escapeHtml((rules.prerequisiteConditions ?? []).join("، "))}" placeholder="مستوى 7"></label>
         <label>الحد الأدنى للساعات المجتازة<input data-dependency="minimumCompletedCredits" type="number" min="0" value="${escapeHtml(rules.minimumCompletedCredits ?? rules.override?.minimumCompletedCredits ?? "")}"></label>

@@ -1,4 +1,5 @@
 import { courseCodeKey, normalizeCourseCode, numericValue } from "./course-code.mjs";
+import { normalizeRequirementAlternatives } from "./course-requirements.mjs";
 import { labelSemesters } from "./semester.mjs";
 
 export function occurrenceSlug(code) {
@@ -38,11 +39,15 @@ export function canonicalFallbackCourses(value = {}) {
 export function canonicalCourseEntry(rawEntry, occurrencePrefix) {
   const entry = typeof rawEntry === "string" ? { code: rawEntry } : structuredClone(rawEntry ?? {});
   const code = normalizeCourseCode(entry.code);
+  const forcedCorequisites = normalizeRuleList(entry.forcedCorequisites ?? []);
+  const prerequisiteAlternatives = normalizeRequirementAlternatives(entry.prerequisiteAlternatives);
   return {
     id: entry.id ?? `${occurrencePrefix}:${occurrenceSlug(code)}`,
     code,
     prerequisites: normalizeRuleList(entry.prerequisites ?? []),
     corequisites: normalizeRuleList(entry.corequisites ?? []),
+    ...(forcedCorequisites.length ? { forcedCorequisites } : {}),
+    ...(prerequisiteAlternatives.length ? { prerequisiteAlternatives } : {}),
     minimumCompletedCredits: numericValue(entry.minimumCompletedCredits),
     prerequisiteConditions: Array.from(new Set(
       (entry.prerequisiteConditions ?? []).map((value) => String(value).trim()).filter(Boolean),
@@ -64,6 +69,8 @@ export function normalizeStandaloneCourse(entry) {
     code: normalizeCourseCode(entry.code),
     prerequisites: normalizeRuleList(entry.prerequisites ?? []),
     corequisites: normalizeRuleList(entry.corequisites ?? []),
+    forcedCorequisites: normalizeRuleList(entry.forcedCorequisites ?? []),
+    prerequisiteAlternatives: normalizeRequirementAlternatives(entry.prerequisiteAlternatives),
     prerequisiteConditions: Array.from(new Set(entry.prerequisiteConditions ?? [])),
   };
 }
