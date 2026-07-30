@@ -39,7 +39,9 @@
           "id": "major:geo:published-level-1:201-جاف",
           "code": "201 جاف",
           "prerequisites": [],
-          "corequisites": [],
+          "corequisites": [
+            "101 فيز"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         }
@@ -51,23 +53,33 @@
         {
           "id": "major:geo:published-9522ad9a-fb75-46fa-9648-8b704564404d:221-جيو",
           "code": "221 جيو",
-          "prerequisites": [],
-          "corequisites": [],
+          "prerequisites": [
+            "100 جيو"
+          ],
+          "corequisites": [
+            "237 جيو"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         },
         {
           "id": "major:geo:published-9522ad9a-fb75-46fa-9648-8b704564404d:237-جيو",
           "code": "237 جيو",
-          "prerequisites": [],
-          "corequisites": [],
+          "prerequisites": [
+            "100 جيو"
+          ],
+          "corequisites": [
+            "221 جيو"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         },
         {
           "id": "major:geo:published-9522ad9a-fb75-46fa-9648-8b704564404d:246-جيو",
           "code": "246 جيو",
-          "prerequisites": [],
+          "prerequisites": [
+            "107 جيو"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -75,7 +87,10 @@
         {
           "id": "major:geo:published-9522ad9a-fb75-46fa-9648-8b704564404d:274-جيو",
           "code": "274 جيو",
-          "prerequisites": [],
+          "prerequisites": [
+            "100 جيو",
+            "107 جيو"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -88,7 +103,9 @@
         {
           "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:301-جاف",
           "code": "301 جاف",
-          "prerequisites": [],
+          "prerequisites": [
+            "201 جاف"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -96,7 +113,9 @@
         {
           "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:324-جيو",
           "code": "324 جيو",
-          "prerequisites": [],
+          "prerequisites": [
+            "221 جيو"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -104,7 +123,9 @@
         {
           "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:334-جيو",
           "code": "334 جيو",
-          "prerequisites": [],
+          "prerequisites": [
+            "237 جيو"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -112,7 +133,9 @@
         {
           "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:381-جيو",
           "code": "381 جيو",
-          "prerequisites": [],
+          "prerequisites": [
+            "237 جيو"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -120,8 +143,12 @@
         {
           "id": "major:geo:published-7fbfe739-6868-42c6-b65c-66548b26700b:382-جيو",
           "code": "382 جيو",
-          "prerequisites": [],
-          "corequisites": [],
+          "prerequisites": [
+            "237 جيو"
+          ],
+          "corequisites": [
+            "381 جيو"
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         }
@@ -133,7 +160,10 @@
         {
           "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:326-جيو",
           "code": "326 جيو",
-          "prerequisites": [],
+          "prerequisites": [
+            "324 جيو",
+            "334 جيو"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -141,7 +171,9 @@
         {
           "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:383-جيو",
           "code": "383 جيو",
-          "prerequisites": [],
+          "prerequisites": [
+            "381 جيو"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -149,7 +181,9 @@
         {
           "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:384-جيو",
           "code": "384 جيو",
-          "prerequisites": [],
+          "prerequisites": [
+            "237 جيو"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -157,7 +191,10 @@
         {
           "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:385-جيو",
           "code": "385 جيو",
-          "prerequisites": [],
+          "prerequisites": [
+            "334 جيو",
+            "381 جيو"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -165,8 +202,18 @@
         {
           "id": "major:geo:published-abf934c5-3af0-4798-aef0-a3a11c8d031b:386-جيو",
           "code": "386 جيو",
-          "prerequisites": [],
-          "corequisites": [],
+          "prerequisites": [
+            "381 جيو"
+          ],
+          "corequisites": [
+            "326 جيو"
+          ],
+          "prerequisiteAlternatives": [
+            [
+              "320 جيو",
+              "324 جيو"
+            ]
+          ],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
         }
