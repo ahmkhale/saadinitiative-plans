@@ -27,7 +27,7 @@ export function renderGuide(context, y) {
   const parts = [renderCourseCard(context, demo, cardX, cardY, { scale })];
 
   parts.push(text({ x: 207.887, y: cardY + 17.156, value: "مقرر أب", size: 8.457286834716797, weight: 700, anchor: "start" }));
-  parts.push(textLines({ x: 208.1985, y: cardY + 29.6, lines: ["يعد هذا المقرر متطلبًا سابقًا لمقررات في مستويات", "قادمة."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
+  parts.push(textLines({ x: 208.1985, y: cardY + 29.6, lines: ["يعد هذا المقرر متطلب سابق لمقررات في مستويات", "قادمة. أو متطلب مرافق لمقرر آخر في نفس", "المستوى."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
   parts.push(text({ x: 208.6357, y: cardY + 87.633, value: "مقرر تابع للمسار", size: 8.457286834716797, weight: 700, anchor: "start" }));
   parts.push(textLines({ x: 208.1985, y: cardY + 100.08, lines: ["علامة تبين أن المقرر تابع للمسار الحالي، وتنطبق", "فقط على التخصصات التي تحوي مسارات."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
@@ -40,8 +40,8 @@ export function renderGuide(context, y) {
 
   const headingY = cardY + 151;
   const details = [
-    { x: 144.676, heading: "ساعات التمارين", lines: ["عدد ساعات التمارين أسبوعيًا."] },
-    { x: 259.078, heading: "ساعات العملي", lines: ["عدد ساعات العملي أسبوعيًا."] },
+    { x: 144.676, heading: "ساعات التمارين", lines: ["عدد ساعات التمارين، أو", "العيادة أسبوعيًا."] },
+    { x: 259.078, heading: "ساعات العملي", lines: ["عدد الساعات الأسبوعية للعملي،", "أو الأستوديو، أو المشروع،", "أو الحقلي، أو التدريب."] },
     { x: 381.781, heading: "ساعات المحاضرة", lines: ["عدد ساعات المحاضرة أسبوعيًا."] },
     { x: 539.4095, heading: "الساعات الفعلية", lines: ["الساعات التي يتم تدريس المقرر فيها بشكل", "أسبوعي، وهي الساعات التي يتم اعتمادها", "في حساب الحرمان."] },
   ];

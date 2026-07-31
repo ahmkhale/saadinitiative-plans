@@ -3,6 +3,7 @@ import bidiFactory from "bidi-js";
 const bidi = bidiFactory();
 const segmenter = new Intl.Segmenter("ar", { granularity: "word" });
 const RTL_TEXT = /[\u0590-\u08ff]/u;
+const ARABIC_CODE_POINT = /[\u0600-\u08ff]/u;
 
 function visualIndexMap(text, embedding) {
   const indices = Array.from({ length: text.length }, (_, index) => index);
@@ -27,7 +28,29 @@ function mirroredSegment(segment, start, mirrored) {
  * in visual order. PDFKit's ToUnicode map remains tied to the original basic
  * Unicode values carried by each shaped glyph.
  */
-export function encodeBidiText(originalEncode, value) {
+function correctLigatureUnicode(font, glyphs) {
+  if (!font?.unicode) return;
+  for (const glyph of glyphs) {
+    const cid = Number.parseInt(glyph, 16);
+    const unicode = font.unicode[cid];
+    if (
+      !Array.isArray(unicode)
+      || unicode.length < 2
+      || font.saadBidiCorrectedLigatures?.has(cid)
+      || !unicode.every((codePoint) => ARABIC_CODE_POINT.test(String.fromCodePoint(codePoint)))
+    ) {
+      continue;
+    }
+    // The content stream is deliberately emitted in visual RTL order. PDF
+    // readers apply the Unicode bidi algorithm to ToUnicode values during
+    // extraction, so a ligature cluster must use visual (not HarfBuzz's
+    // logical) component order here. The glyph outline itself is untouched.
+    font.unicode[cid] = [...unicode].reverse();
+    font.saadBidiCorrectedLigatures.add(cid);
+  }
+}
+
+export function encodeBidiText(originalEncode, value, font) {
   const text = String(value ?? "");
   if (!RTL_TEXT.test(text)) return originalEncode(text);
 
@@ -52,11 +75,8 @@ export function encodeBidiText(originalEncode, value) {
   const glyphs = [];
   const positions = [];
   for (const token of tokens) {
-    // Keep contextual Arabic shaping, but avoid multi-codepoint required
-    // ligatures whose ToUnicode clusters are reordered inconsistently by PDF
-    // engines. Separate shaped glyphs preserve the visual form while giving
-    // every visible glyph an unambiguous basic-Unicode mapping.
-    const [tokenGlyphs, tokenPositions] = originalEncode(token.text, { rlig: false });
+    const [tokenGlyphs, tokenPositions] = originalEncode(token.text);
+    correctLigatureUnicode(font, tokenGlyphs);
     glyphs.push(...tokenGlyphs);
     positions.push(...tokenPositions);
   }
@@ -66,7 +86,8 @@ export function encodeBidiText(originalEncode, value) {
 export function patchPdfKitFontBidi(font) {
   if (!font || font.saadBidiPatched) return font;
   const originalEncode = font.encode.bind(font);
-  font.encode = (value) => encodeBidiText(originalEncode, value);
+  Object.defineProperty(font, "saadBidiCorrectedLigatures", { value: new Set() });
+  font.encode = (value) => encodeBidiText(originalEncode, value, font);
   Object.defineProperty(font, "saadBidiPatched", { value: true });
   return font;
 }
