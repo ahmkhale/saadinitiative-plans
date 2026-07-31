@@ -7,7 +7,7 @@ import { resolvePlan } from "../src/resolve.mjs";
 
 const colors = { عام: "#616161", كهر: "#17529B", ريض: "#A36127" };
 
-test("catalog facts resolve independently while same-semester rules do not create a parent marker", () => {
+test("catalog facts resolve independently while same-semester requirements create a parent marker", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,
     major: "هندسة كهربائية",
@@ -29,7 +29,7 @@ test("catalog facts resolve independently while same-semester rules do not creat
   const [math, circuits] = resolved.semesters[0].courses;
   assert.equal(math.name, "حساب التفاضل");
   assert.equal(circuits.name, "دوائر كهربائية أ");
-  assert.equal(math.isParentCourse, false);
+  assert.equal(math.isParentCourse, true);
   assert.equal(resolved.totalHours, 7);
   assert.equal(diagnostics.summary.errors, 0);
 });
@@ -281,7 +281,7 @@ test("course requirements come from plan rules rather than catalog or fallback f
   assert.equal(resolved.semesters[0].courses[0].isParentCourse, true);
 });
 
-test("elective dependencies and corequisites never create published parent markers", () => {
+test("published corequisites create parent markers while elective dependencies do not", () => {
   const facts = (name) => ({
     name,
     academicHours: 3,
@@ -307,10 +307,41 @@ test("elective dependencies and corequisites never create published parent marke
     ),
   });
   const resolved = resolvePlan(plan, new Map(), colors, createDiagnostics());
-  assert.equal(resolved.semesters[0].courses[0].isParentCourse, false);
+  assert.equal(resolved.semesters[0].courses[0].isParentCourse, true);
   assert.equal(resolved.semesters[0].courses[1].isParentCourse, false);
   assert.equal(resolved.electiveGroups[0].courses[0].isParentCourse, false);
   assert.deepEqual(resolved.electiveGroups[0].courses[0].prerequisites, ["102 عال"]);
+});
+
+test("backward and self requirements do not create parent markers", () => {
+  const facts = (name) => ({
+    name,
+    academicHours: 3,
+    lectureHours: 3,
+    exerciseHours: 0,
+    practicalHours: 0,
+  });
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "اختبار اتجاه العلامات",
+    semesters: [
+      {
+        courses: [
+          { code: "101 عال", prerequisites: ["201 عال"] },
+          { code: "102 عال", corequisites: ["102 عال"] },
+        ],
+      },
+      { courses: ["201 عال"] },
+    ],
+    fallbackCourses: Object.fromEntries(
+      ["101 عال", "102 عال", "201 عال"].map((code) => [code, facts(code)]),
+    ),
+  });
+  const resolved = resolvePlan(plan, new Map(), colors, createDiagnostics());
+
+  assert.equal(resolved.semesters[0].courses[0].isParentCourse, false);
+  assert.equal(resolved.semesters[0].courses[1].isParentCourse, false);
+  assert.equal(resolved.semesters[1].courses[0].isParentCourse, false);
 });
 
 test("elective requirements report missing published courses without changing alternative semantics", () => {

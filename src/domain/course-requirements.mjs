@@ -89,20 +89,21 @@ export function derivePublishedParentKeys(semesters = []) {
   const parentKeys = new Set();
   for (const [semesterIndex, semester] of semesters.entries()) {
     for (const course of semester.courses ?? []) {
-      for (const prerequisite of course.prerequisites ?? []) {
-        const prerequisiteKey = courseCodeKey(prerequisite);
-        const prerequisiteSemester = semesterByKey.get(prerequisiteKey);
-        if (prerequisiteSemester !== undefined && prerequisiteSemester < semesterIndex) {
-          parentKeys.add(prerequisiteKey);
-        }
-      }
-      for (const alternatives of course.prerequisiteAlternatives ?? []) {
-        for (const prerequisite of alternatives) {
-          const prerequisiteKey = courseCodeKey(prerequisite);
-          const prerequisiteSemester = semesterByKey.get(prerequisiteKey);
-          if (prerequisiteSemester !== undefined && prerequisiteSemester < semesterIndex) {
-            parentKeys.add(prerequisiteKey);
-          }
+      const courseKey = courseCodeKey(course.code);
+      const requirements = [
+        ...(course.prerequisites ?? []),
+        ...(course.corequisites ?? []),
+        ...(course.prerequisiteAlternatives ?? []).flat(),
+      ];
+      for (const requirement of requirements) {
+        const requirementKey = courseCodeKey(requirement);
+        const requirementSemester = semesterByKey.get(requirementKey);
+        if (
+          requirementKey !== courseKey
+          && requirementSemester !== undefined
+          && requirementSemester <= semesterIndex
+        ) {
+          parentKeys.add(requirementKey);
         }
       }
     }

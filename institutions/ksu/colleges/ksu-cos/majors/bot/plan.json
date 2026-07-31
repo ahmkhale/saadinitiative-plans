@@ -3,14 +3,1292 @@
   "id": "bot",
   "major": "نبات",
   "degree": "البكالوريوس",
-  "expectedCredits": 0,
-  "sharedSemesterSets": [],
+  "expectedCredits": 136,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
   "semesters": [
     {
       "id": "published-level-1",
-      "courses": []
+      "courses": [
+        {
+          "id": "major:bot:published-level-1:101-كيح",
+          "code": "101 كيح",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-level-1:102-نبت",
+          "code": "102 نبت",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-level-1:103-حين",
+          "code": "103 حين",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-level-1:140-حدق",
+          "code": "140 حدق",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-level-1:145-احص",
+          "code": "145 احص",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-664e9f3b-468f-40ee-805e-3a5c8388f0ad",
+      "courses": [
+        {
+          "id": "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:213-نبت",
+          "code": "213 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:222-نبت",
+          "code": "222 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:241-نبت",
+          "code": "241 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:251-نبت",
+          "code": "251 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:272-نبت",
+          "code": "272 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-890cee09-c411-4e4d-ae0c-1fb27f65735e",
+      "courses": [
+        {
+          "id": "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:211-نبت",
+          "code": "211 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:253-كيم",
+          "code": "253 كيم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:254-نبت",
+          "code": "254 نبت",
+          "prerequisites": [
+            "251 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:341-نبت",
+          "code": "341 نبت",
+          "prerequisites": [
+            "241 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:345-نبت",
+          "code": "345 نبت",
+          "prerequisites": [
+            "241 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:349-نبت",
+          "code": "349 نبت",
+          "prerequisites": [
+            "241 نبت",
+            "272 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-e977703f-ea8e-4c43-ab98-69079ca4873e",
+      "courses": [
+        {
+          "id": "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:342-نبت",
+          "code": "342 نبت",
+          "prerequisites": [
+            "345 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:346-نبت",
+          "code": "346 نبت",
+          "prerequisites": [
+            "241 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:359-نبت",
+          "code": "359 نبت",
+          "prerequisites": [
+            "254 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:373-نبت",
+          "code": "373 نبت",
+          "prerequisites": [
+            "272 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:398-نبت",
+          "code": "398 نبت",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 65,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-0e04e5b0-5601-437c-b80e-0211cdac392a",
+      "courses": [
+        {
+          "id": "major:bot:published-0e04e5b0-5601-437c-b80e-0211cdac392a:492-نبت",
+          "code": "492 نبت",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 75,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-5434a0da-7481-47d4-8088-84b7bf561479",
+      "courses": [
+        {
+          "id": "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:303-جيو",
+          "code": "303 جيو",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:345-حدق",
+          "code": "345 حدق",
+          "prerequisites": [
+            "140 حدق"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:384-نبت",
+          "code": "384 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:443-نبت",
+          "code": "443 نبت",
+          "prerequisites": [
+            "241 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:499-نبت",
+          "code": "499 نبت",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 90,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-44496fbd-a150-4e67-9445-9ca10d369325",
+      "courses": [
+        {
+          "id": "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:441-نبت",
+          "code": "441 نبت",
+          "prerequisites": [
+            "254 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:445-نبت",
+          "code": "445 نبت",
+          "prerequisites": [
+            "345 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:472-نبت",
+          "code": "472 نبت",
+          "prerequisites": [
+            "251 نبت",
+            "272 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:473-نبت",
+          "code": "473 نبت",
+          "prerequisites": [
+            "272 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:495-نبت",
+          "code": "495 نبت",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
     }
   ],
-  "electiveGroups": [],
-  "fallbackCourses": {}
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    },
+    {
+      "id": "elective-group-2",
+      "name": "متطلبات خارج القسم",
+      "requiredHours": 9,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:bot:elective:elective-group-2:240-حدق",
+          "code": "240 حدق",
+          "prerequisites": [
+            "140 حدق"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-2:250-حدق",
+          "code": "250 حدق",
+          "prerequisites": [
+            "140 حدق"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-2:260-حدق",
+          "code": "260 حدق",
+          "prerequisites": [
+            "140 حدق"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-2:270-حدق",
+          "code": "270 حدق",
+          "prerequisites": [
+            "140 حدق"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-2:280-حدق",
+          "code": "280 حدق",
+          "prerequisites": [
+            "140 حدق"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-2:305-حين",
+          "code": "305 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-2:373-حين",
+          "code": "373 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-2:374-حين",
+          "code": "374 حين",
+          "prerequisites": [
+            "103 حين"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "elective-group-3",
+      "name": "متطلبات داخل القسم",
+      "requiredHours": 6,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:bot:elective:elective-group-3:263-نبت",
+          "code": "263 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:312-نبت",
+          "code": "312 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:322-نبت",
+          "code": "322 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:347-نبت",
+          "code": "347 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:379-نبت",
+          "code": "379 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:380-نبت",
+          "code": "380 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:447-نبت",
+          "code": "447 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:449-نبت",
+          "code": "449 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:456-نبت",
+          "code": "456 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:457-نبت",
+          "code": "457 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:458-نبت",
+          "code": "458 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:476-نبت",
+          "code": "476 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:bot:elective:elective-group-3:487-نبت",
+          "code": "487 نبت",
+          "prerequisites": [
+            "102 نبت"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "101 كيح": {
+      "name": "كيمياء حيوية عامة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "102 نبت": {
+      "name": "علم النبات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "103 حين": {
+      "name": "مبادئ في علم الحيوان",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "140 حدق": {
+      "name": "علم الإحياء الدقيقة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "145 احص": {
+      "name": "الإحصاء الحيوي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "213 نبت": {
+      "name": "تحضيرات مجهرية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "222 نبت": {
+      "name": "اساسيات تصنيف نباتات زهرية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "241 نبت": {
+      "name": "عوامل البيئة النباتية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "251 نبت": {
+      "name": "الخلية الإحيائية والوارثة الخلوية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "272 نبت": {
+      "name": "فسيولوجيا النبات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "211 نبت": {
+      "name": "علم تشريح النبات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "253 كيم": {
+      "name": "مباديء الكيمياء التحليلية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "254 نبت": {
+      "name": "علم الوراثة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "341 نبت": {
+      "name": "النظام البيئي",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "345 نبت": {
+      "name": "فلورا المملكة العربية السعودية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "349 نبت": {
+      "name": "فسيولوجيا بيئية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "342 نبت": {
+      "name": "علم المجتمعات النباتية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "346 نبت": {
+      "name": "التلوث وحماية البيئة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "359 نبت": {
+      "name": "وراثة العشائر",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "373 نبت": {
+      "name": "نمو النبات ومنظماته",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "398 نبت": {
+      "name": "مشروع بحث (1)",
+      "academicHours": 2,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "492 نبت": {
+      "name": "تدريبات حقلية بيئية",
+      "academicHours": 5,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 10,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "303 جيو": {
+      "name": "مبادئ الاستشعار من بعد",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "345 حدق": {
+      "name": "التفاعل بين الأحياء الدقيقة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "384 نبت": {
+      "name": "علم الطحالب",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "443 نبت": {
+      "name": "وسائل عملية فى علم البيئة",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "499 نبت": {
+      "name": "مشروع بحث (2)",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "441 نبت": {
+      "name": "النبات الإقتصادي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "445 نبت": {
+      "name": "البيئة الصحراوية وثرواتها",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "472 نبت": {
+      "name": "زراعة الأنسجة النباتية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "473 نبت": {
+      "name": "كيمياء نباتية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "495 نبت": {
+      "name": "الاحياء الجزيئية للنبات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "458 نبت": {
+      "name": "الوراثة البيئية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "457 نبت": {
+      "name": "الهندسة الوراثية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours",
+        "name"
+      ]
+    },
+    "456 نبت": {
+      "name": "المحافظة على المورثات",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "380 نبت": {
+      "name": "علاقة النبات بالماء والتربة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "263 نبت": {
+      "name": "الأرشيجونيات ",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
+      ]
+    },
+    "312 نبت": {
+      "name": "التشـكل النبـاتى",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "322 نبت": {
+      "name": "تصنيف تجريبي",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "347 نبت": {
+      "name": "الجغرافيا النباتية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "379 نبت": {
+      "name": "الايض والنقل في النبات",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "447 نبت": {
+      "name": "تنمية المناطق الجافة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "449 نبت": {
+      "name": "الموارد الطبيعية وإدارتها",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "476 نبت": {
+      "name": "احيائية نخلة التمر",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "487 نبت": {
+      "name": "العوالق النباتية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "240 حدق": {
+      "name": "مهارات مخبرية",
+      "academicHours": 2,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 4,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "250 حدق": {
+      "name": "علم الفيروسات العام",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "260 حدق": {
+      "name": "علم البكتيريا العام",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "270 حدق": {
+      "name": "علم الفطريات العام",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "280 حدق": {
+      "name": "أحيائية الطحالب الدقيقة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "305 حين": {
+      "name": "التصنيف الحديث للحيوان",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "373 حين": {
+      "name": "بيئة برية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "374 حين": {
+      "name": "بيئة مائية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "showGuide": true,
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:bot:published-level-1:101-كيح",
+          "major:bot:published-level-1:102-نبت",
+          "major:bot:published-level-1:103-حين",
+          "major:bot:published-level-1:140-حدق",
+          "major:bot:published-level-1:145-احص"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms8fajru",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-664e9f3b-468f-40ee-805e-3a5c8388f0ad",
+        "sourceSemesterId": "published-664e9f3b-468f-40ee-805e-3a5c8388f0ad",
+        "type": "regular",
+        "courseOrder": [
+          "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:213-نبت",
+          "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:222-نبت",
+          "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:241-نبت",
+          "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:251-نبت",
+          "major:bot:published-664e9f3b-468f-40ee-805e-3a5c8388f0ad:272-نبت"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms8falls",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-890cee09-c411-4e4d-ae0c-1fb27f65735e",
+        "sourceSemesterId": "published-890cee09-c411-4e4d-ae0c-1fb27f65735e",
+        "type": "regular",
+        "courseOrder": [
+          "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:211-نبت",
+          "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:253-كيم",
+          "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:254-نبت",
+          "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:341-نبت",
+          "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:345-نبت",
+          "major:bot:published-890cee09-c411-4e4d-ae0c-1fb27f65735e:349-نبت"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms8fa7m6",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms8fa9hh",
+            "name": "من متطلبات خارج القسم",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-e977703f-ea8e-4c43-ab98-69079ca4873e",
+        "sourceSemesterId": "published-e977703f-ea8e-4c43-ab98-69079ca4873e",
+        "type": "regular",
+        "courseOrder": [
+          "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:342-نبت",
+          "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:346-نبت",
+          "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:359-نبت",
+          "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:373-نبت",
+          "major:bot:published-e977703f-ea8e-4c43-ab98-69079ca4873e:398-نبت"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms8f9um6",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms8f9z1b",
+            "name": "من متطلبات داخل القسم",
+            "electiveGroupId": "elective-group-3",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms8fa1ky",
+            "name": "من متطلبات داخل القسم",
+            "electiveGroupId": "elective-group-3",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-0e04e5b0-5601-437c-b80e-0211cdac392a",
+        "sourceSemesterId": "published-0e04e5b0-5601-437c-b80e-0211cdac392a",
+        "type": "regular",
+        "courseOrder": [
+          "major:bot:published-0e04e5b0-5601-437c-b80e-0211cdac392a:492-نبت"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-5434a0da-7481-47d4-8088-84b7bf561479",
+        "sourceSemesterId": "published-5434a0da-7481-47d4-8088-84b7bf561479",
+        "type": "regular",
+        "courseOrder": [
+          "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:303-جيو",
+          "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:345-حدق",
+          "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:384-نبت",
+          "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:443-نبت",
+          "major:bot:published-5434a0da-7481-47d4-8088-84b7bf561479:499-نبت"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms8f9n5b",
+            "name": "من متطلبات خارج القسم",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-44496fbd-a150-4e67-9445-9ca10d369325",
+        "sourceSemesterId": "published-44496fbd-a150-4e67-9445-9ca10d369325",
+        "type": "regular",
+        "courseOrder": [
+          "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:441-نبت",
+          "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:445-نبت",
+          "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:472-نبت",
+          "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:473-نبت",
+          "major:bot:published-44496fbd-a150-4e67-9445-9ca10d369325:495-نبت"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-ms8f9dgo",
+            "name": "من متطلبات خارج القسم",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-ms8f9ffp",
+            "name": "من متطلبات داخل القسم",
+            "electiveGroupId": "elective-group-3",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      }
+    ]
+  }
 }
