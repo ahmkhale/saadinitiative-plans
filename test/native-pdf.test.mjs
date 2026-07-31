@@ -112,3 +112,21 @@ test("Arabic bidi shaping mirrors parenthesized numbers for visual RTL output", 
     .join("");
   assert.match(visualText, /^\(1\) /u);
 });
+
+test("Arabic bidi shaping preserves the required lam-alef ligature", () => {
+  const document = new PDFKitDocument({ autoFirstPage: false });
+  document.registerFont(
+    "Arabic",
+    path.resolve("font", "IBMPlexSansArabic-Regular.ttf"),
+  );
+  document.font("Arabic");
+  const font = document._font;
+  const [glyphs] = encodeBidiText(font.encode.bind(font), "الا", font);
+
+  assert.equal(glyphs.length, 2, "expected lam-alef to remain one shaped glyph");
+  assert.deepEqual(
+    font.unicode[Number.parseInt(glyphs[0], 16)],
+    [0x0627, 0x0644],
+    "expected the ligature's ToUnicode cluster to follow visual RTL order",
+  );
+});

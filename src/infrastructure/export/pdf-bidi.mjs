@@ -5,6 +5,13 @@ const segmenter = new Intl.Segmenter("ar", { granularity: "word" });
 const RTL_TEXT = /[\u0590-\u08ff]/u;
 const ARABIC_CODE_POINT = /[\u0600-\u08ff]/u;
 
+function correctedLigatures(font) {
+  if (!font.saadBidiCorrectedLigatures) {
+    Object.defineProperty(font, "saadBidiCorrectedLigatures", { value: new Set() });
+  }
+  return font.saadBidiCorrectedLigatures;
+}
+
 function visualIndexMap(text, embedding) {
   const indices = Array.from({ length: text.length }, (_, index) => index);
   for (const [start, end] of bidi.getReorderSegments(text, embedding)) {
@@ -30,13 +37,14 @@ function mirroredSegment(segment, start, mirrored) {
  */
 function correctLigatureUnicode(font, glyphs) {
   if (!font?.unicode) return;
+  const corrected = correctedLigatures(font);
   for (const glyph of glyphs) {
     const cid = Number.parseInt(glyph, 16);
     const unicode = font.unicode[cid];
     if (
       !Array.isArray(unicode)
       || unicode.length < 2
-      || font.saadBidiCorrectedLigatures?.has(cid)
+      || corrected.has(cid)
       || !unicode.every((codePoint) => ARABIC_CODE_POINT.test(String.fromCodePoint(codePoint)))
     ) {
       continue;
@@ -46,7 +54,7 @@ function correctLigatureUnicode(font, glyphs) {
     // extraction, so a ligature cluster must use visual (not HarfBuzz's
     // logical) component order here. The glyph outline itself is untouched.
     font.unicode[cid] = [...unicode].reverse();
-    font.saadBidiCorrectedLigatures.add(cid);
+    corrected.add(cid);
   }
 }
 
@@ -86,7 +94,7 @@ export function encodeBidiText(originalEncode, value, font) {
 export function patchPdfKitFontBidi(font) {
   if (!font || font.saadBidiPatched) return font;
   const originalEncode = font.encode.bind(font);
-  Object.defineProperty(font, "saadBidiCorrectedLigatures", { value: new Set() });
+  correctedLigatures(font);
   font.encode = (value) => encodeBidiText(originalEncode, value, font);
   Object.defineProperty(font, "saadBidiPatched", { value: true });
   return font;
