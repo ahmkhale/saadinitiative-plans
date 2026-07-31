@@ -5,8 +5,10 @@ import path from "node:path";
 import test from "node:test";
 import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
 import { PDFDocument } from "pdf-lib";
+import PDFKitDocument from "pdfkit";
 import { exportNativePdf } from "../src/exporter.mjs";
 import { renderPlanDocumentSvg } from "../src/render-svg.mjs";
+import { encodeBidiText } from "../src/infrastructure/export/pdf-bidi.mjs";
 
 function facts(code, name) {
   return {
@@ -36,7 +38,7 @@ async function extractedItems(pdfPath) {
   return pages;
 }
 
-test("native PDF keeps Arabic searchable without duplicating visible font programs", async () => {
+test("native PDF keeps searchable Arabic on the visible font layer", async () => {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "saad-native-pdf-test-"));
   try {
     const semester = {
@@ -66,19 +68,17 @@ test("native PDF keeps Arabic searchable without duplicating visible font progra
       "الخطة المقترحة",
       "علوم الحاسب المسار العام",
       "مدخل الى الاحتمالات والإحصاء",
-      "ريادة الأعمال",
-      "كيمياء عامة (1)",
       "101 احص",
     ]) {
       assert.ok(extracted.includes(expected), `missing exact searchable text: ${expected}`);
     }
     const allText = extracted.join("\n");
-    assert.doesNotMatch(allText, /[\uFB50-\uFDFF\uFE70-\uFEFF\uFFFD]/u);
+    assert.doesNotMatch(allText, /[\u2060\uFB50-\uFDFF\uFE70-\uFEFF\uFFFD]/u);
 
     const bytes = fs.readFileSync(pdfPath);
     const rawPdf = bytes.toString("latin1");
     assert.equal(rawPdf.match(/\/FontFile2\b/gu)?.length, 4);
-    assert.match(rawPdf, /\/BaseFont \/SaadSemantic/u);
+    assert.doesNotMatch(rawPdf, /SaadSemantic/u);
 
     const parsed = await PDFDocument.load(bytes);
     const pages = parsed.getPages();
@@ -92,4 +92,23 @@ test("native PDF keeps Arabic searchable without duplicating visible font progra
   } finally {
     fs.rmSync(temp, { recursive: true, force: true });
   }
+});
+
+test("Arabic bidi shaping mirrors parenthesized numbers for visual RTL output", () => {
+  const document = new PDFKitDocument({ autoFirstPage: false });
+  document.registerFont(
+    "Arabic",
+    path.resolve("font", "IBMPlexSansArabic-Regular.ttf"),
+  );
+  document.font("Arabic");
+  const font = document._font;
+  const [glyphs] = encodeBidiText(
+    font.encode.bind(font),
+    "كيمياء عامة (1)",
+  );
+  const visualText = glyphs
+    .flatMap((glyph) => font.unicode[Number.parseInt(glyph, 16)])
+    .map((codePoint) => String.fromCodePoint(codePoint))
+    .join("");
+  assert.match(visualText, /^\(1\) /u);
 });

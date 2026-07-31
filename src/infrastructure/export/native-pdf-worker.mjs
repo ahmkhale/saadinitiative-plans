@@ -3,12 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import PDFDocument from "pdfkit";
 import SVGtoPDF from "svg-to-pdfkit";
-import {
-  installLogicalTextOrder,
-  patchPdfKitFontBidi,
-  pdfSemanticText,
-} from "./pdf-bidi.mjs";
-import { createPdfSemanticLayer } from "./pdf-semantic-layer.mjs";
+import { patchPdfKitFontBidi } from "./pdf-bidi.mjs";
 
 const FONT_FILES = Object.freeze({
   Regular: "IBMPlexSansArabic-Regular.ttf",
@@ -46,16 +41,13 @@ function prepareSvg(svg) {
     });
 }
 
-function registerFonts(document, fontDir, encodingQueue) {
-  const fonts = [];
+function registerFonts(document, fontDir) {
   for (const [style, file] of Object.entries(FONT_FILES)) {
     const name = `SaadPdf-${style}`;
     document.registerFont(name, path.join(fontDir, file));
     document.font(name);
-    patchPdfKitFontBidi(document._font, (encoding) => encodingQueue.push(encoding));
-    fonts.push(document._font);
+    patchPdfKitFontBidi(document._font);
   }
-  return fonts;
 }
 
 export async function renderNativePdf({ pages, pageLayouts, fontDir, outputPath }) {
@@ -68,38 +60,24 @@ export async function renderNativePdf({ pages, pageLayouts, fontDir, outputPath 
       Author: "Saad Initiative",
     },
   });
-  const encodingQueue = [];
-  const visualFonts = registerFonts(document, fontDir, encodingQueue);
-  const semanticLayer = createPdfSemanticLayer(document, {
-    encodeText: pdfSemanticText,
-  });
+  registerFonts(document, fontDir);
   const output = fs.createWriteStream(outputPath, { flags: "wx" });
   document.pipe(output);
 
   for (let index = 0; index < pages.length; index += 1) {
     const layout = pageLayouts[index];
     document.addPage({ size: [layout.width, layout.height], margin: 0 });
-    const restoreTextOrder = installLogicalTextOrder(document, encodingQueue, semanticLayer);
-    try {
-      SVGtoPDF(document, prepareSvg(pages[index]), 0, 0, {
-        width: layout.width,
-        height: layout.height,
-        assumePt: true,
-        precision: 4,
-        fontCallback: (family) => String(family).split(",")[0].trim(),
-        warningCallback: (message) => {
-          throw new Error(`Native PDF could not render the generated SVG: ${message}`);
-        },
-      });
-    } finally {
-      restoreTextOrder();
-      encodingQueue.length = 0;
-    }
+    SVGtoPDF(document, prepareSvg(pages[index]), 0, 0, {
+      width: layout.width,
+      height: layout.height,
+      assumePt: true,
+      precision: 4,
+      fontCallback: (family) => String(family).split(",")[0].trim(),
+      warningCallback: (message) => {
+        throw new Error(`Native PDF could not render the generated SVG: ${message}`);
+      },
+    });
   }
-  for (const font of visualFonts) {
-    font.unicode = font.unicode.map(() => [0x2060]);
-  }
-  semanticLayer.finish();
   document.end();
   await new Promise((resolve, reject) => {
     output.on("finish", resolve);
