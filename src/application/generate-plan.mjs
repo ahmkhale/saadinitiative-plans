@@ -81,6 +81,8 @@ export function generatePlan(options) {
       png: Boolean(options.png),
       pngWidth: options.pngWidth,
       pageCount: document.pageCount,
+      pages: document.pages,
+      pageLayouts: document.pageLayouts,
       inkscape: options.inkscape,
       optimizePdf: options.optimizePdf !== false,
       requirePdfOptimization: Boolean(options.requirePdfOptimization),
