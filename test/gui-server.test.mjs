@@ -281,8 +281,8 @@ test("GUI API saves valid plans, rejects invalid plans, and reports generated fi
       body: JSON.stringify({ institutionId: "test-university", plan: changed, collegeId: "ccis", majorId: "cs", save: false }),
     }).then((response) => response.json());
     assert.equal(generated.ok, true);
-    assert.equal(exportedOptions.outputRoot, path.join(outputRoot, "test-university"));
-    assert.match(generated.files.pdf, /^\/dist\/test-university\/cs\/plan\.pdf\?v=\d+$/u);
+    assert.equal(exportedOptions.outputRoot, path.join(outputRoot, "test-university", "ccis"));
+    assert.match(generated.files.pdf, /^\/dist\/test-university\/ccis\/cs\/plan\.pdf\?v=\d+$/u);
 
     const preview = await fetch(`${base}/api/preview`, {
       method: "POST",
@@ -370,9 +370,9 @@ test("GUI API exports every base plan and track in an institution", async () => 
     );
     assert.ok(exported.every((item) => item.options.keepSvg && item.options.png));
     assert.ok(exported.every((item) => item.options.settings.edition === "الطبعة الرابعة"));
-    assert.ok(exported.every((item) => item.options.outputRoot === path.join(outputRoot, "test-university")));
-    assert.match(response.exported[0].pdf, /^\/dist\/test-university\/cs\/plan\.pdf\?v=\d+$/u);
-    assert.match(response.exported[1].pdf, /^\/dist\/test-university\/cs-ai\/plan\.pdf\?v=\d+$/u);
+    assert.ok(exported.every((item) => item.options.outputRoot === path.join(outputRoot, "test-university", "ccis")));
+    assert.match(response.exported[0].pdf, /^\/dist\/test-university\/ccis\/cs\/plan\.pdf\?v=\d+$/u);
+    assert.match(response.exported[1].pdf, /^\/dist\/test-university\/ccis\/cs-ai\/plan\.pdf\?v=\d+$/u);
   } finally {
     await close(server);
     fs.rmSync(value.root, { recursive: true, force: true });

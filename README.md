@@ -32,7 +32,7 @@ Generate every institution plan:
 npm run generate:all -- institutions --svg --png
 ```
 
-Output is ignored under `dist/<plan-id>/`: PDF, optional SVG/PNG, resolved JSON, and diagnostics JSON.
+Output is ignored under `dist/<institution-id>/<college-id>/<plan-id>/`: PDF, optional SVG/PNG, resolved JSON, and diagnostics JSON.
 
 
 ## Compact PDF export
