@@ -2,7 +2,42 @@ import { COLORS, GUIDE_LAYOUT } from "../layout/page-layout.mjs";
 import { renderCourseCard } from "./course-card.mjs";
 import { line, text, textLines } from "./primitives.mjs";
 
-export function renderGuide(context, y) {
+function exerciseGuideLines(activityTypes) {
+  if (!Array.isArray(activityTypes)) return ["عدد ساعات التمارين، أو", "العيادة أسبوعيًا."];
+  const includesExercises = activityTypes.includes("تمارين");
+  const includesClinic = activityTypes.includes("عيادة");
+  if (includesExercises && includesClinic) return ["عدد ساعات التمارين، أو", "العيادة أسبوعيًا."];
+  if (includesClinic) return ["عدد ساعات العيادة أسبوعيًا."];
+  return ["عدد ساعات التمارين أسبوعيًا."];
+}
+
+const PRACTICAL_GUIDE_ACTIVITIES = Object.freeze([
+  Object.freeze({ activity: "عملي", first: "للعملي", following: "العملي" }),
+  Object.freeze({ activity: "ستوديو", first: "للأستوديو", following: "الأستوديو" }),
+  Object.freeze({ activity: "مشروع", first: "للمشروع", following: "المشروع" }),
+  Object.freeze({ activity: "حقلي", first: "للنشاط الحقلي", following: "الحقلي" }),
+  Object.freeze({ activity: "تدريب", first: "للتدريب", following: "التدريب" }),
+]);
+
+function practicalGuideLines(activityTypes) {
+  if (!Array.isArray(activityTypes)) {
+    return ["عدد الساعات الأسبوعية للعملي،", "أو الأستوديو، أو المشروع،", "أو الحقلي، أو التدريب."];
+  }
+  const included = PRACTICAL_GUIDE_ACTIVITIES.filter(({ activity }) => activityTypes.includes(activity));
+  if (!included.length) return ["عدد الساعات الأسبوعية للعملي."];
+  const [first, ...rest] = included;
+  const lines = [`عدد الساعات الأسبوعية ${first.first}${rest.length ? "،" : "."}`];
+  for (let index = 0; index < rest.length; index += 2) {
+    const pair = rest.slice(index, index + 2);
+    lines.push(pair.map((item, pairIndex) => {
+      const isLast = index + pairIndex === rest.length - 1;
+      return `أو ${item.following}${isLast ? "." : "،"}`;
+    }).join(" "));
+  }
+  return lines;
+}
+
+export function renderGuide(context, y, activityTypes) {
   const demo = {
     code: "رمز المقرر",
     name: "اسم المقرر",
@@ -40,8 +75,8 @@ export function renderGuide(context, y) {
 
   const headingY = cardY + 151;
   const details = [
-    { x: 144.676, heading: "ساعات التمارين", lines: ["عدد ساعات التمارين، أو", "العيادة أسبوعيًا."] },
-    { x: 259.078, heading: "ساعات العملي", lines: ["عدد الساعات الأسبوعية للعملي،", "أو الأستوديو، أو المشروع،", "أو الحقلي، أو التدريب."] },
+    { x: 144.676, heading: "ساعات التمارين", lines: exerciseGuideLines(activityTypes) },
+    { x: 259.078, heading: "ساعات العملي", lines: practicalGuideLines(activityTypes) },
     { x: 381.781, heading: "ساعات المحاضرة", lines: ["عدد ساعات المحاضرة أسبوعيًا."] },
     { x: 539.4095, heading: "الساعات الفعلية", lines: ["الساعات التي يتم تدريس المقرر فيها بشكل", "أسبوعي، وهي الساعات التي يتم اعتمادها", "في حساب الحرمان."] },
   ];

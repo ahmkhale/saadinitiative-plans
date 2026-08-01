@@ -82,6 +82,7 @@ test("catalog service completes missing male facts from female without reporting
         lectureHours: 0,
         exerciseHours: 0,
         practicalHours: 4,
+        activityTypes: ["تدريب"],
       },
     ]));
     fs.writeFileSync(colorsPath, JSON.stringify({ عام: "#616161" }));
@@ -102,6 +103,7 @@ test("catalog service completes missing male facts from female without reporting
     assert.equal(course.lectureHours, 0);
     assert.equal(course.practicalHours, 4);
     assert.equal(course.exerciseHours, 0);
+    assert.deepEqual(course.activityTypes, ["تدريب"]);
     assert.deepEqual(course.qualityBadges, []);
     assert.equal(service.summary().conflictCount, 0);
   } finally {

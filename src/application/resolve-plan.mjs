@@ -2,6 +2,7 @@ import { GENERATOR_VERSION } from "../version.mjs";
 import { addDiagnostic } from "../domain/diagnostics.mjs";
 import { numericValue } from "../domain/course-code.mjs";
 import { normalizeCourseGuidePages } from "../domain/course-guide.mjs";
+import { normalizeActivityTypes } from "../domain/course-facts.mjs";
 import { createCourseResolver } from "./course-resolver.mjs";
 import { resolvePublishedSemesters } from "./resolve-semesters.mjs";
 import { resolveElectiveGroups } from "./resolve-electives.mjs";
@@ -33,6 +34,10 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     0,
   );
   const totalHours = cumulative + electiveHours;
+  const activityTypes = normalizeActivityTypes([
+    ...resolvedSemesters.flatMap((semester) => semester.courses.flatMap((course) => course.activityTypes ?? [])),
+    ...resolvedElectiveGroups.flatMap((group) => group.courses.flatMap((course) => course.activityTypes ?? [])),
+  ]);
   const expectedCredits = numericValue(plan.expectedCredits);
   if (expectedCredits !== null && expectedCredits > 0 && totalHours !== expectedCredits) {
     addDiagnostic(diagnostics, "warnings", "PLAN_HOURS_MISMATCH", `Calculated plan hours are ${totalHours} (${cumulative} published + ${electiveHours} elective), expected ${plan.expectedCredits}.`, {
@@ -65,6 +70,7 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     publishedHours: cumulative,
     electiveHours,
     totalHours,
+    activityTypes,
     semesterCount: resolvedSemesters.length,
     courseCount: resolver.mainCourses.length,
     electiveCourseCount: resolvedElectiveGroups.reduce((sum, group) => sum + group.courses.length, 0),

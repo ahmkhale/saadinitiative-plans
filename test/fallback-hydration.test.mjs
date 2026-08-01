@@ -17,7 +17,7 @@ test("save hydrates a durable fallback and preserves it after catalog removal", 
     const femalePath = path.join(root, "female.json");
     const colorsPath = path.join(root, "colors.json");
     fs.writeFileSync(malePath, JSON.stringify([
-      { code: "101 عال", name: "مقدمة البرمجة", academicHours: 3, lectureHours: 3 },
+      { code: "101 عال", name: "مقدمة البرمجة", academicHours: 3, lectureHours: 3, activityTypes: ["محاضرة"] },
     ]));
     fs.writeFileSync(femalePath, "[]");
     fs.writeFileSync(colorsPath, JSON.stringify({ عام: "#616161" }));
@@ -41,6 +41,7 @@ test("save hydrates a durable fallback and preserves it after catalog removal", 
     );
     assert.equal(savedCourse.source, "catalog");
     assert.deepEqual(savedCourse.manuallyEditedFields, []);
+    assert.deepEqual(savedCourse.activityTypes, ["محاضرة"]);
 
     fs.writeFileSync(malePath, "[]");
     const diagnostics = createDiagnostics();
@@ -55,6 +56,7 @@ test("save hydrates a durable fallback and preserves it after catalog removal", 
       ["academicHours", "lectureHours", "exerciseHours", "practicalHours"].map((field) => resolved.semesters[0].courses[0][field]),
       [3, 3, 0, 0],
     );
+    assert.deepEqual(resolved.activityTypes, ["محاضرة"]);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

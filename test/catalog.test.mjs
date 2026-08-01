@@ -57,6 +57,9 @@ test("maps source activity aliases into the existing three displayed fields", ()
 
   assert.equal(catalog.get(courseCodeKey("101 تجر")).lectureHours, 2);
   assert.equal(catalog.get(courseCodeKey("102 تجر")).exerciseHours, 2);
+  assert.deepEqual(catalog.get(courseCodeKey("101 تجر")).activityTypes, ["محاضرة"]);
+  assert.deepEqual(catalog.get(courseCodeKey("102 تجر")).activityTypes, ["عيادة"]);
+  assert.deepEqual(catalog.get(courseCodeKey("103 تجر")).activityTypes, ["ستوديو"]);
   for (const code of ["103 تجر", "104 تجر", "105 تجر", "106 تجر"]) {
     assert.equal(catalog.get(courseCodeKey(code)).practicalHours, 2);
   }
@@ -70,6 +73,7 @@ test("activity aliases are alternatives rather than additive values", () => {
   const course = catalog.get(courseCodeKey("201 تجر"));
 
   assert.equal(course.practicalHours, 2);
+  assert.deepEqual(course.activityTypes, ["ستوديو", "مشروع"]);
   assert.deepEqual(course.activityAliasConflicts, [{
     field: "practicalHours",
     aliases: ["ستوديو", "مشروع"],

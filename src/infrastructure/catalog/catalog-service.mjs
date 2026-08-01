@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildCourseCatalog } from "./catalog-aggregator.mjs";
 import { courseCodeKey, courseSubject, normalizeCourseCode } from "../../domain/course-code.mjs";
+import { ACTIVITY_SOURCE_ALIASES, normalizeActivityTypes } from "../../domain/course-facts.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(path.dirname(thisFile), "../../..");
@@ -55,6 +56,12 @@ function composeGenderCatalogFacts(maleCourse, femaleCourse, termId) {
     ...(maleCourse.activityAliasConflicts ?? []),
     ...(femaleCourse.activityAliasConflicts ?? []).filter((conflict) => completedFromFemaleFields.includes(conflict.field)),
   ];
+  result.activityTypes = normalizeActivityTypes([
+    ...(maleCourse.activityTypes ?? []),
+    ...completedFromFemaleFields.flatMap((field) => (
+      (ACTIVITY_SOURCE_ALIASES[field] ?? []).filter((activity) => femaleCourse.activityTypes?.includes(activity))
+    )),
+  ]);
   if (conflictingFields.length) {
     result.crossSourceConflict = {
       code: maleCourse.code,

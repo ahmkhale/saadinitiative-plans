@@ -26,7 +26,7 @@ export function renderPlanSvg(plan) {
   if (Array.isArray(plan.electiveGroups) && plan.electiveGroups.length) {
     parts.push(renderElectiveGroups(context, plan.electiveGroups, layout.semesterLayouts));
   }
-  if (layout.includesGuide) parts.push(renderGuide(context, layout.guideY));
+  if (layout.includesGuide) parts.push(renderGuide(context, layout.guideY, plan.activityTypes));
   parts.push(renderFooter(plan, layout.footerY));
   return pageSvg(parts, layout);
 }
@@ -44,7 +44,7 @@ export function renderProposalSvg(plan) {
   proposal.semesters.forEach((semester, index) => parts.push(renderSemesterRow(context, semester, layout.semesterLayouts[index])));
   parts.push(renderYearRails(layout.semesterLayouts));
   parts.push(renderPhaseRails(renderPlan, layout.semesterLayouts));
-  if (layout.includesGuide) parts.push(renderGuide(context, layout.guideY));
+  if (layout.includesGuide) parts.push(renderGuide(context, layout.guideY, plan.activityTypes));
   parts.push(renderFooter(plan, layout.footerY));
   return pageSvg(parts, layout);
 }

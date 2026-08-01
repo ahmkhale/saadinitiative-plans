@@ -34,6 +34,23 @@ test("catalog facts resolve independently while same-semester requirements creat
   assert.equal(diagnostics.summary.errors, 0);
 });
 
+test("resolved plans aggregate factual source activity names", () => {
+  const plan = normalizePlanInput({
+    schemaVersion: 1,
+    major: "أنشطة الخطة",
+    semesters: [{ courses: ["101 طب", "102 طب"] }],
+  });
+  const catalog = buildCourseCatalog([
+    { code: "101 طب", name: "سريري", academicHours: 2, lectureHours: 1, exerciseHours: 1, practicalHours: 0, activityTypes: ["محاضرة", "عيادة"] },
+    { code: "102 طب", name: "تطبيقي", academicHours: 1, lectureHours: 0, exerciseHours: 0, practicalHours: 2, activityTypes: ["عملي"] },
+  ]);
+  const diagnostics = createDiagnostics();
+  const resolved = resolvePlan(plan, catalog, colors, diagnostics);
+
+  assert.deepEqual(resolved.semesters[0].courses[0].activityTypes, ["محاضرة", "عيادة"]);
+  assert.deepEqual(resolved.activityTypes, ["محاضرة", "عملي", "عيادة"]);
+});
+
 test("prerequisite alternatives allow absent options when another option exists in the plan", () => {
   const plan = normalizePlanInput({
     schemaVersion: 1,

@@ -5,7 +5,7 @@ import {
   normalizeCourseCode,
   numericValue,
 } from "../domain/course-code.mjs";
-import { normalizeActivityFacts } from "../domain/course-facts.mjs";
+import { normalizeActivityFacts, normalizeActivityTypes } from "../domain/course-facts.mjs";
 import { formatCourseRequirementLabel } from "../domain/course-requirements.mjs";
 import { normalizeRequirementAlternatives } from "../domain/course-requirements.mjs";
 
@@ -15,6 +15,7 @@ const FACT_FIELDS = Object.freeze([
   "lectureHours",
   "practicalHours",
   "exerciseHours",
+  "activityTypes",
   "category",
   "color",
   "extinct",
@@ -206,6 +207,7 @@ export function createCourseResolver({ plan, catalog, colors, diagnostics }) {
       lectureHours: numericValue(facts.lectureHours),
       practicalHours: numericValue(facts.practicalHours),
       exerciseHours: numericValue(facts.exerciseHours),
+      activityTypes: normalizeActivityTypes(facts.activityTypes),
       prerequisites,
       corequisites,
       forcedCorequisites,

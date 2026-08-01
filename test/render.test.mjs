@@ -196,6 +196,46 @@ test("places the explanatory guide on the globally selected pages", () => {
   assert.deepEqual(both.pages.map((page) => page.includes('data-component="course-guide"')), [true, true]);
 });
 
+test("adapts the exercise guide copy to plan activity types", () => {
+  const render = (activityTypes) => renderPlanSvg({
+    major: "اختبار",
+    degree: "البكالوريوس",
+    courseGuidePages: "published",
+    activityTypes,
+    semesters: [semester()],
+    electiveGroups: [],
+  });
+  const exercises = render(["محاضرة", "تمارين"]);
+  const clinic = render(["محاضرة", "عيادة"]);
+  const both = render(["محاضرة", "تمارين", "عيادة"]);
+
+  assert.match(exercises, />عدد ساعات التمارين أسبوعيًا\.<\/text>/u);
+  assert.doesNotMatch(exercises, />العيادة أسبوعيًا\.<\/text>/u);
+  assert.match(clinic, />عدد ساعات العيادة أسبوعيًا\.<\/text>/u);
+  assert.doesNotMatch(clinic, />عدد ساعات التمارين، أو<\/text>/u);
+  assert.match(both, />عدد ساعات التمارين، أو<\/text>/u);
+  assert.match(both, />العيادة أسبوعيًا\.<\/text>/u);
+  assert.match(clinic, />عدد الساعات الأسبوعية للعملي\.<\/text>/u);
+  assert.match(clinic, />عدد ساعات المحاضرة أسبوعيًا\.<\/text>/u);
+});
+
+test("lists only practical-family activities present in the plan", () => {
+  const svg = renderPlanSvg({
+    major: "علوم الحاسب — المسار العام",
+    degree: "البكالوريوس",
+    courseGuidePages: "published",
+    activityTypes: ["محاضرة", "عملي", "تمارين", "مشروع", "تدريب"],
+    semesters: [semester()],
+    electiveGroups: [],
+  });
+
+  assert.match(svg, />عدد الساعات الأسبوعية للعملي،<\/text>/u);
+  assert.match(svg, />أو المشروع، أو التدريب\.<\/text>/u);
+  assert.doesNotMatch(svg, />أو الأستوديو/u);
+  assert.doesNotMatch(svg, />أو الحقلي/u);
+  assert.match(svg, />عدد ساعات المحاضرة أسبوعيًا\.<\/text>/u);
+});
+
 test("places automatically sorted courses in Arabic reading order", () => {
   const svg = renderPlanSvg({
     major: "اختبار",

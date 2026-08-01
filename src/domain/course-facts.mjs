@@ -12,6 +12,22 @@ export const ACTIVITY_SOURCE_ALIASES = Object.freeze({
   practicalHours: Object.freeze(["عملي", "ستوديو", "حقلي", "تدريب", "مشروع"]),
 });
 
+export const ACTIVITY_TYPES = Object.freeze([
+  "محاضرة",
+  "عملي",
+  "تمارين",
+  "عيادة",
+  "ستوديو",
+  "مشروع",
+  "حقلي",
+  "تدريب",
+]);
+
+export function normalizeActivityTypes(values = []) {
+  const present = new Set((values ?? []).map((value) => String(value ?? "").trim()));
+  return ACTIVITY_TYPES.filter((activity) => present.has(activity));
+}
+
 export function matchingActivityAliases(activities, field) {
   const aliases = ACTIVITY_SOURCE_ALIASES[field] ?? [];
   const present = new Set((activities ?? []).map((activity) => String(activity ?? "").trim()));

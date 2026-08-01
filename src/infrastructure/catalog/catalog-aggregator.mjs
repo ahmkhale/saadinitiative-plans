@@ -3,6 +3,7 @@ import {
   ACTIVITY_FIELDS,
   matchingActivityAliases,
   normalizeActivityFacts,
+  normalizeActivityTypes,
 } from "../../domain/course-facts.mjs";
 
 function minutes(value) {
@@ -35,6 +36,7 @@ function directFacts(item, catalogSource = "catalog") {
     lectureHours: numericValue(item.lectureHours ?? item.lecturesHours ?? details.lecturesHours ?? details.lectureHours),
     practicalHours: numericValue(item.practicalHours ?? item.labHours ?? details.labHours ?? details.practicalHours),
     exerciseHours: numericValue(item.exerciseHours ?? item.tutorialHours ?? item.discussionHours ?? details.exercisesHours ?? details.tutorialHours),
+    activityTypes: normalizeActivityTypes(item.activityTypes),
     prerequisites: item.prerequisites ?? item.prerequisiteCodes,
     corequisites: item.corequisites ?? item.corequisiteCodes,
     minimumCompletedCredits: numericValue(item.minimumCompletedCredits),
@@ -79,6 +81,7 @@ function aggregatedFacts(candidates, catalogSource) {
     lectureHours: chooseValue(candidates.map((item) => item.lectureHours), "lectureHours", conflicts),
     practicalHours: chooseValue(candidates.map((item) => item.practicalHours), "practicalHours", conflicts),
     exerciseHours: chooseValue(candidates.map((item) => item.exerciseHours), "exerciseHours", conflicts),
+    activityTypes: normalizeActivityTypes(candidates.flatMap((item) => item.activityTypes ?? [])),
     prerequisites: chooseValue(candidates.map((item) => item.prerequisites), "prerequisites", conflicts) ?? undefined,
     corequisites: chooseValue(candidates.map((item) => item.corequisites), "corequisites", conflicts) ?? undefined,
     minimumCompletedCredits: chooseValue(candidates.map((item) => item.minimumCompletedCredits), "minimumCompletedCredits", conflicts),
@@ -151,6 +154,7 @@ export function buildCourseCatalog(raw, options = {}) {
       lectureHours: byActivity("lectureHours"),
       practicalHours: byActivity("practicalHours"),
       exerciseHours: byActivity("exerciseHours"),
+      activityTypes: normalizeActivityTypes(sourceActivities),
       prerequisites: undefined,
       corequisites: undefined,
       minimumCompletedCredits: null,
