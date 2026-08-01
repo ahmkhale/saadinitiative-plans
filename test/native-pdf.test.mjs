@@ -8,7 +8,7 @@ import { PDFDocument } from "pdf-lib";
 import PDFKitDocument from "pdfkit";
 import { exportNativePdf } from "../src/exporter.mjs";
 import { renderPlanDocumentSvg } from "../src/render-svg.mjs";
-import { encodeBidiText } from "../src/infrastructure/export/pdf-bidi.mjs";
+import { encodeBidiText, patchPdfKitFontBidi } from "../src/infrastructure/export/pdf-bidi.mjs";
 
 function facts(code, name) {
   return {
@@ -69,6 +69,7 @@ test("native PDF keeps searchable Arabic on the visible font layer", async () =>
       "علوم الحاسب المسار العام",
       "مدخل الى الاحتمالات والإحصاء",
       "101 احص",
+      "عدد ساعات المحاضرة أسبوعيًا.",
     ]) {
       assert.ok(extracted.includes(expected), `missing exact searchable text: ${expected}`);
     }
@@ -129,4 +130,22 @@ test("Arabic bidi shaping preserves the required lam-alef ligature", () => {
     [0x0627, 0x0644],
     "expected the ligature's ToUnicode cluster to follow visual RTL order",
   );
+});
+
+test("native PDF shaping keeps zero-width Arabic marks visible", () => {
+  const document = new PDFKitDocument({ autoFirstPage: false });
+  document.registerFont(
+    "Arabic",
+    path.resolve("font", "IBMPlexSansArabic-Regular.ttf"),
+  );
+  document.font("Arabic");
+  const font = patchPdfKitFontBidi(document._font);
+  const [glyphs, positions] = font.encode("أسبوعيًا");
+  const markIndex = glyphs.findIndex((glyph) => (
+    font.unicode[Number.parseInt(glyph, 16)]?.includes(0x064b)
+  ));
+
+  assert.notEqual(markIndex, -1, "expected the tanween glyph to be encoded");
+  assert.equal(positions[markIndex].xAdvance, 0, "the mark must not change text layout");
+  assert.ok(positions[markIndex].advanceWidth > 0, "the PDF SVG renderer must not suppress the mark");
 });

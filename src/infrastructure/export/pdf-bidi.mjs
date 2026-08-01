@@ -4,6 +4,8 @@ const bidi = bidiFactory();
 const segmenter = new Intl.Segmenter("ar", { granularity: "word" });
 const RTL_TEXT = /[\u0590-\u08ff]/u;
 const ARABIC_CODE_POINT = /[\u0600-\u08ff]/u;
+const COMBINING_MARK = /\p{M}/u;
+const SVG_TO_PDF_VISIBLE_MARK_WIDTH = 0.001;
 
 function correctedLigatures(font) {
   if (!font.saadBidiCorrectedLigatures) {
@@ -95,7 +97,19 @@ export function patchPdfKitFontBidi(font) {
   if (!font || font.saadBidiPatched) return font;
   const originalEncode = font.encode.bind(font);
   correctedLigatures(font);
-  font.encode = (value) => encodeBidiText(originalEncode, value, font);
+  font.encode = (value) => {
+    const [glyphs, positions] = encodeBidiText(originalEncode, value, font);
+    const visiblePositions = positions.map((position, index) => {
+      const unicode = font.unicode?.[Number.parseInt(glyphs[index], 16)] ?? [];
+      const isCombiningMark = unicode.some((codePoint) => COMBINING_MARK.test(String.fromCodePoint(codePoint)));
+      if (!isCombiningMark || position.advanceWidth !== 0) return position;
+      // svg-to-pdfkit suppresses every glyph whose advanceWidth is zero.
+      // Arabic marks intentionally have zero advance, so give only its
+      // visibility check a negligible width while preserving xAdvance = 0.
+      return { ...position, advanceWidth: SVG_TO_PDF_VISIBLE_MARK_WIDTH };
+    });
+    return [glyphs, visiblePositions];
+  };
   Object.defineProperty(font, "saadBidiPatched", { value: true });
   return font;
 }
