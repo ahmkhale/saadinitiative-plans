@@ -197,7 +197,6 @@ export function reconcileProposal(publishedPlan, proposal, diagnostics) {
   return {
     enabled: proposal?.enabled !== false,
     title: proposal?.title ?? "الخطة المقترحة",
-    showGuide: proposal?.showGuide !== false,
     semesters,
     totalHours: cumulativeHours,
     semesterCount: semesters.length,

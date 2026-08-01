@@ -1142,7 +1142,6 @@
   "proposal": {
     "enabled": true,
     "title": "الخطة المقترحة",
-    "showGuide": true,
     "semesters": [
       {
         "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",

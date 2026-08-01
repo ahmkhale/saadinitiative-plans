@@ -26,6 +26,7 @@ export function renderPlanSvg(plan) {
   if (Array.isArray(plan.electiveGroups) && plan.electiveGroups.length) {
     parts.push(renderElectiveGroups(context, plan.electiveGroups, layout.semesterLayouts));
   }
+  if (layout.includesGuide) parts.push(renderGuide(context, layout.guideY));
   parts.push(renderFooter(plan, layout.footerY));
   return pageSvg(parts, layout);
 }

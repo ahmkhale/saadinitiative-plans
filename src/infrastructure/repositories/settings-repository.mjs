@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { normalizeCourseGuidePages } from "../../domain/course-guide.mjs";
 import { atomicWriteJson, projectRoot } from "./plan-repository.mjs";
 
 export const settingsPath = path.resolve(
@@ -8,20 +9,27 @@ export const settingsPath = path.resolve(
 );
 
 export function defaultSettings() {
-  return { edition: "الطبعة الرابعة", release: "إصدار 472.1" };
+  return {
+    edition: "الطبعة الرابعة",
+    release: "إصدار 472.1",
+    courseGuidePages: "proposal",
+  };
 }
 
 export function readSettings(filePath = settingsPath) {
   if (!fs.existsSync(filePath)) return defaultSettings();
-  return { ...defaultSettings(), ...JSON.parse(fs.readFileSync(filePath, "utf8")) };
+  const settings = { ...defaultSettings(), ...JSON.parse(fs.readFileSync(filePath, "utf8")) };
+  settings.courseGuidePages = normalizeCourseGuidePages(settings.courseGuidePages);
+  return settings;
 }
 
 export function saveSettings(input, filePath = settingsPath) {
   const edition = String(input?.edition ?? "").trim();
   const release = String(input?.release ?? "").trim();
+  const courseGuidePages = normalizeCourseGuidePages(input?.courseGuidePages);
   if (!edition) throw new Error("الطبعة مطلوبة.");
   if (!release) throw new Error("الإصدار مطلوب.");
-  const settings = { edition, release };
+  const settings = { edition, release, courseGuidePages };
   atomicWriteJson(filePath, settings);
   return settings;
 }

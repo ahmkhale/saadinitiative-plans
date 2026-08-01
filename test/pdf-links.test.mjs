@@ -65,7 +65,7 @@ test("native PDF preserves four on-page footer URL annotations on unequal-height
     const document = renderPlanDocumentSvg({
       major: "اختبار الروابط",
       semesters: [semester],
-      proposal: { semesters: [semester], showGuide: true },
+      proposal: { semesters: [semester] },
     });
     const paths = {
       svgPath: path.join(temp, "plan.svg"),

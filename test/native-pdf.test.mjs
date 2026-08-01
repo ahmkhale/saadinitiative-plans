@@ -55,7 +55,7 @@ test("native PDF keeps searchable Arabic on the visible font layer", async () =>
     const document = renderPlanDocumentSvg({
       major: "علوم الحاسب المسار العام",
       semesters: [semester],
-      proposal: { semesters: [semester], showGuide: true },
+      proposal: { semesters: [semester] },
     });
     const pdfPath = path.join(temp, "plan.pdf");
     const result = exportNativePdf(document.pages, document.pageLayouts, pdfPath);

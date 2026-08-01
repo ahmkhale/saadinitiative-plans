@@ -335,7 +335,7 @@ function buildProposal(definition) {
     courseOrder: [definition.summer],
     placeholders: [],
   });
-  return { enabled: true, title: "الخطة المقترحة", showGuide: true, semesters };
+  return { enabled: true, title: "الخطة المقترحة", semesters };
 }
 
 function buildPlan(definition) {

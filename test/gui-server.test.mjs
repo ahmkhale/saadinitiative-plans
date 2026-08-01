@@ -61,6 +61,7 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
     assert.equal(state.colleges[0].majors[0].id, "cs");
     assert.equal(state.catalog.resolvedCourseCount, 1);
     assert.equal(state.settings.edition, "الطبعة الرابعة");
+    assert.equal(state.settings.courseGuidePages, "proposal");
     assert.equal(state.colors.عال, "#008899");
 
     const savedColors = await fetch(`${base}/api/colors`, {
@@ -89,9 +90,10 @@ test("GUI API lists, reads, validates, and previews unsaved plans", async () => 
     const savedSettings = await fetch(`${base}/api/institutions/test-university/settings`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ edition: "طبعة الاختبار", release: "إصدار 1.0" }),
+      body: JSON.stringify({ edition: "طبعة الاختبار", release: "إصدار 1.0", courseGuidePages: "both" }),
     }).then((response) => response.json());
     assert.equal(savedSettings.settings.edition, "طبعة الاختبار");
+    assert.equal(savedSettings.settings.courseGuidePages, "both");
 
     const createdSet = await fetch(`${base}/api/institutions/test-university/shared-semester-sources`, {
       method: "POST",

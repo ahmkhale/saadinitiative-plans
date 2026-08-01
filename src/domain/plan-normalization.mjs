@@ -114,7 +114,7 @@ export function normalizeSemesters(semesters = [], planId = "plan") {
 
 export function normalizeProposal(proposal) {
   if (!proposal || typeof proposal !== "object") return null;
-  for (const obsolete of ["includeGuide", "expectedCredits", "phases"]) {
+  for (const obsolete of ["includeGuide", "showGuide", "expectedCredits", "phases"]) {
     if (proposal[obsolete] !== undefined) throw new Error(`proposal.${obsolete} is not part of the canonical proposal model.`);
   }
   const semesters = (proposal.semesters ?? []).map((semester, index) => {
@@ -136,7 +136,6 @@ export function normalizeProposal(proposal) {
   return {
     enabled: proposal.enabled !== false,
     title: proposal.title ?? "الخطة المقترحة",
-    showGuide: proposal.showGuide !== false,
     semesters,
   };
 }

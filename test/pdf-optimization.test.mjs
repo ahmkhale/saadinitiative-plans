@@ -69,7 +69,7 @@ test("Ghostscript compacts an Inkscape PDF while preserving a valid document", {
       major: "اختبار ضغط ملف PDF",
       degree: "البكالوريوس",
       semesters,
-      proposal: { enabled: true, showGuide: true, semesters },
+      proposal: { enabled: true, semesters },
     });
     const paths = {
       svgPath: path.join(temp, "plan.svg"),

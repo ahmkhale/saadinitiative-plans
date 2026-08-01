@@ -1,6 +1,7 @@
 import { GENERATOR_VERSION } from "../version.mjs";
 import { addDiagnostic } from "../domain/diagnostics.mjs";
 import { numericValue } from "../domain/course-code.mjs";
+import { normalizeCourseGuidePages } from "../domain/course-guide.mjs";
 import { createCourseResolver } from "./course-resolver.mjs";
 import { resolvePublishedSemesters } from "./resolve-semesters.mjs";
 import { resolveElectiveGroups } from "./resolve-electives.mjs";
@@ -56,6 +57,7 @@ export function resolvePlan(plan, catalog, colors, diagnostics, options = {}) {
     version: plan.version,
     edition: plan.edition ?? options.settings?.edition ?? null,
     release: plan.release ?? options.settings?.release ?? null,
+    courseGuidePages: normalizeCourseGuidePages(options.settings?.courseGuidePages),
     headerSubtitle: plan.headerSubtitle ?? null,
     phases: plan.phases ?? null,
     footer: plan.footer ?? null,

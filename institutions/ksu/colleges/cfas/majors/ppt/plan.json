@@ -1,0 +1,885 @@
+{
+  "schemaVersion": 1,
+  "id": "ppt",
+  "major": "وقاية النبات",
+  "degree": "البكالوريوس",
+  "expectedCredits": 135,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": [
+        {
+          "id": "major:ppt:published-level-1:102-نبت",
+          "code": "102 نبت",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-level-1:103-حين",
+          "code": "103 حين",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-level-1:200-نتج",
+          "code": "200 نتج",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-level-1:200-نجح",
+          "code": "200 نجح",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-level-1:200-وقن",
+          "code": "200 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-level-1:201-قصر",
+          "code": "201 قصر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-level-1:202-غذت",
+          "code": "202 غذت",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-8b431c3b-907c-4947-b22c-8e4bb4af2f67",
+      "courses": [
+        {
+          "id": "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:108-كيم",
+          "code": "108 كيم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:201-عتم",
+          "code": "201 عتم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:211-وقن",
+          "code": "211 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:264-وقن",
+          "code": "264 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:301-نتج",
+          "code": "301 نتج",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-67207d4c-61bd-4255-aafe-940c27dd5d20",
+      "courses": [
+        {
+          "id": "major:ppt:published-67207d4c-61bd-4255-aafe-940c27dd5d20:101-كيح",
+          "code": "101 كيح",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-67207d4c-61bd-4255-aafe-940c27dd5d20:214-وقن",
+          "code": "214 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-67207d4c-61bd-4255-aafe-940c27dd5d20:221-وقن",
+          "code": "221 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-67207d4c-61bd-4255-aafe-940c27dd5d20:261-وقن",
+          "code": "261 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-d46082da-e5db-4b6f-a4ff-fb96044ca41f",
+      "courses": [
+        {
+          "id": "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:322-وقن",
+          "code": "322 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:325-وقن",
+          "code": "325 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:343-وقن",
+          "code": "343 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:348-وقن",
+          "code": "348 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:360-وقن",
+          "code": "360 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-ee9961e9-61a7-4043-98c4-ae087255c39b",
+      "courses": [
+        {
+          "id": "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:300-وقن",
+          "code": "300 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:323-وقن",
+          "code": "323 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:340-وقن",
+          "code": "340 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:347-نتج",
+          "code": "347 نتج",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:349-وقن",
+          "code": "349 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:447-وقن",
+          "code": "447 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:448-وقن",
+          "code": "448 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e",
+      "courses": [
+        {
+          "id": "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:301-رشد",
+          "code": "301 رشد",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:326-وقن",
+          "code": "326 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:341-وقن",
+          "code": "341 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:361-وقن",
+          "code": "361 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:405-وقن",
+          "code": "405 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:460-وقن",
+          "code": "460 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    },
+    {
+      "id": "elective-group-2",
+      "name": "متطلبات التخصص",
+      "requiredHours": 9,
+      "sortCourses": "code",
+      "courses": [
+        {
+          "id": "major:ppt:elective:elective-group-2:206-نتج",
+          "code": "206 نتج",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:elective:elective-group-2:298-وقن",
+          "code": "298 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:elective:elective-group-2:309-نتج",
+          "code": "309 نتج",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:elective:elective-group-2:328-وقن",
+          "code": "328 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:elective:elective-group-2:340-نتج",
+          "code": "340 نتج",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:elective:elective-group-2:363-وقن",
+          "code": "363 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:elective:elective-group-2:403-وقن",
+          "code": "403 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:ppt:elective:elective-group-2:421-وقن",
+          "code": "421 وقن",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "102 نبت": {
+      "name": "علم النبات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "103 حين": {
+      "name": "مبادئ في علم الحيوان",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "200 نتج": {
+      "name": "مقدمة في الإنتاج النباتي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "200 نجح": {
+      "name": "مقدمة في الإنتاج الحيواني",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "200 وقن": {
+      "name": "مقدمة في وقاية النبات",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 قصر": {
+      "name": "اسس الاقتصاد الزراعي",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "202 غذت": {
+      "name": "أسس علوم الأغذية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "108 كيم": {
+      "name": "مقدمه في الكيمياء العضوية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 عتم": {
+      "name": "أسس علوم التربة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "211 وقن": {
+      "name": "ميكروبيولوجيا زراعية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "264 وقن": {
+      "name": "المبيدات والسلامة المهنية",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "301 نتج": {
+      "name": "إنتاج المحاصيل البستانية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "101 كيح": {
+      "name": "كيمياء حيوية عامة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "214 وقن": {
+      "name": "حشرات زراعية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "221 وقن": {
+      "name": "اسس امراض نبات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "261 وقن": {
+      "name": "مبيدات عامة",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "322 وقن": {
+      "name": "امراض النبات الفطرية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "325 وقن": {
+      "name": "امراض النبات النيماتودية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "343 وقن": {
+      "name": "حشرات اقتصاديه",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "348 وقن": {
+      "name": "بيئه الحشرات الزراعية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "360 وقن": {
+      "name": "علم السموم وكيمياء المبيدات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "300 وقن": {
+      "name": "تربية النحل",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "323 وقن": {
+      "name": "أمراض النبات الفيروسية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "340 وقن": {
+      "name": "حشرات طبية و بيطرية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "347 نتج": {
+      "name": "الحشائش ومكافحتها",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "349 وقن": {
+      "name": "آفات حيوانية غير حشرية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "447 وقن": {
+      "name": "المكافحة الحيوية للحشرات",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "448 وقن": {
+      "name": "الإدارة المتكاملة للآفات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "301 رشد": {
+      "name": "تطبيقات ارشادية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "326 وقن": {
+      "name": "الحجر الزراعي",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "341 وقن": {
+      "name": "مكافحة آفات الصحة العامة",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "361 وقن": {
+      "name": "تحليل متبقيات المبيدات",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "405 وقن": {
+      "name": "التدريب الميداني",
+      "academicHours": 4,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "460 وقن": {
+      "name": "تجهيز واستعمال المبيدات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "206 نتج": {
+      "name": "الوراثة الزراعية التطبيقية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "298 وقن": {
+      "name": "مقدمة في امراض النبات غير المعدية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "309 نتج": {
+      "name": "فسيولوجيا المحاصيل",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "328 وقن": {
+      "name": "امراض النبات البكتيرية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "340 نتج": {
+      "name": "إنتاج المحاصيل الحقلية",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "363 وقن": {
+      "name": "المبيدات الفطرية والبكتيرية",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "403 وقن": {
+      "name": "التدريب التعاوني الصيفي",
+      "academicHours": 4,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "421 وقن": {
+      "name": "مقدمة في آفات المواد المخزونة",
+      "academicHours": 2,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:ppt:published-level-1:102-نبت",
+          "major:ppt:published-level-1:103-حين",
+          "major:ppt:published-level-1:200-نتج",
+          "major:ppt:published-level-1:200-نجح",
+          "major:ppt:published-level-1:200-وقن",
+          "major:ppt:published-level-1:201-قصر",
+          "major:ppt:published-level-1:202-غذت"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-8b431c3b-907c-4947-b22c-8e4bb4af2f67",
+        "sourceSemesterId": "published-8b431c3b-907c-4947-b22c-8e4bb4af2f67",
+        "type": "regular",
+        "courseOrder": [
+          "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:108-كيم",
+          "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:201-عتم",
+          "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:211-وقن",
+          "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:264-وقن",
+          "major:ppt:published-8b431c3b-907c-4947-b22c-8e4bb4af2f67:301-نتج"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-67207d4c-61bd-4255-aafe-940c27dd5d20",
+        "sourceSemesterId": "published-67207d4c-61bd-4255-aafe-940c27dd5d20",
+        "type": "regular",
+        "courseOrder": [
+          "major:ppt:published-67207d4c-61bd-4255-aafe-940c27dd5d20:101-كيح",
+          "major:ppt:published-67207d4c-61bd-4255-aafe-940c27dd5d20:214-وقن",
+          "major:ppt:published-67207d4c-61bd-4255-aafe-940c27dd5d20:221-وقن",
+          "major:ppt:published-67207d4c-61bd-4255-aafe-940c27dd5d20:261-وقن"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-d46082da-e5db-4b6f-a4ff-fb96044ca41f",
+        "sourceSemesterId": "published-d46082da-e5db-4b6f-a4ff-fb96044ca41f",
+        "type": "regular",
+        "courseOrder": [
+          "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:322-وقن",
+          "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:325-وقن",
+          "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:343-وقن",
+          "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:348-وقن",
+          "major:ppt:published-d46082da-e5db-4b6f-a4ff-fb96044ca41f:360-وقن"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-ee9961e9-61a7-4043-98c4-ae087255c39b",
+        "sourceSemesterId": "published-ee9961e9-61a7-4043-98c4-ae087255c39b",
+        "type": "regular",
+        "courseOrder": [
+          "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:300-وقن",
+          "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:323-وقن",
+          "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:340-وقن",
+          "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:347-نتج",
+          "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:349-وقن",
+          "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:447-وقن",
+          "major:ppt:published-ee9961e9-61a7-4043-98c4-ae087255c39b:448-وقن"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e",
+        "sourceSemesterId": "published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e",
+        "type": "regular",
+        "courseOrder": [
+          "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:301-رشد",
+          "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:326-وقن",
+          "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:341-وقن",
+          "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:361-وقن",
+          "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:405-وقن",
+          "major:ppt:published-cc8e3ba9-8e23-4eba-9a2c-c6857fba017e:460-وقن"
+        ],
+        "placeholders": []
+      }
+    ]
+  }
+}

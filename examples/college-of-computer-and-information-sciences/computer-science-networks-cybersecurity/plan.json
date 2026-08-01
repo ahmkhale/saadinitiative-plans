@@ -504,7 +504,6 @@
   "proposal": {
     "enabled": true,
     "title": "الخطة المقترحة",
-    "showGuide": true,
     "semesters": [
       {
         "id": "shared-cfy-science-cfy-science-1",

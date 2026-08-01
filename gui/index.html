@@ -148,7 +148,6 @@
           <div id="proposalEditor" hidden>
             <div class="card inline-options proposal-explanation">
               <div><p class="eyebrow">ترتيب تابع للخطة المنشورة</p><p class="muted">الخطة المقترحة مبنية على الخطة المنشورة. انقل المقررات الحقيقية ورتبها، وستبقى حقائقها موروثة من الأصل.</p></div>
-              <label class="check"><input id="guideEnabled" type="checkbox" checked> إظهار دليل بطاقة المقرر</label>
             </div>
             <div class="section-heading main-heading">
               <div class="menu-actions">
@@ -172,6 +171,13 @@
             <form id="globalSettingsForm" class="form-grid settings-form">
               <label>الطبعة<input id="globalEdition" required></label>
               <label>الإصدار<input id="globalRelease" required></label>
+              <label>ظهور دليل بطاقة المقرر
+                <select id="globalCourseGuidePages" required>
+                  <option value="published">صفحة الخطة المنشورة فقط</option>
+                  <option value="proposal">صفحة الخطة المقترحة فقط</option>
+                  <option value="both">كلتا الصفحتين</option>
+                </select>
+              </label>
               <button class="button secondary" type="submit">حفظ الإعدادات</button>
               <button id="resetSettingsButton" class="button ghost" type="button">استعادة المحفوظ</button>
             </form>
