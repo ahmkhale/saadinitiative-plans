@@ -13,6 +13,7 @@ import { contentType, json, safeFile, serveFile, text } from "./presentation/gui
 
 const thisFile = fileURLToPath(import.meta.url);
 const guiDir = path.join(projectRoot, "gui");
+const guiBuildDir = path.join(projectRoot, "gui-app", "dist");
 const domainDir = path.join(projectRoot, "src", "domain");
 const distDir = path.join(projectRoot, "dist");
 const fontDir = path.resolve(process.env.SAAD_FONT_DIR ?? path.join(projectRoot, "font"));
@@ -44,9 +45,14 @@ export function createGuiServer(options = {}) {
   return http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
+      const frontendDir = fs.existsSync(path.join(guiBuildDir, "index.html")) ? guiBuildDir : guiDir;
       if (url.pathname.startsWith("/api/")) return await routeApi(req, res, url);
       if (req.method === "GET" && url.pathname === "/") {
-        return serveFile(res, path.join(guiDir, "index.html"), contentType("index.html"));
+        return serveFile(res, path.join(frontendDir, "index.html"), contentType("index.html"));
+      }
+      if (req.method === "GET" && url.pathname.startsWith("/ui-assets/")) {
+        const target = safeFile(guiBuildDir, decodeURIComponent(url.pathname.slice(1)));
+        return target ? serveFile(res, target, contentType(target)) : text(res, 403, "Forbidden");
       }
       if (req.method === "GET" && url.pathname.startsWith("/gui/")) {
         const target = safeFile(guiDir, decodeURIComponent(url.pathname.slice("/gui/".length)));
