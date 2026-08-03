@@ -131,7 +131,7 @@ export function PreviewDesk({ workspace }: { workspace: PlanWorkspace }) {
               <Alert variant={item.severity === "errors" ? "destructive" : "default"}>
                 <IconAlertTriangle />
                 <AlertTitle>{item.code}</AlertTitle>
-                <AlertDescription>{item.message}</AlertDescription>
+                <AlertDescription dir="ltr">{item.message}</AlertDescription>
               </Alert>
             </button>
           ))}

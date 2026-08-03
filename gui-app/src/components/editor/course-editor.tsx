@@ -172,8 +172,8 @@ export function CourseEditor({
                 {([
                   ["academicHours", "الساعات"],
                   ["lectureHours", "محاضرة"],
-                  ["exerciseHours", "التمارين"],
                   ["practicalHours", "العملي"],
+                  ["exerciseHours", "التمارين"],
                 ] as const).map(([key, label]) => (
                   <Field key={key}>
                     <FieldLabel className="truncate text-xs">{label}</FieldLabel>

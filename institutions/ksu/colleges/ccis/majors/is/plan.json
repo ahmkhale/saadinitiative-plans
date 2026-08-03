@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "id": "is",
+  "major": "نظم المعلومات",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-19a13771-de27-4228-b329-3966f68ee4ed",
+      "courses": [
+        {
+          "id": "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:101-ادا",
+          "code": "101 ادا",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:111-عال",
+          "code": "111 عال",
+          "prerequisites": [
+            "101 تقن"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:151-ريض",
+          "code": "151 ريض",
+          "prerequisites": [
+            "101 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:201-حسب",
+          "code": "201 حسب",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:201-نال",
+          "code": "201 نال",
+          "prerequisites": [
+            "101 تقن"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-e3682202-65fa-4efe-832a-0a5445b962e6",
+      "courses": [
+        {
+          "id": "major:is:published-e3682202-65fa-4efe-832a-0a5445b962e6:113-عال",
+          "code": "113 عال",
+          "prerequisites": [
+            "111 عال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:is:published-e3682202-65fa-4efe-832a-0a5445b962e6:230-نال",
+          "code": "230 نال",
+          "prerequisites": [
+            "111 عال",
+            "151 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:is:published-e3682202-65fa-4efe-832a-0a5445b962e6:240-نال",
+          "code": "240 نال",
+          "prerequisites": [
+            "201 نال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:is:published-e3682202-65fa-4efe-832a-0a5445b962e6:244-ريض",
+          "code": "244 ريض",
+          "prerequisites": [
+            "151 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    }
+  ],
+  "fallbackCourses": {
+    "101 ادا": {
+      "name": "مباديء الإدارة والأعمال",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "111 عال": {
+      "name": "برمجة حاسبات (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "151 ريض": {
+      "name": "الرياضيات المحددة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 حسب": {
+      "name": "مباديء المحاسبة والتقرير المالي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "201 نال": {
+      "name": "مباديء واخلاقيات نظم المعلومات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "113 عال": {
+      "name": "برمجة حاسبات -2-",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "230 نال": {
+      "name": "اسس قواعد البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "240 نال": {
+      "name": "تحليل وتصميم نظم المعلومات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "244 ريض": {
+      "name": "الجبر الخطي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  }
+}

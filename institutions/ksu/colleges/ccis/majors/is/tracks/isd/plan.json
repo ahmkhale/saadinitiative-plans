@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "is",
+  "major": "نظم المعلومات",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [],
+  "semesters": [],
+  "electiveGroups": [],
+  "fallbackCourses": {},
+  "track": {
+    "id": "isd",
+    "name": "مسار علم وإدارة البيانات"
+  }
+}
