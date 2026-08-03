@@ -7,7 +7,7 @@
     <img alt="Arabic-first UI" src="https://img.shields.io/badge/UI-Arabic--first-2b78dd" />
     <img alt="SVG PDF PNG output" src="https://img.shields.io/badge/output-SVG%20%7C%20PDF%20%7C%20PNG-6f42c1" />
     <img alt="Proprietary license" src="https://img.shields.io/badge/license-proprietary-bd0000" />
-    <img alt="Active development" src="https://img.shields.io/badge/status-active%20development-f0ad4e" />
+    <a href="https://github.com/ahmkhale/saadinitiative-plans/actions/workflows/validate.yml"><img alt="Validation workflow" src="https://github.com/ahmkhale/saadinitiative-plans/actions/workflows/validate.yml/badge.svg" /></a>
   </p>
 </div>
 
@@ -42,6 +42,8 @@ Before sharing changes, run the repository checks:
 ```powershell
 npm run validate
 ```
+
+GitHub Actions runs the same validation on every push and pull request. The workflow can also be started manually from the repository’s Actions tab.
 
 For optional browser-based font and rendering checks:
 

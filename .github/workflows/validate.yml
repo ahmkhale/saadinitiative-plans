@@ -1,0 +1,64 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Tests and GUI build
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: npm
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - name: Install Inkscape
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends --yes inkscape
+
+      - name: Install JavaScript dependencies
+        run: |
+          npm ci
+          pnpm --dir gui-app install --frozen-lockfile
+
+      - name: Install CI font fixtures
+        env:
+          IBM_PLEX_ROOT: https://raw.githubusercontent.com/IBM/plex/v6.4.2/IBM-Plex-Sans-Arabic/fonts/complete/ttf
+        run: |
+          font_dir="$RUNNER_TEMP/saad-fonts"
+          mkdir -p "$font_dir"
+          for font_name in \
+            IBMPlexSansArabic-Regular.ttf \
+            IBMPlexSansArabic-Medium.ttf \
+            IBMPlexSansArabic-SemiBold.ttf \
+            IBMPlexSansArabic-Bold.ttf
+          do
+            curl --fail --silent --show-error --location \
+              "$IBM_PLEX_ROOT/$font_name" \
+              --output "$font_dir/$font_name"
+          done
+          echo "SAAD_FONT_DIR=$font_dir" >> "$GITHUB_ENV"
+
+      - name: Run repository validation
+        run: npm run validate
