@@ -172,11 +172,68 @@ test("renders the cyan activity outline only in the explanatory guide", () => {
     degree: "البكالوريوس",
     semesters: [semester()],
     electiveGroups: [],
-    proposal: { enabled: true, showGuide: true, semesters: [semester()] },
+    proposal: { enabled: true, semesters: [semester()] },
   });
   assert.equal((document.pages[0].match(/data-part="guide-activity-outline"/gu) ?? []).length, 0);
   assert.equal((document.pages[1].match(/data-part="guide-activity-outline"/gu) ?? []).length, 1);
   assert.equal((document.pages.join("").match(/data-part="metric-outline"/gu) ?? []).length, 0);
+});
+
+test("places the explanatory guide on the globally selected pages", () => {
+  const plan = {
+    major: "اختبار",
+    degree: "البكالوريوس",
+    semesters: [semester()],
+    electiveGroups: [],
+    proposal: { semesters: [semester()] },
+  };
+  const published = renderPlanDocumentSvg({ ...plan, courseGuidePages: "published" });
+  const proposal = renderPlanDocumentSvg({ ...plan, courseGuidePages: "proposal" });
+  const both = renderPlanDocumentSvg({ ...plan, courseGuidePages: "both" });
+
+  assert.deepEqual(published.pages.map((page) => page.includes('data-component="course-guide"')), [true, false]);
+  assert.deepEqual(proposal.pages.map((page) => page.includes('data-component="course-guide"')), [false, true]);
+  assert.deepEqual(both.pages.map((page) => page.includes('data-component="course-guide"')), [true, true]);
+});
+
+test("adapts the exercise guide copy to plan activity types", () => {
+  const render = (activityTypes) => renderPlanSvg({
+    major: "اختبار",
+    degree: "البكالوريوس",
+    courseGuidePages: "published",
+    activityTypes,
+    semesters: [semester()],
+    electiveGroups: [],
+  });
+  const exercises = render(["محاضرة", "تمارين"]);
+  const clinic = render(["محاضرة", "عيادة"]);
+  const both = render(["محاضرة", "تمارين", "عيادة"]);
+
+  assert.match(exercises, />عدد ساعات التمارين أسبوعيًا\.<\/text>/u);
+  assert.doesNotMatch(exercises, />العيادة أسبوعيًا\.<\/text>/u);
+  assert.match(clinic, />عدد ساعات العيادة أسبوعيًا\.<\/text>/u);
+  assert.doesNotMatch(clinic, />عدد ساعات التمارين، أو<\/text>/u);
+  assert.match(both, />عدد ساعات التمارين، أو<\/text>/u);
+  assert.match(both, />العيادة أسبوعيًا\.<\/text>/u);
+  assert.match(clinic, />عدد الساعات الأسبوعية للعملي\.<\/text>/u);
+  assert.match(clinic, />عدد ساعات المحاضرة أسبوعيًا\.<\/text>/u);
+});
+
+test("lists only practical-family activities present in the plan", () => {
+  const svg = renderPlanSvg({
+    major: "علوم الحاسب — المسار العام",
+    degree: "البكالوريوس",
+    courseGuidePages: "published",
+    activityTypes: ["محاضرة", "عملي", "تمارين", "مشروع", "تدريب"],
+    semesters: [semester()],
+    electiveGroups: [],
+  });
+
+  assert.match(svg, />عدد الساعات الأسبوعية للعملي،<\/text>/u);
+  assert.match(svg, />أو المشروع، أو التدريب\.<\/text>/u);
+  assert.doesNotMatch(svg, />أو الأستوديو/u);
+  assert.doesNotMatch(svg, />أو الحقلي/u);
+  assert.match(svg, />عدد ساعات المحاضرة أسبوعيًا\.<\/text>/u);
 });
 
 test("places automatically sorted courses in Arabic reading order", () => {
@@ -289,6 +346,8 @@ test("builds an Inkscape multipage SVG for a proposed plan", () => {
   assert.match(document.svg, /<inkscape:page x="0" y="0" width="594" height="271"\/>/);
   assert.match(document.svg, /<inkscape:page x="0" y="281" width="594" height="983\.748779296875"\/>/);
   assert.match(document.pages[1], /data-component="course-guide"/);
+  assert.match(document.pages[1], /مقرر منقرض أو جديد/u);
+  assert.match(document.pages[1], /x1="464\.08795166015625" y1="763\.3310546875"/u);
   assert.match(document.pages[1], /نصف سنة/);
   assert.doesNotMatch(document.pages[1], /فصل صيفي/);
   assert.match(document.pages[1], /x1="238\.26885986328125" y1="694\.7333984375" x2="211\.95730209350586" y2="694\.7333984375"/);
@@ -327,22 +386,23 @@ test("grows published pages for semesters, elective groups, and wrapped elective
   assert.ok(secondGroup.height > oneRow.height);
 });
 
-test("grows proposal pages independently for an additional published level and guide content", () => {
+test("grows proposal pages independently for an additional published level and global guide placement", () => {
   const regular = Array.from({ length: 8 }, () => semester());
   const ninthLevel = semester({ name: "المستوى التاسع" });
   const base = {
     major: "اختبار",
     semesters: [semester()],
-    proposal: { semesters: regular, showGuide: false },
+    courseGuidePages: "published",
+    proposal: { semesters: regular },
   };
   const withoutGuide = calculatePage(base, { proposal: true });
   const withNinthLevel = calculatePage({
     ...base,
-    proposal: { semesters: [...regular, ninthLevel], showGuide: false },
+    proposal: { semesters: [...regular, ninthLevel] },
   }, { proposal: true });
   const withGuide = calculatePage({
     ...base,
-    proposal: { semesters: regular, showGuide: true },
+    courseGuidePages: "proposal",
   }, { proposal: true });
 
   assert.equal(withoutGuide.width, 594);
@@ -429,8 +489,9 @@ test("fits Arabic text with shaped glyph advances and a readable floor", () => {
 test("wraps every complete footer item in an absolute SVG link", () => {
   const document = renderPlanDocumentSvg({
     major: "روابط",
+    courseGuidePages: "published",
     semesters: [semester()],
-    proposal: { semesters: [semester()], showGuide: false },
+    proposal: { semesters: [semester()] },
   });
   const destinations = [
     "https://t.me/SaadInitiative?direct",

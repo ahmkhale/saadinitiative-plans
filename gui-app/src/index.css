@@ -1,0 +1,158 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/fonts/IBMPlexSansArabic-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/fonts/IBMPlexSansArabic-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/fonts/IBMPlexSansArabic-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.982 0.006 255);
+  --foreground: oklch(0.205 0.025 258);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.205 0.025 258);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.205 0.025 258);
+  --primary: oklch(0.53 0.205 257);
+  --primary-foreground: oklch(0.985 0.006 255);
+  --secondary: oklch(0.945 0.025 255);
+  --secondary-foreground: oklch(0.29 0.07 257);
+  --muted: oklch(0.955 0.009 255);
+  --muted-foreground: oklch(0.515 0.025 258);
+  --accent: oklch(0.94 0.035 250);
+  --accent-foreground: oklch(0.29 0.07 257);
+  --destructive: oklch(0.59 0.22 27);
+  --border: oklch(0.89 0.018 255);
+  --input: oklch(0.87 0.02 255);
+  --ring: oklch(0.61 0.18 257);
+  --chart-1: oklch(0.845 0.143 164.978);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.596 0.145 163.225);
+  --chart-4: oklch(0.508 0.118 165.612);
+  --chart-5: oklch(0.432 0.095 166.913);
+  --radius: 0.625rem;
+  --surface: oklch(0.965 0.012 255);
+  --surface-foreground: oklch(0.205 0.025 258);
+  --sidebar: oklch(0.968 0.012 255);
+  --sidebar-foreground: oklch(0.23 0.035 258);
+  --sidebar-primary: oklch(0.53 0.205 257);
+  --sidebar-primary-foreground: oklch(0.985 0.006 255);
+  --sidebar-accent: oklch(0.93 0.03 254);
+  --sidebar-accent-foreground: oklch(0.29 0.07 257);
+  --sidebar-border: oklch(0.875 0.02 255);
+  --sidebar-ring: oklch(0.61 0.18 257);
+}
+
+@theme inline {
+  --font-heading: "IBM Plex Sans Arabic", sans-serif;
+  --font-sans: "IBM Plex Sans Arabic", sans-serif;
+  --font-mono: "Geist Variable", ui-monospace, monospace;
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    color-scheme: light;
+  }
+
+  body {
+    @apply m-0 bg-background text-foreground antialiased;
+    font-size: 14px;
+    text-rendering: optimizeLegibility;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility bg-workspace-grid {
+  background-color: var(--background);
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--border), transparent 72%) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--border), transparent 72%) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.plan-preview-page svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

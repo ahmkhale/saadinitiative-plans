@@ -4,6 +4,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { createFontconfigEnvironment } from "./font-service.mjs";
+import { exportNativePdf } from "./native-pdf-exporter.mjs";
 import { optimizePdf } from "./pdf-optimizer.mjs";
 
 function existingFile(candidate) {
@@ -50,18 +51,29 @@ export function exportSvg(svg, paths, options = {}) {
   try {
     if (options.keepSvg) fs.copyFileSync(tempSvg, paths.svgPath);
     if (options.pdf !== false) {
-      run(options.inkscape ?? findInkscape(), [
-        tempSvg,
-        "--export-type=pdf",
-        `--export-filename=${paths.pdfPath}`,
-        "--export-area-page",
-      ], { env: fontconfig.env });
-      correctPdfLinks(paths.pdfPath, Math.max(1, Number(options.pageCount ?? 1)));
-      pdfOptimization = optimizePdf(paths.pdfPath, {
-        enabled: options.optimizePdf !== false,
-        required: Boolean(options.requirePdfOptimization),
-        ghostscript: options.ghostscript,
-      });
+      if (Array.isArray(options.pages) && Array.isArray(options.pageLayouts)) {
+        const nativeResult = exportNativePdf(options.pages, options.pageLayouts, paths.pdfPath, {
+          fontDir: options.fontDir,
+        });
+        pdfOptimization = Object.freeze({
+          optimized: false,
+          reason: "native-pdf",
+          ...nativeResult,
+        });
+      } else {
+        run(options.inkscape ?? findInkscape(), [
+          tempSvg,
+          "--export-type=pdf",
+          `--export-filename=${paths.pdfPath}`,
+          "--export-area-page",
+        ], { env: fontconfig.env });
+        correctPdfLinks(paths.pdfPath, Math.max(1, Number(options.pageCount ?? 1)));
+        pdfOptimization = optimizePdf(paths.pdfPath, {
+          enabled: options.optimizePdf !== false,
+          required: Boolean(options.requirePdfOptimization),
+          ghostscript: options.ghostscript,
+        });
+      }
     }
     if (options.png) {
       const pageCount = Math.max(1, Number(options.pageCount ?? 1));

@@ -1,149 +1,164 @@
-# Saad Academic Plan Generator
+<div align="center">
+  <img src="./assets/logo.svg" alt="Saad Initiative logo" width="88" />
+  <h1>Saad Academic Plan Generator</h1>
+  <p>Arabic-first academic-plan editing, validation, preview, and export.</p>
+  <p>
+    <img alt="Node.js 20+" src="https://img.shields.io/badge/Node.js-%E2%89%A520-339933?logo=node.js&logoColor=white" />
+    <img alt="Arabic-first UI" src="https://img.shields.io/badge/UI-Arabic--first-2b78dd" />
+    <img alt="SVG PDF PNG output" src="https://img.shields.io/badge/output-SVG%20%7C%20PDF%20%7C%20PNG-6f42c1" />
+    <img alt="Proprietary license" src="https://img.shields.io/badge/license-proprietary-bd0000" />
+    <img alt="Active development" src="https://img.shields.io/badge/status-active%20development-f0ad4e" />
+  </p>
+</div>
 
-An Arabic-first academic-plan editor and deterministic PDF generator. The operator enters academic decisions and missing facts; the system owns lookup, fallback durability, prerequisite presentation, markers, totals, proposal reconciliation, layout, diagnostics, preview, and export.
+<p align="center">
+  <img src="./docs/screenshots/gui-published.png" alt="Saad academic-plan editor with a live published-plan preview" width="1200" />
+</p>
 
-The visual contract comes from the approved [Plans Figma file](https://www.figma.com/design/3r0vSL0tBOx2y2PKPz4FK3/Plans?node-id=381-80662).
+<p align="center"><sub>The editor combines structured plan data, validation diagnostics, and a live PDF preview.</sub></p>
 
-## Quick start
+Saad is a local academic-plan editor for maintaining university curricula and producing consistent, print-ready plans. It combines institution metadata, plan-owned academic rules, course catalogs, fallback facts, measured layout, and export in one deterministic pipeline.
 
-Requirements: Node.js 20+, Inkscape, and local IBM Plex Sans Arabic font files in ignored `font/` or `SAAD_FONT_DIR`. Ghostscript is optional but recommended; when available, PDF export automatically compacts the final vector document while preserving fonts, page dimensions, and clickable links.
+## Start here
+
+### Requirements
+
+- Node.js 20 or newer
+- Inkscape for SVG-to-PDF/PNG export
+- IBM Plex Sans Arabic font files in `font/` or the directory named by `SAAD_FONT_DIR`
+- Ghostscript is optional; when available, it makes the final PDF smaller while preserving fonts, dimensions, and links
+
+### Run the editor
 
 ```powershell
 npm install
-npm run validate
-# Optional rendered-font verification when Chromium can run headlessly
-npm run test:browser
 npm run gui
 ```
 
-Open `http://127.0.0.1:4174`.
+Open [http://127.0.0.1:4174](http://127.0.0.1:4174). The GUI and its local API are started together by `npm run gui`.
 
-Generate one repository plan:
+Before sharing changes, run the repository checks:
+
+```powershell
+npm run validate
+```
+
+For optional browser-based font and rendering checks:
+
+```powershell
+npm run test:browser
+```
+
+## Generate plans from the command line
+
+Generate one plan, including SVG and PNG previews:
 
 ```powershell
 npm run generate -- "institutions/ksu/colleges/engineering/majors/electrical-engineering/plan.json" --svg --png
-# Disable the optional Ghostscript pass only for debugging:
-# npm run generate -- ".../plan.json" --no-pdf-optimize
 ```
 
-Generate every institution plan:
+Generate every plan under `institutions/`:
 
 ```powershell
 npm run generate:all -- institutions --svg --png
 ```
 
-Output is ignored under `dist/<plan-id>/`: PDF, optional SVG/PNG, resolved JSON, and diagnostics JSON.
+Generated files are written under the ignored `dist/<institution-id>/<college-id>/<plan-id>/` directory. Depending on the flags, the directory contains a PDF, SVG, PNG, resolved plan JSON, and diagnostics JSON.
 
-
-## Compact PDF export
-
-Course-card badge and activity-box translucency is pre-composed into equivalent solid colors before export. This prevents Inkscape from creating hundreds of transparency Form XObjects while keeping the approved appearance unchanged.
-
-When Ghostscript is found (`GHOSTSCRIPT_PATH`, `--ghostscript`, or a standard installation), the exporter performs a second vector-preserving rewrite that collapses remaining SVG group overhead. URL annotations and subset fonts remain intact. Without Ghostscript, export still succeeds and is substantially smaller than earlier releases; it is simply not maximally compact.
-
-Relevant CLI controls:
+To inspect export behavior without the optional Ghostscript pass:
 
 ```powershell
---no-pdf-optimize       # skip Ghostscript
---require-pdf-optimize  # fail when Ghostscript is unavailable
---ghostscript <path>    # explicit executable path
+npm run generate -- "path/to/plan.json" --no-pdf-optimize
 ```
 
-## Repository model
+Other export flags are `--require-pdf-optimize` and `--ghostscript <path>`.
+
+## How the data is organized
+
+Repository location and file ownership are intentional:
+
+| Source | Owns |
+| --- | --- |
+| `institutions/<institution>/` | Institution identity and settings |
+| `colleges/<college>/` | College identity and metadata |
+| `majors/<major>/plan.json` | The editable parent plan and its academic rules |
+| `tracks/<track>/plan.json` | A child overlay that composes with its parent plan |
+| `catalogs/<institution>/` | Published course facts by catalog term and gender |
+| `fallbackCourses` in the owning plan | Durable facts entered when a catalog cannot resolve a course |
+
+Plans do not duplicate institution or college metadata. Edition and release values come from institution settings. Course facts are kept separate from plan-owned requirements such as prerequisites, corequisites, minimum completed credits, and textual conditions.
+
+Catalog lookup follows this order:
 
 ```text
-institutions/
-  ksu/
-    institution.json
-    settings.json
-    colleges/
-      engineering/
-        college.json
-        majors/
-          electrical-engineering/
-            plan.json
-    shared-semester-sources/
-    shared-elective-sources/
-catalogs/
-  ksu/
-    active.json
-    2026-1/
-      male.json
-      female.json
+active Male catalog → active Female catalog → owning fallbackCourses → unresolved
 ```
 
-Plans do not repeat institution/college names or edition/release. Location resolves institution and college metadata; institution settings own release metadata.
+When a track exists, the parent plan is composed first; the track appends its own content and identity. Track markers are derived during composition and are not authored in plan files.
 
-## Canonical course model
+## Key behaviors
 
-Course occurrences have stable IDs and store plan-owned rules:
-
-```json
-{
-  "id": "major:electrical-engineering:published-level-6:202-كهر",
-  "code": "202 كهر",
-  "prerequisites": ["201 كهر"],
-  "corequisites": [],
-  "minimumCompletedCredits": null,
-  "prerequisiteConditions": []
-}
-```
-
-Every major’s root `plan.json` is its editable parent plan. Track files under `tracks/<track-id>/plan.json` are child overlays: they inherit all parent semesters, electives, shared-source choices, rules, and fallbacks, then append only their own content. Each child stores a `{ "track": { "id", "name" } }` identity. Track markers are derived after parent/child composition and are never operator-authored or persisted.
-
-The owning file stores factual durability once:
-
-```json
-{
-  "fallbackCourses": {
-    "202 كهر": {
-      "name": "تحليل الدوائر الكهربائية",
-      "academicHours": 3,
-      "lectureHours": 3,
-      "exerciseHours": 1,
-      "practicalHours": 0,
-      "source": "catalog",
-      "manuallyEditedFields": []
-    }
-  }
-}
-```
-
-No prerequisite or other plan rules belong in `fallbackCourses`.
-
-Lookup is active-term Male → active-term Female → owning-source fallback → unresolved error. Provenance and data quality remain separate. If one activity value is known, unknown siblings normalize to numeric zero; if all three are unknown, they remain unknown and block export.
-
-## Derived behavior
-
-- Semester names and numbers derive from final composed order.
-- Published/shared courses sort by number, then Arabic subject.
-- Course cards remain `76 × 49 pt`; rows wrap after six without shrinking.
-- Page width is `594 pt`; each page’s height derives independently.
-- A red parent marker appears only when a published course is a prerequisite of a later published course.
-- Requirement pills appear on dependent courses. Corequisites, minimum hours, and textual conditions use the same plan-owned rule model.
+- Stable course-occurrence IDs keep prerequisites and proposal placement reliable.
+- Published courses sort by course number, then Arabic subject.
+- A parent marker appears only when a published course is a prerequisite of a later published course.
 - Same-semester prerequisites, corequisites, elective dependencies, and proposal movement do not create parent markers.
-- Proposals reference stable published course occurrence IDs. Real courses move/reorder but cannot be added, deleted, or duplicated; placeholders remain proposal-owned and last.
-- Footer items preserve the approved appearance and export as four clickable links.
+- Proposals reference published occurrence IDs and never mutate the published plan.
+- Missing activity siblings become zero only when at least one activity value is known.
+- Every PDF page is 594 pt wide; height is derived independently for each page.
+- The local IBM Plex Sans Arabic font is used for both browser measurement and export.
+- Footer hyperlinks remain active in the exported PDF.
 
 ## Architecture
 
-The canonical pipeline is:
+The main pipeline is:
 
 ```text
-repository plan + scoped shared sources + active catalog + settings
-→ normalize and validate
-→ compose
-→ resolve academic facts/rules
-→ reconcile proposal
-→ measured presentation layout
-→ deterministic SVG
-→ compact PDF / PNG
+repository plan + scoped sources + catalog + settings
+        ↓
+normalize and validate
+        ↓
+compose and resolve course facts
+        ↓
+reconcile proposals
+        ↓
+measure layout and compose SVG
+        ↓
+export compact PDF / PNG
 ```
 
-CLI generation, GUI preview, GUI validation, and export all call `src/application/plan-pipeline.mjs`. Domain rules, application workflows, infrastructure adapters, measured layout, SVG components, GUI modules, and localhost API routing are separated. Legacy root entry points remain thin compatibility facades.
+The code is divided by responsibility:
 
-See [architecture](./docs/ARCHITECTURE.md), [data model](./docs/DATA_MODEL.md), [GUI](./docs/GUI.md), [Figma measurements](./docs/FIGMA_MEASUREMENTS.md), and [limitations](./docs/KNOWN_LIMITATIONS.md).
+```text
+src/domain/          Pure academic rules and derived behavior
+src/application/     Pipeline orchestration and workflows
+src/infrastructure/  Filesystem, catalog, repository, and export adapters
+src/presentation/    Measured layout and SVG composition
+gui-app/             React editor and preview UI
+gui/                 Legacy GUI modules and compatibility surface
+```
 
-## Development policy
+Root entry points such as `generate.mjs`, `pipeline.mjs`, `exporter.mjs`, and `preview.mjs` remain thin facades over these modules.
 
-This repository is in active development. Update the canonical schema, fixtures, tests, GUI, renderer, and docs together. Do not create migrations, legacy adapters, backup schemas, or timestamped conversion files. Atomic writes remain required.
+## Compact PDF export
+
+Before export, course-card and activity-box translucency is pre-composed into equivalent solid colors. This avoids hundreds of unnecessary transparency objects while keeping the approved appearance unchanged.
+
+If Ghostscript is available through `GHOSTSCRIPT_PATH`, `--ghostscript`, or a standard installation, the exporter performs a second vector-preserving rewrite. Fonts, page dimensions, and URL annotations are retained.
+
+## Documentation
+
+- [Architecture](./docs/ARCHITECTURE.md)
+- [Data model](./docs/DATA_MODEL.md)
+- [GUI guide](./docs/GUI.md)
+- [Figma measurements](./docs/FIGMA_MEASUREMENTS.md)
+- [Known limitations](./docs/KNOWN_LIMITATIONS.md)
+
+The visual contract is based on the approved [Plans Figma file](https://www.figma.com/design/3r0vSL0tBOx2y2PKPz4FK3/Plans?node-id=381-80662).
+
+## Development notes
+
+The repository uses a canonical model: schema, fixtures, tests, GUI, renderer, and documentation should evolve together. Writes are atomic, and compatibility files should remain thin rather than introducing parallel schemas or migration layers.
+
+## License
+
+Proprietary and confidential. Copyright © 2026 Saad Initiative. See [LICENSE.md](./LICENSE.md).

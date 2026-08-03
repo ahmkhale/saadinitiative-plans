@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { spawnSync } from "node:child_process";
 import test from "node:test";
 import {
   PDFArray,
@@ -12,37 +11,8 @@ import {
   PDFNumber,
   PDFString,
 } from "pdf-lib";
-import { exportSvg, findInkscape } from "../src/exporter.mjs";
+import { exportSvg } from "../src/exporter.mjs";
 import { renderPlanDocumentSvg } from "../src/render-svg.mjs";
-
-function commandWorks(command, args = ["--version"]) {
-  if (!command) return false;
-  const result = spawnSync(command, args, { encoding: "utf8", shell: false });
-  return !result.error && result.status === 0;
-}
-
-function findPdfInfo() {
-  if (commandWorks(process.env.PDFINFO_PATH, ["-v"])) return process.env.PDFINFO_PATH;
-  if (commandWorks("pdfinfo", ["-v"])) return "pdfinfo";
-  if (process.platform !== "win32") return null;
-  const bundled = path.join(
-    process.env.USERPROFILE ?? "",
-    ".cache",
-    "codex-runtimes",
-    "codex-primary-runtime",
-    "dependencies",
-    "native",
-    "poppler",
-    "Library",
-    "bin",
-    "pdfinfo.exe",
-  );
-  return commandWorks(bundled, ["-v"]) ? bundled : null;
-}
-
-const inkscape = findInkscape();
-const pdfinfo = findPdfInfo();
-const hasTools = commandWorks(inkscape);
 
 function facts(code) {
   return {
@@ -61,27 +31,28 @@ function facts(code) {
   };
 }
 
-function uriRectangles(page) {
+function uriAnnotations(page) {
   const annotations = page.node.lookupMaybe(PDFName.of("Annots"), PDFArray);
   if (!annotations) return [];
-  const rectangles = [];
+  const links = [];
   for (let index = 0; index < annotations.size(); index += 1) {
     const annotation = annotations.lookup(index, PDFDict);
     const action = annotation?.lookupMaybe(PDFName.of("A"), PDFDict);
     const uri = action?.lookupMaybe(PDFName.of("URI"), PDFString);
     const rect = annotation?.lookupMaybe(PDFName.of("Rect"), PDFArray);
     if (!uri || !rect) continue;
-    rectangles.push(Array.from(
-      { length: 4 },
-      (_, item) => rect.lookup(item, PDFNumber).asNumber(),
-    ));
+    links.push({
+      uri: uri.decodeText(),
+      rectangle: Array.from(
+        { length: 4 },
+        (_, item) => rect.lookup(item, PDFNumber).asNumber(),
+      ),
+    });
   }
-  return rectangles;
+  return links;
 }
 
-test("Inkscape preserves four on-page footer URL annotations on unequal-height pages", {
-  skip: !hasTools || !pdfinfo,
-}, async () => {
+test("native PDF preserves four on-page footer URL annotations on unequal-height pages", async () => {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "saad-pdf-links-"));
   try {
     const semester = {
@@ -94,7 +65,7 @@ test("Inkscape preserves four on-page footer URL annotations on unequal-height p
     const document = renderPlanDocumentSvg({
       major: "اختبار الروابط",
       semesters: [semester],
-      proposal: { semesters: [semester], showGuide: true },
+      proposal: { semesters: [semester] },
     });
     const paths = {
       svgPath: path.join(temp, "plan.svg"),
@@ -102,31 +73,26 @@ test("Inkscape preserves four on-page footer URL annotations on unequal-height p
       pngPath: path.join(temp, "plan.png"),
     };
     exportSvg(document.svg, paths, {
-      inkscape,
       keepSvg: true,
       pdf: true,
       pageCount: document.pages.length,
+      pages: document.pages,
+      pageLayouts: document.pageLayouts,
     });
 
-    const result = spawnSync(pdfinfo, ["-url", paths.pdfPath], { encoding: "utf8", shell: false });
-    assert.equal(result.status, 0, result.stderr);
-    const urls = [
+    const pdf = await PDFDocument.load(fs.readFileSync(paths.pdfPath));
+    const pages = pdf.getPages();
+    assert.notEqual(pages[0].getHeight(), pages[1].getHeight());
+    const expectedUrls = [
       "https://t.me/SaadInitiative?direct",
       "https://x.com/saadinitiative",
       "https://saadinitiative.com",
       "https://t.me/saadinitiative",
     ];
-    for (const url of urls) {
-      assert.equal(result.stdout.split(url).length - 1, 2, `${url} must occur once on each PDF page`);
-    }
-
-    const pdf = await PDFDocument.load(fs.readFileSync(paths.pdfPath));
-    const pages = pdf.getPages();
-    assert.notEqual(pages[0].getHeight(), pages[1].getHeight());
-    const pageRectangles = pages.map(uriRectangles);
+    const pageLinks = pages.map(uriAnnotations);
     for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
-      assert.equal(pageRectangles[pageIndex].length, 4);
-      for (const [, y1, , y2] of pageRectangles[pageIndex]) {
+      assert.deepEqual(pageLinks[pageIndex].map(({ uri }) => uri), expectedUrls);
+      for (const { rectangle: [, y1, , y2] } of pageLinks[pageIndex]) {
         assert.ok(y1 >= 0, `page ${pageIndex + 1} link must start inside its page`);
         assert.ok(y2 <= pages[pageIndex].getHeight(), `page ${pageIndex + 1} link must end inside its page`);
         assert.ok(Math.abs(y1 - 46) <= 1, `page ${pageIndex + 1} link must align with the footer`);

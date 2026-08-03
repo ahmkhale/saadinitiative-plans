@@ -62,7 +62,6 @@ const els = {
   proposalSemesterList: $("proposalSemesterList"),
   proposalEnabled: $("proposalEnabled"),
   proposalEditor: $("proposalEditor"),
-  guideEnabled: $("guideEnabled"),
   previewHost: $("previewHost"),
   previewDimensions: $("previewDimensions"),
   diagnosticList: $("diagnosticList"),
@@ -147,6 +146,7 @@ async function loadState() {
   state.sharedElectiveGroups = result.sharedElectiveGroups ?? [];
   $("globalEdition").value = state.settings.edition;
   $("globalRelease").value = state.settings.release;
+  $("globalCourseGuidePages").value = state.settings.courseGuidePages;
   const source = result.catalog.sources?.[0];
   els.catalogCount.textContent = result.catalog.resolvedCourseCount.toLocaleString("ar-SA");
   els.catalogConflicts.textContent = result.catalog.conflictCount.toLocaleString("ar-SA");
@@ -941,17 +941,15 @@ $("resetProposalButton").addEventListener("click", async () => {
   state.plan.proposal.semesters = resetProposalToPublished(state.plan.proposal, publishedDecisionSemesters());
   changed(true);
 });
-els.guideEnabled.addEventListener("change", () => {
-  state.plan.proposal.showGuide = els.guideEnabled.checked;
-  changed();
-});
-
-
 $("globalSettingsForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   const result = await request(institutionApi("/settings"), {
     method: "PUT",
-    body: JSON.stringify({ edition: $("globalEdition").value, release: $("globalRelease").value }),
+    body: JSON.stringify({
+      edition: $("globalEdition").value,
+      release: $("globalRelease").value,
+      courseGuidePages: $("globalCourseGuidePages").value,
+    }),
   });
   state.settings = result.settings;
   setStatus("حُفظت إعدادات الإصدار.", "success");
@@ -960,6 +958,7 @@ $("globalSettingsForm").addEventListener("submit", async (event) => {
 $("resetSettingsButton").addEventListener("click", () => {
   $("globalEdition").value = state.settings.edition;
   $("globalRelease").value = state.settings.release;
+  $("globalCourseGuidePages").value = state.settings.courseGuidePages;
 });
 $("addSharedSetButton").addEventListener("click", () => openSharedSetEditor());
 $("saveSharedSetButton").addEventListener("click", () => saveSharedSetEditor().catch((error) => setStatus(error.message, "error")));

@@ -58,6 +58,8 @@ export function exportDraft(rawPlan, options = {}) {
     pdf: options.pdf !== false,
     png: Boolean(options.png),
     pageCount: result.document.pageCount,
+    pages: result.document.pages,
+    pageLayouts: result.document.pageLayouts,
     pngWidth: options.pngWidth,
     inkscape: options.inkscape,
     optimizePdf: options.optimizePdf !== false,

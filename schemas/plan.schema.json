@@ -110,9 +110,6 @@
         "title": {
           "type": "string"
         },
-        "showGuide": {
-          "type": "boolean"
-        },
         "semesters": {
           "type": "array",
           "minItems": 1,

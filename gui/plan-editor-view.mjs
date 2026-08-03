@@ -170,7 +170,6 @@ export function createPlanEditorView(options) {
     renderElectives();
     els.proposalEnabled.checked = Boolean(state.plan.proposal);
     els.proposalEditor.hidden = !state.plan.proposal;
-    els.guideEnabled.checked = state.plan.proposal?.showGuide !== false;
     renderCollection(els.proposalSemesterList, state.plan.proposal?.semesters ?? [], "proposal");
   }
 

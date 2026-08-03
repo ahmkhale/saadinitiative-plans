@@ -37,6 +37,10 @@ export function hydrateFallbackCourses(owner, catalog, options = {}) {
         }
       }
     }
+    if (normalizedCatalog.activityTypes?.length) {
+      if (JSON.stringify(current.activityTypes ?? []) !== JSON.stringify(normalizedCatalog.activityTypes)) changed = true;
+      current.activityTypes = structuredClone(normalizedCatalog.activityTypes);
+    }
     current.source = current.source === "manual" && manuallyEditedFields.size ? "manual" : "catalog";
     current.manuallyEditedFields = [...manuallyEditedFields];
     fallbackCourses[code] = current;
@@ -55,6 +59,7 @@ export function refreshFallbackFromCatalog(owner, code, catalog) {
   result.fallbackCourses ??= {};
   result.fallbackCourses[normalizedCode] = {
     ...Object.fromEntries(FALLBACK_FACT_FIELDS.map((field) => [field, normalized[field] ?? null])),
+    ...(normalized.activityTypes?.length ? { activityTypes: structuredClone(normalized.activityTypes) } : {}),
     source: "catalog",
     manuallyEditedFields: [],
   };

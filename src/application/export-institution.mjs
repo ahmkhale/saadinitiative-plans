@@ -4,6 +4,10 @@ export function institutionExportRoot(outputRoot, institutionId) {
   return path.join(outputRoot, institutionId);
 }
 
+export function collegeExportRoot(outputRoot, institutionId, collegeId) {
+  return path.join(institutionExportRoot(outputRoot, institutionId), collegeId);
+}
+
 export function institutionPlanSelections(store) {
   return store.listColleges().flatMap((college) => (
     college.majors.flatMap((major) => [
@@ -37,7 +41,6 @@ export function exportInstitutionPlans(options) {
     keepSvg = false,
     png = false,
   } = options;
-  const institutionOutputRoot = institutionExportRoot(outputRoot, institutionId);
   const selections = institutionPlanSelections(store);
   const exported = [];
   const failed = [];
@@ -51,7 +54,7 @@ export function exportInstitutionPlans(options) {
       );
       const result = exportPlan(plan, {
         ...optionsForCollege(selection.collegeId),
-        outputRoot: institutionOutputRoot,
+        outputRoot: collegeExportRoot(outputRoot, institutionId, selection.collegeId),
         keepSvg,
         png,
       });

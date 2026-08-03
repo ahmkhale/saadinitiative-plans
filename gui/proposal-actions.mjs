@@ -82,7 +82,6 @@ export function createProposalFromPublished(publishedSemesters) {
   const proposal = {
     enabled: true,
     title: "الخطة المقترحة",
-    showGuide: true,
     semesters: publishedSemesters.map((semester) => ({
       id: semester.id,
       sourceSemesterId: semester.id,

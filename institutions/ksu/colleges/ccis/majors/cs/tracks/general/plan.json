@@ -446,6 +446,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -455,6 +459,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -464,6 +472,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -473,6 +485,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -482,6 +498,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -491,6 +511,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -500,6 +524,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -509,6 +537,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -518,6 +550,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -527,6 +563,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -536,6 +576,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -545,6 +589,9 @@
       "lectureHours": null,
       "exerciseHours": null,
       "practicalHours": null,
+      "activityTypes": [
+        "تدريب"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -554,6 +601,9 @@
       "lectureHours": null,
       "exerciseHours": null,
       "practicalHours": null,
+      "activityTypes": [
+        "مشروع"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -563,6 +613,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -572,6 +626,9 @@
       "lectureHours": null,
       "exerciseHours": null,
       "practicalHours": null,
+      "activityTypes": [
+        "مشروع"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -791,6 +848,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -800,6 +861,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -809,6 +874,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -818,6 +887,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -827,6 +900,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -836,6 +913,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -860,6 +941,10 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     }
@@ -871,7 +956,6 @@
   "proposal": {
     "enabled": true,
     "title": "الخطة المقترحة",
-    "showGuide": true,
     "semesters": [
       {
         "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",

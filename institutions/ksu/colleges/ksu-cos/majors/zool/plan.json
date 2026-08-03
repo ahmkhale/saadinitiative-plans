@@ -917,7 +917,7 @@
       ]
     },
     "355 حين": {
-      "name": "ورثة الأ،واع الفطرية الحيوانية",
+      "name": "ورثة الأنواع الفطرية الحيوانية",
       "academicHours": 2,
       "lectureHours": 2,
       "exerciseHours": 0,
@@ -1142,7 +1142,6 @@
   "proposal": {
     "enabled": true,
     "title": "الخطة المقترحة",
-    "showGuide": true,
     "semesters": [
       {
         "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",

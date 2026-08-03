@@ -5,19 +5,27 @@
   "type": "module",
   "description": "Deterministic Saad academic-plan generator: plan JSON + courses JSON -> resolved plan, SVG and PDF.",
   "scripts": {
-    "dev": "node src/gui-server.mjs",
-    "gui": "node src/gui-server.mjs",
+    "dev": "node scripts/run-gui-dev.mjs",
+    "gui": "node scripts/run-gui-dev.mjs",
+    "gui:server": "node src/gui-server.mjs",
+    "gui:build": "pnpm --dir gui-app build",
     "generate": "node src/generate.mjs",
     "generate:all": "node src/generate-all.mjs",
     "test": "node --test",
-    "validate": "npm test && node --check src/gui-server.mjs && node --check gui/app.js && node --check src/generate.mjs && node --check src/generate-all.mjs",
+    "validate": "npm test && npm run gui:build && node --check src/gui-server.mjs && node --check gui/app.js && node --check src/generate.mjs && node --check src/generate-all.mjs",
     "test:browser": "node scripts/run-browser-render.mjs"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
+    "bidi-js": "^1.0.3",
     "fontkit": "^2.0.4",
-    "pdf-lib": "^1.17.1"
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.17.2",
+    "svg-to-pdfkit": "^0.1.8"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "^5.4.530"
   }
 }

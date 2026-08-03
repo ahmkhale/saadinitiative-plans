@@ -1,5 +1,6 @@
 import { PAGE_LAYOUT } from "./tokens.mjs";
 import { calculateSemesterLayouts, semesterCompositionBottom } from "./semester-layout.mjs";
+import { courseGuideAppearsOn } from "../../domain/course-guide.mjs";
 
 export const GUIDE_LAYOUT = Object.freeze({
   x: 54.08795166015625,
@@ -23,7 +24,7 @@ export function calculateProposalPageLayout(plan) {
   const semesters = proposal.semesters ?? [];
   const semesterLayouts = calculateSemesterLayouts(semesters);
   const semesterBottom = semesterCompositionBottom(semesterLayouts);
-  const includesGuide = proposal.showGuide !== false;
+  const includesGuide = courseGuideAppearsOn(plan.courseGuidePages ?? proposal.courseGuidePages, "proposal");
   const guideY = includesGuide ? semesterBottom + PAGE_LAYOUT.sectionGap : null;
   const contentBottom = guideY === null ? semesterBottom : guideY + GUIDE_LAYOUT.height;
   const footerY = contentBottom + PAGE_LAYOUT.footerGap;

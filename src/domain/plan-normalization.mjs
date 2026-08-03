@@ -1,4 +1,5 @@
 import { courseCodeKey, normalizeCourseCode, numericValue } from "./course-code.mjs";
+import { normalizeActivityTypes } from "./course-facts.mjs";
 import { normalizeRequirementAlternatives } from "./course-requirements.mjs";
 import { labelSemesters } from "./semester.mjs";
 
@@ -21,12 +22,14 @@ export function canonicalFallbackCourses(value = {}) {
     const source = facts.source === "catalog" ? "catalog" : "manual";
     const presentFields = ["name", "academicHours", "lectureHours", "exerciseHours", "practicalHours"]
       .filter((field) => facts[field] !== undefined && facts[field] !== null && facts[field] !== "");
+    const activityTypes = normalizeActivityTypes(facts.activityTypes);
     result[code] = {
       name: facts.name ?? null,
       academicHours: numericValue(facts.academicHours),
       lectureHours: numericValue(facts.lectureHours),
       exerciseHours: numericValue(facts.exerciseHours),
       practicalHours: numericValue(facts.practicalHours),
+      ...(activityTypes.length ? { activityTypes } : {}),
       source,
       manuallyEditedFields: source === "manual"
         ? Array.from(new Set(facts.manuallyEditedFields ?? presentFields))
@@ -114,7 +117,7 @@ export function normalizeSemesters(semesters = [], planId = "plan") {
 
 export function normalizeProposal(proposal) {
   if (!proposal || typeof proposal !== "object") return null;
-  for (const obsolete of ["includeGuide", "expectedCredits", "phases"]) {
+  for (const obsolete of ["includeGuide", "showGuide", "expectedCredits", "phases"]) {
     if (proposal[obsolete] !== undefined) throw new Error(`proposal.${obsolete} is not part of the canonical proposal model.`);
   }
   const semesters = (proposal.semesters ?? []).map((semester, index) => {
@@ -136,7 +139,6 @@ export function normalizeProposal(proposal) {
   return {
     enabled: proposal.enabled !== false,
     title: proposal.title ?? "الخطة المقترحة",
-    showGuide: proposal.showGuide !== false,
     semesters,
   };
 }

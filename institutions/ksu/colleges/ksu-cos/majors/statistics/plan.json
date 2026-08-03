@@ -14,7 +14,10 @@
         {
           "id": "major:statistics:published-level-1:100-بحث",
           "code": "100 بحث",
-          "prerequisites": [],
+          "prerequisites": [
+            "101 احص",
+            "101 ريض"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -22,7 +25,9 @@
         {
           "id": "major:statistics:published-level-1:105-احص",
           "code": "105 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "101 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -30,7 +35,9 @@
         {
           "id": "major:statistics:published-level-1:111-ريض",
           "code": "111 ريض",
-          "prerequisites": [],
+          "prerequisites": [
+            "101 ريض"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -38,7 +45,9 @@
         {
           "id": "major:statistics:published-level-1:111-عال",
           "code": "111 عال",
-          "prerequisites": [],
+          "prerequisites": [
+            "101 تقن"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -51,7 +60,10 @@
         {
           "id": "major:statistics:published-1f153d86-ba9a-420a-8b55-7753cb5ce5be:215-احص",
           "code": "215 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "101 احص",
+            "111 ريض"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -59,7 +71,9 @@
         {
           "id": "major:statistics:published-1f153d86-ba9a-420a-8b55-7753cb5ce5be:244-ريض",
           "code": "244 ريض",
-          "prerequisites": [],
+          "prerequisites": [
+            "101 ريض"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -67,7 +81,10 @@
         {
           "id": "major:statistics:published-1f153d86-ba9a-420a-8b55-7753cb5ce5be:328-احص",
           "code": "328 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "105 احص",
+            "111 عال"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -75,7 +92,9 @@
         {
           "id": "major:statistics:published-1f153d86-ba9a-420a-8b55-7753cb5ce5be:333-احص",
           "code": "333 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "105 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -88,7 +107,9 @@
         {
           "id": "major:statistics:published-54bd4ca3-5c7c-4339-8943-4c7777de2bb0:201-ريض",
           "code": "201 ريض",
-          "prerequisites": [],
+          "prerequisites": [
+            "111 ريض"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -96,7 +117,9 @@
         {
           "id": "major:statistics:published-54bd4ca3-5c7c-4339-8943-4c7777de2bb0:322-احص",
           "code": "322 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "215 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -104,7 +127,9 @@
         {
           "id": "major:statistics:published-54bd4ca3-5c7c-4339-8943-4c7777de2bb0:331-احص",
           "code": "331 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "215 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -112,7 +137,10 @@
         {
           "id": "major:statistics:published-54bd4ca3-5c7c-4339-8943-4c7777de2bb0:332-احص",
           "code": "332 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "244 ريض",
+            "328 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -125,7 +153,9 @@
         {
           "id": "major:statistics:published-e39cbd2a-487e-49a0-80c7-300d3ec94f7f:336-احص",
           "code": "336 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "332 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -133,7 +163,9 @@
         {
           "id": "major:statistics:published-e39cbd2a-487e-49a0-80c7-300d3ec94f7f:337-احص",
           "code": "337 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "328 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -141,7 +173,9 @@
         {
           "id": "major:statistics:published-e39cbd2a-487e-49a0-80c7-300d3ec94f7f:339-احص",
           "code": "339 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "438 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -149,7 +183,9 @@
         {
           "id": "major:statistics:published-e39cbd2a-487e-49a0-80c7-300d3ec94f7f:340-احص",
           "code": "340 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "332 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -162,7 +198,9 @@
         {
           "id": "major:statistics:published-6d9c57e1-949f-454a-ae07-8b3caf15a3f7:419-احص",
           "code": "419 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "340 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -170,7 +208,9 @@
         {
           "id": "major:statistics:published-6d9c57e1-949f-454a-ae07-8b3caf15a3f7:429-احص",
           "code": "429 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "331 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -178,7 +218,9 @@
         {
           "id": "major:statistics:published-6d9c57e1-949f-454a-ae07-8b3caf15a3f7:438-احص",
           "code": "438 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "332 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -186,7 +228,10 @@
         {
           "id": "major:statistics:published-6d9c57e1-949f-454a-ae07-8b3caf15a3f7:497-احص",
           "code": "497 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "335 احص",
+            "336 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -199,7 +244,10 @@
         {
           "id": "major:statistics:published-d1303721-5250-4112-8073-2a59ae00b52e:415-احص",
           "code": "415 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "201 ريض",
+            "419 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -207,7 +255,9 @@
         {
           "id": "major:statistics:published-d1303721-5250-4112-8073-2a59ae00b52e:423-احص",
           "code": "423 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "332 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -223,7 +273,9 @@
         {
           "id": "major:statistics:published-d1303721-5250-4112-8073-2a59ae00b52e:498-احص",
           "code": "498 احص",
-          "prerequisites": [],
+          "prerequisites": [
+            "497 احص"
+          ],
           "corequisites": [],
           "minimumCompletedCredits": null,
           "prerequisiteConditions": []
@@ -248,13 +300,16 @@
     "339 احص": {
       "name": "تحليل بيانات",
       "academicHours": 3,
-      "lectureHours": null,
-      "exerciseHours": null,
-      "practicalHours": null,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
       "source": "manual",
       "manuallyEditedFields": [
         "name",
-        "academicHours"
+        "academicHours",
+        "lectureHours",
+        "exerciseHours",
+        "practicalHours"
       ]
     },
     "100 بحث": {
@@ -263,6 +318,10 @@
       "lectureHours": 3,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -272,6 +331,10 @@
       "lectureHours": 3,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -281,6 +344,10 @@
       "lectureHours": 3,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -290,6 +357,11 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -299,6 +371,10 @@
       "lectureHours": 3,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -308,6 +384,10 @@
       "lectureHours": 3,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -317,6 +397,10 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -326,6 +410,10 @@
       "lectureHours": 2,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -335,6 +423,10 @@
       "lectureHours": 3,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -344,6 +436,9 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -353,6 +448,10 @@
       "lectureHours": 2,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -362,6 +461,10 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -371,6 +474,10 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -380,6 +487,10 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -389,6 +500,10 @@
       "lectureHours": 2,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -398,6 +513,10 @@
       "lectureHours": 2,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -407,6 +526,9 @@
       "lectureHours": 3,
       "exerciseHours": 0,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -416,6 +538,10 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -425,6 +551,9 @@
       "lectureHours": null,
       "exerciseHours": null,
       "practicalHours": null,
+      "activityTypes": [
+        "مشروع"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -434,6 +563,10 @@
       "lectureHours": 2,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -443,6 +576,9 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -452,6 +588,9 @@
       "lectureHours": null,
       "exerciseHours": null,
       "practicalHours": null,
+      "activityTypes": [
+        "مشروع"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     }

@@ -1,7 +1,7 @@
 import { refreshFallbackFromCatalog } from "../../application/hydrate-fallbacks.mjs";
 import {
+  collegeExportRoot,
   exportInstitutionPlans,
-  institutionExportRoot,
 } from "../../application/export-institution.mjs";
 import { renderDraftPreview, resolveDraft } from "../../application/preview-plan.mjs";
 import { readSettings, saveSettings } from "../../infrastructure/repositories/settings-repository.mjs";
@@ -66,7 +66,11 @@ export function createGuiApiRouter(options) {
       const planToExport = body.majorId
         ? context.store.getComposedPlan(body.collegeId, body.majorId, body.trackId, savedPlan)
         : savedPlan;
-      const scopedOutputRoot = institutionExportRoot(outputRoot, context.institution.id);
+      const scopedOutputRoot = collegeExportRoot(
+        outputRoot,
+        context.institution.id,
+        body.collegeId,
+      );
       const result = exportDraftFn(planToExport, {
         ...pipelineOptions(context, body.collegeId),
         outputRoot: scopedOutputRoot,

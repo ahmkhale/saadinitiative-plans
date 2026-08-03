@@ -2,7 +2,42 @@ import { COLORS, GUIDE_LAYOUT } from "../layout/page-layout.mjs";
 import { renderCourseCard } from "./course-card.mjs";
 import { line, text, textLines } from "./primitives.mjs";
 
-export function renderGuide(context, y) {
+function exerciseGuideLines(activityTypes) {
+  if (!Array.isArray(activityTypes)) return ["عدد ساعات التمارين، أو", "العيادة أسبوعيًا."];
+  const includesExercises = activityTypes.includes("تمارين");
+  const includesClinic = activityTypes.includes("عيادة");
+  if (includesExercises && includesClinic) return ["عدد ساعات التمارين، أو", "العيادة أسبوعيًا."];
+  if (includesClinic) return ["عدد ساعات العيادة أسبوعيًا."];
+  return ["عدد ساعات التمارين أسبوعيًا."];
+}
+
+const PRACTICAL_GUIDE_ACTIVITIES = Object.freeze([
+  Object.freeze({ activity: "عملي", first: "للعملي", following: "العملي" }),
+  Object.freeze({ activity: "ستوديو", first: "للأستوديو", following: "الأستوديو" }),
+  Object.freeze({ activity: "مشروع", first: "للمشروع", following: "المشروع" }),
+  Object.freeze({ activity: "حقلي", first: "للنشاط الحقلي", following: "الحقلي" }),
+  Object.freeze({ activity: "تدريب", first: "للتدريب", following: "التدريب" }),
+]);
+
+function practicalGuideLines(activityTypes) {
+  if (!Array.isArray(activityTypes)) {
+    return ["عدد الساعات الأسبوعية للعملي،", "أو الأستوديو، أو المشروع،", "أو الحقلي، أو التدريب."];
+  }
+  const included = PRACTICAL_GUIDE_ACTIVITIES.filter(({ activity }) => activityTypes.includes(activity));
+  if (!included.length) return ["عدد الساعات الأسبوعية للعملي."];
+  const [first, ...rest] = included;
+  const lines = [`عدد الساعات الأسبوعية ${first.first}${rest.length ? "،" : "."}`];
+  for (let index = 0; index < rest.length; index += 2) {
+    const pair = rest.slice(index, index + 2);
+    lines.push(pair.map((item, pairIndex) => {
+      const isLast = index + pairIndex === rest.length - 1;
+      return `أو ${item.following}${isLast ? "." : "،"}`;
+    }).join(" "));
+  }
+  return lines;
+}
+
+export function renderGuide(context, y, activityTypes) {
   const demo = {
     code: "رمز المقرر",
     name: "اسم المقرر",
@@ -27,7 +62,7 @@ export function renderGuide(context, y) {
   const parts = [renderCourseCard(context, demo, cardX, cardY, { scale })];
 
   parts.push(text({ x: 207.887, y: cardY + 17.156, value: "مقرر أب", size: 8.457286834716797, weight: 700, anchor: "start" }));
-  parts.push(textLines({ x: 208.1985, y: cardY + 29.6, lines: ["يعد هذا المقرر متطلبًا سابقًا لمقررات في مستويات", "قادمة."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
+  parts.push(textLines({ x: 208.1985, y: cardY + 29.6, lines: ["يعد هذا المقرر متطلب سابق لمقررات في مستويات", "قادمة. أو متطلب مرافق لمقرر آخر في نفس", "المستوى."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
   parts.push(text({ x: 208.6357, y: cardY + 87.633, value: "مقرر تابع للمسار", size: 8.457286834716797, weight: 700, anchor: "start" }));
   parts.push(textLines({ x: 208.1985, y: cardY + 100.08, lines: ["علامة تبين أن المقرر تابع للمسار الحالي، وتنطبق", "فقط على التخصصات التي تحوي مسارات."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
@@ -35,13 +70,13 @@ export function renderGuide(context, y) {
   parts.push(text({ x: 539.4849, y: cardY + 17.156, value: "الساعات الأكاديمية", size: 8.457286834716797, weight: 700, anchor: "start" }));
   parts.push(textLines({ x: 539.912, y: cardY + 29.6, lines: ["الساعات التي يتم اعتمادها في حساب", "المعدلات الدراسية والساعات التراكمية."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
-  parts.push(text({ x: 539.6256, y: cardY + 87.633, value: "مقرر منقرض", size: 8.457286834716797, weight: 700, anchor: "start" }));
+  parts.push(text({ x: 539.6256, y: cardY + 87.633, value: "مقرر منقرض أو جديد", size: 8.457286834716797, weight: 700, anchor: "start" }));
   parts.push(textLines({ x: 539.4146, y: cardY + 100.08, lines: ["لم يظهر المقرر خلال السنين الماضية ضمن", "المقررات المطروحة."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
   const headingY = cardY + 151;
   const details = [
-    { x: 144.676, heading: "ساعات التمارين", lines: ["عدد ساعات التمارين أسبوعيًا."] },
-    { x: 259.078, heading: "ساعات العملي", lines: ["عدد ساعات العملي أسبوعيًا."] },
+    { x: 144.676, heading: "ساعات التمارين", lines: exerciseGuideLines(activityTypes) },
+    { x: 259.078, heading: "ساعات العملي", lines: practicalGuideLines(activityTypes) },
     { x: 381.781, heading: "ساعات المحاضرة", lines: ["عدد ساعات المحاضرة أسبوعيًا."] },
     { x: 539.4095, heading: "الساعات الفعلية", lines: ["الساعات التي يتم تدريس المقرر فيها بشكل", "أسبوعي، وهي الساعات التي يتم اعتمادها", "في حساب الحرمان."] },
   ];
@@ -54,7 +89,7 @@ export function renderGuide(context, y) {
     [184.180908203125, 19.7333984375, 157.8693504333496, 19.7333984375, COLORS.line],
     [184.180908203125, 88.3310546875, 157.8693504333496, 88.3310546875, COLORS.line],
     [379.63812255859375, 19.7333984375, 314.7989273071289, 19.7333984375, COLORS.line],
-    [440.71856689453125, 88.3310546875, 313.85926818847656, 88.3310546875, COLORS.line],
+    [410, 88.3310546875, 313.85926818847656, 88.3310546875, COLORS.line],
     [298.8240966796875, 142.833984375, 268.9120469375828, 97.99975489888675, COLORS.line],
     [460.45220947265625, 142.833984375, 280.9120404425703, 89.99975197172535, COLORS.saad],
     [180.422119140625, 142.833984375, 249.02011030747963, 98.66815537826915, COLORS.line],

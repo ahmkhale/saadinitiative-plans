@@ -20,6 +20,7 @@ export function outputPaths(plan, options = {}) {
     : path.join(
       outputRoot,
       ...(options.institutionId ? [safeSlug(options.institutionId, "institution")] : []),
+      ...(options.collegeId ? [safeSlug(options.collegeId, "college")] : []),
       safeSlug(
         plan.track?.id ? `${plan.id ?? plan.major}-${plan.track.id}` : plan.id ?? plan.planCode ?? plan.major,
         "plan",
@@ -60,6 +61,7 @@ export function generatePlan(options) {
   const paths = outputPaths(resolved, {
     ...options,
     institutionId: options.institutionId ?? repositoryMetadata.institutionId,
+    collegeId: options.collegeId ?? repositoryMetadata.collegeId,
   });
   writeJson(paths.resolvedPath, resolved);
   writeJson(paths.diagnosticsPath, diagnostics);
@@ -81,6 +83,8 @@ export function generatePlan(options) {
       png: Boolean(options.png),
       pngWidth: options.pngWidth,
       pageCount: document.pageCount,
+      pages: document.pages,
+      pageLayouts: document.pageLayouts,
       inkscape: options.inkscape,
       optimizePdf: options.optimizePdf !== false,
       requirePdfOptimization: Boolean(options.requirePdfOptimization),
