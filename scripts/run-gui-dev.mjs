@@ -1,14 +1,19 @@
 import { spawn } from "node:child_process";
 import process from "node:process";
 
-const pnpm = process.platform === "win32" ? "pnpm.cmd" : "pnpm";
+const isWindows = process.platform === "win32";
+const pnpm = isWindows ? "pnpm.cmd" : "pnpm";
+const viteCommand = isWindows ? (process.env.ComSpec ?? "cmd.exe") : pnpm;
+const viteArgs = isWindows
+  ? ["/d", "/s", "/c", `${pnpm} --dir gui-app dev`]
+  : ["--dir", "gui-app", "dev"];
 const api = spawn(process.execPath, ["src/gui-server.mjs"], {
   cwd: process.cwd(),
   env: { ...process.env, PORT: "4175" },
   stdio: "inherit",
   windowsHide: true,
 });
-const vite = spawn(pnpm, ["--dir", "gui-app", "dev"], {
+const vite = spawn(viteCommand, viteArgs, {
   cwd: process.cwd(),
   stdio: "inherit",
   windowsHide: true,
