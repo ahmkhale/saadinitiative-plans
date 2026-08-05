@@ -1,0 +1,540 @@
+{
+  "generatorVersion": "0.3.2",
+  "planPath": "C:\\Users\\ahmkh\\Projects\\Saad\\saadinitiative-plans\\institutions\\ksu\\colleges\\ccis\\majors\\cs\\tracks\\general\\plan.json",
+  "catalogPath": null,
+  "generatedAt": "2026-08-04T10:39:34.460Z",
+  "summary": {
+    "errors": 0,
+    "warnings": 3,
+    "info": 72
+  },
+  "items": [
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "104 انجل has a durable catalog fallback snapshot.",
+      "course": "104 انجل",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 احص has a durable catalog fallback snapshot.",
+      "course": "101 احص",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 كيم has a durable catalog fallback snapshot.",
+      "course": "101 كيم",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 ريد has a durable catalog fallback snapshot.",
+      "course": "101 ريد",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "100 عرب has a durable catalog fallback snapshot.",
+      "course": "100 عرب",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "111 انجل has a durable catalog fallback snapshot.",
+      "course": "111 انجل",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 ريض has a durable catalog fallback snapshot.",
+      "course": "101 ريض",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 تقن has a durable catalog fallback snapshot.",
+      "course": "101 تقن",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 نهج has a durable catalog fallback snapshot.",
+      "course": "101 نهج",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 فجب has a durable catalog fallback snapshot.",
+      "course": "101 فجب",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "106 ريض has a durable catalog fallback snapshot.",
+      "course": "106 ريض",
+      "location": "semester-3"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "107 سلم has a durable catalog fallback snapshot.",
+      "course": "107 سلم",
+      "location": "semester-3"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "111 عال has a durable catalog fallback snapshot.",
+      "course": "111 عال",
+      "location": "semester-3"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "151 ريض has a durable catalog fallback snapshot.",
+      "course": "151 ريض",
+      "location": "semester-3"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "108 سلم has a durable catalog fallback snapshot.",
+      "course": "108 سلم",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "113 عال has a durable catalog fallback snapshot.",
+      "course": "113 عال",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "220 عال has a durable catalog fallback snapshot.",
+      "course": "220 عال",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "244 ريض has a durable catalog fallback snapshot.",
+      "course": "244 ريض",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "281 عال has a durable catalog fallback snapshot.",
+      "course": "281 عال",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "212 عال has a durable catalog fallback snapshot.",
+      "course": "212 عال",
+      "location": "semester-5"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "304 عال has a durable catalog fallback snapshot.",
+      "course": "304 عال",
+      "location": "semester-5"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "339 عال has a durable catalog fallback snapshot.",
+      "course": "339 عال",
+      "location": "semester-5"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "380 عال has a durable catalog fallback snapshot.",
+      "course": "380 عال",
+      "location": "semester-5"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "227 عال has a durable catalog fallback snapshot.",
+      "course": "227 عال",
+      "location": "semester-6"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "311 عال has a durable catalog fallback snapshot.",
+      "course": "311 عال",
+      "location": "semester-6"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "329 عال has a durable catalog fallback snapshot.",
+      "course": "329 عال",
+      "location": "semester-6"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "361 عال has a durable catalog fallback snapshot.",
+      "course": "361 عال",
+      "location": "semester-6"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "429 عال has a durable catalog fallback snapshot.",
+      "course": "429 عال",
+      "location": "semester-6"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "340 عال has a durable catalog fallback snapshot.",
+      "course": "340 عال",
+      "location": "semester-7"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "343 عال has a durable catalog fallback snapshot.",
+      "course": "343 عال",
+      "location": "semester-7"
+    },
+    {
+      "severity": "warnings",
+      "code": "UNKNOWN_ACTIVITY_HOURS",
+      "message": "479 عال has no known lecture, exercise, or practical hours; zeroes are used for display.",
+      "course": "479 عال",
+      "location": "semester-7"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "479 عال has a durable catalog fallback snapshot.",
+      "course": "479 عال",
+      "location": "semester-7"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "481 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "481 عال",
+      "location": "semester-7"
+    },
+    {
+      "severity": "warnings",
+      "code": "UNKNOWN_ACTIVITY_HOURS",
+      "message": "496 عال has no known lecture, exercise, or practical hours; zeroes are used for display.",
+      "course": "496 عال",
+      "location": "semester-7"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "496 عال has a durable catalog fallback snapshot.",
+      "course": "496 عال",
+      "location": "semester-7"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "453 عال has a durable catalog fallback snapshot.",
+      "course": "453 عال",
+      "location": "semester-8"
+    },
+    {
+      "severity": "warnings",
+      "code": "UNKNOWN_ACTIVITY_HOURS",
+      "message": "497 عال has no known lecture, exercise, or practical hours; zeroes are used for display.",
+      "course": "497 عال",
+      "location": "semester-8"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "497 عال has a durable catalog fallback snapshot.",
+      "course": "497 عال",
+      "location": "semester-8"
+    },
+    {
+      "severity": "info",
+      "code": "ELECTIVE_CANDIDATE_EXCLUDED",
+      "message": "107 سلم was excluded because it already exists in a published semester.",
+      "course": "107 سلم",
+      "sourceId": "ksu-general-req",
+      "location": "elective-ksu-general-req"
+    },
+    {
+      "severity": "info",
+      "code": "ELECTIVE_CANDIDATE_EXCLUDED",
+      "message": "108 سلم was excluded because it already exists in a published semester.",
+      "course": "108 سلم",
+      "sourceId": "ksu-general-req",
+      "location": "elective-ksu-general-req"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "100 سلم has a durable catalog fallback snapshot.",
+      "course": "100 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "100 قرأ has a durable catalog fallback snapshot.",
+      "course": "100 قرأ",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "103 سلم has a durable catalog fallback snapshot.",
+      "course": "103 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "105 سلم has a durable catalog fallback snapshot.",
+      "course": "105 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "109 سلم has a durable catalog fallback snapshot.",
+      "course": "109 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "101 سلم was not found in courses.json; manual plan fallback was used.",
+      "course": "101 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "104 سلم was not found in courses.json; manual plan fallback was used.",
+      "course": "104 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "103 فيز has a durable catalog fallback snapshot.",
+      "course": "103 فيز",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "104 فيز has a durable catalog fallback snapshot.",
+      "course": "104 فيز",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "108 كيم has a durable catalog fallback snapshot.",
+      "course": "108 كيم",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "201 كيم has a durable catalog fallback snapshot.",
+      "course": "201 كيم",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "202 كيح has a durable catalog fallback snapshot.",
+      "course": "202 كيح",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "210 فيز was not found in courses.json; manual plan fallback was used.",
+      "course": "210 فيز",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "215 عال has a durable catalog fallback snapshot.",
+      "course": "215 عال",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "216 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "216 عال",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "320 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "320 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "350 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "350 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "384 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "384 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "386 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "386 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "411 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "411 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "412 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "412 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "413 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "413 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "432 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "432 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "437 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "437 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "440 عال has a durable catalog fallback snapshot.",
+      "course": "440 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "443 عال has a durable catalog fallback snapshot.",
+      "course": "443 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "450 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "450 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "456 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "456 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "458 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "458 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "462 عال has a durable catalog fallback snapshot.",
+      "course": "462 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "463 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "463 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "482 عال was not found in courses.json; manual plan fallback was used.",
+      "course": "482 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "483 هاب has a durable catalog fallback snapshot.",
+      "course": "483 هاب",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "484 عال has a durable catalog fallback snapshot.",
+      "course": "484 عال",
+      "location": "elective-elective-group-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "489 عال has a durable catalog fallback snapshot.",
+      "course": "489 عال",
+      "location": "elective-elective-group-1"
+    }
+  ]
+}

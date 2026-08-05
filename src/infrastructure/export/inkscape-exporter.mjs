@@ -41,6 +41,15 @@ function correctPdfLinks(pdfPath, pageCount) {
   ]);
 }
 
+function correctPdfMetadata(pdfPath, metadata) {
+  if (!metadata) return;
+  run(process.execPath, [
+    fileURLToPath(new URL("./pdf-metadata-corrector.mjs", import.meta.url)),
+    pdfPath,
+    JSON.stringify(metadata),
+  ]);
+}
+
 export function exportSvg(svg, paths, options = {}) {
   fs.mkdirSync(path.dirname(paths.svgPath), { recursive: true });
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "saad-plan-"));
@@ -54,6 +63,7 @@ export function exportSvg(svg, paths, options = {}) {
       if (Array.isArray(options.pages) && Array.isArray(options.pageLayouts)) {
         const nativeResult = exportNativePdf(options.pages, options.pageLayouts, paths.pdfPath, {
           fontDir: options.fontDir,
+          metadata: options.metadata,
         });
         pdfOptimization = Object.freeze({
           optimized: false,
@@ -73,6 +83,7 @@ export function exportSvg(svg, paths, options = {}) {
           required: Boolean(options.requirePdfOptimization),
           ghostscript: options.ghostscript,
         });
+        correctPdfMetadata(paths.pdfPath, options.metadata);
       }
     }
     if (options.png) {

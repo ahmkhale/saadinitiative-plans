@@ -65,7 +65,7 @@ export function renderGuide(context, y, activityTypes) {
   parts.push(textLines({ x: 208.1985, y: cardY + 29.6, lines: ["يعد هذا المقرر متطلب سابق لمقررات في مستويات", "قادمة. أو متطلب مرافق لمقرر آخر في نفس", "المستوى."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
   parts.push(text({ x: 208.6357, y: cardY + 87.633, value: "مقرر تابع للمسار", size: 8.457286834716797, weight: 700, anchor: "start" }));
-  parts.push(textLines({ x: 208.1985, y: cardY + 100.08, lines: ["علامة تبين أن المقرر تابع للمسار الحالي، وتنطبق", "فقط على التخصصات التي تحوي مسارات."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
+  parts.push(textLines({ x: 208.1985, y: cardY + 100.08, lines: ["علامة تبين أن المقرر متاح فقط للمسار الحالي،", "وتنطبق فقط على التخصصات التي تحوي مسارات."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));
 
   parts.push(text({ x: 539.4849, y: cardY + 17.156, value: "الساعات الأكاديمية", size: 8.457286834716797, weight: 700, anchor: "start" }));
   parts.push(textLines({ x: 539.912, y: cardY + 29.6, lines: ["الساعات التي يتم اعتمادها في حساب", "المعدلات الدراسية والساعات التراكمية."], lineHeight: 10.5716, size: 8.457286834716797, anchor: "start" }));

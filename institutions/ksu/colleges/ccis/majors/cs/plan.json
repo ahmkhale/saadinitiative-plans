@@ -176,6 +176,10 @@
       "lectureHours": 3,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -185,6 +189,9 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -194,6 +201,11 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -203,6 +215,10 @@
       "lectureHours": 3,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -212,6 +228,9 @@
       "lectureHours": 2,
       "exerciseHours": 0,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -221,6 +240,11 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -230,6 +254,11 @@
       "lectureHours": 2,
       "exerciseHours": 1,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -239,6 +268,10 @@
       "lectureHours": 3,
       "exerciseHours": 2,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -248,6 +281,10 @@
       "lectureHours": 3,
       "exerciseHours": 1,
       "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -257,6 +294,10 @@
       "lectureHours": 3,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -266,6 +307,10 @@
       "lectureHours": 3,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -275,6 +320,10 @@
       "lectureHours": 3,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -284,6 +333,10 @@
       "lectureHours": 3,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -293,6 +346,10 @@
       "lectureHours": 3,
       "exerciseHours": 0,
       "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
       "source": "catalog",
       "manuallyEditedFields": []
     },
@@ -312,5 +369,70 @@
       ]
     }
   },
-  "proposal": null
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:cs:published-level-1:106-ريض",
+          "major:cs:published-level-1:107-سلم",
+          "major:cs:published-level-1:111-عال",
+          "major:cs:published-level-1:151-ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-mse6b15i",
+            "name": "من متطلبات علمية",
+            "electiveGroupId": "elective-group-2",
+            "allocationHours": 4,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-babf818e-3503-4d42-b492-c58bb35d078a",
+        "sourceSemesterId": "published-babf818e-3503-4d42-b492-c58bb35d078a",
+        "type": "regular",
+        "courseOrder": [
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:108-سلم",
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:113-عال",
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:220-عال",
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:244-ريض",
+          "major:cs:published-babf818e-3503-4d42-b492-c58bb35d078a:281-عال"
+        ],
+        "placeholders": []
+      }
+    ]
+  }
 }

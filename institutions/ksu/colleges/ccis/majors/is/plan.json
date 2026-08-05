@@ -229,5 +229,71 @@
       "source": "catalog",
       "manuallyEditedFields": []
     }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-19a13771-de27-4228-b329-3966f68ee4ed",
+        "sourceSemesterId": "published-19a13771-de27-4228-b329-3966f68ee4ed",
+        "type": "regular",
+        "courseOrder": [
+          "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:101-ادا",
+          "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:111-عال",
+          "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:151-ريض",
+          "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:201-حسب",
+          "major:is:published-19a13771-de27-4228-b329-3966f68ee4ed:201-نال"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-e3682202-65fa-4efe-832a-0a5445b962e6",
+        "sourceSemesterId": "published-e3682202-65fa-4efe-832a-0a5445b962e6",
+        "type": "regular",
+        "courseOrder": [
+          "major:is:published-e3682202-65fa-4efe-832a-0a5445b962e6:113-عال",
+          "major:is:published-e3682202-65fa-4efe-832a-0a5445b962e6:230-نال",
+          "major:is:published-e3682202-65fa-4efe-832a-0a5445b962e6:240-نال",
+          "major:is:published-e3682202-65fa-4efe-832a-0a5445b962e6:244-ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-mse5mle0",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      }
+    ]
   }
 }

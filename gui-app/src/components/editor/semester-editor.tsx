@@ -33,7 +33,11 @@ export function SemesterEditor({ workspace }: { workspace: PlanWorkspace }) {
   const { plan, parentPlan, data, preview } = workspace
   if (!plan || !data) return null
 
-  const inheritedSources = (plan.sharedSemesterSets ?? [])
+  const inheritedSourceIds = Array.from(new Set([
+    ...(parentPlan?.sharedSemesterSets ?? []),
+    ...(plan.sharedSemesterSets ?? []),
+  ]))
+  const inheritedSources = inheritedSourceIds
     .map((id) => data.sharedSemesterSets.find((source) => source.id === id))
     .filter(Boolean)
   const inheritedSemesters = [
@@ -57,7 +61,7 @@ export function SemesterEditor({ workspace }: { workspace: PlanWorkspace }) {
                 <Card key={semester.id} size="sm" className="border-dashed">
                   <CardHeader>
                     <CardTitle>{semesterLabel(index + 1)}</CardTitle>
-                    <CardDescription>{source ? `مشترك من ${source.name}` : "موروث من الخطة الأساسية"}</CardDescription>
+                    <CardDescription>{source ? `مشترك من ${source.name}` : `موروث من خطة ${parentPlan?.major ?? "الخطة الأساسية"}`}</CardDescription>
                     <CardAction><Badge variant="secondary">للقراءة فقط</Badge></CardAction>
                   </CardHeader>
                   <CardContent>

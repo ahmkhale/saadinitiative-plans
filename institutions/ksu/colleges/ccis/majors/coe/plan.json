@@ -1,0 +1,1846 @@
+{
+  "schemaVersion": 1,
+  "id": "coe",
+  "major": "هندسة الحاسب",
+  "degree": "البكالوريوس",
+  "expectedCredits": 160,
+  "sharedSemesterSets": [
+    "cfy-scientific"
+  ],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": [
+        {
+          "id": "major:coe:published-level-1:103-فيز",
+          "code": "103 فيز",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-level-1:106-ريض",
+          "code": "106 ريض",
+          "prerequisites": [
+            "101 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-level-1:111-عال",
+          "code": "111 عال",
+          "prerequisites": [
+            "101 تقن"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-level-1:151-ريض",
+          "code": "151 ريض",
+          "prerequisites": [
+            "101 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-3a7a1246-47d8-4b17-a707-4cdd566ed27c",
+      "courses": [
+        {
+          "id": "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:104-فيز",
+          "code": "104 فيز",
+          "prerequisites": [
+            "103 فيز"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:109-نجم",
+          "code": "109 نجم",
+          "prerequisites": [
+            "110 انجل"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:113-عال",
+          "code": "113 عال",
+          "prerequisites": [
+            "111 عال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:205-ريض",
+          "code": "205 ريض",
+          "prerequisites": [
+            "106 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:211-هال",
+          "code": "211 هال",
+          "prerequisites": [
+            "151 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-b6c52094-0c22-4116-acbc-fa772205e426",
+      "courses": [
+        {
+          "id": "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:110-نجم",
+          "code": "110 نجم",
+          "prerequisites": [
+            "109 نجم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:204-ريض",
+          "code": "204 ريض",
+          "prerequisites": [
+            "205 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:207-كهر",
+          "code": "207 كهر",
+          "prerequisites": [
+            "205 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:212-عال",
+          "code": "212 عال",
+          "prerequisites": [
+            "113 عال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:212-هال",
+          "code": "212 هال",
+          "prerequisites": [
+            "211 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-603849d6-e910-4906-929c-b9336ab7b09c",
+      "courses": [
+        {
+          "id": "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:227-عال",
+          "code": "227 عال",
+          "prerequisites": [
+            "212 عال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:244-ريض",
+          "code": "244 ريض",
+          "prerequisites": [
+            "106 ريض"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:310-كهر",
+          "code": "310 كهر",
+          "prerequisites": [
+            "207 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:312-كهر",
+          "code": "312 كهر",
+          "prerequisites": [
+            "207 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:316-هال",
+          "code": "316 هال",
+          "prerequisites": [
+            "212 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:351-هال",
+          "code": "351 هال",
+          "prerequisites": [
+            "204 ريض",
+            "207 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2",
+      "courses": [
+        {
+          "id": "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:211-هاب",
+          "code": "211 هاب",
+          "prerequisites": [
+            "111 عال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:318-هال",
+          "code": "318 هال",
+          "prerequisites": [
+            "316 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:341-هال",
+          "code": "341 هال",
+          "prerequisites": [
+            "351 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:352-هال",
+          "code": "352 هال",
+          "prerequisites": [
+            "351 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:390-هال",
+          "code": "390 هال",
+          "prerequisites": [
+            "110 نجم"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-e4129093-233c-4f8f-96db-7aec26c6aa5b",
+      "courses": [
+        {
+          "id": "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:311-عال",
+          "code": "311 عال",
+          "prerequisites": [
+            "151 ريض",
+            "212 عال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:415-هال",
+          "code": "415 هال",
+          "prerequisites": [
+            "212 هال",
+            "310 كهر"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:441-هال",
+          "code": "441 هال",
+          "prerequisites": [
+            "341 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:453-هال",
+          "code": "453 هال",
+          "prerequisites": [
+            "244 ريض",
+            "352 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:479-هال",
+          "code": "479 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": 120,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:490-هال",
+          "code": "490 هال",
+          "prerequisites": [
+            "110 نجم",
+            "316 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "published-8d37e1f4-53fc-4ed5-8219-4f6de468e1ea",
+      "courses": [
+        {
+          "id": "major:coe:published-8d37e1f4-53fc-4ed5-8219-4f6de468e1ea:107-سلم",
+          "code": "107 سلم",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-8d37e1f4-53fc-4ed5-8219-4f6de468e1ea:442-هال",
+          "code": "442 هال",
+          "prerequisites": [
+            "441 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:published-8d37e1f4-53fc-4ed5-8219-4f6de468e1ea:492-هال",
+          "code": "492 هال",
+          "prerequisites": [
+            "490 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": 120,
+          "prerequisiteConditions": [
+            "مستوى 7"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "published-6a1c0db8-52b3-46c1-bf34-3de8f7293850",
+      "courses": [
+        {
+          "id": "major:coe:published-6a1c0db8-52b3-46c1-bf34-3de8f7293850:493-هال",
+          "code": "493 هال",
+          "prerequisites": [
+            "492 هال"
+          ],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "electiveGroups": [
+    {
+      "sourceId": "ksu-general-req"
+    },
+    {
+      "id": "elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3",
+      "name": "متطلبات القسم",
+      "requiredHours": 12,
+      "courses": [
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:402-هال",
+          "code": "402 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:413-هال",
+          "code": "413 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:414-هال",
+          "code": "414 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:416-هال",
+          "code": "416 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:443-هال",
+          "code": "443 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:445-هال",
+          "code": "445 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:446-هال",
+          "code": "446 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:454-هال",
+          "code": "454 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:459-هال",
+          "code": "459 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:460-هال",
+          "code": "460 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:465-هال",
+          "code": "465 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3:491-هال",
+          "code": "491 هال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    },
+    {
+      "id": "elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c",
+      "name": "متطلبات خارج القسم",
+      "requiredHours": 3,
+      "courses": [
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:203-كهر",
+          "code": "203 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:204-كهر",
+          "code": "204 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:230-نال",
+          "code": "230 نال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:312-هاب",
+          "code": "312 هاب",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:321-هاب",
+          "code": "321 هاب",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:335-نال",
+          "code": "335 نال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:361-عال",
+          "code": "361 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:380-عال",
+          "code": "380 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:385-نال",
+          "code": "385 نال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:407-كهر",
+          "code": "407 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:412-عال",
+          "code": "412 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:422-كهر",
+          "code": "422 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:423-كهر",
+          "code": "423 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:425-كهر",
+          "code": "425 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:429-عال",
+          "code": "429 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:453-عال",
+          "code": "453 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:454-كهر",
+          "code": "454 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:456-عال",
+          "code": "456 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:456-كهر",
+          "code": "456 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:457-عال",
+          "code": "457 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:458-كهر",
+          "code": "458 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:462-عال",
+          "code": "462 عال",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:463-كهر",
+          "code": "463 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:464-كهر",
+          "code": "464 كهر",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        },
+        {
+          "id": "major:coe:elective:elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c:486-هاب",
+          "code": "486 هاب",
+          "prerequisites": [],
+          "corequisites": [],
+          "minimumCompletedCredits": null,
+          "prerequisiteConditions": []
+        }
+      ]
+    }
+  ],
+  "fallbackCourses": {
+    "413 هال": {
+      "name": "عمارة الحاسبات (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "تمارين"
+      ],
+      "source": "manual",
+      "manuallyEditedFields": [
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "407 كهر": {
+      "name": "الدوائر الإلكترونية للاتصالات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "458 كهر": {
+      "name": "التصميم المنطقي المتقدم",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "source": "manual",
+      "manuallyEditedFields": [
+        "name",
+        "academicHours",
+        "lectureHours",
+        "practicalHours",
+        "exerciseHours"
+      ]
+    },
+    "402 هال": {
+      "name": "مقدمة الى العمليات العشوائية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "414 هال": {
+      "name": "مصفوفة البوابات الرقمية وبرمجتها",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "416 هال": {
+      "name": "مقدمة إلى حسابات الحاسب",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "443 هال": {
+      "name": "الشبكات اللاسلكية وشبكات الاستشعار",
+      "academicHours": 3,
+      "lectureHours": 0,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "445 هال": {
+      "name": "بروتوكولات وخوارزميات الشبكات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "446 هال": {
+      "name": "تصميم وإدارة الشبكات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "454 هال": {
+      "name": "الأنظمة الذكية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "459 هال": {
+      "name": "الروبوتية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "460 هال": {
+      "name": "معالجة الكلام الرقمي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "465 هال": {
+      "name": "معالجة الصور الرقمية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "491 هال": {
+      "name": "مواضيع مختارة فى هندسة الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "203 كهر": {
+      "name": "الكهرومغناطيسية الهندسية (1)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "204 كهر": {
+      "name": "الكهرومغناطيسية الهندسية (2)",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "230 نال": {
+      "name": "اسس قواعد البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "312 هاب": {
+      "name": "هندسة متطلبات البرمجيات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "321 هاب": {
+      "name": "تصميم وعمارة البرمجيات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "335 نال": {
+      "name": "معمارية نظم ادارة قواعد البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "361 عال": {
+      "name": "الذكاء الاصطناعي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "380 عال": {
+      "name": "اسس نظم قواعد البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "385 نال": {
+      "name": "نظم تخطيط موارد المؤسسات",
+      "academicHours": 3,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "422 كهر": {
+      "name": "الاتصالات الرقمية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "423 كهر": {
+      "name": "انتشار الموجات والهوائيات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "425 كهر": {
+      "name": "اتصالات الأقمار الصناعية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "429 عال": {
+      "name": "أمن الحاسبات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "453 عال": {
+      "name": "المعالجة المتوازية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "454 كهر": {
+      "name": "نظم التحكم المتقدمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "456 كهر": {
+      "name": "تطبيقات التحكم الآلي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "457 عال": {
+      "name": "تقنيات الانترنت",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "462 عال": {
+      "name": "تعليم الآلة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "463 كهر": {
+      "name": "الاتصالات اللاسلكية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "464 كهر": {
+      "name": "الاتصالات الضوئية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "486 هاب": {
+      "name": "الحوسبة السحابية والبيانات الضخمة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "103 فيز": {
+      "name": "فيزياء عامة (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "106 ريض": {
+      "name": "حساب التكامل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "111 عال": {
+      "name": "برمجة حاسبات (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "151 ريض": {
+      "name": "الرياضيات المحددة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "104 فيز": {
+      "name": "فيزياء عامه (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "109 نجم": {
+      "name": "اللغة والتخاطب",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "113 عال": {
+      "name": "برمجة حاسبات -2-",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "205 ريض": {
+      "name": "حساب التفاضل والتكامل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "211 هال": {
+      "name": "التصميم المنطقي (1)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "110 نجم": {
+      "name": "الكتابة التقنية",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "204 ريض": {
+      "name": "المعادلات التفاضلية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "207 كهر": {
+      "name": "الدوائرالكهربائية لهندسة الحاسب",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "212 عال": {
+      "name": "تراكيب البيانات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "212 هال": {
+      "name": "التصميم المنطقي (2)",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "227 عال": {
+      "name": "نظم التشغيل",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "244 ريض": {
+      "name": "الجبر الخطي",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 2,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "310 كهر": {
+      "name": "نبائط ودوائر الميكروالكترونيات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "312 كهر": {
+      "name": "معمل أساسيات الالكترونيات",
+      "academicHours": 1,
+      "lectureHours": 0,
+      "exerciseHours": 0,
+      "practicalHours": 2,
+      "activityTypes": [
+        "عملي"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "316 هال": {
+      "name": "عمارة الحاسبات ولغات التجميع",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "351 هال": {
+      "name": "إشارات ونظم",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "211 هاب": {
+      "name": "مدخل الى هندسة البرمجيات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "318 هال": {
+      "name": "النظم المضمنة",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "341 هال": {
+      "name": "تراسل البيانات",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "352 هال": {
+      "name": "معالجة الإشارات الرقمية",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "390 هال": {
+      "name": "ندوة في هندسة الحاسب",
+      "academicHours": 1,
+      "lectureHours": 1,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "311 عال": {
+      "name": "تصميم وتحليل الخوارزميات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "415 هال": {
+      "name": "مقدمة في تصميم الدوائر المتكاملة",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "441 هال": {
+      "name": "شبكات الحاسب",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "453 هال": {
+      "name": "التحكم الرقمي والروبوتية",
+      "academicHours": 4,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 2,
+      "activityTypes": [
+        "محاضرة",
+        "عملي",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "479 هال": {
+      "name": "التدريب الميداني",
+      "academicHours": 1,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "activityTypes": [
+        "تدريب"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "490 هال": {
+      "name": "التصميم الهندسي وإدارة المشاريع",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "107 سلم": {
+      "name": "اخلاقيات المهنة",
+      "academicHours": 2,
+      "lectureHours": 2,
+      "exerciseHours": 0,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "442 هال": {
+      "name": "أمن الحاسبات والشبكات",
+      "academicHours": 3,
+      "lectureHours": 3,
+      "exerciseHours": 1,
+      "practicalHours": 0,
+      "activityTypes": [
+        "محاضرة",
+        "تمارين"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "492 هال": {
+      "name": "مشروع تخرج (1)",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "activityTypes": [
+        "مشروع"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    },
+    "493 هال": {
+      "name": "مشروع تخرج (2)",
+      "academicHours": 3,
+      "lectureHours": null,
+      "exerciseHours": null,
+      "practicalHours": null,
+      "activityTypes": [
+        "مشروع"
+      ],
+      "source": "catalog",
+      "manuallyEditedFields": []
+    }
+  },
+  "proposal": {
+    "enabled": true,
+    "title": "الخطة المقترحة",
+    "semesters": [
+      {
+        "id": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:100-عرب",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-احص",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-ريد",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:101-كيم",
+          "shared:cfy-scientific:shared-semester-2294cf29-a215-4b00-a0c5-73cd99eecc52:104-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "sourceSemesterId": "shared-cfy-scientific-shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c",
+        "type": "regular",
+        "courseOrder": [
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-تقن",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-ريض",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-فجب",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:101-نهج",
+          "shared:cfy-scientific:shared-semester-6c2aefd7-491d-4d29-9c9f-e2a7daa9cf2c:111-انجل"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-level-1",
+        "sourceSemesterId": "published-level-1",
+        "type": "regular",
+        "courseOrder": [
+          "major:coe:published-level-1:103-فيز",
+          "major:coe:published-level-1:106-ريض",
+          "major:coe:published-level-1:111-عال",
+          "major:coe:published-level-1:151-ريض"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-mseqdqru",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-3a7a1246-47d8-4b17-a707-4cdd566ed27c",
+        "sourceSemesterId": "published-3a7a1246-47d8-4b17-a707-4cdd566ed27c",
+        "type": "regular",
+        "courseOrder": [
+          "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:104-فيز",
+          "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:109-نجم",
+          "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:113-عال",
+          "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:205-ريض",
+          "major:coe:published-3a7a1246-47d8-4b17-a707-4cdd566ed27c:211-هال"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-b6c52094-0c22-4116-acbc-fa772205e426",
+        "sourceSemesterId": "published-b6c52094-0c22-4116-acbc-fa772205e426",
+        "type": "regular",
+        "courseOrder": [
+          "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:110-نجم",
+          "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:204-ريض",
+          "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:207-كهر",
+          "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:212-عال",
+          "major:coe:published-b6c52094-0c22-4116-acbc-fa772205e426:212-هال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-mseqdxp6",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-603849d6-e910-4906-929c-b9336ab7b09c",
+        "sourceSemesterId": "published-603849d6-e910-4906-929c-b9336ab7b09c",
+        "type": "regular",
+        "courseOrder": [
+          "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:227-عال",
+          "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:244-ريض",
+          "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:310-كهر",
+          "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:312-كهر",
+          "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:316-هال",
+          "major:coe:published-603849d6-e910-4906-929c-b9336ab7b09c:351-هال"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2",
+        "sourceSemesterId": "published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2",
+        "type": "regular",
+        "courseOrder": [
+          "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:211-هاب",
+          "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:318-هال",
+          "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:341-هال",
+          "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:352-هال",
+          "major:coe:published-2034e57c-f268-4a62-83cc-3ebc1d76f3e2:390-هال"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-e4129093-233c-4f8f-96db-7aec26c6aa5b",
+        "sourceSemesterId": "published-e4129093-233c-4f8f-96db-7aec26c6aa5b",
+        "type": "regular",
+        "courseOrder": [
+          "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:311-عال",
+          "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:415-هال",
+          "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:441-هال",
+          "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:453-هال",
+          "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:490-هال"
+        ],
+        "placeholders": []
+      },
+      {
+        "id": "published-8d37e1f4-53fc-4ed5-8219-4f6de468e1ea",
+        "sourceSemesterId": "published-8d37e1f4-53fc-4ed5-8219-4f6de468e1ea",
+        "type": "regular",
+        "courseOrder": [
+          "major:coe:published-8d37e1f4-53fc-4ed5-8219-4f6de468e1ea:107-سلم",
+          "major:coe:published-8d37e1f4-53fc-4ed5-8219-4f6de468e1ea:442-هال",
+          "major:coe:published-8d37e1f4-53fc-4ed5-8219-4f6de468e1ea:492-هال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-mseqcq2g",
+            "name": "من متطلبات القسم",
+            "electiveGroupId": "elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-mseqcs4y",
+            "name": "من متطلبات القسم",
+            "electiveGroupId": "elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "published-6a1c0db8-52b3-46c1-bf34-3de8f7293850",
+        "sourceSemesterId": "published-6a1c0db8-52b3-46c1-bf34-3de8f7293850",
+        "type": "regular",
+        "courseOrder": [
+          "major:coe:published-6a1c0db8-52b3-46c1-bf34-3de8f7293850:493-هال"
+        ],
+        "placeholders": [
+          {
+            "id": "placeholder-mseqcb7f",
+            "name": "من متطلبات القسم",
+            "electiveGroupId": "elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-mseqcd20",
+            "name": "من متطلبات القسم",
+            "electiveGroupId": "elective-group-7cab6bfa-7764-4b20-a80f-1dc0aee5bff3",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-mseqchcg",
+            "name": "من متطلبات خارج القسم",
+            "electiveGroupId": "elective-group-58d794cb-3ebb-40e8-97a6-e88e17732b0c",
+            "allocationHours": 3,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          },
+          {
+            "id": "placeholder-mseqckp4",
+            "name": "من متطلبات الجامعة",
+            "electiveGroupId": "ksu-general-req",
+            "allocationHours": 2,
+            "hoursDisplay": "unknown",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "id": "proposal-summer-752e2235-422e-4b7b-9d72-27328865288d",
+        "sourceSemesterId": null,
+        "type": "summer",
+        "courseOrder": [
+          "major:coe:published-e4129093-233c-4f8f-96db-7aec26c6aa5b:479-هال"
+        ],
+        "placeholders": []
+      }
+    ]
+  }
+}

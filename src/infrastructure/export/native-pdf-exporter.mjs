@@ -4,6 +4,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { assertRequiredFonts, resolveFontDirectory } from "./font-service.mjs";
+import { buildPlanPdfMetadata } from "./pdf-metadata.mjs";
 
 function replaceAtomically(destination, replacement) {
   const previous = `${destination}.previous-${process.pid}-${Date.now()}`;
@@ -32,12 +33,14 @@ export function exportNativePdf(pages, pageLayouts, pdfPath, options = {}) {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "saad-native-pdf-"));
   const descriptorPath = path.join(tempDir, "descriptor.json");
   const temporaryPdf = path.join(path.dirname(pdfPath), `.${path.basename(pdfPath)}.${process.pid}.${Date.now()}.tmp`);
+  const metadata = options.metadata ?? buildPlanPdfMetadata(options.plan, options.context);
   try {
     fs.writeFileSync(descriptorPath, JSON.stringify({
       pages,
       pageLayouts,
       fontDir,
       outputPath: temporaryPdf,
+      metadata,
     }), "utf8");
     const worker = fileURLToPath(new URL("./native-pdf-worker.mjs", import.meta.url));
     const result = spawnSync(process.execPath, [worker, descriptorPath], {

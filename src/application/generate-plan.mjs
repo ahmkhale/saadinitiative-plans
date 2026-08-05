@@ -9,6 +9,8 @@ import { defaultCatalogService } from "../infrastructure/catalog/catalog-service
 import { executePlanPipeline } from "./plan-pipeline.mjs";
 import { metadataForPlanPath } from "../infrastructure/repositories/institution-repository.mjs";
 import { readPlanWithDerivedTrackStatus } from "../infrastructure/repositories/track-plan-loader.mjs";
+import { buildPlanPdfMetadata } from "../infrastructure/export/pdf-metadata.mjs";
+import { defaultPlanOutputName } from "./plan-output-naming.mjs";
 
 const thisFile = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(path.dirname(thisFile), "../..");
@@ -26,7 +28,7 @@ export function outputPaths(plan, options = {}) {
         "plan",
       ),
     );
-  const base = options.outputName ?? "plan";
+  const base = options.outputName ?? defaultPlanOutputName(plan);
   return {
     folder,
     svgPath: path.join(folder, `${base}.svg`),
@@ -73,6 +75,11 @@ export function generatePlan(options) {
   }
   const document = result.document;
   if (!document) throw new Error("Cannot render a plan with blocking diagnostics.");
+  const pdfMetadata = buildPlanPdfMetadata(resolved, {
+    sourcePlan: rawPlan,
+    resolvedPlan: resolved,
+    metadata: repositoryMetadata,
+  });
   let exportResult = null;
   if (options.svgOnly) {
     writeText(paths.svgPath, document.svg);
@@ -85,6 +92,7 @@ export function generatePlan(options) {
       pageCount: document.pageCount,
       pages: document.pages,
       pageLayouts: document.pageLayouts,
+      metadata: pdfMetadata,
       inkscape: options.inkscape,
       optimizePdf: options.optimizePdf !== false,
       requirePdfOptimization: Boolean(options.requirePdfOptimization),

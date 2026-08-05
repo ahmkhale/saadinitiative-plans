@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "cfy-s",
+  "major": "التحضيري العملي",
+  "degree": "البكالوريوس",
+  "expectedCredits": 0,
+  "sharedSemesterSets": [],
+  "semesters": [
+    {
+      "id": "published-level-1",
+      "courses": []
+    }
+  ],
+  "electiveGroups": [],
+  "fallbackCourses": {}
+}

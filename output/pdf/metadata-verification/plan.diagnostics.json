@@ -1,0 +1,263 @@
+{
+  "generatorVersion": "0.3.2",
+  "planPath": "C:\\Users\\ahmkh\\Projects\\Saad\\saadinitiative-plans\\institutions\\ksu\\colleges\\ccis\\majors\\cs\\plan.json",
+  "catalogPath": null,
+  "generatedAt": "2026-08-04T08:49:46.846Z",
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "info": 34
+  },
+  "items": [
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "104 انجل has a durable catalog fallback snapshot.",
+      "course": "104 انجل",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 احص has a durable catalog fallback snapshot.",
+      "course": "101 احص",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 كيم has a durable catalog fallback snapshot.",
+      "course": "101 كيم",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 ريد has a durable catalog fallback snapshot.",
+      "course": "101 ريد",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "100 عرب has a durable catalog fallback snapshot.",
+      "course": "100 عرب",
+      "location": "semester-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "111 انجل has a durable catalog fallback snapshot.",
+      "course": "111 انجل",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 ريض has a durable catalog fallback snapshot.",
+      "course": "101 ريض",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 تقن has a durable catalog fallback snapshot.",
+      "course": "101 تقن",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 نهج has a durable catalog fallback snapshot.",
+      "course": "101 نهج",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "101 فجب has a durable catalog fallback snapshot.",
+      "course": "101 فجب",
+      "location": "semester-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "106 ريض has a durable catalog fallback snapshot.",
+      "course": "106 ريض",
+      "location": "semester-3"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "107 سلم has a durable catalog fallback snapshot.",
+      "course": "107 سلم",
+      "location": "semester-3"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "111 عال has a durable catalog fallback snapshot.",
+      "course": "111 عال",
+      "location": "semester-3"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "151 ريض has a durable catalog fallback snapshot.",
+      "course": "151 ريض",
+      "location": "semester-3"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "108 سلم has a durable catalog fallback snapshot.",
+      "course": "108 سلم",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "113 عال has a durable catalog fallback snapshot.",
+      "course": "113 عال",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "220 عال has a durable catalog fallback snapshot.",
+      "course": "220 عال",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "244 ريض has a durable catalog fallback snapshot.",
+      "course": "244 ريض",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "281 عال has a durable catalog fallback snapshot.",
+      "course": "281 عال",
+      "location": "semester-4"
+    },
+    {
+      "severity": "info",
+      "code": "ELECTIVE_CANDIDATE_EXCLUDED",
+      "message": "107 سلم was excluded because it already exists in a published semester.",
+      "course": "107 سلم",
+      "sourceId": "ksu-general-req",
+      "location": "elective-ksu-general-req"
+    },
+    {
+      "severity": "info",
+      "code": "ELECTIVE_CANDIDATE_EXCLUDED",
+      "message": "108 سلم was excluded because it already exists in a published semester.",
+      "course": "108 سلم",
+      "sourceId": "ksu-general-req",
+      "location": "elective-ksu-general-req"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "100 سلم has a durable catalog fallback snapshot.",
+      "course": "100 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "100 قرأ has a durable catalog fallback snapshot.",
+      "course": "100 قرأ",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "103 سلم has a durable catalog fallback snapshot.",
+      "course": "103 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "105 سلم has a durable catalog fallback snapshot.",
+      "course": "105 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "109 سلم has a durable catalog fallback snapshot.",
+      "course": "109 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "101 سلم was not found in courses.json; manual plan fallback was used.",
+      "course": "101 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "104 سلم was not found in courses.json; manual plan fallback was used.",
+      "course": "104 سلم",
+      "location": "elective-1"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "103 فيز has a durable catalog fallback snapshot.",
+      "course": "103 فيز",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "104 فيز has a durable catalog fallback snapshot.",
+      "course": "104 فيز",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "108 كيم has a durable catalog fallback snapshot.",
+      "course": "108 كيم",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "201 كيم has a durable catalog fallback snapshot.",
+      "course": "201 كيم",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "CATALOG_FALLBACK_SNAPSHOT",
+      "message": "202 كيح has a durable catalog fallback snapshot.",
+      "course": "202 كيح",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "info",
+      "code": "FALLBACK_USED",
+      "message": "210 فيز was not found in courses.json; manual plan fallback was used.",
+      "course": "210 فيز",
+      "location": "elective-elective-group-2"
+    },
+    {
+      "severity": "warnings",
+      "code": "PROPOSAL_HOURS_MISMATCH",
+      "message": "Proposal hours are 63, but the main plan totals 67 (59 published + 8 elective).",
+      "proposal": 63,
+      "mainPlan": 67,
+      "published": 59,
+      "elective": 8,
+      "difference": -4
+    }
+  ]
+}

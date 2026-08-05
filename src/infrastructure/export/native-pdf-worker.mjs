@@ -50,14 +50,18 @@ function registerFonts(document, fontDir) {
   }
 }
 
-export async function renderNativePdf({ pages, pageLayouts, fontDir, outputPath }) {
+export async function renderNativePdf({ pages, pageLayouts, fontDir, outputPath, metadata }) {
   const document = new PDFDocument({
     autoFirstPage: false,
     compress: true,
+    lang: metadata.language,
     info: {
-      Producer: "PDFKit",
-      Creator: "Saad Plan Generator native PDF",
-      Author: "Saad Initiative",
+      Title: metadata.title,
+      Author: metadata.author,
+      Creator: metadata.creator,
+      Producer: metadata.producer,
+      Subject: metadata.subject,
+      Keywords: metadata.keywords.join(", "),
     },
   });
   registerFonts(document, fontDir);

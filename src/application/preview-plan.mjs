@@ -5,6 +5,8 @@ import { exportSvg } from "../infrastructure/export/inkscape-exporter.mjs";
 import { writeJson } from "../infrastructure/fs/file-io.mjs";
 import { safeSlug } from "../infrastructure/fs/safe-slug.mjs";
 import { executePlanPipeline } from "./plan-pipeline.mjs";
+import { buildPlanPdfMetadata } from "../infrastructure/export/pdf-metadata.mjs";
+import { defaultPlanOutputName } from "./plan-output-naming.mjs";
 
 export function resolveDraft(rawPlan, options = {}) {
   try {
@@ -41,7 +43,7 @@ export function exportDraft(rawPlan, options = {}) {
       : result.plan.id ?? result.plan.major,
     "plan",
   ));
-  const base = options.outputName ?? "plan";
+  const base = options.outputName ?? defaultPlanOutputName(result.plan);
   const paths = {
     folder,
     svgPath: path.join(folder, `${base}.svg`),
@@ -60,6 +62,11 @@ export function exportDraft(rawPlan, options = {}) {
     pageCount: result.document.pageCount,
     pages: result.document.pages,
     pageLayouts: result.document.pageLayouts,
+    metadata: buildPlanPdfMetadata(result.plan, {
+      sourcePlan: rawPlan,
+      resolvedPlan: result.plan,
+      metadata: options.metadata,
+    }),
     pngWidth: options.pngWidth,
     inkscape: options.inkscape,
     optimizePdf: options.optimizePdf !== false,
